@@ -1,30 +1,57 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$ROOT"
+OWNER="${SIMPLE_SKILLS_OWNER:-truongnat}"
+REPO="${SIMPLE_SKILLS_REPO:-simple-skills}"
+BRANCH="${SIMPLE_SKILLS_BRANCH:-main}"
+GITHUB="${OWNER}/${REPO}"
 
-echo "Installing skills..."
+TARGET="$(pwd)"
+SOURCE=""
+TMP=""
 
-mkdir -p .agents/skills
+cleanup() {
+  if [ -n "$TMP" ] && [ -d "$TMP" ]; then
+    rm -rf "$TMP"
+  fi
+}
+trap cleanup EXIT
+
+fetch_source() {
+  echo "Downloading ${GITHUB}@${BRANCH} ..."
+  TMP="$(mktemp -d)"
+  curl -fsSL "https://github.com/${GITHUB}/archive/refs/heads/${BRANCH}.tar.gz" \
+    | tar -xz -C "$TMP" --strip-components=1
+  SOURCE="$TMP"
+}
+
+if [ -d "skills" ]; then
+  SOURCE="$(pwd)"
+else
+  fetch_source
+fi
+
+echo "Installing skills into ${TARGET}/.agents ..."
+
+mkdir -p "${TARGET}/.agents/skills"
 
 skill_count=0
-for skill_path in skills/*/; do
+for skill_path in "${SOURCE}"/skills/*/; do
   [ -d "$skill_path" ] || continue
   skill_count=$((skill_count + 1))
 done
 
 echo "Found ${skill_count} skills."
 
-for skill_path in skills/*/; do
+for skill_path in "${SOURCE}"/skills/*/; do
   [ -d "$skill_path" ] || continue
   skill="$(basename "$skill_path")"
   echo "Installing skill ${skill} ..."
-  mkdir -p ".agents/skills/${skill}"
-  cp -R "${skill_path}." ".agents/skills/${skill}/"
+  mkdir -p "${TARGET}/.agents/skills/${skill}"
+  cp -R "${skill_path}." "${TARGET}/.agents/skills/${skill}/"
 done
 
-cp -f docs/design-system.md .agents/design-system.md
-cp -f docs/AGENTS.md .agents/AGENTS.md
+cp -f "${SOURCE}/docs/design-system.md" "${TARGET}/.agents/design-system.md"
+cp -f "${SOURCE}/docs/AGENTS.md" "${TARGET}/.agents/AGENTS.md"
 
 echo "Skills installed successfully."

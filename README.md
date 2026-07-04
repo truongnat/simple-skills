@@ -4,7 +4,7 @@ Bộ kỹ năng và quy tắc tối giản cho AI agent. Mục tiêu là giữ h
 
 ## Cài đặt
 
-Script cài đặt copy toàn bộ skill và tài liệu vào thư mục `.agents/` trong repo hiện tại:
+Chạy lệnh trong **thư mục dự án** cần cài skill. Script sẽ tạo `.agents/` tại đó:
 
 ```text
 .agents/
@@ -19,19 +19,27 @@ Script cài đặt copy toàn bộ skill và tài liệu vào thư mục `.agent
 ### Linux / macOS
 
 ```bash
-chmod +x install.sh
-./install.sh
+curl -fsSL https://raw.githubusercontent.com/truongnat/simple-skills/main/install.sh | bash
 ```
 
 ### Windows (PowerShell)
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File install.ps1
+irm https://raw.githubusercontent.com/truongnat/simple-skills/main/install.ps1 | iex
 ```
 
-Hoặc double-click / chạy từ Command Prompt:
+### Cài từ repo đã clone (tùy chọn)
 
-```cmd
+Nếu đã clone repo này, có thể chạy script trực tiếp:
+
+```bash
+# Linux / macOS
+./install.sh
+
+# Windows (PowerShell)
+.\install.ps1
+
+# Windows (CMD)
 install.cmd
 ```
 
@@ -83,4 +91,4 @@ Chi tiết workflow xem [docs/AGENTS.md](docs/AGENTS.md).
 
 ## Phát triển
 
-Repo vẫn có `package.json` cho tooling TypeScript/Rolldown khi cần. Cài đặt skill **không** yêu cầu Node.js — chỉ cần chạy script phù hợp với hệ điều hành.
+Repo vẫn có `package.json` cho tooling TypeScript/Rolldown khi cần. Cài đặt skill **không** yêu cầu Node.js — chỉ cần `curl` (Linux/macOS) hoặc PowerShell (Windows).

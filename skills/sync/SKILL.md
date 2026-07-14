@@ -76,28 +76,7 @@ If readiness is not met: do NOT move to execution. Document blockers and recomme
 
 ## XML Contract
 
-```xml
-<Contract>
-  <Inputs>Session path, PLAN.md, workspace state, git state, dependency/config metadata, known affected files, user constraints.</Inputs>
-  <Outputs>Sync summary with observed facts, inferred context, drift, dirty changes, risks, blockers, recommended next step.</Outputs>
-  <Artifacts>
-    <File name="EXECUTION.md" required="false" update="true">Append sync summary if workflow requires it. Not required for Lite Mode.</File>
-    <File name="SYNC.md" required="false">Optional standalone sync report for Full Mode.</File>
-    <Schema>
-      <summary>
-        <field name="scope" type="string" required="true">What was synced (artifacts, workspace, git, dependencies).</field>
-        <field name="observed_facts" type="array" required="true">List of observed facts with source for each.</field>
-        <field name="inferred_context" type="array" required="false">Inferences with basis and confidence level.</field>
-        <field name="drift_detected" type="array" required="false">Drift items with type, impact, suggested action.</field>
-        <field name="dirty_changes" type="array" required="false">Classified dirty changes with scope check (in-scope/out-of-scope/unknown).</field>
-        <field name="risks_blockers" type="array" required="true">Blockers with type, impact, next action.</field>
-        <field name="recommendation" type="string" required="true">Ready for execution: Yes/No. Suggested next step.</field>
-      </summary>
-    </Schema>
-  </Artifacts>
-  <Safety>Read-only by default. Do NOT mutate workspace. Do NOT read secrets or sensitive files without a clear reason. Do NOT run destructive commands. Do NOT auto-resolve conflicts or unrelated dirty changes. Do NOT move to execution when plan is stale or blockers are unhandled.</Safety>
-</Contract>
-```
+See [openai.yaml](./agents/openai.yaml)
 
 ## Quality Standards
 

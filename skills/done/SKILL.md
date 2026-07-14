@@ -11,32 +11,7 @@ Close a task with clear, honest, reviewable artifacts.
 
 ## XML Contract
 
-```xml
-<Contract>
-  <Inputs>PLAN.md, EXECUTION.md, REVIEW.md, diff/file changes, verification evidence, skipped checks, blockers, risks, PR/MR template.</Inputs>
-  <Outputs>DONE.md, PR_MESSAGE.md, PR_DESCRIPTION.md, optional RELEASE_NOTE.md.</Outputs>
-  <Artifacts>
-    <File name="DONE.md" required="true">
-      <Schema>
-        <field name="status" type="string" required="true">Done / Done with risks / Needs fix / Blocked / Partial.</field>
-        <field name="summary" type="string" required="true">Outcome-focused summary (not file list).</field>
-        <field name="scope_completed" type="array" required="true">Scope item, status, evidence.</field>
-        <field name="what_changed" type="array" required="true">Area, change summary, reason.</field>
-        <field name="files_changed" type="array" required="true">File path, summary.</field>
-        <field name="verification" type="array" required="true">Check, command/method, result, evidence.</field>
-        <field name="review_result" type="string" required="false">Findings and resolution, or "No findings."</field>
-        <field name="skipped_failed_checks" type="array" required="false">Check, status, reason, risk.</field>
-        <field name="risks_followups" type="array" required="false">Item, type (risk/follow-up/blocker), impact, owner/next action.</field>
-        <field name="handoff" type="string" required="true">Next step, reviewer focus, QA focus, deployment notes.</field>
-      </Schema>
-    </File>
-    <File name="PR_MESSAGE.md" required="false">Conventional commit format: feat/fix/refactor(scope): summary.</File>
-    <File name="PR_DESCRIPTION.md" required="false">Summary, Changes, Verification, Review Notes, Risks/Follow-ups.</File>
-    <File name="RELEASE_NOTE.md" required="false">Only when change is user-facing or user requests it.</File>
-  </Artifacts>
-  <Safety>Do NOT overclaim verification. Do NOT hide skipped/failed checks. Do NOT mark complete if blockers remain. Do NOT describe changes that were not made. Do NOT put secrets into final artifacts.</Safety>
-</Contract>
-```
+See [openai.yaml](./agents/openai.yaml)
 
 ## Quality Standards
 

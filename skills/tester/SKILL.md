@@ -11,27 +11,7 @@ Act as a tester/QA in the agent workflow to ensure requirements, plans, or chang
 
 ## XML Contract
 
-```xml
-<Contract>
-  <Inputs>Requirements, PLAN.md, acceptance criteria, user stories, business rules, current/expected behavior, test environment, existing tests, test data.</Inputs>
-  <Outputs>Test cases, traceability matrix, test data, manual verification steps, automated test suggestions, regression checklist, testing gaps.</Outputs>
-  <Artifacts>
-    <File name="testcases.md" required="true">
-      <Schema>
-        <field name="session_timestamp" type="string" required="true">ISO 8601 with timezone.</field>
-        <field name="test_scope" type="string" required="true">In scope, out of scope, assumptions.</field>
-        <field name="applicable_groups" type="string" required="true">Which test groups apply (A/B/C/D) and which are skipped with reasons.</field>
-        <field name="test_cases" type="array" required="true">ID, priority, type, title, preconditions, steps, test data, expected result, requirement mapping, verification method, status.</field>
-        <field name="regression_checklist" type="array" required="false">Area, scenario, expected result, priority.</field>
-        <field name="test_data" type="array" required="false">Data, purpose, source/setup, notes.</field>
-        <field name="testing_gaps" type="array" required="false">Gap, risk, suggested follow-up.</field>
-      </Schema>
-    </File>
-    <File name="testcases.csv" required="false">CSV file for Excel/Google Sheets import when user requests.</File>
-  </Artifacts>
-  <Safety>Do NOT claim pass if not run or no evidence. Do NOT decide expected behavior when requirements are unclear. Do NOT use real/sensitive data as test data without permission.</Safety>
-</Contract>
-```
+See [openai.yaml](./agents/openai.yaml)
 
 ## Quality Standards
 

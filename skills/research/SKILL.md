@@ -11,30 +11,7 @@ Collect, verify, and synthesize evidence to support technical, product, or opera
 
 ## XML Contract
 
-```xml
-<Contract>
-  <Inputs>Research question, decision context, local evidence, external source constraints, freshness requirement, quality bar.</Inputs>
-  <Outputs>RESEARCH.md with source strategy, evidence, findings, comparison matrix, recommendation, confidence, caveats, residual risks.</Outputs>
-  <Artifacts>
-    <File name="RESEARCH.md" required="true">
-      <Schema>
-        <field name="question" type="string" required="true">Research question.</field>
-        <field name="decision_context" type="string" required="true">What decision this research supports.</field>
-        <field name="status" type="string" required="true">Complete / Complete with caveats / Partial / Blocked.</field>
-        <field name="source_strategy" type="array" required="true">Source type, purpose, notes.</field>
-        <field name="sources_reviewed" type="array" required="true">Source ID, name, type, date/version, relevance.</field>
-        <field name="findings" type="array" required="true">Finding, evidence, confidence.</field>
-        <field name="comparison_matrix" type="table" required="false">Option columns x criteria rows.</field>
-        <field name="recommendation" type="string" required="true">Recommended option, confidence, reason, why not alternatives.</field>
-        <field name="caveats" type="array" required="false">Caveat with impact and mitigation.</field>
-        <field name="residual_risks" type="array" required="false">Risk, impact, suggested follow-up.</field>
-        <field name="handoff" type="string" required="true">Ready for planning/execution? Required verification?</field>
-      </Schema>
-    </File>
-  </Artifacts>
-  <Safety>Do NOT fabricate citations. Do NOT copy long source content. Do NOT use stale sources for decisions needing fresh information. Do NOT present inference as fact. Do NOT omit caveats or residual risks.</Safety>
-</Contract>
-```
+See [openai.yaml](./agents/openai.yaml)
 
 ## Quality Standards
 

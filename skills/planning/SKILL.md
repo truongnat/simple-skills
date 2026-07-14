@@ -11,31 +11,7 @@ Turn a clear goal into a concrete execution plan with order, dependencies, accep
 
 ## XML Contract
 
-```xml
-<Contract>
-  <Inputs>DISCUSSION.md, requirement notes, user request, codebase mapping, affected systems, constraints.</Inputs>
-  <Outputs>PLAN.md with goal, scope, assumptions, non-goals, affected files, task breakdown, dependencies, acceptance criteria, verification, DoD, rollback, risks.</Outputs>
-  <Artifacts>
-    <File name="PLAN.md" required="true">
-      <Schema>
-        <field name="goal" type="string" required="true">One sentence.</field>
-        <field name="scope" type="string" required="true">In scope summary.</field>
-        <field name="non_goals" type="array" required="false">Explicitly excluded outcomes.</field>
-        <field name="assumptions" type="array" required="true">Assumptions with risk and confirmation status.</field>
-        <field name="affected_files" type="array" required="true">Files/systems to change with expected change and confidence.</field>
-        <field name="tasks" type="array" required="true">Task ID, description, dependencies, acceptance criteria, verification method, files/scope.</field>
-        <field name="execution_order" type="array" required="true">Ordered list of task IDs.</field>
-        <field name="verification_strategy" type="string" required="true">Automated and manual verification commands/steps.</field>
-        <field name="definition_of_done" type="array" required="true">Checklist of verifiable completion conditions.</field>
-        <field name="rollback_strategy" type="string" required="true">How to undo changes per type (code/config/data).</field>
-        <field name="risks" type="array" required="false">Risks with impact and mitigation.</field>
-        <field name="handoff" type="string" required="true">Ready for execution? Blocking items? Review required?</field>
-      </Schema>
-    </File>
-  </Artifacts>
-  <Safety>Do NOT implement code during planning. Do NOT invent affected files without inspecting the codebase. Do NOT treat assumptions as confirmed requirements. Do NOT skip rollback for destructive changes.</Safety>
-</Contract>
-```
+See [openai.yaml](./agents/openai.yaml)
 
 ## Quality Standards
 

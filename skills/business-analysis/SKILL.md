@@ -11,13 +11,7 @@ Clarify business requirements before planning, technical design, implementation,
 
 ## XML Contract
 
-```xml
-<Contract>
-  <Inputs>User request, business context, existing requirements, data samples (Excel, CSV, SQL, JSON, API response), screenshots, stakeholder feedback.</Inputs>
-  <Outputs>Requirement notes: problem statement, stakeholders, scope, user stories/use cases, business rules, data assumptions, acceptance criteria, open questions.</Outputs>
-  <Safety>Do NOT treat assumptions as requirements. Do NOT decide for stakeholders. Do NOT write vague or untestable acceptance criteria.</Safety>
-</Contract>
-```
+See [openai.yaml](./agents/openai.yaml)
 
 ## Quality Standards
 

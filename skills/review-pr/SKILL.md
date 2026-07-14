@@ -11,28 +11,7 @@ Review a PR/MR or branch diff as a quality-responsible reviewer before merge.
 
 ## XML Contract
 
-```xml
-<Contract>
-  <Inputs>PR diff, branch diff, base/head, PR description, changed files, test/CI results, codebase context.</Inputs>
-  <Outputs>REVIEW_PR.md with scope, findings, testing gaps, residual risks, PR description coverage, merge recommendation.</Outputs>
-  <Artifacts>
-    <File name="REVIEW_PR.md" required="true">
-      <Schema>
-        <field name="base" type="string" required="true">Base branch or commit.</field>
-        <field name="head" type="string" required="true">Head branch or commit.</field>
-        <field name="pr_description_accuracy" type="string" required="true">Does the diff match the description? yes/partial/no.</field>
-        <field name="changed_areas" type="array" required="true">Area, files, risk level, notes.</field>
-        <field name="findings" type="array" required="false">Finding ID, severity, category, location, evidence, impact, recommendation, confidence.</field>
-        <field name="verification_reviewed" type="array" required="true">Check, result (pass/fail/skipped/missing), evidence, concern.</field>
-        <field name="testing_gaps" type="array" required="false">Gap, risk, suggested follow-up.</field>
-        <field name="residual_risks" type="array" required="false">Risk, impact, acceptance/mitigation.</field>
-        <field name="merge_recommendation" type="string" required="true">Approve / Approve with comments / Request changes / Needs more info / Needs more verification / Blocked.</field>
-      </Schema>
-    </File>
-  </Artifacts>
-  <Safety>Do NOT auto-fix the PR if the user only requested review. Do NOT approve on behalf of the user. Do NOT create findings without evidence. Do NOT claim merge-safe if verification is missing. Do NOT ignore security/data risks.</Safety>
-</Contract>
-```
+See [openai.yaml](./agents/openai.yaml)
 
 ## Quality Standards
 

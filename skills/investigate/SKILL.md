@@ -11,32 +11,7 @@ Find technical truth before deciding to fix, plan, or implement.
 
 ## XML Contract
 
-```xml
-<Contract>
-  <Inputs>Problem description, expected/actual behavior, logs/errors/reproduction, codebase context, environment details.</Inputs>
-  <Outputs>INVESTIGATE.md with question, status, evidence, reproduction, observed facts, hypotheses, code path, impact map, root cause, recommendation, open questions.</Outputs>
-  <Artifacts>
-    <File name="INVESTIGATE.md" required="true">
-      <Schema>
-        <field name="question" type="string" required="true">The investigation question.</field>
-        <field name="status" type="string" required="true">Root Cause Confirmed / Likely Root Cause / Hypotheses Identified / Needs More Evidence / Blocked.</field>
-        <field name="context" type="string" required="false">Environment, version, related setup.</field>
-        <field name="evidence" type="array" required="true">Evidence ID, source, observation, supports hypothesis?, confidence.</field>
-        <field name="reproduction" type="array" required="false">Step, action, expected, actual, result.</field>
-        <field name="observed_facts" type="array" required="true">Fact with source.</field>
-        <field name="hypotheses" type="array" required="false">Hypothesis, supporting evidence, counter evidence, verification method, confidence.</field>
-        <field name="code_path" type="array" required="false">Layer, file/component, role, observation.</field>
-        <field name="root_cause" type="string" required="false">Confirmed or likely root cause.</field>
-        <field name="impact" type="array" required="true">Area affected, impact, confidence.</field>
-        <field name="recommendation" type="string" required="true">Fix recommendation / workaround / next investigation.</field>
-        <field name="open_questions" type="array" required="false">Question, owner, blocking status.</field>
-        <field name="handoff" type="string" required="true">Ready for planning? Ready for execution? Suggested next skill.</field>
-      </Schema>
-    </File>
-  </Artifacts>
-  <Safety>Read-only by default. Do NOT modify code unless requested. Do NOT run destructive commands. Do NOT read secrets without a clear reason. Do NOT claim root cause when evidence is insufficient.</Safety>
-</Contract>
-```
+See [openai.yaml](./agents/openai.yaml)
 
 ## Quality Standards
 

@@ -53,32 +53,7 @@ Do NOT use this skill when:
 
 ## XML Contract
 
-```xml
-<Contract>
-  <Inputs>Initial request, repo context, existing documents, constraints, current behavior, desired outcome, stakeholder feedback if available.</Inputs>
-  <Outputs>Light discussion or full DISCUSSION.md with goal, facts, assumptions, unknowns, constraints, scope, options, trade-offs, recommendation, risks, open questions, handoff to planning.</Outputs>
-  <Artifacts>
-    <File name="DISCUSSION.md" required="true">
-      <Schema>
-        <field name="goal" type="string" required="true">One sentence describing the goal.</field>
-        <field name="desired_outcome" type="string" required="true">What success looks like.</field>
-        <field name="confirmed_facts" type="array" required="true">Known facts from user, repo, or research.</field>
-        <field name="constraints" type="array" required="false">Time, platform, tech stack, budget, tool limits.</field>
-        <field name="assumptions" type="array" required="false">Assumptions with risk level and confirmation status.</field>
-        <field name="unknowns" type="array" required="false">Open questions with blocking flag.</field>
-        <field name="scope_in" type="array" required="true">What is in scope.</field>
-        <field name="scope_out" type="array" required="true">What is out of scope.</field>
-        <field name="non_goals" type="array" required="false">Goals explicitly not pursued.</field>
-        <field name="options_considered" type="table" required="true">Option, pros, cons, effort, risk, reversibility, verify method.</field>
-        <field name="recommendation" type="string" required="true">Recommended option with reason and confidence.</field>
-        <field name="risks" type="array" required="false">Risks with impact and mitigation.</field>
-        <field name="handoff" type="string" required="true">Suggested next skill: planning/business-analysis/research/execution.</field>
-      </Schema>
-    </File>
-  </Artifacts>
-  <Safety>Do NOT implement code during brainstorming. Do NOT treat assumptions as facts. Do NOT create detailed planning before a clear recommendation. Do NOT create large extra artifacts unless requested.</Safety>
-</Contract>
-```
+See [openai.yaml](./agents/openai.yaml)
 
 ## Quality Standards
 

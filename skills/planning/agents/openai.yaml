@@ -1,9 +1,9 @@
 display_name: "Planning"
-short_description: "MUST write PLAN.md and TASKS.md to the session folder. PLAN = strategy; TASKS = micro-tasks from design. Implement before tests."
-default_prompt: "Use $planning to MUST-create both PLAN.md and TASKS.md in the session folder. Do not stop after PLAN.md alone."
+short_description: "MUST write slim PLAN.md + TASKS.md on disk. No full task cards in PLAN. Micro-tasks from design; implement before tests."
+default_prompt: "Use $planning: write slim PLAN.md (task_index only) AND full TASKS.md in the session folder. Reject PLAN-only or tasks-inside-PLAN."
 required_input: "DETAIL_DESIGN.md when present; else BASIC_DESIGN.md / DISCUSSION.md / requirement notes; user request; codebase mapping; affected systems; constraints."
-required_output: "MUST write two session files on disk: PLAN.md and TASKS.md. Incomplete if only PLAN.md or only chat output."
-note_important: "Do NOT implement code during planning. Do NOT finish planning without writing BOTH PLAN.md and TASKS.md files to the session directory on disk. Do NOT put task bodies only in chat or only inside PLAN.md. Do NOT dump full task cards into PLAN.md — those belong in TASKS.md. Do NOT invent affected files without inspecting the codebase. Do NOT treat assumptions as confirmed. Do NOT skip rollback for destructive changes. Do NOT re-design architecture when design artifacts already exist. Do NOT put test-writing tasks before the feature code those tests would cover. Do NOT emit vague epic-level tasks when design detail exists."
+required_output: "MUST write two session files on disk: PLAN.md (strategy + task_index only) and TASKS.md (full micro-task cards). Incomplete if only PLAN.md, only chat, or full task bodies embedded in PLAN.md."
+note_important: "Do NOT implement code during planning. Do NOT finish without BOTH PLAN.md and TASKS.md on disk. Do NOT put ### T-00x bodies / AC / Verify / Files inside PLAN.md. Do NOT make the first task a test-case document or 6-dimension coverage matrix before feature code. Do NOT emit epic-level tasks when design detail exists. Do NOT invent affected files without inspecting the codebase. Do NOT treat assumptions as confirmed. Do NOT skip rollback for destructive changes. Do NOT re-design architecture when design artifacts already exist."
 artifacts:
   PLAN.md:
     required: true
@@ -27,27 +27,27 @@ artifacts:
       approach:
         type: string
         required: true
-        description: "Phased strategy (how work will proceed). Not step-by-step file edits."
+        description: "Phased strategy only. No per-task AC/Verify/Files."
       affected_areas:
         type: array
         required: false
-        description: "Systems/dirs to touch with confidence (known / inferred / unknown). High level only."
+        description: "Systems/dirs at high level with confidence (known / inferred / unknown)."
       test_strategy:
         type: string
         required: false
-        description: "When/how to verify after code exists (frameworks in project). Not write-tests-first."
+        description: "How to verify after code exists. Not write-tests-first."
       verification_strategy:
         type: string
         required: true
-        description: "Automated and manual verification approach for the whole change."
+        description: "Automated and manual verification for the whole change."
       definition_of_done:
         type: array
         required: true
-        description: "Checklist of verifiable completion conditions."
+        description: "Falsifiable completion checklist."
       rollback_strategy:
         type: string
         required: true
-        description: "How to undo changes per type (code/config/data)."
+        description: "Undo strategy per code/config/data."
       risks:
         type: array
         required: false
@@ -55,27 +55,27 @@ artifacts:
       task_index:
         type: array
         required: true
-        description: "Ordered task IDs summarizing TASKS.md (implement before tests), e.g. T-001 Model → T-002 Service → T-003 API → T-004 Tests."
+        description: "Ordered ID + short title only (implement before tests). No full cards."
       handoff:
         type: string
         required: true
-        description: "Ready for sync/execution? Blocking items? Review required?"
+        description: "Ready for sync/execution? Blocking items?"
   TASKS.md:
     required: true
     schema:
       plan_ref:
         type: string
         required: true
-        description: "Reference to PLAN.md. MUST be a real file in the same session folder."
+        description: "PLAN.md in the same session folder."
       tasks:
         type: array
         required: true
-        description: "Micro-task cards broken from design/docs: ID, title, description (steps + design trace), dependencies, acceptance_criteria, verification, files_or_scope, confidence, status."
+        description: "Micro-task cards: ID, title, Trace, Description, Depends, AC, Verify, Files/scope, confidence, status. Not epics."
       execution_order:
         type: array
         required: true
-        description: "Ordered task IDs. Feature implementation before automated tests for the same surface."
+        description: "Ordered IDs. Feature implementation before automated tests."
       notes:
         type: array
         required: false
-        description: "Sequencing notes, blockers, or split-file references."
+        description: "Sequencing notes or blockers."

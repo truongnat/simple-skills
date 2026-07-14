@@ -55,9 +55,9 @@ Base folder for runtime artifacts: `.agents/sessions/<Task-N-short-description>/
 4. `detail-design` → `DETAIL_DESIGN.md`
    - Implementable design: contracts, data model, sequences, rules/operations, optional client mapping (omit unused sections; mark gaps).
 5. `planning` → `PLAN.md` + `TASKS.md` (**both required on disk**)
-   - Step workflow: seed templates → fill PLAN (slim) → fill TASKS (micro) → self-check.
+   - Step workflow: seed templates → fill PLAN (slim) → **Work inventory → specific micro-TASKS** → self-check.
    - Templates: `skills/planning/templates/`; steps: `skills/planning/steps/step-01` … `step-04`.
-   - Reject if: steps skipped, PLAN-only, tasks inside PLAN, test-matrix as T-001 before code, epic micro-tasks, or **Ready=Yes with open blockers**.
+   - Reject if: steps skipped, PLAN-only, empty TASKS template, tasks inside PLAN, test-matrix as T-001 before code, missing inventory, vague/epic cards (layer-only titles, no Work items, multi-endpoint/screen), or **Ready=Yes with open blockers**.
 6. `sync`
    - Read-only refresh of codebase, git state, and artifacts before execution.
    - Respect PLAN Ready/blockers; rewrite `SYNC.md` if older than PLAN/TASKS.

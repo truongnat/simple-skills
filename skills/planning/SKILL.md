@@ -51,8 +51,8 @@ This skill is a **hard contract**. Obey it before any other action.
 | Field | Requirement |
 |-------|-------------|
 | Inputs | DETAIL_DESIGN.md when present; else BASIC_DESIGN.md / DISCUSSION.md / BA notes; user request; codebase mapping; constraints. |
-| Outputs | Session folder MUST contain filled `PLAN.md` + `TASKS.md` seeded from templates. Incomplete if PLAN-only, chat-only, or tasks embedded in PLAN. |
-| Safety | Do NOT implement code. Do NOT skip steps. Do NOT finish without both files on disk. Do NOT put `### T-00x` AC/Verify/Files bodies in PLAN.md. Do NOT make first tasks a test-case matrix before feature code. Do NOT emit epic-level tasks when design has detail (see step-03 size rules). Do NOT set Handoff Ready=Yes while blockers remain. Do NOT invent file paths without inspect. Do NOT treat assumptions as confirmed. Do NOT skip rollback for destructive changes. |
+| Outputs | Session folder MUST contain filled `PLAN.md` + `TASKS.md` seeded from templates. `TASKS.md` MUST include Work inventory + specific micro-cards (not layer epithets only). Incomplete if PLAN-only, chat-only, tasks embedded in PLAN, empty template left, or vague epic cards. |
+| Safety | Do NOT implement code. Do NOT skip steps. Do NOT finish without both files on disk. Do NOT put `### T-00x` AC/Verify/Files bodies in PLAN.md. Do NOT make first tasks a test-case matrix before feature code. Do NOT emit epic-level or vague layer tasks when design has detail (see step-03 inventory + specificity). Do NOT set Handoff Ready=Yes while blockers remain. Do NOT invent file paths without inspect. Do NOT treat assumptions as confirmed. Do NOT skip rollback for destructive changes. |
 
 ### Required artifacts
 
@@ -60,7 +60,7 @@ This skill is a **hard contract**. Obey it before any other action.
 Strategy only: goal, scope, non_goals, assumptions, approach, affected_areas, test_strategy (optional), verification_strategy, definition_of_done, rollback_strategy, risks, **task_index** (ID + title only), handoff.
 
 #### `TASKS.md` (from template)
-plan_ref, execution_order, micro-task cards (Trace, Depends, Description, AC, Verify, Files/scope, confidence, status). Implement before automated tests.
+Work inventory table, plan_ref, execution_order, micro-task cards (Trace with §/AC, Work items ≥2, Description, AC observable, Verify, Files/scope concrete, confidence, status, out-of-scope). Implement before automated tests.
 
 ### Reference
 
@@ -71,16 +71,18 @@ plan_ref, execution_order, micro-task cards (Trace, Depends, Description, AC, Ve
 | Failure | Fix |
 |---------|-----|
 | No template seed (wrote files free-form only) | Restart at step-01 |
-| Only `PLAN.md` | Continue step-03 |
+| Only `PLAN.md` / TASKS still template placeholders | Continue/finish step-03 |
 | Full task cards inside `PLAN.md` | Move cards to `TASKS.md`; slim PLAN |
 | T-001 = test matrix before code | Reorder: implement then tests |
-| Epic / multi-layer / ≥3 deliverables in one card | Split per step-03 Task size |
+| No Work inventory / one “implement feature” row | Build inventory per step-03 §A |
+| Epic / vague layer titles / multi-endpoint card | Split + add Work items + Trace § per step-03 §B–C |
 | Ready=Yes with open Blockers (or DISCUSSION blockers ignored) | Set Ready=No; copy blockers; re-run step-04 |
 
 ## What a TASK is
 
-- Traceable to design/BA (`Trace:` required).
-- One concern (not entire screen/service).
+- Traceable to a **design section / AC** (`Trace:` with § or id).
+- One inventory unit (not entire screen/service/layer).
+- Numbered **Work items** an executor can follow without re-reading the whole design.
 - Independently verifiable after deps exist.
 - Order: models → service → API → UI → **then** tests.
 

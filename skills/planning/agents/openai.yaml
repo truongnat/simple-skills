@@ -1,9 +1,9 @@
 display_name: "Planning"
-short_description: "Step workflow: seed PLAN/TASKS templates, fill PLAN slim then TASKS micro-tasks, self-check. Implement before tests."
-default_prompt: "Use $planning: follow steps/step-01-init.md then step-02..04. Copy templates first; never PLAN-only or tasks-inside-PLAN."
+short_description: "Step workflow: seed PLAN/TASKS, inventory→specific micro-tasks, self-check. Implement before tests."
+default_prompt: "Use $planning: follow steps/step-01-init.md then step-02..04. Copy templates first; build Work inventory before cards; never vague epics or PLAN-only."
 required_input: "DETAIL_DESIGN.md when present; else BASIC_DESIGN.md / DISCUSSION.md / BA notes; user request; codebase mapping; session path; constraints."
-required_output: "Session PLAN.md + TASKS.md seeded from templates/ then filled via steps/. Incomplete if steps skipped, PLAN-only, or task bodies inside PLAN.md."
-note_important: "Do NOT skip steps/step-01-init.md. Do NOT invent PLAN/TASKS without copying templates first. Do NOT fill TASKS before PLAN step completes. Do NOT put ### T-00x AC/Verify/Files in PLAN.md. Do NOT make first tasks a test-case matrix before feature code. Do NOT emit epic cards (step-03 size). Do NOT set Ready=Yes while blockers remain. Do NOT implement code. Do NOT finish without both files on disk and step-04 self-check."
+required_output: "Session PLAN.md + TASKS.md with Work inventory and specific cards. Incomplete if steps skipped, PLAN-only, empty template, or vague layer/epic tasks."
+note_important: "Do NOT skip step-01. Do NOT fill TASKS before PLAN. Do NOT skip Work inventory. Do NOT emit vague layer titles or multi-endpoint/multi-screen cards. Each card needs Trace§ + Work items≥2 + concrete Files/scope + observable AC. Do NOT set Ready=Yes while blockers remain. Do NOT implement code."
 artifacts:
   PLAN.md:
     required: true
@@ -71,6 +71,10 @@ artifacts:
         type: string
         required: true
         description: "Must be seeded from templates/TASKS.template.md via step-01."
+      work_inventory:
+        type: array
+        required: true
+        description: "Full Mode: one row per implementable unit from design (before cards)."
       plan_ref:
         type: string
         required: true
@@ -78,7 +82,7 @@ artifacts:
       tasks:
         type: array
         required: true
-        description: "Micro-task cards with Trace, AC, Verify, Files/scope, confidence, status."
+        description: "Micro-task cards: Trace§, Work items≥2, observable AC, concrete Files/scope, confidence, status. No vague layer epithets."
       execution_order:
         type: array
         required: true

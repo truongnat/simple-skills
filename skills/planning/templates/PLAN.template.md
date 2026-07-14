@@ -67,7 +67,7 @@ _(TODO)_
 
 ## Task index
 
-<!-- ID + short title only. Full cards live in TASKS.md. Order: implement → then tests. -->
+<!-- Draft OK in step-02. Step-03 replaces with fine-grained IDs from Work inventory. ID + short title only. -->
 
 T-001 _(title)_ → T-002 _(title)_ → … → T-00N _(tests after code)_ (see TASKS.md)
 

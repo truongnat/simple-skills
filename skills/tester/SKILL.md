@@ -9,7 +9,7 @@ description: "Support tester/QA in the agent lifecycle: analyze acceptance crite
 
 Act as a tester/QA in the agent workflow to ensure requirements, plans, or changes have clear verification methods.
 
-Prefer acceptance criteria and verify steps from `TASKS.md` when present; use `PLAN.md` for overall DoD / `test_strategy`.
+Prefer acceptance criteria and verify steps from `TASKS.md` when present; use `PLAN.md` for overall DoD / `test_strategy`. Prefer writing or running automated tests **after** the feature code those tests cover already exists (or against an agreed existing surface).
 
 ## Contract (mandatory)
 

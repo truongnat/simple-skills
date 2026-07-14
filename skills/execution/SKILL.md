@@ -7,7 +7,7 @@ description: "Execute TASKS.md guided by PLAN.md: modify files, run verification
 
 ## Purpose
 
-Execute locked work from TASKS.md (task cards + order), guided by PLAN.md strategy/DoD/rollback, in a controlled and verifiable way.
+Execute locked work from TASKS.md (fine-grained micro-tasks + order), guided by PLAN.md strategy/DoD/rollback, in a controlled and verifiable way. Follow `execution_order`: implement feature tasks before automated test tasks for the same surface.
 
 ## Contract (mandatory)
 

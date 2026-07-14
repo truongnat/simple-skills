@@ -61,7 +61,7 @@ install.cmd
 | `business-analysis` | Clarify business requirements, scope, and process documentation |
 | `basic-design` | System-level design: boundaries, components, flows, interfaces, data ownership |
 | `detail-design` | Implementable design: contracts, data model, sequences, rules/operations (dynamic depth) |
-| `planning` | PLAN.md (strategy/DoD/rollback) + TASKS.md (detailed executable task cards) |
+| `planning` | PLAN.md (strategy) + TASKS.md (fine-grained micro-tasks from design; implement before test) |
 | `sync` | Sync codebase understanding, git state, and context (read-only by default) |
 | `execution` | Record execution steps and changes made |
 | `review` | Review correctness, regression risk, security, and maintainability |

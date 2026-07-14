@@ -1,9 +1,9 @@
 display_name: "Planning"
-short_description: "Build PLAN.md (strategy, DoD, rollback) and TASKS.md (detailed executable tasks) from design/discussion artifacts or clear requests."
-default_prompt: "Use $planning to produce PLAN.md (strategy) and TASKS.md (detailed task cards) from DETAIL_DESIGN.md when present."
+short_description: "Build PLAN.md (strategy) and TASKS.md as fine-grained micro-tasks broken from design/docs. Implement feature code before test tasks."
+default_prompt: "Use $planning to produce PLAN.md and a detailed TASKS.md of micro-tasks from DETAIL_DESIGN.md (implement before tests)."
 required_input: "DETAIL_DESIGN.md when present; else BASIC_DESIGN.md / DISCUSSION.md / requirement notes; user request; codebase mapping; affected systems; constraints."
-required_output: "PLAN.md with goal, scope, approach, verification strategy, DoD, rollback, task_index; TASKS.md with detailed task cards, dependencies, AC, verification, execution_order."
-note_important: "Do NOT implement code during planning. Do NOT dump full task cards into PLAN.md — those belong in TASKS.md. Do NOT invent affected files without inspecting the codebase. Do NOT treat assumptions as confirmed. Do NOT skip rollback for destructive changes. Do NOT re-design architecture when design artifacts already exist."
+required_output: "PLAN.md with goal, scope, approach, verification strategy, DoD, rollback, task_index; TASKS.md with fine-grained micro-tasks broken from design/docs, dependencies, AC, verification, execution_order (implement before test)."
+note_important: "Do NOT implement code during planning. Do NOT dump full task cards into PLAN.md — those belong in TASKS.md. Do NOT invent affected files without inspecting the codebase. Do NOT treat assumptions as confirmed. Do NOT skip rollback for destructive changes. Do NOT re-design architecture when design artifacts already exist. Do NOT put test-writing tasks before the feature code those tests would cover. Do NOT emit vague epic-level tasks when design detail exists."
 artifacts:
   PLAN.md:
     required: true
@@ -35,7 +35,7 @@ artifacts:
       test_strategy:
         type: string
         required: false
-        description: "Optional coverage summary (dimensions, frameworks in project, estimated depth)."
+        description: "When/how to verify after code exists (frameworks in project). Not write-tests-first."
       verification_strategy:
         type: string
         required: true
@@ -55,7 +55,7 @@ artifacts:
       task_index:
         type: array
         required: true
-        description: "Ordered task IDs summarizing TASKS.md (e.g. T-001 Write tests, T-002 Implement API)."
+        description: "Ordered task IDs summarizing TASKS.md (implement before tests), e.g. T-001 Model → T-002 Service → T-003 API → T-004 Tests."
       handoff:
         type: string
         required: true
@@ -70,11 +70,11 @@ artifacts:
       tasks:
         type: array
         required: true
-        description: "Task cards: ID, title, description, dependencies, acceptance_criteria, verification, files_or_scope, confidence, status (todo/in_progress/done)."
+        description: "Micro-task cards broken from design/docs: ID, title, description (steps + design trace), dependencies, acceptance_criteria, verification, files_or_scope, confidence, status."
       execution_order:
         type: array
         required: true
-        description: "Ordered list of task IDs."
+        description: "Ordered task IDs. Feature implementation before automated tests for the same surface."
       notes:
         type: array
         required: false

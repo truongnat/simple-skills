@@ -39,9 +39,32 @@ Every skill embeds a Contract in `SKILL.md` (mirrored in `agents/openai.yaml`):
 
 The agent MUST obey the Contract strictly — it is not advisory. If the contract says "do not modify code", the agent MUST NOT modify code. If it says "create a file", the agent MUST create that file.
 
+## Workspace (code)
+
+Agents MUST use these paths unless the user overrides them in the prompt.
+
+| Role | Path | Access |
+|------|------|--------|
+| **Feature work root** | `OPASS/branches/features/VIETIS/` | Default **read/write** for implement / planning file discover / sync |
+| Active module checkout | `OPASS/branches/features/VIETIS/<module>_main/` (e.g. `cost_main`, `master_main`, `report_main`, `stock_main`) | Read/write for the module under work |
+| Baseline / reference | `OPASS/branches/develop/` | **Read-only** reference unless user explicitly asks to change develop |
+| Session artifacts | `.agents/sessions/<Task-N-short-description>/` | Read/write for DISCUSSION / PLAN / TASKS / … |
+
+### Rules
+
+1. **Implement and edit production code only under** `OPASS/branches/features/VIETIS/` (pick the correct `<module>_main` for the feature).
+2. Prefer paths relative to repo root, e.g. `OPASS/branches/features/VIETIS/cost_main/backend/...`.
+3. Do **not** treat `tmp/`, unrelated legacy trees, or random checkouts as the primary work tree.
+4. Use `OPASS/branches/develop/` to **compare / copy patterns**, not as the default save target.
+5. If the feature module is unclear (`cost_main` vs `report_main` …), ask the user once, then record it in PLAN/TASKS Affected areas.
+6. Sync / execution / review MUST scope dirty-file and drift checks to the active VIETIS module path (+ session artifacts).
+
+Cross-check project layout notes in `.vconf/project-info.md` and `.vconf/project-rules.json` (`featureRoot`) when present.
+
 ## Workflow
 
-Base folder for runtime artifacts: `.agents/sessions/<Task-N-short-description>/`
+Base folder for runtime artifacts: `.agents/sessions/<Task-N-short-description>/` (repo root).  
+Base folder for **code** changes: `OPASS/branches/features/VIETIS/` (see Workspace above).
 
 ### Dev Lifecycle per Task
 

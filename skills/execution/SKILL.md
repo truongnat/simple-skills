@@ -15,9 +15,9 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 | Field | Requirement |
 |-------|-------------|
-| Inputs | TASKS.md (task cards + execution_order), PLAN.md (strategy/DoD/rollback), locked scope, repo context, affected files, constraints, verification commands. |
+| Inputs | TASKS.md (task cards + execution_order), PLAN.md (strategy/DoD/rollback), locked scope under `OPASS/branches/features/VIETIS/` (see `AGENTS.md` Workspace), repo context, affected files, constraints, verification commands. |
 | Outputs | Workspace changes within scope, EXECUTION.md with files changed, commands run, verification evidence, blockers, deviations. |
-| Safety | Do NOT modify outside scope. Execute by task ID from TASKS.md; use PLAN.md for DoD/rollback only. Do NOT put secrets in files/logs. Do NOT delete sensitive files/config/migration/data without a plan or confirmation. Do NOT revert changes not belonging to you without permission. Do NOT claim completion without verification or documenting skipped checks. |
+| Safety | Do NOT modify outside scope. Default implement path: `OPASS/branches/features/VIETIS/<module>_main/` — Do NOT default writes to `OPASS/branches/develop/`. Execute by task ID from TASKS.md; use PLAN.md for DoD/rollback only. Do NOT put secrets in files/logs. Do NOT delete sensitive files/config/migration/data without a plan or confirmation. Do NOT revert changes not belonging to you without permission. Do NOT claim completion without verification or documenting skipped checks. |
 
 ### Required artifacts
 

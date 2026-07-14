@@ -95,7 +95,7 @@ Do NOT use this skill when:
 Before moving to execution, verify:
 
 - Session path or task context exists.
-- PLAN.md and TASKS.md (or clear scope) are present and aligned.
+- PLAN.md and TASKS.md are present and aligned (both required before execution).
 - Workspace exists and is readable.
 - Git repo is initialized if needed.
 - No dirty changes outside scope.
@@ -147,7 +147,7 @@ Action: Update plan file paths or inspect new location before execution.
 |---|---|
 | No git repo in workspace | Skip git checks, document "not a git repo" as observed fact. |
 | .env file exists but not in plan scope | Do NOT read contents. Note existence as metadata only. |
-| PLAN.md or TASKS.md missing for a simple task | If scope is still clear from user's request, proceed in Lite Mode. |
+| PLAN.md or TASKS.md missing | Block execution. Return to planning — both files are required (do not fold tasks into PLAN.md). |
 | TASKS.md stale vs PLAN task_index | Block execution. Return to planning to realign. |
 | Dirty changes with unknown ownership | Block execution. Ask user to confirm ownership or commit/stash first. |
 | Merge conflict markers detected | Block execution. Recommend conflict resolution before proceeding. |

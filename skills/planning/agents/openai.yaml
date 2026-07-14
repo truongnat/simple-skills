@@ -1,9 +1,9 @@
 display_name: "Planning"
-short_description: "Build PLAN.md (strategy) and TASKS.md as fine-grained micro-tasks broken from design/docs. Implement feature code before test tasks."
-default_prompt: "Use $planning to produce PLAN.md and a detailed TASKS.md of micro-tasks from DETAIL_DESIGN.md (implement before tests)."
+short_description: "MUST write PLAN.md and TASKS.md to the session folder. PLAN = strategy; TASKS = micro-tasks from design. Implement before tests."
+default_prompt: "Use $planning to MUST-create both PLAN.md and TASKS.md in the session folder. Do not stop after PLAN.md alone."
 required_input: "DETAIL_DESIGN.md when present; else BASIC_DESIGN.md / DISCUSSION.md / requirement notes; user request; codebase mapping; affected systems; constraints."
-required_output: "PLAN.md with goal, scope, approach, verification strategy, DoD, rollback, task_index; TASKS.md with fine-grained micro-tasks broken from design/docs, dependencies, AC, verification, execution_order (implement before test)."
-note_important: "Do NOT implement code during planning. Do NOT dump full task cards into PLAN.md — those belong in TASKS.md. Do NOT invent affected files without inspecting the codebase. Do NOT treat assumptions as confirmed. Do NOT skip rollback for destructive changes. Do NOT re-design architecture when design artifacts already exist. Do NOT put test-writing tasks before the feature code those tests would cover. Do NOT emit vague epic-level tasks when design detail exists."
+required_output: "MUST write two session files on disk: PLAN.md and TASKS.md. Incomplete if only PLAN.md or only chat output."
+note_important: "Do NOT implement code during planning. Do NOT finish planning without writing BOTH PLAN.md and TASKS.md files to the session directory on disk. Do NOT put task bodies only in chat or only inside PLAN.md. Do NOT dump full task cards into PLAN.md — those belong in TASKS.md. Do NOT invent affected files without inspecting the codebase. Do NOT treat assumptions as confirmed. Do NOT skip rollback for destructive changes. Do NOT re-design architecture when design artifacts already exist. Do NOT put test-writing tasks before the feature code those tests would cover. Do NOT emit vague epic-level tasks when design detail exists."
 artifacts:
   PLAN.md:
     required: true
@@ -66,7 +66,7 @@ artifacts:
       plan_ref:
         type: string
         required: true
-        description: "Reference to PLAN.md."
+        description: "Reference to PLAN.md. MUST be a real file in the same session folder."
       tasks:
         type: array
         required: true

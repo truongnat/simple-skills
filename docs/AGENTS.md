@@ -53,9 +53,10 @@ Base folder for runtime artifacts: `.agents/sessions/<Task-N-short-description>/
    - System-level design: architecture, components, flows, interfaces, data ownership (omit unused sections).
 4. `detail-design` → `DETAIL_DESIGN.md`
    - Implementable design: contracts, data model, sequences, rules/operations, optional client mapping (omit unused sections; mark gaps).
-5. `planning` → `PLAN.md` + `TASKS.md`
+5. `planning` → `PLAN.md` + `TASKS.md` (**both required on disk**)
    - PLAN: strategy, DoD, rollback, task index.
    - TASKS: fine-grained micro-tasks broken from design/docs (implement feature code before automated tests).
+   - Incomplete if only PLAN.md or only chat output.
 6. `sync`
    - Read-only refresh of codebase, git state, and artifacts before execution.
 7. `execution` → `EXECUTION.md`

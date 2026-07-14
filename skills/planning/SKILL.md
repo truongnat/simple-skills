@@ -1,6 +1,6 @@
 ---
 name: planning
-description: "Build PLAN.md (strategy, DoD, rollback) and TASKS.md (fine-grained micro-tasks broken from design/plan). Implement code before test tasks. (Hard contract in this SKILL.md — MUST follow.)"
+description: "MUST write both PLAN.md and TASKS.md files to the session folder (not chat-only). Fine-grained micro-tasks from design; implement before tests. (Hard contract in this SKILL.md — MUST follow.)"
 ---
 
 # Planning
@@ -23,8 +23,8 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 | Field | Requirement |
 |-------|-------------|
 | Inputs | DETAIL_DESIGN.md when present; else BASIC_DESIGN.md / DISCUSSION.md / requirement notes; user request; codebase mapping; affected systems; constraints. |
-| Outputs | PLAN.md with goal, scope, approach, verification strategy, DoD, rollback, task_index; TASKS.md with fine-grained micro-tasks broken from design/docs, dependencies, AC, verification, execution_order (implement before test). |
-| Safety | Do NOT implement code during planning. Do NOT dump full task cards into PLAN.md — those belong in TASKS.md. Do NOT invent affected files without inspecting the codebase. Do NOT treat assumptions as confirmed. Do NOT skip rollback for destructive changes. Do NOT re-design architecture when design artifacts already exist. Do NOT put test-writing tasks before the feature code those tests would cover. Do NOT emit vague epic-level tasks when design detail exists. |
+| Outputs | MUST write two session files on disk: PLAN.md and TASKS.md. Incomplete if only PLAN.md or only chat output. |
+| Safety | Do NOT implement code during planning. Do NOT finish planning without writing BOTH PLAN.md and TASKS.md files to the session directory on disk. Do NOT put task bodies only in chat or only inside PLAN.md. Do NOT dump full task cards into PLAN.md — those belong in TASKS.md. Do NOT invent affected files without inspecting the codebase. Do NOT treat assumptions as confirmed. Do NOT skip rollback for destructive changes. Do NOT re-design architecture when design artifacts already exist. Do NOT put test-writing tasks before the feature code those tests would cover. Do NOT emit vague epic-level tasks when design detail exists. |
 
 ### Required artifacts
 
@@ -46,7 +46,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 #### `TASKS.md`
 - Required: yes
-- **plan_ref** (required, string): Reference to PLAN.md.
+- **plan_ref** (required, string): Reference to PLAN.md. MUST be a real file in the same session folder.
 - **tasks** (required, array): Micro-task cards broken from design/docs: ID, title, description (steps + design trace), dependencies, acceptance_criteria, verification, files_or_scope, confidence, status.
 - **execution_order** (required, array): Ordered task IDs. Feature implementation before automated tests for the same surface.
 - **notes** (optional, array): Sequencing notes, blockers, or split-file references.
@@ -54,6 +54,41 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 ### Reference
 
 `agents/openai.yaml` is a machine-readable duplicate for tooling. The Contract in this SKILL.md is authoritative for agents.
+
+## Mandatory file writes
+
+Planning is **incomplete** until **both** files exist on disk in the session folder (Write/Edit tools — chat-only does not count):
+
+1. Write `PLAN.md` (strategy + `task_index` only).
+2. Write `TASKS.md` (full micro-task cards) — **required every time, including Lite Mode**.
+3. Confirm `PLAN.md` `task_index` IDs match `TASKS.md`.
+4. Only then hand off to sync/execution.
+
+Do **not** stop after `PLAN.md` alone. Do **not** put the full task list only in chat or only inside `PLAN.md`.
+
+### TASKS.md template (required shape)
+
+```markdown
+# Tasks
+
+plan_ref: PLAN.md
+
+## Execution order
+T-001 → T-002 → T-003 → …
+
+## Tasks
+
+### T-001: <short title>
+- Status: todo
+- Trace: <DESIGN/DOC section or ID>
+- Depends: none | T-00x
+- Description: <concrete steps>
+- AC: <acceptance criterion>
+- Verify: <how to check after this task>
+- Files/scope: <paths or area> (confidence: known|inferred|unknown)
+
+### T-002: …
+```
 
 ## What a TASK is
 
@@ -82,9 +117,11 @@ A task is **not** a vague epic (“Build export”). It is a **smallest useful u
 - [ ] Rollback matches change scope (code/config/data as needed).
 - [ ] `task_index` lists every TASKS.md ID in order (summary only).
 - [ ] No full AC/verify/file lists inside PLAN task sections.
+- [ ] **Both `PLAN.md` and `TASKS.md` files exist on disk** in the session folder.
 
 ### TASKS.md — granularity
 
+- [ ] **`TASKS.md` file was written** (not only described in chat).
 - [ ] Each task traces to a concrete design/doc source (section, BR/AC, contract, operation).
 - [ ] Each task is a **micro-task**: one concern — not “implement whole feature”.
 - [ ] Description includes enough steps that execution can follow without inventing design.
@@ -103,6 +140,15 @@ A task is **not** a vague epic (“Build export”). It is a **smallest useful u
 5. Do NOT invent a test framework. Use what the project already has.
 
 ## WRONG vs CORRECT
+
+```markdown
+// WRONG — finished planning with only PLAN.md or chat bullet list
+Created PLAN.md. Tasks: 1) … 2) … (no TASKS.md file)
+
+// CORRECT — two files on disk
+Wrote `.agents/sessions/.../PLAN.md`
+Wrote `.agents/sessions/.../TASKS.md` with full T-00x cards matching task_index
+```
 
 ```markdown
 // WRONG — epic dumped as one task
@@ -160,7 +206,8 @@ Status: todo
 | Design is thin | Still break into smallest clear steps; mark confidence unknown; add investigate if blocked. |
 | Affected files unknown | Mark confidence unknown; do not invent paths. |
 | Assumptions block execution | Mark blocking in PLAN; require confirmation before execution. |
-| Single-file change | Lite Mode — 1–3 **specific** micro-tasks, not one vague card. |
+| Single-file change | Lite Mode — still write both PLAN.md and TASKS.md (1–3 specific micro-tasks). |
+| Agent produced PLAN only | Incomplete. Immediately write TASKS.md before handoff. |
 | Large work | Many small TASKS cards (or TASKS-*.md sections); one PLAN. |
 | Destructive change | Require user review of PLAN rollback before execution. |
 
@@ -173,3 +220,4 @@ Status: todo
 - Does NOT replace investigate when codebase mapping is missing.
 - Does NOT auto-confirm assumptions.
 - Does NOT require TDD or tests-before-code.
+- Does NOT complete without both `PLAN.md` and `TASKS.md` on disk.

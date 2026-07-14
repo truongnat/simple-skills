@@ -36,16 +36,24 @@ Base folder for runtime artifacts: `.agents/sessions/<Task-N-short-description>/
 
 1. `brainstorming` → `DISCUSSION.md`
    - Clarify goals, scope, trade-offs, and direction.
-2. `planning` → `PLAN.md`
+2. `business-analysis` (optional) → requirement notes
+   - Clarify business rules, AC, and process when needed.
+3. `basic-design` → `BASIC_DESIGN.md`
+   - System-level design: architecture, components, flows, interfaces, data ownership (omit unused sections).
+4. `detail-design` → `DETAIL_DESIGN.md`
+   - Implementable design: contracts, data model, sequences, rules/operations, optional client mapping (omit unused sections; mark gaps).
+5. `planning` → `PLAN.md`
    - Break down tasks, dependencies, acceptance criteria, and DoD.
-3. `sync`
+6. `sync`
    - Read-only refresh of codebase, git state, and artifacts before execution.
-4. `execution` → `EXECUTION.md`
+7. `execution` → `EXECUTION.md`
    - Implement changes step by step, record commands and verification.
-5. `review` → `REVIEW.md`
+8. `review` → `REVIEW.md`
    - Check correctness, regression, security, maintainability.
-6. `done` → `DONE.md`, `PR_MESSAGE.md`, `PR_DESCRIPTION.md`
+9. `done` → `DONE.md`, `PR_MESSAGE.md`, `PR_DESCRIPTION.md`
    - Summarize, handoff, prepare PR/MR.
+
+Lite skip: small/clear tasks may skip business-analysis, basic-design, and detail-design when brainstorming hands off straight to planning or execution.
 
 ### Investigation
 

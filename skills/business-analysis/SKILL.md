@@ -1,13 +1,13 @@
 ---
 name: business-analysis
-description: Clarify business problems, stakeholder needs, scope, processes, user stories, business rules, data sources, assumptions, acceptance criteria, and functional specs.
+description: Clarify business problems, stakeholder needs, scope, processes, user stories, business rules, data sources, assumptions, acceptance criteria, and functional specs before basic design, planning, or testing.
 ---
 
 # Business Analysis
 
 ## Purpose
 
-Clarify business requirements before planning, technical design, implementation, or testing.
+Clarify business requirements before basic design, planning, implementation, or testing.
 
 ## XML Contract
 
@@ -21,6 +21,7 @@ See [openai.yaml](./agents/openai.yaml)
 - [ ] Acceptance criteria use Given/When/Then format.
 - [ ] Assumptions are separated from confirmed requirements.
 - [ ] Open questions have owners (if known) and blocking status.
+- [ ] Handoff to next skill is specified (usually basic-design when technical work follows).
 
 ## WRONG vs CORRECT
 
@@ -57,4 +58,5 @@ Needs confirmation from: Product owner.
 - Does NOT replace stakeholder decisions.
 - Does NOT auto-implement.
 - Does NOT auto-confirm business rules without a source.
-- Does NOT produce technical architecture.
+- Does NOT produce technical architecture — hand off to basic-design (then detail-design) when technical work follows.
+- Does NOT replace planning.

@@ -1,9 +1,9 @@
 display_name: "Brainstorming"
-short_description: "Clarify goals, scope, constraints, options, trade-offs, risks, and recommendations before planning or implementation."
-default_prompt: "Use $brainstorming to clarify goals, scope, constraints, and trade-offs before planning or implementation."
+short_description: "Clarify goals, scope, constraints, options, trade-offs, risks, and recommendations before basic design, planning, or implementation."
+default_prompt: "Use $brainstorming to clarify goals, scope, constraints, and trade-offs before basic design, planning, or implementation."
 required_input: "Initial request, repo context, existing documents, constraints, current behavior, desired outcome, stakeholder feedback if available."
-required_output: "Light discussion or full DISCUSSION.md with goal, facts, assumptions, unknowns, constraints, scope, options, trade-offs, recommendation, risks, open questions, handoff to planning."
-note_important: "Do NOT implement code during brainstorming. Do NOT treat assumptions as facts. Do NOT create detailed planning before a clear recommendation. Do NOT create large extra artifacts unless requested."
+required_output: "Light discussion or full DISCUSSION.md with goal, facts, assumptions, unknowns, constraints, scope, options, trade-offs, recommendation, risks, open questions, handoff to next skill."
+note_important: "Do NOT implement code during brainstorming. Do NOT treat assumptions as facts. Do NOT create detailed planning or design before a clear recommendation. Do NOT create large extra artifacts unless requested."
 artifacts:
   DISCUSSION.md:
     required: true
@@ -59,4 +59,4 @@ artifacts:
       handoff:
         type: string
         required: true
-        description: "Suggested next skill: planning/business-analysis/research/execution."
+        description: "Suggested next skill: business-analysis, basic-design, planning, research, or execution (Lite skip design when task is small/clear)."

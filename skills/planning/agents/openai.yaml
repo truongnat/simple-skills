@@ -1,9 +1,9 @@
 display_name: "Planning"
-short_description: "Build an execution plan from DISCUSSION.md, requirements, or clear requests. Task breakdown, dependencies, acceptance criteria, DoD, verification, and rollback strategy."
-default_prompt: "Use $planning to turn a clear goal into a concrete execution plan with order, dependencies, acceptance criteria, verification, and rollback."
-required_input: "DISCUSSION.md, requirement notes, user request, codebase mapping, affected systems, constraints."
+short_description: "Build an execution plan from DETAIL_DESIGN.md (preferred), design/discussion artifacts, or clear requests. Task breakdown, dependencies, acceptance criteria, DoD, verification, and rollback strategy."
+default_prompt: "Use $planning to turn a clear goal (and DETAIL_DESIGN.md when present) into a concrete execution plan with order, dependencies, acceptance criteria, verification, and rollback."
+required_input: "DETAIL_DESIGN.md when present; else BASIC_DESIGN.md / DISCUSSION.md / requirement notes; user request; codebase mapping; affected systems; constraints."
 required_output: "PLAN.md with goal, scope, assumptions, non-goals, affected files, task breakdown, dependencies, acceptance criteria, verification, DoD, rollback, risks."
-note_important: "Do NOT implement code during planning. Do NOT invent affected files without inspecting the codebase. Do NOT treat assumptions as confirmed requirements. Do NOT skip rollback for destructive changes."
+note_important: "Do NOT implement code during planning. Do NOT invent affected files without inspecting the codebase. Do NOT treat assumptions as confirmed requirements. Do NOT skip rollback for destructive changes. Do NOT re-design architecture or invent API/DB contracts when DETAIL_DESIGN.md or BASIC_DESIGN.md already exists."
 artifacts:
   PLAN.md:
     required: true

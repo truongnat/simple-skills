@@ -4,7 +4,7 @@ A minimal set of skills and rules for AI agents, focused on clear workflows, rea
 
 ## Goals
 
-- Help agents work through a clear lifecycle: think → plan → execute → review → done.
+- Help agents work through a clear lifecycle: think → design → plan → execute → review → done.
 - Encourage artifact and session creation instead of running tasks vaguely.
 - Easy to install into any repo by creating a `.agents` directory.
 
@@ -58,6 +58,9 @@ install.cmd
 | Skill | Purpose |
 | --- | --- |
 | `brainstorming` | Clarify goals, scope, trade-offs, and direction before starting |
+| `business-analysis` | Clarify business requirements, scope, and process documentation |
+| `basic-design` | System-level design: boundaries, components, flows, interfaces, data ownership |
+| `detail-design` | Implementable design: contracts, data model, sequences, rules/operations (dynamic depth) |
 | `planning` | Break down tasks, dependencies, acceptance criteria, and Definition of Done |
 | `sync` | Sync codebase understanding, git state, and context (read-only by default) |
 | `execution` | Record execution steps and changes made |
@@ -67,7 +70,6 @@ install.cmd
 | `research` | Research internal or external sources before making decisions |
 | `review-pr` | Review pull requests or diffs in a structured way |
 | `tester` | Create test cases, verify, and record evidence |
-| `business-analysis` | Clarify business requirements, scope, and process documentation |
 
 ## Repo Structure
 
@@ -93,11 +95,13 @@ After installation, agents read `.agents/AGENTS.md` as the entrypoint. Each task
 
 ```text
 .agents/sessions/<Task-<number>-<short-description>>/
-├── DISCUSSION.md    # brainstorming
-├── PLAN.md          # planning
-├── EXECUTION.md     # execution
-├── REVIEW.md        # review
-└── DONE.md          # done
+├── DISCUSSION.md      # brainstorming
+├── BASIC_DESIGN.md    # basic-design
+├── DETAIL_DESIGN.md   # detail-design
+├── PLAN.md            # planning
+├── EXECUTION.md       # execution
+├── REVIEW.md          # review
+└── DONE.md            # done
 ```
 
 Each skill's contract (required inputs, outputs, artifacts, safety constraints) is defined in `agents/openai.yaml`. The `SKILL.md` references it and provides the workflow, quality standards, and examples.

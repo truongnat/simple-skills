@@ -1,0 +1,66 @@
+display_name: "Basic Design"
+short_description: "Turn an approved DISCUSSION.md direction into system-level design — boundaries, components, flows, interfaces, and data ownership — before detail design or planning."
+default_prompt: "Use $basic-design to produce BASIC_DESIGN.md from DISCUSSION.md (and BA notes if present) before detail design. Omit unused sections."
+required_input: "DISCUSSION.md with clear recommendation; business-analysis notes if available; repo context or investigate findings when useful."
+required_output: "BASIC_DESIGN.md with goal, context, architecture overview, components, flows, data ownership, optional surfaces/data sources/interfaces/NFRs, open questions, handoff to detail-design. Omit sections that do not apply."
+note_important: "Do NOT implement code. Do NOT invent file paths without inspecting the codebase. Do NOT write full contracts or field/query specs (detail-design). Do NOT re-litigate business rules — point to BA. Do NOT force domain-specific or UI-only sections. Do NOT create PLAN.md."
+artifacts:
+  BASIC_DESIGN.md:
+    required: true
+    schema:
+      goal:
+        type: string
+        required: true
+        description: "One sentence aligned with DISCUSSION recommendation."
+      context:
+        type: string
+        required: true
+        description: "Chosen direction and scope summary from DISCUSSION (and BA if present)."
+      architecture_overview:
+        type: string
+        required: true
+        description: "Short overview of system shape; optional mermaid for boundaries."
+      components:
+        type: array
+        required: true
+        description: "Components/modules with responsibility."
+      user_or_system_flows:
+        type: array
+        required: true
+        description: "Main actor or system flows (happy paths only)."
+      data_ownership:
+        type: array
+        required: true
+        description: "Logical entities/stores and which component owns them."
+      surfaces_or_entry_points:
+        type: array
+        required: false
+        description: "Major in-scope entry points or surfaces (API routes area, UI areas, jobs, CLI commands, message topics). Omit if single obvious surface."
+      logical_data_sources:
+        type: array
+        required: false
+        description: "Logical data sources with access mode (read / write / both). Names only — no full schemas."
+      shape_sketch:
+        type: string
+        required: false
+        description: "Optional short sketch of interaction or output shape (ASCII or bullets). Omit if flows already enough."
+      interfaces_external:
+        type: array
+        required: false
+        description: "Named external systems, APIs, events, or libraries with purpose only (not full contracts)."
+      nfrs:
+        type: array
+        required: false
+        description: "Relevant NFRs only if they affect design."
+      out_of_scope_design:
+        type: array
+        required: false
+        description: "Design topics explicitly deferred or excluded."
+      open_questions:
+        type: array
+        required: false
+        description: "Open questions with blocking flag."
+      handoff:
+        type: string
+        required: true
+        description: "Suggested next skill: detail-design, research, or investigate."

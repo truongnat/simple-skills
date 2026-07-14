@@ -1,6 +1,6 @@
 ---
 name: planning
-description: Build an execution plan from DISCUSSION.md, requirements, or clear requests. Task breakdown, dependencies, acceptance criteria, DoD, verification, and rollback strategy.
+description: Build an execution plan from DETAIL_DESIGN.md (preferred), BASIC_DESIGN.md, DISCUSSION.md, requirements, or clear requests. Task breakdown, dependencies, acceptance criteria, DoD, verification, and rollback strategy.
 ---
 
 # Planning
@@ -8,6 +8,8 @@ description: Build an execution plan from DISCUSSION.md, requirements, or clear 
 ## Purpose
 
 Turn a clear goal into a concrete execution plan with order, dependencies, acceptance criteria, verification, and rollback.
+
+Prefer `DETAIL_DESIGN.md` as input when present (then `BASIC_DESIGN.md`, then `DISCUSSION.md`). Do not re-design architecture or invent API/DB contracts — use the design artifacts.
 
 ## XML Contract
 
@@ -59,5 +61,7 @@ Rollback (data): run down-migration script, then restore data from pre-migration
 
 - Does NOT implement code.
 - Does NOT replace brainstorming when direction is unclear.
+- Does NOT replace basic-design or detail-design when architecture or contracts are missing for a non-Lite task.
+- Does NOT re-design architecture when DETAIL_DESIGN.md or BASIC_DESIGN.md already exists.
 - Does NOT replace investigate when codebase mapping is missing.
 - Does NOT auto-confirm assumptions.

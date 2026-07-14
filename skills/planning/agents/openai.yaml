@@ -1,13 +1,17 @@
 display_name: "Planning"
-short_description: "MUST write slim PLAN.md + TASKS.md on disk. No full task cards in PLAN. Micro-tasks from design; implement before tests."
-default_prompt: "Use $planning: write slim PLAN.md (task_index only) AND full TASKS.md in the session folder. Reject PLAN-only or tasks-inside-PLAN."
-required_input: "DETAIL_DESIGN.md when present; else BASIC_DESIGN.md / DISCUSSION.md / requirement notes; user request; codebase mapping; affected systems; constraints."
-required_output: "MUST write two session files on disk: PLAN.md (strategy + task_index only) and TASKS.md (full micro-task cards). Incomplete if only PLAN.md, only chat, or full task bodies embedded in PLAN.md."
-note_important: "Do NOT implement code during planning. Do NOT finish without BOTH PLAN.md and TASKS.md on disk. Do NOT put ### T-00x bodies / AC / Verify / Files inside PLAN.md. Do NOT make the first task a test-case document or 6-dimension coverage matrix before feature code. Do NOT emit epic-level tasks when design detail exists. Do NOT invent affected files without inspecting the codebase. Do NOT treat assumptions as confirmed. Do NOT skip rollback for destructive changes. Do NOT re-design architecture when design artifacts already exist."
+short_description: "Step workflow: seed PLAN/TASKS templates, fill PLAN slim then TASKS micro-tasks, self-check. Implement before tests."
+default_prompt: "Use $planning: follow steps/step-01-init.md then step-02..04. Copy templates first; never PLAN-only or tasks-inside-PLAN."
+required_input: "DETAIL_DESIGN.md when present; else BASIC_DESIGN.md / DISCUSSION.md / BA notes; user request; codebase mapping; session path; constraints."
+required_output: "Session PLAN.md + TASKS.md seeded from templates/ then filled via steps/. Incomplete if steps skipped, PLAN-only, or task bodies inside PLAN.md."
+note_important: "Do NOT skip steps/step-01-init.md. Do NOT invent PLAN/TASKS without copying templates first. Do NOT fill TASKS before PLAN step completes. Do NOT put ### T-00x AC/Verify/Files in PLAN.md. Do NOT make first tasks a test-case matrix before feature code. Do NOT implement code. Do NOT finish without both files on disk and step-04 self-check."
 artifacts:
   PLAN.md:
     required: true
     schema:
+      source_template:
+        type: string
+        required: true
+        description: "Must be seeded from templates/PLAN.template.md via step-01."
       goal:
         type: string
         required: true
@@ -19,11 +23,11 @@ artifacts:
       non_goals:
         type: array
         required: false
-        description: "Explicitly excluded outcomes."
+        description: "Excluded outcomes."
       assumptions:
         type: array
         required: true
-        description: "Assumptions with risk and confirmation status."
+        description: "Assumptions with risk and confirmation."
       approach:
         type: string
         required: true
@@ -31,23 +35,23 @@ artifacts:
       affected_areas:
         type: array
         required: false
-        description: "Systems/dirs at high level with confidence (known / inferred / unknown)."
+        description: "High-level areas with confidence."
       test_strategy:
         type: string
         required: false
-        description: "How to verify after code exists. Not write-tests-first."
+        description: "After-code verification approach."
       verification_strategy:
         type: string
         required: true
-        description: "Automated and manual verification for the whole change."
+        description: "Automated and manual verification."
       definition_of_done:
         type: array
         required: true
-        description: "Falsifiable completion checklist."
+        description: "Falsifiable checklist."
       rollback_strategy:
         type: string
         required: true
-        description: "Undo strategy per code/config/data."
+        description: "Undo per code/config/data."
       risks:
         type: array
         required: false
@@ -55,26 +59,30 @@ artifacts:
       task_index:
         type: array
         required: true
-        description: "Ordered ID + short title only (implement before tests). No full cards."
+        description: "ID + short title only; implement before tests."
       handoff:
         type: string
         required: true
-        description: "Ready for sync/execution? Blocking items?"
+        description: "Ready only after step-04 pass; else blockers."
   TASKS.md:
     required: true
     schema:
+      source_template:
+        type: string
+        required: true
+        description: "Must be seeded from templates/TASKS.template.md via step-01."
       plan_ref:
         type: string
         required: true
-        description: "PLAN.md in the same session folder."
+        description: "PLAN.md in same session folder."
       tasks:
         type: array
         required: true
-        description: "Micro-task cards: ID, title, Trace, Description, Depends, AC, Verify, Files/scope, confidence, status. Not epics."
+        description: "Micro-task cards with Trace, AC, Verify, Files/scope, confidence, status."
       execution_order:
         type: array
         required: true
-        description: "Ordered IDs. Feature implementation before automated tests."
+        description: "Ordered IDs matching PLAN task_index. Implement before tests."
       notes:
         type: array
         required: false

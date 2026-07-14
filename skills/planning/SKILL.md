@@ -1,229 +1,94 @@
 ---
 name: planning
-description: "MUST write both PLAN.md and TASKS.md on disk. PLAN = strategy only (no ## Tasks body). TASKS = micro-tasks from design; implement before tests. (Hard contract in this SKILL.md — MUST follow.)"
+description: >-
+  Step workflow: seed PLAN/TASKS templates then fill (strategy then micro-tasks).
+  MUST copy templates to session, fill PLAN slim then TASKS, self-check. Implement
+  before tests. (Hard contract in this SKILL.md — MUST follow.)
 ---
 
 # Planning
 
 ## Purpose
 
-Turn a clear goal into **two session files on disk**:
+Produce **two session files on disk** via a **forced step sequence** (BMAD-style micro-file):
 
-1. **PLAN.md** — strategy only: goal, scope, approach, DoD, rollback, risks, **task_index**.
-2. **TASKS.md** — fine-grained micro-tasks broken from DISCUSSION / BA / BASIC_DESIGN / DETAIL_DESIGN.
+1. Seed templates → `PLAN.md` + `TASKS.md`
+2. Fill **PLAN.md** (strategy + task_index only)
+3. Fill **TASKS.md** (micro-tasks from design)
+4. Self-check before handoff
 
 Prefer `DETAIL_DESIGN.md` when present. Do not invent architecture or contracts.
 
+## Workflow architecture (mandatory)
+
+This skill uses **sequential step files**. Obey:
+
+- Read **one** step file fully and finish it before opening the next.
+- **NEVER** skip step-01 (template seed).
+- **NEVER** fill TASKS before PLAN step is done.
+- **NEVER** claim complete until step-04 passes (or Ready=No with blockers).
+- Do **not** dump full task cards into `PLAN.md`.
+
+Skill root paths (relative to this skill):
+
+| Path | Role |
+|------|------|
+| [templates/PLAN.template.md](./templates/PLAN.template.md) | Seed for session `PLAN.md` |
+| [templates/TASKS.template.md](./templates/TASKS.template.md) | Seed for session `TASKS.md` |
+| [steps/step-01-init.md](./steps/step-01-init.md) | Copy templates into session |
+| [steps/step-02-fill-plan.md](./steps/step-02-fill-plan.md) | Fill PLAN strategy only |
+| [steps/step-03-fill-tasks.md](./steps/step-03-fill-tasks.md) | Fill TASKS micro-cards |
+| [steps/step-04-self-check.md](./steps/step-04-self-check.md) | Verify + handoff |
+
+### Execution entry
+
+**Start here:** Read and follow [steps/step-01-init.md](./steps/step-01-init.md) immediately after this Contract.
+
 ## Contract (mandatory)
 
-This skill is a **hard contract**. Obey it before any other action. Do NOT treat as optional. Do NOT skip required artifacts.
+This skill is a **hard contract**. Obey it before any other action.
 
 | Field | Requirement |
 |-------|-------------|
-| Inputs | DETAIL_DESIGN.md when present; else BASIC_DESIGN.md / DISCUSSION.md / requirement notes; user request; codebase mapping; affected systems; constraints. |
-| Outputs | MUST write two session files on disk: PLAN.md (strategy + task_index only) and TASKS.md (full micro-task cards). Incomplete if only PLAN.md, only chat, or full task bodies embedded in PLAN.md. |
-| Safety | Do NOT implement code during planning. Do NOT finish without BOTH PLAN.md and TASKS.md on disk. Do NOT put ### T-00x bodies / AC / Verify / Files inside PLAN.md. Do NOT make the first task a test-case document or 6-dimension coverage matrix before feature code. Do NOT emit epic-level tasks when design detail exists. Do NOT invent affected files without inspecting the codebase. Do NOT treat assumptions as confirmed. Do NOT skip rollback for destructive changes. Do NOT re-design architecture when design artifacts already exist. |
+| Inputs | DETAIL_DESIGN.md when present; else BASIC_DESIGN.md / DISCUSSION.md / BA notes; user request; codebase mapping; constraints. |
+| Outputs | Session folder MUST contain filled `PLAN.md` + `TASKS.md` seeded from templates. Incomplete if PLAN-only, chat-only, or tasks embedded in PLAN. |
+| Safety | Do NOT implement code. Do NOT skip steps. Do NOT finish without both files on disk. Do NOT put `### T-00x` AC/Verify/Files bodies in PLAN.md. Do NOT make first tasks a test-case matrix before feature code. Do NOT emit epic-level tasks when design has detail. Do NOT invent file paths without inspect. Do NOT treat assumptions as confirmed. Do NOT skip rollback for destructive changes. |
 
 ### Required artifacts
 
-#### `PLAN.md`
-- Required: yes
-- **goal** (required, string): One sentence.
-- **scope** (required, string): In scope summary.
-- **non_goals** (optional, array): Explicitly excluded outcomes.
-- **assumptions** (required, array): Assumptions with risk and confirmation status.
-- **approach** (required, string): Phased strategy only. No per-task AC/Verify/Files.
-- **affected_areas** (optional, array): Systems/dirs at high level with confidence (known / inferred / unknown).
-- **test_strategy** (optional, string): How to verify after code exists. Not write-tests-first.
-- **verification_strategy** (required, string): Automated and manual verification for the whole change.
-- **definition_of_done** (required, array): Falsifiable completion checklist.
-- **rollback_strategy** (required, string): Undo strategy per code/config/data.
-- **risks** (optional, array): Risks with impact and mitigation.
-- **task_index** (required, array): Ordered ID + short title only (implement before tests). No full cards.
-- **handoff** (required, string): Ready for sync/execution? Blocking items?
+#### `PLAN.md` (from template)
+Strategy only: goal, scope, non_goals, assumptions, approach, affected_areas, test_strategy (optional), verification_strategy, definition_of_done, rollback_strategy, risks, **task_index** (ID + title only), handoff.
 
-#### `TASKS.md`
-- Required: yes
-- **plan_ref** (required, string): PLAN.md in the same session folder.
-- **tasks** (required, array): Micro-task cards: ID, title, Trace, Description, Depends, AC, Verify, Files/scope, confidence, status. Not epics.
-- **execution_order** (required, array): Ordered IDs. Feature implementation before automated tests.
-- **notes** (optional, array): Sequencing notes or blockers.
+#### `TASKS.md` (from template)
+plan_ref, execution_order, micro-task cards (Trace, Depends, Description, AC, Verify, Files/scope, confidence, status). Implement before automated tests.
 
 ### Reference
 
-`agents/openai.yaml` is a machine-readable duplicate for tooling. The Contract in this SKILL.md is authoritative for agents.
+`agents/openai.yaml` mirrors contract for tooling. **Steps + templates in this skill folder are authoritative for execution order.**
 
 ## Forbidden outputs (reject / rewrite)
 
-If any of these happen, planning is **FAILED** — fix before handoff:
-
-| Failure | Why |
+| Failure | Fix |
 |---------|-----|
-| Only `PLAN.md` written (no `TASKS.md` file) | Contract requires both files on disk |
-| Task cards only in chat | Chat does not count |
-| `PLAN.md` contains `## Tasks` with AC / Verify / Files / Status per T-00x | Full cards belong only in `TASKS.md` |
-| T-001 (or first task) is “write test cases / TC matrix / 6 dimensions” before feature code | Implement feature first; tests after code exists |
-| One task = whole FE page or whole service layer | Must split into micro-tasks |
-| Invented Dimension Coverage Formula / Pattern Catalog as required planning ritual | Not part of this skill |
-
-## Mandatory file writes
-
-1. Write `PLAN.md` (strategy + `task_index` only).
-2. Write `TASKS.md` (full cards) in the **same session folder**.
-3. Verify with a directory listing that **both files exist**.
-4. Confirm every `task_index` ID exists in `TASKS.md`.
-5. Only then report handoff.
-
-### PLAN.md template (slim)
-
-```markdown
-# Plan
-
-## Goal
-<one sentence>
-
-## Scope
-- …
-
-## Non-goals
-- …
-
-## Assumptions
-| Assumption | Risk | Confirmed |
-|---|---|---|
-
-## Approach
-1. …
-2. …
-(phases only — not full task cards)
-
-## Affected areas
-- … (confidence: known|inferred|unknown)
-
-## Verification strategy
-- …
-
-## Definition of done
-- [ ] …
-
-## Rollback strategy
-- …
-
-## Risks
-| Risk | Impact | Mitigation |
-|---|---|---|
-
-## Task index
-T-001 <title> → T-002 <title> → … → T-00N <tests after code> (see TASKS.md)
-
-## Handoff
-Ready? Blockers?
-```
-
-### TASKS.md template (required)
-
-```markdown
-# Tasks
-
-plan_ref: PLAN.md
-
-## Execution order
-T-001 → T-002 → T-003 → …
-
-## Tasks
-
-### T-001: <short title>
-- Status: todo
-- Trace: <DESIGN/DOC § or ID>
-- Depends: none | T-00x
-- Description: <concrete steps>
-- AC: <acceptance criterion>
-- Verify: <how to check>
-- Files/scope: <path or area> (confidence: known|inferred|unknown)
-
-### T-002: …
-```
+| No template seed (wrote files free-form only) | Restart at step-01 |
+| Only `PLAN.md` | Continue step-03 |
+| Full task cards inside `PLAN.md` | Move cards to `TASKS.md`; slim PLAN |
+| T-001 = test matrix before code | Reorder: implement then tests |
+| Epic FE/BE single card | Split in step-03 |
 
 ## What a TASK is
 
-A **micro-task** derived from design/docs:
+- Traceable to design/BA (`Trace:` required).
+- One concern (not entire screen/service).
+- Independently verifiable after deps exist.
+- Order: models → service → API → UI → **then** tests.
 
-- Traces to a specific design/BA/spec bullet (`Trace:` required).
-- One primary concern (one DTO set, one endpoint, one validation cluster, one UI binding — **not** entire screen).
-- Enough steps that execution does not invent design.
-- Independently verifiable (or after its implement deps exist).
+## Lite Mode
 
-**Order:** models/contracts → service/ops → API/entrypoints → UI/client → **then** automated tests for those surfaces.
-
-Do **not** schedule “write test case document / coverage matrix” as T-001 before code.
-
-## Dynamic depth
-
-- Lite: both files; 1–3 specific micro-tasks in TASKS.md.
-- Full: many cards from DETAIL_DESIGN (contracts, operations, client mapping, persistence).
-- Split epics (e.g. “Build FE component”) until each card has one outcome.
-
-## Quality Standards
-
-### PLAN.md
-
-- [ ] No `### T-00x` bodies / no AC+Verify+Files inside PLAN.
-- [ ] `task_index` is summary-only; points to TASKS.md.
-- [ ] Approach is phases, not file-edit steps.
-- [ ] DoD, verification, rollback present.
-- [ ] `PLAN.md` and `TASKS.md` both exist on disk.
-
-### TASKS.md
-
-- [ ] File written (not chat-only).
-- [ ] Each card has Trace, AC, Verify, Files/scope + confidence.
-- [ ] Micro-task size (one concern).
-- [ ] Implement tasks before automated test tasks.
-- [ ] execution_order matches task_index.
-
-### Self-check before handoff
-
-- [ ] `ls` session folder shows `PLAN.md` and `TASKS.md`.
-- [ ] PLAN has **no** full Tasks section.
-- [ ] First implement task is **not** “write test cases”.
-- [ ] No epic FE/BE “build whole layer” single card when design has more detail.
-
-## WRONG vs CORRECT
-
-```markdown
-// WRONG — PLAN.md contains ## Tasks with full T-001…T-007 cards (AC, Verify, Files)
-// CORRECT — PLAN.md only has ## Task index: T-001 Models → … → T-00N Tests (see TASKS.md)
-```
-
-```markdown
-// WRONG — only PLAN.md in session folder
-// CORRECT — PLAN.md + TASKS.md both written with Write tool
-```
-
-```markdown
- // WRONG — T-001 Viết test case + 6 dimensions formula; then implement
- // CORRECT — T-001 DTOs → … → implement FE/BE → last tasks: automated tests
-```
-
-```markdown
-// WRONG — T-006 Build entire FE page (form + F-keys + children + validation)
- // CORRECT — separate cards: master-config fields; F3 export wire; F8 print; one child screen; …
-```
-
-## Edge Cases
-
-| Situation | Handling |
-|---|---|
-| Design thin | Smallest clear steps; unknown confidence; investigate if blocked. |
-| Files unknown | confidence unknown — do not invent paths. |
-| Blocking assumptions | Mark in PLAN; confirm before execution. |
-| PLAN-only already exists | Incomplete — write/replace with slim PLAN + new TASKS.md. |
-| Destructive change | User must review rollback in PLAN first. |
+Still run **all four steps**. TASKS may have 1–3 cards; templates still required.
 
 ## Limitations
 
 - Does NOT implement code.
-- Does NOT complete without both files on disk.
-- Does NOT allow full task cards inside PLAN.md.
-- Does NOT require tests-before-code or Dimension Coverage formulas.
-- Does NOT replace design skills when architecture/contracts are missing (non-Lite).
+- Does NOT replace design skills when contracts/architecture are missing (non-Lite).
+- Does NOT require tests-before-code.

@@ -1,0 +1,62 @@
+display_name: "Brainstorming"
+short_description: "Clarify goals, scope, constraints, options, trade-offs, risks, and recommendations before planning or implementation."
+default_prompt: "Use $brainstorming to clarify goals, scope, constraints, and trade-offs before planning or implementation."
+required_input: "Initial request, repo context, existing documents, constraints, current behavior, desired outcome, stakeholder feedback if available."
+required_output: "Light discussion or full DISCUSSION.md with goal, facts, assumptions, unknowns, constraints, scope, options, trade-offs, recommendation, risks, open questions, handoff to planning."
+note_important: "Do NOT implement code during brainstorming. Do NOT treat assumptions as facts. Do NOT create detailed planning before a clear recommendation. Do NOT create large extra artifacts unless requested."
+artifacts:
+  DISCUSSION.md:
+    required: true
+    schema:
+      goal:
+        type: string
+        required: true
+        description: "One sentence describing the goal."
+      desired_outcome:
+        type: string
+        required: true
+        description: "What success looks like."
+      confirmed_facts:
+        type: array
+        required: true
+        description: "Known facts from user, repo, or research."
+      constraints:
+        type: array
+        required: false
+        description: "Time, platform, tech stack, budget, tool limits."
+      assumptions:
+        type: array
+        required: false
+        description: "Assumptions with risk level and confirmation status."
+      unknowns:
+        type: array
+        required: false
+        description: "Open questions with blocking flag."
+      scope_in:
+        type: array
+        required: true
+        description: "What is in scope."
+      scope_out:
+        type: array
+        required: true
+        description: "What is out of scope."
+      non_goals:
+        type: array
+        required: false
+        description: "Goals explicitly not pursued."
+      options_considered:
+        type: table
+        required: true
+        description: "Option, pros, cons, effort, risk, reversibility, verify method."
+      recommendation:
+        type: string
+        required: true
+        description: "Recommended option with reason and confidence."
+      risks:
+        type: array
+        required: false
+        description: "Risks with impact and mitigation."
+      handoff:
+        type: string
+        required: true
+        description: "Suggested next skill: planning/business-analysis/research/execution."

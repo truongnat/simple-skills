@@ -1,0 +1,58 @@
+display_name: "Planning"
+short_description: "Build an execution plan from DISCUSSION.md, requirements, or clear requests. Task breakdown, dependencies, acceptance criteria, DoD, verification, and rollback strategy."
+default_prompt: "Use $planning to turn a clear goal into a concrete execution plan with order, dependencies, acceptance criteria, verification, and rollback."
+required_input: "DISCUSSION.md, requirement notes, user request, codebase mapping, affected systems, constraints."
+required_output: "PLAN.md with goal, scope, assumptions, non-goals, affected files, task breakdown, dependencies, acceptance criteria, verification, DoD, rollback, risks."
+note_important: "Do NOT implement code during planning. Do NOT invent affected files without inspecting the codebase. Do NOT treat assumptions as confirmed requirements. Do NOT skip rollback for destructive changes."
+artifacts:
+  PLAN.md:
+    required: true
+    schema:
+      goal:
+        type: string
+        required: true
+        description: "One sentence."
+      scope:
+        type: string
+        required: true
+        description: "In scope summary."
+      non_goals:
+        type: array
+        required: false
+        description: "Explicitly excluded outcomes."
+      assumptions:
+        type: array
+        required: true
+        description: "Assumptions with risk and confirmation status."
+      affected_files:
+        type: array
+        required: true
+        description: "Files/systems to change with expected change and confidence."
+      tasks:
+        type: array
+        required: true
+        description: "Task ID, description, dependencies, acceptance criteria, verification method, files/scope."
+      execution_order:
+        type: array
+        required: true
+        description: "Ordered list of task IDs."
+      verification_strategy:
+        type: string
+        required: true
+        description: "Automated and manual verification commands/steps."
+      definition_of_done:
+        type: array
+        required: true
+        description: "Checklist of verifiable completion conditions."
+      rollback_strategy:
+        type: string
+        required: true
+        description: "How to undo changes per type (code/config/data)."
+      risks:
+        type: array
+        required: false
+        description: "Risks with impact and mitigation."
+      handoff:
+        type: string
+        required: true
+        description: "Ready for execution? Blocking items? Review required?"

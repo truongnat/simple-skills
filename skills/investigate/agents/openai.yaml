@@ -1,0 +1,62 @@
+display_name: "Investigate"
+short_description: "Investigate codebase, bugs, system behavior, or technical questions before implementing. Root-cause analysis, reproduction, impact mapping, and evidence-based recommendations."
+default_prompt: "Use $investigate to find technical truth before deciding to fix, plan, or implement."
+required_input: "Problem description, expected/actual behavior, logs/errors/reproduction, codebase context, environment details."
+required_output: "INVESTIGATE.md with question, status, evidence, reproduction, observed facts, hypotheses, code path, impact map, root cause, recommendation, open questions."
+note_important: "Read-only by default. Do NOT modify code unless requested. Do NOT run destructive commands. Do NOT read secrets without a clear reason. Do NOT claim root cause when evidence is insufficient."
+artifacts:
+  INVESTIGATE.md:
+    required: true
+    schema:
+      question:
+        type: string
+        required: true
+        description: "The investigation question."
+      status:
+        type: string
+        required: true
+        description: "Root Cause Confirmed / Likely Root Cause / Hypotheses Identified / Needs More Evidence / Blocked."
+      context:
+        type: string
+        required: false
+        description: "Environment, version, related setup."
+      evidence:
+        type: array
+        required: true
+        description: "Evidence ID, source, observation, supports hypothesis?, confidence."
+      reproduction:
+        type: array
+        required: false
+        description: "Step, action, expected, actual, result."
+      observed_facts:
+        type: array
+        required: true
+        description: "Fact with source."
+      hypotheses:
+        type: array
+        required: false
+        description: "Hypothesis, supporting evidence, counter evidence, verification method, confidence."
+      code_path:
+        type: array
+        required: false
+        description: "Layer, file/component, role, observation."
+      root_cause:
+        type: string
+        required: false
+        description: "Confirmed or likely root cause."
+      impact:
+        type: array
+        required: true
+        description: "Area affected, impact, confidence."
+      recommendation:
+        type: string
+        required: true
+        description: "Fix recommendation / workaround / next investigation."
+      open_questions:
+        type: array
+        required: false
+        description: "Question, owner, blocking status."
+      handoff:
+        type: string
+        required: true
+        description: "Ready for planning? Ready for execution? Suggested next skill."

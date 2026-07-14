@@ -1,0 +1,58 @@
+display_name: "Execution"
+short_description: "Execute a plan or agreed scope: modify files, run verification, record EXECUTION.md, handle failures, and handoff to review."
+default_prompt: "Use $execution to execute a locked plan in a controlled, safe, and verifiable way."
+required_input: "PLAN.md, locked scope, repo context, affected files, constraints, verification commands."
+required_output: "Workspace changes within scope, EXECUTION.md with files changed, commands run, verification evidence, blockers, deviations."
+note_important: "Do NOT modify outside scope. Do NOT put secrets in files/logs. Do NOT delete sensitive files/config/migration/data without a plan or confirmation. Do NOT revert changes not belonging to you without permission. Do NOT claim completion without verification or documenting skipped checks."
+artifacts:
+  EXECUTION.md:
+    required: true
+    schema:
+      plan_source:
+        type: string
+        required: true
+        description: "Reference to PLAN.md or scope source."
+      current_task:
+        type: string
+        required: true
+        description: "Task ID currently being executed."
+      scope:
+        type: string
+        required: true
+        description: "Scope this execution covers."
+      execution_log:
+        type: array
+        required: true
+        description: "Step, Task ID, Action, Files, Result, Notes per step."
+      files_changed:
+        type: array
+        required: true
+        description: "File path, change summary, reason, in-plan? (yes/deviation)."
+      commands_run:
+        type: array
+        required: true
+        description: "Command, purpose, result (pass/fail/skipped), notes."
+      verification_evidence:
+        type: array
+        required: true
+        description: "Check name, command/method, result, evidence."
+      deviations:
+        type: array
+        required: false
+        description: "Deviation, reason, risk, follow-up."
+      issues_blockers:
+        type: array
+        required: false
+        description: "Issue, type, impact, next action."
+      rollback_notes:
+        type: string
+        required: true
+        description: "How to roll back this execution."
+      final_status:
+        type: string
+        required: true
+        description: "Completed / Partially completed / Blocked."
+      handoff:
+        type: string
+        required: true
+        description: "Ready for review? Suggested focus area."

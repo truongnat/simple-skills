@@ -79,31 +79,42 @@ project-specific behavior without inventing conventions.
    - source layout, entry points, public interfaces, tests, documentation;
    - business rules and constraints evidenced by docs, tests, schemas, or code.
 4. **Deep workspace scan (mandatory — do not scan only the root, and do not
-   enumerate from the workspace config).** Run the bundled deterministic
-   scanner, which sweeps the **filesystem** for every project manifest across
-   all ecosystems — independent of any JS/TS workspace config:
+   enumerate from the workspace config).** The scan has two responsibilities,
+   split so that no stack is ever missed:
+
+   **a. Coverage (deterministic) — run the bundled candidate surfacer.** It
+   sweeps the **filesystem** (not the workspace config) and prints every
+   plausible project-root directory, pruned of build/generated/platform noise:
 
    ```bash
    bash .agents/skills/init/scripts/scan_workspaces.sh
    ```
 
-   It prints one `DIR<TAB>STACK<TAB>MANIFEST` row per project (Node/TS,
-   Flutter/Dart, Go, Rust, Python, JVM, .NET, PHP, Ruby, Swift, …).
-   - **Record every row.** Each row with a manifest of a different ecosystem is
-     a distinct stack that MUST appear in the `workspaces` table and in
-     per-workspace `tech_stack`.
+   Each row is `DIR<TAB>MARKER_HINTS`. The hints (e.g. `pubspec.yaml`,
+   `package.json`, or `-` for none) are only clues; the script deliberately does
+   **not** classify the stack.
+
+   **b. Classification (yours) — you decide each stack.** For **every** row,
+   open the directory and identify its stack from its actual manifest/tooling
+   using your own knowledge — **any** ecosystem counts (Node/TS, Flutter/Dart,
+   Go, Rust, Python, JVM, Kotlin, Swift, .NET, PHP, Ruby, Elixir, Deno, Zig, …).
+   Do not limit yourself to a fixed list; a directory whose hint is `-` still
+   gets inspected and classified.
+   - **Record every candidate** in the `workspaces` table and give each its own
+     `tech_stack`, entry point, and per-app commands. A directory of a different
+     ecosystem is a distinct stack that MUST appear.
    - **Why the config is not enough:** a `pnpm-workspace.yaml` / `turbo.json` /
      root `package.json "workspaces"` lists only JS/TS members. A Flutter/Dart,
      Go, Rust, or Python app under `apps/` is typically **not** listed there, so
-     enumerating from the config silently drops whole stacks. The script is the
-     source of truth for enumeration; the config is only supporting evidence.
-   - For each detected project, read its own manifest for the entry point and
-     per-app commands, and record path, type, stack, entry point, and commands.
-   - If the script cannot run in this environment, fall back to a manual
-     recursive manifest sweep (`package.json`, `pubspec.yaml`, `Cargo.toml`,
-     `go.mod`, `pom.xml`, `build.gradle*`, `pyproject.toml`, `*.csproj`, …)
-     while pruning `node_modules`, build/generated, and native platform dirs —
-     never bound the sweep by the workspace config.
+     enumerating from the config silently drops whole stacks. Filesystem
+     coverage is the source of truth; the config is only supporting evidence.
+   - The surfacer's hint list is best-effort, not exhaustive. If you know of a
+     project directory it did not surface (unusual layout or ecosystem), add it
+     — never treat the script's rows as the complete universe of stacks.
+   - If the script cannot run (e.g. no Bash), fall back to a manual recursive
+     directory sweep that prunes `node_modules`, build/generated, and native
+     platform dirs, and classify every project root yourself — never bound the
+     sweep by the workspace config.
 6. Classify every important statement:
    - `confirmed`: direct source or user confirmation;
    - `inferred`: evidence exists but is indirect;

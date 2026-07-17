@@ -209,7 +209,7 @@ current repository while preserving user settings.
    - Step workflow: seed template → frame + Spec quality → scope/options → recommend → self-check.
    - Templates: `.agents/skills/brainstorming/templates/`; steps: `step-01` … `step-05`.
    - Scope/options and recommendation cannot start until blocking Spec quality findings are resolved.
-2. `business-analysis` (optional) → `BUSINESS_ANALYSIS.md`
+2. `business-analysis` (optional to invoke; mandatory 4 steps once used) → `BUSINESS_ANALYSIS.md`
    - Templates: `.agents/skills/business-analysis/templates/`; steps: `step-01` … `step-04`.
    - Step workflow: seed template → frame + Spec quality → stories/rules/AC → self-check.
    - Stories, rules, and AC cannot start until the Spec quality gate passes; stop on Blocking=Yes gaps.

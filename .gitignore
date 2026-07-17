@@ -7,4 +7,3 @@ __pycache__/
 
 # Keep repository documentation visible even when a user globally ignores docs/.
 !docs/
-!docs/THIRD_PARTY_SKILLS.md

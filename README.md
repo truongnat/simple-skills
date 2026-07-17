@@ -170,7 +170,7 @@ For detailed workflow, see [docs/AGENTS.md](docs/AGENTS.md).
 
 ## Development
 
-Installing skills does not require Node.js — only `curl` on Linux/macOS or PowerShell on Windows.
+Installing skills requires only `curl` on Linux/macOS or PowerShell on Windows.
 
 Office skill Python tests:
 

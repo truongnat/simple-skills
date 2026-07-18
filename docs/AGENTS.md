@@ -330,14 +330,21 @@ task is **not** done. Do not patch silently and do not open a new session.
 
 ### Documentation wiki
 
-`docs` → wiki under `rules.docs.location` (default `.agents/wiki/`)
+`docs` → standards-based doc set under `rules.docs.location` (default `.agents/wiki/`)
 
-- Two modes: `full` (write the whole wiki in one pass) and `sync` (update only
-  the units a code change affects, via `.docmap.md`).
-- `rules.docs.format` picks the organization: `markdown` (page tree — the
-  canonical source), `html` (linked pages + theme), `docx` (one document with
-  TOC, via the `docx` skill), or `xlsx` (workbook of sheets, via the `xlsx`
-  skill). html/docx/xlsx are rendered from the markdown source.
+- A **real enterprise documentation set**, not a skim: SRS (ISO/IEC/IEEE 29148),
+  Architecture (arc42 + C4 + 4+1 views), ADRs, High-Level Design, Low-Level
+  Design, Reference (API + data model), Operations (runbook), and Guides
+  (Diátaxis) — with a coverage matrix, stable IDs, and traceability. It reuses
+  session artifacts (SRS ← business-analysis/DISCUSSION, HLD ← BASIC_DESIGN,
+  LLD ← DETAIL_DESIGN, ADRs ← decision gates) and marks `Gap`/`Unknown` rather
+  than inventing.
+- Two modes: `full` (author the whole set, document by document) and `sync`
+  (update only the documents/sections a code change affects, via `.docmap.md`).
+- `rules.docs.format` picks the organization: `markdown` (doc tree — the
+  canonical source), `html` (linked pages + theme), `docx` (one controlled
+  document with TOC, via the `docx` skill), or `xlsx` (workbook of registers/
+  matrices, via the `xlsx` skill). html/docx/xlsx render from the markdown source.
 - `rules.docs.sync_strategy` controls how it stays in step with code:
   - `main-only`: wiki is written **only** on the base/main branch; feature
     branches never touch it.

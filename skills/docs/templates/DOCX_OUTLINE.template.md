@@ -1,35 +1,36 @@
-# DOCX outline spec
+# DOCX outline spec (enterprise doc set)
 
-> A Word document is **one linear file**, not a link tree. Organize the same
-> wiki content as a single document with a heading hierarchy + table of
-> contents. Build it with the `docx` skill (office-common / python-docx).
-> Deliverable: `<location>/<Project>-wiki.docx` (+ the markdown source pages
-> the docmap tracks, so `sync` stays incremental).
+> A Word document is **one linear file**, so deliver the doc set as a single
+> controlled document with Heading styles + TOC — the same standards, one file.
+> Build with the `docx` skill (office-common / python-docx). Deliverable:
+> `<location>/<Project>-documentation.docx` (+ the markdown source the docmap
+> tracks, so `sync` stays incremental).
 
-## Document structure (heading order)
+## Document structure (Heading order → generates the TOC)
 
-1. **Title page** — project name, generated date, source commit.
-2. **Table of contents** — generated from Heading 1/2 styles.
-3. **H1 Overview (80/20)** — the vital 20%, as a short bulleted section.
-4. **H1 Architecture** — components/boundaries/data flow; embed a diagram
-   image (render Mermaid to PNG) or a component table.
-5. **H1 Workspaces** — one **H2 per app/package** (surfaced by the scanner),
-   each with stack, entry points, commands, responsibilities.
-6. **H1 Flows** *(optional)* — one H2 per key flow.
-7. **H1 Guides** *(optional)* — setup / how-to.
-8. **Appendix: Sources & freshness** — a table of section → source paths →
-   last-synced commit (mirrors `.docmap.md`).
+1. **Title page** — project, version, date, source commit.
+2. **Table of contents** (from Heading 1/2).
+3. **Documentation coverage matrix** — table (document · status · owner · last-synced).
+4. **Part I — Software Requirements Specification (ISO/IEC/IEEE 29148)**
+   H2 per SRS section (Introduction … Verification, Traceability). FR/NFR tables.
+5. **Part II — Architecture (arc42)** — H2 per arc42 section 1–12; embed C4 and
+   sequence diagrams as **images** (render Mermaid → PNG).
+6. **Part III — Architecture Decisions** — one H2 per ADR.
+7. **Part IV — High-Level Design** — components, flows, data ownership.
+8. **Part V — Low-Level Design** — contracts, data model, sequences, rules.
+9. **Part VI — Reference** — API reference (tables), data model (ERD image).
+10. **Part VII — Operations** — deployment, runbook, observability, security.
+11. **Part VIII — Guides** — onboarding, how-to (Diátaxis).
+12. **Appendix** — traceability matrix, glossary, sources & freshness table.
 
 ## Formatting rules
-
-- Use built-in styles (`Heading 1/2/3`, `Title`, `Normal`) so the TOC and
-  navigation work — never fake headings with bold text.
-- Tables for structured data (workspaces, commands, contracts).
-- Each H1/H2 opens with its 80/20 overview line before detail.
-- Keep images embedded (no external links; office files must be self-contained).
+- Built-in styles (`Title`, `Heading 1/2/3`, `Normal`) so TOC/navigation work —
+  never fake headings with bold text.
+- Tables for structured data (requirements, contracts, workspaces, ADR log).
+- Each Part/section opens with its 80/20 overview before detail.
+- Embed all images; office files must be self-contained (no external links).
 
 ## Sync granularity
-
-Word is monolithic: `sync` regenerates the `.docx` from the updated markdown
-source, but uses the docmap to re-derive only the **sections** whose sources
-changed; unchanged section text is carried over verbatim.
+Monolithic file: `sync` regenerates the `.docx` but uses the docmap to
+re-derive only the **sections** whose sources changed; unchanged text is carried
+over. Keep requirement/ADR IDs stable across regenerations.

@@ -1,7 +1,8 @@
 # High-Level Design (Basic Design) — <System / Feature>
 
 > System-level design: **what** is built and **where** boundaries sit — not
-> implementation detail (that is the LLD). Prefer content aggregated from
+> implementation detail (that is the LLD). Organized as **IEEE 1016-2009**
+> design views addressing stakeholder concerns. Prefer content aggregated from
 > `BASIC_DESIGN.md`. Cite sources; mark `Gap`/`Unknown`.
 
 - **Status:** draft / reviewed / approved · **Last-synced:** `<commit>`
@@ -9,6 +10,15 @@
 
 ## Overview (80/20)
 - _(what this covers, the shape, the key decision)_
+
+## Design stakeholders & concerns (IEEE 1016)
+| Stakeholder | Concern | View below that answers it |
+|---|---|---|
+| _(…)_ | _(…)_ | Context / Composition / Logical / … |
+
+<!-- HLD covers the high-level IEEE 1016 viewpoints: Context, Composition,
+Logical, Dependency, Interface, Information. Detailed viewpoints (Structure,
+Interaction, State, Algorithm, Resource) belong in the LLD. -->
 
 ## Scope
 - **In scope:** _(…)_  · **Out of scope:** _(…)_

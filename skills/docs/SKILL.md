@@ -32,11 +32,23 @@ recognized standards so it holds up in an enterprise setting:
 | Document | Standard it follows |
 |---|---|
 | SRS (requirements) | **ISO/IEC/IEEE 29148** (supersedes IEEE 830) |
-| Architecture | **arc42** (12 sections) + **C4** diagrams + **4+1 views** |
+| Architecture | **arc42** (12 sections) + **C4** diagrams + **ISO/IEC/IEEE 42010** viewpoints + **4+1 views** |
 | Architecture decisions | **ADR** (MADR/Nygard), one record per decision |
-| High-Level Design (basic design) | fed by the `basic-design` skill / `BASIC_DESIGN.md` |
-| Low-Level Design (detailed design) | fed by the `detail-design` skill / `DETAIL_DESIGN.md` |
+| Design descriptions (HLD/LLD) | **IEEE 1016-2009** design viewpoints; fed by `basic-design`/`detail-design` (`BASIC_DESIGN.md` / `DETAIL_DESIGN.md`) |
+| API reference | **OpenAPI**/AsyncAPI when a spec exists (derive from it) |
 | Guides (user-facing) | **Diátaxis** (tutorial / how-to / reference / explanation) |
+
+### Documentation principles (apply throughout)
+
+- **Docs-as-code:** the wiki lives in the repo, is versioned with the code,
+  reviewed in the same PR, and rendered from a single markdown source of truth.
+- **Address stakeholder concerns (ISO/IEC/IEEE 42010 / IEEE 1016):** organize
+  architecture and design as **views** that answer specific **concerns** of
+  named **stakeholders** — not a data dump. State stakeholders + concerns first.
+- **Diátaxis separation:** never blend the four guide types; a tutorial is not a
+  reference. Pick one purpose per page.
+- **Single source, cite everything, no invention:** every claim traces to code
+  or a session artifact; gaps are visible, not filled with plausible fiction.
 
 ## This is not a one-shot skim (depth gate — mandatory)
 
@@ -149,13 +161,16 @@ Each document must contain its standard sections (see its template); the core:
   usability; performance; database/data; design constraints; software system
   attributes: reliability/availability/security/maintainability/portability);
   Verification; Appendices incl. **traceability**.
-- **Architecture (arc42)** — 1 Introduction & Goals · 2 Constraints · 3 Context
-  & Scope · 4 Solution Strategy · 5 Building Block View (C4) · 6 Runtime View ·
-  7 Deployment View · 8 Crosscutting Concepts · 9 Architecture Decisions (link
-  ADRs) · 10 Quality Requirements · 11 Risks & Technical Debt · 12 Glossary.
-- **HLD** — components, boundaries, interfaces, data ownership, main flows.
-- **LLD** — contracts, data model (fields/types), sequences, validation/rules,
-  error/state handling, per-module detail.
+- **Architecture (arc42 + ISO/IEC/IEEE 42010)** — 1 Introduction & Goals
+  (**stakeholders + concerns**) · 2 Constraints · 3 Context & Scope · 4 Solution
+  Strategy · 5 Building Block View (C4) · 6 Runtime View · 7 Deployment View ·
+  8 Crosscutting Concepts · 9 Architecture Decisions (link ADRs) · 10 Quality
+  Requirements · 11 Risks & Technical Debt · 12 Glossary.
+- **HLD (IEEE 1016 high-level views)** — stakeholders/concerns; context,
+  composition, logical, dependency, interface, information; data ownership.
+- **LLD (IEEE 1016 detailed views)** — interface contracts, structure, data
+  model (fields/types), interaction (sequences), validation/rules, state
+  dynamics, algorithm, resource/concurrency, error handling.
 - **ADR** — Context · Decision · Status · Consequences · Alternatives.
 - **Reference/Operations/Guides** — per their templates.
 - **`.docmap.md`** — required (every format): unit → source paths + last-synced.

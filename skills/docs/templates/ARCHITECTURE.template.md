@@ -1,13 +1,24 @@
 # Architecture — <System>
 
 > Follows **arc42** (12 sections), with **C4** diagrams (Context → Container →
-> Component) and, where useful, **4+1 views**. Use Mermaid for diagrams. Cite
+> Component), **ISO/IEC/IEEE 42010** viewpoints (stakeholders → concerns →
+> views), and, where useful, **4+1 views**. Use Mermaid for diagrams. Cite
 > sources; mark `Gap`/`Unknown`. Link decisions to ADRs rather than restating.
 
 - **Status:** draft / reviewed / approved · **Last-synced:** `<commit>`
 
 ## 1. Introduction and goals
-_(What the system does; top quality goals (3–5); key stakeholders + their concerns.)_
+_(What the system does; top quality goals (3–5).)_
+
+### Stakeholders and concerns (ISO/IEC/IEEE 42010)
+_(Organize the views below to answer these concerns — not a data dump.)_
+
+| Stakeholder | Key concerns | Views that address them |
+|---|---|---|
+| _(e.g. dev team)_ | _(maintainability, build)_ | Building Block, Crosscutting |
+| _(ops/SRE)_ | _(deploy, reliability)_ | Deployment, Runtime, Quality |
+| _(security)_ | _(authn/z, data)_ | Crosscutting, ADRs |
+| _(product)_ | _(scope, cost)_ | Context, Solution Strategy |
 
 ## 2. Architecture constraints
 _(Technical, organizational, regulatory constraints that shape the design.)_

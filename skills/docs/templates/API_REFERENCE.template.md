@@ -1,9 +1,12 @@
 # API Reference — <System>
 
 > Contract-level reference for every public surface (HTTP/RPC/events/CLI/SDK).
-> Generated from code/schemas where possible; cite the source per operation.
-> Mark `Gap`/`Unknown` — never invent an endpoint or field.
+> **If an OpenAPI/AsyncAPI/GraphQL/proto spec exists, derive from it and link
+> it** (the spec is the source of truth — do not hand-transcribe divergently).
+> Otherwise derive from route/handler code. Cite the source per operation; mark
+> `Gap`/`Unknown` — never invent an endpoint or field.
 
+- **Spec:** _(path to openapi.yaml / asyncapi / .proto / schema, or `none`)_
 - **Base URL / entry:** _(…)_ · **Auth:** _(scheme)_ · **Version:** _(…)_ · **Last-synced:** `<commit>`
 
 ## Conventions

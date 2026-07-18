@@ -1,8 +1,11 @@
 # Guides — <System>
 
-> User-facing docs organized by **Diátaxis**: the four kinds serve different
-> needs — keep them separate, don't blend a tutorial with reference. Each file
-> under `06-guides/` picks one kind.
+> User-facing docs organized by **Diátaxis**: four kinds along two axes —
+> **action** (studying ↔ working) × **cognition** (practical ↔ theoretical).
+> Tutorial = studying+practical, How-to = working+practical, Reference =
+> working+theoretical, Explanation = studying+theoretical. Keep them separate —
+> don't blend a tutorial with reference. Each file under `06-guides/` picks one
+> kind.
 
 ## Onboarding (start here)
 - **Prerequisites:** _(tools, access)_

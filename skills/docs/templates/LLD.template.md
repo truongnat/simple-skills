@@ -1,7 +1,8 @@
 # Low-Level Design (Detailed Design) — <Module / Feature>
 
-> Implementable detail: contracts, data model, sequences, rules, error/state
-> handling. Prefer content aggregated from `DETAIL_DESIGN.md`. Every element
+> Implementable detail organized as **IEEE 1016-2009** detailed design views:
+> Interface, Structure, Interaction, Information, State dynamics, Algorithm, and
+> Resource. Prefer content aggregated from `DETAIL_DESIGN.md`. Every element
 > cites a source or is marked `Gap`/`Unknown` (confidence: known/inferred).
 
 - **Status:** draft / reviewed / approved · **Last-synced:** `<commit>`
@@ -46,6 +47,10 @@ _(Error taxonomy, retries, state machine/lifecycle when relevant.)_
 
 ## Algorithms / non-obvious logic
 _(Only where behavior is not obvious from code; pseudocode + rationale.)_
+
+## Resources & concurrency (IEEE 1016 resource viewpoint)
+_(External resources, connections/pools, threads/async, locks, transactions,
+memory/quotas — and how contention/limits are handled. N/A + reason if trivial.)_
 
 ## Open questions / gaps
 | Item | Impact | Owner |

@@ -182,7 +182,10 @@ Action: Update plan file paths or inspect new location before execution.
 4. Read relevant session artifacts in order.
 5. Check sensitive file boundaries before reading files.
 6. Check git repo and working tree if applicable.
-7. Check dirty changes, untracked files, conflict state.
+7. Check dirty changes, untracked files, conflict state, and **current branch vs
+   `rules.branch.mode`**: for `checkout`, flag as a blocker if the tree is on the
+   base branch (execution must branch first); for `direct`, confirm the base
+   branch is the intended target.
 8. Check plan files/systems exist.
 9. Map codebase at plan-relevant scope.
 10. Check dependency/config/tooling if plan needs it.

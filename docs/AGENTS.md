@@ -29,6 +29,15 @@ and conventions.
   enterprise theme via short `.ss-*` classes in `/styles.css` (see
   `.agents/DESIGN_SYSTEM.md`). Prefer those classes over long Tailwind stacks
   to keep agent tokens low.
+- **`rules.branch.mode` — IMPORTANT, enforced before any code change:**
+  - `direct`: solo-developer mode. Work and commit directly on the base/main
+    branch; do **not** create a feature branch.
+  - `checkout`: **before editing any file**, ensure you are on a dedicated work
+    branch off `rules.branch.base` (create/checkout one, following
+    `rules.branch.naming` when set). **Never** modify or commit code on the base
+    branch in this mode. If the working tree is on the base branch, branch first.
+  - If `mode` is unset, default to `checkout` (the safer policy). A direct user
+    instruction overrides the file for the current task only.
 - Project-specific branch, commit, PR, report, and code-comment rules live
   under `rules` in settings. Apply only populated values.
 - If `.agents/PRJ_REFERENCE.md` is missing or materially stale, run the `init`

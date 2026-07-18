@@ -299,6 +299,10 @@ def main() -> int:
         errors.append("docs/settings.yaml missing session_overview setting")
     if "output_format: markdown" not in settings:
         errors.append("docs/settings.yaml missing default report output_format")
+    if "mode: checkout" not in settings and "mode: direct" not in settings:
+        errors.append("docs/settings.yaml missing branch.mode policy (checkout|direct)")
+    if "rules.branch.mode" not in agents:
+        errors.append("docs/AGENTS.md missing enforced branch.mode rule")
     if "## Artifact format resolution" not in agents:
         errors.append("docs/AGENTS.md missing artifact format resolution rules")
     design_system = (ROOT / "docs" / "DESIGN_SYSTEM.md").read_text(encoding="utf-8")

@@ -67,6 +67,21 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 `agents/openai.yaml` is a machine-readable duplicate for tooling. The Contract in this SKILL.md is authoritative for agents.
 
+## Branch preflight (mandatory — before the first code change)
+
+Read `rules.branch.mode` in `.agents/settings.yaml` **before editing any file**:
+
+- `direct` (solo): stay on the base/main branch; do not create a branch.
+- `checkout`: you MUST be on a dedicated work branch off `rules.branch.base`.
+  If the working tree is on the base branch, create/checkout one first (follow
+  `rules.branch.naming` when set, e.g. `feat/<task-slug>`). **Never edit or
+  commit code on the base branch in this mode.**
+- If `mode` is unset, default to `checkout`. A direct user instruction for this
+  task overrides the setting.
+
+Record the branch you are working on in `EXECUTION.md` (developer_overview).
+Do not start the Progress protocol until this preflight passes.
+
 ## Progress protocol (mandatory)
 
 On every task card in `execution_order`:

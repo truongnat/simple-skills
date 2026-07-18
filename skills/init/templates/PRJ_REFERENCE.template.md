@@ -71,6 +71,7 @@ only the root manifest. -->
 
 ### Git
 
+- Branch mode (`direct` / `checkout`):
 - Base branch:
 - Branch naming:
 - Commit convention:

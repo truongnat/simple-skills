@@ -33,8 +33,13 @@ rules:
     html: ask-before-create
     prefer_diagram_for_flows: true
   branch:
-    base: ""
-    naming: ""
+    # IMPORTANT — enforced branching policy. Agents MUST obey before any code change.
+    #   direct    Solo developer: work and commit directly on the base/main branch.
+    #   checkout  Feature-branch required: create/checkout a work branch off base
+    #             before editing any file; never commit code on the base branch.
+    mode: checkout
+    base: ""      # base/main branch name (e.g. main). Empty = detect from repo.
+    naming: ""    # branch-name convention for `checkout` mode (e.g. feat/<slug>).
   commit:
     convention: ""
     format: ""

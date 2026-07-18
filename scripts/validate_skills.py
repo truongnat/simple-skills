@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / "skills"
 FIRST_PARTY = {
     "init",
+    "scaffold",
     "brainstorming",
     "business-analysis",
     "basic-design",

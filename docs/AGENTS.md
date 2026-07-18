@@ -277,10 +277,17 @@ Base folder for runtime artifacts: `.agents/sessions/<Task-N-short-description>/
 
 ### Project initialization
 
-Run `init` first when entering a project or when `.agents/PRJ_REFERENCE.md` is
-missing. Re-run it in `refresh` mode after material architecture, tooling, or
-business-rule changes. Explicit `force` mode rebuilds the reference from the
-current repository while preserving user settings.
+- **Greenfield (brand-new project, no code yet):** run `scaffold` first. It
+  bootstraps the skeleton (stack, structure, tooling, CI), initializes the repo
+  and `.agents/` wiring, records stack ADRs, then hands off to `init`. It is
+  greenfield-only — it never scaffolds over an existing project.
+- **Existing project:** run `init` when entering it or when
+  `.agents/PRJ_REFERENCE.md` is missing. Re-run in `refresh` mode after material
+  architecture, tooling, or business-rule changes; explicit `force` rebuilds the
+  reference from the current repository while preserving user settings.
+
+Order for a new project: `scaffold` → `init` → lifecycle (`brainstorming`/
+`planning` → …).
 
 ### Dev Lifecycle per Task
 

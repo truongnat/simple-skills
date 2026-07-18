@@ -1,0 +1,21 @@
+display_name: "Docs (project wiki)"
+short_description: "Maintain a wiki-style docs tree: full one-pass write, or incremental sync on code change."
+default_prompt: "Use $docs full to write the whole project wiki, or $docs sync to update pages affected by a code change. Honors rules.docs in settings."
+required_input: "rules.docs (enabled, location, format, sync_strategy), rules.branch, repo source/config, PRJ_REFERENCE.md when present, the change set for sync, existing wiki + .docmap.md."
+required_output: "Wiki tree under rules.docs.location (Home.md, architecture.md, workspaces/<name>.md, optional flows/ and guides/) plus .docmap.md (page -> sources + last-synced commit)."
+note_important: "Read-only against project code except the bundled scanner. Do NOT invent behavior — cite sources, mark unknowns, no secrets. Resolve rules.docs.format (markdown|html|docx|xlsx) and follow that format's organization: markdown/html = page tree; docx = one document with headings+TOC via the docx skill; xlsx = workbook of sheets via the xlsx skill. Markdown tree is the canonical source rendered into the others. Honor the branch gate: main-only never writes off the base branch; with-commit stages wiki changes into the task commit when invoked by done. In sync mode, touch only the units the diff affects."
+formats:
+  markdown: "Multi-file page tree with cross-links (Home.md, architecture.md, workspaces/<name>.md, flows/, guides/). The canonical source."
+  html: "Same tree rendered to linked .html pages + shared styles.css per .agents/DESIGN_SYSTEM.md (enterprise .ss-* theme, self-contained, accessible)."
+  docx: "One <Project>-wiki.docx with Heading styles + TOC per templates/DOCX_OUTLINE.template.md, built with the docx skill (office-common)."
+  xlsx: "One <Project>-wiki.xlsx workbook (Overview, Workspaces, Architecture, APIs, Flows, Docmap sheets) per templates/XLSX_STRUCTURE.template.md, built with the xlsx skill (office-common)."
+modes:
+  full: "Cover the whole repo (via scan_workspaces.sh) and (re)write every page; write .docmap.md with the current commit."
+  sync: "git diff from .docmap.md Last-synced; map changed paths -> pages; update only those; add/remove pages for added/removed projects; refresh Last-synced."
+artifacts:
+  wiki_tree:
+    required: true
+    description: "Under rules.docs.location (default .agents/wiki/). Home.md (80/20 landing + link map), architecture.md, workspaces/<name>.md per surfaced project, optional flows/guides. Every page: Overview (80/20) first, then detail, then a footer with Sources: and Last-synced:."
+  .docmap.md:
+    required: true
+    description: "Manifest mapping each page to the source paths/globs it documents plus the last-synced commit. Enables incremental sync."

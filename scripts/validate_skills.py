@@ -24,6 +24,7 @@ FIRST_PARTY = {
     "research",
     "review-pr",
     "tester",
+    "docs",
     "xlsx",
     "docx",
     "pptx",

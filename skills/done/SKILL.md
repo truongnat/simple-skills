@@ -51,6 +51,14 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - Required: yes (update in place to final status).
 - Mark lifecycle complete or blocked; keep next action concrete.
 
+#### Docs wiki sync (per `rules.docs`)
+- If `rules.docs.enabled` is false, skip.
+- If `rules.docs.sync_strategy: with-commit`: run the `docs` skill in `sync`
+  mode for this task's change set and **stage the wiki changes so they land in
+  the same commit** as the task (they travel through the PR).
+- If `rules.docs.sync_strategy: main-only`: do **not** touch the wiki here on a
+  feature branch — note in DONE.md that the wiki is refreshed on `main`.
+
 #### Project memory (`.agents/memory/`)
 - Required: yes. Persists **across tasks** (not per session) — sibling to
   `.agents/sessions/`.

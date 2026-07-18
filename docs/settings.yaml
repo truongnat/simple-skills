@@ -63,6 +63,24 @@ rules:
     charts: mermaid-when-useful
     session_overview: required
     custom_sections: []
+  docs:
+    # Wiki-style project documentation maintained by the `docs` skill.
+    #   full  writes the whole wiki in one pass
+    #   sync  updates only the pages affected by a code change
+    enabled: true
+    location: .agents/wiki      # where the wiki tree lives
+    # Output format — each organizes content differently (see the `docs` skill):
+    #   markdown  multi-file page tree with cross-links (the source of truth)
+    #   html      linked .html pages + shared styles.css (enterprise theme)
+    #   docx      one Word document with headings + TOC (built via the docx skill)
+    #   xlsx      workbook of sheets/rows (built via the xlsx skill)
+    format: markdown
+    # How the wiki is kept in step with code:
+    #   main-only    Wiki is created/updated ONLY on the base/main branch;
+    #                feature branches never touch it (docs land when merged).
+    #   with-commit  `done` syncs the affected pages and includes them in the
+    #                SAME commit as the task, so docs travel through the PR.
+    sync_strategy: with-commit
   code:
     comments:
       non_obvious_flow: required

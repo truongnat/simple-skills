@@ -4,7 +4,7 @@
 > the decisions and the exact way to run what was created. Mark assumptions and
 > gaps; do not claim something works that was not run.
 
-## Overview (80/20)
+## Overview
 
 - **Project:** _(one line — what it is)_
 - **Stack:** _(language / framework / runtime)_

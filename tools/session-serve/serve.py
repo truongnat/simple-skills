@@ -100,8 +100,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--sessions-dir",
         type=Path,
-        default=Path(".agents/sessions"),
-        help="Session parent used for lookup (default: .agents/sessions).",
+        default=Path(".agent-work/sessions"),
+        help="Session parent used for lookup (default: .agent-work/sessions).",
     )
     parser.add_argument(
         "--file",

@@ -9,12 +9,12 @@ python .agents/tools/choice-reader/read.py
 
 # Latest choice for one issue
 python .agents/tools/choice-reader/read.py \
-  .agents/sessions/Task-1-example \
+  .agent-work/sessions/Task-1-example \
   --issue-id ISS-001
 
 # Last 10 choices from an explicit log directory
 python .agents/tools/choice-reader/read.py \
-  --log-dir .agents/sessions/Task-1-example/decision-logs \
+  --log-dir .agent-work/sessions/Task-1-example/decision-logs \
   --all \
   --limit 10
 ```

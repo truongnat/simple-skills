@@ -7,9 +7,12 @@ description: "Read-only sync of session artifacts, codebase context, git state, 
 
 ## Shared preamble (do this first)
 
-Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Memory) before
-Purpose, Contract, or steps. Do not skip it; do not reuse a cached `language`
-from earlier in the session. Source copy in this repo: `docs/SKILL_PREAMBLE.md`.
+Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Work layout +
+Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
+steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
+understands on first pass — concrete paths/IDs, no filler, no method branding.
+Artifacts go under `.agent-work/` (sessions + memory), not `.agents/`.
+Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
 
 ## Purpose
 
@@ -37,7 +40,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 | Field | Requirement |
 |-------|-------------|
 | Inputs | Session path, PLAN.md, TASKS.md (including Progress board/Status/checkboxes when present), workspace state, git state, dependency/config metadata, known affected files, user constraints. |
-| Outputs | Sync summary with observed facts (include TASKS resume point / in_progress|blocked IDs), inferred context, drift, dirty changes, risks, blockers, recommended next step; refreshed `OVERVIEW.md`. |
+| Outputs | Sync summary with observed facts (include TASKS resume point / in_progress|blocked IDs), inferred context, drift, dirty changes, risks, blockers, recommended next step;. |
 | Safety | Read-only by default. Do NOT mutate TASKS progress during sync. Prefer scope from PLAN/TASKS affected areas. Do NOT read secrets or sensitive files without a clear reason. Do NOT run destructive commands. Do NOT auto-resolve conflicts or unrelated dirty changes. Do NOT move to execution when PLAN Ready=No, blockers open, PLAN.md/TASKS.md stale, or SYNC.md older than PLAN/TASKS. |
 
 ### Required artifacts
@@ -57,11 +60,9 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - **drift_detected** (optional, array): Drift items with type, impact, suggested action.
 - **dirty_changes** (optional, array): Classified dirty changes with scope check (in-scope/out-of-scope/unknown).
 - **risks_blockers** (required, array): Blockers with type, impact, next action.
-- **recommendation** (required, string): Ready for execution: Yes/No. Suggested next step.
+- **recommendation** (required, string): Suggested next step.
+- **implementation_readiness** (required, object): Verdict `PASS` | `CONCERNS` | `FAIL` plus one-line reason. Execution only after `PASS`, or `CONCERNS` with explicit user accept.
 
-#### `OVERVIEW.md`
-- Required: yes (update in place).
-- Refresh At a glance, progress chart from TASKS, open decisions, and next action.
 
 ### Reference
 
@@ -101,11 +102,22 @@ Do NOT use this skill when:
 
 ## Sync Readiness Gate
 
-Before moving to execution, verify:
+Before moving to execution, verify the checklist below, then set an explicit
+**Implementation readiness** verdict (BMAD-inspired):
+
+| Verdict | Meaning | Next |
+| --- | --- | --- |
+| `PASS` | Safe to execute | `execution` |
+| `CONCERNS` | Proceed only with documented risks the user accepts | Ask user, then maybe execute |
+| `FAIL` | Must not execute | Return to planning / investigate / ask user |
+
+Checklist:
 
 - Session path or task context exists.
 - PLAN.md and TASKS.md are present and aligned (both required before execution).
-- **PLAN.md Handoff Ready = Yes** and PLAN Handoff blockers are empty/`none`. If Ready=No or open blockers exist → **not** ready for execution (recommend resolve / re-plan / ask user).
+- **Every TASK card has `#### Dev context`** with Source cites or explicit
+  `No specific guidance found.` Missing Dev context → **FAIL** (return to planning).
+- **PLAN.md Handoff Ready = Yes** and PLAN Handoff blockers are empty/`none`. If Ready=No or open blockers exist → **FAIL**.
 - If `SYNC.md` exists but is **older** than PLAN.md or TASKS.md (mtime or version/date) → treat prior SYNC as **stale**; rewrite SYNC.md this run.
 - Code workspace exists and is readable — prefer paths from PLAN/TASKS affected areas.
 - Git/SVN repo is initialized if needed.
@@ -118,21 +130,35 @@ Before moving to execution, verify:
 - No sensitive files need special handling.
 - Any blockers require returning to planning or asking the user.
 
-If readiness is not met: do NOT move to execution. Document blockers and recommend the next step.
+Map to verdict:
+
+- Any hard blocker (Ready=No, missing Dev context, conflict markers, out-of-scope dirty unknown ownership, stale PLAN/TASKS mismatch) → **FAIL**.
+- Soft risks only (minor drift with clear action, partial progress, inferred paths) → **CONCERNS** (list them).
+- Otherwise → **PASS**.
+
+If verdict is not `PASS` (unless user explicitly accepts `CONCERNS`): do NOT move
+to execution. Document blockers and recommend the next step.
 
 **Full Mode:** write/update `SYNC.md` every sync run after planning changes — do not leave a pre-planning SYNC as the latest gate.
+
+`SYNC.md` must include heading **Implementation readiness** with verdict
+`PASS` | `CONCERNS` | `FAIL` and a one-line reason.
 
 ## Quality Standards
 
 Sync output must pass these checks:
 
+- [ ] **Implementation readiness** verdict is `PASS` / `CONCERNS` / `FAIL` with reason.
 - [ ] Observed facts have clear sources (file path, command output, user statement).
 - [ ] Inferred context is explicitly separated from observed facts.
 - [ ] Confidence levels (High/Medium/Low) are stated for each inference.
 - [ ] Drift items include type (File/API/Dependency/Config/Test/Scope/Data/Branch).
 - [ ] Dirty changes are classified: in-scope, out-of-scope, unknown ownership.
 - [ ] Blockers state why they block execution and what the next action is.
-- [ ] Recommendation is one of: Ready for execution / Return to planning / Run investigate / Ask user / Resolve workspace / Stop.
+- [ ] Recommendation matches the verdict (PASS→execution; FAIL→not execution).
+- [ ] First-pass readable: concrete names (paths/APIs/IDs); no abstract filler.
+- [ ] No leftover `_(TODO)_` or placeholder Mermaid in finished sections.
+- [ ] Spec/review findings state finding + evidence + verdict (not essays).
 
 ## WRONG vs CORRECT
 
@@ -162,8 +188,10 @@ Action: Update plan file paths or inspect new location before execution.
 | No git repo in workspace | Skip git checks, document "not a git repo" as observed fact. |
 | .env file exists but not in plan scope | Do NOT read contents. Note existence as metadata only. |
 | PLAN.md or TASKS.md missing | Block execution. Return to planning — both files are required (do not fold tasks into PLAN.md). |
-| PLAN Handoff Ready=No or open blockers | Block execution. Resolve blockers or return to planning/ask user. |
-| SYNC.md older than PLAN.md/TASKS.md | Stale sync — rewrite SYNC.md this run before any Ready recommendation. |
+| PLAN Handoff Ready=No or open blockers | **FAIL** readiness. Resolve blockers or return to planning/ask user. |
+| TASK card missing `#### Dev context` | **FAIL** readiness. Return to planning step-03. |
+| SYNC.md older than PLAN.md/TASKS.md | Stale sync — rewrite SYNC.md this run before any PASS recommendation. |
+| Soft drift with clear mitigation | **CONCERNS** — list risks; ask user before execution. |
 | TASKS.md stale vs PLAN task_index | Block execution. Return to planning to realign. |
 | TASKS.md missing Progress board / Status / checkboxes | Do not block if cards are clear; recommend execution add Progress board + checkboxes before/while running. Note as drift/risk. |
 | Partial progress (`in_progress` / some `[x]`) | Ready may still be Yes; recommend resume at first non-`done` ID. |
@@ -191,8 +219,9 @@ Action: Update plan file paths or inspect new location before execution.
 12. Document observed facts with sources.
 13. Document inferred context separately from observed facts.
 14. Document drift, risks, and blockers.
-15. Recommend next step.
-16. Only move to execution if state is reliable enough.
+15. Set **Implementation readiness** (`PASS` / `CONCERNS` / `FAIL`) with reason.
+16. Recommend next step matching the verdict.
+17. Only move to execution on `PASS`, or on `CONCERNS` after explicit user accept.
 
 ## Limitations
 

@@ -97,6 +97,21 @@ def main() -> int:
             errors.append("SKILL_PREAMBLE.md missing Language section")
         if "## Memory (read first)" not in preamble_text:
             errors.append("SKILL_PREAMBLE.md missing Memory section")
+        if "## Work layout (mandatory)" not in preamble_text:
+            errors.append("SKILL_PREAMBLE.md missing Work layout section")
+        if ".agent-work/" not in preamble_text:
+            errors.append("SKILL_PREAMBLE.md must reference .agent-work/")
+        if "session.sh" not in preamble_text:
+            errors.append("SKILL_PREAMBLE.md must reference session.sh")
+    if not (ROOT / "docs" / "gitignore.agent-work.snippet").is_file():
+        errors.append("docs/gitignore.agent-work.snippet missing")
+    gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
+    if ".agent-work/" not in gitignore:
+        errors.append("repo .gitignore must ignore .agent-work/")
+    if "gitignore.agent-work" not in (ROOT / "install.sh").read_text(encoding="utf-8"):
+        errors.append("install.sh must ensure host .gitignore includes .agent-work/")
+    if "agent-work" not in (ROOT / "install.ps1").read_text(encoding="utf-8"):
+        errors.append("install.ps1 must ensure host .gitignore includes .agent-work/")
 
     if not PROFILES_PATH.is_file():
         errors.append(f"missing {PROFILES_PATH}")
@@ -143,6 +158,10 @@ def main() -> int:
             if name in preamble_required:
                 if PREAMBLE_MARKER not in text:
                     errors.append(f"{name}: must point at {PREAMBLE_MARKER}")
+                if "Work layout" not in text and ".agent-work/" not in text:
+                    errors.append(
+                        f"{name}: shared preamble must mention Work layout / .agent-work/"
+                    )
                 if "## Language (do this first)" in text:
                     errors.append(
                         f"{name}: inline Language section forbidden; use shared preamble"
@@ -241,9 +260,12 @@ def main() -> int:
         errors.append("brainstorming DISCUSSION template missing Step ledger")
     if "Feasibility" not in discussion_template or "Correctness" not in discussion_template:
         errors.append("brainstorming DISCUSSION template missing Feasibility/Correctness")
-    if "Capability recommendations" not in discussion_template:
+    if (
+        "Capability recommendations" not in discussion_template
+        and "Capability gaps" not in discussion_template
+    ):
         errors.append(
-            "brainstorming DISCUSSION template missing Capability recommendations"
+            "brainstorming DISCUSSION template missing Capability gaps/recommendations"
         )
     sq_d = discussion_template.find("## Spec quality review")
     scope_d = discussion_template.find("## Scope in")
@@ -312,8 +334,76 @@ def main() -> int:
         SKILLS_ROOT / "brainstorming" / "templates" / "OVERVIEW.template.md",
         SKILLS_ROOT / "planning" / "templates" / "OVERVIEW.template.md",
     ):
-        if not overview_template.is_file():
-            errors.append(f"missing overview template: {overview_template}")
+        if overview_template.is_file():
+            errors.append(
+                f"OVERVIEW.template.md is retired (stale landing page): {overview_template}"
+            )
+    if '"OVERVIEW"' in (ROOT / "docs" / "artifact-schemas.json").read_text(
+        encoding="utf-8"
+    ):
+        errors.append("docs/artifact-schemas.json must not require OVERVIEW artifact")
+    exec_skill = (ROOT / "skills" / "execution" / "SKILL.md").read_text(
+        encoding="utf-8"
+    )
+    if "#### `OVERVIEW.md`" in exec_skill or "Refresh OVERVIEW.md" in exec_skill:
+        errors.append(
+            "execution must not require OVERVIEW.md; use session.sh status + TASKS.md"
+        )
+    brainstorm_init = (
+        SKILLS_ROOT / "brainstorming" / "steps" / "step-01-init.md"
+    ).read_text(encoding="utf-8")
+    if "OVERVIEW.md" in brainstorm_init and "No `OVERVIEW.md`" not in brainstorm_init:
+        errors.append("brainstorming step-01 must not seed OVERVIEW.md")
+    planning_init = (SKILLS_ROOT / "planning" / "steps" / "step-01-init.md").read_text(
+        encoding="utf-8"
+    )
+    if "OVERVIEW.template.md" in planning_init:
+        errors.append("planning step-01 must not seed OVERVIEW.template.md")
+
+    tasks_template = (
+        SKILLS_ROOT / "planning" / "templates" / "TASKS.template.md"
+    ).read_text(encoding="utf-8")
+    if "#### Dev context" not in tasks_template:
+        errors.append("TASKS.template.md missing #### Dev context section")
+    if "[Source:" not in tasks_template:
+        errors.append("TASKS.template.md must require [Source:] cites in Dev context")
+    if "No specific guidance found" not in tasks_template:
+        errors.append("TASKS.template.md must allow 'No specific guidance found.'")
+    if "Dev context" not in (
+        SKILLS_ROOT / "planning" / "steps" / "step-03-fill-tasks.md"
+    ).read_text(encoding="utf-8"):
+        errors.append("planning step-03 must require Dev context on cards")
+    policy_text = (ROOT / "docs" / "AGENT_POLICY.md").read_text(encoding="utf-8")
+    if "Scale & Quick path" not in policy_text:
+        errors.append("AGENT_POLICY.md missing Scale & Quick path")
+    if "Implementation readiness" not in (
+        SKILLS_ROOT / "sync" / "SKILL.md"
+    ).read_text(encoding="utf-8"):
+        errors.append("sync SKILL.md missing Implementation readiness gate")
+    for needle in ("PASS", "CONCERNS", "FAIL"):
+        if needle not in (SKILLS_ROOT / "sync" / "SKILL.md").read_text(encoding="utf-8"):
+            errors.append(f"sync SKILL.md missing readiness verdict {needle}")
+    sync_schema = json.loads(
+        (ROOT / "docs" / "artifact-schemas.json").read_text(encoding="utf-8")
+    )
+    sync_heads = sync_schema.get("artifacts", {}).get("SYNC", {}).get(
+        "required_headings", []
+    )
+    if "Implementation readiness" not in sync_heads:
+        errors.append("artifact-schemas SYNC must require Implementation readiness")
+    brainstorm = (SKILLS_ROOT / "brainstorming" / "SKILL.md").read_text(encoding="utf-8")
+    if "Diverge then converge" not in brainstorm and "diverge then converge" not in brainstorm:
+        errors.append("brainstorming SKILL.md missing diverge/converge guidance")
+    if "one focused question" not in brainstorm.casefold():
+        errors.append("brainstorming SKILL.md missing one-question facilitation rule")
+    if "Load Dev context first" not in (
+        SKILLS_ROOT / "execution" / "SKILL.md"
+    ).read_text(encoding="utf-8"):
+        errors.append("execution must load Dev context before implementing a card")
+    if "## Scale (Quick / Lite / Full)" not in (
+        ROOT / "docs" / "SKILL_PREAMBLE.md"
+    ).read_text(encoding="utf-8"):
+        errors.append("SKILL_PREAMBLE.md missing Scale (Quick / Lite / Full)")
 
     agents = (ROOT / "docs" / "AGENTS.md").read_text(encoding="utf-8")
     policy_path = ROOT / "docs" / "AGENT_POLICY.md"
@@ -324,6 +414,15 @@ def main() -> int:
         errors.append("docs/AGENTS.md missing SKILL_PREAMBLE reference")
     if "AGENT_POLICY.md" not in agents:
         errors.append("docs/AGENTS.md missing AGENT_POLICY reference")
+    if "AGENT_WORK.md" not in agents and "agent-work" not in agents:
+        errors.append("docs/AGENTS.md missing AGENT_WORK / .agent-work reference")
+    if not (ROOT / "docs" / "AGENT_WORK.md").is_file():
+        errors.append("docs/AGENT_WORK.md missing")
+    else:
+        work_doc = (ROOT / "docs" / "AGENT_WORK.md").read_text(encoding="utf-8")
+        for needle in (".agent-work/", "sessions/", "memory/", "Kit", "Work"):
+            if needle not in work_doc:
+                errors.append(f"docs/AGENT_WORK.md missing {needle}")
     if "first-party-skills.json" not in agents:
         errors.append("docs/AGENTS.md missing first-party-skills.json reference")
     if "validate_artifacts.py" not in agents:
@@ -351,6 +450,9 @@ def main() -> int:
             "TESTCASES.md",
             ".agents/settings.yaml",
             ".agents/PRJ_REFERENCE.md",
+            ".agent-work/sessions",
+            ".agent-work/memory",
+            "AGENT_WORK.md",
         ):
             if needle not in policy:
                 errors.append(f"docs/AGENT_POLICY.md missing {needle}")
@@ -373,23 +475,84 @@ def main() -> int:
         if profiles_doc.get("default") != "core":
             errors.append("install-profiles.json default must be 'core'")
     settings = (ROOT / "docs" / "settings.yaml").read_text(encoding="utf-8")
+    for needle in (
+        "language:",
+        "mode: checkout",
+        "output_format: markdown",
+        "docs:",
+        "AGENT_POLICY.md",
+    ):
+        if needle not in settings:
+            errors.append(f"docs/settings.yaml missing lean knob / pointer: {needle}")
+    # Bloated knobs must stay out of the default settings template.
+    for bloat in (
+        "stop_on:",
+        "require_sequential_step_ledger:",
+        "session_overview:",
+        "executive_summary_max_items:",
+        "doc_comments:",
+        "flow_comments:",
+        "triage:",
+    ):
+        if bloat in settings:
+            errors.append(
+                f"docs/settings.yaml must stay lean; move '{bloat}' to AGENT_POLICY defaults"
+            )
+    policy = (ROOT / "docs" / "AGENT_POLICY.md").read_text(encoding="utf-8")
     for setting in (
         "require_sequential_step_ledger: true",
         "require_spec_quality_before_downstream_work: true",
         "blocking-capability-gap",
+        "Thinking methods (session-wide)",
+        "Built-in defaults",
+        "Vital few",
+        "5W1H",
     ):
-        if setting not in settings:
-            errors.append(f"docs/settings.yaml missing decision policy: {setting}")
-    if "session_overview: required" not in settings:
-        errors.append("docs/settings.yaml missing session_overview setting")
-    if "output_format: markdown" not in settings:
-        errors.append("docs/settings.yaml missing default report output_format")
-    if "mode: checkout" not in settings and "mode: direct" not in settings:
-        errors.append("docs/settings.yaml missing branch.mode policy (checkout|direct)")
+        if setting not in policy:
+            errors.append(f"docs/AGENT_POLICY.md missing built-in default: {setting}")
+    if re.search(r"(?m)^##\s+Executive summary \(80/20\)", policy):
+        errors.append("AGENT_POLICY must not use branded Executive summary heading")
+    if "starts with **Executive summary (80/20)**" in policy:
+        errors.append("AGENT_POLICY must not require branded Executive summary title")
+    preamble = (ROOT / "docs" / "SKILL_PREAMBLE.md").read_text(encoding="utf-8")
+    if "## Thinking methods (session-wide" not in preamble:
+        errors.append("SKILL_PREAMBLE.md missing Thinking methods section")
+    if "## Readable writing (mandatory" not in preamble:
+        errors.append("SKILL_PREAMBLE.md missing Readable writing section")
+    for needle in (
+        "first pass",
+        "Do not:",
+        "_(TODO)_",
+        "concrete",
+    ):
+        if needle.casefold() not in preamble.casefold():
+            errors.append(f"SKILL_PREAMBLE Readable writing missing: {needle}")
+    if "Readable first" not in policy:
+        errors.append("AGENT_POLICY.md missing Readable first artifact quality bar")
+    for template in (
+        SKILLS_ROOT / "brainstorming" / "templates" / "DISCUSSION.template.md",
+        SKILLS_ROOT / "business-analysis" / "templates" / "BUSINESS_ANALYSIS.template.md",
+        SKILLS_ROOT / "planning" / "templates" / "PLAN.template.md",
+    ):
+        text = template.read_text(encoding="utf-8")
+        if "Readable writing" not in text:
+            errors.append(f"{template.relative_to(ROOT)} must point at Readable writing")
+        if "Finding (concrete)" not in text:
+            errors.append(
+                f"{template.relative_to(ROOT)} Spec quality must require concrete findings"
+            )
+        if "flowchart TD\n  Goal[Goal]" in text or "Problem[Problem] --> Quality" in text:
+            errors.append(f"{template.relative_to(ROOT)} must not seed decorative Mermaid")
+    # Templates must not brand method names into headings.
+    for path in (ROOT / "skills").rglob("*.template.md"):
+        text = path.read_text(encoding="utf-8")
+        for bad in ("(80/20)", "## 5W1H", "## 5w1h", "Executive summary (80"):
+            if bad in text:
+                errors.append(f"{path.relative_to(ROOT)}: remove method branding '{bad}'")
     if not (ROOT / "docs" / "CODE_COMMENTS.md").is_file():
         errors.append("docs/CODE_COMMENTS.md missing (code comment convention)")
-    if "standard: .agents/CODE_COMMENTS.md" not in settings:
-        errors.append("docs/settings.yaml missing code.comments.standard")
+    if "CODE_COMMENTS.md" not in policy:
+        errors.append("docs/AGENT_POLICY.md must reference CODE_COMMENTS.md")
     design_system = (ROOT / "docs" / "DESIGN_SYSTEM.md").read_text(encoding="utf-8")
     if "cdn.tailwindcss.com" not in design_system and "ss-card" not in design_system:
         errors.append(

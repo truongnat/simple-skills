@@ -53,8 +53,8 @@ artifacts:
       recommendation:
         type: string
         required: true
-        description: "Ready for execution: Yes/No. Suggested next step."
-  OVERVIEW.md:
-    required: true
-    update: true
-    description: "Refresh developer landing page: status, progress chart, open decisions, next action."
+        description: "Suggested next step matching Implementation readiness verdict."
+      implementation_readiness:
+        type: object
+        required: true
+        description: "Verdict PASS | CONCERNS | FAIL plus one-line reason. Execution only after PASS, or CONCERNS with explicit user accept."

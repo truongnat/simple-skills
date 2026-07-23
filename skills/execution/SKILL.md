@@ -7,9 +7,12 @@ description: "Execute TASKS.md guided by PLAN.md: modify files, mark task/step p
 
 ## Shared preamble (do this first)
 
-Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Memory) before
-Purpose, Contract, or steps. Do not skip it; do not reuse a cached `language`
-from earlier in the session. Source copy in this repo: `docs/SKILL_PREAMBLE.md`.
+Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Work layout +
+Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
+steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
+understands on first pass — concrete paths/IDs, no filler, no method branding.
+Artifacts go under `.agent-work/` (sessions + memory), not `.agents/`.
+Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
 
 ## Purpose
 
@@ -24,7 +27,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 | Field | Requirement |
 |-------|-------------|
 | Inputs | TASKS.md (task cards + Progress board + execution_order), PLAN.md (strategy/DoD/rollback), `.agents/PRJ_REFERENCE.md`, project settings, locked scope, affected files, constraints, verification commands. |
-| Outputs | Workspace changes within scope; **updated TASKS.md progress** (Status, Done column, Work item checkboxes, progress chart); EXECUTION.md; refreshed `OVERVIEW.md`. |
+| Outputs | Workspace changes within scope; **updated TASKS.md progress** (Status, Done column, Work item checkboxes, progress chart); EXECUTION.md;. |
 | Safety | Do NOT modify outside scope. Execute by task ID from TASKS.md; use PLAN.md for DoD/rollback only. Do NOT put secrets in files/logs. Do NOT delete sensitive files/config/migration/data without a plan or confirmation. Do NOT revert changes not belonging to you without permission. Do NOT claim completion without verification or documenting skipped checks. Do NOT leave TASKS.md progress stale after finishing a Work item or card (must check off / set Status). |
 
 ### Required artifacts
@@ -57,9 +60,6 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - **final_status** (required, string): Completed / Partially completed / Blocked.
 - **handoff** (required, string): Ready for review? Suggested focus area. List remaining `todo`/`in_progress`/`blocked` IDs.
 
-#### `OVERVIEW.md`
-- Required: yes (update in place after each card or at handoff).
-- Refresh status, progress chart counts from TASKS, blockers, and next action.
 
 ### Reference
 
@@ -82,7 +82,8 @@ Do not start the Progress protocol until this preflight passes.
 
 ## Code comment convention (mandatory when writing code)
 
-Apply `.agents/CODE_COMMENTS.md` per `rules.code.comments` to every file you
+Apply `.agents/CODE_COMMENTS.md` (defaults in `AGENT_POLICY.md`; optional
+`rules.code.comments` overrides) to every file you
 create or modify:
 - Comment the **why**, not the what; no obvious narration, no commented-out code.
 - Give each exported/public symbol a **doc comment** in the language's standard
@@ -96,15 +97,19 @@ create or modify:
 
 On every task card in `execution_order`:
 
+0. **Load Dev context first:** read the card’s `#### Dev context`. Follow
+   `[Source: …]` cites. Do **not** invent libraries, paths, fields, or contracts.
+   If Dev context is missing → stop and return to planning (do not improvise).
 1. **Start card:** set card Status + Progress board Status → `in_progress`; set `current_task` in EXECUTION.md.
 2. **Finish a Work item:** immediately set that line to `- [x]` in TASKS.md; append a short execution_log row.
 3. **Finish card:** run card Verify; if pass → Status=`done`, Progress board Done=`[x]`; if blocked → Status=`blocked` and note reason (leave unfinished Work items as `[ ]`).
 4. **Stop mid-run / user stop:** leave accurate Status (`in_progress` or `blocked`); do not mark Done; handoff lists remaining IDs.
 5. **Never** mark Status=`done` if Verify failed or was skipped without documenting risk + Status=`blocked`/`skipped`.
-6. **Refresh OVERVIEW.md** At a glance + progress chart. Do not type the
-   counts — run `bash .agents/tools/session/session.sh status` and paste its
-   pie + `Progress`/`PERCENT_DONE` verbatim into `OVERVIEW.md` and `TASKS.md`.
-   Status may read `done` only when it prints `COMPLETE: yes`; while any card is
+6. **Refresh progress from truth only.** Do not type counts and do not maintain
+   a separate `OVERVIEW.md`. Run
+   `bash .agents/tools/session/session.sh status` and paste its pie +
+   `Progress`/`PERCENT_DONE` verbatim into `TASKS.md` (Progress board). Status
+   may read `done` only when it prints `COMPLETE: yes`; while any card is
    `in_progress`/`blocked`/`review`/`todo` it prints `COMPLETE: no`, so keep
    Status `in_progress` and never show a full/100% pie.
 
@@ -132,6 +137,11 @@ Work items: - [x] 1. …  - [x] 2. …  - [x] 3. …
       boundary.
 - [ ] Comments do not narrate obvious code and remain accurate after the
       change.
+
+- [ ] First-pass readable: concrete names (paths/APIs/IDs); no abstract filler.
+- [ ] No leftover `_(TODO)_` or placeholder Mermaid in finished sections.
+- [ ] Spec/review findings state finding + evidence + verdict (not essays).
+
 
 ## WRONG vs CORRECT
 

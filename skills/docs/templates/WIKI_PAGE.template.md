@@ -1,6 +1,6 @@
 # <Page title>
 
-## Overview (80/20)
+## Overview
 
 <!-- The vital 20% for this page: what it is, why it matters, how to use it.
 Keep it skimmable — the reader may not read further. -->

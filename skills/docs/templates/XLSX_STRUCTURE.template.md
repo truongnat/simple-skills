@@ -10,7 +10,7 @@
 
 | Sheet | Purpose | Columns |
 |---|---|---|
-| `Overview` | 80/20 + coverage matrix | Aspect, Summary, Source |
+| `Overview` | skim overview + coverage matrix | Aspect, Summary, Source |
 | `Coverage` | doc status | Document, Standard, Status, Owner, Last-synced |
 | `Requirements` | SRS functional reqs | ID (FR-*), Requirement, Priority, Source, AC/Verify, Trace |
 | `NFRs` | quality attributes | ID (NFR-*), Attribute, Requirement, Measure/Target, Source |

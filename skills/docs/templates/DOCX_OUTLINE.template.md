@@ -27,7 +27,7 @@
 - Built-in styles (`Title`, `Heading 1/2/3`, `Normal`) so TOC/navigation work —
   never fake headings with bold text.
 - Tables for structured data (requirements, contracts, workspaces, ADR log).
-- Each Part/section opens with its 80/20 overview before detail.
+- Each Part/section opens with a short overview before detail.
 - Embed all images; office files must be self-contained (no external links).
 
 ## Sync granularity

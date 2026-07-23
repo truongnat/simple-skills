@@ -103,9 +103,6 @@ artifacts:
         type: string
         required: true
         description: "Next skill: business-analysis, basic-design, planning, research, or execution."
-  OVERVIEW.md:
-    required: true
-    description: "Session developer landing page with status, progress chart, open decisions, next action."
   VISUAL_DECISION.html:
     required: false
     description: "User-confirmed accessible decision aid for html-recommended issues; must include Tailwind + anime.js CDN tags for static viewing; serve via session-serve to record choices; no sensitive data."

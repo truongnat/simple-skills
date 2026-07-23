@@ -2,8 +2,11 @@
 
 The project standard for **how code is commented** — so code is understandable,
 commented consistently, and its flow is explicit. Applied by `execution` when
-writing code and checked by `review`/`review-pr`. Knobs live in
-`rules.code.comments` in `.agents/settings.yaml`.
+writing code and checked by `review`/`review-pr`.
+
+Defaults live in `.agents/AGENT_POLICY.md` (Built-in defaults → Code comments).
+Optional overrides may appear under `rules.code.comments` in settings; omit them
+unless the project needs a different profile.
 
 > **Consistency first:** if the repo already uses a comment style, follow it.
 > `init` records the project's actual convention in `PRJ_REFERENCE.md`; this

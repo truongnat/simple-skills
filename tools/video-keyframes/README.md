@@ -22,7 +22,7 @@ python .agents/tools/video-keyframes/extract.py evidence/bug.webm
 python .agents/tools/video-keyframes/extract.py evidence/bug.webm \
   --interval 2 \
   --max-frames 40 \
-  --output-dir .agents/sessions/Task-1-example/video-evidence
+  --output-dir .agent-work/sessions/Task-1-example/video-evidence
 ```
 
 After extraction, read `KEYFRAMES.md`, `manifest.json`, and only the frames

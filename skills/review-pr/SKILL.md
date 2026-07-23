@@ -7,9 +7,12 @@ description: "Review pull requests, merge requests, or branch diffs as a respons
 
 ## Shared preamble (do this first)
 
-Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Memory) before
-Purpose, Contract, or steps. Do not skip it; do not reuse a cached `language`
-from earlier in the session. Source copy in this repo: `docs/SKILL_PREAMBLE.md`.
+Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Work layout +
+Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
+steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
+understands on first pass — concrete paths/IDs, no filler, no method branding.
+Artifacts go under `.agent-work/` (sessions + memory), not `.agents/`.
+Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
 
 ## Purpose
 
@@ -117,7 +120,7 @@ the merge-base.
 
 ### Step 5 — Write the artifact and clean up
 
-1. Write `REVIEW_PR.md` to `.agents/sessions/<Task-N-short-description>/`
+1. Write `REVIEW_PR.md` to `.agent-work/sessions/<Task-N-short-description>/`
    (the repo root `.agents/` is git-ignored — never write it inside a worktree).
 2. If a worktree was created, remove it:
 

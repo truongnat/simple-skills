@@ -8,7 +8,7 @@
 - **Status:** draft / reviewed / approved · **Last-synced:** `<commit>`
 - **Source design:** _(BASIC_DESIGN.md path, or code evidence)_
 
-## Overview (80/20)
+## Overview
 - _(what this covers, the shape, the key decision)_
 
 ## Design stakeholders & concerns (IEEE 1016)

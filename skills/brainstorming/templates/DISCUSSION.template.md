@@ -1,7 +1,9 @@
 # Discussion
 
-> Seeded by brainstorming step-01. Fill via steps 02–04. Do **not** invent PLAN/TASKS/design detail here.
-> Separate **facts** vs **assumptions** vs **unknowns**. End with one clear **recommendation** + **handoff**.
+> Seeded by brainstorming step-01. Fill via steps 02–04.
+> Write for a busy teammate: concrete names, short bullets, no filler.
+> Separate **facts** vs **assumptions** vs **unknowns**. End with one clear
+> **recommendation** + **handoff**. Obey `.agents/SKILL_PREAMBLE.md` Readable writing.
 
 ## Step ledger (mandatory — update every step)
 
@@ -16,10 +18,9 @@
 > **Hard rule:** Do not mark a later step `done` while an earlier step is still
 > `todo`/`blocked`. Do not skip Spec quality review.
 
-## Executive summary (80/20)
+## Executive summary
 
-<!-- Maximum five bullets: direction, key facts/unknowns, recommendation, top
-risk, and next action. Fill this last, keep it first. -->
+<!-- ≤5 bullets. Concrete. Fill last, keep first. No method branding. -->
 
 - _(TODO)_
 
@@ -27,39 +28,32 @@ risk, and next action. Fill this last, keep it first. -->
 
 | Field | Value |
 |---|---|
+| Path | `Quick` / `Lite` / `Full` |
 | Status | `needs_info` / `ready_to_recommend` / `recommended` |
 | Open Critical/blocking | `0` |
 | Visual decisions pending | `0` |
 | Next action | _(ask user / fill options / handoff)_ |
 
-## Charts (when useful)
+## Charts (optional)
 
-```mermaid
-flowchart TD
-  Goal[Goal] --> Facts[Facts / Assumptions / Unknowns]
-  Facts --> Options[Options]
-  Options --> Rec[Recommendation]
-  Rec --> Handoff[Handoff]
-```
-
-<!-- Replace with a real options/risk chart when trade-offs exist. Use N/A if a
-chart adds no decision value. -->
+<!-- Omit this whole section unless a diagram changes a decision.
+Do not leave placeholder Mermaid. -->
 
 ## Goal
 
-<!-- One sentence. -->
+<!-- One sentence. Name the user-facing outcome. -->
 
 _(TODO)_
 
 ## Desired outcome
 
-<!-- What success looks like. -->
+<!-- What “done” looks like in observable terms. -->
 
 _(TODO)_
 
 ## Confirmed facts
 
-<!-- From user, repo, or research — not guesses. -->
+<!-- From user, repo, or research — not guesses. Paths/IDs when possible. -->
 
 - _(TODO)_
 
@@ -88,55 +82,51 @@ Blocking=Yes means recommendation/planning must stop until answered. -->
 
 | ID | Issue / decision | Severity | Clarity | Blocking? | Owner | Status |
 |---|---|---|---|---|---|---|
-| ISS-001 | _(TODO)_ | Critical / High / Medium / Low | Clear / Partial / Unknown | Yes / No | _(TODO)_ | Open / Answered |
+| ISS-001 | _(TODO — one concrete decision)_ | Critical / High / Medium / Low | Clear / Partial / Unknown | Yes / No | _(TODO)_ | Open / Answered |
 
 ## Clarification checkpoint
 
 | Issue ID | Focused question | Why it blocks | User answer / evidence | Resolved? |
 |---|---|---|---|---|
-| ISS-001 | _(TODO)_ | _(TODO)_ | _(wait for answer)_ | Yes / No |
+| ISS-001 | _(TODO — one question)_ | _(TODO)_ | _(wait for answer)_ | Yes / No |
 
 > **STOP gate:** Do not continue to Scope/Options while any Critical issue or
 > blocking unknown is unresolved.
 
 ## Spec quality review
 
-<!-- Do NOT treat specs as automatically correct. Challenge them before
-recommending. Verdicts: Pass / Pass-with-gaps / Fail / Unknown. -->
+<!-- Challenge specs BEFORE recommending. Each finding must be concrete.
+GOOD: "Upload API has no max size — POST /files — Fail / Blocking"
+BAD:  "Cần đảm bảo tính khả thi với hệ thống hiện tại" -->
 
-### 1. Feasibility (tính khả thi)
+### 1. Feasibility
 
-| Question | Finding | Evidence | Verdict |
-|---|---|---|---|
-| Can this be built with current stack, data, auth, ops, and timeline? | _(TODO)_ | _(repo / user / docs)_ | Pass / Pass-with-gaps / Fail / Unknown |
+| Finding (concrete) | Evidence (path/API/doc) | Verdict |
+|---|---|---|
+| _(TODO)_ | _(repo / user / docs)_ | Pass / Pass-with-gaps / Fail / Unknown |
 
 - Blockers if not feasible: _(none or list)_
 
-### 2. Correctness (tính đúng đắn)
+### 2. Correctness
 
-| Question | Finding | Evidence | Verdict |
-|---|---|---|---|
-| Do specs match real system behavior / domain rules / existing APIs / UI? | _(TODO)_ | _(repo / screen / API / DB)_ | Pass / Pass-with-gaps / Fail / Unknown |
+| Finding (concrete) | Evidence (path/API/screen/DB) | Verdict |
+|---|---|---|
+| _(TODO)_ | _(repo / screen / API / DB)_ | Pass / Pass-with-gaps / Fail / Unknown |
 
-- Spec vs system mismatches: _(none or list — specs may be wrong, or system may be wrong)_
+- Spec vs system mismatches: _(none or list)_
 
-### 3. Capability recommendations (khả năng feature / gaps)
+### 3. Capability gaps
 
-<!-- Ask what a feature of this type should normally include even if specs omit it.
-Example: upload feature without max size, MIME allowlist, virus scan, overwrite
-policy, progress UX, or error recovery. -->
-
-| Gap ID | Missing / weak capability | Why it matters | Suggested question / default | Blocking? |
+| Gap ID | Missing capability | Why it matters | Ask or default | Blocking? |
 |---|---|---|---|---|
-| CAP-001 | _(TODO — e.g. max upload size)_ | _(TODO)_ | _(ask stakeholder / propose default)_ | Yes / No |
+| CAP-001 | _(TODO — e.g. max upload size)_ | _(TODO)_ | _(ask / propose default)_ | Yes / No |
 
 > **STOP gate:** If Feasibility or Correctness is `Fail` / `Unknown` and
-> Blocking=Yes, stop and ask. Capability gaps marked Blocking=Yes also stop
-> recommendation until answered or explicitly deferred.
+> Blocking=Yes, stop and ask. Blocking capability gaps also stop recommendation.
 
 ## Visual triage
 
-| Issue ID | Visual need | Recommended format | Why this format helps | User confirmed? | Artifact/status |
+| Issue ID | Visual need | Format | Why (one line) | User confirmed? | Artifact |
 |---|---|---|---|---|---|
 | ISS-001 | none / useful / required | text / table / diagram / html-recommended | _(TODO)_ | Yes / No / N/A | _(path or not needed)_ |
 
@@ -164,7 +154,7 @@ policy, progress UX, or error recovery. -->
 ## Recommendation
 
 - **Choose:** _(Option X)_
-- **Reason:** _(why)_
+- **Reason:** _(why — concrete)_
 - **Not choosing:** _(brief)_
 - **Confidence:** High / Medium / Low
 
@@ -176,8 +166,6 @@ policy, progress UX, or error recovery. -->
 
 ## Handoff
 
-<!-- Next skill ≠ ready to code. If Unknowns still block implement, list them under Blockers. -->
-
 - **Next skill:** business-analysis / basic-design / planning / research / execution _(pick one)_
 - **Why:** _(one line)_
-- **Blockers before next skill:** _(none or list — do not leave empty while blocking unknowns remain)_
+- **Blockers before next skill:** _(none or list)_

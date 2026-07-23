@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Local HTML decision server: serve pages, receive events, log choices.
 
-Stdlib only. Intended for visual decision aids under .agents/sessions/.
+Stdlib only. Intended for visual decision aids under .agent-work/sessions/.
 Presentation: Tailwind CDN + one enterprise theme (tailwind-theme.js + styles.css).
 """
 

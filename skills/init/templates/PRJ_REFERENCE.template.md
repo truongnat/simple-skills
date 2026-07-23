@@ -1,6 +1,6 @@
 # Project Reference
 
-## Executive summary (80/20)
+## Executive summary
 
 <!-- Maximum five bullets: purpose, architecture, critical constraint, primary
 workflow, and biggest unknown/risk. Put the most decision-useful facts first. -->
@@ -86,9 +86,9 @@ only the root manifest. -->
 ### Reports
 
 - Executive-summary style:
-- Developer overview panel:
+- Developer overview panel (inside each real artifact — not a separate OVERVIEW.md):
 - Charts/diagrams (Mermaid):
-- Session OVERVIEW.md policy:
+- Progress source of truth: `TASKS.md` + `session.sh status` (no OVERVIEW.md):
 - Custom sections:
 
 ### Decision and visual gates

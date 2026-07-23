@@ -11,9 +11,12 @@ description: >-
 
 ## Shared preamble (do this first)
 
-Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Memory) before
-Purpose, Contract, or steps. Do not skip it; do not reuse a cached `language`
-from earlier in the session. Source copy in this repo: `docs/SKILL_PREAMBLE.md`.
+Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Work layout +
+Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
+steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
+understands on first pass — concrete paths/IDs, no filler, no method branding.
+Artifacts go under `.agent-work/` (sessions + memory), not `.agents/`.
+Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
 
 ## Purpose
 
@@ -33,8 +36,8 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 | Field | Requirement |
 |-------|-------------|
-| Inputs | Target directory, user intent, `DISCUSSION.md`/`BUSINESS_ANALYSIS.md` when present, `.agents/settings.yaml` (language, branch, code, docs), `.agents/memory/`, stack/tooling choices (confirmed). |
-| Outputs | Project skeleton (structure, manifests, tooling config, base entry points, README/.gitignore/.env.example), initialized repo + `.agents/` (settings, memory, optional wiki scaffold), stack ADRs, and `SCAFFOLD.md` in the active session. |
+| Inputs | Target directory, user intent, `DISCUSSION.md`/`BUSINESS_ANALYSIS.md` when present, `.agents/settings.yaml` (language, branch, code, docs), `.agent-work/memory/`, stack/tooling choices (confirmed). |
+| Outputs | Project skeleton (structure, manifests, tooling config, base entry points, README/.gitignore/.env.example), initialized repo + `.agents/` kit + `.agent-work/` work wiring, stack ADRs, and `SCAFFOLD.md` in the active session. |
 | Safety | Greenfield only — **never scaffold over an existing project**; if manifests/source exist, stop and route to `init`. Do NOT overwrite existing files without confirmation. Do NOT install dependencies or run project code unless the user approves (default: print the commands, don't run). Do NOT invent versions/secrets — use known-stable or ask, and mark assumptions. Respect `rules.branch.mode`. |
 
 ### Greenfield guard (before writing anything)
@@ -54,8 +57,12 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
     `github-actions-templates` when applicable).
   - `README.md` (how to run), `.gitignore`, `.editorconfig`, `.env.example`.
   - Code follows `.agents/CODE_COMMENTS.md`.
-- **`.agents/` wiring:** ensure `settings.yaml` (from template), `memory/`, and
-  — if `rules.docs.enabled` — an initial wiki scaffold (`docs full` skeleton).
+- **`.agents/` kit:** ensure `settings.yaml` (from template). Do **not** store
+  sessions/memory under `.agents/`.
+- **`.agent-work/` work:** run `bash .agents/tools/session/session.sh work-root`;
+  add `.agent-work/` to the project `.gitignore`.
+- If `rules.docs.enabled` — an initial wiki scaffold (`docs full` skeleton)
+  under `rules.docs.location` (default `.agents/wiki/`).
 - **Stack ADRs:** one ADR per significant choice (language/framework, monorepo
   tool, package manager, test framework, CI) using the `docs` ADR template.
 - **`SCAFFOLD.md`** in the active session (see template): what was created,
@@ -64,8 +71,8 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 ## Workflow (step by step)
 
 1. Resolve the active session: `bash .agents/tools/session/session.sh current`
-   (or `new <slug>`); write `SCAFFOLD.md` there. Read settings (language,
-   branch, code, docs).
+   (or `session.sh new <slug>` / `work-root` first). Write `SCAFFOLD.md` under
+   `.agent-work/sessions/…`. Read settings (language, branch, code, docs).
 2. **Greenfield guard** (above). Stop/route to `init` if not greenfield.
 3. Resolve intent & stack: prefer `DISCUSSION.md`/`BUSINESS_ANALYSIS.md`; for
    anything unknown ask **focused** questions (≤3 at a time): project type,
@@ -75,12 +82,14 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
    and idiomatic for the stack — no speculative structure.
 5. Create the skeleton: directories, manifests + scripts, tooling config, CI,
    README/.gitignore/.editorconfig/.env.example, and a minimal runnable entry.
-   Do not overwrite existing files; never write real secrets.
+   Ensure `.gitignore` includes `.agent-work/`. Do not overwrite existing files;
+   never write real secrets.
 6. Branch per `rules.branch.mode`: `direct` → stay on the base branch;
    `checkout` → create the initial work branch before writing code files. Run
    `git init` if there is no repo.
-7. Wire `.agents/`: seed `settings.yaml` if missing; ensure `memory/`; if
-   `rules.docs.enabled`, produce the initial wiki via `docs full`.
+7. Wire kit + work: seed `.agents/settings.yaml` if missing; run
+   `session.sh work-root`; if `rules.docs.enabled`, produce the initial wiki via
+   `docs full`.
 8. Write the stack ADRs and `SCAFFOLD.md` (created files, decisions, assumptions
    marked, and the exact next commands — install/build/run — as text; run them
    only if the user approves).
@@ -93,7 +102,8 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - [ ] Stack/tooling choices are confirmed (from artifacts or user), each an ADR — not silently defaulted.
 - [ ] Manifest scripts (build/test/lint/run) are real and sourced from the stack, not guessed.
 - [ ] A minimal runnable entry exists; README states how to run it.
-- [ ] `.agents/` wired (settings, memory, wiki when enabled); branch per `rules.branch.mode`.
+- [ ] `.agents/` kit wired (settings; wiki when enabled); `.agent-work/` present
+      with `.agent-work/` in `.gitignore`; branch per `rules.branch.mode`.
 - [ ] No dependencies installed / code run without approval; no invented versions/secrets (assumptions marked).
 - [ ] `SCAFFOLD.md` lists created files, decisions, gaps, and the exact next commands.
 - [ ] Handoff names `init` then the next lifecycle skill.

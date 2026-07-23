@@ -18,6 +18,7 @@ INSTALLER_DOCS = (
     "THIRD_PARTY_SKILLS.md",
     "SKILL_PREAMBLE.md",
     "AGENT_POLICY.md",
+    "AGENT_WORK.md",
     "settings.yaml",
 )
 
@@ -41,6 +42,10 @@ def make_source(tmp_path: Path) -> Path:
     )
     (docs / "SKILL_PREAMBLE.md").write_text("preamble\n", encoding="utf-8")
     (docs / "AGENT_POLICY.md").write_text("policy\n", encoding="utf-8")
+    (docs / "AGENT_WORK.md").write_text("work layout\n", encoding="utf-8")
+    (docs / "gitignore.agent-work.snippet").write_text(
+        "# snippet\n.agent-work/\n", encoding="utf-8"
+    )
     (docs / "artifact-schemas.json").write_text(
         '{"version":1,"artifacts":{}}\n', encoding="utf-8"
     )
@@ -151,9 +156,20 @@ def test_agents_created_at_project_root(tmp_path: Path) -> None:
     assert (root / ".agents" / "settings.yaml").read_text(encoding="utf-8") == "language: en\n"
     assert (root / ".agents" / "SKILL_PREAMBLE.md").read_text(encoding="utf-8") == "preamble\n"
     assert (root / ".agents" / "AGENT_POLICY.md").read_text(encoding="utf-8") == "policy\n"
+    assert (root / ".agents" / "AGENT_WORK.md").read_text(encoding="utf-8") == "work layout\n"
+    assert ".agent-work/" in (root / ".gitignore").read_text(encoding="utf-8")
     assert (
         root / ".agents" / "tools" / "session" / "artifact-schemas.json"
     ).is_file()
+
+
+def test_installer_appends_agent_work_gitignore_when_file_exists(tmp_path: Path) -> None:
+    root = make_source(tmp_path)
+    (root / ".gitignore").write_text("node_modules/\n", encoding="utf-8")
+    run_installer(root, "replace")
+    text = (root / ".gitignore").read_text(encoding="utf-8")
+    assert "node_modules/" in text
+    assert ".agent-work/" in text
 
 
 def test_existing_settings_are_preserved(tmp_path: Path) -> None:

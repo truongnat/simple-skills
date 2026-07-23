@@ -2,8 +2,9 @@
 
 ## Goal
 
-Finalize Spec quality review, then write a clear recommendation, risks, and
-next-skill handoff in `DISCUSSION.md`.
+**Converge:** finalize Spec quality review, then write a clear recommendation,
+risks, and next-skill handoff in `DISCUSSION.md`. Do not reopen option generation
+unless a blocker forces return to step-03.
 
 ## Precondition (fail closed)
 

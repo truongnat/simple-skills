@@ -62,15 +62,11 @@
         "Developer overview"
       ]
     },
-    "OVERVIEW": {
-      "required_headings": [
-        "At a glance"
-      ]
-    },
     "SYNC": {
       "required_headings": [
         "Executive summary",
-        "Developer overview"
+        "Developer overview",
+        "Implementation readiness"
       ]
     },
     "INVESTIGATE": {

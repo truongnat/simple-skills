@@ -10,9 +10,12 @@ description: >-
 
 ## Shared preamble (do this first)
 
-Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Memory) before
-Purpose, Contract, or steps. Do not skip it; do not reuse a cached `language`
-from earlier in the session. Source copy in this repo: `docs/SKILL_PREAMBLE.md`.
+Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Work layout +
+Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
+steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
+understands on first pass — concrete paths/IDs, no filler, no method branding.
+Artifacts go under `.agent-work/` (sessions + memory), not `.agents/`.
+Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
 
 ## Purpose
 
@@ -53,9 +56,12 @@ project-specific behavior without inventing conventions.
 
 #### `.agents/settings.yaml`
 
-- Required: yes; merge in place.
+- Required: yes; merge in place. Keep the file **lean** (language, branch,
+  reports.output_format, docs, optional commit/PR).
 - Preserve `language` and any user-authored values.
-- Populate only repository-evidenced or user-confirmed project rules.
+- Populate only repository-evidenced or user-confirmed project rules under the
+  knobs above — do **not** dump decision/visual/report-style/code-comment
+  matrices into settings (those defaults live in `AGENT_POLICY.md`).
 - Do not copy descriptive project facts here; link to
   `.agents/PRJ_REFERENCE.md`.
 

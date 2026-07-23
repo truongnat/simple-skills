@@ -1,7 +1,9 @@
 # Plan
 
-> Filled by planning step-02. Strategy only — **no** full task cards (`### T-00x` with AC/Verify/Files) in this file.
-> Session path: replace placeholders. See `TASKS.md` for executable work.
+> Filled by planning step-02. Strategy only — **no** full task cards
+> (`### T-00x` with AC/Verify/Files) in this file. See `TASKS.md` for work.
+> Write for a busy teammate: concrete paths/phases — no filler.
+> Obey `.agents/SKILL_PREAMBLE.md` Readable writing.
 
 ## Step ledger (mandatory — update every step)
 
@@ -15,10 +17,9 @@
 > **Hard rule:** Do not mark a later step `done` while an earlier step is still
 > `todo`/`blocked`. Do not fill TASKS before Spec quality review is done.
 
-## Executive summary (80/20)
+## Executive summary
 
-<!-- Maximum five bullets: goal, approach, top risk, readiness, and next
-action. Fill this last, keep it first. -->
+<!-- ≤5 concrete bullets. Fill last, keep first. -->
 
 - _(TODO)_
 
@@ -31,27 +32,18 @@ action. Fill this last, keep it first. -->
 | Critical open decisions | `0` |
 | Next action | _(ask user / fill tasks / sync)_ |
 
-## Charts (when useful)
+## Charts (optional)
 
-```mermaid
-flowchart LR
-  Scope[Scope] --> Inventory[Work inventory]
-  Inventory --> Cards[Micro-tasks]
-  Cards --> Ready{Ready?}
-  Ready -->|No| Blockers[Ask / resolve]
-  Ready -->|Yes| Sync[Sync]
-```
-
-<!-- Add a progress/risk Mermaid chart when the task set is large. -->
+<!-- Omit unless useful. No placeholder Mermaid. -->
 
 ## Pre-planning decision gate
 
-<!-- Inherit unresolved items from DISCUSSION/BA/design. Also add issues found
-during planning. Do not fill strategy/tasks while a blocking row is open. -->
+<!-- Inherit unresolved items from DISCUSSION/BA/design. Do not fill strategy
+while a blocking row is open. -->
 
 | Issue ID/source | Issue / decision | Severity | Clarity | Blocking? | Visual need/format | Resolution evidence | Status |
 |---|---|---|---|---|---|---|---|
-| _(TODO)_ | _(TODO)_ | Critical / High / Medium / Low | Clear / Partial / Unknown | Yes / No | none / text / table / diagram / html-recommended | _(user answer/path)_ | Open / Resolved |
+| _(TODO)_ | _(TODO — one concrete decision)_ | Critical / High / Medium / Low | Clear / Partial / Unknown | Yes / No | none / text / table / diagram / html-recommended | _(user answer/path)_ | Open / Resolved |
 
 ### Questions requiring user input
 
@@ -64,23 +56,23 @@ during planning. Do not fill strategy/tasks while a blocking row is open. -->
 
 ## Spec quality review
 
-<!-- Re-check specs before planning work. Do not assume design docs are correct. -->
+<!-- Concrete finding + evidence + verdict. No abstract essays. -->
 
-### 1. Feasibility (tính khả thi)
+### 1. Feasibility
 
-| Finding | Evidence | Verdict |
+| Finding (concrete) | Evidence | Verdict |
 |---|---|---|
 | _(TODO)_ | _(repo / design / ops)_ | Pass / Pass-with-gaps / Fail / Unknown |
 
-### 2. Correctness (tính đúng đắn)
+### 2. Correctness
 
-| Finding | Evidence | Verdict |
+| Finding (concrete) | Evidence | Verdict |
 |---|---|---|
 | _(TODO)_ | _(repo / API / DB / screen)_ | Pass / Pass-with-gaps / Fail / Unknown |
 
-### 3. Capability recommendations (khả năng feature / gaps)
+### 3. Capability gaps
 
-| Gap ID | Missing / weak capability | Suggested question / default | Blocking? | Status |
+| Gap ID | Missing capability | Ask or default | Blocking? | Status |
 |---|---|---|---|---|
 | CAP-001 | _(TODO)_ | _(ask / propose)_ | Yes / No | Open / Deferred / Resolved |
 
@@ -108,7 +100,7 @@ _(TODO)_
 
 <!-- Phased strategy only — not per-task AC/Verify/Files. -->
 
-1. _(TODO — phase)_
+1. _(TODO — phase with concrete deliverable)_
 2. _(TODO — phase)_
 3. _(TODO — phase: implement feature before automated tests)_
 
@@ -116,22 +108,22 @@ _(TODO)_
 
 | Area / path | Expected change | Confidence |
 |-------------|-----------------|------------|
-| _(TODO)_ | _(TODO)_ | known / inferred / unknown |
+| _(TODO — real path)_ | _(TODO)_ | known / inferred / unknown |
 
 ## Test strategy
 
-<!-- Optional. How to verify **after** code exists. Not write-tests-first. -->
+<!-- Optional. How to verify **after** code exists. -->
 
 - _(TODO or N/A)_
 
 ## Verification strategy
 
-- _(TODO — automated)_
-- _(TODO — manual)_
+- _(TODO — automated command)_
+- _(TODO — manual check)_
 
 ## Definition of done
 
-- [ ] _(TODO)_
+- [ ] _(TODO — observable)_
 - [ ] `TASKS.md` complete and matches Task index below
 
 ## Rollback strategy
@@ -148,13 +140,13 @@ _(TODO)_
 
 ## Task index
 
-<!-- Draft OK in step-02. Step-03 replaces with fine-grained IDs from Work inventory. ID + short title only. -->
+<!-- Draft OK in step-02. Step-03 replaces with fine-grained IDs. ID + title only. -->
 
 T-001 _(title)_ → T-002 _(title)_ → … → T-00N _(tests after code)_ (see TASKS.md)
 
 ## Handoff
 
-<!-- Ready=Yes ONLY if blockers is "none" (or all resolved with evidence). Never Yes + open blockers. -->
+<!-- Ready=Yes ONLY if blockers is `none`. Never Yes + open blockers. -->
 
 - Ready for sync/execution? **No**
 - Blockers: _(list unresolved items, or `none`)_

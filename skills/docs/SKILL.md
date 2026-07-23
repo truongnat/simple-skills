@@ -11,9 +11,12 @@ description: >-
 
 ## Shared preamble (do this first)
 
-Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Memory) before
-Purpose, Contract, or steps. Do not skip it; do not reuse a cached `language`
-from earlier in the session. Source copy in this repo: `docs/SKILL_PREAMBLE.md`.
+Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Work layout +
+Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
+steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
+understands on first pass — concrete paths/IDs, no filler, no method branding.
+Artifacts go under `.agent-work/` (sessions + memory), not `.agents/`.
+Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
 
 ## Purpose
 
@@ -77,7 +80,7 @@ Author the **markdown source tree** under `rules.docs.location` (canonical
 source; other formats render from it). Standard layout:
 
 ```
-Home.md                         # landing: 80/20 + document map + coverage matrix
+Home.md                         # landing: overview + document map + coverage matrix
 .docmap.md                      # source paths -> unit + last-synced commit
 01-requirements/
   SRS.md                        # ISO/IEC/IEEE 29148
@@ -134,7 +137,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 | Field | Requirement |
 |-------|-------------|
-| Inputs | `rules.docs` (enabled, location, format, sync_strategy), `rules.branch`, repo source/config, session artifacts (`BUSINESS_ANALYSIS.md`, `BASIC_DESIGN.md`, `DETAIL_DESIGN.md`, `DISCUSSION.md`), `.agents/PRJ_REFERENCE.md`, `.agents/memory/`, the change set for `sync`, existing wiki + `.docmap.md`. |
+| Inputs | `rules.docs` (enabled, location, format, sync_strategy), `rules.branch`, repo source/config, session artifacts (`BUSINESS_ANALYSIS.md`, `BASIC_DESIGN.md`, `DETAIL_DESIGN.md`, `DISCUSSION.md`), `.agents/PRJ_REFERENCE.md`, `.agent-work/memory/`, the change set for `sync`, existing wiki + `.docmap.md`. |
 | Outputs | The enterprise doc set under `rules.docs.location` in the resolved `format`, with a coverage matrix in `Home.md`, ADRs, traceability IDs, and `.docmap.md`. |
 | Safety | Read-only against project code (never execute it) except the bundled scanner. **Do NOT invent** requirements, behavior, or decisions — cite sources; mark `Gap`/`Unknown`. Never write secrets. Honor the branch gate. In `sync`, touch only affected documents/sections. |
 

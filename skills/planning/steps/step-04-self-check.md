@@ -35,14 +35,15 @@ If precondition fails → return to the earliest incomplete step. Do **not** set
 ### Quality — size & specificity
 
 10. First implement-oriented task is **not** “write test cases / TC matrix / 6 dimensions” before feature code.
-11. Every TASKS card passes **Task size** and **Card specificity** from `step-03-fill-tasks.md` (§B and §C).
+11. Every TASKS card passes **Task size** and **Card specificity** from `step-03-fill-tasks.md` (§B and §C), including **Dev context** (§C.11).
 12. Spot-check fail patterns (any one → FAIL, return to step-03):
-   - Titles that are only layer epithets: `BE Search`, `FE form`, `API`, `UI`, `tests` with no named unit
-   - Description / Work items missing numbered checkbox steps (`- [ ] N. …`) or only “Implement X per spec”
-   - One card owns multiple endpoints **or** multiple child screens **or** Export+Print together
-   - Trace has no section/AC id
-   - Files/scope is only `backend` / `frontend` / `services`
-   - AC is only “works” / “correct” / “per spec”
+    - Titles that are only layer epithets: `BE Search`, `FE form`, `API`, `UI`, `tests` with no named unit
+    - Description / Work items missing numbered checkbox steps (`- [ ] N. …`) or only “Implement X per spec”
+    - One card owns multiple endpoints **or** multiple child screens **or** Export+Print together
+    - Trace has no section/AC id
+    - Files/scope is only `backend` / `frontend` / `services`
+    - AC is only “works” / “correct” / “per spec”
+    - Missing `#### Dev context` or tech facts without `[Source: …]` / without `No specific guidance found.`
 13. Full Mode inventory: row count is credible vs Scope (e.g. “6 child screens” ⇒ ≥6 related inventory rows or shell+N — not one row).
 14. Confirmed assumptions in PLAN: any **High-impact** row still `Confirmed?: No` counts as a **blocker**.
 

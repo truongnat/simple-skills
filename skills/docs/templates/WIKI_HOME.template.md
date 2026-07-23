@@ -1,6 +1,6 @@
 # <Project name> — Documentation
 
-## Overview (80/20)
+## Overview
 
 <!-- The vital 20%: what this is, its shape, how to run, where to start. ~5 bullets. -->
 

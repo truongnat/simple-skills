@@ -24,8 +24,11 @@ If precondition fails → return to step-01. Do **not** continue.
 - Do **not** fill Scope/Options/Recommendation in this step.
 - Classify every material issue by severity, clarity, blocking status, owner,
   and visual need.
-- Use the structured question tool when available. Ask at most three focused
-  blocking questions at a time; explain why each answer changes the direction.
+- Use the structured question tool when available. Ask **one focused blocking
+  question per message** (up to three in one round only when they are
+  independent blockers). Explain why the answer changes direction. No question walls.
+- **Diverge, do not converge yet:** fill facts/unknowns/Spec quality/triage here;
+  do not write Recommendation (that is step-04 after scope/options).
 - Update Step ledger 02 to `done` or `blocked` before leaving this step.
 
 ## Fill these sections

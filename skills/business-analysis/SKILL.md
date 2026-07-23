@@ -11,9 +11,12 @@ description: >-
 
 ## Shared preamble (do this first)
 
-Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Memory) before
-Purpose, Contract, or steps. Do not skip it; do not reuse a cached `language`
-from earlier in the session. Source copy in this repo: `docs/SKILL_PREAMBLE.md`.
+Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Work layout +
+Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
+steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
+understands on first pass — concrete paths/IDs, no filler, no method branding.
+Artifacts go under `.agent-work/` (sessions + memory), not `.agents/`.
+Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
 
 ## Purpose
 
@@ -113,6 +116,11 @@ Write findings under `spec_quality_review` and promote Blocking=Yes gaps into `o
 - [ ] Open questions have owners (if known) and blocking status; capability gaps are not silently dropped.
 - [ ] Handoff to next skill is specified (usually basic-design when technical work follows).
 - [ ] When a demo recording is supplied, relevant sampled frames are cited as sources and interpretation gaps are kept as open questions.
+
+- [ ] First-pass readable: concrete names (paths/APIs/IDs); no abstract filler.
+- [ ] No leftover `_(TODO)_` or placeholder Mermaid in finished sections.
+- [ ] Spec/review findings state finding + evidence + verdict (not essays).
+
 
 ## WRONG vs CORRECT
 

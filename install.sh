@@ -170,6 +170,25 @@ cp -f "${SOURCE}/docs/CODE_COMMENTS.md" "${TARGET}/.agents/CODE_COMMENTS.md"
 cp -f "${SOURCE}/docs/THIRD_PARTY_SKILLS.md" "${TARGET}/.agents/THIRD_PARTY_SKILLS.md"
 cp -f "${SOURCE}/docs/SKILL_PREAMBLE.md" "${TARGET}/.agents/SKILL_PREAMBLE.md"
 cp -f "${SOURCE}/docs/AGENT_POLICY.md" "${TARGET}/.agents/AGENT_POLICY.md"
+cp -f "${SOURCE}/docs/AGENT_WORK.md" "${TARGET}/.agents/AGENT_WORK.md"
+
+# Ensure host product .gitignore ignores .agent-work/ (nested Work git).
+ensure_agent_work_gitignore() {
+  local gi="${TARGET}/.gitignore"
+  local marker=".agent-work/"
+  if [ -f "$gi" ] && grep -Fqx -- "$marker" "$gi"; then
+    echo "Keeping existing .gitignore entry for .agent-work/."
+    return
+  fi
+  if [ -f "$gi" ]; then
+    printf '\n# Simple Skills — Work layer (sessions + memory; nested git)\n%s\n' "$marker" >> "$gi"
+    echo "Appended .agent-work/ to existing .gitignore."
+  else
+    cp -f "${SOURCE}/docs/gitignore.agent-work.snippet" "$gi"
+    echo "Created .gitignore with .agent-work/ ignore rule."
+  fi
+}
+ensure_agent_work_gitignore
 
 # Install local agent tools (HTML decision server, etc.).
 if [ -d "${SOURCE}/tools" ]; then

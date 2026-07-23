@@ -10,9 +10,12 @@ description: >-
 
 ## Shared preamble (do this first)
 
-Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Memory) before
-Purpose, Contract, or steps. Do not skip it; do not reuse a cached `language`
-from earlier in the session. Source copy in this repo: `docs/SKILL_PREAMBLE.md`.
+Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Work layout +
+Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
+steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
+understands on first pass — concrete paths/IDs, no filler, no method branding.
+Artifacts go under `.agent-work/` (sessions + memory), not `.agents/`.
+Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
 
 ## Purpose
 
@@ -77,9 +80,6 @@ approach, affected_areas, test_strategy (optional), verification_strategy,
 definition_of_done, rollback_strategy, risks, **task_index** (ID + title only),
 handoff.
 
-#### `OVERVIEW.md`
-- Required: yes in the session folder.
-- Refresh At a glance, progress chart, open decisions, and next action.
 
 #### `TASKS.md` (from template)
 Work inventory table, Progress board (Done checkbox + Status per ID), plan_ref, execution_order, micro-task cards (Trace with §/AC, Status=`todo`, Work items ≥2 as `- [ ] N. …`, Description, AC observable, Verify, Flow/comment notes, Files/scope concrete, confidence, out-of-scope). Implement before automated tests. Planning seeds progress; execution marks completion.
@@ -117,6 +117,15 @@ Work inventory table, Progress board (Done checkbox + Status per ID), plan_ref, 
 ## Lite Mode
 
 Still run **all four steps**. TASKS may have 1–3 cards; templates still required.
+
+## Quality Standards
+
+- [ ] Goal and approach are concrete (paths/phases), not abstract process talk.
+- [ ] Spec quality findings are finding + evidence + verdict (not essays).
+- [ ] Every TASK card has `#### Dev context` with Source cites or `No specific guidance found.`
+- [ ] First-pass readable: concrete names (paths/APIs/IDs); no abstract filler.
+- [ ] No leftover `_(TODO)_` or placeholder Mermaid in finished sections.
+- [ ] Ready=Yes only when blockers are `none`.
 
 ## Limitations
 

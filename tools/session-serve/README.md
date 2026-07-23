@@ -12,7 +12,7 @@ python .agents/tools/session-serve/serve.py Task-1-example
 
 # Serve without opening a browser
 python .agents/tools/session-serve/serve.py \
-  .agents/sessions/Task-1-example \
+  .agent-work/sessions/Task-1-example \
   --no-open
 ```
 

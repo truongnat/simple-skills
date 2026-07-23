@@ -7,74 +7,107 @@ If detail here conflicts with the entrypoint, this file wins on substance;
 ## Settings
 
 Read `.agents/settings.yaml` and `.agents/PRJ_REFERENCE.md` at the **start of
-every task**. Settings configure agent behavior; the project reference contains
-the current project facts, architecture, business rules, constraints, commands,
-and conventions.
+every task**. Keep `settings.yaml` **lean** — only project knobs. Built-in
+defaults below apply when a key is absent. Do not paste this whole policy into
+settings.
 
-- `language`: `en` (default) or `vi`. Controls the language of agent
-  communication **and** the prose written into saved artifacts.
-  - `en`: reply and write artifacts in English.
-  - `vi`: reply and write artifacts in Vietnamese — Markdown prose,
-    explanations, summaries, findings, and commit/PR messages.
-- Keep code, identifiers, file paths, CLI commands, and template section keys
+### User knobs (edit `.agents/settings.yaml`)
+
+| Key | Values | Default |
+| --- | --- | --- |
+| `language` | `en` \| `vi` | `en` |
+| `rules.branch.mode` | `direct` \| `checkout` | `checkout` |
+| `rules.branch.base` | branch name | detect from repo |
+| `rules.branch.naming` | pattern e.g. `feat/<slug>` | empty |
+| `rules.reports.output_format` | `markdown` \| `html` | `markdown` |
+| `rules.docs.enabled` | bool | `true` |
+| `rules.docs.location` | path | `.agents/wiki` |
+| `rules.docs.format` | `markdown` \| `html` \| `docx` \| `xlsx` | `markdown` |
+| `rules.docs.sync_strategy` | `with-commit` \| `main-only` | `with-commit` |
+
+Optional (add only when the repo has a convention; `init` may merge them):
+`rules.commit.*`, `rules.pull_request.*`. Apply only populated values.
+
+- **Re-read settings** at the start of every task and every skill invocation.
+  Never reuse a cached `language` (or other settings) from earlier in the
+  session. Mid-session edits win after re-read. A direct instruction in the
+  current user request overrides the file for that turn.
+- Keep code, identifiers, paths, CLI commands, and template section keys
   unchanged regardless of `language`.
-- **Re-read `.agents/settings.yaml` at the start of every task and every skill
-  invocation. Never reuse a `language` (or other settings) value cached earlier
-  in the session.** If the user edits `.agents/settings.yaml` mid-session and
-  asks to re-run a skill, re-read the file first and apply the new value — do
-  not answer from the previously loaded value.
-- If `.agents/settings.yaml` is missing or the value is unknown, default to
-  `en`. A direct instruction in the current user request overrides the file.
-- `rules.reports.output_format`: `markdown` (default) or `html`. Controls the
-  extension and representation of human-readable lifecycle artifacts while
-  preserving the same contract schema and logical basename. HTML uses one
-  enterprise theme via short `.ss-*` classes in `/styles.css` (see
-  `.agents/DESIGN_SYSTEM.md`). Prefer those classes over long Tailwind stacks
-  to keep agent tokens low.
-- **`rules.branch.mode` — IMPORTANT, enforced before any code change:**
-  - `direct`: solo-developer mode. Work and commit directly on the base/main
-    branch; do **not** create a feature branch.
-  - `checkout`: **before editing any file**, ensure you are on a dedicated work
-    branch off `rules.branch.base` (create/checkout one, following
-    `rules.branch.naming` when set). **Never** modify or commit code on the base
-    branch in this mode. If the working tree is on the base branch, branch first.
-  - If `mode` is unset, default to `checkout` (the safer policy). A direct user
-    instruction overrides the file for the current task only.
-- **`rules.code.comments` — code comment convention (enforced when writing/
-  reviewing code):** follow `.agents/CODE_COMMENTS.md`. Comment the **why**, not
-  the what; give every exported/public symbol a doc comment in the language's
-  standard format (`doc_comments`); document non-obvious/multi-stage logic with
-  a numbered **flow block** + `Step N:` markers (`flow_comments`); note business
-  rules (with `Trace:`) and security boundaries; use only the standard
-  `markers`; never leave a stale comment that contradicts the code. Prefer the
-  repo's existing style when it has one (`PRJ_REFERENCE.md`).
-- Project-specific branch, commit, PR, report, and code-comment rules live
-  under `rules` in settings. Apply only populated values.
-- If `.agents/PRJ_REFERENCE.md` is missing or materially stale, run the `init`
-  skill before other lifecycle skills. Use `force` mode only when explicitly
-  requested.
+- **`rules.branch.mode`:** `direct` = work/commit on base/main; `checkout` =
+  create/checkout a work branch **before any code edit** (never commit feature
+  work on base). Unset → `checkout`.
+- **`rules.reports.output_format`:** same contract/basename; HTML uses the
+  enterprise theme in `.agents/DESIGN_SYSTEM.md` (prefer short `.ss-*` classes).
+- If `.agents/PRJ_REFERENCE.md` is missing or stale, run `init` before other
+  lifecycle skills (`force` only when explicitly requested).
+
+### Built-in defaults (not required in settings)
+
+Use these unless the host explicitly overrides them in settings:
+
+**Decisions** (brainstorming / BA / planning): stop on `critical-unresolved`,
+`blocking-unknown`, `feasibility-fail-or-unknown`, `correctness-fail-or-unknown`,
+`blocking-capability-gap`; `require_sequential_step_ledger: true`;
+`require_spec_quality_before_downstream_work: true`;
+`max_blocking_questions_per_round: 3`.
+
+**Visuals:** `triage: required`; `html: ask-before-create`;
+`prefer_diagram_for_flows: true`.
+
+**Reports (skim structure):** open with a short **Executive summary** (≤5
+decision bullets) then a **Developer overview** panel **inside that same
+artifact**. Do **not** create a separate `OVERVIEW.md` landing page — it goes
+stale. Progress truth is `TASKS.md` + `session.sh status`. Do **not** name
+sections after methods (`80/20`, `5W1H`). Chart when useful; skip filler.
+
+**Thinking methods (session-wide — not report titles):**
+
+- **Vital few (Pareto / “80/20”):** across the whole session, keep attention on
+  the small set of facts, risks, and decisions that change the outcome. Use it
+  when prioritizing, summarizing, and writing memory — never as a heading or
+  as a checklist of trivia.
+- **5W1H:** a diagnostic lens (What / Why / Who / When / Where / How) for hard
+  or unclear problems in the **session context**. Apply silently while framing
+  or investigating; fold answers into the real sections. Never stamp a 5W1H
+  table, never title a report “5W1H”, never fill Who/What/… for trivial noise.
+
+**Code comments:** follow `.agents/CODE_COMMENTS.md` —
+`doc_comments: public-api`; `flow_comments: non-obvious`;
+`non_obvious_flow: required`; `rationale_and_constraints: required`;
+`obvious_code_narration: avoid`; markers
+`[TODO, FIXME, NOTE, HACK, SECURITY, PERF]`. Prefer the repo’s existing style
+from `PRJ_REFERENCE.md` when it conflicts with defaults.
 
 ## Architecture
+
+**Kit** (`.agents/`) is installer-owned. **Work** (`.agent-work/`) holds
+sessions + memory together under an optional nested git — see
+`.agents/AGENT_WORK.md`.
 
 - `AGENTS.md`: Entrypoint. Read this first.
 - `.agents/settings.yaml`: Project-level agent settings (language, etc.). Read first.
 - `.agents/PRJ_REFERENCE.md`: Generated project context shared by all skills.
 - `.agents/tools/`: Local utilities copied on install (for example the HTML
   decision server that logs user choices, and `session/session.sh`).
-- `.agents/memory/`: Cross-task, durable knowledge base. `INDEX.md` is the
-  80/20 map; each entry holds the vital few from a finished task. `done` writes
+- `.agent-work/`: Feature work tree (sessions + memory). Nested git; not
+  mirrored by the installer. Prefer ignoring it in the product root git.
+- `.agent-work/sessions/`: Per-task artifacts; active pointer `.current`.
+- `.agent-work/memory/`: Cross-task, durable knowledge base. `INDEX.md` is the
+  vital-few map; each entry holds durable lessons from a finished task. `done` writes
   it; any skill may read it.
 - `.agents/wiki/`: Human-facing project wiki maintained by the `docs` skill
   (location/format/strategy from `rules.docs`). Distinct from `PRJ_REFERENCE.md`
   (agent context).
 - `.agents/CODE_COMMENTS.md`: The code comment convention (per-language doc
   comments, flow documentation, markers). `execution` applies it; `review`
-  checks it. Knobs in `rules.code.comments`.
+  checks it. Defaults in AGENT_POLICY; optional overrides in settings.
 - `.agents/DESIGN_SYSTEM.md`: Compact enterprise HTML recipe (semantic +
   short `.ss-*` classes; beauty in CSS, not utility soup).
 - `.agents/THIRD_PARTY_SKILLS.md`: Sources, revisions, and licenses for vendored skills.
-- `.agents/SKILL_PREAMBLE.md`: Shared Language + Memory for first-party skills.
+- `.agents/SKILL_PREAMBLE.md`: Shared Language + Work layout + Memory for first-party skills.
 - `.agents/AGENT_POLICY.md`: This detailed policy file.
+- `.agents/AGENT_WORK.md`: Kit vs Work layout and nested-git guidance.
 - `.agents/skills/`: Each directory is an independent skill (or shared helper such as `office-common`).
   - `SKILL.md`: **Authoritative** skill definition when present.
   - First-party workflow and office skills contain a **Contract (mandatory)** section.
@@ -200,7 +233,7 @@ Brainstorming, business-analysis, and planning must fail closed:
   - HTML for UI layout, responsive/before-after/multi-state, or spatial option
     comparisons where a static table/diagram is insufficient.
 - Do not generate HTML for every complex issue. Honor
-  `rules.visuals.html` in settings; default is ask before creating it.
+  default is ask before creating it (override with `rules.visuals.html` only if needed).
 - When a confirmed HTML decision page is ready, serve it with
   `.agents/tools/session-serve/serve.py`, read the result with
   `.agents/tools/choice-reader/read.py --issue-id <issue-id>`, and record that
@@ -240,12 +273,29 @@ The agent MUST obey the Contract strictly — it is not advisory. If the contrac
 
 ## Workflow
 
-Base folder for runtime artifacts: `.agents/sessions/<Task-N-short-description>/` (repo root).
+Base folder for runtime artifacts: `.agent-work/sessions/<Task-N-short-description>/` (repo root).
+
+### Scale & Quick path (BMAD-inspired)
+
+Pick a path **once** at task start (record in DISCUSSION or PLAN Developer overview).
+Do not run Full ceremony on tiny work.
+
+| Path | When | Flow |
+| --- | --- | --- |
+| **Quick** | Single clear fix/change; scope fits ≤3 TASK cards; no open product decisions | Skip BA + basic/detail design + Spec quality matrices. Short DISCUSSION (goal + facts + recommendation) **or** go straight to slim PLAN+TASKS → sync → execution → review → done. |
+| **Lite** | Small feature; some unknowns but not enterprise design | Brainstorming Lite (still steps, short sections) → optional skip BA/design → planning Lite → sync → execution → … |
+| **Full** | Multi-surface, unclear product, contracts/architecture needed | Full lifecycle: brainstorming → (BA) → design → planning → sync → execution → review → done |
+
+Rules:
+
+- Quick/Lite still require **Readable writing**, session discipline, and honest status.
+- Quick still needs TASK cards with **Dev context** when code changes (even 1 card).
+- If Quick hits a blocking unknown or Spec mismatch → **upgrade** to Lite/Full; do not invent.
 
 ### Session discipline (mandatory)
 
 - **One active session, resolved deterministically.** The active session dir is
-  recorded in `.agents/sessions/.current`. Resolve it at the **start of every
+  recorded in `.agent-work/sessions/.current`. Resolve it at the **start of every
   lifecycle skill** — do not guess or re-derive the folder name:
 
   ```bash
@@ -255,35 +305,38 @@ Base folder for runtime artifacts: `.agents/sessions/<Task-N-short-description>/
   The first skill of a task creates it with `session.sh new <slug>`; every later
   skill **reuses** the path that `session.sh current` returns. Never invent a
   second `<Task-N-…>` folder for the same task.
-- **Artifacts live ONLY in the active session.** Write DISCUSSION, PLAN, TASKS,
-  EXECUTION, REVIEW, OVERVIEW, and every other runtime artifact **inside** that
-  dir. **Never** write them to an OS temp dir, a scratchpad, a `cache/` folder,
-  or anywhere outside `.agents/`. Redoing an artifact (e.g. re-writing `PLAN.md`
+- **Artifacts live ONLY in the active session under `.agent-work/`.** Write
+  DISCUSSION, PLAN, TASKS, EXECUTION, REVIEW, and every other runtime
+  artifact **inside** that session dir. **Never** write them under `.agents/`
+  (kit), an OS temp dir, a scratchpad, a `cache/` folder, or anywhere outside
+  `.agent-work/`. Redoing an artifact (e.g. re-writing `PLAN.md`
   during review) overwrites it **in the same active session** — not a new
   folder, not a side/cache copy.
-- **Progress is computed, never hand-written.** Refresh OVERVIEW/TASKS progress
-  from the real card states instead of typing counts:
+- **Host `.gitignore`:** ensure the product root ignores `.agent-work/` so Work
+  uses its nested git instead of bloating the product history.
+- **Progress is computed, never hand-written.** Refresh TASKS progress from the
+  real card states instead of typing counts or maintaining `OVERVIEW.md`:
 
   ```bash
   bash .agents/tools/session/session.sh status
   ```
 
-  Paste its mermaid pie into `OVERVIEW.md` and `TASKS.md` and copy its counts
-  verbatim. A task/session is `done` **only** when the tool prints
-  `COMPLETE: yes` **and** the review verdict passed. Never show `100%`, a full
-  "done" pie, or Status `done` while any card is `todo`/`in_progress`/`blocked`/
-  `review` — the tool reports those as `COMPLETE: no`.
+  Paste its mermaid pie into `TASKS.md` and copy its counts verbatim. A
+  task/session is `done` **only** when the tool prints `COMPLETE: yes` **and**
+  the review verdict passed. Never show `100%`, a full "done" pie, or Status
+  `done` while any card is `todo`/`in_progress`/`blocked`/`review` — the tool
+  reports those as `COMPLETE: no`. Do **not** create or update `OVERVIEW.md`.
 
-### Project memory (`.agents/memory/`)
+### Project memory (`.agent-work/memory/`)
 
 - **Durable, cross-task knowledge** (survives across sessions). `done` distills
-  each finished task into `.agents/memory/<Task-N-slug>.md` — the **vital few**
-  (80/20): non-obvious decisions + why, gotchas, reusable conventions, and
-  pointers. It is not a changelog.
+  each finished task into `.agent-work/memory/<Task-N-slug>.md` — the **vital few**:
+  non-obvious decisions + why, gotchas, reusable conventions, and pointers. It
+  is not a changelog and must not be titled `80/20`.
 - **Read before deciding/analyzing.** At the start of any step that frames,
   researches, investigates, designs, or plans (`brainstorming`, `research`,
   `investigate`, `business-analysis`, `basic-design`, `detail-design`,
-  `planning`, …), read `.agents/memory/INDEX.md` first and open the entries
+  `planning`, …), read `.agent-work/memory/INDEX.md` first and open the entries
   whose hook matches the task. Any step may read memory whenever it helps.
 - Prefer prior lessons over re-deriving them; if memory conflicts with current
   evidence, trust current evidence and note the drift so `done` can update the
@@ -305,27 +358,36 @@ Order for a new project: `scaffold` → `init` → lifecycle (`brainstorming`/
 
 ### Dev Lifecycle per Task
 
-1. `brainstorming` → `DISCUSSION.md`
-   - Step workflow: seed template → frame + Spec quality → scope/options → recommend → self-check.
+0. Choose **Quick / Lite / Full** (see Scale & Quick path). Record the choice.
+1. `brainstorming` → `DISCUSSION.md` (Quick may use a short DISCUSSION or skip
+   to planning when the user already stated a clear fix).
+   - **Diverge then converge:** gather facts/options before locking a recommendation.
+   - While facilitating clarification: **one focused question per message**
+     (max three only when they are independent blockers). No question walls.
+   - Step workflow (Full/Lite): seed → frame + Spec quality → scope/options → recommend → self-check.
    - Templates: `.agents/skills/brainstorming/templates/`; steps: `step-01` … `step-05`.
-   - Scope/options and recommendation cannot start until blocking Spec quality findings are resolved.
-2. `business-analysis` (optional to invoke; mandatory 4 steps once used) → `BUSINESS_ANALYSIS.md`
+   - Scope/options and recommendation cannot start until blocking Spec quality findings are resolved (Full/Lite).
+2. `business-analysis` (optional; **skip on Quick**) → `BUSINESS_ANALYSIS.md`
    - Templates: `.agents/skills/business-analysis/templates/`; steps: `step-01` … `step-04`.
    - Step workflow: seed template → frame + Spec quality → stories/rules/AC → self-check.
    - Stories, rules, and AC cannot start until the Spec quality gate passes; stop on Blocking=Yes gaps.
-3. `basic-design` → `BASIC_DESIGN.md`
+3. `basic-design` → `BASIC_DESIGN.md` (**skip on Quick** unless architecture is the task)
    - System-level design: architecture, components, flows, interfaces, data ownership (omit unused sections).
 4. `detail-design` → `DETAIL_DESIGN.md`
    - Implementable design: contracts, data model, sequences, rules/operations, optional client mapping (omit unused sections; mark gaps).
 5. `planning` → `PLAN.md` + `TASKS.md` (**both required on disk**)
-   - Step workflow: seed templates → decision + Spec quality gate → fill PLAN (slim) → **Work inventory → specific micro-TASKS** → self-check.
+   - Step workflow: seed templates → decision + Spec quality gate → fill PLAN (slim) → **Work inventory → specific micro-TASKS with Dev context** → self-check.
+   - Each TASK card must include `#### Dev context` with `[Source: …]` cites (or
+     `No specific guidance found.`) so execution does not invent tech details.
    - Templates: `.agents/skills/planning/templates/`; steps: `.agents/skills/planning/steps/step-01` … `step-04`.
-   - TASKS must remain unfilled until Spec quality passes.
-   - Reject if: steps skipped, PLAN-only, empty TASKS template, tasks inside PLAN, test-matrix as T-001 before code, missing inventory, vague/epic cards (layer-only titles, no Work items, multi-endpoint/screen), or **Ready=Yes with open blockers**.
+   - TASKS must remain unfilled until Spec quality passes (Full/Lite; Quick may slim Spec quality).
+   - Reject if: steps skipped, PLAN-only, empty TASKS template, tasks inside PLAN, test-matrix as T-001 before code, missing inventory, vague/epic cards, missing Dev context, or **Ready=Yes with open blockers**.
 6. `sync`
-   - Read-only refresh of codebase, git state, and artifacts before execution.
+   - Read-only refresh; set **Implementation readiness** `PASS` | `CONCERNS` | `FAIL`.
    - Respect PLAN Ready/blockers; rewrite `SYNC.md` if older than PLAN/TASKS.
+   - Execution only after `PASS` (or `CONCERNS` with explicit user accept).
 7. `execution` → `EXECUTION.md` (+ live progress in `TASKS.md`)
+   - Read the active card’s **Dev context** first; follow Sources; do not invent.
    - Implement changes step by step, record commands and verification.
    - As each Work item / card finishes: check off `- [ ]` → `- [x]`, set Status (`in_progress` / `done` / `blocked`), update Progress board Done column.
 8. `review` → `REVIEW.md`
@@ -333,7 +395,9 @@ Order for a new project: `scaffold` → `init` → lifecycle (`brainstorming`/
 9. `done` → `DONE.md` (+ optional `PR_MESSAGE.md`, `PR_DESCRIPTION.md`)
    - Summarize, handoff, prepare PR/MR.
 
-Lite skip: small/clear tasks may skip business-analysis, basic-design, and detail-design when brainstorming hands off straight to planning or execution.
+**Quick** skips BA + design + Spec matrices when the change is tiny and clear.
+**Lite** may skip BA/design when brainstorming hands off to planning.
+Upgrade path if unknowns block.
 
 ### Post-done defect loop
 
@@ -357,8 +421,8 @@ task is **not** done. Do not patch silently and do not open a new session.
    (`direct` → base branch; `checkout` → the existing feature branch). Never
    open a new branch just for the fix.
 5. **Feed memory.** When `done` re-runs, record the defect as a **Gotcha** in the
-   task's `.agents/memory/` entry (update it, don't duplicate) — this is exactly
-   the 80/20 knowledge worth keeping.
+   task's `.agent-work/memory/` entry (update it, don't duplicate) — this is exactly
+   the durable knowledge worth keeping.
 
 ### Documentation wiki
 
@@ -443,52 +507,65 @@ traceability, test data, or verification evidence.
   After the user chooses, the sticky banner confirmation is required; read
   the result with `choice-reader` and record it in the artifact.
 
+## Thinking methods (session-wide)
+
+These are **ways of working**, not section names or report titles. Do not brand
+artifacts with method labels.
+
+1. **Vital few (Pareto):** Hold the whole session in mind and surface only what
+   changes the decision or outcome. Executive summaries and memory entries
+   should reflect that prioritization — without a heading called `80/20` or
+   branded titles like “Executive summary” plus a method suffix.
+2. **5W1H:** When the problem is hard, ambiguous, or the feature is unclear /
+   wrong / underspecified, silently check What / Why / Who / When / Where / How
+   against the **session context** (goal, constraints, evidence, unknowns). Put
+   the useful answers into the real sections (facts, risks, Spec quality,
+   investigation). **Forbidden:** default 5W1H sections, empty/`N/A` tables,
+   answering trivia just to “use the method”, or titling anything `5W1H`.
+
 ## Artifact Quality
 
-- Every human-readable report starts with **Executive summary (80/20)**:
-  at most five bullets containing the decision, outcome, top findings/risks,
-  and next action. Readers should understand the important 20% first.
-- Immediately after the summary, include a **Developer overview** panel:
-  status, progress, blockers, next action, and owner. A developer must
-  understand the state in under 30 seconds without reading the full report.
-- **5W1H is a diagnostic method, not a default section.** Never stamp a 5W1H
-  block into reports by default. Apply 5W1H (What, Why, Who, When, Where, How)
-  only as a clarification technique when a problem is genuinely hard or
-  ambiguous, or a feature is unclear, incorrect, or underspecified — during
-  framing, Spec-quality review, or investigation — to surface unknowns and
-  drive a decision. Capture the answers inline where they matter; do not add
-  an empty or `N/A`-filled 5W1H table to satisfy a template.
-- Add **Charts/diagrams** when they improve scanability:
-  - Mermaid flowcharts for architecture, options, and process flows;
-  - Mermaid sequence diagrams for request/response or error paths;
-  - Mermaid state diagrams for lifecycle/status;
-  - Progress boards, pie/bar-style Mermaid charts, or status tables for
-    completion/risk distribution.
-  Prefer one clear chart over many decorative ones. If a chart adds no
-  decision value, write `N/A` with reason.
-- Put supporting evidence and implementation detail after the overview.
-  Detail remains mandatory where contracts, safety, verification, or
-  reproducibility require it.
-- Keep a session landing page at
-  `.agents/sessions/<Task-N-short-description>/OVERVIEW.<ext>`. Sync,
-  execution, review, and done must refresh it so developers have one place
-  to check status, progress charts, and next action.
-- Apply project-specific report sections from `.agents/settings.yaml`.
-- Output must be **short, structured, decision-oriented**.
-- Use bullet lists and tables over paragraphs.
-- No filler sections. No marketing language.
-- Keep it clear and simple, in the language set by `.agents/settings.yaml`.
+### Readable first (non-negotiable)
+
+- A competent teammate must understand the artifact on a **first pass**.
+  Prefer cutting length over clever abstraction. See
+  `.agents/SKILL_PREAMBLE.md` → Readable writing.
+- Every sentence must carry a fact, decision, risk, evidence pointer, or next
+  action. Delete the rest.
+- Prefer: `path`, `API`, `field`, `command`, `ID`. Avoid: vague process talk
+  and method branding.
+- Spec quality rows need a concrete finding + evidence + verdict. Ban
+  essay-like answers to the question column.
+- Finished files: no `_(TODO)_`, no unused sections, no placeholder Mermaid.
+
+### Skim structure
+
+- Every human-readable report starts with **Executive summary**: at most five
+  bullets with the decision, outcome, top findings/risks, and next action.
+  Title it exactly that — **no method branding**.
+- Immediately after the summary, include a **Developer overview** panel **in
+  the same artifact**: status, progress, blockers, next action, and owner.
+- Add **Charts/diagrams** only when they improve a decision. Prefer one clear
+  chart. If none helps, omit the section (do not paste a generic flowchart).
+- Put supporting evidence after the overview. Detail remains mandatory where
+  contracts, safety, verification, or reproducibility require it.
+- **No separate `OVERVIEW.md`.** Progress = `TASKS.md` + `session.sh status`.
+- Apply only **populated** project knobs from `.agents/settings.yaml`.
+- Output: short, structured, decision-oriented. Bullets/tables over paragraphs.
+- No filler. No marketing language. No method-named sections.
+- Language from `.agents/settings.yaml`; keep identifiers/paths/commands as-is.
 
 ## Developer UX / DX
 
 Agents write for humans who skim. Optimize for developer experience:
 
-1. **Scan first**: overview panel and chart before long prose.
+1. **Scan first**: developer overview panel and chart before long prose.
 2. **Actionable**: every overview ends with a concrete next command/skill.
 3. **Traceable**: link Issue IDs, task IDs, files, and evidence paths.
 4. **Honest status**: use `todo` / `in_progress` / `done` / `blocked` /
-   `needs_info`; never imply green when blockers remain.
+   `needs_info`; never imply green when blockers remain. Prefer
+   `session.sh status` + `TASKS.md` over any hand-written progress page.
 5. **Low friction**: prefer Mermaid in Markdown over external tools; keep
    charts small enough to render in common Markdown previews.
 6. **No noise**: no decorative visuals, no empty sections, no duplicated
-   walls of text already present in another artifact.
+   walls of text already present in another artifact, no stale `OVERVIEW.md`.

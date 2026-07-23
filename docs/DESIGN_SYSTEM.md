@@ -70,7 +70,7 @@ layout must not depend on the server.
   <title>…</title>
   <!-- Required for static + server viewing -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Local theme: relative for static open from .agents/sessions/<task>/ -->
+  <!-- Local theme: relative for static open from .agent-work/sessions/<task>/ -->
   <script src="../../tools/decision-server/tailwind-theme.js"></script>
   <link rel="stylesheet" href="../../tools/decision-server/styles.css">
   <!-- Absolute paths work when served by decision-server -->

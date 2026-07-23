@@ -8,19 +8,15 @@ VALIDATOR = REPO_ROOT / "tools" / "session" / "validate_artifacts.py"
 
 
 def test_validate_artifacts_accepts_seeded_discussion(tmp_path: Path) -> None:
-    session = tmp_path / ".agents" / "sessions" / "Task-1-demo"
+    session = tmp_path / ".agent-work" / "sessions" / "Task-1-demo"
     session.mkdir(parents=True)
-    (tmp_path / ".agents" / "sessions" / ".current").write_text(
-        ".agents/sessions/Task-1-demo\n", encoding="utf-8"
+    (tmp_path / ".agent-work" / "sessions" / ".current").write_text(
+        ".agent-work/sessions/Task-1-demo\n", encoding="utf-8"
     )
     template = (
         REPO_ROOT / "skills" / "brainstorming" / "templates" / "DISCUSSION.template.md"
     ).read_text(encoding="utf-8")
     (session / "DISCUSSION.md").write_text(template, encoding="utf-8")
-    overview = (
-        REPO_ROOT / "skills" / "brainstorming" / "templates" / "OVERVIEW.template.md"
-    ).read_text(encoding="utf-8")
-    (session / "OVERVIEW.md").write_text(overview, encoding="utf-8")
 
     result = subprocess.run(
         ["python3", str(VALIDATOR), "--root", str(tmp_path)],
@@ -34,10 +30,10 @@ def test_validate_artifacts_accepts_seeded_discussion(tmp_path: Path) -> None:
 
 
 def test_validate_artifacts_fails_on_missing_heading(tmp_path: Path) -> None:
-    session = tmp_path / ".agents" / "sessions" / "Task-1-bad"
+    session = tmp_path / ".agent-work" / "sessions" / "Task-1-bad"
     session.mkdir(parents=True)
-    (tmp_path / ".agents" / "sessions" / ".current").write_text(
-        ".agents/sessions/Task-1-bad\n", encoding="utf-8"
+    (tmp_path / ".agent-work" / "sessions" / ".current").write_text(
+        ".agent-work/sessions/Task-1-bad\n", encoding="utf-8"
     )
     (session / "REVIEW.md").write_text("# Review\n\n## Executive summary\n\n- x\n", encoding="utf-8")
 

@@ -7,9 +7,12 @@ description: "Produce implementable design from BASIC_DESIGN.md — contracts, d
 
 ## Shared preamble (do this first)
 
-Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Memory) before
-Purpose, Contract, or steps. Do not skip it; do not reuse a cached `language`
-from earlier in the session. Source copy in this repo: `docs/SKILL_PREAMBLE.md`.
+Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Work layout +
+Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
+steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
+understands on first pass — concrete paths/IDs, no filler, no method branding.
+Artifacts go under `.agent-work/` (sessions + memory), not `.agents/`.
+Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
 
 ## Purpose
 
@@ -104,6 +107,11 @@ Do NOT use this skill when:
 - [ ] Unused optional sections are omitted.
 - [ ] Gaps are listed when sources lack detail — not invented away.
 - [ ] Handoff is to planning (blocking items called out).
+
+- [ ] First-pass readable: concrete names (paths/APIs/IDs); no abstract filler.
+- [ ] No leftover `_(TODO)_` or placeholder Mermaid in finished sections.
+- [ ] Spec/review findings state finding + evidence + verdict (not essays).
+
 
 ## WRONG vs CORRECT
 

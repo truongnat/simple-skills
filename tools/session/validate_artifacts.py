@@ -3,7 +3,7 @@
 
 Usage (from repo root or any subdir):
   python tools/session/validate_artifacts.py
-  python tools/session/validate_artifacts.py --session .agents/sessions/Task-1-demo
+  python tools/session/validate_artifacts.py --session .agent-work/sessions/Task-1-demo
   python .agents/tools/session/validate_artifacts.py   # after install
 
 Only artifacts that exist are checked. Missing optional artifacts are skipped.
@@ -22,7 +22,7 @@ from pathlib import Path
 def find_agents_root(start: Path) -> Path:
     cur = start.resolve()
     for candidate in [cur, *cur.parents]:
-        if (candidate / ".agents").is_dir():
+        if (candidate / ".agents").is_dir() or (candidate / ".agent-work").is_dir():
             return candidate
         if (candidate / "docs" / "artifact-schemas.json").is_file():
             return candidate
@@ -49,10 +49,10 @@ def resolve_session(root: Path, explicit: str | None) -> Path:
         if not path.is_dir():
             raise SystemExit(f"Session dir not found: {path}")
         return path
-    pointer = root / ".agents" / "sessions" / ".current"
+    pointer = root / ".agent-work" / "sessions" / ".current"
     if not pointer.is_file():
         raise SystemExit(
-            "No active session (.agents/sessions/.current). "
+            "No active session (.agent-work/sessions/.current). "
             "Pass --session or run session.sh new/set first."
         )
     rel = pointer.read_text(encoding="utf-8").splitlines()[0].strip()
@@ -95,7 +95,7 @@ def heading_matches(required: str, present: list[str]) -> bool:
         h = heading.casefold()
         if h == req or h.startswith(req + " ") or h.startswith(req + " ("):
             return True
-        # Allow "Executive summary (80/20)" etc.
+        # Allow "Executive summary — …" style suffixes; prefer plain titles.
         if req in h:
             return True
     return False

@@ -23,7 +23,8 @@ around open Spec quality blockers.
 - Scope in / scope out / non-goals must not contradict each other.
 - Options table: at least **one** option; prefer **2+** when trade-offs exist.
 - Columns: Option, Pros, Cons, Effort, Risk, Reversible?, How to verify.
-- Do **not** write the final Recommendation/Handoff yet (step-04) — draft row content only.
+- This step is **diverge** (compare options). Do **not** write the final
+  Recommendation/Handoff yet (step-04 = **converge**).
 - Lite Mode: 1–2 options still OK; still use the template table.
 - If visual triage says `html-recommended` and the user confirmed it, seed
   `VISUAL_DECISION.html` from the template before comparing options. If not

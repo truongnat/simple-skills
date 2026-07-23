@@ -79,7 +79,3 @@ artifacts:
         type: string
         required: true
         description: "Ready for review? Suggested focus area. List remaining todo/in_progress/blocked IDs."
-  OVERVIEW.md:
-    required: true
-    update: true
-    description: "Refresh developer landing page: status, progress chart, open decisions, next action."

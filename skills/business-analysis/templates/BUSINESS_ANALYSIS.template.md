@@ -1,8 +1,9 @@
 # Business Analysis
 
 > Seeded by business-analysis step-01. Fill via steps 02–04.
+> Write for a busy teammate: concrete rules, IDs, evidence — no filler.
 > Do **not** treat specs as automatically correct or complete.
-> Separate confirmed requirements from assumptions and open questions.
+> Obey `.agents/SKILL_PREAMBLE.md` Readable writing.
 
 ## Step ledger (mandatory — update every step)
 
@@ -16,10 +17,9 @@
 > **Hard rule:** Do not mark a later step `done` while an earlier step is still
 > `todo`/`blocked`. Do not write stories/AC before Spec quality review is done.
 
-## Executive summary (80/20)
+## Executive summary
 
-<!-- Maximum five bullets: problem, key rule/decision, top Spec quality finding,
-top risk, next action. Fill last, keep first. -->
+<!-- ≤5 concrete bullets. Fill last, keep first. -->
 
 - _(TODO)_
 
@@ -32,19 +32,13 @@ top risk, next action. Fill last, keep first. -->
 | Open blocking questions | `0` |
 | Next action | _(ask user / handoff)_ |
 
-## Charts (when useful)
+## Charts (optional)
 
-```mermaid
-flowchart LR
-  Problem[Problem] --> Quality[Spec quality]
-  Quality --> Rules[Business rules]
-  Rules --> AC[Acceptance criteria]
-  AC --> Handoff[Handoff]
-```
+<!-- Omit unless a diagram changes a decision. No placeholder Mermaid. -->
 
 ## Problem statement
 
-<!-- One sentence. -->
+<!-- One sentence. Name who hurts and what breaks. -->
 
 _(TODO)_
 
@@ -70,23 +64,25 @@ _(TODO)_
 
 ## Spec quality review
 
-<!-- Mandatory BEFORE stories/rules/AC. Challenge the request/specs. -->
+<!-- BEFORE stories/rules/AC. Concrete finding + evidence + verdict.
+GOOD: "Spec says print count editable on all tabs — only 現品票 has it — Fail"
+BAD:  "Cần review tính đúng đắn của yêu cầu" -->
 
-### 1. Feasibility (tính khả thi)
+### 1. Feasibility
 
-| Finding | Evidence | Verdict |
+| Finding (concrete) | Evidence | Verdict |
 |---|---|---|
 | _(TODO)_ | _(process / systems / data / timeline)_ | Pass / Pass-with-gaps / Fail / Unknown |
 
-### 2. Correctness (tính đúng đắn)
+### 2. Correctness
 
-| Finding | Evidence | Verdict |
+| Finding (concrete) | Evidence | Verdict |
 |---|---|---|
 | _(TODO)_ | _(current process / system / sample data)_ | Pass / Pass-with-gaps / Fail / Unknown |
 
-### 3. Capability recommendations (khả năng feature / gaps)
+### 3. Capability gaps
 
-| Gap ID | Missing / weak capability | Why it matters | Suggested question / default | Blocking? | Status |
+| Gap ID | Missing capability | Why it matters | Ask or default | Blocking? | Status |
 |---|---|---|---|---|---|
 | CAP-001 | _(TODO — e.g. max upload size)_ | _(TODO)_ | _(ask / propose)_ | Yes / No | Open / Deferred / Resolved |
 
@@ -109,7 +105,7 @@ _(TODO)_
 
 | ID | Rule | Source | Confidence |
 |---|---|---|---|
-| BR-001 | _(TODO)_ | _(stakeholder / doc / observed)_ | High / Medium / Low |
+| BR-001 | _(TODO — testable rule)_ | _(stakeholder / doc / observed)_ | High / Medium / Low |
 
 ## Data assumptions
 

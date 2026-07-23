@@ -7,9 +7,9 @@ theme (`tailwind-theme.js` + `styles.css`). See `docs/DESIGN_SYSTEM.md`.
 ```bash
 # From a project that already installed simple-skills:
 python .agents/tools/decision-server/server.py \
-  --root .agents/sessions/Task-1-example \
+  --root .agent-work/sessions/Task-1-example \
   --file VISUAL_DECISION.html \
-  --log-dir .agents/sessions/Task-1-example/decision-logs \
+  --log-dir .agent-work/sessions/Task-1-example/decision-logs \
   --port 8765 \
   --open
 ```

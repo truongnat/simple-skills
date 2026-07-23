@@ -107,11 +107,19 @@ Every kept `### T-00x` card **FAILS** unless **all** hold:
 10. **Flow/comment notes:** identify where implementation needs concise
     why/rationale comments for non-obvious flow, business rules, invariants, or
     security boundaries; otherwise write `N/A` with a reason.
+11. **Dev context (mandatory):** under each card, a `#### Dev context` block that
+    execution can follow **without re-reading the whole design pack**. Rules:
+    - Extract only from DISCUSSION / BA / design / PLAN / repo evidence.
+    - **Never invent** libraries, paths, fields, or contracts. Missing →
+      `No specific guidance found.` or list under **Gaps** as unknown/inferred.
+    - Every tech fact bullet ends with `[Source: relative-path#§-or-heading]`.
+    - Cover: Reuse / Contracts·data / Constraints / Guardrails / Gaps.
+    - Keep short and scannable — clarity over verbosity (no essay dumps).
 
 ### WRONG vs CORRECT (card body)
 
 ```markdown
-// WRONG — generic
+// WRONG — generic + no Dev context
 ### T-003: BE Search query
 - Description: Implement search query with joins per spec.
 - AC: Search works.
@@ -119,17 +127,23 @@ Every kept `### T-00x` card **FAILS** unless **all** hold:
 ```
 
 ```markdown
-// CORRECT — specific + split (one card shown)
+// CORRECT — specific + Dev context with sources
 ### T-003: Compose BD08001 search JOIN (8 tables)
 - Status: todo
 - Trace: `BD08001_SCREEN_DESIGN_DETAIL` §10 Search query / JOIN list
 - Work items:
-  - [ ] 1. Add service method `SearchAsync` (or project pattern) on `…/FBD08001SearchService.cs`
-  - [ ] 2. Join tables listed in §10 with operators (= / LIKE / range) mapped from Search request fields: OrderNo, SupplierCode, …
-  - [ ] 3. Apply date-range + status filters from request; no grid persistence
-- AC: Method returns rows shaped for §8 Search response mapping; empty input filters do not throw.
-- Verify: Unit or manual call with sample request from §11; SQL/logic matches JOIN list in §10.
-- Files/scope: `genka/backend/.../Services/.../FBD08001SearchService.cs` (confidence: inferred)
+  - [ ] 1. Add service method `SearchAsync` on `…/FBD08001SearchService.cs`
+  - [ ] 2. Join tables listed in §10; map filters from Search request fields
+  - [ ] 3. Empty filters do not throw
+- AC: Method returns rows shaped for §8 Search response mapping.
+- Verify: Manual/unit call with sample from §11.
+- Files/scope: `…/FBD08001SearchService.cs` (confidence: inferred)
+#### Dev context (mandatory — execution reads this first)
+- **Reuse / do not reinvent:** extend existing search service pattern `[Source: BASIC_DESIGN.md#components]`
+- **Contracts / data:** JOIN list + SearchReq fields in §10 `[Source: docs/…/BD08001_….md#10]`
+- **Constraints:** read-only; no grid persistence `[Source: docs/…/BD08001_….md#2]`
+- **Guardrails:** do not invent extra joins beyond §10
+- **Gaps:** exact service class path inferred from repo scan — confirm if missing
 ```
 
 ---
@@ -138,7 +152,7 @@ Every kept `### T-00x` card **FAILS** unless **all** hold:
 
 1. Write `## Work inventory` (complete table).
 2. Fill `plan_ref`, Notes (point at blockers / inventory).
-3. Create one `### T-00x` per mapped inventory row (template fields: Status=`todo`, checkbox **Work items**, Trace, AC, …).
+3. Create one `### T-00x` per mapped inventory row (template fields: Status=`todo`, checkbox **Work items**, Trace, AC, **Dev context**, …).
 4. Fill `## Progress board` with one row per card (Done=`[ ]`, Status=`todo`).
 5. Set `## Execution order` to the full ID chain.
 6. Update **PLAN.md Task index** to the same IDs + short titles (still no card bodies in PLAN).
@@ -148,9 +162,10 @@ Every kept `### T-00x` card **FAILS** unless **all** hold:
 
 - [ ] Work inventory table is filled and passes the count/split checks in §A.
 - [ ] Every Execution-order ID has a card; every card passes §B size + §C specificity.
+- [ ] Every card has `#### Dev context` with Source cites or explicit `No specific guidance found.`
 - [ ] Progress board rows match card IDs/titles; all Status=`todo` and Done unchecked.
 - [ ] PLAN Task index matches TASKS (no orphan IDs).
-- [ ] Spec quality review still present on PLAN; not skipped.
+- [ ] Spec quality review still present on PLAN; not skipped (Full Mode).
 - [ ] No template placeholders remain on kept cards.
 - [ ] Automated test tasks (if any) come after implement tasks for those surfaces.
 - [ ] Step ledger 03 = `done`.

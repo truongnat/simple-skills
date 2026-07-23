@@ -7,9 +7,12 @@ description: "Close a task after execution/review with DONE.md, PR_MESSAGE.md, P
 
 ## Shared preamble (do this first)
 
-Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Memory) before
-Purpose, Contract, or steps. Do not skip it; do not reuse a cached `language`
-from earlier in the session. Source copy in this repo: `docs/SKILL_PREAMBLE.md`.
+Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Work layout +
+Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
+steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
+understands on first pass — concrete paths/IDs, no filler, no method branding.
+Artifacts go under `.agent-work/` (sessions + memory), not `.agents/`.
+Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
 
 ## Purpose
 
@@ -23,8 +26,8 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 | Field | Requirement |
 |-------|-------------|
-| Inputs | PLAN.md, TASKS.md when present, EXECUTION.md, REVIEW.md, diff/file changes, verification evidence, skipped checks, blockers, risks, PR/MR template, existing `.agents/memory/INDEX.md`. |
-| Outputs | DONE.md, refreshed `OVERVIEW.md`, a distilled `.agents/memory/<Task-N-slug>.md` + updated `.agents/memory/INDEX.md`, PR_MESSAGE.md, PR_DESCRIPTION.md, optional RELEASE_NOTE.md. |
+| Inputs | PLAN.md, TASKS.md when present, EXECUTION.md, REVIEW.md, diff/file changes, verification evidence, skipped checks, blockers, risks, PR/MR template, existing `.agent-work/memory/INDEX.md`. |
+| Outputs | DONE.md, a distilled `.agent-work/memory/<Task-N-slug>.md` + updated `.agent-work/memory/INDEX.md`, PR_MESSAGE.md, PR_DESCRIPTION.md, optional RELEASE_NOTE.md. |
 | Safety | Do NOT overclaim verification. Do NOT hide skipped/failed checks. Do NOT mark complete if blockers remain. Do NOT describe changes that were not made. Do NOT put secrets into final artifacts. Do NOT mark Done while `session.sh status` is `COMPLETE: no` or while `python .agents/tools/session/validate_artifacts.py` fails. |
 
 ### Required artifacts
@@ -45,9 +48,6 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - **risks_followups** (optional, array): Item, type (risk/follow-up/blocker), impact, owner/next action.
 - **handoff** (required, string): Next step, reviewer focus, QA focus, deployment notes.
 
-#### `OVERVIEW.md`
-- Required: yes (update in place to final status).
-- Mark lifecycle complete or blocked; keep next action concrete.
 
 #### Docs wiki sync (per `rules.docs`)
 - If `rules.docs.enabled` is false, skip.
@@ -57,20 +57,20 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - If `rules.docs.sync_strategy: main-only`: do **not** touch the wiki here on a
   feature branch — note in DONE.md that the wiki is refreshed on `main`.
 
-#### Project memory (`.agents/memory/`)
+#### Project memory (`.agent-work/memory/`)
 - Required: yes. Persists **across tasks** (not per session) — sibling to
-  `.agents/sessions/`.
-- Write one distilled entry `.agents/memory/<Task-N-slug>.md` from
+  `.agent-work/sessions/`.
+- Write one distilled entry `.agent-work/memory/<Task-N-slug>.md` from
   `templates/MEMORY_ENTRY.template.md`, then add/refresh a one-line pointer in
-  `.agents/memory/INDEX.md` (seed it from `templates/MEMORY_INDEX.template.md`
+  `.agent-work/memory/INDEX.md` (seed it from `templates/MEMORY_INDEX.template.md`
   if missing; newest on top).
-- **80/20 rule (mandatory):** capture only the **vital few** — the ~20% of
-  knowledge (non-obvious decisions + why, gotchas, reusable conventions,
-  pointers) that will help ~80% of future work. It is **not** a changelog:
-  omit anything reconstructable from git, `DONE.md`, or the code. If nothing
-  durable was learned, still create the entry with `Outcome` filled and each
-  section `None.` — do not pad.
-- **De-duplicate:** before writing, scan `.agents/memory/INDEX.md`; if this
+- **Vital few (mandatory):** capture only knowledge that will change future
+  work — non-obvious decisions + why, gotchas, reusable conventions, pointers.
+  It is **not** a changelog: omit anything reconstructable from git, `DONE.md`,
+  or the code. If nothing durable was learned, still create the entry with
+  `Outcome` filled and each section `None.` — do not pad. Do not title the
+  entry or its sections `80/20`.
+- **De-duplicate:** before writing, scan `.agent-work/memory/INDEX.md`; if this
   supersedes or extends an existing entry, update that entry instead of adding
   a near-duplicate.
 
@@ -100,8 +100,13 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - [ ] PR_MESSAGE.md follows Conventional Commits format.
 - [ ] PR_DESCRIPTION.md answers: what changed, why, how verified, reviewer focus.
 - [ ] When TASKS.md exists, DONE summary reflects completed vs remaining task IDs honestly (use Progress board / Status / checkboxes; do not claim Done if open `todo`/`in_progress`/`blocked` IDs remain without documented blockers).
-- [ ] A `.agents/memory/<Task-N-slug>.md` entry exists and `.agents/memory/INDEX.md` has its pointer. The entry holds only the vital few (80/20), no changelog, no padding, and does not duplicate an existing entry.
+- [ ] A `.agent-work/memory/<Task-N-slug>.md` entry exists and `.agent-work/memory/INDEX.md` has its pointer. The entry holds only the vital few, no changelog, no padding, and does not duplicate an existing entry.
 - [ ] `python .agents/tools/session/validate_artifacts.py` exits 0 and `session.sh status` prints `COMPLETE: yes` before marking Done.
+
+- [ ] First-pass readable: concrete names (paths/APIs/IDs); no abstract filler.
+- [ ] No leftover `_(TODO)_` or placeholder Mermaid in finished sections.
+- [ ] Spec/review findings state finding + evidence + verdict (not essays).
+
 
 ## WRONG vs CORRECT
 

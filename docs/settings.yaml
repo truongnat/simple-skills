@@ -1,98 +1,41 @@
-# Project-level agent settings. Edit and keep this file in your project.
-# Agents MUST read this at the start of every task.
+# Project agent settings — keep this file small.
+# Agents re-read it at the start of every task.
+#
+# Only set what you need to change. Everything else uses fixed defaults in
+# `.agents/AGENT_POLICY.md` (decisions, visuals, report style, code comments).
 
-# Language for agent communication AND the prose written into saved artifacts.
-# Supported values:
-#   en  English (default)
-#   vi  Vietnamese
-# Code, identifiers, file paths, CLI commands, and template section keys stay
-# unchanged regardless of this value.
+# Reply + artifact prose language. Code/paths/commands stay as-is.
+#   en | vi
 language: en
 
-# Generated/maintained by the init skill from confirmed project evidence.
-# Descriptive project facts belong in PRJ_REFERENCE.md, not here.
 project:
   reference: .agents/PRJ_REFERENCE.md
 
 rules:
-  decisions:
-    # Applies to brainstorming, business-analysis, and planning.
-    # Step files remain authoritative; these values make the shared policy
-    # explicit for hosts and tooling.
-    stop_on:
-      - critical-unresolved
-      - blocking-unknown
-      - feasibility-fail-or-unknown
-      - correctness-fail-or-unknown
-      - blocking-capability-gap
-    require_sequential_step_ledger: true
-    require_spec_quality_before_downstream_work: true
-    max_blocking_questions_per_round: 3
-  visuals:
-    triage: required
-    html: ask-before-create
-    prefer_diagram_for_flows: true
+  # Branching before any code change (IMPORTANT).
+  #   direct    — work/commit on base/main
+  #   checkout  — create/checkout a work branch first (safer default)
   branch:
-    # IMPORTANT — enforced branching policy. Agents MUST obey before any code change.
-    #   direct    Solo developer: work and commit directly on the base/main branch.
-    #   checkout  Feature-branch required: create/checkout a work branch off base
-    #             before editing any file; never commit code on the base branch.
     mode: checkout
-    base: ""      # base/main branch name (e.g. main). Empty = detect from repo.
-    naming: ""    # branch-name convention for `checkout` mode (e.g. feat/<slug>).
-  commit:
-    convention: ""
-    format: ""
-  pull_request:
-    title_format: ""
-    description_sections: []
-    required_checks: []
+    base: ""       # empty = detect (e.g. main)
+    naming: ""     # e.g. feat/<slug>
+
+  # Lifecycle report files: markdown (default) | html
   reports:
-    # User-facing lifecycle artifact format.
-    # Supported: markdown (default) | html
-    # HTML uses one enterprise theme (Tailwind CDN) — see DESIGN_SYSTEM.md
     output_format: markdown
-    style: 80-20
-    # 80/20 executive summary sits at the TOP of every report so readers get
-    # the important 20% without reading the detail.
-    # 5W1H is an on-demand diagnostic METHOD for hard/ambiguous problems or
-    # unclear/incorrect features — never a default report section.
-    context: 5w1h-on-hard-or-unclear
-    executive_summary_max_items: 5
-    overview: required
-    charts: mermaid-when-useful
-    session_overview: required
-    custom_sections: []
+
+  # Project wiki (`docs` skill). Set enabled: false to skip.
   docs:
-    # Wiki-style project documentation maintained by the `docs` skill.
-    #   full  writes the whole wiki in one pass
-    #   sync  updates only the pages affected by a code change
     enabled: true
-    location: .agents/wiki      # where the wiki tree lives
-    # Output format — each organizes content differently (see the `docs` skill):
-    #   markdown  multi-file page tree with cross-links (the source of truth)
-    #   html      linked .html pages + shared styles.css (enterprise theme)
-    #   docx      one Word document with headings + TOC (built via the docx skill)
-    #   xlsx      workbook of sheets/rows (built via the xlsx skill)
-    format: markdown
-    # How the wiki is kept in step with code:
-    #   main-only    Wiki is created/updated ONLY on the base/main branch;
-    #                feature branches never touch it (docs land when merged).
-    #   with-commit  `done` syncs the affected pages and includes them in the
-    #                SAME commit as the task, so docs travel through the PR.
-    sync_strategy: with-commit
-  code:
-    comments:
-      # Full standard (per-language doc comments, flow docs, markers, examples):
-      standard: .agents/CODE_COMMENTS.md
-      # Doc comments on exported/public symbols: public-api | all | off
-      doc_comments: public-api
-      # Numbered flow blocks for logic: non-obvious | complex-only | off
-      flow_comments: non-obvious
-      non_obvious_flow: required
-      rationale_and_constraints: required
-      obvious_code_narration: avoid
-      # Standardized, owned markers the reviewer enforces.
-      markers: [TODO, FIXME, NOTE, HACK, SECURITY, PERF]
-      # Optional per-language override, e.g. python: numpy | google
-      language_style: {}
+    location: .agents/wiki
+    format: markdown          # markdown | html | docx | xlsx
+    sync_strategy: with-commit  # with-commit | main-only
+
+  # Optional — fill when the repo has a convention (init can merge these):
+  # commit:
+  #   convention: ""
+  #   format: ""
+  # pull_request:
+  #   title_format: ""
+  #   description_sections: []
+  #   required_checks: []

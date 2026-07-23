@@ -141,6 +141,21 @@ try {
     Copy-Item -Path (Join-Path $Source "docs/THIRD_PARTY_SKILLS.md") -Destination ".agents/THIRD_PARTY_SKILLS.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/SKILL_PREAMBLE.md") -Destination ".agents/SKILL_PREAMBLE.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/AGENT_POLICY.md") -Destination ".agents/AGENT_POLICY.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/AGENT_WORK.md") -Destination ".agents/AGENT_WORK.md" -Force
+
+    $gitignorePath = Join-Path $Target.Path ".gitignore"
+    $marker = ".agent-work/"
+    if ((Test-Path $gitignorePath -PathType Leaf) -and
+        (Select-String -Path $gitignorePath -Pattern '^\.agent-work/$' -Quiet)) {
+        Write-Host "Keeping existing .gitignore entry for .agent-work/."
+    } elseif (Test-Path $gitignorePath -PathType Leaf) {
+        Add-Content -Path $gitignorePath -Value "`n# Simple Skills — Work layer (sessions + memory; nested git)`n$marker"
+        Write-Host "Appended .agent-work/ to existing .gitignore."
+    } else {
+        Copy-Item -Path (Join-Path $Source "docs/gitignore.agent-work.snippet") `
+            -Destination $gitignorePath -Force
+        Write-Host "Created .gitignore with .agent-work/ ignore rule."
+    }
 
     $toolsSource = Join-Path $Source "tools"
     if (Test-Path $toolsSource -PathType Container) {

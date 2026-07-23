@@ -10,9 +10,12 @@ description: >-
 
 ## Shared preamble (do this first)
 
-Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Memory) before
-Purpose, Contract, or steps. Do not skip it; do not reuse a cached `language`
-from earlier in the session. Source copy in this repo: `docs/SKILL_PREAMBLE.md`.
+Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Work layout +
+Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
+steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
+understands on first pass — concrete paths/IDs, no filler, no method branding.
+Artifacts go under `.agent-work/` (sessions + memory), not `.agents/`.
+Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
 
 ## Purpose
 
@@ -62,7 +65,7 @@ This skill is a **hard contract**. Obey it before any other action.
 | Field | Requirement |
 |-------|-------------|
 | Inputs | Initial request, repo context, existing documents, constraints, current behavior, desired outcome, stakeholder feedback if available. |
-| Outputs | Session `DISCUSSION.md` seeded from template, with issue/visual triage and clarification decisions; session `OVERVIEW.md`; optional `VISUAL_DECISION.html`. |
+| Outputs | Session `DISCUSSION.md` seeded from template, with issue/visual triage and clarification decisions; optional `VISUAL_DECISION.html`. |
 | Safety | Do NOT implement code. Do NOT skip steps. Stop and ask before continuing when Critical issues, blocking unknowns, or blocking Spec quality findings are unresolved. Do NOT treat specs/assumptions as automatically correct or feasible. Do NOT create PLAN/TASKS or detailed design before a clear recommendation. Do NOT hide blocking unknowns or omitted feature capabilities. HTML must include Tailwind + anime.js CDN tags for static viewing, stay accessible, avoid sensitive data, and be created only after user confirmation (unless explicitly requested). Choice logging still requires session-serve. |
 
 ### Required artifact
@@ -75,9 +78,6 @@ clarification_checkpoint, spec_quality_review (feasibility, correctness,
 capability_recommendations), visual_triage, scope_in, scope_out, non_goals,
 options_considered, recommendation, risks, handoff.
 
-#### `OVERVIEW.md`
-- Required: yes after session seed.
-- Developer landing page: status, progress chart, open decisions, next action.
 
 #### `VISUAL_DECISION.html`
 - Required: no.
@@ -116,9 +116,24 @@ options_considered, recommendation, risks, handoff.
 
 **Do NOT use when:** tiny clear fix, already have DISCUSSION and user wants execution, pure debug/review, needs BA/design/research as the primary skill.
 
-## Lite Mode
+## Lite Mode / Quick path
 
-Still run **all five steps**. Keep sections short; options may be 1–2 rows.
+**Quick** (tiny clear fix): user may skip this skill and go to planning with a
+short goal, or produce a minimal DISCUSSION (Goal + Facts + Recommendation +
+Handoff) without Spec quality matrices. Record `Path: Quick` in Developer overview.
+
+**Lite:** still run **all five steps**. Keep sections short; options may be 1–2
+rows; Spec quality can be one concrete finding per table.
+
+**Full:** default when product/architecture is unclear.
+
+### Facilitation (BMAD-inspired)
+
+- **Diverge then converge:** do not lock Recommendation while still gathering
+  facts/options. Step-03 = diverge (scope/options); step-04 = converge.
+- **One focused question per chat message** while clarifying (exception: up to
+  three independent blockers in one round). No multi-choice walls that invite
+  lazy picking.
 
 ## Quality Standards
 
@@ -132,6 +147,11 @@ Still run **all five steps**. Keep sections short; options may be 1–2 rows.
 - [ ] Options matrix used; recommendation has reason + confidence.
 - [ ] Handoff names one next skill.
 - [ ] `DISCUSSION.md` on disk; step-05 passed.
+
+- [ ] First-pass readable: concrete names (paths/APIs/IDs); no abstract filler.
+- [ ] No leftover `_(TODO)_` or placeholder Mermaid in finished sections.
+- [ ] Spec/review findings state finding + evidence + verdict (not essays).
+
 
 ## Limitations
 

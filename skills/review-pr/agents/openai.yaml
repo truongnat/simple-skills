@@ -9,7 +9,7 @@ workflow:
   - "Step 2: choose review mode — remote-diff (default), worktree (needs tests/full source), or current-branch (head already checked out and clean)."
   - "Step 3: get diff with three-dot scope: git diff --find-renames base...head (or HEAD inside a detached worktree)."
   - "Step 4: verification — remote-diff relies on CI (mark local runtime skipped); worktree/current-branch run project test/build and separate pre-existing failures."
-  - "Step 5: write REVIEW_PR.md under .agents/sessions/<task>/, safely remove a clean worktree without --force, confirm current branch/tree unchanged."
+  - "Step 5: write REVIEW_PR.md under .agent-work/sessions/<task>/, safely remove a clean worktree without --force, confirm current branch/tree unchanged."
 artifacts:
   REVIEW_PR.md:
     required: true

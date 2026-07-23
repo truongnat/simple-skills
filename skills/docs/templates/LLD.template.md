@@ -9,7 +9,7 @@
 - **Source design:** _(DETAIL_DESIGN.md path, or code evidence)_
 - **Traces:** _(SRS FR/NFR IDs, HLD components)_
 
-## Overview (80/20)
+## Overview
 - _(what this module does; key contracts and data)_
 
 ## Interface contracts

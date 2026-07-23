@@ -1,8 +1,10 @@
 # Tasks
 
 > Filled by planning step-03. **Work inventory first**, then micro-task cards.
-> **Implement feature code before automated tests.** Do not leave template placeholders.
-> **Progress:** planning seeds Status=`todo` and unchecked boxes; **execution** updates them as work completes.
+> Each card is a **self-contained context package** for execution (BMAD-inspired):
+> extract Dev context with `[Source: …]` cites — do **not** invent tech details.
+> **Implement feature code before automated tests.** Delete unused placeholders.
+> **Progress:** planning seeds Status=`todo`; **execution** updates as work completes.
 
 plan_ref: PLAN.md
 
@@ -66,13 +68,24 @@ T-001 → T-002 → _(extend)_
 - Work items:
   - [ ] 1. _(concrete step: symbol / field / behavior)_
   - [ ] 2. _(concrete step)_
-- Description: _(1–2 lines summary of the card; details live in Work items)_
+- Description: _(1–2 lines; details live in Work items + Dev context)_
 - AC: _(observable outcome — not “works” / “per spec”)_
 - Verify: _(command, request, or UI check for this card only)_
-- Flow/comment notes: _(where rationale comments are required for non-obvious
-  flow/business rules/security boundaries, or N/A with reason)_
+- Flow/comment notes: _(where rationale comments are required, or N/A + reason)_
 - Files/scope: _(concrete path or create `…/File.ext`)_ (confidence: known | inferred | unknown)
 - Out of scope for this card: _(what the next cards own)_
+
+#### Dev context (mandatory — execution reads this first)
+
+<!-- Extract ONLY from DISCUSSION / BA / design / PLAN / repo. Never invent.
+Every bullet that states a tech fact must end with `[Source: path#§ or heading]`.
+If a category has no guidance in sources, write exactly: `No specific guidance found.` -->
+
+- **Reuse / do not reinvent:** _(existing symbols, helpers, patterns to extend — or `No specific guidance found.`)_
+- **Contracts / data:** _(fields, endpoints, types relevant to THIS card — cited)_
+- **Constraints:** _(auth, limits, ordering, NFR that bind this card — or none cited)_
+- **Guardrails:** _(wrong libs/paths/patterns to avoid — or `No specific guidance found.`)_
+- **Gaps:** _(missing source detail; mark inferred vs unknown — do not invent fills)_
 
 ### T-002: _(short title)_
 
@@ -88,6 +101,14 @@ T-001 → T-002 → _(extend)_
 - Flow/comment notes: _(…)_
 - Files/scope: _(…)_ (confidence: known | inferred | unknown)
 - Out of scope for this card: _(…)_
+
+#### Dev context (mandatory — execution reads this first)
+
+- **Reuse / do not reinvent:** _(…)_
+- **Contracts / data:** _(…)_
+- **Constraints:** _(…)_
+- **Guardrails:** _(…)_
+- **Gaps:** _(…)_
 
 <!-- Duplicate ### T-00x as needed. Map ~1 inventory row → 1 card. -->
 <!-- Delete unused placeholders. Put automated tests AFTER implement cards. -->

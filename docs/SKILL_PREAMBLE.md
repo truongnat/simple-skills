@@ -15,6 +15,10 @@ earlier in this session. Write every saved artifact and reply in that `language`
 keys unchanged. If the user just edited settings, the freshly read value wins. A
 direct instruction in the current user request overrides the file.
 
+**Domain terms:** keep original product/spec identifiers (JP screen names, field
+IDs, API paths) as-is. Do **not** invent bilingual ceremony or translate every
+label into the prose language — explain in `language`, cite domain terms raw.
+
 ## Work layout (mandatory)
 
 Simple Skills splits **Kit** and **Work**:

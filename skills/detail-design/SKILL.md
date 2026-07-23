@@ -50,7 +50,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 |-------|-------------|
 | Inputs | BASIC_DESIGN.md (required); DISCUSSION.md and business-analysis notes for AC/BR traceability when available. |
 | Outputs | DETAIL_DESIGN.md with goal, applicable contracts/models/sequences/rules/operations, optional client mapping and persistence, errors/states, gaps, assumptions, handoff to planning. Omit unused sections. |
-| Safety | Do NOT implement code. Do NOT expand scope beyond BASIC_DESIGN.md. Do NOT invent fields or joins as facts — mark inferred. Do NOT force UI-only or domain-specific sections. Do NOT create PLAN.md, task IDs, DoD, or rollback. |
+| Safety | Do NOT implement code. Do NOT expand scope beyond BASIC_DESIGN.md. Do NOT invent fields or joins as facts — mark inferred. Do NOT force UI-only or domain-specific sections. Do NOT create PLAN.md, task IDs, DoD, or rollback. If Path=`Quick`, **stop** and use `quick-fix` (or upgrade Path). |
 
 ### Required artifacts
 

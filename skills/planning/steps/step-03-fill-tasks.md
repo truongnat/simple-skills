@@ -157,12 +157,16 @@ Every kept `### T-00x` card **FAILS** unless **all** hold:
 5. Set `## Execution order` to the full ID chain.
 6. Update **PLAN.md Task index** to the same IDs + short titles (still no card bodies in PLAN).
 7. Set Step ledger 03 = `done` (or `blocked` if stopped for questions).
+8. Build compact handoff pack:
+   `python .agents/tools/session/build_context.py`
+   (writes `CONTEXT.md` for execution).
 
 ## Done when
 
 - [ ] Work inventory table is filled and passes the count/split checks in §A.
 - [ ] Every Execution-order ID has a card; every card passes §B size + §C specificity.
 - [ ] Every card has `#### Dev context` with Source cites or explicit `No specific guidance found.`
+- [ ] `CONTEXT.md` exists (from `build_context.py`).
 - [ ] Progress board rows match card IDs/titles; all Status=`todo` and Done unchecked.
 - [ ] PLAN Task index matches TASKS (no orphan IDs).
 - [ ] Spec quality review still present on PLAN; not skipped (Full Mode).

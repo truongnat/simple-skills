@@ -142,6 +142,15 @@ try {
     Copy-Item -Path (Join-Path $Source "docs/SKILL_PREAMBLE.md") -Destination ".agents/SKILL_PREAMBLE.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/AGENT_POLICY.md") -Destination ".agents/AGENT_POLICY.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/AGENT_WORK.md") -Destination ".agents/AGENT_WORK.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/START_HERE.md") -Destination ".agents/START_HERE.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/WHAT_NEXT.md") -Destination ".agents/WHAT_NEXT.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/MIGRATION.md") -Destination ".agents/MIGRATION.md" -Force
+    $examplesSource = Join-Path $Source "docs/examples"
+    if (Test-Path $examplesSource -PathType Container) {
+        $examplesDest = Join-Path ".agents" "examples"
+        if (Test-Path $examplesDest) { Remove-Item -Path $examplesDest -Recurse -Force }
+        Copy-Item -Path $examplesSource -Destination $examplesDest -Recurse -Force
+    }
 
     $gitignorePath = Join-Path $Target.Path ".gitignore"
     $marker = ".agent-work/"

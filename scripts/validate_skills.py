@@ -405,6 +405,38 @@ def main() -> int:
     ).read_text(encoding="utf-8"):
         errors.append("SKILL_PREAMBLE.md missing Scale (Quick / Lite / Full)")
 
+    if not (ROOT / "docs" / "START_HERE.md").is_file():
+        errors.append("docs/START_HERE.md missing")
+    if not (ROOT / "docs" / "WHAT_NEXT.md").is_file():
+        errors.append("docs/WHAT_NEXT.md missing")
+    if not (ROOT / "docs" / "MIGRATION.md").is_file():
+        errors.append("docs/MIGRATION.md missing")
+    if not (ROOT / "docs" / "examples" / "README.md").is_file():
+        errors.append("docs/examples/README.md missing")
+    for tool in ("lint_artifacts.py", "build_context.py"):
+        if not (ROOT / "tools" / "session" / tool).is_file():
+            errors.append(f"tools/session/{tool} missing")
+    if "quick-fix" not in json.dumps(
+        json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    ):
+        errors.append("first-party-skills.json missing quick-fix")
+    if "START_HERE.md" not in (ROOT / "docs" / "AGENTS.md").read_text(encoding="utf-8"):
+        errors.append("docs/AGENTS.md must point at START_HERE.md")
+    if "Domain terms" not in (ROOT / "docs" / "SKILL_PREAMBLE.md").read_text(
+        encoding="utf-8"
+    ):
+        errors.append("SKILL_PREAMBLE.md missing Domain terms language rule")
+    if "Who commits what" not in (ROOT / "docs" / "AGENT_WORK.md").read_text(
+        encoding="utf-8"
+    ):
+        errors.append("AGENT_WORK.md missing ownership / Who commits what")
+    if "cmd_doctor" not in (ROOT / "tools" / "session" / "session.sh").read_text(
+        encoding="utf-8"
+    ):
+        errors.append("session.sh missing doctor command")
+    if "START_HERE.md" not in (ROOT / "install.sh").read_text(encoding="utf-8"):
+        errors.append("install.sh must copy START_HERE.md")
+
     agents = (ROOT / "docs" / "AGENTS.md").read_text(encoding="utf-8")
     policy_path = ROOT / "docs" / "AGENT_POLICY.md"
     policy = policy_path.read_text(encoding="utf-8") if policy_path.is_file() else ""

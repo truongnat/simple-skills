@@ -28,7 +28,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 |-------|-------------|
 | Inputs | Diff/file changes, PLAN.md, TASKS.md when present, EXECUTION.md, test/check results, verification evidence, scope/context. |
 | Outputs | REVIEW.md with scope reviewed, findings, testing gaps, residual risks, recommendation, handoff. |
-| Safety | Do NOT auto-fix code if user only requested review. Do NOT create findings without evidence. Do NOT claim safe if verification is missing. Do NOT ignore security/data risks when changes touch input, auth, permission, secrets, files, network, DB, or infra. Do NOT recommend Ready / Ready with risks while `python .agents/tools/session/validate_artifacts.py` fails on the active session. |
+| Safety | Do NOT auto-fix code if user only requested review. Do NOT create findings without evidence. Do NOT claim safe if verification is missing. Do NOT ignore security/data risks when changes touch input, auth, permission, secrets, files, network, DB, or infra. Do NOT recommend Ready / Ready with risks while `validate_artifacts.py` or `lint_artifacts.py` fails on the active session. |
 
 ### Required artifacts
 
@@ -66,6 +66,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - [ ] Recommendation uses one of: Ready / Ready with risks / Needs fix / Blocked / Needs more verification.
 - [ ] When TASKS.md exists, check unfinished or unverified task IDs against EXECUTION evidence (Progress board Status / Done / Work item checkboxes must match claimed completion).
 - [ ] `python .agents/tools/session/validate_artifacts.py` exits 0 for the active session before Ready / Ready with risks.
+- [ ] `python .agents/tools/session/lint_artifacts.py` exits 0 (fix leftover TODOs / missing Dev context / Quick violations).
 
 - [ ] First-pass readable: concrete names (paths/APIs/IDs); no abstract filler.
 - [ ] No leftover `_(TODO)_` or placeholder Mermaid in finished sections.

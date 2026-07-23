@@ -58,10 +58,26 @@ stays in the nested git under `.agent-work/`, not in the product root.
 Track kit selectively if you want (for example commit `.agents/settings.yaml`
 and `PRJ_REFERENCE.md`); leave Work out of the product history.
 
+### Who commits what (trust / ownership)
+
+| Tree | Commit where? | Who |
+| --- | --- | --- |
+| Product source | Host root git | Humans / normal PR flow |
+| `.agents/settings.yaml`, `PRJ_REFERENCE.md` (optional) | Host root git | Team (shared conventions) |
+| `.agents/skills`, tools, policy | Usually **not** committed — reinstall from kit | Installer |
+| `.agent-work/sessions`, `memory` | **Nested** git inside `.agent-work/` only | Agents / you locally; not product PRs |
+
+**Do not** force-add `.agent-work/` into the product repo. To keep Work history:
+`cd .agent-work && git status|commit|branch` as needed. Losing the host clone
+without the nested `.agent-work/.git` loses session history — back up Work if
+it matters. Run `session.sh doctor` after install to verify ignore + nested git.
+
 ### Commands
 
 ```bash
-bash .agents/tools/session/session.sh work-root   # ensure .agent-work + nested git
+bash .agents/tools/session/session.sh help
+bash .agents/tools/session/session.sh doctor
+bash .agents/tools/session/session.sh work-root
 bash .agents/tools/session/session.sh new <slug>
 bash .agents/tools/session/session.sh current
 bash .agents/tools/session/session.sh status

@@ -57,7 +57,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 |-------|-------------|
 | Inputs | User request, business context, existing requirements, data samples (Excel, CSV, SQL, JSON, API response), screenshots or demo recordings, stakeholder feedback. |
 | Outputs | Session `BUSINESS_ANALYSIS.md` seeded from template and filled via steps/, including Spec quality review and Step ledger. |
-| Safety | Do NOT treat assumptions as requirements. Do NOT accept specs as automatically correct or feasible. Do NOT decide for stakeholders. Do NOT write vague or untestable acceptance criteria. Do NOT omit capability gaps a feature of this type should normally have. Do NOT produce technical architecture — hand off to basic-design. Do NOT skip Spec quality review. |
+| Safety | Do NOT treat assumptions as requirements. Do NOT accept specs as automatically correct or feasible. Do NOT decide for stakeholders. Do NOT write vague or untestable acceptance criteria. Do NOT omit capability gaps a feature of this type should normally have. Do NOT produce technical architecture — hand off to basic-design. Do NOT skip Spec quality review. If Path=`Quick`, **stop** and use `quick-fix` (or upgrade Path). |
 
 ### Required artifacts
 

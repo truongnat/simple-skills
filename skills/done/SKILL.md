@@ -28,7 +28,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 |-------|-------------|
 | Inputs | PLAN.md, TASKS.md when present, EXECUTION.md, REVIEW.md, diff/file changes, verification evidence, skipped checks, blockers, risks, PR/MR template, existing `.agent-work/memory/INDEX.md`. |
 | Outputs | DONE.md, a distilled `.agent-work/memory/<Task-N-slug>.md` + updated `.agent-work/memory/INDEX.md`, PR_MESSAGE.md, PR_DESCRIPTION.md, optional RELEASE_NOTE.md. |
-| Safety | Do NOT overclaim verification. Do NOT hide skipped/failed checks. Do NOT mark complete if blockers remain. Do NOT describe changes that were not made. Do NOT put secrets into final artifacts. Do NOT mark Done while `session.sh status` is `COMPLETE: no` or while `python .agents/tools/session/validate_artifacts.py` fails. |
+| Safety | Do NOT overclaim verification. Do NOT hide skipped/failed checks. Do NOT mark complete if blockers remain. Do NOT describe changes that were not made. Do NOT put secrets into final artifacts. Do NOT mark Done while `session.sh status` is `COMPLETE: no` or while `validate_artifacts.py` / `lint_artifacts.py` fails. |
 
 ### Required artifacts
 
@@ -101,7 +101,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - [ ] PR_DESCRIPTION.md answers: what changed, why, how verified, reviewer focus.
 - [ ] When TASKS.md exists, DONE summary reflects completed vs remaining task IDs honestly (use Progress board / Status / checkboxes; do not claim Done if open `todo`/`in_progress`/`blocked` IDs remain without documented blockers).
 - [ ] A `.agent-work/memory/<Task-N-slug>.md` entry exists and `.agent-work/memory/INDEX.md` has its pointer. The entry holds only the vital few, no changelog, no padding, and does not duplicate an existing entry.
-- [ ] `python .agents/tools/session/validate_artifacts.py` exits 0 and `session.sh status` prints `COMPLETE: yes` before marking Done.
+- [ ] `python .agents/tools/session/validate_artifacts.py` and `lint_artifacts.py` exit 0; `session.sh status` prints `COMPLETE: yes` before marking Done.
 
 - [ ] First-pass readable: concrete names (paths/APIs/IDs); no abstract filler.
 - [ ] No leftover `_(TODO)_` or placeholder Mermaid in finished sections.

@@ -282,7 +282,7 @@ Do not run Full ceremony on tiny work.
 
 | Path | When | Flow |
 | --- | --- | --- |
-| **Quick** | Single clear fix/change; scope fits ≤3 TASK cards; no open product decisions | Skip BA + basic/detail design + Spec quality matrices. Short DISCUSSION (goal + facts + recommendation) **or** go straight to slim PLAN+TASKS → sync → execution → review → done. |
+| **Quick** | Single clear fix/change; scope fits ≤3 TASK cards; no open product decisions | Skill **`quick-fix`** → sync → execution → review → done. Skip BA + basic/detail design + Spec quality matrices. Lint fails if BA/design files appear. |
 | **Lite** | Small feature; some unknowns but not enterprise design | Brainstorming Lite (still steps, short sections) → optional skip BA/design → planning Lite → sync → execution → … |
 | **Full** | Multi-surface, unclear product, contracts/architecture needed | Full lifecycle: brainstorming → (BA) → design → planning → sync → execution → review → done |
 

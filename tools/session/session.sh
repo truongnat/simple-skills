@@ -14,6 +14,8 @@
 #
 # Usage (run from the repo root, or any subdir — walks up to find .agents or
 # .agent-work):
+#   session.sh help                 Show commands + related tools
+#   session.sh doctor               Check Work layout / gitignore / tools
 #   session.sh current              Print the active session dir (exit 1 if unset)
 #   session.sh set <dir|slug>       Point .current at an existing session dir
 #   session.sh new <slug>           Create .agent-work/sessions/Task-N-<slug>, set current
@@ -177,12 +179,78 @@ cmd_status() {
   ' "$tasks"
 }
 
+cmd_help() {
+  cat <<'EOF'
+Simple Skills — session helper
+
+  session.sh help                 This text
+  session.sh doctor               Check Work layout + pointer + tools
+  session.sh work-root            Ensure .agent-work (+ nested git)
+  session.sh new <slug>           Create Task-N-<slug> and set current
+  session.sh set <dir|slug>       Point .current at an existing session
+  session.sh current              Print active session path
+  session.sh status [dir]         Progress from TASKS.md (source of truth)
+
+Related (from repo / host root):
+  python .agents/tools/session/validate_artifacts.py
+  python .agents/tools/session/lint_artifacts.py
+  python .agents/tools/session/build_context.py
+
+Docs: .agents/START_HERE.md · .agents/WHAT_NEXT.md · .agents/MIGRATION.md
+EOF
+}
+
+cmd_doctor() {
+  ensure_work
+  printf 'DOCTOR root=%s\n' "$ROOT"
+  printf 'work=%s\n' "$WORK_DIR"
+  if [ -d "$WORK_DIR/.git" ]; then
+    printf 'nested_git=yes\n'
+  else
+    printf 'nested_git=no (run work-root / new to init)\n'
+  fi
+  if [ -f "$POINTER" ]; then
+    rel="$(head -n1 "$POINTER" | tr -d '\r\n')"
+    printf 'current=%s\n' "$rel"
+    if [ -d "$ROOT/$rel" ]; then
+      printf 'current_exists=yes\n'
+    else
+      printf 'current_exists=NO\n'
+    fi
+  else
+    printf 'current=(unset)\n'
+  fi
+  gi="$ROOT/.gitignore"
+  if [ -f "$gi" ] && grep -Fqx -- '.agent-work/' "$gi"; then
+    printf 'gitignore_agent_work=yes\n'
+  else
+    printf 'gitignore_agent_work=MISSING — product git may track Work\n'
+  fi
+  for f in START_HERE.md WHAT_NEXT.md SKILL_PREAMBLE.md AGENT_POLICY.md; do
+    if [ -f "$ROOT/.agents/$f" ] || [ -f "$ROOT/docs/$f" ]; then
+      printf 'doc_%s=yes\n' "$f"
+    else
+      printf 'doc_%s=missing\n' "$f"
+    fi
+  done
+  for t in validate_artifacts.py lint_artifacts.py build_context.py; do
+    if [ -f "$ROOT/.agents/tools/session/$t" ] || [ -f "$ROOT/tools/session/$t" ]; then
+      printf 'tool_%s=yes\n' "$t"
+    else
+      printf 'tool_%s=missing\n' "$t"
+    fi
+  done
+  printf 'DOCTOR_DONE\n'
+}
+
 sub="${1:-}"; shift || true
 case "$sub" in
+  help|"" )  cmd_help "$@" ;;
+  doctor)    cmd_doctor "$@" ;;
   current)   cmd_current "$@" ;;
   set)       cmd_set "$@" ;;
   new)       cmd_new "$@" ;;
   status)    cmd_status "$@" ;;
   work-root) cmd_work_root "$@" ;;
-  *) die "Usage: session.sh {current|set <dir>|new <slug>|status [dir]|work-root}" ;;
+  *) die "Usage: session.sh {help|doctor|current|set <dir>|new <slug>|status [dir]|work-root}" ;;
 esac

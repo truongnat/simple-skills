@@ -40,6 +40,7 @@
   "skills": [
     {"name": "init", "kind": "workflow"},
     {"name": "scaffold", "kind": "workflow"},
+    {"name": "quick-fix", "kind": "workflow"},
     {"name": "brainstorming", "kind": "workflow"},
     {"name": "business-analysis", "kind": "workflow"},
     {"name": "basic-design", "kind": "workflow"},
@@ -63,6 +64,7 @@
   "preamble_required_for": [
     "init",
     "scaffold",
+    "quick-fix",
     "brainstorming",
     "business-analysis",
     "basic-design",

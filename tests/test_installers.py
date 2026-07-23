@@ -19,6 +19,9 @@ INSTALLER_DOCS = (
     "SKILL_PREAMBLE.md",
     "AGENT_POLICY.md",
     "AGENT_WORK.md",
+    "START_HERE.md",
+    "WHAT_NEXT.md",
+    "MIGRATION.md",
     "settings.yaml",
 )
 
@@ -43,6 +46,9 @@ def make_source(tmp_path: Path) -> Path:
     (docs / "SKILL_PREAMBLE.md").write_text("preamble\n", encoding="utf-8")
     (docs / "AGENT_POLICY.md").write_text("policy\n", encoding="utf-8")
     (docs / "AGENT_WORK.md").write_text("work layout\n", encoding="utf-8")
+    (docs / "START_HERE.md").write_text("start\n", encoding="utf-8")
+    (docs / "WHAT_NEXT.md").write_text("what next\n", encoding="utf-8")
+    (docs / "MIGRATION.md").write_text("migration\n", encoding="utf-8")
     (docs / "gitignore.agent-work.snippet").write_text(
         "# snippet\n.agent-work/\n", encoding="utf-8"
     )
@@ -157,6 +163,9 @@ def test_agents_created_at_project_root(tmp_path: Path) -> None:
     assert (root / ".agents" / "SKILL_PREAMBLE.md").read_text(encoding="utf-8") == "preamble\n"
     assert (root / ".agents" / "AGENT_POLICY.md").read_text(encoding="utf-8") == "policy\n"
     assert (root / ".agents" / "AGENT_WORK.md").read_text(encoding="utf-8") == "work layout\n"
+    assert (root / ".agents" / "START_HERE.md").read_text(encoding="utf-8") == "start\n"
+    assert (root / ".agents" / "WHAT_NEXT.md").read_text(encoding="utf-8") == "what next\n"
+    assert (root / ".agents" / "MIGRATION.md").read_text(encoding="utf-8") == "migration\n"
     assert ".agent-work/" in (root / ".gitignore").read_text(encoding="utf-8")
     assert (
         root / ".agents" / "tools" / "session" / "artifact-schemas.json"

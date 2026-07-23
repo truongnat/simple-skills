@@ -171,6 +171,13 @@ cp -f "${SOURCE}/docs/THIRD_PARTY_SKILLS.md" "${TARGET}/.agents/THIRD_PARTY_SKIL
 cp -f "${SOURCE}/docs/SKILL_PREAMBLE.md" "${TARGET}/.agents/SKILL_PREAMBLE.md"
 cp -f "${SOURCE}/docs/AGENT_POLICY.md" "${TARGET}/.agents/AGENT_POLICY.md"
 cp -f "${SOURCE}/docs/AGENT_WORK.md" "${TARGET}/.agents/AGENT_WORK.md"
+cp -f "${SOURCE}/docs/START_HERE.md" "${TARGET}/.agents/START_HERE.md"
+cp -f "${SOURCE}/docs/WHAT_NEXT.md" "${TARGET}/.agents/WHAT_NEXT.md"
+cp -f "${SOURCE}/docs/MIGRATION.md" "${TARGET}/.agents/MIGRATION.md"
+if [ -d "${SOURCE}/docs/examples" ]; then
+  rm -rf "${TARGET}/.agents/examples"
+  cp -R "${SOURCE}/docs/examples" "${TARGET}/.agents/examples"
+fi
 
 # Ensure host product .gitignore ignores .agent-work/ (nested Work git).
 ensure_agent_work_gitignore() {

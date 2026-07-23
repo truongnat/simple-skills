@@ -5,79 +5,58 @@ Skills + rules for AI agents: think → design → plan → execute → review �
 - **Kit** `.agents/` — skills, tools, settings (installer)
 - **Work** `.agent-work/` — sessions + memory (nested git; auto-gitignored)
 
-Default install is lean (`core`). Details live in [docs/](docs/).
+Start with [docs/START_HERE.md](docs/START_HERE.md). Skill map: [docs/WHAT_NEXT.md](docs/WHAT_NEXT.md).
 
 ## Install
 
-**Linux / macOS**
-
 ```bash
+# Linux / macOS
 curl -fsSL https://raw.githubusercontent.com/truongnat/simple-skills/main/install.sh | bash
-```
 
-**Windows (PowerShell)**
-
-```powershell
+# Windows (PowerShell)
 irm https://raw.githubusercontent.com/truongnat/simple-skills/main/install.ps1 | iex
-```
 
-**From a clone**
-
-```bash
-./install.sh --agents-mode replace          # or: ./install.ps1 -AgentsMode replace
-./install.sh --profile office               # core + office
-./install.sh --profile all                  # everything
+# From clone
+./install.sh --agents-mode replace
+./install.sh --profile office          # core + office
+./install.sh --profile all
 ```
 
 Profiles: `core` (default) · `office` · `frontend` · `backend` · `all`  
-(combine with commas, e.g. `--profile office,frontend`)
-
-Then run the `init` skill once. Reinstall keeps an existing `settings.yaml`.
+Then run **`init`**. Reinstall keeps `settings.yaml`.
 
 ## After install
 
-1. Agents read `AGENTS.md` → `.agents/AGENT_POLICY.md` → `.agents/SKILL_PREAMBLE.md`
-2. Pick path: **Quick** (tiny fix) · **Lite** · **Full**
-3. Work in `.agent-work/sessions/<Task-N-slug>/` — no `OVERVIEW.md`
-
 ```bash
-bash .agents/tools/session/session.sh current
-bash .agents/tools/session/session.sh status
-python .agents/tools/session/validate_artifacts.py
+bash .agents/tools/session/session.sh help
+bash .agents/tools/session/session.sh doctor
 ```
 
-Lifecycle (Full): brainstorming → business-analysis → design → planning → sync → execution → review → done.  
-Step skills use a **Step ledger** and **Spec quality** gates before downstream work.  
-TASK cards need Dev context (`[Source: …]`); sync readiness is `PASS` / `CONCERNS` / `FAIL`.
+| Path | Skill |
+| --- | --- |
+| **Quick** (tiny fix) | `quick-fix` → sync → execution → review → done |
+| **Lite** / **Full** | brainstorming → (business-analysis) → design → planning → … |
+
+Step skills use a **Step ledger** and **Spec quality** gates (not on Quick).  
+Lint: `python .agents/tools/session/lint_artifacts.py`  
+Handoff pack: `python .agents/tools/session/build_context.py`
 
 ## Settings (keep small)
 
-Edit `.agents/settings.yaml` only for:
-
-- `language: en|vi`
-- `rules.branch.mode: checkout|direct`
-- `rules.reports.output_format: markdown|html`
-- `rules.docs.*`
-
-Everything else defaults in `AGENT_POLICY.md`.
-
-## Skills
-
-| Pack | What |
-| --- | --- |
-| `core` | Lifecycle: scaffold, init, brainstorming, business-analysis, design, planning, sync, execution, review, done, investigate, research, review-pr, tester, docs |
-| `office` | + xlsx, docx, pptx, pdf |
-| `frontend` / `backend` | + vendored SDLC skills ([THIRD_PARTY_SKILLS.md](docs/THIRD_PARTY_SKILLS.md)) |
+`language` · `rules.branch.mode` · `rules.reports.output_format` · `rules.docs.*`  
+Defaults in `AGENT_POLICY.md`.
 
 ## Docs
 
 | File | Role |
 | --- | --- |
-| [docs/AGENTS.md](docs/AGENTS.md) | Short entrypoint |
-| [docs/AGENT_POLICY.md](docs/AGENT_POLICY.md) | Full policy |
-| [docs/AGENT_WORK.md](docs/AGENT_WORK.md) | Kit vs Work |
-| [docs/SKILL_PREAMBLE.md](docs/SKILL_PREAMBLE.md) | Shared skill rules |
-| [docs/settings.yaml](docs/settings.yaml) | Settings template |
+| [START_HERE](docs/START_HERE.md) | 2-minute start |
+| [WHAT_NEXT](docs/WHAT_NEXT.md) | Situation → skill |
+| [AGENTS](docs/AGENTS.md) | Entrypoint |
+| [AGENT_POLICY](docs/AGENT_POLICY.md) | Full policy |
+| [AGENT_WORK](docs/AGENT_WORK.md) | Kit vs Work + git ownership |
+| [MIGRATION](docs/MIGRATION.md) | Host upgrade notes |
+| [examples](docs/examples/README.md) | Good/bad session shapes |
 
 ## Dev checks
 

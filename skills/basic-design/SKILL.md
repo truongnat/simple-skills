@@ -47,7 +47,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 |-------|-------------|
 | Inputs | DISCUSSION.md with clear recommendation; business-analysis notes if available; repo context or investigate findings when useful. |
 | Outputs | BASIC_DESIGN.md with goal, context, architecture overview, components, flows, data ownership, optional surfaces/data sources/interfaces/NFRs, open questions, handoff to detail-design. Omit sections that do not apply. |
-| Safety | Do NOT implement code. Do NOT invent file paths without inspecting the codebase. Do NOT write full contracts or field/query specs (detail-design). Do NOT re-litigate business rules — point to BA. Do NOT force domain-specific or UI-only sections. Do NOT create PLAN.md. |
+| Safety | Do NOT implement code. Do NOT invent file paths without inspecting the codebase. Do NOT write full contracts or field/query specs (detail-design). Do NOT re-litigate business rules — point to BA. Do NOT force domain-specific or UI-only sections. Do NOT create PLAN.md. If Path=`Quick`, **stop** and use `quick-fix` (or upgrade Path). |
 
 ### Required artifacts
 

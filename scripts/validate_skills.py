@@ -434,8 +434,26 @@ def main() -> int:
         encoding="utf-8"
     ):
         errors.append("session.sh missing doctor command")
-    if "START_HERE.md" not in (ROOT / "install.sh").read_text(encoding="utf-8"):
+    install_sh = (ROOT / "install.sh").read_text(encoding="utf-8")
+    if "START_HERE.md" not in install_sh:
         errors.append("install.sh must copy START_HERE.md")
+    if "cmd_uninstall" not in install_sh or "cmd_doctor" not in install_sh:
+        errors.append("install.sh must expose uninstall and doctor commands")
+    i_entry = ROOT / "i"
+    if not i_entry.is_file():
+        errors.append("short installer entrypoint 'i' missing")
+    else:
+        i_text = i_entry.read_text(encoding="utf-8")
+        if "install.sh" not in i_text:
+            errors.append("short entrypoint 'i' must delegate to install.sh")
+    install_ps1 = (ROOT / "install.ps1").read_text(encoding="utf-8")
+    if "Invoke-Uninstall" not in install_ps1 or "Invoke-Doctor" not in install_ps1:
+        errors.append("install.ps1 must expose uninstall and doctor commands")
+    pyproject = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
+    if 'sk = "simple_skills.cli:main"' not in pyproject:
+        errors.append("pyproject.toml must expose console script sk")
+    if not (ROOT / "src" / "simple_skills" / "cli.py").is_file():
+        errors.append("src/simple_skills/cli.py missing")
 
     agents = (ROOT / "docs" / "AGENTS.md").read_text(encoding="utf-8")
     policy_path = ROOT / "docs" / "AGENT_POLICY.md"

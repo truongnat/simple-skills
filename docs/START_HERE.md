@@ -4,7 +4,16 @@ Read this first. Everything else is optional until you need it.
 
 ## Install → first task
 
-1. Install (`core` profile is enough).
+1. Install the CLI once, then the kit:
+
+```bash
+pipx install simple-skills   # once (PyPI)
+sk install
+```
+
+Until PyPI: `pipx install git+https://github.com/truongnat/simple-skills.git`  
+Or: `curl -fsSL https://raw.githubusercontent.com/truongnat/simple-skills/main/i | bash`
+
 2. Run skill **`init`** once.
 3. Pick a path and say it out loud to the agent:
 
@@ -14,15 +23,18 @@ Read this first. Everything else is optional until you need it.
 | **Lite** | Small feature | Short brainstorming → planning → sync → execution |
 | **Full** | Unclear / multi-surface | Full lifecycle |
 
-4. Session tools:
+4. Health + session tools:
 
 ```bash
+sk doctor
 bash .agents/tools/session/session.sh help
 bash .agents/tools/session/session.sh current
 bash .agents/tools/session/session.sh status
 python .agents/tools/session/validate_artifacts.py
 python .agents/tools/session/lint_artifacts.py
 ```
+
+Remove later: `sk uninstall --yes` (keeps `.agent-work/`; add `--purge-work` to delete sessions).
 
 5. Stuck? Open [WHAT_NEXT.md](./WHAT_NEXT.md).
 

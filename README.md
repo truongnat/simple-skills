@@ -10,26 +10,28 @@ Start with [docs/START_HERE.md](docs/START_HERE.md). Skill map: [docs/WHAT_NEXT.
 ## Install
 
 ```bash
-# Linux / macOS
-curl -fsSL https://raw.githubusercontent.com/truongnat/simple-skills/main/install.sh | bash
-
-# Windows (PowerShell)
-irm https://raw.githubusercontent.com/truongnat/simple-skills/main/install.ps1 | iex
-
-# From clone
-./install.sh --agents-mode replace
-./install.sh --profile office          # core + office
-./install.sh --profile all
+pipx install simple-skills    # once (PyPI)
+sk install                    # in your project
+sk doctor
+sk uninstall --yes
 ```
 
-Profiles: `core` (default) · `office` · `frontend` · `backend` · `all`  
+Also: `uv tool install simple-skills`.  
+Profiles: `sk install --profile office` · `frontend` · `backend` · `all` (default `core`).  
 Then run **`init`**. Reinstall keeps `settings.yaml`.
+
+Until the package is on PyPI (or for a fork):
+
+```bash
+pipx install git+https://github.com/truongnat/simple-skills.git
+# or: curl -fsSL https://raw.githubusercontent.com/truongnat/simple-skills/main/i | bash
+```
 
 ## After install
 
 ```bash
+sk doctor
 bash .agents/tools/session/session.sh help
-bash .agents/tools/session/session.sh doctor
 ```
 
 | Path | Skill |
@@ -64,4 +66,15 @@ Defaults in `AGENT_POLICY.md`.
 pip install -e ".[dev]"
 python scripts/validate_skills.py
 pytest -q
+sk --help
 ```
+
+## Publish (maintainers)
+
+Name on PyPI: **`simple-skills`** (available). After one Trusted Publisher setup:
+
+1. https://pypi.org/manage/account/publishing/ → pending publisher for `simple-skills`, repo `truongnat/simple-skills`, workflow `publish.yml`, environment `pypi`
+2. Create GitHub Environment `pypi` (optional protection rules)
+3. GitHub → Release (tag `v0.2.0`) → workflow publishes the wheel
+
+Then users only need `pipx install simple-skills` → `sk install`.

@@ -1,8 +1,15 @@
 param(
+    [ValidateSet("install", "uninstall", "doctor")]
+    [string]$Command = "install",
+
     [ValidateSet("prompt", "replace", "skip")]
     [string]$AgentsMode,
 
-    [string]$Profile
+    [string]$Profile,
+
+    [switch]$Yes,
+    [switch]$KeepSettings,
+    [switch]$PurgeWork
 )
 
 $ErrorActionPreference = "Stop"
@@ -64,8 +71,144 @@ function Resolve-InstallSkills {
         ForEach-Object { $_.Name })
 }
 
-try {
-    # Detect the simple-skills repo itself — not any project that happens to have a skills/ dir.
+function Invoke-Doctor {
+    $ok = $true
+    Write-Host "DOCTOR project=$($Target.Path)"
+
+    if (Test-Path (Join-Path $Target.Path ".agents") -PathType Container) {
+        Write-Host "agents_dir=yes"
+    } else {
+        Write-Host "agents_dir=MISSING — run install.ps1"
+        $ok = $false
+    }
+
+    foreach ($f in @(
+            "START_HERE.md", "WHAT_NEXT.md", "SKILL_PREAMBLE.md",
+            "AGENT_POLICY.md", "settings.yaml"
+        )) {
+        if (Test-Path (Join-Path $Target.Path ".agents/$f") -PathType Leaf) {
+            Write-Host "kit_${f}=yes"
+        } else {
+            Write-Host "kit_${f}=missing"
+            $ok = $false
+        }
+    }
+
+    if (Test-Path (Join-Path $Target.Path "AGENTS.md") -PathType Leaf) {
+        Write-Host "root_AGENTS.md=yes"
+    } else {
+        Write-Host "root_AGENTS.md=missing"
+        $ok = $false
+    }
+
+    $gi = Join-Path $Target.Path ".gitignore"
+    if ((Test-Path $gi -PathType Leaf) -and
+        (Select-String -Path $gi -Pattern '^\.agent-work/$' -Quiet)) {
+        Write-Host "gitignore_agent_work=yes"
+    } else {
+        Write-Host "gitignore_agent_work=MISSING"
+        $ok = $false
+    }
+
+    $work = Join-Path $Target.Path ".agent-work"
+    if (Test-Path $work -PathType Container) {
+        Write-Host "work_dir=yes"
+        if (Test-Path (Join-Path $work ".git") -PathType Container) {
+            Write-Host "work_nested_git=yes"
+        } else {
+            Write-Host "work_nested_git=no"
+        }
+    } else {
+        Write-Host "work_dir=(none yet)"
+    }
+
+    $sess = Join-Path $Target.Path ".agents/tools/session/session.sh"
+    if (Test-Path $sess -PathType Leaf) {
+        Write-Host "session_tool=yes"
+        try {
+            $out = & bash $sess doctor 2>$null
+            if ($LASTEXITCODE -eq 0) {
+                foreach ($line in $out) { Write-Host "session_$line" }
+            } else {
+                Write-Host "session_doctor=warn (could not run)"
+            }
+        } catch {
+            Write-Host "session_doctor=warn (could not run)"
+        }
+    } else {
+        Write-Host "session_tool=missing"
+        $ok = $false
+    }
+
+    foreach ($t in @("validate_artifacts.py", "lint_artifacts.py", "build_context.py")) {
+        if (Test-Path (Join-Path $Target.Path ".agents/tools/session/$t") -PathType Leaf) {
+            Write-Host "tool_${t}=yes"
+        } else {
+            Write-Host "tool_${t}=missing"
+            $ok = $false
+        }
+    }
+
+    if ($ok) {
+        Write-Host "DOCTOR_OK"
+        exit 0
+    }
+    Write-Host "DOCTOR_FAIL"
+    exit 1
+}
+
+function Invoke-Uninstall {
+    if (-not $Yes) {
+        $answer = Read-Host "Uninstall Simple Skills kit from $($Target.Path)? [y/N]"
+        if ($answer -notmatch "^(?i:y|yes)$") {
+            Write-Host "Aborted."
+            return
+        }
+    }
+
+    $settingsBackup = $null
+    $settingsSrc = Join-Path $Target.Path ".agents/settings.yaml"
+    if ($KeepSettings -and (Test-Path $settingsSrc -PathType Leaf)) {
+        $settingsBackup = Join-Path ([System.IO.Path]::GetTempPath()) ("ss-settings-" + [guid]::NewGuid().ToString())
+        Copy-Item -Path $settingsSrc -Destination $settingsBackup -Force
+        Write-Host "Backing up settings.yaml ..."
+    }
+
+    $agents = Join-Path $Target.Path ".agents"
+    if (Test-Path $agents) {
+        Write-Host "Removing $agents ..."
+        Remove-Item -Path $agents -Recurse -Force
+    } else {
+        Write-Host "No .agents/ directory to remove."
+    }
+
+    $agentsMd = Join-Path $Target.Path "AGENTS.md"
+    if (Test-Path $agentsMd -PathType Leaf) {
+        Write-Host "Removing $agentsMd ..."
+        Remove-Item -Path $agentsMd -Force
+    }
+
+    if ($settingsBackup) {
+        New-Item -ItemType Directory -Force -Path (Join-Path $Target.Path ".agents") | Out-Null
+        Copy-Item -Path $settingsBackup -Destination (Join-Path $Target.Path ".agents/settings.yaml") -Force
+        Remove-Item -Path $settingsBackup -Force
+        Write-Host "Restored .agents/settings.yaml (-KeepSettings)."
+    }
+
+    if ($PurgeWork) {
+        $work = Join-Path $Target.Path ".agent-work"
+        if (Test-Path $work) {
+            Write-Host "Removing $work (-PurgeWork) ..."
+            Remove-Item -Path $work -Recurse -Force
+        }
+    } else {
+        Write-Host "Keeping .agent-work/ (sessions/memory). Use -PurgeWork to delete."
+    }
+
+    Write-Host "Uninstall complete. (.gitignore .agent-work/ entry left in place if present.)"
+}
+
+function Invoke-Install {
     function Test-SimpleSkillsSource {
         param([string]$Root)
         return (Test-Path (Join-Path $Root "docs/AGENTS.md") -PathType Leaf) `
@@ -74,20 +217,21 @@ try {
     }
 
     if (Test-SimpleSkillsSource -Root $Target.Path) {
-        $Source = $Target.Path
+        $script:Source = $Target.Path
     } else {
         Write-Host "Downloading ${Github}@${Branch} ..."
-        $Tmp = Join-Path ([System.IO.Path]::GetTempPath()) ("simple-skills-" + [guid]::NewGuid().ToString())
-        New-Item -ItemType Directory -Force -Path $Tmp | Out-Null
+        $script:Tmp = Join-Path ([System.IO.Path]::GetTempPath()) ("simple-skills-" + [guid]::NewGuid().ToString())
+        New-Item -ItemType Directory -Force -Path $script:Tmp | Out-Null
 
-        $Archive = Join-Path $Tmp "repo.zip"
-        $Extract = Join-Path $Tmp "extract"
+        $Archive = Join-Path $script:Tmp "repo.zip"
+        $Extract = Join-Path $script:Tmp "extract"
         $ZipUrl = "https://github.com/$Github/archive/refs/heads/$Branch.zip"
 
         Invoke-WebRequest -Uri $ZipUrl -OutFile $Archive -UseBasicParsing
         Expand-Archive -Path $Archive -DestinationPath $Extract -Force
 
-        $Source = Get-ChildItem -Path $Extract -Directory | Select-Object -First 1 -ExpandProperty FullName
+        $script:Source = Get-ChildItem -Path $Extract -Directory |
+            Select-Object -First 1 -ExpandProperty FullName
     }
 
     Write-Host "Installing skills into $((Get-Location).Path)\.agents (profile: $Profile) ..."
@@ -109,8 +253,6 @@ try {
         }
         $dest = Join-Path ".agents/skills" $skillName
         New-Item -ItemType Directory -Force -Path $dest | Out-Null
-        # Mirror managed content so removed/renamed files do not remain stale.
-        # Preserve only the skill-local virtual environment.
         Get-ChildItem -Path $dest -Force |
             Where-Object { $_.Name -ne ".venv" } |
             Remove-Item -Recurse -Force
@@ -183,7 +325,6 @@ try {
     Copy-Item -Path (Join-Path $Source "docs/artifact-schemas.json") `
         -Destination ".agents/tools/session/artifact-schemas.json" -Force
 
-    # Preserve the user's existing settings (e.g. language choice) on reinstall.
     $settingsDest = Join-Path ".agents" "settings.yaml"
     if (Test-Path $settingsDest -PathType Leaf) {
         Write-Host "Keeping existing .agents/settings.yaml."
@@ -230,6 +371,15 @@ try {
     }
 
     Write-Host "Skills installed successfully (profile: $Profile)."
+    Write-Host "Next: bash .agents/tools/session/session.sh doctor   # or: .\install.ps1 -Command doctor"
+}
+
+try {
+    switch ($Command) {
+        "doctor" { Invoke-Doctor }
+        "uninstall" { Invoke-Uninstall }
+        default { Invoke-Install }
+    }
 }
 finally {
     Remove-Tmp

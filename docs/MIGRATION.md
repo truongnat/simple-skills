@@ -14,6 +14,8 @@ Breaking or behavior changes hosts should know after reinstall.
 | New skill `quick-fix` | Use for tiny fixes; Path=Quick must not create BA/design |
 | Quality lint | Run `lint_artifacts.py` before review/done (CI-style locally) |
 | Docs `START_HERE` / `WHAT_NEXT` / `MIGRATION` | Installed under `.agents/` |
+| Installer `doctor` / `uninstall` | `./install.sh doctor`; `./install.sh uninstall --yes` (optional `--purge-work`, `--keep-settings`) |
+| CLI `sk` | PyPI `pipx install simple-skills` then `sk install` / `doctor` / `uninstall` (see README Publish) |
 
 ## How to upgrade a host project
 
@@ -21,8 +23,11 @@ Breaking or behavior changes hosts should know after reinstall.
 # from cloned simple-skills
 ./install.sh --agents-mode replace   # or prompt
 # then in the host project
+./install.sh doctor
 bash .agents/tools/session/session.sh doctor
 python .agents/tools/session/lint_artifacts.py
 ```
 
 Reinstall **preserves** `.agents/settings.yaml`. Policy/skills/tools refresh from the kit.
+
+To remove the kit: `./install.sh uninstall --yes` (keeps `.agent-work/` unless `--purge-work`).

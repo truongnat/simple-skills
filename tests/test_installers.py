@@ -80,6 +80,19 @@ def make_source(tmp_path: Path) -> Path:
     video_keyframes = tools / "video-keyframes"
     video_keyframes.mkdir()
     (video_keyframes / "extract.py").write_text("# video keyframes\n", encoding="utf-8")
+    session = tools / "session"
+    session.mkdir()
+    (session / "session.sh").write_text(
+        "#!/usr/bin/env bash\ncase \"$1\" in doctor) echo DOCTOR_OK; exit 0;; *) exit 0;; esac\n",
+        encoding="utf-8",
+    )
+    (session / "session.sh").chmod(0o755)
+    for stub in (
+        "validate_artifacts.py",
+        "lint_artifacts.py",
+        "build_context.py",
+    ):
+        (session / stub).write_text(f"# {stub}\n", encoding="utf-8")
     # Minimal skill set covering core + one third-party for profile pruning tests.
     for skill in ("planning", "execution", "init", "xlsx", "web-component-design"):
         root = tmp_path / "skills" / skill
@@ -278,3 +291,96 @@ def test_profile_office_unions_core(tmp_path: Path) -> None:
     run_installer(root, "replace", profile="office")
     skills = {p.name for p in (root / ".agents" / "skills").iterdir() if p.is_dir()}
     assert skills == {"init", "planning", "execution", "xlsx"}
+
+
+def test_short_entrypoint_i_delegates_to_install(tmp_path: Path) -> None:
+    root = make_source(tmp_path)
+    shutil.copy2(REPO_ROOT / "i", root / "i")
+    (root / "i").chmod(0o755)
+    result = subprocess.run(
+        ["bash", "i", "--agents-mode", "replace", "--profile", "core"],
+        cwd=root,
+        stdin=subprocess.DEVNULL,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    assert "Skills installed successfully" in result.stdout
+    assert (root / ".agents" / "settings.yaml").is_file()
+
+
+def test_doctor_fails_before_install(tmp_path: Path) -> None:
+    root = make_source(tmp_path)
+    result = subprocess.run(
+        ["bash", "install.sh", "doctor"],
+        cwd=root,
+        text=True,
+        capture_output=True,
+    )
+    assert result.returncode != 0
+    assert "DOCTOR_FAIL" in result.stdout
+
+
+def test_doctor_ok_after_install(tmp_path: Path) -> None:
+    root = make_source(tmp_path)
+    run_installer(root, "replace")
+    result = subprocess.run(
+        ["bash", "install.sh", "doctor"],
+        cwd=root,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    assert "DOCTOR_OK" in result.stdout
+    assert (root / ".agents" / "tools" / "session" / "session.sh").is_file()
+
+
+def test_uninstall_removes_kit_keeps_work(tmp_path: Path) -> None:
+    root = make_source(tmp_path)
+    run_installer(root, "replace")
+    work = root / ".agent-work" / "sessions"
+    work.mkdir(parents=True)
+    (work / "keep.txt").write_text("session\n", encoding="utf-8")
+
+    result = subprocess.run(
+        ["bash", "install.sh", "uninstall", "--yes"],
+        cwd=root,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    assert "Uninstall complete" in result.stdout
+    assert not (root / ".agents").exists()
+    assert not (root / "AGENTS.md").exists()
+    assert (work / "keep.txt").read_text(encoding="utf-8") == "session\n"
+    assert ".agent-work/" in (root / ".gitignore").read_text(encoding="utf-8")
+
+
+def test_uninstall_keep_settings_and_purge_work(tmp_path: Path) -> None:
+    root = make_source(tmp_path)
+    run_installer(root, "replace")
+    settings = root / ".agents" / "settings.yaml"
+    settings.write_text("language: vi\n", encoding="utf-8")
+    work = root / ".agent-work"
+    work.mkdir()
+    (work / "x.txt").write_text("gone\n", encoding="utf-8")
+
+    subprocess.run(
+        [
+            "bash",
+            "install.sh",
+            "uninstall",
+            "--yes",
+            "--keep-settings",
+            "--purge-work",
+        ],
+        cwd=root,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    assert (root / ".agents" / "settings.yaml").read_text(encoding="utf-8") == (
+        "language: vi\n"
+    )
+    assert not (root / ".agents" / "skills").exists()
+    assert not work.exists()

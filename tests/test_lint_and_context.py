@@ -126,3 +126,84 @@ def test_build_context_writes_file(tmp_path: Path) -> None:
     assert result.returncode == 0, result.stdout + result.stderr
     assert (session / "CONTEXT.md").is_file()
     assert "CONTEXT (compact" in (session / "CONTEXT.md").read_text(encoding="utf-8")
+
+
+def test_build_context_pack_includes_rules_and_check(tmp_path: Path) -> None:
+    session = _session(tmp_path)
+    (tmp_path / ".agents").mkdir()
+    (session / "DISCUSSION.md").write_text(
+        "## Executive summary\n\n- go\n\n## Goal\n\nShip.\n"
+        "\n## Recommendation\n\nOption A.\n",
+        encoding="utf-8",
+    )
+    result = subprocess.run(
+        [
+            "python3",
+            str(BUILD),
+            "--root",
+            str(tmp_path),
+            "--skill",
+            "planning",
+            "--pack",
+            "--check",
+        ],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    pack = (session / "CONTEXT_PACK.md").read_text(encoding="utf-8")
+    assert "## Rules (mandatory)" in pack
+    assert "Ask method" in pack
+    assert ".agent-work/" in pack
+    assert "CONTEXT_PACK_CHECK_OK" in result.stdout
+
+
+def test_detect_agents_write_creates_section(tmp_path: Path) -> None:
+    detect = REPO_ROOT / "tools" / "session" / "detect_agents.py"
+    (tmp_path / ".agents").mkdir()
+    result = subprocess.run(
+        ["python3", str(detect), "--root", str(tmp_path), "--write"],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    prj = tmp_path / ".agents" / "PRJ_REFERENCE.md"
+    assert prj.is_file()
+    assert "## Agent CLIs" in prj.read_text(encoding="utf-8")
+
+
+def test_delegate_worker_rules_gate(tmp_path: Path) -> None:
+    session = _session(tmp_path)
+    (tmp_path / ".agents").mkdir()
+    (session / "PLAN.md").write_text(
+        "## Executive summary\n\n- plan\n\n## Goal\n\nDo it.\n",
+        encoding="utf-8",
+    )
+    delegate = REPO_ROOT / "tools" / "session" / "delegate_worker.py"
+    result = subprocess.run(
+        [
+            "python3",
+            str(delegate),
+            "--root",
+            str(tmp_path),
+            "--skill",
+            "planning",
+            "--cli",
+            "main",
+            "--check-only",
+        ],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "DELEGATE_PACK_OK" in result.stdout
+    assert (session / "CONTEXT_PACK.md").is_file()
+    assert "## Rules (mandatory)" in (session / "CONTEXT_PACK.md").read_text(
+        encoding="utf-8"
+    )

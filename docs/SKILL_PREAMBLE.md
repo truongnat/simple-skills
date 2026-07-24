@@ -210,6 +210,35 @@ Excel; bilingual triple rows for ceremony.
 **Cap:** vital few — typically **3–12** rows. Prefer linking Meaning to Where
 seen over essays. If no opaque terms → `_(none — plain language)_` once.
 
+## Delegation & Rules pass-down (sub-agents)
+
+Main brain (host agent) may route a skill to an optional worker CLI when
+inventory + `rules.agents.routing` say so. Workers **do not inherit** kit
+memory — they only know what is in the pack.
+
+1. **Inventory:** `python .agents/tools/session/detect_agents.py --write`
+   (see `PRJ_REFERENCE` → Agent CLIs).
+2. **When to delegate:** skill is Lite/Full (or heavy evidence/coding); a
+   preferred CLI is `available`; Quick-trivial work stays on main.
+3. **preferred_role** (skill Contract): `researcher` | `reasoner` | `coder` |
+   `critic` — pick routing list by role, not by marketing model names.
+4. **Pack before dispatch:**
+   ```bash
+   python .agents/tools/session/build_context.py --skill <id> --pack --check
+   ```
+   Produces `CONTEXT_PACK.md` with **`## Rules (mandatory)` first**. If
+   `--check` fails → **refuse dispatch**, fallback main.
+5. **Rules pass-down is non-negotiable.** Never minify by deleting Rules.
+   Source template: `.agents/tools/session/RULES_BUNDLE.template.md`. Updating
+   Confirm-first / Language / Work layout in this preamble requires updating
+   that template in the **same change**.
+6. **Worker invoke scaffold:**
+   ```bash
+   python .agents/tools/session/delegate_worker.py --skill <id> --cli <id> --dry-run
+   ```
+   After worker returns: `validate_artifacts.py` + `lint_artifacts.py` +
+   `session.sh commit`. Spawn is manual-approve in Phase 2 (no silent CLI).
+
 ## Scale (Quick / Lite / Full)
 
 At task start, pick a path (see `.agents/AGENT_POLICY.md` → Scale & Quick path):

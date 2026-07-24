@@ -28,6 +28,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 | Field | Requirement |
 |-------|-------------|
+| preferred_role | `researcher` (routing hint for multi-CLI; fallback main). |
 | Inputs | Problem description, expected/actual behavior, logs/errors/reproduction, screenshots or recordings, codebase context, environment details; **docs/specs when cited or implied**. |
 | Outputs | `INVESTIGATE.md` (prefer template) with question, status, evidence, reproduction, observed facts, hypotheses, code path, impact, root cause, recommendation, open questions; **Doc reality check** when docs are in play (or N/A + reason). |
 | Safety | Read-only by default. Do NOT modify code unless requested. Do NOT run destructive commands. Do NOT read secrets without a clear reason. Do NOT claim root cause when evidence is insufficient. Do NOT treat wiki/設計書 prose as root cause without code/runtime evidence. When Doc reality Blocking=`Yes`, **Confirm-first**: STOP immediately, classify Ask method, ask in chat (max 3) before closing — do not hand off INVESTIGATE as an open-questions quiz. |

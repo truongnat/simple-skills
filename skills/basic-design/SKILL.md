@@ -53,6 +53,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 | Field | Requirement |
 |-------|-------------|
+| preferred_role | `reasoner` (routing hint for multi-CLI; fallback main). |
 | Inputs | DISCUSSION.md with clear recommendation; BA notes if available; **repo inspection**; wiki/HLD under `rules.docs.location` when docs enabled; investigate findings when useful. |
 | Outputs | `BASIC_DESIGN.md` from template (or equivalent) including **Doc reality check**, goal, context, architecture, components, flows, data ownership, optional surfaces/NFRs, open questions, handoff. |
 | Safety | Do NOT implement code. Do NOT invent file paths without inspecting the codebase. Do NOT treat docs/wiki as truth without Doc reality check. Do NOT fill architecture/components/flows while Doc reality has Blocking=`Yes` unresolved — **Confirm-first**: STOP immediately, classify Ask method, ask in chat (max 3), then finish with answers — do not ship a design as an open-questions quiz. Do NOT write full contracts (detail-design). Do NOT re-litigate BR — point to BA. Do NOT create PLAN.md. If Path=`Quick`, **stop** and use `quick-fix` (or upgrade Path). |

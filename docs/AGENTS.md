@@ -30,7 +30,7 @@ one artifact body. Blocking unknowns → **Confirm-first** + **Ask method** in
 | `.agents/PRJ_REFERENCE.md` | Generated project facts |
 | `.agents/SKILL_PREAMBLE.md` | Shared skill rules |
 | `.agents/skills/` | Invokable skills |
-| `.agents/tools/` | session, lint, build_context, … |
+| `.agents/tools/` | session, lint, build_context, detect_agents, delegate_worker, … |
 | `.agent-work/` | **Work** — sessions + memory (nested git; `session.sh commit` / `archive`) |
 | `.agents/examples/` | Good/bad session shapes |
 | `.agents/MIGRATION.md` | Host upgrade notes |

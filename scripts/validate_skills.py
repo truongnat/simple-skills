@@ -478,9 +478,44 @@ def main() -> int:
         errors.append("docs/MIGRATION.md missing")
     if not (ROOT / "docs" / "examples" / "README.md").is_file():
         errors.append("docs/examples/README.md missing")
-    for tool in ("lint_artifacts.py", "build_context.py"):
+    for tool in ("lint_artifacts.py", "build_context.py", "detect_agents.py", "delegate_worker.py"):
         if not (ROOT / "tools" / "session" / tool).is_file():
             errors.append(f"tools/session/{tool} missing")
+    rules_bundle = ROOT / "tools" / "session" / "RULES_BUNDLE.template.md"
+    if not rules_bundle.is_file():
+        errors.append("tools/session/RULES_BUNDLE.template.md missing")
+    else:
+        rb = rules_bundle.read_text(encoding="utf-8")
+        for needle in (
+            "Language",
+            "Work layout",
+            "Confirm-first",
+            "Ask method",
+            ".agent-work/",
+            "Safety",
+            "Output contract",
+            "quiz-as-document",
+        ):
+            if needle not in rb:
+                errors.append(f"RULES_BUNDLE.template.md missing '{needle}'")
+    if "Delegation & Rules pass-down" not in (
+        ROOT / "docs" / "SKILL_PREAMBLE.md"
+    ).read_text(encoding="utf-8"):
+        errors.append("SKILL_PREAMBLE.md missing Delegation & Rules pass-down")
+    if "Agent CLIs" not in (
+        ROOT / "skills" / "init" / "templates" / "PRJ_REFERENCE.template.md"
+    ).read_text(encoding="utf-8"):
+        errors.append("PRJ_REFERENCE.template.md missing Agent CLIs section")
+    if "# agents:" not in (ROOT / "docs" / "settings.yaml").read_text(
+        encoding="utf-8"
+    ) and "rules.agents" not in (ROOT / "docs" / "settings.yaml").read_text(
+        encoding="utf-8"
+    ):
+        errors.append("docs/settings.yaml missing rules.agents skeleton comment")
+    if "preferred_role" not in (
+        ROOT / "skills" / "planning" / "SKILL.md"
+    ).read_text(encoding="utf-8"):
+        errors.append("planning SKILL.md missing preferred_role")
     if "quick-fix" not in json.dumps(
         json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     ):

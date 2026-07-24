@@ -65,6 +65,7 @@ This skill is a **hard contract**. Obey it before any other action.
 
 | Field | Requirement |
 |-------|-------------|
+| preferred_role | `reasoner` (routing hint for multi-CLI; fallback main). |
 | Inputs | DETAIL_DESIGN.md when present; else BASIC_DESIGN.md / DISCUSSION.md / BUSINESS_ANALYSIS.md; issue/visual triage and clarification answers; user request; codebase mapping; constraints. |
 | Outputs | Session folder MUST contain filled `PLAN.md` + `TASKS.md` seeded from templates. `TASKS.md` MUST include Work inventory + specific micro-cards (not layer epithets only). Incomplete if PLAN-only, chat-only, tasks embedded in PLAN, empty template left, or vague epic cards. |
 | Safety | Do NOT implement code. Do NOT skip steps. **Confirm-first:** STOP immediately on Blocking; classify Ask method before strategy/tasks — reuse Clarification/memory; do not finish PLAN/TASKS as a quiz. Do NOT silently choose defaults or invent omitted feature policy. Planning classifies visual need but does not create HTML itself; route confirmed HTML needs to brainstorming/basic-design and resume after the decision. Do NOT finish without both files, set Ready=Yes with blockers, invent paths, or treat assumptions/specs as confirmed. |

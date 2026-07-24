@@ -109,6 +109,15 @@ only the root manifest. -->
 |---|---|---|
 | TODO | TODO | primary/supporting |
 
+## Agent CLIs
+
+<!-- Filled by: python .agents/tools/session/detect_agents.py --write
+Status: available | auth_unknown | missing. Never paste tokens. -->
+
+| CLI id | Status | Path | Auth probe | Notes |
+|---|---|---|---|---|
+| _(run detect_agents)_ |  |  |  |  |
+
 ## Unknowns and conflicts
 
 | Question / conflict | Impact | Owner | Blocking |

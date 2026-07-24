@@ -24,9 +24,11 @@ settings.
 | `rules.docs.location` | path | `.agents/wiki` |
 | `rules.docs.format` | `markdown` \| `html` \| `docx` \| `xlsx` | `markdown` |
 | `rules.docs.sync_strategy` | `with-commit` \| `main-only` | `with-commit` |
+| `rules.agents.fallback` | `main` \| CLI id | `main` |
+| `rules.agents.routing.<skill>` | ordered CLI ids | empty → main only |
 
 Optional (add only when the repo has a convention; `init` may merge them):
-`rules.commit.*`, `rules.pull_request.*`. Apply only populated values.
+`rules.commit.*`, `rules.pull_request.*`, `rules.agents.*`. Apply only populated values.
 
 - **Re-read settings** at the start of every task and every skill invocation.
   Never reuse a cached `language` (or other settings) from earlier in the
@@ -61,6 +63,12 @@ stop on `critical-unresolved`, `blocking-unknown`, `feasibility-fail-or-unknown`
 **Visuals / Ask methods:** `triage: required`; `html: ask-before-create`;
 `prefer_diagram_for_flows: true`. Ask method taxonomy (confirm/choice/fact/
 table/diagram/html): `.agents/SKILL_PREAMBLE.md` → Confirm-first.
+
+**Multi-CLI (optional workers):** main brain stays authoritative. Inventory via
+`detect_agents.py`; route by skill **preferred_role** + `rules.agents.routing`;
+always build `CONTEXT_PACK.md` with **Rules (mandatory)** before dispatch;
+refuse spawn if Rules gate fails; fallback `main`. See SKILL_PREAMBLE →
+Delegation & Rules pass-down.
 
 **Reports (skim structure):** open with a short **Executive summary** (≤5
 decision bullets) then a **Developer overview** panel **inside that same

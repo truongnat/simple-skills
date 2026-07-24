@@ -292,7 +292,9 @@ Work commit protocol (see AGENT_WORK.md):
 Related (from repo / host root):
   python .agents/tools/session/validate_artifacts.py
   python .agents/tools/session/lint_artifacts.py
-  python .agents/tools/session/build_context.py
+  python .agents/tools/session/build_context.py [--skill X] [--pack --check]
+  python .agents/tools/session/detect_agents.py [--write]
+  python .agents/tools/session/delegate_worker.py --skill X --cli Y --dry-run
 
 Docs: .agents/START_HERE.md · .agents/WHAT_NEXT.md · .agents/MIGRATION.md
 EOF

@@ -24,6 +24,7 @@ Ship a **small, clear** change without Full lifecycle ceremony.
 
 | Field | Requirement |
 |-------|-------------|
+| preferred_role | `coder` (routing hint for multi-CLI; fallback main). |
 | Inputs | Clear user ask; repo readable; `.agents/settings.yaml` |
 | Outputs | Session with `QUICK.md` + `TASKS.md` (1–3 cards with Dev context) + `CONTEXT.md` via `build_context.py`; Path=`Quick` recorded |
 | Safety | **Forbidden on Quick:** `BUSINESS_ANALYSIS.md`, `BASIC_DESIGN.md`, `DETAIL_DESIGN.md`, Spec quality matrices, inventing product rules. Do NOT implement until sync readiness allows. If unknowns block → upgrade Path. |

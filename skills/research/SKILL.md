@@ -24,6 +24,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 | Field | Requirement |
 |-------|-------------|
+| preferred_role | `researcher` (routing hint for multi-CLI; fallback main). |
 | Inputs | Research question, decision context, local evidence, external source constraints, freshness requirement, quality bar. |
 | Outputs | `RESEARCH.md` (prefer template) with **keywords**, source strategy, evidence, findings, comparison matrix, recommendation, confidence, caveats, residual risks. |
 | Safety | Do NOT fabricate citations. Do NOT copy long source content. Do NOT use stale sources for decisions needing fresh information. Do NOT present inference as fact. Do NOT omit caveats, residual risks, or Spec quality challenges (feasibility/correctness/capability gaps). Do NOT leave opaque domain terms unexplained — fill Keywords or mark none. **Confirm-first:** Blocking gaps → STOP, classify Ask method, ask in chat before finishing RESEARCH as a quiz-as-document. |

@@ -29,7 +29,9 @@ bash .agents/tools/session/session.sh help
 bash .agents/tools/session/session.sh doctor
 bash .agents/tools/session/session.sh commit 'docs(<skill>): …'   # Work milestone
 bash .agents/tools/session/session.sh archive                    # after successful done
-python .agents/tools/session/build_context.py   # refresh CONTEXT.md from session artifacts
+python .agents/tools/session/build_context.py --skill planning --pack --check
+python .agents/tools/session/detect_agents.py --write
+python .agents/tools/session/delegate_worker.py --skill planning --cli codex --dry-run
 python .agents/tools/session/lint_artifacts.py
 python .agents/tools/session/validate_artifacts.py
 ```

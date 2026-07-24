@@ -40,3 +40,14 @@ rules:
   #   title_format: ""
   #   description_sections: []
   #   required_checks: []
+
+  # Multi-CLI routing (main brain + optional workers). Inventory: detect_agents.py
+  # agents:
+  #   inventory_ref: .agents/PRJ_REFERENCE.md   # ## Agent CLIs section
+  #   fallback: main
+  #   routing:
+  #     investigate: [codex, main]
+  #     planning: [claude, main]
+  #     execution: [opencode, codex, main]
+  #     review: [claude, main]
+  #   # Never dispatch a worker without CONTEXT_PACK Rules (mandatory) gate.

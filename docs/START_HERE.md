@@ -60,6 +60,8 @@ Do **not** read all of `AGENT_POLICY.md` up front. Open a section only when bloc
 - **Confirm-first:** on Blocking need, STOP immediately; classify **Ask method**
   (`confirm`/`choice`/`fact`/`table`/`diagram`/`html`); ask that way — do not
   finish artifacts as a quiz (SKILL_PREAMBLE).
+- Optional workers: `detect_agents.py` + `build_context.py --pack --check`
+  (Rules mandatory) before any sub-agent dispatch — see Delegation in preamble.
 
 ## Settings you might edit
 

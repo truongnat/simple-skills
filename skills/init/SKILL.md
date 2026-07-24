@@ -41,6 +41,8 @@ project-specific behavior without inventing conventions.
 - **workspaces**: For a monorepo, one row per app/package/service with its
   path, type, and its **own** stack, entry point, and commands. Never collapse
   a multi-stack monorepo into a single root stack.
+- **agent_clis**: Table from `detect_agents.py --write` (CLI id, status, path,
+  auth probe) — never store tokens.
 - **tech_stack**: Languages, frameworks, runtime, package/build tools. In a
   monorepo, record the stack **per workspace** (see `workspaces`), not only the
   root manifest.
@@ -119,6 +121,15 @@ project-specific behavior without inventing conventions.
      directory sweep that prunes `node_modules`, build/generated, and native
      platform dirs, and classify every project root yourself — never bound the
      sweep by the workspace config.
+5. **Agent CLI inventory (read-only):** detect installed worker CLIs (no secrets):
+
+   ```bash
+   python .agents/tools/session/detect_agents.py --write
+   ```
+
+   Upserts `## Agent CLIs` in `PRJ_REFERENCE.md`. Status values:
+   `available` / `auth_unknown` / `missing`. Optional lean knobs:
+   `rules.agents.routing` / `fallback` in settings (commented skeleton).
 6. Classify every important statement:
    - `confirmed`: direct source or user confirmation;
    - `inferred`: evidence exists but is indirect;

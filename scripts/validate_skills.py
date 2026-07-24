@@ -256,6 +256,12 @@ def main() -> int:
     ).read_text(encoding="utf-8")
     if "Spec quality review" not in discussion_template:
         errors.append("brainstorming DISCUSSION template missing Spec quality review")
+    if "## Keywords" not in discussion_template:
+        errors.append("brainstorming DISCUSSION template missing Keywords")
+    kw_d = discussion_template.find("## Keywords")
+    goal_d = discussion_template.find("## Goal")
+    if kw_d < 0 or goal_d < 0 or kw_d > goal_d:
+        errors.append("brainstorming DISCUSSION: Keywords must appear before Goal")
     if "Step ledger" not in discussion_template:
         errors.append("brainstorming DISCUSSION template missing Step ledger")
     if "Feasibility" not in discussion_template or "Correctness" not in discussion_template:
@@ -329,6 +335,8 @@ def main() -> int:
         tmpl = tmpl_path.read_text(encoding="utf-8")
         if "Doc reality check" not in tmpl:
             errors.append(f"{skill_name} template missing Doc reality check")
+        if skill_name in {"investigate"} and "## Keywords" not in tmpl:
+            errors.append(f"{skill_name} template missing Keywords")
         dr = tmpl.find("## Doc reality check")
         after = tmpl.find(before_heading)
         if dr < 0 or after < 0 or dr > after:
@@ -340,6 +348,18 @@ def main() -> int:
             errors.append(f"{skill_name} SKILL.md missing doc_reality_check contract")
         if "stop and ask" not in skill_text.lower():
             errors.append(f"{skill_name} SKILL.md must require stop and ask on blockers")
+
+    research_tmpl = SKILLS_ROOT / "research" / "templates" / "RESEARCH.template.md"
+    if not research_tmpl.is_file():
+        errors.append("research missing templates/RESEARCH.template.md")
+    else:
+        rt = research_tmpl.read_text(encoding="utf-8")
+        if "## Keywords" not in rt:
+            errors.append("research RESEARCH template missing Keywords")
+        if "keywords" not in (SKILLS_ROOT / "research" / "SKILL.md").read_text(
+            encoding="utf-8"
+        ):
+            errors.append("research SKILL.md missing keywords contract")
 
     for skill_name, step_names in step_skills.items():
         for step_name in step_names:
@@ -462,6 +482,17 @@ def main() -> int:
         encoding="utf-8"
     ):
         errors.append("SKILL_PREAMBLE.md missing Domain terms language rule")
+    preamble_lang = (ROOT / "docs" / "SKILL_PREAMBLE.md").read_text(encoding="utf-8")
+    if "What stays English" not in preamble_lang:
+        errors.append("SKILL_PREAMBLE.md missing What stays English (headings) rule")
+    if "One language per artifact" not in preamble_lang:
+        errors.append("SKILL_PREAMBLE.md missing One language per artifact rule")
+    if "Tóm tắt" not in preamble_lang:
+        errors.append("SKILL_PREAMBLE.md should show Wrong VI heading example")
+    if "## Keywords" not in preamble_lang and "### Keywords" not in preamble_lang:
+        errors.append("SKILL_PREAMBLE.md missing Keywords glossary criteria")
+    if "Where seen" not in preamble_lang:
+        errors.append("SKILL_PREAMBLE Keywords must define Where seen column")
     if "Who commits what" not in (ROOT / "docs" / "AGENT_WORK.md").read_text(
         encoding="utf-8"
     ):

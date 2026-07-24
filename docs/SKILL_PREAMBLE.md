@@ -10,14 +10,38 @@ Layout detail: `.agents/AGENT_WORK.md`.
 ## Language (do this first)
 
 **Re-read `.agents/settings.yaml` now** — do not reuse a `language` value cached
-earlier in this session. Write every saved artifact and reply in that `language`
-(`en` or `vi`); keep code, identifiers, paths, commands, and template section
-keys unchanged. If the user just edited settings, the freshly read value wins. A
-direct instruction in the current user request overrides the file.
+earlier in this session. Values: `en` | `vi`. Mid-session edits win after
+re-read. A direct instruction in the current user request overrides the file.
+
+### What follows `language` (prose only)
+
+Write **all narrative content** in that language: executive summary bullets,
+paragraphs, table *cell values* that are sentences, questions to the user,
+recommendations, handoff prose, Clarification checkpoint answers.
+
+**One language per artifact.** Do not mix: a Vietnamese summary with an English
+architecture paragraph, or half-translated tables. If unsure of a term, keep the
+domain identifier raw and explain once in `language` — do not flip the whole
+section to English.
+
+### What stays English (shared form — never translate)
+
+Keep the **template form** identical across projects so schemas/lint/tools work:
+
+| Keep in English | Examples |
+| --- | --- |
+| Markdown `##` / `###` headings | `## Executive summary`, `## Doc reality check`, `## Goal` |
+| Template section titles & Step ledger step names | `Frame + Spec quality`, Status column labels as in templates |
+| Table **column headers** from templates | `Claim`, `Doc evidence`, `Verdict`, `Blocking`, `Ask user?` |
+| Enum / machine values | `Quick`/`Lite`/`Full`, `PASS`/`FAIL`, `Match`/`Mismatch`, `todo`/`done`/`blocked`, `Confirmed?` Yes/No |
+| Code, paths, commands, API routes, IDs | `FBD13001`, `lblBase`, `src/...` |
+
+**Wrong (`language: vi`):** `## Tóm tắt điều hành` or `## Mục tiêu`  
+**Right (`language: vi`):** `## Executive summary` with Vietnamese bullets underneath.
 
 **Domain terms:** keep original product/spec identifiers (JP screen names, field
-IDs, API paths) as-is. Do **not** invent bilingual ceremony or translate every
-label into the prose language — explain in `language`, cite domain terms raw.
+IDs, API paths) as-is. Do **not** invent bilingual ceremony (JP/EN/VN label
+rows) unless the domain artifact itself requires it.
 
 ## Work layout (mandatory)
 
@@ -88,6 +112,8 @@ decoding jargon. If a teammate new to the task cannot act from it, rewrite.
    leftover template scaffolding.
 5. Charts only when they change a decision; otherwise omit (no decorative
    placeholder Mermaid).
+6. **Keywords** (discovery artifacts): when the report uses domain/opaque terms
+   a busy teammate would not know, fill `## Keywords` — see below.
 
 **Do not:**
 
@@ -99,6 +125,36 @@ decoding jargon. If a teammate new to the task cannot act from it, rewrite.
    them; never invent translation noise for ceremony.
 5. Answer method prompts (5W1H / vital-few) as trivia sections.
 6. Narrate your process (“I will now analyze…”, “As an AI…”).
+
+### Keywords (glossary for discovery reports)
+
+Required on **brainstorming / investigate / research** artifacts when the body
+uses terms a new teammate would not decode on first pass. Optional elsewhere
+when the same problem appears. Heading stays English: `## Keywords`.
+
+| Column | Content |
+| --- | --- |
+| Term | Exact string as used in the report (ID, JP name, acronym, module) |
+| Meaning | One short line in `settings.language` |
+| Where seen | Path / doc § / log / UI — evidence, not invention |
+
+**Include a term when ≥1 is true:**
+
+1. **Opaque ID / product name** — screen/form IDs (`FBD13001`, `RBD09002`), JP
+   帳票/画面 names, internal service nicknames.
+2. **Acronym or shorthand** used more than once, or once but critical to the
+   recommendation (e.g. `WMS`, `指図`, `ExcelCreator`).
+3. **Project-specific meaning** of a common word (e.g. “common” = shared print
+   pipeline in *this* repo).
+4. **Doc/code token** the reader must map (control IDs, table names, error
+   codes) to follow evidence or Doc reality rows.
+
+**Do not list:** everyday words; generic programming vocabulary (`HTTP`,
+`JSON`, `null`) unless the project redefines them; every column of a wide
+Excel; bilingual triple rows for ceremony.
+
+**Cap:** vital few — typically **3–12** rows. Prefer linking Meaning to Where
+seen over essays. If no opaque terms → `_(none — plain language)_` once.
 
 Self-check before saving: *Would I paste this into a PR for a busy reviewer?*
 If no → cut half, name concrete things, move guesses to Unknowns.

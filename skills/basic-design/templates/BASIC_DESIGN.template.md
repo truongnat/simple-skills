@@ -1,7 +1,8 @@
 # Basic Design
 
 > Seeded by basic-design. Write for a busy teammate: concrete paths/IDs, no filler.
-> Obey `.agents/SKILL_PREAMBLE.md` Readable writing.
+> Obey `.agents/SKILL_PREAMBLE.md` Readable writing + Language:
+> **headings stay English**; prose follows `settings.language` (one language, no mix).
 > **Hard rule:** Do not fill architecture/components/flows while Doc reality check
 > has Blocking=`Yes` unresolved (ask the user first).
 

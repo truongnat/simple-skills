@@ -12,7 +12,9 @@ This is the **short entrypoint**. Prefer layered reading — do not load every d
 6. `.agents/AGENT_POLICY.md` / `AGENT_WORK.md` / `MIGRATION.md` **only when needed**
 
 Re-read settings at the start of every task and every skill invocation. Never
-cache `language` across turns. Default language: `en`.
+cache `language` across turns. Default language: `en`. Prose follows `language`;
+**headings and template keys stay English** (shared form). Do not mix VI/EN in
+one artifact body.
 
 ## Architecture (map)
 

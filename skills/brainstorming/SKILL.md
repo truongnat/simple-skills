@@ -71,7 +71,7 @@ This skill is a **hard contract**. Obey it before any other action.
 ### Required artifact
 
 #### `DISCUSSION.md` (from template)
-executive_summary, developer_overview, charts (Mermaid when useful),
+executive_summary, developer_overview, **keywords** (or none), charts (Mermaid when useful),
 goal, desired_outcome,
 confirmed_facts, constraints, assumptions, unknowns, issue_triage,
 clarification_checkpoint, spec_quality_review (feasibility, correctness,
@@ -149,6 +149,7 @@ rows; Spec quality can be one concrete finding per table.
 - [ ] `DISCUSSION.md` on disk; step-05 passed.
 
 - [ ] First-pass readable: concrete names (paths/APIs/IDs); no abstract filler.
+- [ ] Keywords present when opaque domain terms appear (or marked none).
 - [ ] No leftover `_(TODO)_` or placeholder Mermaid in finished sections.
 - [ ] Spec/review findings state finding + evidence + verdict (not essays).
 

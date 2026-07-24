@@ -4,8 +4,9 @@
 # Only set what you need to change. Everything else uses fixed defaults in
 # `.agents/AGENT_POLICY.md` (decisions, visuals, report style, code comments).
 
-# Reply + artifact prose language. Code/paths/commands stay as-is.
+# Reply + artifact **prose** language. Headings / template keys / enums stay English.
 #   en | vi
+# One language per artifact — do not mix Vietnamese and English body text.
 language: en
 
 project:

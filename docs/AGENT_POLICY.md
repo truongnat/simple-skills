@@ -32,8 +32,11 @@ Optional (add only when the repo has a convention; `init` may merge them):
   Never reuse a cached `language` (or other settings) from earlier in the
   session. Mid-session edits win after re-read. A direct instruction in the
   current user request overrides the file for that turn.
-- Keep code, identifiers, paths, CLI commands, and template section keys
-  unchanged regardless of `language`.
+- **`language`:** prose (summaries, paragraphs, cell *values*, questions) in
+  `en` or `vi` — **one language per artifact**, no half-VI half-EN bodies.
+  **Do not translate** Markdown headings, template section titles, template
+  table column headers, or enum/machine values (`Quick`, `PASS`, `Match`,
+  `todo`, …). Code, paths, commands, and domain IDs stay as-is.
 - **`rules.branch.mode`:** `direct` = work/commit on base/main; `checkout` =
   create/checkout a work branch **before any code edit** (never commit feature
   work on base). Unset → `checkout`.
@@ -556,7 +559,9 @@ artifacts with method labels.
 - Apply only **populated** project knobs from `.agents/settings.yaml`.
 - Output: short, structured, decision-oriented. Bullets/tables over paragraphs.
 - No filler. No marketing language. No method-named sections.
-- Language from `.agents/settings.yaml`; keep identifiers/paths/commands as-is.
+- Language from `.agents/settings.yaml`: prose in `language`; headings / template
+  keys / enums / identifiers stay English (shared form). One language per
+  artifact — no mixed VI/EN body text.
 
 ## Developer UX / DX
 

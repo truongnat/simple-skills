@@ -26,6 +26,53 @@ FILLER = re.compile(
 TODO_LEFT = re.compile(r"_\(TODO|_(\.\.\.|short title|name)_\)|_\(TODO", re.I)
 SOURCE = re.compile(r"\[Source:\s*[^\]]+\]|No specific guidance found", re.I)
 
+# Translated template headings (must stay English for shared form).
+VI_HEADING = re.compile(
+    r"^#{1,3}\s+("
+    r"Tóm tắt(?:\s+điều hành)?|"
+    r"Tổng quan(?:\s+developer|\s+lập trình)?|"
+    r"Mục tiêu|"
+    r"Bối cảnh|"
+    r"Kiểm tra thực tế(?:\s+tài liệu)?|"
+    r"Câu hỏi(?:\s+đang mở)?|"
+    r"Bàn giao|"
+    r"Giả định|"
+    r"Kiến trúc|"
+    r"Thành phần|"
+    r"Luồng(?:\s+người dùng)?|"
+    r"Sở hữu dữ liệu|"
+    r"Chất lượng đặc tả|"
+    r"Phạm vi|"
+    r"Khuyến nghị"
+    r")\b",
+    re.I | re.M,
+)
+VI_CHAR = re.compile(
+    r"[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡ"
+    r"ùúụủũưừứựửữỳýỵỷỹđ"
+    r"ÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠ"
+    r"ÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]"
+)
+
+
+def read_language(root: Path) -> str:
+    settings = root / ".agents" / "settings.yaml"
+    if not settings.is_file():
+        settings = root / "docs" / "settings.yaml"
+    if not settings.is_file():
+        return "en"
+    for line in settings.read_text(encoding="utf-8").splitlines():
+        s = line.strip()
+        if s.startswith("#") or not s.startswith("language:"):
+            continue
+        val = s.split(":", 1)[1].strip().strip("\"'")
+        return val.lower() if val else "en"
+    return "en"
+
+
+def strip_fences(text: str) -> str:
+    return re.sub(r"```.*?```", "", text, flags=re.S)
+
 
 def find_root(start: Path) -> Path:
     cur = start.resolve()
@@ -68,13 +115,37 @@ def path_is_quick(session: Path) -> bool:
     return False
 
 
-def lint_file(path: Path, errors: list[str], warnings: list[str]) -> None:
+def lint_file(
+    path: Path,
+    errors: list[str],
+    warnings: list[str],
+    *,
+    language: str = "en",
+) -> None:
     text = path.read_text(encoding="utf-8")
     rel = path.name
     if TODO_LEFT.search(text):
         errors.append(f"{rel}: leftover template TODO / placeholder")
     for m in FILLER.finditer(text):
         warnings.append(f"{rel}: filler phrase '{m.group(0)}'")
+    for m in VI_HEADING.finditer(text):
+        errors.append(
+            f"{rel}: heading must stay English (shared form), not '{m.group(1)}' "
+            f"— translate prose only (language={language})"
+        )
+    if language == "vi":
+        body = strip_fences(text)
+        # Ignore heading lines for prose-language signal.
+        prose = "\n".join(
+            ln for ln in body.splitlines() if not ln.lstrip().startswith("#")
+        )
+        letters = sum(1 for ch in prose if ch.isalpha())
+        vi_hits = len(VI_CHAR.findall(prose))
+        if letters >= 120 and vi_hits < 8:
+            warnings.append(
+                f"{rel}: language=vi but little Vietnamese prose "
+                f"(vi_chars={vi_hits}) — avoid English-only body"
+            )
     if path.name == "TASKS.md":
         cards = list(re.finditer(r"^###\s+T-\d+", text, re.M))
         if cards and "#### Dev context" not in text:
@@ -110,6 +181,7 @@ def main() -> int:
     args = parser.parse_args()
     root = args.root.resolve() if args.root else find_root(Path.cwd())
     session = resolve_session(root, args.session)
+    language = read_language(root)
     errors: list[str] = []
     warnings: list[str] = []
 
@@ -128,7 +200,7 @@ def main() -> int:
     for path in sorted(session.glob("*.md")):
         if path.name.startswith("."):
             continue
-        lint_file(path, errors, warnings)
+        lint_file(path, errors, warnings, language=language)
 
     if not list(session.glob("*.md")):
         print(f"SESSION_LINT_EMPTY session={session}")

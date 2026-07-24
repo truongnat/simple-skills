@@ -1,7 +1,7 @@
 # Detail Design
 
 > Seeded by detail-design from BASIC_DESIGN.md.
-> Obey `.agents/SKILL_PREAMBLE.md` Readable writing.
+> Obey `.agents/SKILL_PREAMBLE.md`: headings English; prose = `settings.language`.
 > **Hard rule:** Do not fill contracts/data_model while Doc reality check has
 > Blocking=`Yes` unresolved, or while High-impact assumptions have `Confirmed?=No`
 > without user accept.

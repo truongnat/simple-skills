@@ -39,6 +39,15 @@
 <!-- Omit this whole section unless a diagram changes a decision.
 Do not leave placeholder Mermaid. -->
 
+## Keywords
+
+<!-- Opaque IDs / JP terms / acronyms. Meaning in settings.language. Cap 3–12.
+Criteria: SKILL_PREAMBLE → Keywords. Or: _(none — plain language)_ -->
+
+| Term | Meaning | Where seen |
+|---|---|---|
+| _(TODO or none)_ |  |  |
+
 ## Goal
 
 <!-- One sentence. Name the user-facing outcome. -->

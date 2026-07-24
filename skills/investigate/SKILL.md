@@ -39,6 +39,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - Prefer seed: `templates/INVESTIGATE.template.md`
 - **executive_summary** (required, array): Maximum five bullets with status, likely/confirmed cause, strongest evidence, impact, and next action (include top Doc mismatch if any).
 - **developer_overview** (required, object): Investigation status, Doc reality blockers or n/a, strongest hypothesis, evidence gap, next action.
+- **keywords** (required, object): Glossary table Term \| Meaning (`settings.language`) \| Where seen for opaque IDs/acronyms/domain names used in the report; or explicit `_(none — plain language)_`. Cap 3–12. Criteria: `.agents/SKILL_PREAMBLE.md` → Keywords.
 - **doc_reality_check** (required, object): Table of doc claims vs code/runtime with verdict and Blocking; or explicit N/A with reason when no docs/specs are involved. Clarification checkpoint when Blocking=`Yes`.
 - **charts** (optional, array): Mermaid cause/flow chart when useful; otherwise N/A.
 - **question** (required, string): The investigation question.
@@ -72,6 +73,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 ## Quality Standards
 
 - [ ] Status is one of the defined taxonomy values.
+- [ ] Keywords filled (or none) so a new teammate can read evidence without guessing jargon.
 - [ ] Observed facts have explicit sources.
 - [ ] Inferences are separated from observed facts with confidence levels.
 - [ ] Doc reality filled or N/A with reason; Blocking items asked.

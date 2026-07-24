@@ -18,6 +18,8 @@ Breaking or behavior changes hosts should know after reinstall.
 | CLI `sk` | PyPI `pipx install simple-skills` then `sk install` / `doctor` / `uninstall` (see README Publish) |
 | Skill `excel-doc-convert` | Office profile: Excel 設計書/方眼紙 → HTML+MD + `convert-report.json` |
 | Doc reality check | `investigate` / `basic-design` / `detail-design` must compare docs↔code and **stop and ask** on Blocking mismatches |
+| Language `vi` | Prose in Vietnamese; **headings/template keys/enums stay English**; no mixed VI/EN bodies |
+| Keywords glossary | brainstorming / investigate / research: `## Keywords` (Term/Meaning/Where seen); criteria in SKILL_PREAMBLE |
 
 ## How to upgrade a host project
 

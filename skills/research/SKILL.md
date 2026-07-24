@@ -25,15 +25,17 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 | Field | Requirement |
 |-------|-------------|
 | Inputs | Research question, decision context, local evidence, external source constraints, freshness requirement, quality bar. |
-| Outputs | RESEARCH.md with source strategy, evidence, findings, comparison matrix, recommendation, confidence, caveats, residual risks. |
-| Safety | Do NOT fabricate citations. Do NOT copy long source content. Do NOT use stale sources for decisions needing fresh information. Do NOT present inference as fact. Do NOT omit caveats, residual risks, or Spec quality challenges (feasibility/correctness/capability gaps). |
+| Outputs | `RESEARCH.md` (prefer template) with **keywords**, source strategy, evidence, findings, comparison matrix, recommendation, confidence, caveats, residual risks. |
+| Safety | Do NOT fabricate citations. Do NOT copy long source content. Do NOT use stale sources for decisions needing fresh information. Do NOT present inference as fact. Do NOT omit caveats, residual risks, or Spec quality challenges (feasibility/correctness/capability gaps). Do NOT leave opaque domain terms unexplained — fill Keywords or mark none. |
 
 ### Required artifacts
 
 #### `RESEARCH.md`
 - Required: yes
+- Prefer seed: `templates/RESEARCH.template.md`
 - **executive_summary** (required, array): Maximum five bullets with answer, strongest evidence, caveat/risk, recommendation, and next action.
 - **developer_overview** (required, object): Research status, answer confidence, top caveat, next action.
+- **keywords** (required, object): Term \| Meaning (`settings.language`) \| Where seen; or `_(none — plain language)_`. Cap 3–12. See SKILL_PREAMBLE → Keywords.
 - **charts** (optional, array): Mermaid comparison chart when useful; otherwise N/A.
 - **question** (required, string): Research question.
 - **decision_context** (required, string): What decision this research supports.
@@ -55,6 +57,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 ## Quality Standards
 
 - [ ] Source quality is noted (Primary/Secondary/Community/Marketing/Unknown).
+- [ ] Keywords filled (or none) for opaque terms in findings/recommendation.
 - [ ] Freshness is checked for time-sensitive information (API versions, pricing, features).
 - [ ] Facts, inferences, and opinions are separated.
 - [ ] Comparison matrix exists when multiple options are evaluated.

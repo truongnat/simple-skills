@@ -69,6 +69,47 @@ def test_lint_fails_quick_with_ba(tmp_path: Path) -> None:
     assert "Path=Quick forbids" in result.stdout
 
 
+def test_lint_fails_translated_vietnamese_headings(tmp_path: Path) -> None:
+    session = _session(tmp_path)
+    (tmp_path / ".agents").mkdir()
+    (tmp_path / ".agents" / "settings.yaml").write_text("language: vi\n", encoding="utf-8")
+    (session / "BASIC_DESIGN.md").write_text(
+        "## Tóm tắt điều hành\n\n- hướng đi\n\n## Mục tiêu\n\nMột câu.\n",
+        encoding="utf-8",
+    )
+    result = subprocess.run(
+        ["python3", str(LINT), "--root", str(tmp_path)],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 1
+    assert "heading must stay English" in result.stdout
+
+
+def test_lint_warns_vi_settings_with_english_only_body(tmp_path: Path) -> None:
+    session = _session(tmp_path)
+    (tmp_path / ".agents").mkdir()
+    (tmp_path / ".agents" / "settings.yaml").write_text("language: vi\n", encoding="utf-8")
+    (session / "DISCUSSION.md").write_text(
+        "## Executive summary\n\n"
+        + ("- The system should process every request correctly.\n" * 12)
+        + "\n## Goal\n\nDeliver a robust architecture for the platform.\n",
+        encoding="utf-8",
+    )
+    result = subprocess.run(
+        ["python3", str(LINT), "--root", str(tmp_path)],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0
+    assert "SESSION_LINT_WARNINGS" in result.stdout
+    assert "little Vietnamese prose" in result.stdout
+
+
 def test_build_context_writes_file(tmp_path: Path) -> None:
     session = _session(tmp_path)
     (session / "QUICK.md").write_text(

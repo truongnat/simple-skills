@@ -104,12 +104,12 @@ These methods apply to the **whole session**. They are **not** report section
 names. Never brand headings or executive summaries with method labels
 (`Outcome-first`, `Input→Process→Output`, `Make-implicit-explicit`,
 `Single Source of Truth`, `Small-batch`, `Feedback loop`, `Default path first`,
-`Reversible decisions`, `80/20`, `5W1H`). Never create `OUTCOME.md` / `IPO.md` /
-`SMALL_BATCH.md` / `IMPLICIT.md` / `SSOT.md` / `FEEDBACK.md` / `HAPPY_PATH.md` /
-`REVERSIBLE.md` / `OVERVIEW.md`. Fold results into real fields (`Goal`,
-`Desired outcome`, DoD, AC, Verify, Facts, Assumptions, Unknowns, Constraints,
-Trace, Approach, Non-goals, Work items, Step ledger, Clarification, Issue
-triage).
+`Reversible decisions`, `Standardize before automate`, `80/20`, `5W1H`). Never
+create `OUTCOME.md` / `IPO.md` / `SMALL_BATCH.md` / `IMPLICIT.md` / `SSOT.md` /
+`FEEDBACK.md` / `HAPPY_PATH.md` / `REVERSIBLE.md` / `AUTOMATE.md` /
+`OVERVIEW.md`. Fold results into real fields (`Goal`, `Desired outcome`, DoD,
+AC, Verify, Facts, Assumptions, Unknowns, Constraints, Trace, Approach,
+Non-goals, Work items, Step ledger, Clarification, Issue triage).
 
 **Apply in this order when framing:**
 
@@ -128,8 +128,10 @@ triage).
    rare; name edges early, implement rare late (thin security/money guards OK).
 8. **Reversible decisions** — class R/H/U by reverse-cost; Type R try-and-measure;
    Type H options + Spike + ADR; Quick Path forbids new Type H locks.
-9. **5W1H** — only when the outcome/problem is hard or unclear.
-10. **Vital few** — when summarizing or writing memory.
+9. **Standardize before automate** — manual → understand → standardize →
+   template → automate; do not CI/bot/skill a process with no checklist.
+10. **5W1H** — only when the outcome/problem is hard or unclear.
+11. **Vital few** — when summarizing or writing memory.
 
 ### Outcome-first (mandatory before Scope / Approach / TASKS / code)
 
@@ -305,6 +307,19 @@ Full normative detail:
 `.agents/thinking/reversible-decisions.md`
 (source `docs/thinking/reversible-decisions.md`).
 
+### Standardize before automate (mandatory when proposing CI / bots / skills)
+
+Ladder: **manual → understand → standardize → template → automate**.
+
+Automating an unstable process creates an **accelerated mess**. Do not add CI,
+bots, hooks, or new agent skills until a checklist/template exists (or Approach
+phases include the ladder). Map each automated check to a named standard row
+(Vital few). Org-wide automation is often Reversibility **H**.
+
+Full normative detail:
+`.agents/thinking/standardize-before-automate.md`
+(source `docs/thinking/standardize-before-automate.md`).
+
 ### Vital few
 
 Prioritize what actually changes the outcome (summaries, memory). Do not title
@@ -356,13 +371,14 @@ decoding jargon. If a teammate new to the task cannot act from it, rewrite.
    them; never invent translation noise for ceremony.
 5. Answer method prompts (Outcome-first / IPO / Make-implicit-explicit /
    SSOT / Small-batch / Feedback-loop / Default-path-first /
-   Reversible-decisions / 5W1H / vital-few) as trivia sections or method-branded
-   headings; do not ship activity-only Goals/ACs, Process without Output,
-   mega-batches without Verify, silent dual-interpretation picks, docs↔code
-   Blocking asks without a visual when the user must see the diff, abstract
-   requirements without a Given→Expect example when Blocking,
-   exception-first Approach/DETAIL before a working L1 path, or Type H locks
-   (public API/schema/auth) without options/Spike/ADR.
+   Reversible-decisions / Standardize-before-automate / 5W1H / vital-few) as
+   trivia sections or method-branded headings; do not ship activity-only
+   Goals/ACs, Process without Output, mega-batches without Verify, silent
+   dual-interpretation picks, docs↔code Blocking asks without a visual when the
+   user must see the diff, abstract requirements without a Given→Expect example
+   when Blocking, exception-first Approach/DETAIL before a working L1 path,
+   Type H locks without options/Spike/ADR, or CI/bot/skill automation without
+   a prior checklist/template.
 6. Narrate your process (“I will now analyze…”, “As an AI…”).
 7. **Complete-with-questions:** fill Goal / Recommendation / Architecture / …
    while Critical or Blocking items are still unanswered, or dump a long Open

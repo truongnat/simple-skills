@@ -84,7 +84,8 @@ artifact**. Do **not** create a separate `OVERVIEW.md` landing page — it goes
 stale. Progress truth is `TASKS.md` + `session.sh status`. Do **not** name
 sections after methods (`Outcome-first`, `IPO`, `Make-implicit-explicit`,
 `SSOT`, `Small-batch`, `Feedback loop`, `Default path first`,
-`Reversible decisions`, `80/20`, `5W1H`). Chart when useful; skip filler.
+`Reversible decisions`, `Standardize before automate`, `80/20`, `5W1H`). Chart
+when useful; skip filler.
 
 **Thinking methods (session-wide — not report titles):**
 
@@ -115,6 +116,9 @@ sections after methods (`Outcome-first`, `IPO`, `Make-implicit-explicit`,
 - **Reversible decisions:** class R/H/U by reverse-cost; Type R try-and-measure;
   Type H options + Spike + ADR; High-impact ≠ hard-to-reverse; Quick forbids
   new Type H locks. Full rules: `.agents/thinking/reversible-decisions.md`.
+- **Standardize before automate:** manual → understand → standardize → template
+  → automate; no CI/bot/new skill without a checklist/template. Full rules:
+  `.agents/thinking/standardize-before-automate.md`.
 - **Vital few (Pareto / “80/20”):** across the whole session, keep attention on
   the small set of facts, risks, and decisions that change the outcome. Use it
   when prioritizing, summarizing, and writing memory — never as a heading or
@@ -608,13 +612,15 @@ traceability, test data, or verification evidence.
 These are **ways of working**, not section names or report titles. Do not brand
 artifacts with method labels (`Outcome-first`, `IPO`, `Make-implicit-explicit`,
 `SSOT`, `Small-batch`, `Feedback loop`, `Default path first`,
-`Reversible decisions`, `80/20`, `5W1H`). Do not create `OUTCOME.md` / `IPO.md` /
-`SMALL_BATCH.md` / `IMPLICIT.md` / `SSOT.md` / `FEEDBACK.md` / `HAPPY_PATH.md` /
-`REVERSIBLE.md`. Fold method results into existing fields only.
+`Reversible decisions`, `Standardize before automate`, `80/20`, `5W1H`). Do not
+create `OUTCOME.md` / `IPO.md` / `SMALL_BATCH.md` / `IMPLICIT.md` / `SSOT.md` /
+`FEEDBACK.md` / `HAPPY_PATH.md` / `REVERSIBLE.md` / `AUTOMATE.md`. Fold method
+results into existing fields only.
 
 **Framing order:** Outcome-first → Input→Process→Output → Make-implicit-explicit
 → Single Source of Truth → Small-batch → Feedback loop → Default path first →
-Reversible decisions → (5W1H if unclear) → vital few when summarizing/memory.
+Reversible decisions → Standardize before automate → (5W1H if unclear) → vital
+few when summarizing/memory.
 
 1. **Outcome-first (mandatory):** Start from the observable end state, not the
    task list. Every `Goal`, `Desired outcome`, DoD item, and task `AC` must
@@ -717,12 +723,22 @@ Reversible decisions → (5W1H if unclear) → vital few when summarizing/memory
    `.agents/thinking/reversible-decisions.md`
    (source `docs/thinking/reversible-decisions.md`).
 
-9. **Vital few (Pareto):** Hold the whole session in mind and surface only what
+9. **Standardize before automate (mandatory when proposing automation):**
+   Ladder manual → understand → standardize → template → automate. Do not add
+   CI/bots/hooks/new skills without a checklist/template (or Approach phases
+   for that ladder). Automate vital checklist rows only; org automation often
+   Type H.
+
+   **Normative detail:**
+   `.agents/thinking/standardize-before-automate.md`
+   (source `docs/thinking/standardize-before-automate.md`).
+
+10. **Vital few (Pareto):** Hold the whole session in mind and surface only what
    changes the decision or outcome. Executive summaries and memory entries
    should reflect that prioritization — without a heading called `80/20` or
    branded titles like “Executive summary” plus a method suffix.
 
-10. **5W1H:** When the problem is hard, ambiguous, or the feature is unclear /
+11. **5W1H:** When the problem is hard, ambiguous, or the feature is unclear /
    wrong / underspecified, silently check What / Why / Who / When / Where / How
    against the **session context** (goal, constraints, evidence, unknowns). Put
    the useful answers into the real sections (facts, risks, Spec quality,

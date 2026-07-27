@@ -84,6 +84,9 @@ def test_outcome_first_thinking_method_is_wired() -> None:
     reversible = (
         REPO_ROOT / "docs" / "thinking" / "reversible-decisions.md"
     ).read_text(encoding="utf-8")
+    standardize = (
+        REPO_ROOT / "docs" / "thinking" / "standardize-before-automate.md"
+    ).read_text(encoding="utf-8")
     index = (REPO_ROOT / "docs" / "thinking" / "README.md").read_text(encoding="utf-8")
     catalog = (REPO_ROOT / "docs" / "README.md").read_text(encoding="utf-8")
     assert "Outcome-first" in preamble
@@ -103,6 +106,8 @@ def test_outcome_first_thinking_method_is_wired() -> None:
     assert "thinking/default-path-first.md" in preamble
     assert "Reversible decisions" in preamble
     assert "thinking/reversible-decisions.md" in preamble
+    assert "Standardize before automate" in preamble
+    assert "thinking/standardize-before-automate.md" in preamble
     assert "Outcome-first" in policy
     assert "Input → Process → Output" in policy
     assert "Make implicit explicit" in policy
@@ -111,6 +116,7 @@ def test_outcome_first_thinking_method_is_wired() -> None:
     assert "Feedback loop" in policy
     assert "Default path first" in policy
     assert "Reversible decisions" in policy
+    assert "Standardize before automate" in policy
     assert "WHO" in detail and "WHAT" in detail and "EVIDENCE" in detail
     assert "OUTCOME.md" in detail and "forbidden" in detail.lower()
     assert "Input" in ipo and "Process" in ipo and "Output" in ipo
@@ -132,10 +138,14 @@ def test_outcome_first_thinking_method_is_wired() -> None:
     assert "reverse-cost" in reversible.lower() or "Hard-to-reverse" in reversible
     assert "REVERSIBLE.md" in reversible
     assert "High-impact" in reversible and "hard-to-reverse" in reversible.lower()
+    assert "manual" in standardize.lower() and "template" in standardize.lower()
+    assert "AUTOMATE.md" in standardize
+    assert "accelerated mess" in standardize.lower() or "messy process" in standardize.lower()
     assert "outcome-first.md" in index and "input-process-output.md" in index
     assert "make-implicit-explicit.md" in index and "single-source-of-truth.md" in index
     assert "small-batch.md" in index and "feedback-loop.md" in index
     assert "default-path-first.md" in index and "reversible-decisions.md" in index
+    assert "standardize-before-automate.md" in index
     assert "thinking/" in catalog
 
 

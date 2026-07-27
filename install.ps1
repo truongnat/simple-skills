@@ -158,6 +158,14 @@ function Invoke-Doctor {
         $ok = $false
     }
 
+    $thinkingStandardize = Join-Path $Target.Path ".agents/thinking/standardize-before-automate.md"
+    if (Test-Path $thinkingStandardize -PathType Leaf) {
+        Write-Host "kit_thinking/standardize-before-automate.md=yes"
+    } else {
+        Write-Host "kit_thinking/standardize-before-automate.md=missing"
+        $ok = $false
+    }
+
     if (Test-Path (Join-Path $Target.Path "AGENTS.md") -PathType Leaf) {
         Write-Host "root_AGENTS.md=yes"
     } else {
@@ -361,6 +369,7 @@ function Invoke-Install {
     Copy-Item -Path (Join-Path $Source "docs/thinking/feedback-loop.md") -Destination ".agents/thinking/feedback-loop.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/thinking/default-path-first.md") -Destination ".agents/thinking/default-path-first.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/thinking/reversible-decisions.md") -Destination ".agents/thinking/reversible-decisions.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/thinking/standardize-before-automate.md") -Destination ".agents/thinking/standardize-before-automate.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/thinking/README.md") -Destination ".agents/thinking/README.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/policy/AGENT_WORK.md") -Destination ".agents/AGENT_WORK.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/guides/START_HERE.md") -Destination ".agents/START_HERE.md" -Force

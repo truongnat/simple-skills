@@ -39,6 +39,7 @@ body. Blocking unknowns → **Confirm-first** + **Ask method** in
 | `.agents/thinking/feedback-loop.md` | Feedback loop Thinking method (normative) |
 | `.agents/thinking/default-path-first.md` | Default path first Thinking method (normative) |
 | `.agents/thinking/reversible-decisions.md` | Reversible decisions Thinking method (normative) |
+| `.agents/thinking/standardize-before-automate.md` | Standardize before automate Thinking method (normative) |
 | `.agents/skills/` | Invokable skills |
 | `.agents/tools/` | session, lint, build_context, detect_agents, delegate_worker, … |
 | `.agent-work/` | **Work** — sessions + memory (nested git; `session.sh commit` / `archive`) |

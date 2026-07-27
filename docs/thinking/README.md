@@ -3,7 +3,7 @@
 Session-wide ways of working — **not** report section titles. Never brand
 headings or create method-named artifacts (`OUTCOME.md`, `IPO.md`,
 `SMALL_BATCH.md`, `IMPLICIT.md`, `SSOT.md`, `FEEDBACK.md`, `HAPPY_PATH.md`,
-`REVERSIBLE.md`, `5W1H.md`, …).
+`REVERSIBLE.md`, `AUTOMATE.md`, `5W1H.md`, …).
 
 Ops rules (short): `.agents/SKILL_PREAMBLE.md` → Thinking methods  
 Policy summary: `.agents/AGENT_POLICY.md` → Thinking methods  
@@ -20,8 +20,9 @@ Source ops/policy: `docs/policy/SKILL_PREAMBLE.md`, `docs/policy/AGENT_POLICY.md
 6. Feedback loop              → modality + latency×risk (Example/See/Run/Spike)
 7. Default path first         → L1 happy → L2 validation → L3 errors → L4 rare
 8. Reversible decisions       → R/H/U ceremony by reverse-cost
-9. 5W1H (if unclear)          → diagnose; fold into real sections
-10. Vital few                 → prioritize in summaries / memory
+9. Standardize before automate → manual → standard → template → automate
+10. 5W1H (if unclear)         → diagnose; fold into real sections
+11. Vital few                 → prioritize in summaries / memory
 ```
 
 ## Methods in this folder
@@ -36,13 +37,13 @@ Source ops/policy: `docs/policy/SKILL_PREAMBLE.md`, `docs/policy/AGENT_POLICY.md
 | **Feedback loop** | [feedback-loop.md](./feedback-loop.md) | `.agents/thinking/feedback-loop.md` |
 | **Default path first** | [default-path-first.md](./default-path-first.md) | `.agents/thinking/default-path-first.md` |
 | **Reversible decisions** | [reversible-decisions.md](./reversible-decisions.md) | `.agents/thinking/reversible-decisions.md` |
+| **Standardize before automate** | [standardize-before-automate.md](./standardize-before-automate.md) | `.agents/thinking/standardize-before-automate.md` |
 
 Vital few and 5W1H are fully specified in policy/preamble today (short methods).
 When a method needs staff-engineer detail, add a file here and link it from
 preamble + this index — do **not** invent a separate skill.
 
-**Hybrid C:** Small-batch = size + coding Verify; Feedback loop = signal
-modality; Default path first = L1→L4 depth; Reversible decisions = ceremony by
-reverse-cost (R try-and-measure / H Spike+ADR). High-impact ≠ hard-to-reverse.
-Coding-card hard size stays in planning step-03 §B–§C. Confirm-first in
-`SKILL_PREAMBLE.md`; SSOT owns ADR home for Type H.
+Small-batch = size + Verify; Feedback = signal; Default path = L1→L4;
+Reversible = ceremony by reverse-cost; **Standardize before automate** = no
+CI/bot/skill until checklist/template exists. Coding-card hard size stays in
+planning step-03 §B–§C. Confirm-first in `SKILL_PREAMBLE.md`.

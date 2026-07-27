@@ -54,6 +54,7 @@ Full normative text lives under `thinking/` (progressive disclosure).
 | `docs/thinking/feedback-loop.md` | `.agents/thinking/feedback-loop.md` |
 | `docs/thinking/default-path-first.md` | `.agents/thinking/default-path-first.md` |
 | `docs/thinking/reversible-decisions.md` | `.agents/thinking/reversible-decisions.md` |
+| `docs/thinking/standardize-before-automate.md` | `.agents/thinking/standardize-before-automate.md` |
 | `docs/conventions/CODE_COMMENTS.md` | `.agents/CODE_COMMENTS.md` |
 | `docs/conventions/DESIGN_SYSTEM.md` | `.agents/DESIGN_SYSTEM.md` |
 | `docs/conventions/THIRD_PARTY_SKILLS.md` | `.agents/THIRD_PARTY_SKILLS.md` |

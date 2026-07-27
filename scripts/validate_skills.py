@@ -499,6 +499,8 @@ def main() -> int:
         errors.append("docs/thinking/default-path-first.md missing")
     if not (ROOT / "docs" / "thinking" / "reversible-decisions.md").is_file():
         errors.append("docs/thinking/reversible-decisions.md missing")
+    if not (ROOT / "docs" / "thinking" / "standardize-before-automate.md").is_file():
+        errors.append("docs/thinking/standardize-before-automate.md missing")
     if not (ROOT / "docs" / "thinking" / "README.md").is_file():
         errors.append("docs/thinking/README.md missing")
     if not (ROOT / "docs" / "examples" / "README.md").is_file():

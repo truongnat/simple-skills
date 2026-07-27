@@ -174,8 +174,9 @@ explicit confirmation — aligns with kit irreversible-destructive rules.
 6. Feedback loop              → Spike/Example for signals
 7. Default path first
 8. Reversible decisions       → R/H/U ceremony match
-9. 5W1H (if unclear)
-10. Vital few
+9. Standardize before automate → checklist before CI/bot
+10. 5W1H (if unclear)
+11. Vital few
 ```
 
 | Method | vs Reversible decisions |
@@ -183,6 +184,7 @@ explicit confirmation — aligns with kit irreversible-destructive rules.
 | Feedback loop | *When/how* to get a signal; this method *how heavy* before lock |
 | Make-explicit | Write the decision; this method sets rigor by reverse-cost |
 | SSOT | Where Type H rationale lives (ADR) |
+| Standardize before automate | Org CI/bot often Type H — still need checklist first |
 | High-impact | Orthogonal axis — use both columns when needed |
 | Path Quick | Process ceiling; this method forbids new H on Quick |
 

@@ -38,7 +38,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 |-------|-------------|
 | Inputs | Target directory, user intent, `DISCUSSION.md`/`BUSINESS_ANALYSIS.md` when present, `.agents/settings.yaml` (language, branch, code, docs), `.agent-work/memory/`, stack/tooling choices (confirmed). |
 | Outputs | Project skeleton (structure, manifests, tooling config, base entry points, README/.gitignore/.env.example), initialized repo + `.agents/` kit + `.agent-work/` work wiring, stack ADRs, and `SCAFFOLD.md` in the active session. |
-| Safety | Greenfield only — **never scaffold over an existing project**; if manifests/source exist, stop and route to `init`. Do NOT overwrite existing files without confirmation. Do NOT install dependencies or run project code unless the user approves (default: print the commands, don't run). Do NOT invent versions/secrets — use known-stable or ask, and mark assumptions. Respect `rules.branch.mode`. |
+| Safety | Greenfield only — **never scaffold over an existing project**; if manifests/source exist, stop and route to `init`. Do NOT overwrite existing files without confirmation. Do NOT install dependencies or run project code unless the user approves (default: print the commands, don't run). Do NOT invent versions/secrets — use known-stable or ask, and mark assumptions. Respect `rules.branch.mode`. Prefer CI that encodes a stated checklist (Standardize before automate) — do not invent exotic workflows without a standard. |
 
 ### Greenfield guard (before writing anything)
 - Detect existing project: run `bash .agents/skills/init/scripts/scan_workspaces.sh`.

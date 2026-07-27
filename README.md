@@ -1,8 +1,19 @@
 # Simple Skills
 
-<p align="center">
-  <img src="docs/assets/banner.png" alt="Simple Skills — Agent kit that ships" width="100%">
-</p>
+<pre align="center">
+╔══════════════════════════════════════════════════════════╗
+║                                                          ║
+║     ____  _                 _         ____  _    _ _     ║
+║    / ___|(_)_ __ ___  _ __ | | ___   / ___|| | _(_) |___ ║
+║    \___ \| | '_ ` _ \| '_ \| |/ _ \  \___ \| |/ / | / __|║
+║     ___) | | | | | | | |_) | |  __/   ___) |   <| | \__ \║
+║    |____/|_|_| |_| |_| .__/|_|\___|  |____/|_|\_\_|_|___/║
+║                      |_|                                 ║
+║                                                          ║
+║         think → design → plan → execute → review → done  ║
+║                                                          ║
+╚══════════════════════════════════════════════════════════╝
+</pre>
 
 <p align="center">
   <a href="https://github.com/truongnat/simple-skills/actions/workflows/ci.yml"><img src="https://github.com/truongnat/simple-skills/actions/workflows/ci.yml/badge.svg" alt="CI"></a>

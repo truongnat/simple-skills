@@ -145,6 +145,12 @@ def test_styles_and_theme_endpoints(decision_http) -> None:
     assert status == 200
     assert b"--ss-interactive:" in body
     assert b"--ss-background:" in body
+    assert b"color-scheme: light" in body
+    assert b".ss-input" in body
+    assert b".ss-check" in body
+    assert b".ss-btn" in body
+    assert b".ss-state" in body
+    assert b'data-state="info"' in body or b"[data-state=\"info\"]" in body
 
     status, body = _get(
         decision_http["host"],
@@ -164,6 +170,16 @@ def test_styles_and_theme_endpoints(decision_http) -> None:
     assert b"SimpleSkillsAnimate" in body
     assert b"data-ss-animate" in body
 
+    status, body = _get(
+        decision_http["host"],
+        decision_http["port"],
+        "/client.js",
+    )
+    assert status == 200
+    assert b"data-ss-tab" in body
+    assert b"data-ss-compare-root" in body
+    assert b"wireChoiceInputs" in body or b"data-choice" in body
+
     status, raw = _get(
         decision_http["host"],
         decision_http["port"],
@@ -173,3 +189,24 @@ def test_styles_and_theme_endpoints(decision_http) -> None:
     data = json.loads(raw.decode("utf-8"))
     assert data["ok"] is True
     assert data["theme"] == "enterprise"
+
+
+def test_design_system_locks_light_forms_and_interactions() -> None:
+    design = (
+        REPO_ROOT / "docs" / "conventions" / "DESIGN_SYSTEM.md"
+    ).read_text(encoding="utf-8")
+    assert "Light only" in design
+    assert "ss-btn" in design and "ss-input" in design
+    assert "data-ss-tabs" in design
+    assert "dark:" in design  # forbidden callout
+    template = (
+        REPO_ROOT
+        / "skills"
+        / "brainstorming"
+        / "templates"
+        / "VISUAL_DECISION.template.html"
+    ).read_text(encoding="utf-8")
+    assert "ss-textarea" in template
+    assert "data-ss-compare-root" in template
+    assert "ss-btn" in template
+    assert 'location.protocol === "file:"' not in template  # handled in client.js

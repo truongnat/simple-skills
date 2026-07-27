@@ -65,6 +65,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Decision/report HTML is light-only. Locks OS dark native controls. */
+  color-scheme: light;
 }
 
 html,
@@ -80,6 +82,7 @@ body {
   font-size: 15px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  color-scheme: light;
 }
 
 :focus-visible {
@@ -331,7 +334,9 @@ body {
   font-weight: 450;
 }
 
-/* —— Prose —— */
+/* —— Prose + content lists ——
+   Tailwind Preflight zeros list-style/padding. Restore bullets anywhere in
+   main content except intentional pattern lists (nav / flow / legend). */
 .ss-prose {
   margin: 0;
   max-width: none;
@@ -344,19 +349,30 @@ body {
   margin: 0 0 0.4rem;
 }
 
-.ss-prose :where(ul, ol) {
+.ss-prose :where(ul, ol),
+.ss-card :where(ul, ol):not(.ss-flow):not(.ss-legend),
+.ss-panel :where(ul, ol),
+.ss-main > :where(ul, ol) {
   padding-left: 1.15rem;
 }
 
-.ss-prose :where(ul) {
+.ss-prose :where(ul),
+.ss-card :where(ul):not(.ss-flow):not(.ss-legend),
+.ss-panel :where(ul),
+.ss-main > :where(ul) {
   list-style: disc;
 }
 
-.ss-prose :where(ol) {
+.ss-prose :where(ol),
+.ss-card :where(ol),
+.ss-panel :where(ol),
+.ss-main > :where(ol) {
   list-style: decimal;
 }
 
-.ss-prose :where(li) {
+.ss-prose :where(li),
+.ss-card :where(ul, ol):not(.ss-flow):not(.ss-legend) > li,
+.ss-panel :where(ul, ol) > li {
   margin: 0.12rem 0;
 }
 
@@ -418,15 +434,23 @@ body {
   }
 }
 
-.ss-overview > div {
+.ss-overview > div,
+.ss-overview > .ss-panel {
   margin: 0;
   padding: 0.65rem 0.75rem;
   background: var(--ss-paper);
   border: 1px solid var(--ss-line);
   border-radius: var(--ss-radius);
+  font-size: 13.5px;
+  font-weight: 650;
+  line-height: 1.35;
+  color: var(--ss-ink);
 }
 
-.ss-overview dt {
+.ss-overview dt,
+.ss-overview > div > strong,
+.ss-overview > .ss-panel > strong {
+  display: block;
   margin: 0;
   font-size: 11px;
   font-weight: 600;
@@ -439,6 +463,24 @@ body {
   font-weight: 650;
   line-height: 1.35;
   color: var(--ss-ink);
+}
+
+.ss-overview > div > strong + *,
+.ss-overview > .ss-panel > strong + * {
+  margin-top: 0.2rem;
+}
+
+/* Visual placeholder inside an option card */
+.ss-state {
+  margin: 0.15rem 0;
+  padding: 0.65rem 0.75rem;
+  min-height: 3.5rem;
+  border: 1px dashed var(--ss-line);
+  border-radius: var(--ss-radius);
+  background: var(--ss-wash);
+  color: var(--ss-mute);
+  font-size: 12.5px;
+  line-height: 1.4;
 }
 
 /* —— Table —— */
@@ -678,6 +720,267 @@ body {
   margin-left: auto;
 }
 
+/* —— Actions & form controls (never ship bare native chrome) —— */
+.ss-btn,
+button.ss-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 2.15rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--ss-line);
+  border-radius: 999px;
+  background: var(--ss-paper);
+  color: var(--ss-ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  color-scheme: light;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.ss-btn:hover:not(:disabled),
+button.ss-btn:hover:not(:disabled) {
+  background: var(--ss-wash);
+}
+
+.ss-btn:disabled,
+button.ss-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ss-btn.is-active,
+.ss-btn[aria-pressed="true"],
+button.ss-btn.is-active,
+button.ss-btn[aria-pressed="true"] {
+  border-color: var(--ss-accent);
+  background: var(--ss-accent-soft);
+  color: #0f766e;
+}
+
+.ss-btn-primary,
+.ss-btn.primary,
+button.ss-btn-primary {
+  border-color: var(--ss-accent);
+  background: var(--ss-accent);
+  color: #fff;
+}
+
+.ss-btn-primary:hover:not(:disabled),
+.ss-btn.primary:hover:not(:disabled),
+button.ss-btn-primary:hover:not(:disabled) {
+  background: var(--ss-interactive-hover);
+  color: #fff;
+}
+
+.ss-btn-ghost,
+.ss-btn.ghost {
+  background: transparent;
+}
+
+.ss-field {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0.55rem 0;
+}
+
+.ss-label {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ss-mute);
+}
+
+.ss-hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ss-mute);
+}
+
+.ss-input,
+.ss-textarea,
+.ss-select,
+input.ss-input,
+textarea.ss-textarea,
+select.ss-select {
+  width: 100%;
+  max-width: 100%;
+  min-height: 2.25rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--ss-line);
+  border-radius: var(--ss-radius);
+  background: var(--ss-paper);
+  color: var(--ss-ink);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  color-scheme: light;
+  appearance: none;
+}
+
+.ss-textarea,
+textarea.ss-textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+
+.ss-select,
+select.ss-select {
+  padding-right: 2rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23667085' d='M1.4 1.2 6 5.8l4.6-4.6 1.2 1.2L6 8.2.2 2.4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+}
+
+.ss-input::placeholder,
+.ss-textarea::placeholder,
+input.ss-input::placeholder,
+textarea.ss-textarea::placeholder {
+  color: color-mix(in srgb, var(--ss-mute) 80%, transparent);
+}
+
+.ss-input:focus,
+.ss-textarea:focus,
+.ss-select:focus,
+input.ss-input:focus,
+textarea.ss-textarea:focus,
+select.ss-select:focus {
+  outline: 2px solid color-mix(in srgb, var(--ss-accent) 45%, transparent);
+  outline-offset: 1px;
+  border-color: var(--ss-accent);
+}
+
+.ss-check,
+.ss-radio {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin: 0.25rem 0;
+  color: var(--ss-ink);
+  font-size: 13.5px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.ss-check input,
+.ss-radio input {
+  flex: 0 0 auto;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0.12rem 0 0;
+  appearance: none;
+  border: 1.5px solid var(--ss-line);
+  background: var(--ss-paper);
+  color-scheme: light;
+  cursor: pointer;
+}
+
+.ss-check input {
+  border-radius: 4px;
+}
+
+.ss-radio input {
+  border-radius: 999px;
+}
+
+.ss-check input:checked,
+.ss-radio input:checked {
+  border-color: var(--ss-accent);
+  background-color: var(--ss-accent);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.ss-check input:checked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' d='M2.5 6.2 5 8.7 9.5 3.5'/%3E%3C/svg%3E");
+}
+
+.ss-radio input:checked {
+  background-image: radial-gradient(circle at center, #fff 0 35%, transparent 36%);
+}
+
+.ss-check input:focus-visible,
+.ss-radio input:focus-visible {
+  outline: 2px solid var(--ss-accent);
+  outline-offset: 2px;
+}
+
+.ss-check-group,
+.ss-radio-group {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.4rem 0;
+}
+
+/* Tabs / before–after compare */
+.ss-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.45rem 0;
+}
+
+.ss-tabs [data-ss-tab] {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--ss-line);
+  border-radius: 999px;
+  background: var(--ss-paper);
+  color: var(--ss-mute);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.ss-tabs [data-ss-tab]:hover {
+  color: var(--ss-ink);
+  background: var(--ss-wash);
+}
+
+.ss-tabs [data-ss-tab][aria-selected="true"],
+.ss-tabs [data-ss-tab].is-active {
+  border-color: var(--ss-accent);
+  background: var(--ss-accent-soft);
+  color: #0f766e;
+}
+
+.ss-panels [data-ss-panel][hidden] {
+  display: none !important;
+}
+
+.ss-compare {
+  display: grid;
+  gap: 0.55rem;
+}
+
+@media (min-width: 720px) {
+  .ss-compare[data-ss-mode="both"] {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.ss-compare [data-ss-pane] {
+  padding: 0.75rem;
+  border: 1px solid var(--ss-line);
+  border-radius: var(--ss-radius);
+  background: var(--ss-paper);
+}
+
+.ss-compare [data-ss-pane] > strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ss-mute);
+}
+
 .ss-details {
   margin-top: 0.55rem;
   border: 1px solid var(--ss-line);
@@ -804,7 +1107,8 @@ body {
 
 #decision-banner[data-state="ok"],
 #decision-banner[data-state="error"],
-#decision-banner[data-state="pending"] {
+#decision-banner[data-state="pending"],
+#decision-banner[data-state="info"] {
   display: block;
 }
 
@@ -823,6 +1127,12 @@ body {
 #decision-banner[data-state="pending"] {
   background: var(--ss-warn-soft);
   border-bottom-color: color-mix(in srgb, var(--ss-warn) 30%, transparent);
+  color: var(--ss-ink);
+}
+
+#decision-banner[data-state="info"] {
+  background: var(--ss-accent-soft);
+  border-bottom-color: color-mix(in srgb, var(--ss-accent) 30%, transparent);
   color: var(--ss-ink);
 }
 

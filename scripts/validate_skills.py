@@ -916,6 +916,13 @@ def main() -> int:
         errors.append("tools/decision-server/styles.css missing shared --ss-* tokens")
     if "#10a37f" not in styles:
         errors.append("tools/decision-server/styles.css missing Apps SDK accent token")
+    if "color-scheme: light" not in styles:
+        errors.append("tools/decision-server/styles.css missing light-only color-scheme lock")
+    if ".ss-input" not in styles or ".ss-check" not in styles or ".ss-btn" not in styles:
+        errors.append("tools/decision-server/styles.css missing form/action control styles")
+    client_js = (decision_dir / "client.js").read_text(encoding="utf-8")
+    if "data-ss-tab" not in client_js or "data-ss-compare-root" not in client_js:
+        errors.append("tools/decision-server/client.js missing tabs/compare interactions")
     theme_js = (decision_dir / "tailwind-theme.js").read_text(encoding="utf-8")
     if "tailwind.config" not in theme_js:
         errors.append("tools/decision-server/tailwind-theme.js missing enterprise palette")
@@ -930,6 +937,10 @@ def main() -> int:
         errors.append("docs/conventions/DESIGN_SYSTEM.md missing Claude/OpenAI guideline attribution")
     if "ss-prose" not in design_system and "semantic" not in design_system.lower():
         errors.append("docs/conventions/DESIGN_SYSTEM.md missing semantic/reading-first guidance")
+    if "Light only" not in design_system:
+        errors.append("docs/conventions/DESIGN_SYSTEM.md missing light-only theme rule")
+    if "ss-input" not in design_system or "ss-btn" not in design_system:
+        errors.append("docs/conventions/DESIGN_SYSTEM.md missing form/action class guidance")
 
     if errors:
         print("SKILL_VALIDATION_FAILED")

@@ -12,24 +12,6 @@
   <!-- Absolute paths when served by decision-server -->
   <script src="/tailwind-theme.js"></script>
   <link rel="stylesheet" href="/styles.css">
-  <script>
-    if (location.protocol === "file:") {
-      document.addEventListener("DOMContentLoaded", () => {
-        const banner = document.getElementById("decision-banner");
-        if (!banner) return;
-        banner.dataset.state = "info";
-        banner.style.display = "block";
-        banner.style.background = "#e7f6f1";
-        banner.style.color = "#0d0d0d";
-        banner.style.padding = "12px 16px";
-        banner.innerHTML =
-          "<strong>Static preview</strong><br>" +
-          "Layout loads via CDN + local theme paths. " +
-          "To record a choice, serve with " +
-          "<code>python .agents/tools/session-serve/serve.py &lt;session&gt;</code>.";
-      });
-    }
-  </script>
 </head>
 <body class="ss-page">
   <div id="decision-banner" role="status" aria-live="polite">
@@ -61,6 +43,25 @@
         <div class="ss-panel"><strong>Next action</strong>Choose one option</div>
         <div class="ss-panel"><strong>Owner</strong>Product / BA</div>
       </div>
+      <ul class="ss-prose">
+        <li>Replace with the vital few facts the chooser must see first.</li>
+        <li>Lists use <code>ss-prose</code> (or sit inside <code>ss-card</code>) so bullets keep padding.</li>
+      </ul>
+    </section>
+
+    <section class="ss-card" aria-labelledby="compare-heading">
+      <h2 id="compare-heading" class="ss-h2">Before / after (optional)</h2>
+      <div data-ss-compare-root data-ss-mode="both">
+        <div class="ss-toolbar">
+          <button type="button" class="ss-btn" data-ss-show="before">Before</button>
+          <button type="button" class="ss-btn" data-ss-show="after">After</button>
+          <button type="button" class="ss-btn" data-ss-show="both">Both</button>
+        </div>
+        <div class="ss-compare">
+          <div data-ss-pane="before"><strong>Before</strong><p class="ss-prose">Replace with current state.</p></div>
+          <div data-ss-pane="after"><strong>After</strong><p class="ss-prose">Replace with proposed state.</p></div>
+        </div>
+      </div>
     </section>
 
     <section class="ss-card" aria-labelledby="options-heading">
@@ -71,14 +72,19 @@
           <h3>Option A</h3>
           <div class="ss-state">Replace with a simple visual representation.</div>
           <p>Benefit, limitation, risk.</p>
-          <button type="button" data-choice="A" data-issue-id="ISS-000">Choose A</button>
+          <button type="button" class="ss-btn ss-btn-primary" data-choice="A" data-issue-id="ISS-000">Choose A</button>
         </article>
         <article class="ss-option">
           <h3>Option B</h3>
           <div class="ss-state">Replace with a simple visual representation.</div>
           <p>Benefit, limitation, risk.</p>
-          <button type="button" data-choice="B" data-issue-id="ISS-000">Choose B</button>
+          <button type="button" class="ss-btn" data-choice="B" data-issue-id="ISS-000">Choose B</button>
         </article>
+      </div>
+      <div class="ss-field">
+        <label class="ss-label" for="decision-note">Optional note</label>
+        <textarea id="decision-note" class="ss-textarea" data-ss-note rows="2" placeholder="Why this option?"></textarea>
+        <p class="ss-hint">Saved with the choice when served via session-serve.</p>
       </div>
     </section>
 
@@ -101,7 +107,7 @@
 
   <footer class="ss-footer">
     <div class="ss-footer-inner">
-      <p>Agent decision aid · Tailwind + anime.js CDN · Local theme helpers</p>
+      <p>Agent decision aid · Tailwind + anime.js CDN · Local theme helpers · Light enterprise theme</p>
     </div>
   </footer>
 

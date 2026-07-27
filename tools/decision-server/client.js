@@ -58,7 +58,13 @@
       return;
     }
     mark.textContent =
-      state === "ok" ? "✓" : state === "error" ? "!" : "…";
+      state === "ok"
+        ? "✓"
+        : state === "error"
+          ? "!"
+          : state === "info"
+            ? "i"
+            : "…";
     strong.textContent = title;
     span.textContent = detail || "";
     banner.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -77,7 +83,9 @@
       const root = optionRoot(button);
       const isSelected = button === selectedButton;
       // Keep enabled so the user can change their mind; choice-reader uses latest.
-      button.disabled = false;
+      if (button.matches("button, [role='button']")) {
+        button.disabled = false;
+      }
       if (!root) {
         return;
       }
@@ -98,7 +106,7 @@
   }
 
   function setChoicesBusy(busy) {
-    document.querySelectorAll("[data-choice]").forEach((button) => {
+    document.querySelectorAll("button[data-choice]").forEach((button) => {
       button.disabled = Boolean(busy);
     });
   }
@@ -128,41 +136,188 @@
     });
   }
 
+  function noteFromContext(el) {
+    const field = el
+      .closest("section, form, .ss-card, .ss-option")
+      ?.querySelector("[data-ss-note], textarea.ss-textarea, input.ss-input[name='note']");
+    if (field && "value" in field) {
+      return String(field.value || "").trim();
+    }
+    return el.getAttribute("data-note") || "";
+  }
+
+  async function handleChoice(el) {
+    if (el.disabled) {
+      return;
+    }
+    const choice = el.getAttribute("data-choice");
+    if (!choice) {
+      return;
+    }
+    const issueId = el.getAttribute("data-issue-id");
+    const note = noteFromContext(el);
+    const label = (el.textContent || el.getAttribute("aria-label") || choice).trim();
+    try {
+      setChoicesBusy(true);
+      setBanner("pending", "Saving your choice…", `${label} (${choice})`);
+      await recordChoice(choice, note, issueId);
+      markSelection(el);
+      setBanner(
+        "ok",
+        "Choice recorded",
+        `${label} → ${choice}. Click another option to change.`
+      );
+      await recordEvent("choice_ui_ack", { choice });
+    } catch (err) {
+      setBanner("error", "Could not save choice", String(err.message || err));
+      setChoicesBusy(false);
+    }
+  }
+
   function wireButtons() {
-    document.querySelectorAll("[data-choice]").forEach((button) => {
-      button.addEventListener("click", async () => {
-        if (button.disabled) {
-          return;
-        }
-        const choice = button.getAttribute("data-choice");
-        const issueId = button.getAttribute("data-issue-id");
-        const note = button.getAttribute("data-note") || "";
-        const label = button.textContent.trim() || choice;
-        try {
-          setChoicesBusy(true);
-          setBanner(
-            "pending",
-            "Saving your choice…",
-            `${label} (${choice})`
-          );
-          await recordChoice(choice, note, issueId);
-          markSelection(button);
-          setBanner(
-            "ok",
-            "Choice recorded",
-            `${label} → ${choice}. Click another option to change.`
-          );
-          await recordEvent("choice_ui_ack", { choice });
-        } catch (err) {
-          setBanner(
-            "error",
-            "Could not save choice",
-            String(err.message || err)
-          );
-          setChoicesBusy(false);
-        }
+    document.querySelectorAll("button[data-choice]").forEach((button) => {
+      button.addEventListener("click", () => {
+        handleChoice(button);
       });
     });
+  }
+
+  function wireChoiceInputs() {
+    document
+      .querySelectorAll(
+        "input[type='radio'][data-choice], input[type='checkbox'][data-choice]"
+      )
+      .forEach((input) => {
+        input.addEventListener("change", () => {
+          if (input.type === "checkbox" && !input.checked) {
+            return;
+          }
+          if (input.type === "radio" && !input.checked) {
+            return;
+          }
+          handleChoice(input);
+        });
+      });
+  }
+
+  function wireTabs() {
+    document.querySelectorAll("[data-ss-tabs]").forEach((root) => {
+      const tabs = [...root.querySelectorAll("[data-ss-tab]")];
+      let panelRoot = root.querySelector(".ss-panels");
+      if (!panelRoot && root.nextElementSibling?.matches?.(".ss-panels")) {
+        panelRoot = root.nextElementSibling;
+      }
+      if (!panelRoot) {
+        panelRoot = root.parentElement?.querySelector(".ss-panels");
+      }
+      if (!tabs.length || !panelRoot) {
+        return;
+      }
+      const panels = [...panelRoot.querySelectorAll("[data-ss-panel]")];
+
+      function activate(id) {
+        tabs.forEach((tab) => {
+          const on = tab.getAttribute("data-ss-tab") === id;
+          tab.classList.toggle("is-active", on);
+          tab.setAttribute("aria-selected", on ? "true" : "false");
+          tab.tabIndex = on ? 0 : -1;
+        });
+        panels.forEach((panel) => {
+          const on = panel.getAttribute("data-ss-panel") === id;
+          panel.hidden = !on;
+        });
+        recordEvent("ui_tab", { tab: id }).catch(() => {});
+      }
+
+      tabs.forEach((tab) => {
+        tab.setAttribute("role", "tab");
+        tab.addEventListener("click", () => {
+          activate(tab.getAttribute("data-ss-tab"));
+        });
+      });
+      panelRoot.setAttribute("role", "tabpanel");
+      const initial =
+        tabs.find((t) => t.getAttribute("aria-selected") === "true") ||
+        tabs.find((t) => t.classList.contains("is-active")) ||
+        tabs[0];
+      if (initial) {
+        activate(initial.getAttribute("data-ss-tab"));
+      }
+    });
+  }
+
+  function wireCompare() {
+    document.querySelectorAll("[data-ss-compare-root]").forEach((root) => {
+      const compare = root.querySelector(".ss-compare") || root;
+      const toggles = root.querySelectorAll("[data-ss-show]");
+      const panes = {
+        before: compare.querySelector('[data-ss-pane="before"]'),
+        after: compare.querySelector('[data-ss-pane="after"]'),
+      };
+
+      function setMode(mode) {
+        compare.dataset.ssMode = mode;
+        toggles.forEach((btn) => {
+          const on = btn.getAttribute("data-ss-show") === mode;
+          btn.classList.toggle("is-active", on);
+          btn.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        if (panes.before) {
+          panes.before.hidden = mode === "after";
+        }
+        if (panes.after) {
+          panes.after.hidden = mode === "before";
+        }
+        recordEvent("ui_compare", { mode }).catch(() => {});
+      }
+
+      toggles.forEach((btn) => {
+        btn.classList.add("ss-btn");
+        btn.addEventListener("click", () => {
+          setMode(btn.getAttribute("data-ss-show") || "both");
+        });
+      });
+      const start =
+        root.getAttribute("data-ss-mode") ||
+        compare.getAttribute("data-ss-mode") ||
+        "both";
+      setMode(start);
+    });
+  }
+
+  function wireOptionKeyboard() {
+    document.querySelectorAll(".ss-options").forEach((group) => {
+      const buttons = [...group.querySelectorAll("button[data-choice]")];
+      if (buttons.length < 2) {
+        return;
+      }
+      group.addEventListener("keydown", (event) => {
+        if (!["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].includes(event.key)) {
+          return;
+        }
+        const current = document.activeElement;
+        const index = buttons.indexOf(current);
+        if (index < 0) {
+          return;
+        }
+        event.preventDefault();
+        const delta =
+          event.key === "ArrowRight" || event.key === "ArrowDown" ? 1 : -1;
+        const next = buttons[(index + delta + buttons.length) % buttons.length];
+        next.focus();
+      });
+    });
+  }
+
+  function wireStaticPreview() {
+    if (location.protocol !== "file:") {
+      return;
+    }
+    setBanner(
+      "info",
+      "Static preview",
+      "Layout loads via CDN + local theme. Serve with session-serve to record choices."
+    );
   }
 
   window.SimpleSkillsDecision = {
@@ -206,7 +361,14 @@
   document.addEventListener("DOMContentLoaded", () => {
     ensureBanner();
     wireButtons();
+    wireChoiceInputs();
+    wireTabs();
+    wireCompare();
+    wireOptionKeyboard();
     wireReveals();
-    recordEvent("page_view", { path: location.pathname }).catch(() => {});
+    wireStaticPreview();
+    if (location.protocol !== "file:") {
+      recordEvent("page_view", { path: location.pathname }).catch(() => {});
+    }
   });
 })();

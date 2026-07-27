@@ -33,7 +33,10 @@
         "story-spec",
         "gap-analysis",
         "user-flow",
-        "api-ba"
+        "api-ba",
+        "ba-test",
+        "reverse-doc",
+        "ux-wireframe"
       ]
     },
     "office": {

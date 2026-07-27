@@ -23,7 +23,11 @@ Situation → skill. Prefer the smallest path that fits.
 | Usecase / userstory / AC GWT | BA | `story-spec` (or `business-analysis`) |
 | Missing flows vs feature | BA | `gap-analysis` |
 | Happy/error/edge journey | BA | `user-flow` |
-| Partner API summary / field map | BA | `api-ba` |
+| Partner API summary / field map / readiness | BA | `api-ba` |
+| Test checklist → cases | BA | `ba-test` (then `tester`) |
+| Rebuild SRS from Word/PDF/Excel/images | BA | `reverse-doc` |
+| ASCII/HTML wireframe / HTML prototype | BA | `ux-wireframe` |
+| Change request impact | BA | `gap-analysis` mode=`cr` |
 | Office files (xlsx/docx/…) | — | install `--profile office` |
 | BA kit bundle | — | install `--profile ba` |
 | Excel 設計書 / 方眼紙 → MD/HTML | — | `excel-doc-convert` (office profile) |

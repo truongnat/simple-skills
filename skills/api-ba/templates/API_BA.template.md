@@ -10,7 +10,7 @@
 
 | Field | Value |
 |---|---|
-| Mode | api-doc / api-map / api-assess / api-design |
+| Mode | api-doc / api-map / api-assess / api-design / api-checklist / api-test / api-readiness |
 | Status | Draft / Ready / Blocked |
 | Next action | _(TODO)_ |
 
@@ -26,7 +26,7 @@
 
 ## Business summary
 
-_(api-doc / assess / design — capabilities in business language)_
+_(api-doc)_
 
 | Capability | Endpoint / op (if known) | Business meaning | Limits / caveats |
 |---|---|---|---|
@@ -37,6 +37,64 @@ _(api-doc / assess / design — capabilities in business language)_
 | API field / resource | System data | Screen / UX | Notes |
 |---|---|---|---|
 |  |  |  |  |
+
+## Assess (api-assess)
+
+| Option | Pros | Cons | Recommendation lean |
+|---|---|---|---|
+| Build |  |  |  |
+| Buy / integrate |  |  |  |
+
+**Recommendation:** _(Build / Integrate / Hybrid)_ — _(why)_
+
+## Design (api-design)
+
+| Flow | Producer | Consumer | Contract notes |
+|---|---|---|---|
+|  |  |  |  |
+
+Sequence / collaboration notes:
+
+```mermaid
+sequenceDiagram
+  participant UI
+  participant API
+  UI->>API: _(TODO)_
+```
+
+## Checklist (api-checklist)
+
+| ID | Check | Area | Priority | Notes |
+|---|---|---|---|---|
+| CHK-001 | Auth / token expiry | security | P0 |  |
+| CHK-002 | Happy path payload | functional | P0 |  |
+| CHK-003 | Validation errors | negative | P0 |  |
+| CHK-004 | Rate limit / timeout | resilience | P1 |  |
+
+## Test plan (api-test)
+
+| ID | Case | Method/path | Data | Expected | Automation |
+|---|---|---|---|---|---|
+| AT-001 |  |  |  |  | Bruno / manual |
+
+### Collection outline (Bruno / Postman)
+
+| Request | Folder | Auth | Notes |
+|---|---|---|---|
+|  |  |  | no secrets in file |
+
+## Readiness (api-readiness)
+
+| Gate | Result (Pass/Fail/Unknown) | Evidence |
+|---|---|---|
+| Docs complete |  |  |
+| Auth verified |  |  |
+| Happy path verified |  |  |
+| Error contracts verified |  |  |
+| Monitoring / runbook |  |  |
+| Rollback plan |  |  |
+
+**Go-live lean:** Ready / Ready with risks / Not ready
 
 ## Auth & environments
 
@@ -60,4 +118,4 @@ _(api-doc / assess / design — capabilities in business language)_
 
 ## Handoff
 
-_(basic-design / tester / api checklist P1 / …)_
+_(basic-design / ba-test / tester / …)_

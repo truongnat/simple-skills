@@ -600,6 +600,9 @@ def main() -> int:
         "gap-analysis",
         "user-flow",
         "api-ba",
+        "ba-test",
+        "reverse-doc",
+        "ux-wireframe",
     ):
         skill_text = (SKILLS_ROOT / life / "SKILL.md").read_text(encoding="utf-8")
         if "session.sh commit" not in skill_text:
@@ -608,7 +611,17 @@ def main() -> int:
         errors.append("docs/BA_SKILLS.md missing (BA alias map)")
     else:
         ba_doc = (ROOT / "docs" / "BA_SKILLS.md").read_text(encoding="utf-8")
-        for needle in ("specify", "biz-model", "story-spec", "gap-analysis", "user-flow", "api-ba"):
+        for needle in (
+            "specify",
+            "biz-model",
+            "story-spec",
+            "gap-analysis",
+            "user-flow",
+            "api-ba",
+            "ba-test",
+            "reverse-doc",
+            "ux-wireframe",
+        ):
             if needle not in ba_doc:
                 errors.append(f"BA_SKILLS.md missing consolidated skill '{needle}'")
     for ba_skill, tmpl in (
@@ -616,8 +629,12 @@ def main() -> int:
         ("biz-model", "templates/MODEL.template.md"),
         ("story-spec", "templates/AC.template.md"),
         ("gap-analysis", "templates/GAP.template.md"),
+        ("gap-analysis", "templates/CR.template.md"),
         ("user-flow", "templates/USER_FLOW.template.md"),
         ("api-ba", "templates/API_BA.template.md"),
+        ("ba-test", "templates/TEST_CHECKLIST.template.md"),
+        ("reverse-doc", "templates/REVERSE_DOC.template.md"),
+        ("ux-wireframe", "templates/WIREFRAME.template.md"),
     ):
         if not (SKILLS_ROOT / ba_skill / tmpl).is_file():
             errors.append(f"{ba_skill} missing {tmpl}")

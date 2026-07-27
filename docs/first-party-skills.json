@@ -20,7 +20,10 @@
     "story-spec",
     "gap-analysis",
     "user-flow",
-    "api-ba"
+    "api-ba",
+    "ba-test",
+    "reverse-doc",
+    "ux-wireframe"
   ],
   "step_skills": {
     "brainstorming": [
@@ -67,6 +70,9 @@
     {"name": "gap-analysis", "kind": "workflow"},
     {"name": "user-flow", "kind": "workflow"},
     {"name": "api-ba", "kind": "workflow"},
+    {"name": "ba-test", "kind": "workflow"},
+    {"name": "reverse-doc", "kind": "workflow"},
+    {"name": "ux-wireframe", "kind": "workflow"},
     {"name": "xlsx", "kind": "office"},
     {"name": "excel-doc-convert", "kind": "office"},
     {"name": "docx", "kind": "office"},
@@ -98,7 +104,10 @@
     "story-spec",
     "gap-analysis",
     "user-flow",
-    "api-ba"
+    "api-ba",
+    "ba-test",
+    "reverse-doc",
+    "ux-wireframe"
   ],
   "contract_table_fields": ["Inputs", "Outputs", "Safety"],
   "contract_requires_artifacts_section": true,

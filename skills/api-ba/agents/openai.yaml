@@ -1,9 +1,9 @@
 display_name: "API BA"
-short_description: "Business API summary (api-doc) or API↔system↔screen map (api-map)."
-default_prompt: "Use $api-ba with mode=api-doc|api-map (or short api-assess|api-design). Write API_BA.md; never invent endpoints."
+short_description: "API doc/map/assess/design/checklist/test/readiness for BA — never invent endpoints."
+default_prompt: "Use $api-ba with an explicit mode. Write API_BA.md; cite sources; no secrets."
 required_input: "Mode, API docs/URL/spec, consumer screens/flows, system entities, auth constraints."
-required_output: "API_BA.md with sources, summary and/or mapping, risks, open questions, handoff."
-note_important: "Do NOT invent endpoints/fields. Do NOT copy secrets. Confirm-first when docs are missing."
+required_output: "API_BA.md with mode sections, sources, risks, open questions, handoff."
+note_important: "Do NOT invent endpoints/fields. Do NOT copy secrets. Do NOT claim readiness without evidence."
 artifacts:
   API_BA.md:
     required: true

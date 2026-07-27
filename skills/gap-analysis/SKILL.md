@@ -1,11 +1,11 @@
 ---
 name: gap-analysis
 description: >-
-  BA gap analysis: find missing business flows, rules, AC, or capabilities
-  versus a feature/spec. Alias /gap. Writes GAP.md. (Hard contract.)
+  BA quality: gap analysis (/gap) or change-request impact (/cr). Writes GAP.md
+  or CR.md with impact on related docs and Confirm-first blockers. (Hard contract.)
 ---
 
-# Gap analysis
+# Gap analysis / Change request
 
 ## Shared preamble (do this first)
 
@@ -18,36 +18,46 @@ Aliases: `.agents/BA_SKILLS.md`.
 
 ## Purpose
 
-Compare **expected** capability for a feature type against **documented /
-observed** coverage. Promote Blocking gaps into questions; do not silently fix
-product decisions.
+Two quality modes:
+
+| Mode | Alias | Output | Use when |
+| --- | --- | --- | --- |
+| `gap` | `/gap` | `GAP.md` | Feature missing flows/rules/AC/capabilities |
+| `cr` | `/cr` | `CR.md` | Analyze a change’s impact and list docs to update |
 
 ## Contract (mandatory)
 
 | Field | Requirement |
 |-------|-------------|
 | preferred_role | `critic` |
-| Inputs | Feature/epic under review, BA/PRD/SRS/stories/AC/models, optional code/UI evidence. |
-| Outputs | Session `GAP.md` from template. |
-| Safety | Do NOT invent gaps without stating the expectation source. Do NOT close Blocking gaps without user confirmation. **Confirm-first**. |
+| Inputs | Mode; for `gap`: feature + specs; for `cr`: change description + affected artifacts. |
+| Outputs | One mode file from the matching template. |
+| Safety | Do NOT invent gaps without expectation source. Do NOT silently rewrite product docs in `cr` — list update plan and Confirm-first before bulk edits. Do NOT close Blocking items without user confirmation. |
 
 ### Required artifacts
 
-#### `GAP.md`
-- Seed `templates/GAP.template.md`
-- executive_summary, developer_overview, subject, expected_capabilities,
-  gaps (ID, area, severity, evidence, recommendation), open_questions, handoff
+- `gap` → seed `templates/GAP.template.md` → `GAP.md`
+- `cr` → seed `templates/CR.template.md` → `CR.md`
 
 ## Workflow
 
-1. State subject + expectation baseline (industry norm / prior BR / sibling feature).
+### Mode `gap`
+1. State subject + expectation baseline.
 2. Inventory covered flows/rules/AC/UI/API.
 3. List gaps with severity Critical/High/Medium/Low.
 4. Ask Blocking questions; commit Work.
 
+### Mode `cr`
+1. State change request (who/what/why).
+2. Impact matrix: process, data, UI, API, rules, AC, tests, ops.
+3. List artifacts to update (path + action add/change/retire).
+4. Residual risks + Confirm-first on scope; commit Work.
+5. Only after user confirms: hand off to `specify` / `story-spec` / `docs` / etc. to apply updates.
+
 ## Quality Standards
 
-- [ ] Each gap has evidence + recommendation.
-- [ ] Severity taxonomy used.
+- [ ] Correct mode file.
+- [ ] Each gap/impact row has evidence + recommendation.
+- [ ] `cr` includes artifact update plan (not silent rewrites).
 - [ ] Work nested git: ran `session.sh commit 'docs(gap-analysis): …'` after writing
       (or `WORK_COMMIT=clean`).

@@ -18,19 +18,22 @@ Use existing lifecycle skills where they already cover the step:
 | Stories / rules / AC (lifecycle) | `business-analysis` |
 | System design | `basic-design` → `detail-design` |
 | Wiki SRS/Architecture | `docs` |
-| Test cases | `tester` (+ `ba-test` later) |
+| Test cases | `ba-test` → `tester` |
 | Worker split | `delegate_worker.py` (Rules pack) |
 
-## Consolidated skills (P0 shipped)
+## Consolidated skills (shipped)
 
 | Skill | Modes (aliases) | Session artifact |
 | --- | --- | --- |
-| `specify` | `prd`, `roadmap`, `discover`, `urd`, `brd`, `prd-epic`, `srs` | `PRD.md` / `ROADMAP.md` / `DISCOVER.md` / `URD.md` / `BRD.md` / `PRD_EPIC.md` / `SPEC_SRS.md` |
-| `biz-model` | `sequence`, `activity`, `activity-swimlane`, `bpmn`, `state`, `erd`, `usecase-diagram` (+ format `mermaid` \| `plantuml`) | `MODEL.md` |
+| `specify` | `prd`, `roadmap`, `discover`, `urd`, `brd`, `prd-epic`, `srs` | `PRD.md` / … / `SPEC_SRS.md` |
+| `biz-model` | `sequence`, `activity`, `activity-swimlane`, `bpmn`, `state`, `erd`, `usecase-diagram` | `MODEL.md` |
 | `story-spec` | `usecase`, `userstory`, `ac` | `USECASE.md` / `USER_STORIES.md` / `AC.md` |
-| `gap-analysis` | `gap` | `GAP.md` |
+| `gap-analysis` | `gap`, `cr` | `GAP.md` / `CR.md` |
 | `user-flow` | `user-flow` | `USER_FLOW.md` |
-| `api-ba` | `api-doc`, `api-map` (P0); `api-assess` / `api-design` stubs | `API_BA.md` |
+| `api-ba` | `api-doc` … `api-readiness` | `API_BA.md` |
+| `ba-test` | `checklist`, `cases`, `playwright-hint` | `TEST_CHECKLIST.md` / `TESTCASES.md` |
+| `reverse-doc` | `reverse-doc` | `REVERSE_DOC.md` + `SPEC_SRS.md` |
+| `ux-wireframe` | `ascii`, `html`, `prototype` | `WIREFRAME.md` (+ HTML) |
 
 ## Full 51 → target map
 
@@ -51,14 +54,14 @@ Use existing lifecycle skills where they already cover the step:
 | `/brd` | `specify` mode=`brd` |
 | `/prd-epic` | `specify` mode=`prd-epic` |
 | `/srs` | `specify` mode=`srs` (session); `docs` for wiki SRS |
-| `/reverse-doc` | **P1** — use `excel-doc-convert` / office skills until dedicated skill |
+| `/reverse-doc` | `reverse-doc` |
 
 ### 3. Business diagrams (11)
 
 | Alias | Target |
 | --- | --- |
 | `/sequence` … `/usecase-diagram` | `biz-model` with matching `diagram` mode |
-| `/d2-erd`, `/d2-activity`, `/d2-architect`, `/dbdiagram` | **P1** — note in `MODEL.md` Limitations; prefer Mermaid/PlantUML offline |
+| `/d2-erd`, `/d2-activity`, `/d2-architect`, `/dbdiagram` | **P2** — note in `MODEL.md` Limitations; prefer Mermaid/PlantUML offline |
 
 ### 4. Use case & story (3)
 
@@ -73,38 +76,41 @@ Use existing lifecycle skills where they already cover the step:
 | Alias | Target |
 | --- | --- |
 | `/user-flow` | `user-flow` |
-| `/wireframe-*`, `/prototype-html`, `/figma` | **P1/P2** |
+| `/wireframe-ascii` | `ux-wireframe` mode=`ascii` |
+| `/wireframe-html` | `ux-wireframe` mode=`html` |
+| `/prototype-html` | `ux-wireframe` mode=`prototype` |
+| `/figma` | **P2** |
 
 ### 6. API (7)
 
 | Alias | Target |
 | --- | --- |
-| `/api-doc`, `/api-map` | `api-ba` |
-| `/api-assess`, `/api-design`, `/api-checklist`, `/api-test`, `/api-readiness` | **P1** (extend `api-ba` modes) |
+| `/api-doc` … `/api-readiness` | `api-ba` matching mode |
 
 ### 7. Testing (3)
 
 | Alias | Target |
 | --- | --- |
-| `/test-cases` | `tester` |
-| `/test-checklist`, `/playwright-gen` | **P1** |
+| `/test-checklist` | `ba-test` mode=`checklist` |
+| `/test-cases` | `ba-test` mode=`cases` (or `tester`) |
+| `/playwright-gen` | `ba-test` mode=`playwright-hint` |
 
 ### 8. Quality control (5)
 
 | Alias | Target |
 | --- | --- |
-| `/gap` | `gap-analysis` |
-| `/ask` | Confirm-first / Ask methods in `SKILL_PREAMBLE` (no separate skill) |
-| `/cr` | **P1** — extend `gap-analysis` or new mode |
+| `/gap` | `gap-analysis` mode=`gap` |
+| `/ask` | Confirm-first / Ask methods in `SKILL_PREAMBLE` |
+| `/cr` | `gap-analysis` mode=`cr` |
 | `/dashboard`, `/kg` | **P2** |
 
 ### 9. Handoff & ops (8)
 
 | Alias | Target |
 | --- | --- |
-| `/export`, `/preview` | `docs` + office skills (**P1** polish) |
+| `/export`, `/preview` | `docs` + office skills (**P2** polish) |
 | `/delegate` | `delegate_worker.py` |
-| `/jira`, `/confluence`, `/meet`, `/userguide`, `/update-overview` | **P1/P2** |
+| `/jira`, `/confluence`, `/meet`, `/userguide`, `/update-overview` | **P2** |
 
 ## Rules
 

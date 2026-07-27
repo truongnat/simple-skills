@@ -123,6 +123,9 @@ OUTPUT_HINTS: dict[str, str] = {
     "gap-analysis": "Write/update `GAP{ext}` in the active session only.",
     "user-flow": "Write/update `USER_FLOW{ext}` in the active session only.",
     "api-ba": "Write/update `API_BA{ext}` in the active session only.",
+    "ba-test": "Write TEST_CHECKLIST and/or TESTCASES in the active session only.",
+    "reverse-doc": "Write REVERSE_DOC + SPEC_SRS in the active session only.",
+    "ux-wireframe": "Write WIREFRAME.md (+ optional HTML) in the active session only.",
     "default": "Write only the session artifacts named in Mission / Output contract.",
 }
 

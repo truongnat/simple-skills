@@ -1,0 +1,15 @@
+display_name: "UX wireframe"
+short_description: "ASCII or HTML low-fi wireframes / simple HTML prototypes for BA review."
+default_prompt: "Use $ux-wireframe with mode=ascii|html|prototype. Write WIREFRAME.md and optional HTML under the session."
+required_input: "Mode, screens/flow, content fields, constraints."
+required_output: "WIREFRAME.md; HTML under wireframes/ or prototypes/ for html/prototype modes."
+note_important: "Do NOT present as final UI. Do NOT claim a11y sign-off. Figma is out of scope (P2)."
+artifacts:
+  WIREFRAME.md:
+    required: true
+    schema:
+      executive_summary: { type: array, required: true }
+      mode: { type: string, required: true }
+      screens: { type: array, required: true }
+      open_questions: { type: array, required: true }
+      handoff: { type: string, required: true }

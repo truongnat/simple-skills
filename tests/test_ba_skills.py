@@ -12,6 +12,9 @@ BA_SKILLS = (
     "gap-analysis",
     "user-flow",
     "api-ba",
+    "ba-test",
+    "reverse-doc",
+    "ux-wireframe",
 )
 
 
@@ -43,5 +46,24 @@ def test_ba_skills_registered_and_have_contract() -> None:
 
 def test_ba_skills_map_doc_lists_aliases() -> None:
     doc = (REPO_ROOT / "docs" / "BA_SKILLS.md").read_text(encoding="utf-8")
-    for alias in ("/prd", "/sequence", "/usecase", "/gap", "/user-flow", "/api-doc"):
+    for alias in (
+        "/prd",
+        "/sequence",
+        "/usecase",
+        "/gap",
+        "/cr",
+        "/user-flow",
+        "/api-doc",
+        "/api-readiness",
+        "/test-checklist",
+        "/reverse-doc",
+        "/wireframe-ascii",
+        "/prototype-html",
+    ):
         assert alias in doc
+
+
+def test_gap_analysis_has_cr_template() -> None:
+    assert (
+        REPO_ROOT / "skills" / "gap-analysis" / "templates" / "CR.template.md"
+    ).is_file()

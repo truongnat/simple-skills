@@ -107,7 +107,9 @@ the end. See `.agents/thinking/small-batch.md`.
 On every task card in `execution_order`:
 
 0. **Load Dev context first:** read the card’s `#### Dev context`. Follow
-   `[Source: …]` cites. Do **not** invent libraries, paths, fields, or contracts.
+   `[Source: …]` cites. Do **not** invent libraries, paths, fields, contracts,
+   or business rules (Make-implicit-explicit). Missing rule → Gaps / blocked —
+   return to planning or Confirm-first; do not silent-fill in code.
    If Dev context is missing → stop and return to planning (do not improvise).
 1. **Start card:** set card Status + Progress board Status → `in_progress`; set `current_task` in EXECUTION.md.
 2. **Finish a Work item:** immediately set that line to `- [x]` in TASKS.md; append a short execution_log row.

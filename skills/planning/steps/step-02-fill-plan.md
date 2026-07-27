@@ -28,6 +28,9 @@ If precondition fails → return to step-01 / ask user.
 - **IPO (mandatory):** Approach = Process toward Goal; each phase names a
   checkable Output slice. Do not fill Approach while Blocking Input gaps
   remain. See `.agents/thinking/input-process-output.md`.
+- **Make-implicit-explicit (mandatory):** High-impact Assumptions Confirmed;
+  Blocking gate items have Owner + resolution evidence; no silent rule picks.
+  See `.agents/thinking/make-implicit-explicit.md`.
 - **Small-batch (mandatory):** Prefer more smaller phases/cards over one
   mega-phase. Each phase must be completable and verifiable before the next
   compounds error. Card explosion happens in step-03 (§B/§C). See

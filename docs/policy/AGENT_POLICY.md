@@ -82,8 +82,8 @@ Delegation & Rules pass-down.
 decision bullets) then a **Developer overview** panel **inside that same
 artifact**. Do **not** create a separate `OVERVIEW.md` landing page — it goes
 stale. Progress truth is `TASKS.md` + `session.sh status`. Do **not** name
-sections after methods (`Outcome-first`, `IPO`, `Small-batch`, `80/20`,
-`5W1H`). Chart when useful; skip filler.
+sections after methods (`Outcome-first`, `IPO`, `Make-implicit-explicit`,
+`Small-batch`, `80/20`, `5W1H`). Chart when useful; skip filler.
 
 **Thinking methods (session-wide — not report titles):**
 
@@ -95,6 +95,9 @@ sections after methods (`Outcome-first`, `IPO`, `Small-batch`, `80/20`,
   (facts/trace/dev context) and a coherent Process (Approach/Work items) that
   produces that Output. Full rules:
   `.agents/thinking/input-process-output.md`.
+- **Make implicit explicit:** write and classify material Assumptions, business
+  rules, owners, timeboxes, edges, DoD; dual-interpretation → Confirm-first.
+  Full rules: `.agents/thinking/make-implicit-explicit.md`.
 - **Small-batch:** slice work into completable units with independent Verify
   and short feedback latency (Approach phases, TASK size rules, per-card
   Verify in execution). Full rules: `.agents/thinking/small-batch.md`.
@@ -586,12 +589,12 @@ traceability, test data, or verification evidence.
 ## Thinking methods (session-wide)
 
 These are **ways of working**, not section names or report titles. Do not brand
-artifacts with method labels (`Outcome-first`, `IPO`, `Small-batch`, `80/20`,
-`5W1H`). Do not create `OUTCOME.md` / `IPO.md` / `SMALL_BATCH.md`. Fold method
-results into existing fields only.
+artifacts with method labels (`Outcome-first`, `IPO`, `Make-implicit-explicit`,
+`Small-batch`, `80/20`, `5W1H`). Do not create `OUTCOME.md` / `IPO.md` /
+`SMALL_BATCH.md` / `IMPLICIT.md`. Fold method results into existing fields only.
 
-**Framing order:** Outcome-first → Input→Process→Output → Small-batch →
-(5W1H if unclear) → vital few when summarizing/memory.
+**Framing order:** Outcome-first → Input→Process→Output → Make-implicit-explicit
+→ Small-batch → (5W1H if unclear) → vital few when summarizing/memory.
 
 1. **Outcome-first (mandatory):** Start from the observable end state, not the
    task list. Every `Goal`, `Desired outcome`, DoD item, and task `AC` must
@@ -627,7 +630,19 @@ results into existing fields only.
    `.agents/thinking/input-process-output.md`
    (source `docs/thinking/input-process-output.md`).
 
-3. **Small-batch (mandatory when sizing and executing):** Prefer
+3. **Make implicit explicit (mandatory before locking Approach/TASKS):** Write
+   material Assumptions, business rules, owners, timeboxes, edges, and DoD.
+   Fact ≠ Assumption ≠ Rule ≠ Preference ≠ Unknown. Dual-interpretation that
+   changes Output/Process → Confirm-first (do not silent-pick). Blocking rows
+   need Owner. High-impact Assumption `Confirmed?: No` blocks Ready. Asking
+   stays Confirm-first in SKILL_PREAMBLE.
+
+   **Normative detail** (taxonomy, dual-interpretation test, anti-patterns,
+   worked examples):
+   `.agents/thinking/make-implicit-explicit.md`
+   (source `docs/thinking/make-implicit-explicit.md`).
+
+4. **Small-batch (mandatory when sizing and executing):** Prefer
    `complete → check → continue` over mega-batches. Every phase/card needs one
    goal, one Output, independent Verify, and short feedback latency. Obey
    planning `step-03` §B/§C as hard card-size law. In execution, run **this
@@ -638,12 +653,12 @@ results into existing fields only.
    anti-patterns, worked examples):
    `.agents/thinking/small-batch.md` (source `docs/thinking/small-batch.md`).
 
-4. **Vital few (Pareto):** Hold the whole session in mind and surface only what
+5. **Vital few (Pareto):** Hold the whole session in mind and surface only what
    changes the decision or outcome. Executive summaries and memory entries
    should reflect that prioritization — without a heading called `80/20` or
    branded titles like “Executive summary” plus a method suffix.
 
-5. **5W1H:** When the problem is hard, ambiguous, or the feature is unclear /
+6. **5W1H:** When the problem is hard, ambiguous, or the feature is unclear /
    wrong / underspecified, silently check What / Why / Who / When / Where / How
    against the **session context** (goal, constraints, evidence, unknowns). Put
    the useful answers into the real sections (facts, risks, Spec quality,

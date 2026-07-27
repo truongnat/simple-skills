@@ -62,22 +62,26 @@ Outcome-first **or** a Blocking Input gap remains open.
 ```text
 1. Outcome-first              → lock session/card Output
 2. Input → Process → Output   → bind Input + Process to that Output
-3. Small-batch                → slice Process into completable batches
-4. 5W1H (if unclear)          → diagnose gaps in Input/Output; fold into real sections
-5. Vital few                  → when summarizing, keep only what changes the Output
+3. Make implicit explicit     → classify Facts/Assumptions/Unknowns/rules
+4. Small-batch                → slice Process into completable batches
+5. 5W1H (if unclear)          → diagnose gaps in Input/Output; fold into real sections
+6. Vital few                  → when summarizing, keep only what changes the Output
 ```
 
 | Method | Asks | IPO role |
 | --- | --- | --- |
 | Outcome-first | What does “done” look like? | Defines **Output** |
 | IPO | What do we need, and how do we get there? | Binds **Input** + **Process** to Output |
+| Make-explicit | What was only “understood”? | Cleans Input classification |
 | Small-batch | Is each unit completable + checkable now? | Sizes Process into batches |
 | 5W1H | Why is this unclear? | Clarifies weak Input/Output |
 | Vital few | What still matters? | Trims noise inside a locked IPO |
 
 **Anti-pattern:** Filling Process (TASKS) before Output (Goal) or before
 blocking Input is known. Also anti-pattern: one coherent Process blob that is
-not small-batch sliced — see `.agents/thinking/small-batch.md`.
+not small-batch sliced — see `.agents/thinking/small-batch.md`. Do not
+small-batch on unconfirmed High-impact Assumptions — see
+`.agents/thinking/make-implicit-explicit.md`.
 
 ---
 

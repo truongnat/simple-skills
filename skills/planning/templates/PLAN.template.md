@@ -98,6 +98,9 @@ _(TODO)_
 
 ## Assumptions
 
+<!-- Make-implicit-explicit: High + Confirmed=No → Ready blocker.
+     See .agents/thinking/make-implicit-explicit.md -->
+
 | Assumption | Risk | Confirmed |
 |------------|------|-----------|
 | _(TODO)_ | Low / Medium / High | No / Yes |

@@ -69,6 +69,9 @@ def test_outcome_first_thinking_method_is_wired() -> None:
     small_batch = (REPO_ROOT / "docs" / "thinking" / "small-batch.md").read_text(
         encoding="utf-8"
     )
+    explicit = (
+        REPO_ROOT / "docs" / "thinking" / "make-implicit-explicit.md"
+    ).read_text(encoding="utf-8")
     index = (REPO_ROOT / "docs" / "thinking" / "README.md").read_text(encoding="utf-8")
     catalog = (REPO_ROOT / "docs" / "README.md").read_text(encoding="utf-8")
     assert "Outcome-first" in preamble
@@ -76,10 +79,13 @@ def test_outcome_first_thinking_method_is_wired() -> None:
     assert "thinking/outcome-first.md" in preamble
     assert "Input → Process → Output" in preamble
     assert "thinking/input-process-output.md" in preamble
+    assert "Make implicit explicit" in preamble
+    assert "thinking/make-implicit-explicit.md" in preamble
     assert "Small-batch" in preamble
     assert "thinking/small-batch.md" in preamble
     assert "Outcome-first" in policy
     assert "Input → Process → Output" in policy
+    assert "Make implicit explicit" in policy
     assert "Small-batch" in policy
     assert "WHO" in detail and "WHAT" in detail and "EVIDENCE" in detail
     assert "OUTCOME.md" in detail and "forbidden" in detail.lower()
@@ -87,8 +93,10 @@ def test_outcome_first_thinking_method_is_wired() -> None:
     assert "IPO.md" in ipo
     assert "four-property" in small_batch or "Four-property" in small_batch
     assert "SMALL_BATCH.md" in small_batch
+    assert "Dual-interpretation" in explicit or "dual-interpretation" in explicit
+    assert "IMPLICIT.md" in explicit
     assert "outcome-first.md" in index and "input-process-output.md" in index
-    assert "small-batch.md" in index
+    assert "make-implicit-explicit.md" in index and "small-batch.md" in index
     assert "thinking/" in catalog
 
 

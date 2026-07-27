@@ -102,20 +102,23 @@ layout. Memory is optional for those unless the task needs prior decisions.
 
 These methods apply to the **whole session**. They are **not** report section
 names. Never brand headings or executive summaries with method labels
-(`Outcome-first`, `Input→Process→Output`, `Small-batch`, `80/20`, `5W1H`).
-Never create `OUTCOME.md` / `IPO.md` / `SMALL_BATCH.md` / `OVERVIEW.md`. Fold
-results into real fields (`Goal`, `Desired outcome`, DoD, AC, Verify, Facts,
-Approach, Work items, Step ledger).
+(`Outcome-first`, `Input→Process→Output`, `Make-implicit-explicit`,
+`Small-batch`, `80/20`, `5W1H`). Never create `OUTCOME.md` / `IPO.md` /
+`SMALL_BATCH.md` / `IMPLICIT.md` / `OVERVIEW.md`. Fold results into real fields
+(`Goal`, `Desired outcome`, DoD, AC, Verify, Facts, Assumptions, Unknowns,
+Constraints, Approach, Work items, Step ledger).
 
 **Apply in this order when framing:**
 
 1. **Outcome-first** — lock **Output** (WHO / WHAT / EVIDENCE) before tasks.
 2. **Input → Process → Output** — bind sufficient **Input** and a coherent
    **Process** to that Output (always, right after Outcome-first).
-3. **Small-batch** — slice Process into units that each complete + verify
+3. **Make implicit explicit** — write and classify material Assumptions, rules,
+   owners, timeboxes, edges, DoD; dual-interpretation → Confirm-first.
+4. **Small-batch** — slice Process into units that each complete + verify
    before the next (phases, cards, execution rhythm).
-4. **5W1H** — only when the outcome/problem is hard or unclear.
-5. **Vital few** — when summarizing or writing memory.
+5. **5W1H** — only when the outcome/problem is hard or unclear.
+6. **Vital few** — when summarizing or writing memory.
 
 ### Outcome-first (mandatory before Scope / Approach / TASKS / code)
 
@@ -172,6 +175,28 @@ Process without Output = theatre. Output without Input = wishful. Card shape:
 Full normative detail:
 `.agents/thinking/input-process-output.md`
 (source `docs/thinking/input-process-output.md`).
+
+### Make implicit explicit (mandatory before locking Approach / TASKS)
+
+Most failures are two readings of one sentence — not “bad code.” Write material
+implicits; do not silent-fill.
+
+**Taxonomy:** Fact ≠ Assumption ≠ Business rule ≠ Preference ≠ Unknown.  
+**Dual-interpretation test:** if two competent readings change Output/Process/
+security/data/AC → Confirm-first (Blocking) or record Assumption/Unknown with
+Owner — do not “pick the reasonable one” silently.
+
+**Land in existing fields:** Assumptions (Risk + Confirmed?); Unknowns + Issue
+triage (Owner required when Blocking); Constraints (deadline/timebox when
+stated); Spec quality gaps / AC / Non-goals (edges); DoD/AC (Outcome-first);
+Dev context Gaps (never invent).
+
+**Fail closed:** High-impact Assumption `Confirmed?: No`; Blocking unknown
+without Owner; guesses in Facts; quiz-as-document.
+
+How to ask remains Confirm-first in this preamble. Full taxonomy/anti-patterns:
+`.agents/thinking/make-implicit-explicit.md`
+(source `docs/thinking/make-implicit-explicit.md`).
 
 ### Small-batch (mandatory when sizing phases / cards / execution)
 
@@ -241,9 +266,10 @@ decoding jargon. If a teammate new to the task cannot act from it, rewrite.
 3. Restate section titles as content (“This section covers feasibility…”).
 4. Dump bilingual labels (JP/EN/VN) unless the **domain artifact** requires
    them; never invent translation noise for ceremony.
-5. Answer method prompts (Outcome-first / IPO / Small-batch / 5W1H / vital-few)
-   as trivia sections or method-branded headings; do not ship activity-only
-   Goals/ACs, Process without Output, or mega-batches without Verify.
+5. Answer method prompts (Outcome-first / IPO / Make-implicit-explicit /
+   Small-batch / 5W1H / vital-few) as trivia sections or method-branded
+   headings; do not ship activity-only Goals/ACs, Process without Output,
+   mega-batches without Verify, or silent dual-interpretation picks.
 6. Narrate your process (“I will now analyze…”, “As an AI…”).
 7. **Complete-with-questions:** fill Goal / Recommendation / Architecture / …
    while Critical or Blocking items are still unanswered, or dump a long Open

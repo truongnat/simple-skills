@@ -118,6 +118,14 @@ function Invoke-Doctor {
         $ok = $false
     }
 
+    $thinkingExplicit = Join-Path $Target.Path ".agents/thinking/make-implicit-explicit.md"
+    if (Test-Path $thinkingExplicit -PathType Leaf) {
+        Write-Host "kit_thinking/make-implicit-explicit.md=yes"
+    } else {
+        Write-Host "kit_thinking/make-implicit-explicit.md=missing"
+        $ok = $false
+    }
+
     if (Test-Path (Join-Path $Target.Path "AGENTS.md") -PathType Leaf) {
         Write-Host "root_AGENTS.md=yes"
     } else {
@@ -315,6 +323,7 @@ function Invoke-Install {
     New-Item -ItemType Directory -Force -Path ".agents/thinking" | Out-Null
     Copy-Item -Path (Join-Path $Source "docs/thinking/outcome-first.md") -Destination ".agents/thinking/outcome-first.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/thinking/input-process-output.md") -Destination ".agents/thinking/input-process-output.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/thinking/make-implicit-explicit.md") -Destination ".agents/thinking/make-implicit-explicit.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/thinking/small-batch.md") -Destination ".agents/thinking/small-batch.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/thinking/README.md") -Destination ".agents/thinking/README.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/policy/AGENT_WORK.md") -Destination ".agents/AGENT_WORK.md" -Force

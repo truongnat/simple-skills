@@ -53,26 +53,29 @@ If precondition fails → return to the earliest incomplete step. Do **not** set
 16. **IPO:** Approach phases advance Goal slices; each card has Input
     (Trace/Dev context) → Process (Work items) → Output (AC/Verify)
     (see `.agents/thinking/input-process-output.md`).
-17. **Small-batch:** Cards pass §B/§C; Approach has no mega-phase; each card
+17. **Make-implicit-explicit:** no High-impact Assumption still Confirmed=No;
+    Blocking gate items have Owner + resolution evidence; Facts are not guesses
+    (see `.agents/thinking/make-implicit-explicit.md`).
+18. **Small-batch:** Cards pass §B/§C; Approach has no mega-phase; each card
     Verify is independently falsifiable (see `.agents/thinking/small-batch.md`).
 
 ### Blockers → Ready (critical)
 
-18. Re-read `DISCUSSION.md` / `BUSINESS_ANALYSIS.md` Spec quality findings and
+19. Re-read `DISCUSSION.md` / `BUSINESS_ANALYSIS.md` Spec quality findings and
     Handoff blockers (if present). Copy any **still unresolved** items into PLAN
     Handoff blockers.
-19. **Ready for sync/execution? must be No** if any of:
-    - Checks 1–17 fail
+20. **Ready for sync/execution? must be No** if any of:
+    - Checks 1–18 fail
     - PLAN Handoff blockers list is non-empty (unresolved)
     - DISCUSSION/BA listed blockers that were never resolved/struck
-20. **Ready = Yes** only when checks 1–17 pass **and** Handoff blockers are `none` (or explicitly marked resolved with evidence).
-21. Mark Step ledger 04 `done` or `blocked` with checklist evidence.
+21. **Ready = Yes** only when checks 1–18 pass **and** Handoff blockers are `none` (or explicitly marked resolved with evidence).
+22. Mark Step ledger 04 `done` or `blocked` with checklist evidence.
 
 Never write Ready=Yes while the same document’s Blockers line still lists open items.
 
 ## Done when
 
-- [ ] PLAN Handoff Ready matches rules 18–20.
+- [ ] PLAN Handoff Ready matches rules 19–21.
 - [ ] Step ledger 04 updated.
 - [ ] Failures are listed in Blockers or fixed by returning to step-02/step-03.
 - [ ] User is told:

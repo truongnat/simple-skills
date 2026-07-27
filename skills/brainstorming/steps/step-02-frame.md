@@ -30,6 +30,10 @@ If precondition fails → return to step-01. Do **not** continue.
   **Input** and Unknowns as Input gaps. Do not invent Process (Scope/Options
   later, Approach in planning) while Blocking Input remains open. See
   `.agents/thinking/input-process-output.md`.
+- **Make-implicit-explicit (mandatory):** Facts ≠ Assumptions ≠ Unknowns.
+  Dual-interpretation that changes Output/Process → Confirm-first (do not
+  silent-pick). Blocking Unknowns/Issues need Owner. User-stated deadline →
+  Constraints. See `.agents/thinking/make-implicit-explicit.md`.
 - Inspect repo/user input for facts; mark guesses as assumptions.
 - Do **not** implement code.
 - Do **not** write PLAN/TASKS or basic/detail design.
@@ -91,6 +95,8 @@ Record each question and answer in `Clarification checkpoint`.
 - [ ] Desired outcome lists observable consumer behaviors (not a task backlog).
 - [ ] At least one confirmed fact **or** explicit “no facts yet” with unknowns listed.
 - [ ] Assumptions and unknowns are not labeled as facts.
+- [ ] Blocking Unknowns/Issues have Owner; dual-interpretation driving sentences
+      are triaged or Confirm-first answered (Make-implicit-explicit).
 - [ ] Every material issue has severity/clarity/blocking/visual classification.
 - [ ] Spec quality review has Feasibility + Correctness verdicts and ≥1 capability
       gap row (or explicit “no material gaps”).

@@ -20,6 +20,7 @@ INSTALLER_DOCS = (
     "policy/AGENT_POLICY.md",
     "thinking/outcome-first.md",
     "thinking/input-process-output.md",
+    "thinking/make-implicit-explicit.md",
     "thinking/small-batch.md",
     "thinking/README.md",
     "policy/AGENT_WORK.md",
@@ -62,6 +63,7 @@ def make_source(tmp_path: Path) -> Path:
     (policy / "AGENT_WORK.md").write_text("work layout\n", encoding="utf-8")
     (thinking / "outcome-first.md").write_text("outcome-first\n", encoding="utf-8")
     (thinking / "input-process-output.md").write_text("ipo\n", encoding="utf-8")
+    (thinking / "make-implicit-explicit.md").write_text("explicit\n", encoding="utf-8")
     (thinking / "small-batch.md").write_text("small-batch\n", encoding="utf-8")
     (thinking / "README.md").write_text("thinking index\n", encoding="utf-8")
     (guides / "START_HERE.md").write_text("start\n", encoding="utf-8")
@@ -198,6 +200,9 @@ def test_agents_created_at_project_root(tmp_path: Path) -> None:
     assert (
         root / ".agents" / "thinking" / "input-process-output.md"
     ).read_text(encoding="utf-8") == "ipo\n"
+    assert (
+        root / ".agents" / "thinking" / "make-implicit-explicit.md"
+    ).read_text(encoding="utf-8") == "explicit\n"
     assert (
         root / ".agents" / "thinking" / "small-batch.md"
     ).read_text(encoding="utf-8") == "small-batch\n"

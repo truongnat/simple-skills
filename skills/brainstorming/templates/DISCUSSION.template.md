@@ -80,13 +80,17 @@ _(TODO)_
 
 ## Constraints
 
-<!-- IPO Input: time / stack / tools / policy that bound Process. -->
+<!-- Make-implicit-explicit Input: time / stack / tools / policy / deadline.
+     If user stated a timebox, write it here — forces Non-goals cuts. -->
 
 | Constraint | Source |
 |------------|--------|
-| _(TODO — time / stack / tools / policy)_ | _(user / repo)_ |
+| _(TODO — time / stack / tools / policy / deadline)_ | _(user / repo)_ |
 
 ## Assumptions
+
+<!-- Make-implicit-explicit: never put guesses in Facts. Risk High + Confirmed=No
+     blocks Ready. See .agents/thinking/make-implicit-explicit.md -->
 
 | Assumption | Risk | Confirmed |
 |------------|------|-----------|
@@ -94,9 +98,12 @@ _(TODO)_
 
 ## Unknowns
 
+<!-- Blocking=Yes requires Owner (who answers?). Dual-interpretation of a driving
+     sentence → Issue triage + Confirm-first, do not silent-pick. -->
+
 | Unknown | Blocking? | Owner |
 |---------|-----------|-------|
-| _(TODO)_ | Yes / No | _(if known)_ |
+| _(TODO)_ | Yes / No | _(user / BA / lead — required if Blocking)_ |
 
 ## Issue triage
 
@@ -105,7 +112,7 @@ Blocking=Yes means recommendation/planning must stop until answered. -->
 
 | ID | Issue / decision | Severity | Clarity | Blocking? | Owner | Status |
 |---|---|---|---|---|---|---|
-| ISS-001 | _(TODO — one concrete decision)_ | Critical / High / Medium / Low | Clear / Partial / Unknown | Yes / No | _(TODO)_ | Open / Answered |
+| ISS-001 | _(TODO — one concrete decision; dual readings that change Output/Process)_ | Critical / High / Medium / Low | Clear / Partial / Unknown | Yes / No | _(user / BA / lead — required if Blocking)_ | Open / Answered |
 
 ## Clarification checkpoint
 

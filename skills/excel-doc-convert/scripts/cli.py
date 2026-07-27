@@ -158,6 +158,10 @@ def _resolved_value(ws: Any, r: int, c: int) -> str:
     return ""
 
 
+def _md_cell(text: str) -> str:
+    return text.replace("|", "\\|").replace("\n", " / ")
+
+
 def md_cover_kv(ws: Any, max_r: int, max_c: int, title: str) -> str:
     origin, covered = _merge_maps(ws)
     lines = [f"# {title.strip()}", "", "## Fields", "", "| 項目 | 内容 |", "| --- | --- |"]
@@ -187,9 +191,7 @@ def md_cover_kv(ws: Any, max_r: int, max_c: int, title: str) -> str:
             if key in seen:
                 continue
             seen.add(key)
-            left_cell = left.replace("|", "\\|")
-            right_cell = right.replace("|", "\\|").replace("\n", " / ")
-            lines.append(f"| {left_cell} | {right_cell} |")
+            lines.append(f"| {_md_cell(left)} | {_md_cell(right)} |")
     lines.append("")
     lines.append(f"_pairs={len(seen)}_")
     return "\n".join(lines)
@@ -270,9 +272,7 @@ def md_control_table(ws: Any, title: str, max_rows: int = 200) -> str | None:
             continue
         if not name and not cid:
             continue
-        lines.append(
-            f"| {no.replace('|', '\\|')} | {name.replace('|', '\\|')} | {cid.replace('|', '\\|')} |"
-        )
+        lines.append(f"| {_md_cell(no)} | {_md_cell(name)} | {_md_cell(cid)} |")
         rows += 1
     if rows == 0:
         return None

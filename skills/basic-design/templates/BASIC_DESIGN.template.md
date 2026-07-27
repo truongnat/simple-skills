@@ -61,7 +61,10 @@ _(TODO)_
 
 ## User or system flows
 
-1. _(TODO)_
+<!-- Default path first: main/happy flow(s) first; validation/error branches
+     after; rare edges omit or mark deferred. .agents/thinking/default-path-first.md -->
+
+1. _(TODO — main path)_
 
 ## Data ownership
 

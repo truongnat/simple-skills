@@ -66,7 +66,12 @@ _(TODO)_
      Bullets = what “done” looks like to the consumer — NOT a task backlog.
      BAD:  write DTO / write service / write UI
      GOOD: search returns §8-shaped rows; over-max shows M-OVER; export file …
+     Order (Default path first): normal/happy behaviors first, then validation/
+     error outcomes; rare edges → Non-goals or later bullets.
      Each bullet should be falsifiable later via PLAN DoD / TASK Verify.
+     Feedback loop: for Blocking/dual-read behaviors, include ≥1 Given→Expect
+     example (confirm by example) — prefer a happy example first.
+     .agents/thinking/feedback-loop.md · .agents/thinking/default-path-first.md
      Include who benefits when not obvious from Goal. -->
 
 _(TODO)_
@@ -121,11 +126,13 @@ Blocking=Yes means recommendation/planning must stop until answered. -->
 
 <!-- Confirm-first: STOP immediately on Blocking. Classify Ask method
 (confirm|choice|fact|table|diagram|html), ask that way in chat, record answer,
-rewrite real sections. Do not ship DISCUSSION as a quiz. -->
+rewrite real sections. Do not ship DISCUSSION as a quiz.
+Feedback loop: behavior/dual-read → prefer Example (Given→Expect) via fact/table;
+UI/shape → diagram/html before polish. See .agents/thinking/feedback-loop.md -->
 
 | Issue ID | Ask method | Focused question / prompt | Why it blocks | User answer / evidence | Resolved? |
 |---|---|---|---|---|---|
-| ISS-001 | confirm / choice / fact / table / diagram / html | _(TODO — one question)_ | _(TODO)_ | _(wait for answer)_ | Yes / No |
+| ISS-001 | confirm / choice / fact / table / diagram / html | _(TODO — prefer Given→Expect or visual when behavior/shape)_ | _(TODO)_ | _(wait for answer)_ | Yes / No |
 
 > **STOP gate:** Do not continue to Scope/Options while any Critical issue or
 > blocking unknown is unresolved. Status=`blocked` until answers land.

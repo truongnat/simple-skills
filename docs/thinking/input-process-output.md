@@ -65,8 +65,10 @@ Outcome-first **or** a Blocking Input gap remains open.
 3. Make implicit explicit     → classify Facts/Assumptions/Unknowns/rules
 4. Single Source of Truth     → cite canonical stores; no forks
 5. Small-batch                → slice Process into completable batches
-6. 5W1H (if unclear)          → diagnose gaps in Input/Output; fold into real sections
-7. Vital few                  → when summarizing, keep only what changes the Output
+6. Feedback loop              → modality + latency×risk for signals
+7. Default path first         → L1→L2→L3→L4 depth order
+8. 5W1H (if unclear)          → diagnose gaps in Input/Output; fold into real sections
+9. Vital few                  → when summarizing, keep only what changes the Output
 ```
 
 | Method | Asks | IPO role |
@@ -76,6 +78,8 @@ Outcome-first **or** a Blocking Input gap remains open.
 | Make-explicit | What was only “understood”? | Cleans Input classification |
 | SSOT | Where is Input officially updated? | Input cites stores — doesn’t fork |
 | Small-batch | Is each unit completable + checkable now? | Sizes Process into batches |
+| Feedback loop | Which signal, how soon? | Example/See/Spike before deep Process |
+| Default path first | Which path layer next? | Process order: happy before rare |
 | 5W1H | Why is this unclear? | Clarifies weak Input/Output |
 | Vital few | What still matters? | Trims noise inside a locked IPO |
 

@@ -23,6 +23,8 @@ INSTALLER_DOCS = (
     "thinking/make-implicit-explicit.md",
     "thinking/single-source-of-truth.md",
     "thinking/small-batch.md",
+    "thinking/feedback-loop.md",
+    "thinking/default-path-first.md",
     "thinking/README.md",
     "policy/AGENT_WORK.md",
     "guides/START_HERE.md",
@@ -67,6 +69,8 @@ def make_source(tmp_path: Path) -> Path:
     (thinking / "make-implicit-explicit.md").write_text("explicit\n", encoding="utf-8")
     (thinking / "single-source-of-truth.md").write_text("ssot\n", encoding="utf-8")
     (thinking / "small-batch.md").write_text("small-batch\n", encoding="utf-8")
+    (thinking / "feedback-loop.md").write_text("feedback-loop\n", encoding="utf-8")
+    (thinking / "default-path-first.md").write_text("default-path-first\n", encoding="utf-8")
     (thinking / "README.md").write_text("thinking index\n", encoding="utf-8")
     (guides / "START_HERE.md").write_text("start\n", encoding="utf-8")
     (guides / "WHAT_NEXT.md").write_text("what next\n", encoding="utf-8")
@@ -211,6 +215,12 @@ def test_agents_created_at_project_root(tmp_path: Path) -> None:
     assert (
         root / ".agents" / "thinking" / "small-batch.md"
     ).read_text(encoding="utf-8") == "small-batch\n"
+    assert (
+        root / ".agents" / "thinking" / "feedback-loop.md"
+    ).read_text(encoding="utf-8") == "feedback-loop\n"
+    assert (
+        root / ".agents" / "thinking" / "default-path-first.md"
+    ).read_text(encoding="utf-8") == "default-path-first\n"
     assert (root / ".agents" / "thinking" / "README.md").is_file()
     assert (root / ".agents" / "START_HERE.md").read_text(encoding="utf-8") == "start\n"
     assert (root / ".agents" / "WHAT_NEXT.md").read_text(encoding="utf-8") == "what next\n"

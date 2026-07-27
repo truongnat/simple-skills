@@ -103,11 +103,12 @@ layout. Memory is optional for those unless the task needs prior decisions.
 These methods apply to the **whole session**. They are **not** report section
 names. Never brand headings or executive summaries with method labels
 (`Outcome-first`, `Input→Process→Output`, `Make-implicit-explicit`,
-`Single Source of Truth`, `Small-batch`, `80/20`, `5W1H`). Never create
-`OUTCOME.md` / `IPO.md` / `SMALL_BATCH.md` / `IMPLICIT.md` / `SSOT.md` /
-`OVERVIEW.md`. Fold results into real fields (`Goal`, `Desired outcome`, DoD,
-AC, Verify, Facts, Assumptions, Unknowns, Constraints, Trace, Approach, Work
-items, Step ledger).
+`Single Source of Truth`, `Small-batch`, `Feedback loop`, `Default path first`,
+`80/20`, `5W1H`). Never create `OUTCOME.md` / `IPO.md` / `SMALL_BATCH.md` /
+`IMPLICIT.md` / `SSOT.md` / `FEEDBACK.md` / `HAPPY_PATH.md` / `OVERVIEW.md`.
+Fold results into real fields (`Goal`, `Desired outcome`, DoD, AC, Verify,
+Facts, Assumptions, Unknowns, Constraints, Trace, Approach, Non-goals, Work
+items, Step ledger, Clarification).
 
 **Apply in this order when framing:**
 
@@ -120,8 +121,12 @@ items, Step ledger).
    fact across chat/docs/code; progress = `TASKS.md` + `session.sh status`.
 5. **Small-batch** — slice Process into units that each complete + verify
    before the next (phases, cards, execution rhythm).
-6. **5W1H** — only when the outcome/problem is hard or unclear.
-7. **Vital few** — when summarizing or writing memory.
+6. **Feedback loop** — shortest **useful** signal (Example/See/Run/Spike/Ask/
+   Compare) by latency×risk; apply Example/See early in discovery/design too.
+7. **Default path first** — deepen L1 happy → L2 validation → L3 errors → L4
+   rare; name edges early, implement rare late (thin security/money guards OK).
+8. **5W1H** — only when the outcome/problem is hard or unclear.
+9. **Vital few** — when summarizing or writing memory.
 
 ### Outcome-first (mandatory before Scope / Approach / TASKS / code)
 
@@ -244,6 +249,41 @@ cards; execution **per-card Verify** before dependent next.
 Full normative detail (levels, heuristics, anti-patterns, worked examples):
 `.agents/thinking/small-batch.md` (source `docs/thinking/small-batch.md`).
 
+### Feedback loop (mandatory when choosing how/when to get a signal)
+
+Shortest **useful** loop — not deferred “test at the end,” not thrashing.
+
+**Latency × risk:** higher rewind cost → earlier + stronger signal.  
+**Modalities:** Example (Given→Expect) · See (diagram/html) · Run (Verify) ·
+Spike · Ask · Compare (Doc reality).  
+**Hybrid C:** Small-batch sizes units + coding Verify rhythm; this method picks
+modality and stage gates (requirement example, UI preview before polish, spike
+before Full). Fold signals into Clarification + canonical (SSOT).
+
+**Fail closed:** abstract Blocking AC with no example; UI shape into impl with
+no preview; mega Approach “build then test”; `done` without Verify (Small-batch).
+
+Full normative detail:
+`.agents/thinking/feedback-loop.md`
+(source `docs/thinking/feedback-loop.md`).
+
+### Default path first (mandatory when ordering design / Approach / cards)
+
+Deepen in layers: **L1 happy → L2 validation → L3 errors → L4 rare**.
+
+**Name early, deepen late:** material edges go in Non-goals / CAP gaps / stub
+AC (Make-implicit-explicit) — do not silent-drop. Implement rare after L1 (and
+usually L2) works. **Thin early guards** only for Blocking security/money/
+data-loss (Feedback loop risk) — not an exception encyclopedia first.
+
+**Fail closed:** Approach/DETAIL leads with exception catalog while happy flow
+is empty; first cards are only validators while L1 has no card; fake happy path
+(L1 needs unfinished rare edge to Verify).
+
+Full normative detail:
+`.agents/thinking/default-path-first.md`
+(source `docs/thinking/default-path-first.md`).
+
 ### Vital few
 
 Prioritize what actually changes the outcome (summaries, memory). Do not title
@@ -294,10 +334,12 @@ decoding jargon. If a teammate new to the task cannot act from it, rewrite.
 4. Dump bilingual labels (JP/EN/VN) unless the **domain artifact** requires
    them; never invent translation noise for ceremony.
 5. Answer method prompts (Outcome-first / IPO / Make-implicit-explicit /
-   SSOT / Small-batch / 5W1H / vital-few) as trivia sections or method-branded
-   headings; do not ship activity-only Goals/ACs, Process without Output,
-   mega-batches without Verify, silent dual-interpretation picks, or
-   docs↔code Blocking asks without a visual when the user must see the diff.
+   SSOT / Small-batch / Feedback-loop / Default-path-first / 5W1H / vital-few)
+   as trivia sections or method-branded headings; do not ship activity-only
+   Goals/ACs, Process without Output, mega-batches without Verify, silent
+   dual-interpretation picks, docs↔code Blocking asks without a visual when the
+   user must see the diff, abstract requirements without a Given→Expect example
+   when Blocking, or exception-first Approach/DETAIL before a working L1 path.
 6. Narrate your process (“I will now analyze…”, “As an AI…”).
 7. **Complete-with-questions:** fill Goal / Recommendation / Architecture / …
    while Critical or Blocking items are still unanswered, or dump a long Open
@@ -319,10 +361,10 @@ When clarity is missing for a **Blocking** decision:
    | --- | --- | --- |
    | `confirm` | Prior answer / assumption likely still true; Yes/No | One chat line: claim + Y/N. No essay. |
    | `choice` | 2–5 discrete options (pick one) | Numbered A/B/C in chat; one line why each changes the doc. |
-   | `fact` | Need a concrete value (path, ID, env, owner, limit) | One short question + expected shape (e.g. “path or N/A”). |
-   | `table` | Compare ≥2 options on ≥2 criteria | Markdown table in chat (or Clarification); ask which row/column wins. |
+   | `fact` | Need a concrete value (path, ID, env, owner, limit) **or** a Given→Expect example | One short question + expected shape; for requirements prefer an example row (Feedback loop). |
+   | `table` | Compare ≥2 options on ≥2 criteria **or** confirm behavior via example matrix | Markdown table in chat (or Clarification); ask which row/column wins. |
    | `diagram` | Ambiguity is about flow, boundary, sequence, or state | Mermaid (or equivalent) in session/chat; ask which path/edge. |
-   | `html` | Ambiguity is spatial/UI: layout, responsive, before/after, multi-state | Classify `html-recommended` → ask-before-create → seed `VISUAL_DECISION.html` + session-serve; never for pure strategy text. |
+   | `html` | Ambiguity is spatial/UI: layout, responsive, before/after, multi-state | Classify `html-recommended` → ask-before-create → seed `VISUAL_DECISION.html` + session-serve; never for pure strategy text. Prefer **before** UI polish (Feedback loop). |
 
 4. **Ask in chat** with that method — default **one** question (or one visual)
    per message. Exception: up to **3** independent `confirm` / `choice` /

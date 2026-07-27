@@ -97,7 +97,7 @@ Run **before** architecture/components/flows. ≤5 vital claims the design depen
 | Verdict | `Match` / `Mismatch` / `Missing-in-docs` / `Missing-in-code` / `Stale` / `Unknown`. |
 | Stale wiki | Missing Last-synced or behind HEAD → `Stale`/`Unknown`; ask: trust wiki, trust code, or refresh docs first? |
 | Common vs spec | Spec describes flow A but shared/common code does B → `Mismatch`, Blocking unless user accepts. |
-| Stop gate | Any Blocking=`Yes` → classify Ask method; prefer `diagram`/`table`/`html` when the user must see the diff (flow/fields/UI); ask (max 3), wait; do not continue design body. Bare A/B/C only if the diff is already obvious. See `.agents/thinking/single-source-of-truth.md`. |
+| Stop gate | Any Blocking=`Yes` → classify Ask method; prefer `diagram`/`table`/`html` when the user must see the diff (flow/fields/UI); ask (max 3), wait; do not continue design body. Bare A/B/C only if the diff is already obvious. See `.agents/thinking/single-source-of-truth.md`. UI/layout Blocking → **See** before polish (Feedback loop). |
 | Source of truth | Record in Clarification checkpoint: doc / code / refresh-docs-first. Fold into canonical store (or explicit follow-up) — chat alone is not SSOT. |
 | Layers | Do not silent-pick “code wins.” Classify descriptive vs normative vs change-in-flight before asking. |
 

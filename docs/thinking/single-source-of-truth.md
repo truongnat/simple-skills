@@ -167,8 +167,10 @@ Detect Blocking Doc reality
 3. Make implicit explicit     → classify & surface material implicits
 4. Single Source of Truth     → point Input/facts at canonical stores; no forks
 5. Small-batch                → slice on cited truth (not chat folklore)
-6. 5W1H (if still unclear)    → diagnose; fold into real sections
-7. Vital few                  → summarize only what changes the outcome
+6. Feedback loop              → modality + latency×risk for signals
+7. Default path first         → L1→L2→L3→L4 depth order
+8. 5W1H (if still unclear)    → diagnose; fold into real sections
+9. Vital few                  → summarize only what changes the outcome
 ```
 
 | Method | Job vs SSOT |
@@ -176,6 +178,8 @@ Detect Blocking Doc reality
 | Make-implicit-explicit | *What* must be written/classified; SSOT = *where* official updates live |
 | IPO | Input sufficiency includes “from the right store” |
 | Small-batch | Trace/plan_ref cite SSOT — do not copy full requirements onto every card |
+| Feedback loop | After signal, fold into Clarification + **canonical** (this file) |
+| Default path first | Contract happy shape before exception catalog in OpenAPI/DETAIL |
 | Confirm-first | Mechanism to resolve Blocking SSOT conflicts (prefer visual Ask methods) |
 | Doc reality | Detection table for docs↔code; SSOT adds layers + visualize + fold |
 

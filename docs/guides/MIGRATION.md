@@ -27,6 +27,8 @@ Breaking or behavior changes hosts should know after reinstall.
 | Make-implicit-explicit Thinking method | Surface Assumptions/rules/owners/timeboxes/edges/DoD; dual-interpretation → Confirm-first; normative `.agents/thinking/make-implicit-explicit.md`; no `IMPLICIT.md` |
 | Single Source of Truth Thinking method | Cite canonical stores; no forks; progress=`TASKS`+status; Doc reality Blocking → prefer visual Ask methods + fold into canonical; normative `.agents/thinking/single-source-of-truth.md`; no `SSOT.md` |
 | Small-batch Thinking method | Completable units with independent Verify + short feedback latency; normative `.agents/thinking/small-batch.md`; card hard size remains planning step-03 §B/§C; no `SMALL_BATCH.md` |
+| Feedback loop Thinking method | Shortest useful signal by latency×risk (Example/See/Run/Spike/Ask/Compare); Hybrid C with Small-batch; normative `.agents/thinking/feedback-loop.md`; no `FEEDBACK.md` |
+| Default path first Thinking method | L1 happy → L2 validation → L3 errors → L4 rare; name edges early, deepen late; normative `.agents/thinking/default-path-first.md`; no `HAPPY_PATH.md` |
 | Docs source taxonomy | Source tree under `docs/{guides,policy,thinking,conventions,config,examples}/`; install still flattens most files into `.agents/` (Thinking stays `.agents/thinking/`). See `docs/README.md`. |
 | Multi-CLI Phase 1 | `detect_agents.py`, `RULES_BUNDLE.template.md`, `build_context --pack --check`, `delegate_worker.py` (Rules gate; dry-run); settings `rules.agents.*` |
 

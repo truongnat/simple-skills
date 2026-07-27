@@ -34,6 +34,10 @@ If precondition fails → return to step-01. Do **not** continue.
   Dual-interpretation that changes Output/Process → Confirm-first (do not
   silent-pick). Blocking Unknowns/Issues need Owner. User-stated deadline →
   Constraints. See `.agents/thinking/make-implicit-explicit.md`.
+- **Feedback loop (mandatory on Blocking behavior/shape):** Prefer confirm by
+  **Example** (Given→Expect) or **See** (`diagram`/`html`) over bare Yes/No when
+  the answer must show the behavior. UI/layout Blocking → preview before later
+  polish. See `.agents/thinking/feedback-loop.md`.
 - Inspect repo/user input for facts; mark guesses as assumptions.
 - Do **not** implement code.
 - Do **not** write PLAN/TASKS or basic/detail design.
@@ -97,6 +101,8 @@ Record each question and answer in `Clarification checkpoint`.
 - [ ] Assumptions and unknowns are not labeled as facts.
 - [ ] Blocking Unknowns/Issues have Owner; dual-interpretation driving sentences
       are triaged or Confirm-first answered (Make-implicit-explicit).
+- [ ] Blocking behavior/shape uses Feedback-loop modality (Example Given→Expect
+      or See) — not bare Yes/No when the user must understand the behavior.
 - [ ] Every material issue has severity/clarity/blocking/visual classification.
 - [ ] Spec quality review has Feasibility + Correctness verdicts and ≥1 capability
       gap row (or explicit “no material gaps”).

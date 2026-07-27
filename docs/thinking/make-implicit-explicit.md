@@ -103,8 +103,10 @@ AND would those ways change Output, Process, security, data, or AC?
 3. Make implicit explicit     → classify & surface material implicits in Input
 4. Single Source of Truth     → cite canonical stores; no forks
 5. Small-batch                → slice on clarified Input (not on folklore)
-6. 5W1H (if still unclear)    → diagnose; fold into real sections
-7. Vital few                  → summarize only what changes the outcome
+6. Feedback loop              → modality + latency×risk (Example/See/…)
+7. Default path first         → L1→L2→L3→L4 depth order
+8. 5W1H (if still unclear)    → diagnose; fold into real sections
+9. Vital few                  → summarize only what changes the outcome
 ```
 
 | Method | Job vs Make-explicit |
@@ -113,6 +115,8 @@ AND would those ways change Output, Process, security, data, or AC?
 | IPO | Input sufficiency — Make-explicit cleans what counts as Fact vs Assumption vs Unknown |
 | SSOT | Where official updates live; Make-explicit is what must appear |
 | Small-batch | Split after implicits are visible — else you split the wrong seams |
+| Feedback loop | Dual-interpretation → Example confirm (not bare Yes/No) when behavior Blocking |
+| Default path first | Name edges here; deepen rare **after** happy path (not exception-first) |
 | Confirm-first | Mechanism to resolve Blocking implicits in chat |
 | Readable writing | How prose reads; Make-explicit is *what must appear* |
 | Spec quality | Finds missing capabilities/edges; Make-explicit requires promoting them to triage |
@@ -134,7 +138,7 @@ Do **not** create `## Make implicit explicit` or `IMPLICIT.md`.
 | Business rule | Confirmed facts (with source) **or** Trace / Dev context Constraints | If unsourced → Assumption or Unknown |
 | Owner | Unknowns.Owner; Issue triage.Owner | Blocking rows need a human owner (user/BA/lead), not empty |
 | Deadline / timebox | Constraints | e.g. “ship by Fri” / “2h spike only” — forces Non-goals |
-| Edge case | Spec quality Capability gaps; Risks; AC Then; Out of scope | In-scope edge → AC or gap; out-of-scope → Non-goals |
+| Edge case | Spec quality Capability gaps; Risks; AC Then; Out of scope | In-scope edge → AC or gap; out-of-scope → Non-goals. **Order:** name early; deepen L2–L4 after L1 (`.agents/thinking/default-path-first.md`) — do not silent-drop. |
 | DoD | PLAN Definition of done; card AC + Verify | Already Outcome-first; Make-explicit forbids vibes-only Done |
 | Dual reading | Issue triage + Clarification checkpoint | Confirm-first Ask method |
 | Invented tech fill | Dev context **Gaps** | Never silent-fill contracts/fields |
@@ -242,8 +246,9 @@ GOOD: Constraints: timebox end-of-day tomorrow — forces Non-goals cuts
 ### E. Edge cases as vibes
 
 ```text
-BAD:  “We’ll handle errors later”
+BAD:  “We’ll handle errors later” (unnamed)
 GOOD: CAP gap or AC: empty BaseCd → M-01; over-max → M-OVER; or Non-goals
+      (Default path first: name now; deepen L2/L3 after L1)
 ```
 
 ### F. Quiz-as-document

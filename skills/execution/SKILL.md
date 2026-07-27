@@ -102,7 +102,11 @@ create or modify:
 
 **Small-batch rhythm:** finish and Verify **one** card before starting a
 **dependent** next card. Do not implement a pile of cards and verify once at
-the end. See `.agents/thinking/small-batch.md`.
+the end. **Feedback loop:** that Verify must falsify **this** AC /
+Given→Expect — not unrelated green noise. **Default path first:** prefer
+finishing L1 happy cards before deep L2/L3/L4 piles. See
+`.agents/thinking/small-batch.md`, `.agents/thinking/feedback-loop.md`,
+`.agents/thinking/default-path-first.md`.
 
 On every task card in `execution_order`:
 

@@ -45,6 +45,10 @@ _(TODO)_
 
 ## Contracts
 
+<!-- Default path first: happy success contract/shape first; then validation
+     (4xx) and error mapping; rare edges deferred. See
+     .agents/thinking/default-path-first.md -->
+
 _(fill after Doc reality gate)_
 
 ## Data model

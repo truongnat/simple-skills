@@ -75,6 +75,12 @@ def test_outcome_first_thinking_method_is_wired() -> None:
     ssot = (
         REPO_ROOT / "docs" / "thinking" / "single-source-of-truth.md"
     ).read_text(encoding="utf-8")
+    feedback = (
+        REPO_ROOT / "docs" / "thinking" / "feedback-loop.md"
+    ).read_text(encoding="utf-8")
+    default_path = (
+        REPO_ROOT / "docs" / "thinking" / "default-path-first.md"
+    ).read_text(encoding="utf-8")
     index = (REPO_ROOT / "docs" / "thinking" / "README.md").read_text(encoding="utf-8")
     catalog = (REPO_ROOT / "docs" / "README.md").read_text(encoding="utf-8")
     assert "Outcome-first" in preamble
@@ -88,11 +94,17 @@ def test_outcome_first_thinking_method_is_wired() -> None:
     assert "thinking/single-source-of-truth.md" in preamble
     assert "Small-batch" in preamble
     assert "thinking/small-batch.md" in preamble
+    assert "Feedback loop" in preamble
+    assert "thinking/feedback-loop.md" in preamble
+    assert "Default path first" in preamble
+    assert "thinking/default-path-first.md" in preamble
     assert "Outcome-first" in policy
     assert "Input → Process → Output" in policy
     assert "Make implicit explicit" in policy
     assert "Single Source of Truth" in policy
     assert "Small-batch" in policy
+    assert "Feedback loop" in policy
+    assert "Default path first" in policy
     assert "WHO" in detail and "WHAT" in detail and "EVIDENCE" in detail
     assert "OUTCOME.md" in detail and "forbidden" in detail.lower()
     assert "Input" in ipo and "Process" in ipo and "Output" in ipo
@@ -104,9 +116,17 @@ def test_outcome_first_thinking_method_is_wired() -> None:
     assert "Cite" in ssot and "fork" in ssot.lower()
     assert "SSOT.md" in ssot
     assert "diagram" in ssot and "Doc reality" in ssot
+    assert "latency" in feedback.lower() and "modality" in feedback.lower()
+    assert "FEEDBACK.md" in feedback
+    assert "Given" in feedback and "Expect" in feedback
+    assert "Hybrid C" in feedback or "hybrid" in feedback.lower()
+    assert "L1" in default_path and "happy" in default_path.lower()
+    assert "HAPPY_PATH.md" in default_path
+    assert "name early" in default_path.lower() or "Name early" in default_path
     assert "outcome-first.md" in index and "input-process-output.md" in index
     assert "make-implicit-explicit.md" in index and "single-source-of-truth.md" in index
-    assert "small-batch.md" in index
+    assert "small-batch.md" in index and "feedback-loop.md" in index
+    assert "default-path-first.md" in index
     assert "thinking/" in catalog
 
 

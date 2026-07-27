@@ -199,8 +199,10 @@ Apply in this order when framing:
 3. Make implicit explicit     → classify & surface material implicits
 4. Single Source of Truth     → cite canonical stores; no forks
 5. Small-batch                → slice into completable, verifiable units
-6. 5W1H (if unclear)          → diagnose gaps; fold into real sections
-7. Vital few                  → when summarizing / memory, keep what changes Output
+6. Feedback loop              → modality + latency×risk for signals
+7. Default path first         → L1→L2→L3→L4 depth order
+8. 5W1H (if unclear)          → diagnose gaps; fold into real sections
+9. Vital few                  → when summarizing / memory, keep what changes Output
 ```
 
 | Method | Job | Anti-pattern |
@@ -209,17 +211,21 @@ Apply in this order when framing:
 | IPO | Bind Input + Process to Output | Process theatre / inventing Input |
 | Make-explicit | Surface Assumptions/rules/owners/edges | Silent dual-interpretation pick |
 | SSOT | Point facts at one official store | Forking AC/contract across chat/docs/code |
-| Small-batch | Size + feedback rhythm | Mega-batch / fake-small / deferred verify |
+| Small-batch | Size + coding Verify rhythm | Mega-batch / fake-small / deferred verify |
+| Feedback loop | Early useful signal (Example/See/Spike) | Abstract AC confirm; polish before preview |
+| Default path first | Happy before exception encyclopedia | Exception-first DETAIL/Approach |
 | 5W1H | Clarify a hard/unclear outcome | Stamping a 5W1H table |
 | Vital few | Prioritize inside a locked outcome | Branding “80/20” on summaries |
 
 Outcome-first does **not** replace Spec quality, Confirm-first, Dev context,
-IPO, Make-explicit, SSOT, or Small-batch. It feeds them: unclear outcome ⇒ Blocking
-unknown ⇒ Confirm-first ask.
+IPO, Make-explicit, SSOT, Small-batch, Feedback loop, or Default path first.
+It feeds them: unclear outcome ⇒ Blocking unknown ⇒ Confirm-first ask.
 IPO: `.agents/thinking/input-process-output.md`.
 Make-explicit: `.agents/thinking/make-implicit-explicit.md`.
 SSOT: `.agents/thinking/single-source-of-truth.md`.
 Small-batch: `.agents/thinking/small-batch.md`.
+Feedback loop: `.agents/thinking/feedback-loop.md`.
+Default path first: `.agents/thinking/default-path-first.md`.
 
 ---
 

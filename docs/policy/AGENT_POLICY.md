@@ -83,7 +83,8 @@ decision bullets) then a **Developer overview** panel **inside that same
 artifact**. Do **not** create a separate `OVERVIEW.md` landing page — it goes
 stale. Progress truth is `TASKS.md` + `session.sh status`. Do **not** name
 sections after methods (`Outcome-first`, `IPO`, `Make-implicit-explicit`,
-`SSOT`, `Small-batch`, `80/20`, `5W1H`). Chart when useful; skip filler.
+`SSOT`, `Small-batch`, `Feedback loop`, `Default path first`, `80/20`, `5W1H`).
+Chart when useful; skip filler.
 
 **Thinking methods (session-wide — not report titles):**
 
@@ -103,8 +104,14 @@ sections after methods (`Outcome-first`, `IPO`, `Make-implicit-explicit`,
   Blocking → classify layer, prefer visual Ask methods, fold into canonical.
   Full rules: `.agents/thinking/single-source-of-truth.md`.
 - **Small-batch:** slice work into completable units with independent Verify
-  and short feedback latency (Approach phases, TASK size rules, per-card
+  and short coding feedback latency (Approach phases, TASK size rules, per-card
   Verify in execution). Full rules: `.agents/thinking/small-batch.md`.
+- **Feedback loop:** shortest useful signal by latency×risk — Example
+  (Given→Expect), See, Run, Spike, Ask, Compare. Hybrid C with Small-batch
+  (size vs modality). Full rules: `.agents/thinking/feedback-loop.md`.
+- **Default path first:** deepen L1 happy → L2 validation → L3 errors → L4
+  rare; name edges early, implement rare late; thin security/money guards only
+  when Blocking. Full rules: `.agents/thinking/default-path-first.md`.
 - **Vital few (Pareto / “80/20”):** across the whole session, keep attention on
   the small set of facts, risks, and decisions that change the outcome. Use it
   when prioritizing, summarizing, and writing memory — never as a heading or
@@ -595,13 +602,14 @@ traceability, test data, or verification evidence.
 
 These are **ways of working**, not section names or report titles. Do not brand
 artifacts with method labels (`Outcome-first`, `IPO`, `Make-implicit-explicit`,
-`SSOT`, `Small-batch`, `80/20`, `5W1H`). Do not create `OUTCOME.md` / `IPO.md` /
-`SMALL_BATCH.md` / `IMPLICIT.md` / `SSOT.md`. Fold method results into existing
+`SSOT`, `Small-batch`, `Feedback loop`, `Default path first`, `80/20`, `5W1H`).
+Do not create `OUTCOME.md` / `IPO.md` / `SMALL_BATCH.md` / `IMPLICIT.md` /
+`SSOT.md` / `FEEDBACK.md` / `HAPPY_PATH.md`. Fold method results into existing
 fields only.
 
 **Framing order:** Outcome-first → Input→Process→Output → Make-implicit-explicit
-→ Single Source of Truth → Small-batch → (5W1H if unclear) → vital few when
-summarizing/memory.
+→ Single Source of Truth → Small-batch → Feedback loop → Default path first →
+(5W1H if unclear) → vital few when summarizing/memory.
 
 1. **Outcome-first (mandatory):** Start from the observable end state, not the
    task list. Every `Goal`, `Desired outcome`, DoD item, and task `AC` must
@@ -673,12 +681,34 @@ summarizing/memory.
    anti-patterns, worked examples):
    `.agents/thinking/small-batch.md` (source `docs/thinking/small-batch.md`).
 
-6. **Vital few (Pareto):** Hold the whole session in mind and surface only what
+6. **Feedback loop (mandatory when choosing signals):** Shortest **useful**
+   loop by latency×risk. Modalities: Example (Given→Expect), See, Run, Spike,
+   Ask, Compare. Hybrid C: Small-batch owns size + coding Verify rhythm; this
+   method owns modality and stage gates (confirm requirements by example; UI
+   preview before polish; spike before Full; per-card Run stays Small-batch).
+   Fold into Clarification + canonical (SSOT). Avoid thrashing and fake-short
+   loops (trivia asks / unrelated green tests).
+
+   **Normative detail:**
+   `.agents/thinking/feedback-loop.md`
+   (source `docs/thinking/feedback-loop.md`).
+
+7. **Default path first (mandatory when ordering depth):** L1 happy → L2
+   validation → L3 errors → L4 rare. Name material edges early (Non-goals /
+   CAP / stub AC); deepen rare late. Thin early guards only for Blocking
+   security/money/data-loss. Fail closed on exception-first Approach/DETAIL
+   or fake happy paths.
+
+   **Normative detail:**
+   `.agents/thinking/default-path-first.md`
+   (source `docs/thinking/default-path-first.md`).
+
+8. **Vital few (Pareto):** Hold the whole session in mind and surface only what
    changes the decision or outcome. Executive summaries and memory entries
    should reflect that prioritization — without a heading called `80/20` or
    branded titles like “Executive summary” plus a method suffix.
 
-7. **5W1H:** When the problem is hard, ambiguous, or the feature is unclear /
+9. **5W1H:** When the problem is hard, ambiguous, or the feature is unclear /
    wrong / underspecified, silently check What / Why / Who / When / Where / How
    against the **session context** (goal, constraints, evidence, unknowns). Put
    the useful answers into the real sections (facts, risks, Spec quality,

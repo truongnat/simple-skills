@@ -36,6 +36,8 @@ body. Blocking unknowns → **Confirm-first** + **Ask method** in
 | `.agents/thinking/make-implicit-explicit.md` | Make-implicit-explicit Thinking method (normative) |
 | `.agents/thinking/single-source-of-truth.md` | Single Source of Truth Thinking method (normative) |
 | `.agents/thinking/small-batch.md` | Small-batch Thinking method (normative) |
+| `.agents/thinking/feedback-loop.md` | Feedback loop Thinking method (normative) |
+| `.agents/thinking/default-path-first.md` | Default path first Thinking method (normative) |
 | `.agents/skills/` | Invokable skills |
 | `.agents/tools/` | session, lint, build_context, detect_agents, delegate_worker, … |
 | `.agent-work/` | **Work** — sessions + memory (nested git; `session.sh commit` / `archive`) |

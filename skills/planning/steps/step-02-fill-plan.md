@@ -35,6 +35,13 @@ If precondition fails → return to step-01 / ask user.
   mega-phase. Each phase must be completable and verifiable before the next
   compounds error. Card explosion happens in step-03 (§B/§C). See
   `.agents/thinking/small-batch.md`.
+- **Feedback loop (mandatory):** High rewind-cost items need an early signal —
+  Example (Given→Expect), See (preview/diagram), or Spike phase — before Full
+  Approach depth. Do not plan “build then test” as the only loop. See
+  `.agents/thinking/feedback-loop.md`.
+- **Default path first (mandatory):** Order Approach / later cards L1 happy →
+  L2 validation → L3 errors → L4 rare. Name edges in Non-goals/CAP; do not lead
+  with an exception encyclopedia. See `.agents/thinking/default-path-first.md`.
 - Task index in this step may be a **draft** short list of phases; **step-03 will replace it** with the fine-grained ID list from Work inventory. Do not treat a 8–12 epic index as final quality.
 - Do **not** put “write test cases / 6 dimensions matrix” as the first index item before feature work.
 - Do **not** start step-03 until PLAN sections below are filled (no leftover `_(TODO)_` on required fields unless marked blocked).

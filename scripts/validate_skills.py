@@ -493,6 +493,10 @@ def main() -> int:
         errors.append("docs/thinking/single-source-of-truth.md missing")
     if not (ROOT / "docs" / "thinking" / "small-batch.md").is_file():
         errors.append("docs/thinking/small-batch.md missing")
+    if not (ROOT / "docs" / "thinking" / "feedback-loop.md").is_file():
+        errors.append("docs/thinking/feedback-loop.md missing")
+    if not (ROOT / "docs" / "thinking" / "default-path-first.md").is_file():
+        errors.append("docs/thinking/default-path-first.md missing")
     if not (ROOT / "docs" / "thinking" / "README.md").is_file():
         errors.append("docs/thinking/README.md missing")
     if not (ROOT / "docs" / "examples" / "README.md").is_file():

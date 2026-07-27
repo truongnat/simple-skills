@@ -50,8 +50,13 @@ Walk the design and emit a row for each of these when present:
 | F-key / toolbar action | One row per distinct action (F3 export, F8 print, …) **or** one row that **names every key** in Work items later |
 | Child screen / modal / dialog | **One row per screen** unless design says they share one shell + N configs (then: shell row + config rows) |
 | Lookup / focusout | One row per handler **or** one row that names each handler ID |
-| Validation rule group | Own row citing rule IDs/types from design |
+| Validation rule group | Own row citing rule IDs/types from design — schedule **after** happy-path implement rows (Default path first L2) |
 | Automated test surface | Rows only **after** implement inventory for those surfaces |
+
+**Order (Default path first):** When assigning `execution_order` / Progress board
+sequence, prefer happy-path implement cards (L1) before validation-only (L2),
+error-handling (L3), and rare-edge (L4) cards. Do not lead the board with an
+exception encyclopedia. See `.agents/thinking/default-path-first.md`.
 
 **Count check (Full Mode):**  
 `number of inventory rows` should be **≥ number of Scope bullets that name distinct deliverables** in PLAN/DISCUSSION.  
@@ -106,9 +111,11 @@ Every kept `### T-00x` card **FAILS** unless **all** hold:
 5. **AC:** Outcome-first / IPO Output slice of PLAN Goal (compile, status code,
    field present, file downloaded, message id, consumer behavior) — **not**
    “works correctly” / “per spec” / “implemented” / title restated as activity.
-   Must be falsifiable by this card’s Verify.
+   Must be falsifiable by this card’s Verify. Prefer Given→Expect when the AC
+   came from a Feedback-loop example confirm.
 6. **Verify:** command, request example, or UI check tied to this card only;
-   must be able to prove the AC false.
+   must be able to prove the AC false (**Run** modality — Feedback loop;
+   sizing independence — Small-batch).
 7. **Files/scope:** concrete path(s) or “create `…/NamedFile.ext`”; confidence `known|inferred|unknown`. Not `backend` / `frontend` alone.
 8. **No placeholders:** no `_(TODO)_`, `_(short title)_`, `_(…)_` left on kept cards.
 9. **Progress board:** one row per card with matching ID/title, `Status: todo`, Done=`[ ]`.

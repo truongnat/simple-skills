@@ -134,6 +134,22 @@ function Invoke-Doctor {
         $ok = $false
     }
 
+    $thinkingFeedback = Join-Path $Target.Path ".agents/thinking/feedback-loop.md"
+    if (Test-Path $thinkingFeedback -PathType Leaf) {
+        Write-Host "kit_thinking/feedback-loop.md=yes"
+    } else {
+        Write-Host "kit_thinking/feedback-loop.md=missing"
+        $ok = $false
+    }
+
+    $thinkingDefaultPath = Join-Path $Target.Path ".agents/thinking/default-path-first.md"
+    if (Test-Path $thinkingDefaultPath -PathType Leaf) {
+        Write-Host "kit_thinking/default-path-first.md=yes"
+    } else {
+        Write-Host "kit_thinking/default-path-first.md=missing"
+        $ok = $false
+    }
+
     if (Test-Path (Join-Path $Target.Path "AGENTS.md") -PathType Leaf) {
         Write-Host "root_AGENTS.md=yes"
     } else {
@@ -334,6 +350,8 @@ function Invoke-Install {
     Copy-Item -Path (Join-Path $Source "docs/thinking/make-implicit-explicit.md") -Destination ".agents/thinking/make-implicit-explicit.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/thinking/single-source-of-truth.md") -Destination ".agents/thinking/single-source-of-truth.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/thinking/small-batch.md") -Destination ".agents/thinking/small-batch.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/thinking/feedback-loop.md") -Destination ".agents/thinking/feedback-loop.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/thinking/default-path-first.md") -Destination ".agents/thinking/default-path-first.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/thinking/README.md") -Destination ".agents/thinking/README.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/policy/AGENT_WORK.md") -Destination ".agents/AGENT_WORK.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/guides/START_HERE.md") -Destination ".agents/START_HERE.md" -Force

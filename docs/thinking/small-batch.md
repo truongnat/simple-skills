@@ -12,11 +12,16 @@
 > Policy summary: `.agents/AGENT_POLICY.md` → Thinking methods.  
 > Coding-card **hard size rules** remain authoritative in
 > `planning/steps/step-03-fill-tasks.md` §B–§C — this file explains *why*,
-> *when*, and how small-batch applies **beyond** planning cards.
+> *when*, and how small-batch applies **beyond** planning cards.  
+> **Feedback modality + latency×risk** (example / preview / spike / when a
+> signal must arrive) live in `.agents/thinking/feedback-loop.md` — this file
+> owns **unit size** and **coding per-card Verify rhythm**.
 
-Agents must treat this file as **normative** for batch sizing and feedback
-rhythm. If a batch cannot be completed and verified independently, **split or
-stop** — do not “push through” and verify later as a pile.
+Agents must treat this file as **normative** for batch sizing and coding
+feedback rhythm. If a batch cannot be completed and verified independently,
+**split or stop** — do not “push through” and verify later as a pile.
+For *which* signal to use in discovery/UI/product (Example/See/Spike), read
+Feedback loop — do not pretend card splits alone are enough.
 
 ---
 
@@ -57,9 +62,13 @@ batches that only “look done.”
 | **Batch** | A completable unit with goal + output + verify | Approach phase, TASK card, skill step, Quick pack |
 | **Mega-batch** | Unit too large to verify usefully before continuing | Epic card, “BE Search”, multi-screen card |
 | **Fake-small** | Tiny activity slices without falsifiable Output | Work items without AC; “cleanup” cards |
-| **Feedback latency** | Time/work between change and evidence of correctness | Card Verify; Spec quality; Confirm-first ask |
+| **Feedback latency** | Time/work between change and evidence of correctness | Card Verify; see also Feedback loop modalities |
 | **Independently verifiable** | Verify can pass/fail using only this batch’s Output (+ locked Input) | Card Verify line; phase deliverable |
-| **Feedback loop** | complete → check → adjust before next batch | Execution Progress protocol; Step ledger |
+| **Feedback loop (rhythm)** | complete → check → adjust before next **coding** batch | Execution Progress protocol; Step ledger |
+
+> Broader lifecycle signals (Example/See/Spike, latency×risk) = Thinking method
+> **Feedback loop** (`.agents/thinking/feedback-loop.md`). Here “feedback loop”
+> means the per-batch coding rhythm only.
 | **Batch ceiling** | Max size allowed on this Path | Quick: 1–3 cards; Full: Task size §B |
 
 **Hard rule:** A batch that cannot state its Output (Outcome-first) and Verify
@@ -103,8 +112,10 @@ BAD:  T-002 AC needs UI from T-005 which is still todo — not independently ver
 3. Make implicit explicit     → classify & surface material implicits in Input
 4. Single Source of Truth     → cite canonical stores; no forks
 5. Small-batch                → slice Process into completable, verifiable batches
-6. 5W1H (if unclear)          → diagnose; fold into real sections
-7. Vital few                  → prioritize in summaries / memory
+6. Feedback loop              → modality + latency×risk for each signal
+7. Default path first         → order cards/phases L1→L2→L3→L4
+8. 5W1H (if unclear)          → diagnose; fold into real sections
+9. Vital few                  → prioritize in summaries / memory
 ```
 
 | Method | Question | Small-batch role |
@@ -113,14 +124,18 @@ BAD:  T-002 AC needs UI from T-005 which is still todo — not independently ver
 | IPO | Input ready? Process coherent? | Process is a **sequence of batches**, not one blob |
 | Make-explicit | What was only understood? | Clarify Input before cutting seams |
 | SSOT | Where is official truth updated? | Trace/Source cite stores — don’t fork requirements onto every card |
-| Small-batch | Is this unit completable + checkable now? | Sizing + feedback rhythm |
+| Small-batch | Is this unit completable + checkable now? | Sizing + coding Verify rhythm |
+| Feedback loop | Which signal, how soon? | Fills Verify modality; early Example/See/Spike outside card size |
+| Default path first | Which path layer next? | Sequence batches: happy before rare-edge encyclopedia |
 | Vital few | What still matters? | Do not keep mega-batches “because they’re important” — split them |
 | 5W1H | Why is sizing unclear? | Use when split boundaries are ambiguous |
 
 **Anti-pattern:** Outcome-first Goal is excellent, IPO is filled, but Approach
 is one phase “implement everything” — small-batch failed. Also anti-pattern:
 splitting 40 cards on an unconfirmed High-impact assumption — Make-explicit
-first (`.agents/thinking/make-implicit-explicit.md`).
+first (`.agents/thinking/make-implicit-explicit.md`). Also: perfect card splits
+with only abstract ACs and no Example/See when risk is high — Feedback loop
+failed (`.agents/thinking/feedback-loop.md`).
 
 ---
 
@@ -405,6 +420,8 @@ When writing Approach / TASKS:
 - [ ] No mega-batch layer epithets; no fake-small without AC
 - [ ] Depends/order preserve independent verify where claimed
 - [ ] Quick stays ≤3 cards or Path upgraded
+- [ ] High rewind-cost items have Feedback-loop modality (Example/See/Spike)
+      scheduled or done — `.agents/thinking/feedback-loop.md`
 
 When executing:
 
@@ -412,6 +429,7 @@ When executing:
 - [ ] Verify **this** card before dependent next
 - [ ] Status/progress match truth; no done-without-Verify
 - [ ] Evidence recorded per card/DoD
+- [ ] Verify Run falsifies **this** AC (not green noise)
 
 When reviewing:
 
@@ -422,10 +440,12 @@ When reviewing:
 ## 14. Maintenance notes for kit authors
 
 - Keep hard size mechanics in `step-03-fill-tasks.md`; keep *mindset +
-  feedback rhythm + multi-level batches* here.
+  coding Verify rhythm + multi-level batches* here.
+- Keep modality / latency×risk / discovery–UI–spike gates in
+  `feedback-loop.md` (Hybrid C — do not merge files).
 - Install to `.agents/thinking/small-batch.md`; link from preamble + this
   folder’s README.
 - Do not invent a skill or `SMALL_BATCH.md` artifact.
-- When adding related methods (e.g. shorter feedback loops elsewhere), compose
-  in framing order rather than duplicating Task size tables into preamble.
+- When adding related methods, compose in framing order; Feedback loop owns
+  modalities — do not duplicate Task size tables into preamble.
 - English kit form; thread prose follows `settings.language`.

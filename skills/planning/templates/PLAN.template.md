@@ -92,7 +92,9 @@ _(TODO)_
 
 ## Non-goals
 
-<!-- Explicitly protect the Goal from silent expansion. -->
+<!-- Explicitly protect the Goal from silent expansion.
+     Default path first: park rare edges here (name early, deepen late) —
+     do not delete Spec gaps silently. .agents/thinking/default-path-first.md -->
 
 - _(TODO)_
 
@@ -107,15 +109,17 @@ _(TODO)_
 
 ## Approach
 
-<!-- IPO Process + Small-batch: phased strategy only — each phase advances a
-     checkable Output slice of Goal and should be completable/verifiable before
-     the next compounds error. Not “backend then frontend” alone.
-     Not per-task AC/Verify/Files. See .agents/thinking/input-process-output.md
-     and .agents/thinking/small-batch.md -->
+<!-- IPO Process + Small-batch + Feedback loop + Default path first: phased
+     strategy — each phase advances a checkable Output slice.
+     Order phases L1 happy → L2 validation → L3 errors → L4 rare (or Non-goals).
+     Not “backend then frontend” alone; not exception catalog before happy slice.
+     High rewind-cost unknowns → early Spike or Confirm-first Example/See.
+     See .agents/thinking/input-process-output.md, small-batch.md,
+     feedback-loop.md, default-path-first.md -->
 
-1. _(TODO — phase with concrete deliverable)_
-2. _(TODO — phase)_
-3. _(TODO — phase: implement feature before automated tests)_
+1. _(TODO — L1 happy path deliverable)_
+2. _(TODO — L2 validation / L3 errors as needed)_
+3. _(TODO — L4 rare only if in scope; else omit / Non-goals)_
 
 ## Affected areas
 
@@ -132,10 +136,12 @@ _(TODO)_
 ## Verification strategy
 
 <!-- How the session Goal/DoD will be evidenced (commands, UI checks, logs).
-     Prefer falsifiable checks over “manual QA TBD”. -->
+     Prefer falsifiable checks over “manual QA TBD”.
+     Feedback loop: name modalities (Run/See/Example) that hit Desired outcome
+     examples — not green noise. Coding per-card Run stays in TASKS Verify. -->
 
 - _(TODO — automated command)_
-- _(TODO — manual check)_
+- _(TODO — manual check / UI preview if layout in scope)_
 
 ## Definition of done
 

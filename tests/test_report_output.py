@@ -9,6 +9,13 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 def test_default_report_output_format_is_markdown() -> None:
     settings = (REPO_ROOT / "docs" / "settings.yaml").read_text(encoding="utf-8")
     assert "output_format: markdown" in settings
+    assert "prose_language: repo-default" in settings
+
+
+def test_settings_template_separates_thread_and_comment_language() -> None:
+    settings = (REPO_ROOT / "docs" / "settings.yaml").read_text(encoding="utf-8")
+    assert "thread/report content only" in settings
+    assert "Source-code comment prose language" in settings
 
 
 def test_agent_rules_define_html_artifact_compatibility() -> None:

@@ -4,7 +4,8 @@
 # Only set what you need to change. Everything else uses fixed defaults in
 # `.agents/AGENT_POLICY.md` (decisions, visuals, report style, code comments).
 
-# Reply + artifact **prose** language. Headings / template keys / enums stay English.
+# Reply + artifact **prose** language for thread/report content only.
+# Headings / template keys / enums stay English.
 #   en | vi
 # One language per artifact — do not mix Vietnamese and English body text.
 language: en
@@ -24,6 +25,15 @@ rules:
   # Lifecycle report files: markdown (default) | html
   reports:
     output_format: markdown
+
+  # Source-code comment prose language. Separate from the thread/report language.
+  #   repo-default — follow repo convention from PRJ_REFERENCE/CODE_COMMENTS; if
+  #                  no convention is known, prefer English
+  #   en | vi       — force generated code comments/docstrings to that language
+  # Leave unset unless the project needs an explicit override.
+  code:
+    comments:
+      prose_language: repo-default
 
   # Project wiki (`docs` skill). Set enabled: false to skip.
   docs:

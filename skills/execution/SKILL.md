@@ -11,7 +11,9 @@ Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Work layout +
 Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
 steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
 understands on first pass — concrete paths/IDs, no filler, no method branding.
-Artifacts go under `.agent-work/` (sessions + memory), not `.agents/`.
+Artifacts go under `.agent-work/` (sessions + memory), not `.agents/`. Treat
+`settings.language` as thread/report prose only; source-code comments/docstrings
+use the separate code-comment rule.
 Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
 
 ## Purpose
@@ -86,6 +88,9 @@ Do not start the Progress protocol until this preflight passes.
 Apply `.agents/CODE_COMMENTS.md` (defaults in `AGENT_POLICY.md`; optional
 `rules.code.comments` overrides) to every file you
 create or modify:
+- `settings.language` does **not** choose code-comment language. Use
+  `rules.code.comments.prose_language` (or repo convention when it is
+  `repo-default`) for generated source-code comments/docstrings.
 - Comment the **why**, not the what; no obvious narration, no commented-out code.
 - Give each exported/public symbol a **doc comment** in the language's standard
   format (TSDoc/JSDoc, PEP 257, Javadoc, GoDoc, rustdoc, KDoc, …).

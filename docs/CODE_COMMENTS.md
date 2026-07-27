@@ -6,11 +6,16 @@ writing code and checked by `review`/`review-pr`.
 
 Defaults live in `.agents/AGENT_POLICY.md` (Built-in defaults → Code comments).
 Optional overrides may appear under `rules.code.comments` in settings; omit them
-unless the project needs a different profile.
+unless the project needs a different profile. In particular,
+`rules.code.comments.prose_language` controls the language of generated
+source-code comments/docstrings and is **separate** from thread/report
+`settings.language`.
 
 > **Consistency first:** if the repo already uses a comment style, follow it.
 > `init` records the project's actual convention in `PRJ_REFERENCE.md`; this
 > file is the default when the repo has none.
+> Unless `rules.code.comments.prose_language` overrides it, comment prose follows
+> the repo convention; if none is known, prefer English.
 
 ## Principles
 
@@ -58,6 +63,9 @@ unless the project needs a different profile.
 
 Configure a per-language override in `rules.code.comments.language_style`
 (e.g. `python: numpy`).
+
+Configure comment prose language separately with
+`rules.code.comments.prose_language` (`repo-default` | `en` | `vi`).
 
 ## Flow documentation (fixes "code has no flow")
 

@@ -16,6 +16,7 @@ settings.
 | Key | Values | Default |
 | --- | --- | --- |
 | `language` | `en` \| `vi` | `en` |
+| `rules.code.comments.prose_language` | `repo-default` \| `en` \| `vi` | `repo-default` |
 | `rules.branch.mode` | `direct` \| `checkout` | `checkout` |
 | `rules.branch.base` | branch name | detect from repo |
 | `rules.branch.naming` | pattern e.g. `feat/<slug>` | empty |
@@ -36,9 +37,16 @@ Optional (add only when the repo has a convention; `init` may merge them):
   current user request overrides the file for that turn.
 - **`language`:** prose (summaries, paragraphs, cell *values*, questions) in
   `en` or `vi` — **one language per artifact**, no half-VI half-EN bodies.
-  **Do not translate** Markdown headings, template section titles, template
-  table column headers, or enum/machine values (`Quick`, `PASS`, `Match`,
-  `todo`, …). Code, paths, commands, and domain IDs stay as-is.
+  It controls **thread/report prose only**. It does **not** set source-code
+  comment/docstring language. **Do not translate** Markdown headings, template
+  section titles, template table column headers, or enum/machine values
+  (`Quick`, `PASS`, `Match`, `todo`, …). Code, paths, commands, and domain IDs
+  stay as-is.
+- **`rules.code.comments.prose_language`:** source-code comments/docstrings
+  only. `repo-default` = follow repo convention from `PRJ_REFERENCE.md` /
+  `CODE_COMMENTS.md`; if no convention is known, prefer English. Do not infer
+  code-comment language from thread/report `language` unless the user directly
+  asks for that in the current task.
 - **`rules.branch.mode`:** `direct` = work/commit on base/main; `checkout` =
   create/checkout a work branch **before any code edit** (never commit feature
   work on base). Unset → `checkout`.
@@ -208,7 +216,9 @@ During execution/coding:
   orchestration boundary so a reviewer can understand sequencing and failure
   behavior.
 - Follow comment/docstring conventions from `.agents/PRJ_REFERENCE.md` and
-  `.agents/settings.yaml`; update comments when behavior changes.
+  `.agents/CODE_COMMENTS.md`, using `rules.code.comments.prose_language` for
+  source-code comment prose when it is set; update comments when behavior
+  changes.
 - Avoid comments that merely repeat clear code. If no comment is needed, keep
   the code self-explanatory through naming and structure.
 
@@ -595,9 +605,10 @@ artifacts with method labels.
 - Apply only **populated** project knobs from `.agents/settings.yaml`.
 - Output: short, structured, decision-oriented. Bullets/tables over paragraphs.
 - No filler. No marketing language. No method-named sections.
-- Language from `.agents/settings.yaml`: prose in `language`; headings / template
-  keys / enums / identifiers stay English (shared form). One language per
-  artifact — no mixed VI/EN body text.
+- Language from `.agents/settings.yaml`: thread/report prose in `language`;
+  source-code comments/docstrings follow `rules.code.comments.prose_language`;
+  headings / template keys / enums / identifiers stay English (shared form).
+  One language per artifact — no mixed VI/EN body text.
 
 ## Developer UX / DX
 

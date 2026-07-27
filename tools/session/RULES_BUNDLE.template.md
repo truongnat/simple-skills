@@ -8,6 +8,10 @@
 
 - Prose (summaries, paragraphs, questions) follows project `settings.language`
   (`en` | `vi`) — **one language per artifact**.
+- `settings.language` is for thread/report prose only. It does **not** control
+  source-code comment/docstring language.
+- Source-code comments/docstrings follow `.agents/CODE_COMMENTS.md` and
+  `rules.code.comments.prose_language` (`repo-default` | `en` | `vi`).
 - **Do not translate** Markdown headings, template section titles, table column
   headers, or enum/machine values (`Quick`, `PASS`, `Match`, `todo`, …).
 - Code, paths, commands, and domain IDs stay as-is.

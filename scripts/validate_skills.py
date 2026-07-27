@@ -495,6 +495,7 @@ def main() -> int:
             "Safety",
             "Output contract",
             "quiz-as-document",
+            "rules.code.comments.prose_language",
         ):
             if needle not in rb:
                 errors.append(f"RULES_BUNDLE.template.md missing '{needle}'")
@@ -543,6 +544,10 @@ def main() -> int:
         errors.append("SKILL_PREAMBLE.md missing Complete-with-questions ban")
     if "Ask method" not in preamble_lang:
         errors.append("SKILL_PREAMBLE.md missing Ask method classification")
+    if "Source-code comments use a separate knob" not in preamble_lang:
+        errors.append("SKILL_PREAMBLE.md missing separate code-comment language rule")
+    if "rules.code.comments.prose_language" not in preamble_lang:
+        errors.append("SKILL_PREAMBLE.md missing rules.code.comments.prose_language")
     for method in ("confirm", "choice", "fact", "table", "diagram", "html"):
         # table row uses backticks around method names
         if f"`{method}`" not in preamble_lang:
@@ -687,6 +692,7 @@ def main() -> int:
     settings = (ROOT / "docs" / "settings.yaml").read_text(encoding="utf-8")
     for needle in (
         "language:",
+        "prose_language: repo-default",
         "mode: checkout",
         "output_format: markdown",
         "docs:",
@@ -763,6 +769,8 @@ def main() -> int:
         errors.append("docs/CODE_COMMENTS.md missing (code comment convention)")
     if "CODE_COMMENTS.md" not in policy:
         errors.append("docs/AGENT_POLICY.md must reference CODE_COMMENTS.md")
+    if "rules.code.comments.prose_language" not in policy:
+        errors.append("docs/AGENT_POLICY.md missing code comment prose language setting")
     design_system = (ROOT / "docs" / "DESIGN_SYSTEM.md").read_text(encoding="utf-8")
     if "cdn.tailwindcss.com" not in design_system and "ss-card" not in design_system:
         errors.append(

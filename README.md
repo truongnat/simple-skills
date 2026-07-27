@@ -45,7 +45,7 @@ Handoff pack: `python .agents/tools/session/build_context.py`
 
 ## Settings (keep small)
 
-`language` · `rules.branch.mode` · `rules.reports.output_format` · `rules.docs.*`  
+`language` · `rules.code.comments.prose_language` · `rules.branch.mode` · `rules.reports.output_format` · `rules.docs.*`  
 Defaults in `AGENT_POLICY.md`.
 
 ## Docs

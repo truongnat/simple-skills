@@ -19,6 +19,9 @@ Write **all narrative content** in that language: executive summary bullets,
 paragraphs, table *cell values* that are sentences, questions to the user,
 recommendations, handoff prose, Clarification checkpoint answers.
 
+This setting applies to **conversation/report prose only**. It does **not**
+control source-code comment/docstring language during execution.
+
 **One language per artifact.** Do not mix: a Vietnamese summary with an English
 architecture paragraph, or half-translated tables. If unsure of a term, keep the
 domain identifier raw and explain once in `language` — do not flip the whole
@@ -42,6 +45,17 @@ Keep the **template form** identical across projects so schemas/lint/tools work:
 **Domain terms:** keep original product/spec identifiers (JP screen names, field
 IDs, API paths) as-is. Do **not** invent bilingual ceremony (JP/EN/VN label
 rows) unless the domain artifact itself requires it.
+
+### Source-code comments use a separate knob
+
+Generated code comments/docstrings follow `.agents/CODE_COMMENTS.md` and
+`rules.code.comments.prose_language`:
+
+- `repo-default` (default) = follow repo convention from `PRJ_REFERENCE.md`;
+  if none is known, prefer English.
+- `en` or `vi` = explicitly force generated source-code comment prose.
+- Do **not** infer comment language from thread/report `language` unless the
+  user explicitly asks for that in the current task.
 
 ## Work layout (mandatory)
 

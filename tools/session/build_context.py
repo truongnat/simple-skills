@@ -125,7 +125,11 @@ OUTPUT_HINTS: dict[str, str] = {
     "api-ba": "Write/update `API_BA{ext}` in the active session only.",
     "ba-test": "Write TEST_CHECKLIST and/or TESTCASES in the active session only.",
     "reverse-doc": "Write REVERSE_DOC + SPEC_SRS in the active session only.",
-    "ux-wireframe": "Write WIREFRAME.md (+ optional HTML) in the active session only.",
+    "ux-wireframe": "Write WIREFRAME.md (+ optional HTML) or FIGMA_BRIEF in the active session only.",
+    "ba-dashboard": "Write/update `DASHBOARD{ext}` in the active session only.",
+    "ba-kg": "Write/update `KG{ext}` in the active session only.",
+    "ba-handoff": "Write meet/userguide/export/preview/overview artifact in the active session only.",
+    "ba-integrate": "Write Jira/Confluence integrate plan in the active session only (no tokens).",
     "default": "Write only the session artifacts named in Mission / Output contract.",
 }
 

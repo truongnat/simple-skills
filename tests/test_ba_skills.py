@@ -15,6 +15,10 @@ BA_SKILLS = (
     "ba-test",
     "reverse-doc",
     "ux-wireframe",
+    "ba-dashboard",
+    "ba-kg",
+    "ba-handoff",
+    "ba-integrate",
 )
 
 
@@ -49,6 +53,8 @@ def test_ba_skills_map_doc_lists_aliases() -> None:
     for alias in (
         "/prd",
         "/sequence",
+        "/d2-erd",
+        "/dbdiagram",
         "/usecase",
         "/gap",
         "/cr",
@@ -59,6 +65,13 @@ def test_ba_skills_map_doc_lists_aliases() -> None:
         "/reverse-doc",
         "/wireframe-ascii",
         "/prototype-html",
+        "/figma",
+        "/dashboard",
+        "/kg",
+        "/meet",
+        "/jira",
+        "/confluence",
+        "/delegate",
     ):
         assert alias in doc
 
@@ -67,3 +80,10 @@ def test_gap_analysis_has_cr_template() -> None:
     assert (
         REPO_ROOT / "skills" / "gap-analysis" / "templates" / "CR.template.md"
     ).is_file()
+
+
+def test_p2_templates_exist() -> None:
+    assert (REPO_ROOT / "skills" / "ux-wireframe" / "templates" / "FIGMA_BRIEF.template.md").is_file()
+    assert (REPO_ROOT / "skills" / "ba-dashboard" / "templates" / "DASHBOARD.template.md").is_file()
+    assert (REPO_ROOT / "skills" / "ba-kg" / "templates" / "KG.template.md").is_file()
+    assert (REPO_ROOT / "skills" / "ba-integrate" / "templates" / "INTEGRATE_JIRA.template.md").is_file()

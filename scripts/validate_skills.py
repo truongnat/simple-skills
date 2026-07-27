@@ -603,6 +603,10 @@ def main() -> int:
         "ba-test",
         "reverse-doc",
         "ux-wireframe",
+        "ba-dashboard",
+        "ba-kg",
+        "ba-handoff",
+        "ba-integrate",
     ):
         skill_text = (SKILLS_ROOT / life / "SKILL.md").read_text(encoding="utf-8")
         if "session.sh commit" not in skill_text:
@@ -621,6 +625,10 @@ def main() -> int:
             "ba-test",
             "reverse-doc",
             "ux-wireframe",
+            "ba-dashboard",
+            "ba-kg",
+            "ba-handoff",
+            "ba-integrate",
         ):
             if needle not in ba_doc:
                 errors.append(f"BA_SKILLS.md missing consolidated skill '{needle}'")
@@ -635,6 +643,11 @@ def main() -> int:
         ("ba-test", "templates/TEST_CHECKLIST.template.md"),
         ("reverse-doc", "templates/REVERSE_DOC.template.md"),
         ("ux-wireframe", "templates/WIREFRAME.template.md"),
+        ("ux-wireframe", "templates/FIGMA_BRIEF.template.md"),
+        ("ba-dashboard", "templates/DASHBOARD.template.md"),
+        ("ba-kg", "templates/KG.template.md"),
+        ("ba-handoff", "templates/MEETING.template.md"),
+        ("ba-integrate", "templates/INTEGRATE_JIRA.template.md"),
     ):
         if not (SKILLS_ROOT / ba_skill / tmpl).is_file():
             errors.append(f"{ba_skill} missing {tmpl}")

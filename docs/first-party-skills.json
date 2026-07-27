@@ -23,7 +23,11 @@
     "api-ba",
     "ba-test",
     "reverse-doc",
-    "ux-wireframe"
+    "ux-wireframe",
+    "ba-dashboard",
+    "ba-kg",
+    "ba-handoff",
+    "ba-integrate"
   ],
   "step_skills": {
     "brainstorming": [
@@ -73,6 +77,10 @@
     {"name": "ba-test", "kind": "workflow"},
     {"name": "reverse-doc", "kind": "workflow"},
     {"name": "ux-wireframe", "kind": "workflow"},
+    {"name": "ba-dashboard", "kind": "workflow"},
+    {"name": "ba-kg", "kind": "workflow"},
+    {"name": "ba-handoff", "kind": "workflow"},
+    {"name": "ba-integrate", "kind": "workflow"},
     {"name": "xlsx", "kind": "office"},
     {"name": "excel-doc-convert", "kind": "office"},
     {"name": "docx", "kind": "office"},
@@ -107,7 +115,11 @@
     "api-ba",
     "ba-test",
     "reverse-doc",
-    "ux-wireframe"
+    "ux-wireframe",
+    "ba-dashboard",
+    "ba-kg",
+    "ba-handoff",
+    "ba-integrate"
   ],
   "contract_table_fields": ["Inputs", "Outputs", "Safety"],
   "contract_requires_artifacts_section": true,

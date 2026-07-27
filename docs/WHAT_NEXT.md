@@ -28,6 +28,9 @@ Situation → skill. Prefer the smallest path that fits.
 | Rebuild SRS from Word/PDF/Excel/images | BA | `reverse-doc` |
 | ASCII/HTML wireframe / HTML prototype | BA | `ux-wireframe` |
 | Change request impact | BA | `gap-analysis` mode=`cr` |
+| Project BA dashboard / knowledge graph | BA | `ba-dashboard` / `ba-kg` |
+| Meet / userguide / export / preview | BA | `ba-handoff` |
+| Jira / Confluence sync plan | BA | `ba-integrate` |
 | Office files (xlsx/docx/…) | — | install `--profile office` |
 | BA kit bundle | — | install `--profile ba` |
 | Excel 設計書 / 方眼紙 → MD/HTML | — | `excel-doc-convert` (office profile) |

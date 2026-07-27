@@ -25,7 +25,7 @@
       ]
     },
     "ba": {
-      "description": "core + consolidated BA skills (specify, diagrams, stories, gap, user-flow, api-ba)",
+      "description": "core + full consolidated BA skill pack (specify through integrate/handoff)",
       "includes": ["core"],
       "skills": [
         "specify",
@@ -36,7 +36,11 @@
         "api-ba",
         "ba-test",
         "reverse-doc",
-        "ux-wireframe"
+        "ux-wireframe",
+        "ba-dashboard",
+        "ba-kg",
+        "ba-handoff",
+        "ba-integrate"
       ]
     },
     "office": {

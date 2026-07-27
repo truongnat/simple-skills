@@ -1,9 +1,9 @@
 ---
 name: ux-wireframe
 description: >-
-  BA screen sketches: ASCII wireframe (/wireframe-ascii), static HTML
-  wireframe (/wireframe-html), or simple interactive HTML prototype
-  (/prototype-html). Not Figma. (Hard contract.)
+  BA screen sketches: ASCII (/wireframe-ascii), HTML wireframe
+  (/wireframe-html), HTML prototype (/prototype-html), or Figma brief
+  (/figma) for design-system handoff — not live Figma drawing. (Hard contract.)
 ---
 
 # UX wireframe
@@ -19,41 +19,41 @@ Aliases: `.agents/BA_SKILLS.md`.
 
 ## Purpose
 
-Produce **low-fidelity** screen sketches for BA review. Figma (`/figma`) remains P2.
+Produce **low-fidelity** screen sketches or a **Figma handoff brief**. Live
+drawing inside Figma requires user/plugin/token and is out of band.
 
 ## Modes
 
 | Mode | Alias | Output |
 | --- | --- | --- |
-| `ascii` | `/wireframe-ascii` | `WIREFRAME.md` (ASCII in markdown) |
-| `html` | `/wireframe-html` | `wireframes/<screen>.html` + index note in `WIREFRAME.md` |
-| `prototype` | `/prototype-html` | `prototypes/<flow>.html` with minimal interactivity |
+| `ascii` | `/wireframe-ascii` | `WIREFRAME.md` |
+| `html` | `/wireframe-html` | `wireframes/*.html` + `WIREFRAME.md` |
+| `prototype` | `/prototype-html` | `prototypes/*.html` + `WIREFRAME.md` |
+| `figma` | `/figma` | `FIGMA_BRIEF.md` (+ optional links in WIREFRAME.md) |
 
 ## Contract (mandatory)
 
 | Field | Requirement |
 |-------|-------------|
 | preferred_role | `reasoner` |
-| Inputs | Mode, screens/flow from `user-flow`/US, content fields, constraints. |
-| Outputs | `WIREFRAME.md` always; HTML files under session for html/prototype modes. |
-| Safety | Do NOT present as final UI design. Do NOT embed secrets. Do NOT claim accessibility sign-off. Keep HTML offline-friendly (no build step). **Confirm-first** on unknown IA. |
+| Inputs | Mode, screens/flow, content fields, design-system notes, optional Figma file URL. |
+| Outputs | Mode artifacts under active session. |
+| Safety | Do NOT present as final UI. Do NOT claim frames were drawn in Figma unless the user confirms. Do NOT embed secrets. **Confirm-first** on unknown IA. |
 
 ### Required artifacts
 
-#### `WIREFRAME.md`
-- Seed `templates/WIREFRAME.template.md`
-- executive_summary, mode, screens list, ascii or links to HTML, open_questions, handoff
+- ascii/html/prototype → `templates/WIREFRAME.template.md`
+- figma → `templates/FIGMA_BRIEF.template.md`
 
 ## Workflow
 
-1. Confirm mode + screen list (from user-flow when present).
-2. `ascii`: boxes in markdown fences.
-3. `html`: grayscale semantic HTML; link from `WIREFRAME.md`.
-4. `prototype`: buttons/tabs that toggle sections; localStorage optional; document limits.
-5. `session.sh commit 'docs(ux-wireframe): …'`.
+1. Confirm mode + screens.
+2. ascii/html/prototype as before.
+3. `figma`: list frames, components, tokens, content; link file URL if provided; give copy-paste checklist for designer.
+4. `session.sh commit 'docs(ux-wireframe): …'`.
 
 ## Quality Standards
 
 - [ ] Screens trace to US/flow IDs when available.
-- [ ] Labeled low-fidelity / not production UI.
+- [ ] Figma mode labeled brief/handoff, not “drawn in Figma”.
 - [ ] Work commit done.

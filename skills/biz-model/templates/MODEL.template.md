@@ -21,7 +21,7 @@
 
 ## Format
 
-`mermaid` / `plantuml`
+`mermaid` / `plantuml` / `d2` / `dbml`
 
 ## Subject
 
@@ -42,10 +42,14 @@ _(process / object / system)_
 ## Diagram source
 
 ```mermaid
-%% TODO replace with real diagram
+%% TODO replace with real diagram (or use ```d2 / dbml fences)
 flowchart LR
   A[Start] --> B[End]
 ```
+
+## Sidecar file (optional)
+
+`diagrams/_(slug)_.d2` or `.dbml` — _(path or N/A)_
 
 ## Legend
 
@@ -61,7 +65,7 @@ flowchart LR
 
 ## Limitations
 
-- _(e.g. BPMN-like Mermaid is not Camunda XML; D2/dbdiagram not generated)_
+- _(e.g. BPMN-like Mermaid is not Camunda XML; D2/DBML need external render)_
 
 ## Handoff
 

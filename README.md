@@ -1,7 +1,7 @@
 # Simple Skills
 
 <p align="center">
-  <img src="docs/assets/banner.svg" alt="Simple Skills — Agent kit that ships" width="100%">
+  <img src="docs/assets/banner.png" alt="Simple Skills — Agent kit that ships" width="100%">
 </p>
 
 <p align="center">
@@ -9,7 +9,7 @@
   &nbsp;
   <a href="https://pypi.org/project/simple-skills/"><img src="https://img.shields.io/pypi/v/simple-skills.svg?style=flat&label=PyPI&color=10a37f" alt="PyPI"></a>
   &nbsp;
-  <a href="https://pypi.org/project/simple-skills/"><img src="https://img.shields.io/pypi/pyversions/simple-skills.svg?style=flat" alt="Python"></a>
+  <img src="https://img.shields.io/badge/python-%3E%3D3.11-10a37f?style=flat&logo=python&logoColor=white" alt="Python >= 3.11">
   &nbsp;
   <a href="https://pypi.org/project/simple-skills/"><img src="https://img.shields.io/pypi/dm/simple-skills.svg?style=flat&color=667085" alt="Downloads"></a>
   &nbsp;

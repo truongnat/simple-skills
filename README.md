@@ -1,8 +1,7 @@
 <h1 align="center">Simple Skills</h1>
 
 <div align="center">
-
-```
+<pre>
 ╔══════════════════════════════════════════════════════════╗
 ║                                                          ║
 ║   ____  _                 _         ____  _    _ _       ║
@@ -15,8 +14,7 @@
 ║     think → design → plan → execute → review → done      ║
 ║                                                          ║
 ╚══════════════════════════════════════════════════════════╝
-```
-
+</pre>
 </div>
 
 <p align="center">

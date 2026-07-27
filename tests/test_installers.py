@@ -9,28 +9,14 @@ import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
-# Source docs the installers copy. Paths are relative to docs/.
-# Installed names are usually flattened into .agents/ (thinking/ stays nested).
-INSTALLER_DOCS = (
+# Flat docs: installer copies basename into .agents/.
+INSTALLER_FLAT_DOCS = (
     "AGENTS.md",
     "conventions/DESIGN_SYSTEM.md",
     "conventions/CODE_COMMENTS.md",
     "conventions/THIRD_PARTY_SKILLS.md",
     "policy/SKILL_PREAMBLE.md",
     "policy/AGENT_POLICY.md",
-    "thinking/outcome-first.md",
-    "thinking/input-process-output.md",
-    "thinking/make-implicit-explicit.md",
-    "thinking/single-source-of-truth.md",
-    "thinking/small-batch.md",
-    "thinking/feedback-loop.md",
-    "thinking/default-path-first.md",
-    "thinking/reversible-decisions.md",
-    "thinking/standardize-before-automate.md",
-    "thinking/design-for-handoff.md",
-    "thinking/evidence-over-confidence.md",
-    "thinking/optimize-bottleneck.md",
-    "thinking/README.md",
     "policy/AGENT_WORK.md",
     "guides/START_HERE.md",
     "guides/WHAT_NEXT.md",
@@ -39,6 +25,28 @@ INSTALLER_DOCS = (
     "config/settings.yaml",
     "config/artifact-schemas.json",
     "config/gitignore.agent-work.snippet",
+)
+
+# Thinking methods: installer copies docs/thinking/ as a directory.
+INSTALLER_THINKING = (
+    "outcome-first.md",
+    "input-process-output.md",
+    "make-implicit-explicit.md",
+    "single-source-of-truth.md",
+    "small-batch.md",
+    "feedback-loop.md",
+    "default-path-first.md",
+    "reversible-decisions.md",
+    "standardize-before-automate.md",
+    "design-for-handoff.md",
+    "evidence-over-confidence.md",
+    "optimize-bottleneck.md",
+    "README.md",
+)
+
+# Back-compat for any helper that expects the combined list.
+INSTALLER_DOCS = INSTALLER_FLAT_DOCS + tuple(
+    f"thinking/{name}" for name in INSTALLER_THINKING
 )
 
 
@@ -77,9 +85,13 @@ def make_source(tmp_path: Path) -> Path:
     (thinking / "feedback-loop.md").write_text("feedback-loop\n", encoding="utf-8")
     (thinking / "default-path-first.md").write_text("default-path-first\n", encoding="utf-8")
     (thinking / "reversible-decisions.md").write_text("reversible-decisions\n", encoding="utf-8")
-    (thinking / "standardize-before-automate.md").write_text("standardize-before-automate\n", encoding="utf-8")
+    (thinking / "standardize-before-automate.md").write_text(
+        "standardize-before-automate\n", encoding="utf-8"
+    )
     (thinking / "design-for-handoff.md").write_text("design-for-handoff\n", encoding="utf-8")
-    (thinking / "evidence-over-confidence.md").write_text("evidence-over-confidence\n", encoding="utf-8")
+    (thinking / "evidence-over-confidence.md").write_text(
+        "evidence-over-confidence\n", encoding="utf-8"
+    )
     (thinking / "optimize-bottleneck.md").write_text("optimize-bottleneck\n", encoding="utf-8")
     (thinking / "README.md").write_text("thinking index\n", encoding="utf-8")
     (guides / "START_HERE.md").write_text("start\n", encoding="utf-8")
@@ -166,14 +178,26 @@ def run_installer(
 
 
 def test_installer_docs_fixture_matches_scripts() -> None:
-    """Fail when install scripts copy a docs file the fixture does not provide."""
+    """Fail when install scripts omit a docs path the fixture provides."""
     for installer in ("install.sh", "install.ps1"):
         text = (REPO_ROOT / installer).read_text(encoding="utf-8")
-        for rel in INSTALLER_DOCS:
-            assert rel in text or rel.replace("/", "\\") in text, (
-                f"{installer} must reference docs/{rel}"
-            )
+        for rel in INSTALLER_FLAT_DOCS:
+            if rel.startswith("config/"):
+                # settings / schemas / gitignore referenced by basename or path
+                assert (
+                    rel in text
+                    or rel.replace("/", "\\") in text
+                    or Path(rel).name in text
+                ), f"{installer} must reference {rel}"
+            else:
+                assert rel in text or rel.replace("/", "\\") in text, (
+                    f"{installer} must reference docs/{rel}"
+                )
             assert (REPO_ROOT / "docs" / rel).is_file(), f"missing docs/{rel}"
+        assert "docs/thinking" in text, f"{installer} must copy docs/thinking/"
+        for name in INSTALLER_THINKING:
+            assert name in text, f"{installer} must list thinking doc {name}"
+            assert (REPO_ROOT / "docs" / "thinking" / name).is_file()
 
 
 @pytest.mark.parametrize(
@@ -210,43 +234,25 @@ def test_agents_created_at_project_root(tmp_path: Path) -> None:
     assert (root / ".agents" / "SKILL_PREAMBLE.md").read_text(encoding="utf-8") == "preamble\n"
     assert (root / ".agents" / "AGENT_POLICY.md").read_text(encoding="utf-8") == "policy\n"
     assert (root / ".agents" / "AGENT_WORK.md").read_text(encoding="utf-8") == "work layout\n"
-    assert (
-        root / ".agents" / "thinking" / "outcome-first.md"
-    ).read_text(encoding="utf-8") == "outcome-first\n"
-    assert (
-        root / ".agents" / "thinking" / "input-process-output.md"
-    ).read_text(encoding="utf-8") == "ipo\n"
-    assert (
-        root / ".agents" / "thinking" / "make-implicit-explicit.md"
-    ).read_text(encoding="utf-8") == "explicit\n"
-    assert (
-        root / ".agents" / "thinking" / "single-source-of-truth.md"
-    ).read_text(encoding="utf-8") == "ssot\n"
-    assert (
-        root / ".agents" / "thinking" / "small-batch.md"
-    ).read_text(encoding="utf-8") == "small-batch\n"
-    assert (
-        root / ".agents" / "thinking" / "feedback-loop.md"
-    ).read_text(encoding="utf-8") == "feedback-loop\n"
-    assert (
-        root / ".agents" / "thinking" / "default-path-first.md"
-    ).read_text(encoding="utf-8") == "default-path-first\n"
-    assert (
-        root / ".agents" / "thinking" / "reversible-decisions.md"
-    ).read_text(encoding="utf-8") == "reversible-decisions\n"
-    assert (
-        root / ".agents" / "thinking" / "standardize-before-automate.md"
-    ).read_text(encoding="utf-8") == "standardize-before-automate\n"
-    assert (
-        root / ".agents" / "thinking" / "design-for-handoff.md"
-    ).read_text(encoding="utf-8") == "design-for-handoff\n"
-    assert (
-        root / ".agents" / "thinking" / "evidence-over-confidence.md"
-    ).read_text(encoding="utf-8") == "evidence-over-confidence\n"
-    assert (
-        root / ".agents" / "thinking" / "optimize-bottleneck.md"
-    ).read_text(encoding="utf-8") == "optimize-bottleneck\n"
-    assert (root / ".agents" / "thinking" / "README.md").is_file()
+    thinking_expected = {
+        "outcome-first.md": "outcome-first\n",
+        "input-process-output.md": "ipo\n",
+        "make-implicit-explicit.md": "explicit\n",
+        "single-source-of-truth.md": "ssot\n",
+        "small-batch.md": "small-batch\n",
+        "feedback-loop.md": "feedback-loop\n",
+        "default-path-first.md": "default-path-first\n",
+        "reversible-decisions.md": "reversible-decisions\n",
+        "standardize-before-automate.md": "standardize-before-automate\n",
+        "design-for-handoff.md": "design-for-handoff\n",
+        "evidence-over-confidence.md": "evidence-over-confidence\n",
+        "optimize-bottleneck.md": "optimize-bottleneck\n",
+        "README.md": "thinking index\n",
+    }
+    for name, body in thinking_expected.items():
+        assert (
+            root / ".agents" / "thinking" / name
+        ).read_text(encoding="utf-8") == body
     assert (root / ".agents" / "START_HERE.md").read_text(encoding="utf-8") == "start\n"
     assert (root / ".agents" / "WHAT_NEXT.md").read_text(encoding="utf-8") == "what next\n"
     assert (root / ".agents" / "MIGRATION.md").read_text(encoding="utf-8") == "migration\n"

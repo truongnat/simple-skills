@@ -1,176 +1,177 @@
 # Simple Skills
 
-Agent kit for shipping work with structure: **think → design → plan → execute → review → done**.
+<p align="center">
+  <img src="docs/assets/banner.svg" alt="Simple Skills — Agent kit that ships" width="100%">
+</p>
 
-Install once into a project. Agents get skills, shared policy, session tools, and
-session-wide Thinking methods — without inventing ceremony per chat.
+<p align="center">
+  <a href="https://github.com/truongnat/simple-skills/actions/workflows/ci.yml"><img src="https://github.com/truongnat/simple-skills/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  &nbsp;
+  <a href="https://pypi.org/project/simple-skills/"><img src="https://img.shields.io/pypi/v/simple-skills.svg?style=flat&label=PyPI&color=10a37f" alt="PyPI"></a>
+  &nbsp;
+  <a href="https://pypi.org/project/simple-skills/"><img src="https://img.shields.io/pypi/pyversions/simple-skills.svg?style=flat" alt="Python"></a>
+  &nbsp;
+  <a href="https://pypi.org/project/simple-skills/"><img src="https://img.shields.io/pypi/dm/simple-skills.svg?style=flat&color=667085" alt="Downloads"></a>
+  &nbsp;
+  <img src="https://img.shields.io/badge/license-MIT-0d0d0d?style=flat&labelColor=f7f7f8" alt="MIT">
+  &nbsp;
+  <img src="https://img.shields.io/badge/status-active-10a37f?style=flat&labelColor=0d0d0d" alt="Active">
+</p>
 
-| | |
-| --- | --- |
-| **CLI** | `sk` (`pipx install simple-skills`) |
-| **Kit** | `.agents/` — skills, tools, settings, policy (installer-owned) |
-| **Work** | `.agent-work/` — sessions + memory (nested git; auto-gitignored) |
-| **Repo** | [truongnat/simple-skills](https://github.com/truongnat/simple-skills) |
+<p align="center">
+  <img src="https://img.shields.io/badge/CLI-sk-10a37f?style=for-the-badge&labelColor=0d0d0d" alt="CLI">
+  <img src="https://img.shields.io/badge/install-pipx%20%2B%20sk%20install-e7f6f1?style=for-the-badge&labelColor=0d0d0d&color=0f766e" alt="Install">
+  <img src="https://img.shields.io/badge/paths-Quick%20·%20Lite%20·%20Full-f7f7f8?style=for-the-badge&labelColor=0d0d0d&color=10a37f" alt="Paths">
+  <img src="https://img.shields.io/badge/thinking-12%20methods-e7f6f1?style=for-the-badge&labelColor=0d0d0d&color=0f766e" alt="Thinking">
+  <img src="https://img.shields.io/badge/HTML-light%20only%20·%20.ss--*-ffffff?style=for-the-badge&labelColor=0d0d0d&color=667085" alt="HTML">
+</p>
 
-**Start:** [docs/guides/START_HERE.md](docs/guides/START_HERE.md) ·
-**Route a task:** [docs/guides/WHAT_NEXT.md](docs/guides/WHAT_NEXT.md) ·
-**Docs map:** [docs/README.md](docs/README.md)
+<p align="center">
+  <b>Agent kit for work that ships</b><br>
+  <code>think → design → plan → execute → review → done</code>
+</p>
+
+<p align="center">
+  <a href="#install">Install</a> ·
+  <a href="#mental-model">Model</a> ·
+  <a href="#paths">Paths</a> ·
+  <a href="#thinking-methods">Thinking</a> ·
+  <a href="docs/guides/START_HERE.md">Start here</a> ·
+  <a href="docs/guides/WHAT_NEXT.md">What next</a>
+</p>
 
 ---
 
 ## Install
 
 ```bash
-pipx install simple-skills    # once
+pipx install simple-skills
 cd your-project && sk install
 sk doctor
 ```
 
 Also: `uv tool install simple-skills`.
 
-| Profile | Adds |
-| --- | --- |
-| `core` (default) | Lifecycle + shared policy |
+| Profile | What you get |
+| :-- | :-- |
+| **`core`** (default) | Lifecycle skills + shared policy |
 | `office` | Office file skills |
 | `ba` | BA / specify / wireframe pack |
-| `frontend` / `backend` / `all` | Domain skill sets |
+| `frontend` · `backend` · `all` | Domain skill sets |
 
 ```bash
 sk install --profile ba
-sk uninstall --yes            # keeps .agent-work/; add --purge-work to delete
+sk uninstall --yes
 ```
 
-Until PyPI (or for a fork):
+<details>
+<summary><b>From git / curl</b></summary>
 
 ```bash
 pipx install git+https://github.com/truongnat/simple-skills.git
-# or: curl -fsSL https://raw.githubusercontent.com/truongnat/simple-skills/main/i | bash
+curl -fsSL https://raw.githubusercontent.com/truongnat/simple-skills/main/i | bash
 ```
 
-Reinstall merges kit files and **keeps** `.agents/settings.yaml`. After install,
-run skill **`init`** once.
+</details>
+
+Reinstall keeps `.agents/settings.yaml`. Then run skill **`init`** once.
 
 ---
 
 ## Mental model
 
-```text
-┌─────────────────────────────────────────────────────────┐
-│  Kit (.agents/)          installer-owned, shared rules  │
-│  skills · tools · policy · thinking · DESIGN_SYSTEM     │
-└────────────────────────────┬────────────────────────────┘
-                             │ agents read
-┌────────────────────────────▼────────────────────────────┐
-│  Work (.agent-work/)     per-task truth + durable memory│
-│  sessions/<Task-…>/ · memory/ · nested git via session.sh│
-└─────────────────────────────────────────────────────────┘
+<p align="center">
+  <img src="https://img.shields.io/badge/.agents-Kit%20(installer)--0d0d0d?style=for-the-badge&labelColor=10a37f&color=0d0d0d" alt="Kit">
+  <img src="https://img.shields.io/badge/-→-f7f7f8?style=for-the-badge&labelColor=f7f7f8&color=f7f7f8" alt="to">
+  <img src="https://img.shields.io/badge/.agent--work-Work%20(sessions%20%2B%20memory)--0d0d0d?style=for-the-badge&labelColor=667085&color=0d0d0d" alt="Work">
+</p>
+
+```mermaid
+flowchart LR
+  K["Kit · .agents/"] --> W["Work · .agent-work/"]
+  K --- S[skills · tools · policy · thinking]
+  W --- T[sessions · memory · nested git]
 ```
 
-- **Progress truth** = `TASKS.md` + `session.sh status` (no `OVERVIEW.md`).
-- **Artifacts** live only under `.agent-work/sessions/…`, never under `.agents/`.
-- **Confirm-first** on Blocking gaps: stop → Ask method → then finish the doc.
+| | Path | Owns |
+| :-- | :-- | :-- |
+| **Kit** | `.agents/` | Installer-owned rules & skills |
+| **Work** | `.agent-work/` | Session truth (auto-gitignored) |
+| **CLI** | `sk` | install · doctor · uninstall |
+
+Progress = `TASKS.md` + `session.sh status`. Artifacts only under sessions. Blocking → **Confirm-first**.
 
 ---
 
-## Paths (pick the smallest that fits)
+## Paths
 
-| Path | When | Flow |
-| --- | --- | --- |
-| **Quick** | Tiny clear fix (≈1–3 cards) | `quick-fix` → execution → review → done |
-| **Lite** | Small feature, mostly clear | Short brainstorming → planning → sync → … |
-| **Full** | Unclear / multi-surface | Full lifecycle (`business-analysis`, design, …) |
+<p align="center">
+  <img src="https://img.shields.io/badge/Quick-tiny%20fix-10a37f?style=for-the-badge&labelColor=0d0d0d" alt="Quick">
+  <img src="https://img.shields.io/badge/Lite-small%20feature-0f766e?style=for-the-badge&labelColor=0d0d0d" alt="Lite">
+  <img src="https://img.shields.io/badge/Full-unclear%20%2F%20multi--surface-667085?style=for-the-badge&labelColor=0d0d0d" alt="Full">
+</p>
 
-Lite/Full step skills use a **Step ledger** and **Spec quality** gates (not on
-Quick). Stuck? Say the situation out loud and open
-[WHAT_NEXT.md](docs/guides/WHAT_NEXT.md).
+| | When | Flow |
+| :-- | :-- | :-- |
+| **Quick** | Tiny clear fix | `quick-fix` → execution → review → done |
+| **Lite** | Small feature | brainstorming → planning → sync → … |
+| **Full** | Unclear / multi-surface | Full lifecycle · `business-analysis` · design |
+
+Lite/Full use **Step ledger** + **Spec quality** (not Quick).
 
 ```bash
-bash .agents/tools/session/session.sh help
 bash .agents/tools/session/session.sh status
 python .agents/tools/session/validate_artifacts.py
-python .agents/tools/session/lint_artifacts.py
 ```
 
 ---
 
 ## Thinking methods
 
-Session-wide ways of working — **not** report section titles. Ops live in
-`.agents/SKILL_PREAMBLE.md`; normative detail in `.agents/thinking/`
-([source index](docs/thinking/README.md)).
+<p align="center">
+  <img src="https://img.shields.io/badge/1-Outcome--first-e7f6f1?style=flat-square&labelColor=10a37f&color=e7f6f1" alt="1">
+  <img src="https://img.shields.io/badge/2-IPO-e7f6f1?style=flat-square&labelColor=10a37f&color=e7f6f1" alt="2">
+  <img src="https://img.shields.io/badge/3-Make--explicit-e7f6f1?style=flat-square&labelColor=10a37f&color=e7f6f1" alt="3">
+  <img src="https://img.shields.io/badge/4-SSOT-e7f6f1?style=flat-square&labelColor=10a37f&color=e7f6f1" alt="4">
+  <img src="https://img.shields.io/badge/5-Small--batch-e7f6f1?style=flat-square&labelColor=10a37f&color=e7f6f1" alt="5">
+  <img src="https://img.shields.io/badge/6-Feedback-e7f6f1?style=flat-square&labelColor=10a37f&color=e7f6f1" alt="6">
+</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/7-Default%20path-f7f7f8?style=flat-square&labelColor=0d0d0d&color=f7f7f8" alt="7">
+  <img src="https://img.shields.io/badge/8-Reversible-f7f7f8?style=flat-square&labelColor=0d0d0d&color=f7f7f8" alt="8">
+  <img src="https://img.shields.io/badge/9-Standardize-f7f7f8?style=flat-square&labelColor=0d0d0d&color=f7f7f8" alt="9">
+  <img src="https://img.shields.io/badge/10-Handoff-f7f7f8?style=flat-square&labelColor=0d0d0d&color=f7f7f8" alt="10">
+  <img src="https://img.shields.io/badge/11-Evidence-f7f7f8?style=flat-square&labelColor=0d0d0d&color=f7f7f8" alt="11">
+  <img src="https://img.shields.io/badge/12-Bottleneck-f7f7f8?style=flat-square&labelColor=0d0d0d&color=f7f7f8" alt="12">
+</p>
+
+Session-wide — **not** report titles. Detail: [docs/thinking/README.md](docs/thinking/README.md)
 
 ```text
 Outcome-first → IPO → Make-explicit → SSOT → Small-batch → Feedback loop
-→ Default path first → Reversible decisions → Standardize before automate
-→ Design for handoff → Evidence over confidence → Optimize bottleneck
-→ (5W1H if unclear) → Vital few
+→ Default path first → Reversible → Standardize → Handoff → Evidence
+→ Bottleneck → (5W1H) → Vital few
 ```
 
-Fold results into real fields (`Goal`, `Verify`, `Handoff`, …). Do not create
-method-branded files (`OUTCOME.md`, `HANDOFF.md`, …).
+Fold into `Goal` / `Verify` / `Handoff`. No `OUTCOME.md` / `HANDOFF.md`.
 
 ---
 
-## HTML decisions
+## HTML · Docs · Develop
 
-Visual Ask method (`html`) uses the enterprise **light-only** theme:
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML-light%20only-10a37f?style=flat&labelColor=0d0d0d" alt="HTML">
+  <img src="https://img.shields.io/badge/classes-.ss--*-667085?style=flat&labelColor=0d0d0d" alt="ss">
+  <img src="https://img.shields.io/badge/theme-DESIGN__SYSTEM-e7f6f1?style=flat&labelColor=0f766e" alt="theme">
+</p>
 
-- Classes: `.ss-*` per [DESIGN_SYSTEM.md](docs/conventions/DESIGN_SYSTEM.md)
-- Template: `skills/brainstorming/templates/VISUAL_DECISION.template.html`
-- Serve to record choices: `python .agents/tools/session-serve/serve.py <session>`
-
-No `dark:` utilities; use `ss-btn` / `ss-input` / `ss-check` — not bare native
-controls.
-
----
-
-## Docs layout (source → install)
-
-Source under `docs/`; install **flattens** most files into `.agents/` (Thinking
-stays nested).
-
-| Folder | Role |
-| --- | --- |
-| [guides/](docs/guides/) | Start, routing, migration, BA aliases |
-| [policy/](docs/policy/) | Preamble, full policy, Kit vs Work |
-| [thinking/](docs/thinking/) | Thinking methods (normative) |
-| [conventions/](docs/conventions/) | Code comments, design system, third-party |
-| [config/](docs/config/) | settings, schemas, install profiles |
-| [examples/](docs/examples/) | Good/bad session shapes |
-| [AGENTS.md](docs/AGENTS.md) | Host entrypoint → project root |
-
-Settings you might edit: `language` · `rules.code.comments.prose_language` ·
-`rules.branch.mode` · `rules.reports.output_format` · `rules.docs.*`  
-Defaults: [AGENT_POLICY.md](docs/policy/AGENT_POLICY.md).
-
----
-
-## Develop
+- Theme: [DESIGN_SYSTEM.md](docs/conventions/DESIGN_SYSTEM.md) · seed `VISUAL_DECISION.template.html`
+- Docs map: [docs/README.md](docs/README.md)
+- Start: [START_HERE.md](docs/guides/START_HERE.md)
 
 ```bash
 pip install -e ".[dev]"
-python scripts/validate_skills.py
-pytest -q
-sk --help
+python scripts/validate_skills.py && pytest -q
 ```
 
-Python ≥ 3.11. Optional office extras: `pip install -e ".[office]"`.
-
----
-
-## Publish (maintainers)
-
-PyPI name: **`simple-skills`** (`v0.2.0`). Trusted Publisher once:
-
-1. PyPI → pending publisher for `simple-skills`, repo `truongnat/simple-skills`,
-   workflow `publish.yml`, environment `pypi`
-2. GitHub Environment `pypi`
-3. Release tag `v0.2.0` → workflow publishes the wheel
-
-Users then: `pipx install simple-skills` → `sk install`.
-
----
-
-## License
-
-MIT — see `pyproject.toml`.
+Python ≥ 3.11 · MIT · [truongnat/simple-skills](https://github.com/truongnat/simple-skills)

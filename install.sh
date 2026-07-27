@@ -125,6 +125,47 @@ is_simple_skills_source() {
     && [ -f "${root}/skills/execution/SKILL.md" ]
 }
 
+# Flat kit docs: source-under-docs → basename under .agents/
+KIT_FLAT_DOCS=(
+  conventions/DESIGN_SYSTEM.md
+  conventions/CODE_COMMENTS.md
+  conventions/THIRD_PARTY_SKILLS.md
+  policy/SKILL_PREAMBLE.md
+  policy/AGENT_POLICY.md
+  policy/AGENT_WORK.md
+  guides/START_HERE.md
+  guides/WHAT_NEXT.md
+  guides/MIGRATION.md
+  guides/BA_SKILLS.md
+)
+
+# Normative Thinking methods (+ README) under docs/thinking/ → .agents/thinking/
+THINKING_DOCS=(
+  outcome-first.md
+  input-process-output.md
+  make-implicit-explicit.md
+  single-source-of-truth.md
+  small-batch.md
+  feedback-loop.md
+  default-path-first.md
+  reversible-decisions.md
+  standardize-before-automate.md
+  design-for-handoff.md
+  evidence-over-confidence.md
+  optimize-bottleneck.md
+  README.md
+)
+
+doctor_file() {
+  local label="$1" path="$2"
+  if [ -f "$path" ]; then
+    printf '%s=yes\n' "$label"
+    return 0
+  fi
+  printf '%s=missing\n' "$label"
+  return 1
+}
+
 cmd_doctor() {
   local ok=0
   printf 'DOCTOR project=%s\n' "$TARGET"
@@ -137,104 +178,14 @@ cmd_doctor() {
   fi
 
   for f in START_HERE.md WHAT_NEXT.md SKILL_PREAMBLE.md AGENT_POLICY.md settings.yaml BA_SKILLS.md; do
-    if [ -f "${TARGET}/.agents/$f" ]; then
-      printf 'kit_%s=yes\n' "$f"
-    else
-      printf 'kit_%s=missing\n' "$f"
-      ok=1
-    fi
+    doctor_file "kit_${f}" "${TARGET}/.agents/${f}" || ok=1
   done
 
-  if [ -f "${TARGET}/.agents/thinking/outcome-first.md" ]; then
-    printf 'kit_thinking/outcome-first.md=yes\n'
-  else
-    printf 'kit_thinking/outcome-first.md=missing\n'
-    ok=1
-  fi
+  for f in "${THINKING_DOCS[@]}"; do
+    doctor_file "kit_thinking/${f}" "${TARGET}/.agents/thinking/${f}" || ok=1
+  done
 
-  if [ -f "${TARGET}/.agents/thinking/input-process-output.md" ]; then
-    printf 'kit_thinking/input-process-output.md=yes\n'
-  else
-    printf 'kit_thinking/input-process-output.md=missing\n'
-    ok=1
-  fi
-
-  if [ -f "${TARGET}/.agents/thinking/small-batch.md" ]; then
-    printf 'kit_thinking/small-batch.md=yes\n'
-  else
-    printf 'kit_thinking/small-batch.md=missing\n'
-    ok=1
-  fi
-
-  if [ -f "${TARGET}/.agents/thinking/make-implicit-explicit.md" ]; then
-    printf 'kit_thinking/make-implicit-explicit.md=yes\n'
-  else
-    printf 'kit_thinking/make-implicit-explicit.md=missing\n'
-    ok=1
-  fi
-
-  if [ -f "${TARGET}/.agents/thinking/single-source-of-truth.md" ]; then
-    printf 'kit_thinking/single-source-of-truth.md=yes\n'
-  else
-    printf 'kit_thinking/single-source-of-truth.md=missing\n'
-    ok=1
-  fi
-
-  if [ -f "${TARGET}/.agents/thinking/feedback-loop.md" ]; then
-    printf 'kit_thinking/feedback-loop.md=yes\n'
-  else
-    printf 'kit_thinking/feedback-loop.md=missing\n'
-    ok=1
-  fi
-
-  if [ -f "${TARGET}/.agents/thinking/default-path-first.md" ]; then
-    printf 'kit_thinking/default-path-first.md=yes\n'
-  else
-    printf 'kit_thinking/default-path-first.md=missing\n'
-    ok=1
-  fi
-
-  if [ -f "${TARGET}/.agents/thinking/reversible-decisions.md" ]; then
-    printf 'kit_thinking/reversible-decisions.md=yes\n'
-  else
-    printf 'kit_thinking/reversible-decisions.md=missing\n'
-    ok=1
-  fi
-
-  if [ -f "${TARGET}/.agents/thinking/standardize-before-automate.md" ]; then
-    printf 'kit_thinking/standardize-before-automate.md=yes\n'
-  else
-    printf 'kit_thinking/standardize-before-automate.md=missing\n'
-    ok=1
-  fi
-
-  if [ -f "${TARGET}/.agents/thinking/design-for-handoff.md" ]; then
-    printf 'kit_thinking/design-for-handoff.md=yes\n'
-  else
-    printf 'kit_thinking/design-for-handoff.md=missing\n'
-    ok=1
-  fi
-
-  if [ -f "${TARGET}/.agents/thinking/evidence-over-confidence.md" ]; then
-    printf 'kit_thinking/evidence-over-confidence.md=yes\n'
-  else
-    printf 'kit_thinking/evidence-over-confidence.md=missing\n'
-    ok=1
-  fi
-
-  if [ -f "${TARGET}/.agents/thinking/optimize-bottleneck.md" ]; then
-    printf 'kit_thinking/optimize-bottleneck.md=yes\n'
-  else
-    printf 'kit_thinking/optimize-bottleneck.md=missing\n'
-    ok=1
-  fi
-
-  if [ -f "${TARGET}/AGENTS.md" ]; then
-    printf 'root_AGENTS.md=yes\n'
-  else
-    printf 'root_AGENTS.md=missing\n'
-    ok=1
-  fi
+  doctor_file "root_AGENTS.md" "${TARGET}/AGENTS.md" || ok=1
 
   if [ -f "${TARGET}/.gitignore" ] && grep -Fqx -- '.agent-work/' "${TARGET}/.gitignore"; then
     printf 'gitignore_agent_work=yes\n'
@@ -270,12 +221,7 @@ cmd_doctor() {
   fi
 
   for t in validate_artifacts.py lint_artifacts.py build_context.py; do
-    if [ -f "${TARGET}/.agents/tools/session/$t" ]; then
-      printf 'tool_%s=yes\n' "$t"
-    else
-      printf 'tool_%s=missing\n' "$t"
-      ok=1
-    fi
+    doctor_file "tool_${t}" "${TARGET}/.agents/tools/session/${t}" || ok=1
   done
 
   if [ "$ok" -eq 0 ]; then
@@ -418,30 +364,20 @@ cmd_install() {
   # Pre-taxonomy flat thinking doc (replaced by .agents/thinking/).
   rm -f "${TARGET}/.agents/THINKING_OUTCOME_FIRST.md"
 
-  cp -f "${SOURCE}/docs/conventions/DESIGN_SYSTEM.md" "${TARGET}/.agents/DESIGN_SYSTEM.md"
-  cp -f "${SOURCE}/docs/conventions/CODE_COMMENTS.md" "${TARGET}/.agents/CODE_COMMENTS.md"
-  cp -f "${SOURCE}/docs/conventions/THIRD_PARTY_SKILLS.md" "${TARGET}/.agents/THIRD_PARTY_SKILLS.md"
-  cp -f "${SOURCE}/docs/policy/SKILL_PREAMBLE.md" "${TARGET}/.agents/SKILL_PREAMBLE.md"
-  cp -f "${SOURCE}/docs/policy/AGENT_POLICY.md" "${TARGET}/.agents/AGENT_POLICY.md"
+  for rel in "${KIT_FLAT_DOCS[@]}"; do
+    cp -f "${SOURCE}/docs/${rel}" "${TARGET}/.agents/$(basename "$rel")"
+  done
+
+  rm -rf "${TARGET}/.agents/thinking"
   mkdir -p "${TARGET}/.agents/thinking"
-  cp -f "${SOURCE}/docs/thinking/outcome-first.md" "${TARGET}/.agents/thinking/outcome-first.md"
-  cp -f "${SOURCE}/docs/thinking/input-process-output.md" "${TARGET}/.agents/thinking/input-process-output.md"
-  cp -f "${SOURCE}/docs/thinking/make-implicit-explicit.md" "${TARGET}/.agents/thinking/make-implicit-explicit.md"
-  cp -f "${SOURCE}/docs/thinking/single-source-of-truth.md" "${TARGET}/.agents/thinking/single-source-of-truth.md"
-  cp -f "${SOURCE}/docs/thinking/small-batch.md" "${TARGET}/.agents/thinking/small-batch.md"
-  cp -f "${SOURCE}/docs/thinking/feedback-loop.md" "${TARGET}/.agents/thinking/feedback-loop.md"
-  cp -f "${SOURCE}/docs/thinking/default-path-first.md" "${TARGET}/.agents/thinking/default-path-first.md"
-  cp -f "${SOURCE}/docs/thinking/reversible-decisions.md" "${TARGET}/.agents/thinking/reversible-decisions.md"
-  cp -f "${SOURCE}/docs/thinking/standardize-before-automate.md" "${TARGET}/.agents/thinking/standardize-before-automate.md"
-  cp -f "${SOURCE}/docs/thinking/design-for-handoff.md" "${TARGET}/.agents/thinking/design-for-handoff.md"
-  cp -f "${SOURCE}/docs/thinking/evidence-over-confidence.md" "${TARGET}/.agents/thinking/evidence-over-confidence.md"
-  cp -f "${SOURCE}/docs/thinking/optimize-bottleneck.md" "${TARGET}/.agents/thinking/optimize-bottleneck.md"
-  cp -f "${SOURCE}/docs/thinking/README.md" "${TARGET}/.agents/thinking/README.md"
-  cp -f "${SOURCE}/docs/policy/AGENT_WORK.md" "${TARGET}/.agents/AGENT_WORK.md"
-  cp -f "${SOURCE}/docs/guides/START_HERE.md" "${TARGET}/.agents/START_HERE.md"
-  cp -f "${SOURCE}/docs/guides/WHAT_NEXT.md" "${TARGET}/.agents/WHAT_NEXT.md"
-  cp -f "${SOURCE}/docs/guides/MIGRATION.md" "${TARGET}/.agents/MIGRATION.md"
-  cp -f "${SOURCE}/docs/guides/BA_SKILLS.md" "${TARGET}/.agents/BA_SKILLS.md"
+  cp -R "${SOURCE}/docs/thinking/." "${TARGET}/.agents/thinking/"
+  for f in "${THINKING_DOCS[@]}"; do
+    if [ ! -f "${TARGET}/.agents/thinking/${f}" ]; then
+      echo "Error: missing thinking doc after copy: ${f}" >&2
+      exit 1
+    fi
+  done
+
   if [ -d "${SOURCE}/docs/examples" ]; then
     rm -rf "${TARGET}/.agents/examples"
     cp -R "${SOURCE}/docs/examples" "${TARGET}/.agents/examples"

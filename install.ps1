@@ -71,6 +71,45 @@ function Resolve-InstallSkills {
         ForEach-Object { $_.Name })
 }
 
+$KitFlatDocs = @(
+    "conventions/DESIGN_SYSTEM.md",
+    "conventions/CODE_COMMENTS.md",
+    "conventions/THIRD_PARTY_SKILLS.md",
+    "policy/SKILL_PREAMBLE.md",
+    "policy/AGENT_POLICY.md",
+    "policy/AGENT_WORK.md",
+    "guides/START_HERE.md",
+    "guides/WHAT_NEXT.md",
+    "guides/MIGRATION.md",
+    "guides/BA_SKILLS.md"
+)
+
+$ThinkingDocs = @(
+    "outcome-first.md",
+    "input-process-output.md",
+    "make-implicit-explicit.md",
+    "single-source-of-truth.md",
+    "small-batch.md",
+    "feedback-loop.md",
+    "default-path-first.md",
+    "reversible-decisions.md",
+    "standardize-before-automate.md",
+    "design-for-handoff.md",
+    "evidence-over-confidence.md",
+    "optimize-bottleneck.md",
+    "README.md"
+)
+
+function Test-DoctorFile {
+    param([string]$Label, [string]$Path)
+    if (Test-Path $Path -PathType Leaf) {
+        Write-Host "${Label}=yes"
+        return $true
+    }
+    Write-Host "${Label}=missing"
+    return $false
+}
+
 function Invoke-Doctor {
     $ok = $true
     Write-Host "DOCTOR project=$($Target.Path)"
@@ -86,114 +125,18 @@ function Invoke-Doctor {
             "START_HERE.md", "WHAT_NEXT.md", "SKILL_PREAMBLE.md",
             "AGENT_POLICY.md", "settings.yaml", "BA_SKILLS.md"
         )) {
-        if (Test-Path (Join-Path $Target.Path ".agents/$f") -PathType Leaf) {
-            Write-Host "kit_${f}=yes"
-        } else {
-            Write-Host "kit_${f}=missing"
+        if (-not (Test-DoctorFile "kit_${f}" (Join-Path $Target.Path ".agents/$f"))) {
             $ok = $false
         }
     }
 
-    $thinkingOutcome = Join-Path $Target.Path ".agents/thinking/outcome-first.md"
-    if (Test-Path $thinkingOutcome -PathType Leaf) {
-        Write-Host "kit_thinking/outcome-first.md=yes"
-    } else {
-        Write-Host "kit_thinking/outcome-first.md=missing"
-        $ok = $false
+    foreach ($f in $ThinkingDocs) {
+        if (-not (Test-DoctorFile "kit_thinking/${f}" (Join-Path $Target.Path ".agents/thinking/$f"))) {
+            $ok = $false
+        }
     }
 
-    $thinkingIpo = Join-Path $Target.Path ".agents/thinking/input-process-output.md"
-    if (Test-Path $thinkingIpo -PathType Leaf) {
-        Write-Host "kit_thinking/input-process-output.md=yes"
-    } else {
-        Write-Host "kit_thinking/input-process-output.md=missing"
-        $ok = $false
-    }
-
-    $thinkingSmallBatch = Join-Path $Target.Path ".agents/thinking/small-batch.md"
-    if (Test-Path $thinkingSmallBatch -PathType Leaf) {
-        Write-Host "kit_thinking/small-batch.md=yes"
-    } else {
-        Write-Host "kit_thinking/small-batch.md=missing"
-        $ok = $false
-    }
-
-    $thinkingExplicit = Join-Path $Target.Path ".agents/thinking/make-implicit-explicit.md"
-    if (Test-Path $thinkingExplicit -PathType Leaf) {
-        Write-Host "kit_thinking/make-implicit-explicit.md=yes"
-    } else {
-        Write-Host "kit_thinking/make-implicit-explicit.md=missing"
-        $ok = $false
-    }
-
-    $thinkingSsot = Join-Path $Target.Path ".agents/thinking/single-source-of-truth.md"
-    if (Test-Path $thinkingSsot -PathType Leaf) {
-        Write-Host "kit_thinking/single-source-of-truth.md=yes"
-    } else {
-        Write-Host "kit_thinking/single-source-of-truth.md=missing"
-        $ok = $false
-    }
-
-    $thinkingFeedback = Join-Path $Target.Path ".agents/thinking/feedback-loop.md"
-    if (Test-Path $thinkingFeedback -PathType Leaf) {
-        Write-Host "kit_thinking/feedback-loop.md=yes"
-    } else {
-        Write-Host "kit_thinking/feedback-loop.md=missing"
-        $ok = $false
-    }
-
-    $thinkingDefaultPath = Join-Path $Target.Path ".agents/thinking/default-path-first.md"
-    if (Test-Path $thinkingDefaultPath -PathType Leaf) {
-        Write-Host "kit_thinking/default-path-first.md=yes"
-    } else {
-        Write-Host "kit_thinking/default-path-first.md=missing"
-        $ok = $false
-    }
-
-    $thinkingReversible = Join-Path $Target.Path ".agents/thinking/reversible-decisions.md"
-    if (Test-Path $thinkingReversible -PathType Leaf) {
-        Write-Host "kit_thinking/reversible-decisions.md=yes"
-    } else {
-        Write-Host "kit_thinking/reversible-decisions.md=missing"
-        $ok = $false
-    }
-
-    $thinkingStandardize = Join-Path $Target.Path ".agents/thinking/standardize-before-automate.md"
-    if (Test-Path $thinkingStandardize -PathType Leaf) {
-        Write-Host "kit_thinking/standardize-before-automate.md=yes"
-    } else {
-        Write-Host "kit_thinking/standardize-before-automate.md=missing"
-        $ok = $false
-    }
-
-    $thinkingHandoff = Join-Path $Target.Path ".agents/thinking/design-for-handoff.md"
-    if (Test-Path $thinkingHandoff -PathType Leaf) {
-        Write-Host "kit_thinking/design-for-handoff.md=yes"
-    } else {
-        Write-Host "kit_thinking/design-for-handoff.md=missing"
-        $ok = $false
-    }
-
-    $thinkingEvidence = Join-Path $Target.Path ".agents/thinking/evidence-over-confidence.md"
-    if (Test-Path $thinkingEvidence -PathType Leaf) {
-        Write-Host "kit_thinking/evidence-over-confidence.md=yes"
-    } else {
-        Write-Host "kit_thinking/evidence-over-confidence.md=missing"
-        $ok = $false
-    }
-
-    $thinkingBottleneck = Join-Path $Target.Path ".agents/thinking/optimize-bottleneck.md"
-    if (Test-Path $thinkingBottleneck -PathType Leaf) {
-        Write-Host "kit_thinking/optimize-bottleneck.md=yes"
-    } else {
-        Write-Host "kit_thinking/optimize-bottleneck.md=missing"
-        $ok = $false
-    }
-
-    if (Test-Path (Join-Path $Target.Path "AGENTS.md") -PathType Leaf) {
-        Write-Host "root_AGENTS.md=yes"
-    } else {
-        Write-Host "root_AGENTS.md=missing"
+    if (-not (Test-DoctorFile "root_AGENTS.md" (Join-Path $Target.Path "AGENTS.md"))) {
         $ok = $false
     }
 
@@ -379,30 +322,23 @@ function Invoke-Install {
         Remove-Item -Path $obsoleteThinking -Force
     }
 
-    Copy-Item -Path (Join-Path $Source "docs/conventions/DESIGN_SYSTEM.md") -Destination ".agents/DESIGN_SYSTEM.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/conventions/CODE_COMMENTS.md") -Destination ".agents/CODE_COMMENTS.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/conventions/THIRD_PARTY_SKILLS.md") -Destination ".agents/THIRD_PARTY_SKILLS.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/policy/SKILL_PREAMBLE.md") -Destination ".agents/SKILL_PREAMBLE.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/policy/AGENT_POLICY.md") -Destination ".agents/AGENT_POLICY.md" -Force
-    New-Item -ItemType Directory -Force -Path ".agents/thinking" | Out-Null
-    Copy-Item -Path (Join-Path $Source "docs/thinking/outcome-first.md") -Destination ".agents/thinking/outcome-first.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/thinking/input-process-output.md") -Destination ".agents/thinking/input-process-output.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/thinking/make-implicit-explicit.md") -Destination ".agents/thinking/make-implicit-explicit.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/thinking/single-source-of-truth.md") -Destination ".agents/thinking/single-source-of-truth.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/thinking/small-batch.md") -Destination ".agents/thinking/small-batch.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/thinking/feedback-loop.md") -Destination ".agents/thinking/feedback-loop.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/thinking/default-path-first.md") -Destination ".agents/thinking/default-path-first.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/thinking/reversible-decisions.md") -Destination ".agents/thinking/reversible-decisions.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/thinking/standardize-before-automate.md") -Destination ".agents/thinking/standardize-before-automate.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/thinking/design-for-handoff.md") -Destination ".agents/thinking/design-for-handoff.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/thinking/evidence-over-confidence.md") -Destination ".agents/thinking/evidence-over-confidence.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/thinking/optimize-bottleneck.md") -Destination ".agents/thinking/optimize-bottleneck.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/thinking/README.md") -Destination ".agents/thinking/README.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/policy/AGENT_WORK.md") -Destination ".agents/AGENT_WORK.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/guides/START_HERE.md") -Destination ".agents/START_HERE.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/guides/WHAT_NEXT.md") -Destination ".agents/WHAT_NEXT.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/guides/MIGRATION.md") -Destination ".agents/MIGRATION.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/guides/BA_SKILLS.md") -Destination ".agents/BA_SKILLS.md" -Force
+    foreach ($rel in $KitFlatDocs) {
+        $name = Split-Path $rel -Leaf
+        Copy-Item -Path (Join-Path $Source "docs/$rel") -Destination ".agents/$name" -Force
+    }
+
+    $thinkingDest = ".agents/thinking"
+    if (Test-Path $thinkingDest) {
+        Remove-Item -Path $thinkingDest -Recurse -Force
+    }
+    New-Item -ItemType Directory -Force -Path $thinkingDest | Out-Null
+    Copy-Item -Path (Join-Path $Source "docs/thinking/*") -Destination $thinkingDest -Force
+    foreach ($f in $ThinkingDocs) {
+        if (-not (Test-Path (Join-Path $thinkingDest $f) -PathType Leaf)) {
+            throw "Missing thinking doc after copy: $f"
+        }
+    }
+
     $examplesSource = Join-Path $Source "docs/examples"
     if (Test-Path $examplesSource -PathType Container) {
         $examplesDest = Join-Path ".agents" "examples"

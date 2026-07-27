@@ -1,4 +1,4 @@
-# Simple Skills
+<h1 align="center">Simple Skills</h1>
 
 <div align="center">
 

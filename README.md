@@ -1,75 +1,149 @@
 # Simple Skills
 
-Skills + rules for AI agents: think → design → plan → execute → review → done.
+Agent kit for shipping work with structure: **think → design → plan → execute → review → done**.
 
-- **Kit** `.agents/` — skills, tools, settings, policy (installer)
-- **Work** `.agent-work/` — sessions + memory (nested git; `session.sh commit` / `archive`; auto-gitignored)
+Install once into a project. Agents get skills, shared policy, session tools, and
+session-wide Thinking methods — without inventing ceremony per chat.
 
-Start with [docs/guides/START_HERE.md](docs/guides/START_HERE.md). Skill map: [docs/guides/WHAT_NEXT.md](docs/guides/WHAT_NEXT.md). Docs catalog: [docs/README.md](docs/README.md).
+| | |
+| --- | --- |
+| **CLI** | `sk` (`pipx install simple-skills`) |
+| **Kit** | `.agents/` — skills, tools, settings, policy (installer-owned) |
+| **Work** | `.agent-work/` — sessions + memory (nested git; auto-gitignored) |
+| **Repo** | [truongnat/simple-skills](https://github.com/truongnat/simple-skills) |
+
+**Start:** [docs/guides/START_HERE.md](docs/guides/START_HERE.md) ·
+**Route a task:** [docs/guides/WHAT_NEXT.md](docs/guides/WHAT_NEXT.md) ·
+**Docs map:** [docs/README.md](docs/README.md)
+
+---
 
 ## Install
 
 ```bash
-pipx install simple-skills    # once (PyPI)
-sk install                    # in your project
+pipx install simple-skills    # once
+cd your-project && sk install
 sk doctor
-sk uninstall --yes
 ```
 
-Also: `uv tool install simple-skills`.  
-Profiles: `sk install --profile office` · `ba` · `frontend` · `backend` · `all` (default `core`).  
-Then run **`init`**. Reinstall keeps `settings.yaml`.
+Also: `uv tool install simple-skills`.
 
-Until the package is on PyPI (or for a fork):
+| Profile | Adds |
+| --- | --- |
+| `core` (default) | Lifecycle + shared policy |
+| `office` | Office file skills |
+| `ba` | BA / specify / wireframe pack |
+| `frontend` / `backend` / `all` | Domain skill sets |
+
+```bash
+sk install --profile ba
+sk uninstall --yes            # keeps .agent-work/; add --purge-work to delete
+```
+
+Until PyPI (or for a fork):
 
 ```bash
 pipx install git+https://github.com/truongnat/simple-skills.git
 # or: curl -fsSL https://raw.githubusercontent.com/truongnat/simple-skills/main/i | bash
 ```
 
-## After install
+Reinstall merges kit files and **keeps** `.agents/settings.yaml`. After install,
+run skill **`init`** once.
 
-```bash
-sk doctor
-bash .agents/tools/session/session.sh help
+---
+
+## Mental model
+
+```text
+┌─────────────────────────────────────────────────────────┐
+│  Kit (.agents/)          installer-owned, shared rules  │
+│  skills · tools · policy · thinking · DESIGN_SYSTEM     │
+└────────────────────────────┬────────────────────────────┘
+                             │ agents read
+┌────────────────────────────▼────────────────────────────┐
+│  Work (.agent-work/)     per-task truth + durable memory│
+│  sessions/<Task-…>/ · memory/ · nested git via session.sh│
+└─────────────────────────────────────────────────────────┘
 ```
 
-| Path | Skill |
-| --- | --- |
-| **Quick** (tiny fix) | `quick-fix` → sync → execution → review → done |
-| **Lite** / **Full** | brainstorming → (business-analysis) → design → planning → … |
+- **Progress truth** = `TASKS.md` + `session.sh status` (no `OVERVIEW.md`).
+- **Artifacts** live only under `.agent-work/sessions/…`, never under `.agents/`.
+- **Confirm-first** on Blocking gaps: stop → Ask method → then finish the doc.
 
-Step skills use a **Step ledger** and **Spec quality** gates (not on Quick).  
-Lint: `python .agents/tools/session/lint_artifacts.py`  
-Handoff pack: `python .agents/tools/session/build_context.py`
+---
 
-Session framing uses **Thinking methods**: Outcome-first → Input→Process→Output
-→ Make-implicit-explicit → Small-batch → (5W1H if unclear) → vital few. Ops in
-`.agents/SKILL_PREAMBLE.md`; detail in `.agents/thinking/`.
+## Paths (pick the smallest that fits)
 
-## Settings (keep small)
-
-`language` · `rules.code.comments.prose_language` · `rules.branch.mode` ·
-`rules.reports.output_format` · `rules.docs.*`  
-Defaults in [docs/policy/AGENT_POLICY.md](docs/policy/AGENT_POLICY.md).
-
-## Docs layout
-
-Source tree is classified; install flattens most files into `.agents/` (Thinking stays nested).
-
-| Folder | Role | Installed |
+| Path | When | Flow |
 | --- | --- | --- |
-| [guides/](docs/guides/) | Start, routing, migration, BA aliases | `.agents/<file>` |
-| [policy/](docs/policy/) | Preamble, full policy, Kit vs Work | `.agents/<file>` |
-| [thinking/](docs/thinking/) | Thinking methods (Outcome-first, …) | `.agents/thinking/` |
-| [conventions/](docs/conventions/) | Code comments, design system, third-party | `.agents/<file>` |
-| [config/](docs/config/) | settings, schemas, install profiles | `.agents/settings.yaml`, tools schemas |
-| [examples/](docs/examples/) | Good/bad session shapes | `.agents/examples/` |
-| [AGENTS.md](docs/AGENTS.md) | Host entrypoint | project root `AGENTS.md` |
+| **Quick** | Tiny clear fix (≈1–3 cards) | `quick-fix` → execution → review → done |
+| **Lite** | Small feature, mostly clear | Short brainstorming → planning → sync → … |
+| **Full** | Unclear / multi-surface | Full lifecycle (+ BA/design as needed) |
 
-Full map: [docs/README.md](docs/README.md).
+Stuck? Say the situation out loud and open [WHAT_NEXT.md](docs/guides/WHAT_NEXT.md).
 
-## Dev checks
+```bash
+bash .agents/tools/session/session.sh help
+bash .agents/tools/session/session.sh status
+python .agents/tools/session/validate_artifacts.py
+python .agents/tools/session/lint_artifacts.py
+```
+
+---
+
+## Thinking methods
+
+Session-wide ways of working — **not** report section titles. Ops live in
+`.agents/SKILL_PREAMBLE.md`; normative detail in `.agents/thinking/`
+([source index](docs/thinking/README.md)).
+
+```text
+Outcome-first → IPO → Make-explicit → SSOT → Small-batch → Feedback loop
+→ Default path first → Reversible decisions → Standardize before automate
+→ Design for handoff → Evidence over confidence → Optimize bottleneck
+→ (5W1H if unclear) → Vital few
+```
+
+Fold results into real fields (`Goal`, `Verify`, `Handoff`, …). Do not create
+method-branded files (`OUTCOME.md`, `HANDOFF.md`, …).
+
+---
+
+## HTML decisions
+
+Visual Ask method (`html`) uses the enterprise **light-only** theme:
+
+- Classes: `.ss-*` per [DESIGN_SYSTEM.md](docs/conventions/DESIGN_SYSTEM.md)
+- Template: `skills/brainstorming/templates/VISUAL_DECISION.template.html`
+- Serve to record choices: `python .agents/tools/session-serve/serve.py <session>`
+
+No `dark:` utilities; use `ss-btn` / `ss-input` / `ss-check` — not bare native
+controls.
+
+---
+
+## Docs layout (source → install)
+
+Source under `docs/`; install **flattens** most files into `.agents/` (Thinking
+stays nested).
+
+| Folder | Role |
+| --- | --- |
+| [guides/](docs/guides/) | Start, routing, migration, BA aliases |
+| [policy/](docs/policy/) | Preamble, full policy, Kit vs Work |
+| [thinking/](docs/thinking/) | Thinking methods (normative) |
+| [conventions/](docs/conventions/) | Code comments, design system, third-party |
+| [config/](docs/config/) | settings, schemas, install profiles |
+| [examples/](docs/examples/) | Good/bad session shapes |
+| [AGENTS.md](docs/AGENTS.md) | Host entrypoint → project root |
+
+Settings you might edit: `language` · `rules.code.comments.prose_language` ·
+`rules.branch.mode` · `rules.reports.output_format` · `rules.docs.*`  
+Defaults: [AGENT_POLICY.md](docs/policy/AGENT_POLICY.md).
+
+---
+
+## Develop
 
 ```bash
 pip install -e ".[dev]"
@@ -78,12 +152,23 @@ pytest -q
 sk --help
 ```
 
+Python ≥ 3.11. Optional office extras: `pip install -e ".[office]"`.
+
+---
+
 ## Publish (maintainers)
 
-Name on PyPI: **`simple-skills`** (available). After one Trusted Publisher setup:
+PyPI name: **`simple-skills`** (`v0.2.0`). Trusted Publisher once:
 
-1. https://pypi.org/manage/account/publishing/ → pending publisher for `simple-skills`, repo `truongnat/simple-skills`, workflow `publish.yml`, environment `pypi`
-2. Create GitHub Environment `pypi` (optional protection rules)
-3. GitHub → Release (tag `v0.2.0`) → workflow publishes the wheel
+1. PyPI → pending publisher for `simple-skills`, repo `truongnat/simple-skills`,
+   workflow `publish.yml`, environment `pypi`
+2. GitHub Environment `pypi`
+3. Release tag `v0.2.0` → workflow publishes the wheel
 
-Then users only need `pipx install simple-skills` → `sk install`.
+Users then: `pipx install simple-skills` → `sk install`.
+
+---
+
+## License
+
+MIT — see `pyproject.toml`.

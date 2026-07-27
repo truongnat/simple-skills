@@ -78,9 +78,11 @@ run skill **`init`** once.
 | --- | --- | --- |
 | **Quick** | Tiny clear fix (≈1–3 cards) | `quick-fix` → execution → review → done |
 | **Lite** | Small feature, mostly clear | Short brainstorming → planning → sync → … |
-| **Full** | Unclear / multi-surface | Full lifecycle (+ BA/design as needed) |
+| **Full** | Unclear / multi-surface | Full lifecycle (`business-analysis`, design, …) |
 
-Stuck? Say the situation out loud and open [WHAT_NEXT.md](docs/guides/WHAT_NEXT.md).
+Lite/Full step skills use a **Step ledger** and **Spec quality** gates (not on
+Quick). Stuck? Say the situation out loud and open
+[WHAT_NEXT.md](docs/guides/WHAT_NEXT.md).
 
 ```bash
 bash .agents/tools/session/session.sh help

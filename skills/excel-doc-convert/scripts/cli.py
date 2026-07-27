@@ -187,10 +187,9 @@ def md_cover_kv(ws: Any, max_r: int, max_c: int, title: str) -> str:
             if key in seen:
                 continue
             seen.add(key)
-            lines.append(
-                f"| {left.replace('|', '\\|')} | "
-                f"{right.replace('|', '\\|').replace(chr(10), ' / ')} |"
-            )
+            left_cell = left.replace("|", "\\|")
+            right_cell = right.replace("|", "\\|").replace("\n", " / ")
+            lines.append(f"| {left_cell} | {right_cell} |")
     lines.append("")
     lines.append(f"_pairs={len(seen)}_")
     return "\n".join(lines)

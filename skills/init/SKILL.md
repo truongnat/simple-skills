@@ -58,9 +58,11 @@ project-specific behavior without inventing conventions.
 
 #### `.agents/settings.yaml`
 
-- Required: yes; merge in place. Keep the file **lean** (language, branch,
-  reports.output_format, docs, optional commit/PR).
-- Preserve `language` and any user-authored values.
+- Required: yes; merge in place. Keep the file **lean** (language,
+  rules.code.comments.prose_language, branch, reports.output_format, docs,
+  optional commit/PR).
+- Preserve `language`, `rules.code.comments.prose_language`, and any
+  user-authored values.
 - Populate only repository-evidenced or user-confirmed project rules under the
   knobs above — do **not** dump decision/visual/report-style/code-comment
   matrices into settings (those defaults live in `AGENT_POLICY.md`).

@@ -61,7 +61,9 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - [ ] Security/data/migration risks checked if changes touch those areas.
 - [ ] Code comment convention checked against `.agents/CODE_COMMENTS.md`
       (CODE_COMMENTS.md / AGENT_POLICY defaults): public/exported symbols have doc comments;
-      non-obvious/multi-stage logic has a numbered flow + `Step N:` markers;
+      comment prose language matches `rules.code.comments.prose_language` (not
+      `settings.language`); non-obvious/multi-stage logic has a numbered flow +
+      `Step N:` markers;
       business rules/security noted; markers owned; **no stale comment
       contradicting the code** and no obvious-narration/commented-out noise.
 - [ ] Recommendation uses one of: Ready / Ready with risks / Needs fix / Blocked / Needs more verification.

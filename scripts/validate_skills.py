@@ -495,6 +495,8 @@ def main() -> int:
             "Safety",
             "Output contract",
             "quiz-as-document",
+            "prose_language",
+            "settings.language",
         ):
             if needle not in rb:
                 errors.append(f"RULES_BUNDLE.template.md missing '{needle}'")
@@ -531,6 +533,10 @@ def main() -> int:
         errors.append("SKILL_PREAMBLE.md missing What stays English (headings) rule")
     if "One language per artifact" not in preamble_lang:
         errors.append("SKILL_PREAMBLE.md missing One language per artifact rule")
+    if "prose_language" not in preamble_lang:
+        errors.append(
+            "SKILL_PREAMBLE.md must separate comment prose_language from settings.language"
+        )
     if "Tóm tắt" not in preamble_lang:
         errors.append("SKILL_PREAMBLE.md should show Wrong VI heading example")
     if "## Keywords" not in preamble_lang and "### Keywords" not in preamble_lang:
@@ -687,6 +693,7 @@ def main() -> int:
     settings = (ROOT / "docs" / "settings.yaml").read_text(encoding="utf-8")
     for needle in (
         "language:",
+        "prose_language: repo-default",
         "mode: checkout",
         "output_format: markdown",
         "docs:",
@@ -761,8 +768,22 @@ def main() -> int:
                 errors.append(f"{path.relative_to(ROOT)}: remove method branding '{bad}'")
     if not (ROOT / "docs" / "CODE_COMMENTS.md").is_file():
         errors.append("docs/CODE_COMMENTS.md missing (code comment convention)")
+    else:
+        code_comments = (ROOT / "docs" / "CODE_COMMENTS.md").read_text(encoding="utf-8")
+        if "prose_language" not in code_comments:
+            errors.append(
+                "docs/CODE_COMMENTS.md must define rules.code.comments.prose_language"
+            )
+        if "settings.language" not in code_comments:
+            errors.append(
+                "docs/CODE_COMMENTS.md must state comments do not follow settings.language"
+            )
     if "CODE_COMMENTS.md" not in policy:
         errors.append("docs/AGENT_POLICY.md must reference CODE_COMMENTS.md")
+    if "rules.code.comments.prose_language" not in policy:
+        errors.append(
+            "docs/AGENT_POLICY.md must document rules.code.comments.prose_language"
+        )
     design_system = (ROOT / "docs" / "DESIGN_SYSTEM.md").read_text(encoding="utf-8")
     if "cdn.tailwindcss.com" not in design_system and "ss-card" not in design_system:
         errors.append(

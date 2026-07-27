@@ -87,6 +87,10 @@ Apply `.agents/CODE_COMMENTS.md` (defaults in `AGENT_POLICY.md`; optional
 `rules.code.comments` overrides) to every file you
 create or modify:
 - Comment the **why**, not the what; no obvious narration, no commented-out code.
+- Comment/docstring **prose language** =
+  `rules.code.comments.prose_language` (`repo-default` | `en` | `vi`), **not**
+  `settings.language`. With `repo-default`, follow `PRJ_REFERENCE.md` / existing
+  repo style; if unclear, prefer English.
 - Give each exported/public symbol a **doc comment** in the language's standard
   format (TSDoc/JSDoc, PEP 257, Javadoc, GoDoc, rustdoc, KDoc, …).
 - For non-obvious/multi-stage logic, add a **numbered flow block** at the top +

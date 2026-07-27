@@ -12,6 +12,37 @@ unless the project needs a different profile.
 > `init` records the project's actual convention in `PRJ_REFERENCE.md`; this
 > file is the default when the repo has none.
 
+## Comment prose language (separate from thread language)
+
+Source-code comments and docstrings use
+`rules.code.comments.prose_language`, **not** `settings.language`.
+
+| Value | Behavior |
+| --- | --- |
+| `repo-default` (default) | Follow `PRJ_REFERENCE.md` / existing repo comment language; if unclear, prefer **English** |
+| `en` | Force English comment/docstring prose |
+| `vi` | Force Vietnamese comment/docstring prose |
+
+Thread chat, reports, and session artifacts still follow `settings.language`.
+Do not copy the conversation language into comments just because the thread is
+`vi` (or vice versa).
+
+Copy-paste examples for `.agents/settings.yaml`:
+
+```yaml
+# Force English comments even when language: vi
+rules:
+  code:
+    comments:
+      prose_language: en
+
+# Force Vietnamese comments
+rules:
+  code:
+    comments:
+      prose_language: vi
+```
+
 ## Principles
 
 1. **Why, not what.** Comment intent, rationale, constraints, and trade-offs —

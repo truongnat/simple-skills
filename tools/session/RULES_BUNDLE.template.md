@@ -6,11 +6,15 @@
 
 ## Language
 
-- Prose (summaries, paragraphs, questions) follows project `settings.language`
-  (`en` | `vi`) — **one language per artifact**.
+- Thread / report / artifact **prose** (summaries, paragraphs, questions)
+  follows project `settings.language` (`en` | `vi`) — **one language per
+  artifact**.
 - **Do not translate** Markdown headings, template section titles, table column
   headers, or enum/machine values (`Quick`, `PASS`, `Match`, `todo`, …).
 - Code, paths, commands, and domain IDs stay as-is.
+- Source-code **comments / docstrings** follow
+  `rules.code.comments.prose_language` (`repo-default` | `en` | `vi`), **not**
+  `settings.language`. `repo-default` = repo convention else English.
 
 ## Work layout
 

@@ -16,6 +16,7 @@ settings.
 | Key | Values | Default |
 | --- | --- | --- |
 | `language` | `en` \| `vi` | `en` |
+| `rules.code.comments.prose_language` | `repo-default` \| `en` \| `vi` | `repo-default` |
 | `rules.branch.mode` | `direct` \| `checkout` | `checkout` |
 | `rules.branch.base` | branch name | detect from repo |
 | `rules.branch.naming` | pattern e.g. `feat/<slug>` | empty |
@@ -28,17 +29,24 @@ settings.
 | `rules.agents.routing.<skill>` | ordered CLI ids | empty → main only |
 
 Optional (add only when the repo has a convention; `init` may merge them):
-`rules.commit.*`, `rules.pull_request.*`, `rules.agents.*`. Apply only populated values.
+`rules.commit.*`, `rules.pull_request.*`, `rules.agents.*`,
+`rules.code.comments.language_style`. Apply only populated values.
 
 - **Re-read settings** at the start of every task and every skill invocation.
   Never reuse a cached `language` (or other settings) from earlier in the
   session. Mid-session edits win after re-read. A direct instruction in the
   current user request overrides the file for that turn.
-- **`language`:** prose (summaries, paragraphs, cell *values*, questions) in
-  `en` or `vi` — **one language per artifact**, no half-VI half-EN bodies.
-  **Do not translate** Markdown headings, template section titles, template
-  table column headers, or enum/machine values (`Quick`, `PASS`, `Match`,
-  `todo`, …). Code, paths, commands, and domain IDs stay as-is.
+- **`language`:** thread / report / artifact **prose only** (summaries,
+  paragraphs, cell *values*, questions) in `en` or `vi` — **one language per
+  artifact**, no half-VI half-EN bodies. **Does not** set source-code comment
+  or docstring language. **Do not translate** Markdown headings, template
+  section titles, template table column headers, or enum/machine values
+  (`Quick`, `PASS`, `Match`, `todo`, …). Code, paths, commands, and domain IDs
+  stay as-is.
+- **`rules.code.comments.prose_language`:** language of comments and docstrings
+  in source files. `repo-default` = follow `PRJ_REFERENCE.md` / existing repo
+  style, else prefer English. `en` / `vi` = force that language. Never infer
+  this from `settings.language`.
 - **`rules.branch.mode`:** `direct` = work/commit on base/main; `checkout` =
   create/checkout a work branch **before any code edit** (never commit feature
   work on base). Unset → `checkout`.
@@ -91,8 +99,10 @@ sections after methods (`80/20`, `5W1H`). Chart when useful; skip filler.
 `doc_comments: public-api`; `flow_comments: non-obvious`;
 `non_obvious_flow: required`; `rationale_and_constraints: required`;
 `obvious_code_narration: avoid`; markers
-`[TODO, FIXME, NOTE, HACK, SECURITY, PERF]`. Prefer the repo’s existing style
-from `PRJ_REFERENCE.md` when it conflicts with defaults.
+`[TODO, FIXME, NOTE, HACK, SECURITY, PERF]`. Comment/docstring **prose**
+follows `rules.code.comments.prose_language` (default `repo-default`), not
+`settings.language`. Prefer the repo’s existing style from `PRJ_REFERENCE.md`
+when it conflicts with defaults.
 
 ## Architecture
 
@@ -595,9 +605,10 @@ artifacts with method labels.
 - Apply only **populated** project knobs from `.agents/settings.yaml`.
 - Output: short, structured, decision-oriented. Bullets/tables over paragraphs.
 - No filler. No marketing language. No method-named sections.
-- Language from `.agents/settings.yaml`: prose in `language`; headings / template
-  keys / enums / identifiers stay English (shared form). One language per
-  artifact — no mixed VI/EN body text.
+- Language from `.agents/settings.yaml`: thread/report prose in `language`;
+  source-code comments/docstrings in `rules.code.comments.prose_language`;
+  headings / template keys / enums / identifiers stay English (shared form).
+  One language per artifact — no mixed VI/EN body text.
 
 ## Developer UX / DX
 

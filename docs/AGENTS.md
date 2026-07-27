@@ -12,9 +12,11 @@ This is the **short entrypoint**. Prefer layered reading — do not load every d
 6. `.agents/AGENT_POLICY.md` / `AGENT_WORK.md` / `MIGRATION.md` **only when needed**
 
 Re-read settings at the start of every task and every skill invocation. Never
-cache `language` across turns. Default language: `en`. Prose follows `language`;
-**headings and template keys stay English** (shared form). Do not mix VI/EN in
-one artifact body. Blocking unknowns → **Confirm-first** + **Ask method** in
+cache `language` across turns. Default language: `en`. Thread/report prose
+follows `language`; **source-code comments** follow
+`rules.code.comments.prose_language` (default `repo-default`). **Headings and
+template keys stay English** (shared form). Do not mix VI/EN in one artifact
+body. Blocking unknowns → **Confirm-first** + **Ask method** in
 `SKILL_PREAMBLE.md` (STOP, then ask — never quiz-as-document).
 
 ## Architecture (map)

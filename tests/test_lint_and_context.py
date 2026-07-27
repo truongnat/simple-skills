@@ -157,6 +157,8 @@ def test_build_context_pack_includes_rules_and_check(tmp_path: Path) -> None:
     assert "## Rules (mandatory)" in pack
     assert "Ask method" in pack
     assert ".agent-work/" in pack
+    assert "rules.code.comments.prose_language" in pack
+    assert "settings.language" in pack
     assert "CONTEXT_PACK_CHECK_OK" in result.stdout
 
 

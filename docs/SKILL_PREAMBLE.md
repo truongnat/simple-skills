@@ -13,7 +13,7 @@ Layout detail: `.agents/AGENT_WORK.md`.
 earlier in this session. Values: `en` | `vi`. Mid-session edits win after
 re-read. A direct instruction in the current user request overrides the file.
 
-### What follows `language` (prose only)
+### What follows `language` (thread / report prose only)
 
 Write **all narrative content** in that language: executive summary bullets,
 paragraphs, table *cell values* that are sentences, questions to the user,
@@ -23,6 +23,12 @@ recommendations, handoff prose, Clarification checkpoint answers.
 architecture paragraph, or half-translated tables. If unsure of a term, keep the
 domain identifier raw and explain once in `language` — do not flip the whole
 section to English.
+
+**Not for source code.** `settings.language` does **not** set comment or
+docstring language. When writing/editing code, use
+`rules.code.comments.prose_language` (see `.agents/CODE_COMMENTS.md`). Default
+`repo-default` = repo convention, else English — never infer from thread
+`language`.
 
 ### What stays English (shared form — never translate)
 

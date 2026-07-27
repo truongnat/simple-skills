@@ -46,7 +46,9 @@ rules:
 ## Principles
 
 1. **Why, not what.** Comment intent, rationale, constraints, and trade-offs —
-   never restate what the code already says.
+   the successor’s Q2 (Design for handoff —
+   `.agents/thinking/design-for-handoff.md`). Never restate what the code
+   already says; do not narrate obvious code.
 2. **Self-documenting code first.** Prefer clear names/structure; add a comment
    where the code cannot make intent obvious on its own.
 3. **Explain the flow.** Non-obvious or multi-stage logic gets a short

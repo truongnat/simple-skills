@@ -40,6 +40,9 @@ body. Blocking unknowns → **Confirm-first** + **Ask method** in
 | `.agents/thinking/default-path-first.md` | Default path first Thinking method (normative) |
 | `.agents/thinking/reversible-decisions.md` | Reversible decisions Thinking method (normative) |
 | `.agents/thinking/standardize-before-automate.md` | Standardize before automate Thinking method (normative) |
+| `.agents/thinking/design-for-handoff.md` | Design for handoff Thinking method (normative) |
+| `.agents/thinking/evidence-over-confidence.md` | Evidence over confidence Thinking method (normative) |
+| `.agents/thinking/optimize-bottleneck.md` | Optimize bottleneck Thinking method (normative) |
 | `.agents/skills/` | Invokable skills |
 | `.agents/tools/` | session, lint, build_context, detect_agents, delegate_worker, … |
 | `.agent-work/` | **Work** — sessions + memory (nested git; `session.sh commit` / `archive`) |

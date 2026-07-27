@@ -104,9 +104,14 @@ create or modify:
 **dependent** next card. Do not implement a pile of cards and verify once at
 the end. **Feedback loop:** that Verify must falsify **this** AC /
 Given→Expect — not unrelated green noise. **Default path first:** prefer
-finishing L1 happy cards before deep L2/L3/L4 piles. See
-`.agents/thinking/small-batch.md`, `.agents/thinking/feedback-loop.md`,
-`.agents/thinking/default-path-first.md`.
+finishing L1 happy cards before deep L2/L3/L4 piles. **Evidence over
+confidence:** record the Verify result (test/log/API/screenshot/…) before
+Status=`done` — fluency is not proof. **Design for handoff:** record Verify
+evidence + blocked reason/next; non-obvious why in comments (CODE_COMMENTS).
+See `.agents/thinking/small-batch.md`,
+`.agents/thinking/feedback-loop.md`, `.agents/thinking/default-path-first.md`,
+`.agents/thinking/evidence-over-confidence.md`,
+`.agents/thinking/design-for-handoff.md`.
 
 On every task card in `execution_order`:
 

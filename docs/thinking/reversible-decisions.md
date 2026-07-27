@@ -3,7 +3,8 @@
 > **Status:** Session-wide thinking method (same class as **Outcome-first**,
 > **Input→Process→Output**, **Make-implicit-explicit**, **Single Source of
 > Truth**, **Small-batch**, **Feedback loop**, **Default path first**,
-> **vital few**, and **5W1H**).  
+> **Standardize before automate**, **Design for handoff**, **vital few**, and
+> **5W1H**).  
 > **Not** a report section title. **Not** a separate skill. **Not** a new
 > artifact (`REVERSIBLE.md` / `TYPE1.md` / decision log file beyond ADR rules).  
 > Fold results into Issue triage (`Reversibility`), Clarification, Assumptions,
@@ -14,6 +15,7 @@
 > Policy summary: `.agents/AGENT_POLICY.md` → Thinking methods.  
 > **Confirm-first** stays the ask mechanism. **SSOT** owns where Type H
 > decisions are recorded (ADR). **Feedback loop** owns Spike modality.  
+> **Design for handoff** needs R/H/U + why visible to successors (Q2/Q5).  
 > **This file** owns *how much ceremony* before locking a choice — by cost to
 > reverse, not by treating every decision equally.
 
@@ -175,8 +177,11 @@ explicit confirmation — aligns with kit irreversible-destructive rules.
 7. Default path first
 8. Reversible decisions       → R/H/U ceremony match
 9. Standardize before automate → checklist before CI/bot
-10. 5W1H (if unclear)
-11. Vital few
+10. Design for handoff          → six-question successor test
+11. Evidence over confidence    → claim only with recorded proof
+12. Optimize bottleneck         → relieve the constraint stage first
+13. 5W1H (if unclear)
+14. Vital few
 ```
 
 | Method | vs Reversible decisions |
@@ -185,6 +190,8 @@ explicit confirmation — aligns with kit irreversible-destructive rules.
 | Make-explicit | Write the decision; this method sets rigor by reverse-cost |
 | SSOT | Where Type H rationale lives (ADR) |
 | Standardize before automate | Org CI/bot often Type H — still need checklist first |
+| Design for handoff | Successor must see R/H/U + why (Q2/Q5) |
+| Optimize bottleneck | Decision-wait often *is* the constraint |
 | High-impact | Orthogonal axis — use both columns when needed |
 | Path Quick | Process ceiling; this method forbids new H on Quick |
 

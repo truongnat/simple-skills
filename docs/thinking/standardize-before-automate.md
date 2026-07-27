@@ -3,7 +3,8 @@
 > **Status:** Session-wide thinking method (same class as **Outcome-first**,
 > **Input→Process→Output**, **Make-implicit-explicit**, **Single Source of
 > Truth**, **Small-batch**, **Feedback loop**, **Default path first**,
-> **Reversible decisions**, **vital few**, and **5W1H**).  
+> **Reversible decisions**, **Design for handoff**, **vital few**, and
+> **5W1H**).  
 > **Not** a report section title. **Not** a separate skill. **Not** a new
 > artifact (`AUTOMATE.md` / `STANDARD.md` are forbidden).  
 > Fold results into Approach (manual→template→CI phases), Non-goals, Issue
@@ -15,7 +16,7 @@
 > **This file** owns the ladder before scripting, CI, bots, or new agent
 > automation. **Feedback loop** owns trying manually; **Make-explicit** owns
 > writing the checklist; **Reversible decisions** often class org-wide CI as
-> Type H.
+> Type H; **Design for handoff** needs stable templates for successors.
 
 Agents must treat this file as **normative** when proposing automation.
 Automating an unstable process only produces a **messy process that runs
@@ -138,8 +139,11 @@ Good: Checklist stabilized in 3 PRs → template → then agent/CI
 7. Default path first
 8. Reversible decisions       → CI/bot often Type H
 9. Standardize before automate → ladder before scripts
-10. 5W1H (if unclear)
-11. Vital few                 → which checks deserve automation
+10. Design for handoff          → six-question successor test
+11. Evidence over confidence    → claim only with recorded proof
+12. Optimize bottleneck         → relieve the constraint stage first
+13. 5W1H (if unclear)
+14. Vital few                 → which checks deserve automation
 ```
 
 | Method | vs this method |
@@ -147,6 +151,8 @@ Good: Checklist stabilized in 3 PRs → template → then agent/CI
 | Feedback loop | Get signal from manual work |
 | Make-explicit | Write the standard |
 | Vital few | Which rows to automate |
+| Optimize bottleneck | Automate the constraint stage — not hobby stages |
+| Design for handoff | Stable templates make handoff repeatable |
 | Reversible decisions | How heavy to lock automation |
 | Path / Full ceremony | Don’t over-process tiny work — related but not the ladder |
 

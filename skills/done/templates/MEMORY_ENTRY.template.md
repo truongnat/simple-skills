@@ -11,13 +11,14 @@
 
 ## Decisions & why
 
-<!-- Only non-obvious choices whose rationale would otherwise be re-litigated. -->
+<!-- Only non-obvious choices whose rationale would otherwise be re-litigated.
+     Design for handoff Q2 — .agents/thinking/design-for-handoff.md -->
 
 - _(decision)_ — **why:** _(the reason that isn't obvious from the code)_ · _(source: PLAN/REVIEW/§)_
 
 ## Gotchas / pitfalls
 
-<!-- Things that cost time here and will cost time again if forgotten. -->
+<!-- Things that cost time here and will cost time again if forgotten (Q5). -->
 
 - _(the trap)_ — **avoid/detect by:** _(signal or guard)_
 
@@ -27,6 +28,6 @@
 
 ## Pointers
 
-<!-- Where the important stuff lives, so the next task starts fast. -->
+<!-- Where the important stuff lives, so the next task starts fast (Q3/Q6). -->
 
 - _(area)_ → _(path / entry point)_

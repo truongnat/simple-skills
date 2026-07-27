@@ -501,6 +501,12 @@ def main() -> int:
         errors.append("docs/thinking/reversible-decisions.md missing")
     if not (ROOT / "docs" / "thinking" / "standardize-before-automate.md").is_file():
         errors.append("docs/thinking/standardize-before-automate.md missing")
+    if not (ROOT / "docs" / "thinking" / "design-for-handoff.md").is_file():
+        errors.append("docs/thinking/design-for-handoff.md missing")
+    if not (ROOT / "docs" / "thinking" / "evidence-over-confidence.md").is_file():
+        errors.append("docs/thinking/evidence-over-confidence.md missing")
+    if not (ROOT / "docs" / "thinking" / "optimize-bottleneck.md").is_file():
+        errors.append("docs/thinking/optimize-bottleneck.md missing")
     if not (ROOT / "docs" / "thinking" / "README.md").is_file():
         errors.append("docs/thinking/README.md missing")
     if not (ROOT / "docs" / "examples" / "README.md").is_file():

@@ -81,5 +81,11 @@ _(fill after Doc reality gate)_
 
 ## Handoff
 
+<!-- Design for handoff: Next + Verify + Risks/open + Why if needed.
+     Six-month test — .agents/thinking/design-for-handoff.md -->
+
 Next skill: `planning`  
+- Verify: _(contracts vs BASIC / OpenAPI)_  
+- Risks / open: _(or none)_  
+- Why (if needed): _(or see Clarification / ADR)_  
 Blockers:

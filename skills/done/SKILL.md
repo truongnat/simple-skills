@@ -81,6 +81,10 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 #### `PR_DESCRIPTION.md`
 - Required: no
 - Summary, Changes, Verification, Review Notes, Risks/Follow-ups.
+- Must answer Design for handoff: what / why / how verified / next (reviewer
+  focus) / risks — `.agents/thinking/design-for-handoff.md`.
+- Verification must be evidence over confidence (named check + result — not
+  “should be fine”) — `.agents/thinking/evidence-over-confidence.md`.
 
 #### `RELEASE_NOTE.md`
 - Required: no
@@ -98,7 +102,11 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - [ ] No failed check is marked as passed.
 - [ ] Review result is included.
 - [ ] PR_MESSAGE.md follows Conventional Commits format.
-- [ ] PR_DESCRIPTION.md answers: what changed, why, how verified, reviewer focus.
+- [ ] PR_DESCRIPTION.md answers: what changed, why, how verified, reviewer focus
+      (Design for handoff Q1/Q2/Q4/Q6 — `.agents/thinking/design-for-handoff.md`).
+- [ ] Verification is evidence-backed (passed/failed/skipped/not run) — not
+      confidence-only (`.agents/thinking/evidence-over-confidence.md`).
+- [ ] DONE handoff names next + risks; no chat-only material context.
 - [ ] When TASKS.md exists, DONE summary reflects completed vs remaining task IDs honestly (use Progress board / Status / checkboxes; do not claim Done if open `todo`/`in_progress`/`blocked` IDs remain without documented blockers).
 - [ ] A `.agent-work/memory/<Task-N-slug>.md` entry exists and `.agent-work/memory/INDEX.md` has its pointer. The entry holds only the vital few, no changelog, no padding, and does not duplicate an existing entry.
 - [ ] `python .agents/tools/session/validate_artifacts.py` and `lint_artifacts.py` exit 0; `session.sh status` prints `COMPLETE: yes` before marking Done.

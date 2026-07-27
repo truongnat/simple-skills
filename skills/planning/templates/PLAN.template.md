@@ -116,6 +116,9 @@ _(TODO)_
      Not “backend then frontend” alone; not exception catalog before happy slice.
      If proposing CI/bot/new skill: ladder manual → checklist → template →
      automate (.agents/thinking/standardize-before-automate.md).
+     Prefer phases that relieve the named bottleneck stage
+     (.agents/thinking/optimize-bottleneck.md); defer non-constraint polish to
+     Non-goals.
      High rewind-cost unknowns → early Spike or Confirm-first Example/See.
      See .agents/thinking/input-process-output.md, small-batch.md,
      feedback-loop.md, default-path-first.md -->

@@ -104,12 +104,14 @@ These methods apply to the **whole session**. They are **not** report section
 names. Never brand headings or executive summaries with method labels
 (`Outcome-first`, `Input→Process→Output`, `Make-implicit-explicit`,
 `Single Source of Truth`, `Small-batch`, `Feedback loop`, `Default path first`,
-`Reversible decisions`, `Standardize before automate`, `80/20`, `5W1H`). Never
+`Reversible decisions`, `Standardize before automate`, `Design for handoff`,
+`Evidence over confidence`, `Optimize bottleneck`, `80/20`, `5W1H`). Never
 create `OUTCOME.md` / `IPO.md` / `SMALL_BATCH.md` / `IMPLICIT.md` / `SSOT.md` /
 `FEEDBACK.md` / `HAPPY_PATH.md` / `REVERSIBLE.md` / `AUTOMATE.md` /
-`OVERVIEW.md`. Fold results into real fields (`Goal`, `Desired outcome`, DoD,
-AC, Verify, Facts, Assumptions, Unknowns, Constraints, Trace, Approach,
-Non-goals, Work items, Step ledger, Clarification, Issue triage).
+`HANDOFF.md` / `EVIDENCE.md` / `BOTTLENECK.md` / `OVERVIEW.md`. Fold results
+into real fields (`Goal`, `Desired outcome`, DoD, AC, Verify, Facts,
+Assumptions, Unknowns, Constraints, Trace, Approach, Non-goals, Work items,
+Step ledger, Clarification, Issue triage, Handoff, Dev context).
 
 **Apply in this order when framing:**
 
@@ -130,8 +132,14 @@ Non-goals, Work items, Step ledger, Clarification, Issue triage).
    Type H options + Spike + ADR; Quick Path forbids new Type H locks.
 9. **Standardize before automate** — manual → understand → standardize →
    template → automate; do not CI/bot/skill a process with no checklist.
-10. **5W1H** — only when the outcome/problem is hard or unclear.
-11. **Vital few** — when summarizing or writing memory.
+10. **Design for handoff** — six-question successor test (what / why / run /
+    check / risks / next); no chat-only material context; no opaque green.
+11. **Evidence over confidence** — claim works/done/Ready only with recorded
+    proof (test, screenshot, log, API, metrics, link, confirmed checklist).
+12. **Optimize bottleneck** — relieve the constraint stage first (requirements /
+    coding / review / deploy / decision-wait); do not polish everything.
+13. **5W1H** — only when the outcome/problem is hard or unclear.
+14. **Vital few** — when summarizing or writing memory.
 
 ### Outcome-first (mandatory before Scope / Approach / TASKS / code)
 
@@ -320,10 +328,48 @@ Full normative detail:
 `.agents/thinking/standardize-before-automate.md`
 (source `docs/thinking/standardize-before-automate.md`).
 
+### Design for handoff (mandatory on finished artifacts / cards / PRs)
+
+Successor (or you in six months) must continue from **files alone** — not chat.
+
+**Six questions:** What is this? Why this way? How to run? How to check?
+What risks? What’s next? Land in Goal/Handoff/Dev context/Verify/Risks/PR —
+never a new `HANDOFF.md`. Opaque green (tests pass, nobody understands) fails.
+
+Full normative detail:
+`.agents/thinking/design-for-handoff.md`
+(source `docs/thinking/design-for-handoff.md`).
+
+### Evidence over confidence (mandatory on works / done / Ready / fixed claims)
+
+Prefer proof over assurance. Do **not** claim works / done / Ready / fixed /
+root cause from fluency alone (“chắc chạy rồi”, “should be fine”).
+
+**Evidence kinds:** test result, screenshot, log, API response, metrics, link
+preview, confirmed checklist — recorded in Verify / EXECUTION / REVIEW / DONE /
+PR. Skip = risk + `skipped`/`blocked`, never fake pass. AI confidence ≠ a run.
+
+Full normative detail:
+`.agents/thinking/evidence-over-confidence.md`
+(source `docs/thinking/evidence-over-confidence.md`).
+
+### Optimize bottleneck (mandatory when choosing what to improve)
+
+Do not optimize everything at once. Name the constraint stage — requirements,
+coding, review, deployment, or waiting on decisions — then relieve **that**
+first. Local speed-ups elsewhere often add inventory, not throughput. Automate
+only after a checklist, and prefer automating the bottleneck
+(Standardize before automate).
+
+Full normative detail:
+`.agents/thinking/optimize-bottleneck.md`
+(source `docs/thinking/optimize-bottleneck.md`).
+
 ### Vital few
 
 Prioritize what actually changes the outcome (summaries, memory). Do not title
-anything `80/20` or brand the executive summary with a method suffix.
+anything `80/20` or brand the executive summary with a method suffix. Distinct
+from Optimize bottleneck (stage constraint vs content priority).
 
 ### 5W1H
 
@@ -371,14 +417,17 @@ decoding jargon. If a teammate new to the task cannot act from it, rewrite.
    them; never invent translation noise for ceremony.
 5. Answer method prompts (Outcome-first / IPO / Make-implicit-explicit /
    SSOT / Small-batch / Feedback-loop / Default-path-first /
-   Reversible-decisions / Standardize-before-automate / 5W1H / vital-few) as
+   Reversible-decisions / Standardize-before-automate / Design-for-handoff /
+   Evidence-over-confidence / Optimize-bottleneck / 5W1H / vital-few) as
    trivia sections or method-branded headings; do not ship activity-only
    Goals/ACs, Process without Output, mega-batches without Verify, silent
-   dual-interpretation picks, docs↔code Blocking asks without a visual when the
-   user must see the diff, abstract requirements without a Given→Expect example
-   when Blocking, exception-first Approach/DETAIL before a working L1 path,
-   Type H locks without options/Spike/ADR, or CI/bot/skill automation without
-   a prior checklist/template.
+   dual-interpretation picks, docs↔code Blocking asks without a visual when
+   the user must see the diff, abstract requirements without a Given→Expect
+   example when Blocking, exception-first Approach/DETAIL before a working L1
+   path, Type H locks without options/Spike/ADR, CI/bot/skill automation
+   without a prior checklist/template, finished artifacts with empty Handoff /
+   chat-only context / opaque green, works/done/Ready claims without recorded
+   evidence, or “optimize everything” with no named constraint stage.
 6. Narrate your process (“I will now analyze…”, “As an AI…”).
 7. **Complete-with-questions:** fill Goal / Recommendation / Architecture / …
    while Critical or Blocking items are still unanswered, or dump a long Open
@@ -422,6 +471,10 @@ canonical follow-up → then write Architecture.
 Self-check before saving: *Would I paste this into a PR for a busy reviewer?*
 If no → cut half, name concrete things. If blocked on the user → STOP and ask
 with the right Ask method; do not finish the quiz-as-document.
+Also run the **six-question handoff test** (what / why / run / check / risks /
+next) — `.agents/thinking/design-for-handoff.md`. Opaque green fails.
+Claims of works/done/Ready need **recorded evidence** —
+`.agents/thinking/evidence-over-confidence.md`.
 
 ### Keywords (glossary for discovery reports)
 

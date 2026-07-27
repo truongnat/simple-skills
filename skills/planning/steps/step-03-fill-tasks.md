@@ -123,13 +123,16 @@ Every kept `### T-00x` card **FAILS** unless **all** hold:
     why/rationale comments for non-obvious flow, business rules, invariants, or
     security boundaries; otherwise write `N/A` with a reason.
 11. **Dev context (mandatory):** under each card, a `#### Dev context` block that
-    execution can follow **without re-reading the whole design pack**. Rules:
+    execution **and a future successor** can follow without re-reading the whole
+    design pack (Design for handoff Q1/Q3/Q5). Rules:
     - Extract only from DISCUSSION / BA / design / PLAN / repo evidence.
     - **Never invent** libraries, paths, fields, or contracts. Missing →
       `No specific guidance found.` or list under **Gaps** as unknown/inferred.
     - Every tech fact bullet ends with `[Source: relative-path#§-or-heading]`.
     - Cover: Reuse / Contracts·data / Constraints / Guardrails / Gaps.
     - Keep short and scannable — clarity over verbosity (no essay dumps).
+    - Non-obvious **why** belongs in Constraints/Guardrails or Flow/comment notes
+      (Q2) — not only in chat.
 
 ### WRONG vs CORRECT (card body)
 

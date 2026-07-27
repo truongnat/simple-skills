@@ -49,6 +49,10 @@ If precondition fails → return to step-01 / ask user.
 - **Standardize before automate (when CI/bot/skill in scope):** Do not jump to
   automation without checklist/template phases (manual → standardize →
   template → automate). See `.agents/thinking/standardize-before-automate.md`.
+- **Optimize bottleneck (when choosing focus / tooling):** Name the constraint
+  stage (requirements / coding / review / deploy / decision-wait); Aim Approach
+  and Non-goals at relieving that — do not polish everything. See
+  `.agents/thinking/optimize-bottleneck.md`.
 - Task index in this step may be a **draft** short list of phases; **step-03 will replace it** with the fine-grained ID list from Work inventory. Do not treat a 8–12 epic index as final quality.
 - Do **not** put “write test cases / 6 dimensions matrix” as the first index item before feature work.
 - Do **not** start step-03 until PLAN sections below are filled (no leftover `_(TODO)_` on required fields unless marked blocked).

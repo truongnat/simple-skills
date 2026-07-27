@@ -215,6 +215,11 @@ BAD:  "Cần đảm bảo tính khả thi với hệ thống hiện tại" -->
 
 ## Handoff
 
+<!-- Design for handoff six questions (what/why/run/check/risks/next).
+     Successor continues without chat. .agents/thinking/design-for-handoff.md -->
+
 - **Next skill:** business-analysis / basic-design / planning / research / execution _(pick one)_
-- **Why:** _(one line)_
-- **Blockers before next skill:** _(none or list)_
+- **Why:** _(one line — Q2)_
+- **Verify / evidence so far:** _(or n/a — Q4)_
+- **Blockers / risks before next skill:** _(none or list — Q5)_
+- **How to continue:** _(path to DISCUSSION / facts — Q3 if needed)_

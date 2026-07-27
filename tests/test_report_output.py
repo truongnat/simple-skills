@@ -87,6 +87,15 @@ def test_outcome_first_thinking_method_is_wired() -> None:
     standardize = (
         REPO_ROOT / "docs" / "thinking" / "standardize-before-automate.md"
     ).read_text(encoding="utf-8")
+    handoff = (
+        REPO_ROOT / "docs" / "thinking" / "design-for-handoff.md"
+    ).read_text(encoding="utf-8")
+    evidence = (
+        REPO_ROOT / "docs" / "thinking" / "evidence-over-confidence.md"
+    ).read_text(encoding="utf-8")
+    bottleneck = (
+        REPO_ROOT / "docs" / "thinking" / "optimize-bottleneck.md"
+    ).read_text(encoding="utf-8")
     index = (REPO_ROOT / "docs" / "thinking" / "README.md").read_text(encoding="utf-8")
     catalog = (REPO_ROOT / "docs" / "README.md").read_text(encoding="utf-8")
     assert "Outcome-first" in preamble
@@ -108,6 +117,12 @@ def test_outcome_first_thinking_method_is_wired() -> None:
     assert "thinking/reversible-decisions.md" in preamble
     assert "Standardize before automate" in preamble
     assert "thinking/standardize-before-automate.md" in preamble
+    assert "Design for handoff" in preamble
+    assert "thinking/design-for-handoff.md" in preamble
+    assert "Evidence over confidence" in preamble
+    assert "thinking/evidence-over-confidence.md" in preamble
+    assert "Optimize bottleneck" in preamble
+    assert "thinking/optimize-bottleneck.md" in preamble
     assert "Outcome-first" in policy
     assert "Input → Process → Output" in policy
     assert "Make implicit explicit" in policy
@@ -117,6 +132,9 @@ def test_outcome_first_thinking_method_is_wired() -> None:
     assert "Default path first" in policy
     assert "Reversible decisions" in policy
     assert "Standardize before automate" in policy
+    assert "Design for handoff" in policy
+    assert "Evidence over confidence" in policy
+    assert "Optimize bottleneck" in policy
     assert "WHO" in detail and "WHAT" in detail and "EVIDENCE" in detail
     assert "OUTCOME.md" in detail and "forbidden" in detail.lower()
     assert "Input" in ipo and "Process" in ipo and "Output" in ipo
@@ -141,11 +159,21 @@ def test_outcome_first_thinking_method_is_wired() -> None:
     assert "manual" in standardize.lower() and "template" in standardize.lower()
     assert "AUTOMATE.md" in standardize
     assert "accelerated mess" in standardize.lower() or "messy process" in standardize.lower()
+    assert "six-question" in handoff.lower() or "Six-question" in handoff
+    assert "HANDOFF.md" in handoff
+    assert "Q1" in handoff and "Q6" in handoff
+    assert "confidence" in evidence.lower() and "EVIDENCE.md" in evidence
+    assert "test" in evidence.lower() and "screenshot" in evidence.lower()
+    assert "bottleneck" in bottleneck.lower() and "BOTTLENECK.md" in bottleneck
+    assert "decision-wait" in bottleneck.lower() or "Waiting on decisions" in bottleneck
     assert "outcome-first.md" in index and "input-process-output.md" in index
     assert "make-implicit-explicit.md" in index and "single-source-of-truth.md" in index
     assert "small-batch.md" in index and "feedback-loop.md" in index
     assert "default-path-first.md" in index and "reversible-decisions.md" in index
     assert "standardize-before-automate.md" in index
+    assert "design-for-handoff.md" in index
+    assert "evidence-over-confidence.md" in index
+    assert "optimize-bottleneck.md" in index
     assert "thinking/" in catalog
 
 

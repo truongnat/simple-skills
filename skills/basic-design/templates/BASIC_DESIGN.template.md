@@ -80,4 +80,12 @@ _(TODO)_
 
 ## Handoff
 
+<!-- Design for handoff (six questions): Next + Verify pointer + Risks/open +
+     Why if non-obvious. Successor must continue without chat.
+     .agents/thinking/design-for-handoff.md — never create HANDOFF.md -->
+
 Next skill: `detail-design` / `research` / `investigate`
+
+- Verify: _(or see Doc reality / Goal)_
+- Risks / open: _(or none)_
+- Why (if needed): _(or see Clarification)_

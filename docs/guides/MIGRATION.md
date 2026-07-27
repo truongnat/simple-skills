@@ -31,6 +31,9 @@ Breaking or behavior changes hosts should know after reinstall.
 | Default path first Thinking method | L1 happy → L2 validation → L3 errors → L4 rare; name edges early, deepen late; normative `.agents/thinking/default-path-first.md`; no `HAPPY_PATH.md` |
 | Reversible decisions Thinking method | R/H/U by reverse-cost; Type R try-and-measure; Type H Spike+ADR; Quick forbids new Type H; normative `.agents/thinking/reversible-decisions.md`; no `REVERSIBLE.md` |
 | Standardize before automate Thinking method | Manual → standardize → template → automate; no CI/bot/skill without checklist; normative `.agents/thinking/standardize-before-automate.md`; no `AUTOMATE.md` |
+| Design for handoff Thinking method | Six-question successor test (what/why/run/check/risks/next); normative `.agents/thinking/design-for-handoff.md`; no `HANDOFF.md` |
+| Evidence over confidence Thinking method | Claim works/done/Ready only with recorded proof; normative `.agents/thinking/evidence-over-confidence.md`; no `EVIDENCE.md` |
+| Optimize bottleneck Thinking method | Relieve constraint stage first (requirements/coding/review/deploy/decision-wait); normative `.agents/thinking/optimize-bottleneck.md`; no `BOTTLENECK.md` |
 | Docs source taxonomy | Source tree under `docs/{guides,policy,thinking,conventions,config,examples}/`; install still flattens most files into `.agents/` (Thinking stays `.agents/thinking/`). See `docs/README.md`. |
 | Multi-CLI Phase 1 | `detect_agents.py`, `RULES_BUNDLE.template.md`, `build_context --pack --check`, `delegate_worker.py` (Rules gate; dry-run); settings `rules.agents.*` |
 

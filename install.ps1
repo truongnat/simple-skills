@@ -84,7 +84,7 @@ function Invoke-Doctor {
 
     foreach ($f in @(
             "START_HERE.md", "WHAT_NEXT.md", "SKILL_PREAMBLE.md",
-            "AGENT_POLICY.md", "settings.yaml"
+            "AGENT_POLICY.md", "settings.yaml", "BA_SKILLS.md"
         )) {
         if (Test-Path (Join-Path $Target.Path ".agents/$f") -PathType Leaf) {
             Write-Host "kit_${f}=yes"
@@ -287,6 +287,7 @@ function Invoke-Install {
     Copy-Item -Path (Join-Path $Source "docs/START_HERE.md") -Destination ".agents/START_HERE.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/WHAT_NEXT.md") -Destination ".agents/WHAT_NEXT.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/MIGRATION.md") -Destination ".agents/MIGRATION.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/BA_SKILLS.md") -Destination ".agents/BA_SKILLS.md" -Force
     $examplesSource = Join-Path $Source "docs/examples"
     if (Test-Path $examplesSource -PathType Container) {
         $examplesDest = Join-Path ".agents" "examples"

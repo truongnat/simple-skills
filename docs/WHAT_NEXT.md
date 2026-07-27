@@ -18,7 +18,14 @@ Situation → skill. Prefer the smallest path that fits.
 | Review a PR/diff | — | `review-pr` |
 | Write tests / evidence | — | `tester` |
 | Project wiki / ADR set | — | `docs` |
+| PRD / BRD / URD / SRS / roadmap / discover | BA | `specify` (modes) — see `BA_SKILLS.md` |
+| Sequence / activity / ERD / BPMN-like | BA | `biz-model` |
+| Usecase / userstory / AC GWT | BA | `story-spec` (or `business-analysis`) |
+| Missing flows vs feature | BA | `gap-analysis` |
+| Happy/error/edge journey | BA | `user-flow` |
+| Partner API summary / field map | BA | `api-ba` |
 | Office files (xlsx/docx/…) | — | install `--profile office` |
+| BA kit bundle | — | install `--profile ba` |
 | Excel 設計書 / 方眼紙 → MD/HTML | — | `excel-doc-convert` (office profile) |
 | Don’t know | — | stay on **Quick** unless blocked; then upgrade Lite/Full |
 

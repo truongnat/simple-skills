@@ -17,7 +17,7 @@ sk uninstall --yes
 ```
 
 Also: `uv tool install simple-skills`.  
-Profiles: `sk install --profile office` · `frontend` · `backend` · `all` (default `core`).  
+Profiles: `sk install --profile office` · `ba` · `frontend` · `backend` · `all` (default `core`).  
 Then run **`init`**. Reinstall keeps `settings.yaml`.
 
 Until the package is on PyPI (or for a fork):
@@ -59,6 +59,7 @@ Defaults in `AGENT_POLICY.md`.
 | [AGENT_POLICY](docs/AGENT_POLICY.md) | Full policy |
 | [AGENT_WORK](docs/AGENT_WORK.md) | Kit vs Work + git ownership |
 | [MIGRATION](docs/MIGRATION.md) | Host upgrade notes |
+| [BA_SKILLS](docs/BA_SKILLS.md) | 51 BA aliases → consolidated skills |
 | [examples](docs/examples/README.md) | Good/bad session shapes |
 
 ## Dev checks

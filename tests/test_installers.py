@@ -22,6 +22,7 @@ INSTALLER_DOCS = (
     "START_HERE.md",
     "WHAT_NEXT.md",
     "MIGRATION.md",
+    "BA_SKILLS.md",
     "settings.yaml",
 )
 
@@ -49,6 +50,7 @@ def make_source(tmp_path: Path) -> Path:
     (docs / "START_HERE.md").write_text("start\n", encoding="utf-8")
     (docs / "WHAT_NEXT.md").write_text("what next\n", encoding="utf-8")
     (docs / "MIGRATION.md").write_text("migration\n", encoding="utf-8")
+    (docs / "BA_SKILLS.md").write_text("ba skills map\n", encoding="utf-8")
     (docs / "gitignore.agent-work.snippet").write_text(
         "# snippet\n.agent-work/\n", encoding="utf-8"
     )

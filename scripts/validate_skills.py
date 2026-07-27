@@ -594,10 +594,35 @@ def main() -> int:
         "review-pr",
         "tester",
         "excel-doc-convert",
+        "specify",
+        "biz-model",
+        "story-spec",
+        "gap-analysis",
+        "user-flow",
+        "api-ba",
     ):
         skill_text = (SKILLS_ROOT / life / "SKILL.md").read_text(encoding="utf-8")
         if "session.sh commit" not in skill_text:
             errors.append(f"{life} SKILL.md missing session.sh commit checklist")
+    if not (ROOT / "docs" / "BA_SKILLS.md").is_file():
+        errors.append("docs/BA_SKILLS.md missing (BA alias map)")
+    else:
+        ba_doc = (ROOT / "docs" / "BA_SKILLS.md").read_text(encoding="utf-8")
+        for needle in ("specify", "biz-model", "story-spec", "gap-analysis", "user-flow", "api-ba"):
+            if needle not in ba_doc:
+                errors.append(f"BA_SKILLS.md missing consolidated skill '{needle}'")
+    for ba_skill, tmpl in (
+        ("specify", "templates/PRD.template.md"),
+        ("biz-model", "templates/MODEL.template.md"),
+        ("story-spec", "templates/AC.template.md"),
+        ("gap-analysis", "templates/GAP.template.md"),
+        ("user-flow", "templates/USER_FLOW.template.md"),
+        ("api-ba", "templates/API_BA.template.md"),
+    ):
+        if not (SKILLS_ROOT / ba_skill / tmpl).is_file():
+            errors.append(f"{ba_skill} missing {tmpl}")
+    if "ba" not in json.loads(PROFILES_PATH.read_text(encoding="utf-8")).get("profiles", {}):
+        errors.append("install-profiles.json missing 'ba' profile")
     if "Wiki exception" not in (ROOT / "docs" / "SKILL_PREAMBLE.md").read_text(
         encoding="utf-8"
     ):
@@ -619,6 +644,8 @@ def main() -> int:
     install_sh = (ROOT / "install.sh").read_text(encoding="utf-8")
     if "START_HERE.md" not in install_sh:
         errors.append("install.sh must copy START_HERE.md")
+    if "BA_SKILLS.md" not in install_sh:
+        errors.append("install.sh must copy BA_SKILLS.md")
     if "cmd_uninstall" not in install_sh or "cmd_doctor" not in install_sh:
         errors.append("install.sh must expose uninstall and doctor commands")
     i_entry = ROOT / "i"

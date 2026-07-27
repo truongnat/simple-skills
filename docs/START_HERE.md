@@ -37,6 +37,8 @@ python .agents/tools/session/lint_artifacts.py
 Remove later: `sk uninstall --yes` (keeps `.agent-work/`; add `--purge-work` to delete sessions).
 
 5. Stuck? Open [WHAT_NEXT.md](./WHAT_NEXT.md).
+   BA aliases (PRD/diagrams/stories/…): [BA_SKILLS.md](./BA_SKILLS.md) —
+   install with `sk install --profile ba`.
 
 ## Must / Should / Reference
 

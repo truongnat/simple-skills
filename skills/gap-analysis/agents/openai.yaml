@@ -1,0 +1,15 @@
+display_name: "Gap analysis"
+short_description: "Find missing business flows, rules, AC, or capabilities versus a feature/spec."
+default_prompt: "Use $gap-analysis to compare expected vs documented coverage and write GAP.md."
+required_input: "Feature/epic under review; BA/PRD/SRS/stories/AC/models; optional UI/code evidence."
+required_output: "GAP.md with gaps table, severities, open questions, handoff."
+note_important: "Do NOT invent gaps without expectation source. Confirm-first on Blocking gaps."
+artifacts:
+  GAP.md:
+    required: true
+    schema:
+      executive_summary: { type: array, required: true }
+      developer_overview: { type: object, required: true }
+      gaps: { type: array, required: true }
+      open_questions: { type: array, required: true }
+      handoff: { type: string, required: true }

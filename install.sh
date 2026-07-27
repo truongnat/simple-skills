@@ -136,7 +136,7 @@ cmd_doctor() {
     ok=1
   fi
 
-  for f in START_HERE.md WHAT_NEXT.md SKILL_PREAMBLE.md AGENT_POLICY.md settings.yaml; do
+  for f in START_HERE.md WHAT_NEXT.md SKILL_PREAMBLE.md AGENT_POLICY.md settings.yaml BA_SKILLS.md; do
     if [ -f "${TARGET}/.agents/$f" ]; then
       printf 'kit_%s=yes\n' "$f"
     else
@@ -340,6 +340,7 @@ cmd_install() {
   cp -f "${SOURCE}/docs/START_HERE.md" "${TARGET}/.agents/START_HERE.md"
   cp -f "${SOURCE}/docs/WHAT_NEXT.md" "${TARGET}/.agents/WHAT_NEXT.md"
   cp -f "${SOURCE}/docs/MIGRATION.md" "${TARGET}/.agents/MIGRATION.md"
+  cp -f "${SOURCE}/docs/BA_SKILLS.md" "${TARGET}/.agents/BA_SKILLS.md"
   if [ -d "${SOURCE}/docs/examples" ]; then
     rm -rf "${TARGET}/.agents/examples"
     cp -R "${SOURCE}/docs/examples" "${TARGET}/.agents/examples"

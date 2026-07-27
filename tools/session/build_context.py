@@ -117,6 +117,12 @@ OUTPUT_HINTS: dict[str, str] = {
     "basic-design": "Write/update `BASIC_DESIGN{ext}` in the active session only.",
     "detail-design": "Write/update `DETAIL_DESIGN{ext}` in the active session only.",
     "research": "Write/update `RESEARCH{ext}` in the active session only.",
+    "specify": "Write one mode artifact (PRD/ROADMAP/DISCOVER/URD/BRD/PRD_EPIC/SPEC_SRS) in the active session only.",
+    "biz-model": "Write/update `MODEL{ext}` in the active session only.",
+    "story-spec": "Write one of USECASE/USER_STORIES/AC in the active session only.",
+    "gap-analysis": "Write/update `GAP{ext}` in the active session only.",
+    "user-flow": "Write/update `USER_FLOW{ext}` in the active session only.",
+    "api-ba": "Write/update `API_BA{ext}` in the active session only.",
     "default": "Write only the session artifacts named in Mission / Output contract.",
 }
 

@@ -14,7 +14,13 @@
     "investigate",
     "research",
     "review-pr",
-    "tester"
+    "tester",
+    "specify",
+    "biz-model",
+    "story-spec",
+    "gap-analysis",
+    "user-flow",
+    "api-ba"
   ],
   "step_skills": {
     "brainstorming": [
@@ -55,6 +61,12 @@
     {"name": "review-pr", "kind": "workflow"},
     {"name": "tester", "kind": "workflow"},
     {"name": "docs", "kind": "workflow"},
+    {"name": "specify", "kind": "workflow"},
+    {"name": "biz-model", "kind": "workflow"},
+    {"name": "story-spec", "kind": "workflow"},
+    {"name": "gap-analysis", "kind": "workflow"},
+    {"name": "user-flow", "kind": "workflow"},
+    {"name": "api-ba", "kind": "workflow"},
     {"name": "xlsx", "kind": "office"},
     {"name": "excel-doc-convert", "kind": "office"},
     {"name": "docx", "kind": "office"},
@@ -80,7 +92,13 @@
     "review-pr",
     "tester",
     "docs",
-    "excel-doc-convert"
+    "excel-doc-convert",
+    "specify",
+    "biz-model",
+    "story-spec",
+    "gap-analysis",
+    "user-flow",
+    "api-ba"
   ],
   "contract_table_fields": ["Inputs", "Outputs", "Safety"],
   "contract_requires_artifacts_section": true,

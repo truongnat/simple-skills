@@ -24,6 +24,18 @@
         "docs"
       ]
     },
+    "ba": {
+      "description": "core + consolidated BA skills (specify, diagrams, stories, gap, user-flow, api-ba)",
+      "includes": ["core"],
+      "skills": [
+        "specify",
+        "biz-model",
+        "story-spec",
+        "gap-analysis",
+        "user-flow",
+        "api-ba"
+      ]
+    },
     "office": {
       "description": "core + first-party office Python skills and shared helpers",
       "includes": ["core"],

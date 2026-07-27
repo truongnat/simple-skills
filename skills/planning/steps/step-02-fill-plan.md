@@ -42,6 +42,10 @@ If precondition fails → return to step-01 / ask user.
 - **Default path first (mandatory):** Order Approach / later cards L1 happy →
   L2 validation → L3 errors → L4 rare. Name edges in Non-goals/CAP; do not lead
   with an exception encyclopedia. See `.agents/thinking/default-path-first.md`.
+- **Reversible decisions (mandatory):** Classify material decisions R/H/U.
+  Type H (public API, core schema, auth, large infra) need options + Spike/ADR
+  before Ready; do not invent Type H locks in execution. See
+  `.agents/thinking/reversible-decisions.md`.
 - Task index in this step may be a **draft** short list of phases; **step-03 will replace it** with the fine-grained ID list from Work inventory. Do not treat a 8–12 epic index as final quality.
 - Do **not** put “write test cases / 6 dimensions matrix” as the first index item before feature work.
 - Do **not** start step-03 until PLAN sections below are filled (no leftover `_(TODO)_` on required fields unless marked blocked).

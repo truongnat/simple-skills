@@ -54,7 +54,7 @@ security, data, or handoff if interpreted differently.
 | **Business rule** | Normative “system must …” (domain/policy) | Yes, once explicit | Facts (if sourced), Trace, Constraints, AC |
 | **Preference** | Soft want (“nice if…”) | No unless promoted to Goal/AC | Non-goals / deferred Unknown |
 | **Unknown** | Missing knowledge | No — resolve or block | Unknowns; Issue triage |
-| **Decision** | Choice among alternatives | Yes after recorded | Issue triage + Clarification answer |
+| **Decision** | Choice among alternatives | Yes after recorded | Issue triage + Clarification (+ ADR if Reversibility=H) |
 | **Owner** | Who is accountable to answer/decide/accept | Meta | Unknowns.Owner; Issue triage.Owner |
 | **Deadline / timebox** | When this session/slice must stop or cut | Yes (forces scope) | Constraints |
 | **Edge case** | Non-happy path that still belongs in scope or Out of scope | Yes if in scope | Capability gaps; AC; Risks; Out of scope |

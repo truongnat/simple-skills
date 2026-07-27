@@ -39,11 +39,12 @@
 ## Pre-planning decision gate
 
 <!-- Inherit unresolved items from DISCUSSION/BA/design. Do not fill strategy
-while a blocking row is open. -->
+while a blocking row is open. Reversibility R/H/U — Type H needs options/Spike/ADR
+before Ready (.agents/thinking/reversible-decisions.md). -->
 
-| Issue ID/source | Issue / decision | Severity | Clarity | Blocking? | Visual need/format | Resolution evidence | Status |
-|---|---|---|---|---|---|---|---|
-| _(TODO)_ | _(TODO — one concrete decision)_ | Critical / High / Medium / Low | Clear / Partial / Unknown | Yes / No | none / text / table / diagram / html-recommended | _(user answer/path)_ | Open / Resolved |
+| Issue ID/source | Issue / decision | Severity | Clarity | Blocking? | Reversibility | Visual need/format | Resolution evidence | Status |
+|---|---|---|---|---|---|---|---|---|
+| _(TODO)_ | _(TODO — one concrete decision)_ | Critical / High / Medium / Low | Clear / Partial / Unknown | Yes / No | R / H / U | none / text / table / diagram / html-recommended | _(user answer/path)_ | Open / Resolved |
 
 ### Questions requiring user input
 

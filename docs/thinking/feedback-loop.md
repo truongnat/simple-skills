@@ -194,8 +194,9 @@ Apply even before Small-batch cuts coding cards.
 5. Small-batch                → size completable units + coding Verify slots
 6. Feedback loop              → modality + latency×risk for each slot / stage
 7. Default path first         → L1→L2→L3→L4 depth order
-8. 5W1H (if still unclear)    → diagnose; fold into real sections
-9. Vital few                  → summarize only what changes the outcome
+8. Reversible decisions       → R/H/U ceremony by reverse-cost
+9. 5W1H (if still unclear)    → diagnose; fold into real sections
+10. Vital few                 → summarize only what changes the outcome
 ```
 
 **Early application:** Example / See / Compare gates in discovery and design
@@ -207,6 +208,7 @@ Example first (Default path first); add validation/error examples as L2/L3.
 | --- | --- |
 | Small-batch | Size + coding rhythm; Feedback loop chooses signal quality/timing |
 | Default path first | Order which path layer to signal/deepen first (L1 before rare) |
+| Reversible decisions | How heavy before **lock**; Spike often serves Type H |
 | Outcome-first | EVIDENCE names what Run/See must hit |
 | Make-explicit | Surfaces *that* a signal is needed; Feedback loop picks *how* |
 | Confirm-first | Transport for Ask / pairs with Example/See |

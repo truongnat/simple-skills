@@ -32,7 +32,7 @@ else **cites or projects** — it must not silently become a competing truth.
 | Requirement / AC | Jira / Linear / story-spec / BA artifact the project named |
 | API contract | OpenAPI / proto / contract tests golden |
 | Database schema | Migrations (or schema-as-code the repo uses) |
-| Technical decision | ADR (or recorded Decision in Clarification + linked ADR) |
+| Technical decision | ADR for **Type H** (hard-to-reverse); Clarification for Type R — see `.agents/thinking/reversible-decisions.md` |
 | Progress | **`TASKS.md` + `session.sh status`** (kit law — no `OVERVIEW.md`) |
 | Skill contract (kit) | `SKILL.md` (not `openai.yaml`) |
 

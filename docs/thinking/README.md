@@ -3,7 +3,7 @@
 Session-wide ways of working — **not** report section titles. Never brand
 headings or create method-named artifacts (`OUTCOME.md`, `IPO.md`,
 `SMALL_BATCH.md`, `IMPLICIT.md`, `SSOT.md`, `FEEDBACK.md`, `HAPPY_PATH.md`,
-`5W1H.md`, …).
+`REVERSIBLE.md`, `5W1H.md`, …).
 
 Ops rules (short): `.agents/SKILL_PREAMBLE.md` → Thinking methods  
 Policy summary: `.agents/AGENT_POLICY.md` → Thinking methods  
@@ -19,8 +19,9 @@ Source ops/policy: `docs/policy/SKILL_PREAMBLE.md`, `docs/policy/AGENT_POLICY.md
 5. Small-batch                → size completable units + coding Verify slots
 6. Feedback loop              → modality + latency×risk (Example/See/Run/Spike)
 7. Default path first         → L1 happy → L2 validation → L3 errors → L4 rare
-8. 5W1H (if unclear)          → diagnose; fold into real sections
-9. Vital few                  → prioritize in summaries / memory
+8. Reversible decisions       → R/H/U ceremony by reverse-cost
+9. 5W1H (if unclear)          → diagnose; fold into real sections
+10. Vital few                 → prioritize in summaries / memory
 ```
 
 ## Methods in this folder
@@ -34,13 +35,14 @@ Source ops/policy: `docs/policy/SKILL_PREAMBLE.md`, `docs/policy/AGENT_POLICY.md
 | **Small-batch** | [small-batch.md](./small-batch.md) | `.agents/thinking/small-batch.md` |
 | **Feedback loop** | [feedback-loop.md](./feedback-loop.md) | `.agents/thinking/feedback-loop.md` |
 | **Default path first** | [default-path-first.md](./default-path-first.md) | `.agents/thinking/default-path-first.md` |
+| **Reversible decisions** | [reversible-decisions.md](./reversible-decisions.md) | `.agents/thinking/reversible-decisions.md` |
 
 Vital few and 5W1H are fully specified in policy/preamble today (short methods).
 When a method needs staff-engineer detail, add a file here and link it from
 preamble + this index — do **not** invent a separate skill.
 
-**Hybrid C:** Small-batch = unit size + coding Verify rhythm; Feedback loop =
-when/which signal by latency×risk. **Default path first** = deepen L1→L2→L3→L4
-(name edges early via Make-explicit; implement rare late). Coding-card hard
-size stays in `planning/steps/step-03-fill-tasks.md` §B–§C. Confirm-first stays
-in `SKILL_PREAMBLE.md`; SSOT owns canonical stores + visual docs↔code conflicts.
+**Hybrid C:** Small-batch = size + coding Verify; Feedback loop = signal
+modality; Default path first = L1→L4 depth; Reversible decisions = ceremony by
+reverse-cost (R try-and-measure / H Spike+ADR). High-impact ≠ hard-to-reverse.
+Coding-card hard size stays in planning step-03 §B–§C. Confirm-first in
+`SKILL_PREAMBLE.md`; SSOT owns ADR home for Type H.

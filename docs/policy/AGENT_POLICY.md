@@ -83,8 +83,8 @@ decision bullets) then a **Developer overview** panel **inside that same
 artifact**. Do **not** create a separate `OVERVIEW.md` landing page — it goes
 stale. Progress truth is `TASKS.md` + `session.sh status`. Do **not** name
 sections after methods (`Outcome-first`, `IPO`, `Make-implicit-explicit`,
-`SSOT`, `Small-batch`, `Feedback loop`, `Default path first`, `80/20`, `5W1H`).
-Chart when useful; skip filler.
+`SSOT`, `Small-batch`, `Feedback loop`, `Default path first`,
+`Reversible decisions`, `80/20`, `5W1H`). Chart when useful; skip filler.
 
 **Thinking methods (session-wide — not report titles):**
 
@@ -112,6 +112,9 @@ Chart when useful; skip filler.
 - **Default path first:** deepen L1 happy → L2 validation → L3 errors → L4
   rare; name edges early, implement rare late; thin security/money guards only
   when Blocking. Full rules: `.agents/thinking/default-path-first.md`.
+- **Reversible decisions:** class R/H/U by reverse-cost; Type R try-and-measure;
+  Type H options + Spike + ADR; High-impact ≠ hard-to-reverse; Quick forbids
+  new Type H locks. Full rules: `.agents/thinking/reversible-decisions.md`.
 - **Vital few (Pareto / “80/20”):** across the whole session, keep attention on
   the small set of facts, risks, and decisions that change the outcome. Use it
   when prioritizing, summarizing, and writing memory — never as a heading or
@@ -354,7 +357,7 @@ Do not run Full ceremony on tiny work.
 
 | Path | When | Flow |
 | --- | --- | --- |
-| **Quick** | Single clear fix/change; scope fits ≤3 TASK cards; no open product decisions | Skill **`quick-fix`** → sync → execution → review → done. Skip BA + basic/detail design + Spec quality matrices. Lint fails if BA/design files appear. |
+| **Quick** | Single clear fix/change; scope fits ≤3 TASK cards; no open product decisions; **no new Type H locks** (public API / core schema / auth architecture — Reversible decisions) | Skill **`quick-fix`** → sync → execution → review → done. Skip BA + basic/detail design + Spec quality matrices. Lint fails if BA/design files appear. |
 | **Lite** | Small feature; some unknowns but not enterprise design | Brainstorming Lite (still steps, short sections) → optional skip BA/design → planning Lite → sync → execution → … |
 | **Full** | Multi-surface, unclear product, contracts/architecture needed | Full lifecycle: brainstorming → (BA) → design → planning → sync → execution → review → done |
 
@@ -362,7 +365,9 @@ Rules:
 
 - Quick/Lite still require **Readable writing**, session discipline, and honest status.
 - Quick still needs TASK cards with **Dev context** when code changes (even 1 card).
-- If Quick hits a blocking unknown or Spec mismatch → **upgrade** to Lite/Full; do not invent.
+- If Quick hits a blocking unknown, Spec mismatch, or **Type H** decision
+  (hard-to-reverse: public API / core schema / auth / large infra) → **upgrade**
+  to Lite/Full; do not invent. See `.agents/thinking/reversible-decisions.md`.
 
 ### Session discipline (mandatory)
 
@@ -602,14 +607,14 @@ traceability, test data, or verification evidence.
 
 These are **ways of working**, not section names or report titles. Do not brand
 artifacts with method labels (`Outcome-first`, `IPO`, `Make-implicit-explicit`,
-`SSOT`, `Small-batch`, `Feedback loop`, `Default path first`, `80/20`, `5W1H`).
-Do not create `OUTCOME.md` / `IPO.md` / `SMALL_BATCH.md` / `IMPLICIT.md` /
-`SSOT.md` / `FEEDBACK.md` / `HAPPY_PATH.md`. Fold method results into existing
-fields only.
+`SSOT`, `Small-batch`, `Feedback loop`, `Default path first`,
+`Reversible decisions`, `80/20`, `5W1H`). Do not create `OUTCOME.md` / `IPO.md` /
+`SMALL_BATCH.md` / `IMPLICIT.md` / `SSOT.md` / `FEEDBACK.md` / `HAPPY_PATH.md` /
+`REVERSIBLE.md`. Fold method results into existing fields only.
 
 **Framing order:** Outcome-first → Input→Process→Output → Make-implicit-explicit
 → Single Source of Truth → Small-batch → Feedback loop → Default path first →
-(5W1H if unclear) → vital few when summarizing/memory.
+Reversible decisions → (5W1H if unclear) → vital few when summarizing/memory.
 
 1. **Outcome-first (mandatory):** Start from the observable end state, not the
    task list. Every `Goal`, `Desired outcome`, DoD item, and task `AC` must
@@ -703,12 +708,21 @@ fields only.
    `.agents/thinking/default-path-first.md`
    (source `docs/thinking/default-path-first.md`).
 
-8. **Vital few (Pareto):** Hold the whole session in mind and surface only what
+8. **Reversible decisions (mandatory when locking choices):** Classify
+   reverse-cost **R** / **H** / **U**. Type R: try-and-measure. Type H: options
+   + Spike when needed + ADR (SSOT). Type U: treat as H until proven R.
+   High-impact ≠ hard-to-reverse. Path Quick forbids new Type H locks.
+
+   **Normative detail:**
+   `.agents/thinking/reversible-decisions.md`
+   (source `docs/thinking/reversible-decisions.md`).
+
+9. **Vital few (Pareto):** Hold the whole session in mind and surface only what
    changes the decision or outcome. Executive summaries and memory entries
    should reflect that prioritization — without a heading called `80/20` or
    branded titles like “Executive summary” plus a method suffix.
 
-9. **5W1H:** When the problem is hard, ambiguous, or the feature is unclear /
+10. **5W1H:** When the problem is hard, ambiguous, or the feature is unclear /
    wrong / underspecified, silently check What / Why / Who / When / Where / How
    against the **session context** (goal, constraints, evidence, unknowns). Put
    the useful answers into the real sections (facts, risks, Spec quality,

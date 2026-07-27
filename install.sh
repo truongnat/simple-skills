@@ -194,6 +194,13 @@ cmd_doctor() {
     ok=1
   fi
 
+  if [ -f "${TARGET}/.agents/thinking/reversible-decisions.md" ]; then
+    printf 'kit_thinking/reversible-decisions.md=yes\n'
+  else
+    printf 'kit_thinking/reversible-decisions.md=missing\n'
+    ok=1
+  fi
+
   if [ -f "${TARGET}/AGENTS.md" ]; then
     printf 'root_AGENTS.md=yes\n'
   else
@@ -396,6 +403,7 @@ cmd_install() {
   cp -f "${SOURCE}/docs/thinking/small-batch.md" "${TARGET}/.agents/thinking/small-batch.md"
   cp -f "${SOURCE}/docs/thinking/feedback-loop.md" "${TARGET}/.agents/thinking/feedback-loop.md"
   cp -f "${SOURCE}/docs/thinking/default-path-first.md" "${TARGET}/.agents/thinking/default-path-first.md"
+  cp -f "${SOURCE}/docs/thinking/reversible-decisions.md" "${TARGET}/.agents/thinking/reversible-decisions.md"
   cp -f "${SOURCE}/docs/thinking/README.md" "${TARGET}/.agents/thinking/README.md"
   cp -f "${SOURCE}/docs/policy/AGENT_WORK.md" "${TARGET}/.agents/AGENT_WORK.md"
   cp -f "${SOURCE}/docs/guides/START_HERE.md" "${TARGET}/.agents/START_HERE.md"

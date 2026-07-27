@@ -104,11 +104,12 @@ These methods apply to the **whole session**. They are **not** report section
 names. Never brand headings or executive summaries with method labels
 (`Outcome-first`, `Input→Process→Output`, `Make-implicit-explicit`,
 `Single Source of Truth`, `Small-batch`, `Feedback loop`, `Default path first`,
-`80/20`, `5W1H`). Never create `OUTCOME.md` / `IPO.md` / `SMALL_BATCH.md` /
-`IMPLICIT.md` / `SSOT.md` / `FEEDBACK.md` / `HAPPY_PATH.md` / `OVERVIEW.md`.
-Fold results into real fields (`Goal`, `Desired outcome`, DoD, AC, Verify,
-Facts, Assumptions, Unknowns, Constraints, Trace, Approach, Non-goals, Work
-items, Step ledger, Clarification).
+`Reversible decisions`, `80/20`, `5W1H`). Never create `OUTCOME.md` / `IPO.md` /
+`SMALL_BATCH.md` / `IMPLICIT.md` / `SSOT.md` / `FEEDBACK.md` / `HAPPY_PATH.md` /
+`REVERSIBLE.md` / `OVERVIEW.md`. Fold results into real fields (`Goal`,
+`Desired outcome`, DoD, AC, Verify, Facts, Assumptions, Unknowns, Constraints,
+Trace, Approach, Non-goals, Work items, Step ledger, Clarification, Issue
+triage).
 
 **Apply in this order when framing:**
 
@@ -125,8 +126,10 @@ items, Step ledger, Clarification).
    Compare) by latency×risk; apply Example/See early in discovery/design too.
 7. **Default path first** — deepen L1 happy → L2 validation → L3 errors → L4
    rare; name edges early, implement rare late (thin security/money guards OK).
-8. **5W1H** — only when the outcome/problem is hard or unclear.
-9. **Vital few** — when summarizing or writing memory.
+8. **Reversible decisions** — class R/H/U by reverse-cost; Type R try-and-measure;
+   Type H options + Spike + ADR; Quick Path forbids new Type H locks.
+9. **5W1H** — only when the outcome/problem is hard or unclear.
+10. **Vital few** — when summarizing or writing memory.
 
 ### Outcome-first (mandatory before Scope / Approach / TASKS / code)
 
@@ -284,6 +287,24 @@ Full normative detail:
 `.agents/thinking/default-path-first.md`
 (source `docs/thinking/default-path-first.md`).
 
+### Reversible decisions (mandatory when locking choices)
+
+Match ceremony to **reverse-cost** — not every decision needs the same rigor.
+
+| Class | Ceremony |
+| --- | --- |
+| **R** reversible | Decide fast → try → measure; no ADR spam |
+| **H** hard-to-reverse | Options + Spike/POC when needed + record why (ADR) |
+| **U** unknown | Treat as **H** until proven **R** |
+
+**High-impact ≠ hard-to-reverse** (two axes). Path=Quick forbids **new** Type H
+locks (public API / core schema / auth architecture) — upgrade Path instead.
+Issue triage: `Reversibility` = `R`\|`H`\|`U`.
+
+Full normative detail:
+`.agents/thinking/reversible-decisions.md`
+(source `docs/thinking/reversible-decisions.md`).
+
 ### Vital few
 
 Prioritize what actually changes the outcome (summaries, memory). Do not title
@@ -334,12 +355,14 @@ decoding jargon. If a teammate new to the task cannot act from it, rewrite.
 4. Dump bilingual labels (JP/EN/VN) unless the **domain artifact** requires
    them; never invent translation noise for ceremony.
 5. Answer method prompts (Outcome-first / IPO / Make-implicit-explicit /
-   SSOT / Small-batch / Feedback-loop / Default-path-first / 5W1H / vital-few)
-   as trivia sections or method-branded headings; do not ship activity-only
-   Goals/ACs, Process without Output, mega-batches without Verify, silent
-   dual-interpretation picks, docs↔code Blocking asks without a visual when the
-   user must see the diff, abstract requirements without a Given→Expect example
-   when Blocking, or exception-first Approach/DETAIL before a working L1 path.
+   SSOT / Small-batch / Feedback-loop / Default-path-first /
+   Reversible-decisions / 5W1H / vital-few) as trivia sections or method-branded
+   headings; do not ship activity-only Goals/ACs, Process without Output,
+   mega-batches without Verify, silent dual-interpretation picks, docs↔code
+   Blocking asks without a visual when the user must see the diff, abstract
+   requirements without a Given→Expect example when Blocking,
+   exception-first Approach/DETAIL before a working L1 path, or Type H locks
+   (public API/schema/auth) without options/Spike/ADR.
 6. Narrate your process (“I will now analyze…”, “As an AI…”).
 7. **Complete-with-questions:** fill Goal / Recommendation / Architecture / …
    while Critical or Blocking items are still unanswered, or dump a long Open

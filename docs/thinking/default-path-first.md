@@ -157,13 +157,15 @@ Default-path:   don’t implement the edge encyclopedia before L1 works
 5. Small-batch                → size units
 6. Feedback loop              → early signals (happy Example first)
 7. Default path first         → order L1→L2→L3→L4 depth
-8. 5W1H (if unclear)
-9. Vital few                  → which L1 outcomes stay in summaries
+8. Reversible decisions       → R/H/U ceremony by reverse-cost
+9. 5W1H (if unclear)
+10. Vital few                 → which L1 outcomes stay in summaries
 ```
 
 | Method | vs Default path first |
 | --- | --- |
 | Make-explicit | Write the edge; this method orders when to deepen it |
+| Reversible decisions | Type H thin guards early OK; still not exception encyclopedia |
 | Vital few | Chooses important Outputs; this method sequences path layers |
 | Small-batch | Split cards; this method orders those cards by layer |
 | Feedback loop | Signal early on L1; sample L2/L3 — not exception-first feedback |

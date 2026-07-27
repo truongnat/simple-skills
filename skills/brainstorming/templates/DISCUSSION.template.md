@@ -116,11 +116,13 @@ _(TODO)_
 ## Issue triage
 
 <!-- Severity: Critical/High/Medium/Low. Clarity: Clear/Partial/Unknown.
-Blocking=Yes means recommendation/planning must stop until answered. -->
+Blocking=Yes means recommendation/planning must stop until answered.
+Reversibility (R/H/U): ceremony by reverse-cost — see
+.agents/thinking/reversible-decisions.md (High-impact ≠ hard-to-reverse). -->
 
-| ID | Issue / decision | Severity | Clarity | Blocking? | Owner | Status |
-|---|---|---|---|---|---|---|
-| ISS-001 | _(TODO — one concrete decision; dual readings that change Output/Process)_ | Critical / High / Medium / Low | Clear / Partial / Unknown | Yes / No | _(user / BA / lead — required if Blocking)_ | Open / Answered |
+| ID | Issue / decision | Severity | Clarity | Blocking? | Reversibility | Owner | Status |
+|---|---|---|---|---|---|---|---|
+| ISS-001 | _(TODO — one concrete decision; dual readings that change Output/Process)_ | Critical / High / Medium / Low | Clear / Partial / Unknown | Yes / No | R / H / U | _(user / BA / lead — required if Blocking)_ | Open / Answered |
 
 ## Clarification checkpoint
 

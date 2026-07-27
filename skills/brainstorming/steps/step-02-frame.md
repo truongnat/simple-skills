@@ -38,6 +38,10 @@ If precondition fails → return to step-01. Do **not** continue.
   **Example** (Given→Expect) or **See** (`diagram`/`html`) over bare Yes/No when
   the answer must show the behavior. UI/layout Blocking → preview before later
   polish. See `.agents/thinking/feedback-loop.md`.
+- **Reversible decisions (mandatory on material decisions):** Classify
+  Reversibility `R`/`H`/`U` on Issue triage. Type R → fast Confirm/try; Type H →
+  options + Spike/ADR path; Type U → treat as H. High-impact ≠ hard-to-reverse.
+  See `.agents/thinking/reversible-decisions.md`.
 - Inspect repo/user input for facts; mark guesses as assumptions.
 - Do **not** implement code.
 - Do **not** write PLAN/TASKS or basic/detail design.
@@ -103,6 +107,8 @@ Record each question and answer in `Clarification checkpoint`.
       are triaged or Confirm-first answered (Make-implicit-explicit).
 - [ ] Blocking behavior/shape uses Feedback-loop modality (Example Given→Expect
       or See) — not bare Yes/No when the user must understand the behavior.
+- [ ] Material decisions have Reversibility R/H/U; Type H not left Open while
+      Recommendation proceeds (Reversible decisions).
 - [ ] Every material issue has severity/clarity/blocking/visual classification.
 - [ ] Spec quality review has Feasibility + Correctness verdicts and ≥1 capability
       gap row (or explicit “no material gaps”).

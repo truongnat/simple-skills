@@ -95,8 +95,9 @@ Run **before** contracts/data_model. Reuse BASIC Doc reality rows; add contract-
 | Known vs proposed | Existing handler/OpenAPI/proto path = **known**; new surface = **proposed**. |
 | Spec vs common | Shared helpers/pipelines that contradict 設計書 → `Mismatch`, usually Blocking. |
 | Field/join confidence | Inferred stays inferred until confirmed; High risk → ask. |
-| Stop gate | Blocking Doc reality or High-impact `Confirmed?=No` → stop and ask (max 3). |
+| Stop gate | Blocking Doc reality or High-impact `Confirmed?=No` → stop and ask (max 3). Prefer `diagram`/`table`/`html` for docs↔code diffs the user must see (SSOT). |
 | Wiki drift | Note rows for later `docs` sync; do not silently ignore. |
+| Fold | Clarification Accepted source of truth + canonical update/follow-up — chat is not SSOT. |
 
 ## When to Use
 

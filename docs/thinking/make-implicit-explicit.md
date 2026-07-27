@@ -101,15 +101,17 @@ AND would those ways change Output, Process, security, data, or AC?
 1. Outcome-first              → lock Output (WHO / WHAT / EVIDENCE)
 2. Input → Process → Output   → bind Input + Process to Output
 3. Make implicit explicit     → classify & surface material implicits in Input
-4. Small-batch                → slice on clarified Input (not on folklore)
-5. 5W1H (if still unclear)    → diagnose; fold into real sections
-6. Vital few                  → summarize only what changes the outcome
+4. Single Source of Truth     → cite canonical stores; no forks
+5. Small-batch                → slice on clarified Input (not on folklore)
+6. 5W1H (if still unclear)    → diagnose; fold into real sections
+7. Vital few                  → summarize only what changes the outcome
 ```
 
 | Method | Job vs Make-explicit |
 | --- | --- |
 | Outcome-first | DoD/AC must be explicit Outputs — Make-explicit supplies rules/edges that belong in them |
 | IPO | Input sufficiency — Make-explicit cleans what counts as Fact vs Assumption vs Unknown |
+| SSOT | Where official updates live; Make-explicit is what must appear |
 | Small-batch | Split after implicits are visible — else you split the wrong seams |
 | Confirm-first | Mechanism to resolve Blocking implicits in chat |
 | Readable writing | How prose reads; Make-explicit is *what must appear* |

@@ -68,8 +68,9 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 | Trigger | User cites 設計書/wiki/spec, or “expected” comes from documents, or bug is “differs from design”. |
 | Table | Claim \| Doc evidence \| Code/runtime evidence \| Verdict \| Blocking \| Ask? |
 | Verdicts | `Match` / `Mismatch` / `Missing-in-docs` / `Missing-in-code` / `Stale` / `Unknown` |
-| Stop | Blocking=`Yes` → ask which source wins or what to verify next; do not close as Confirmed on doc alone. |
+| Stop | Blocking=`Yes` → Confirm-first; prefer `diagram`/`table`/`html` so the user sees docs vs code/runtime (SSOT); ask which source wins or what to verify next; do not close as Confirmed on doc alone. |
 | N/A | Pure runtime/infra with no doc claim → section N/A + one-line reason. |
+| Fold | Record Accepted source of truth; update or queue the canonical store. |
 
 ## Quality Standards
 
@@ -96,7 +97,8 @@ Root cause: implementation ignores 画面設計書.
 // CORRECT
 Doc: FBD13001 §イベント F10 → search all tabs.
 Code: Handler only refreshes active tab (path/…).
-Verdict: Mismatch. Ask: bug vs intentional? update doc or code?
+Verdict: Mismatch. Ask method=diagram (or table for fields): show docs path vs
+code path; ask: bug vs intentional? update doc or code?
 ```
 
 ```markdown

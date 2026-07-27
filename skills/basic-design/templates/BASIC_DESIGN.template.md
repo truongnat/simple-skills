@@ -23,9 +23,11 @@
 
 > Compare session/wiki docs to the **codebase**. Do not treat specs as truth.
 > Verdict per row: `Match` / `Mismatch` / `Missing-in-docs` / `Missing-in-code` / `Stale` / `Unknown`.
-> Blocking=`Yes` → **STOP immediately**. Classify Ask method
-> (`confirm`/`choice`/`fact`/`table`/`diagram`/`html`), ask that way in chat
-> (max 3). Wait for answer, then fill design body — no quiz-as-document.
+> Blocking=`Yes` → **STOP immediately**. Classify Ask method; prefer
+> `diagram`/`table`/`html` when the user must **see** docs-say vs code-does
+> (SSOT — `.agents/thinking/single-source-of-truth.md`); else `confirm`/`choice`/`fact`.
+> Ask in chat (max 3). Wait for answer, fold into Clarification + canonical
+> follow-up, then fill design body — no quiz-as-document.
 
 | # | Claim the design will depend on | Doc evidence (path/§) | Code evidence (path) | Verdict | Blocking | Ask user? |
 |---|---|---|---|---|---|---|

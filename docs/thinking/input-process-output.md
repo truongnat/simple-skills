@@ -63,9 +63,10 @@ Outcome-first **or** a Blocking Input gap remains open.
 1. Outcome-first              → lock session/card Output
 2. Input → Process → Output   → bind Input + Process to that Output
 3. Make implicit explicit     → classify Facts/Assumptions/Unknowns/rules
-4. Small-batch                → slice Process into completable batches
-5. 5W1H (if unclear)          → diagnose gaps in Input/Output; fold into real sections
-6. Vital few                  → when summarizing, keep only what changes the Output
+4. Single Source of Truth     → cite canonical stores; no forks
+5. Small-batch                → slice Process into completable batches
+6. 5W1H (if unclear)          → diagnose gaps in Input/Output; fold into real sections
+7. Vital few                  → when summarizing, keep only what changes the Output
 ```
 
 | Method | Asks | IPO role |
@@ -73,6 +74,7 @@ Outcome-first **or** a Blocking Input gap remains open.
 | Outcome-first | What does “done” look like? | Defines **Output** |
 | IPO | What do we need, and how do we get there? | Binds **Input** + **Process** to Output |
 | Make-explicit | What was only “understood”? | Cleans Input classification |
+| SSOT | Where is Input officially updated? | Input cites stores — doesn’t fork |
 | Small-batch | Is each unit completable + checkable now? | Sizes Process into batches |
 | 5W1H | Why is this unclear? | Clarifies weak Input/Output |
 | Vital few | What still matters? | Trims noise inside a locked IPO |

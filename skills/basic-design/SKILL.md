@@ -97,8 +97,9 @@ Run **before** architecture/components/flows. ≤5 vital claims the design depen
 | Verdict | `Match` / `Mismatch` / `Missing-in-docs` / `Missing-in-code` / `Stale` / `Unknown`. |
 | Stale wiki | Missing Last-synced or behind HEAD → `Stale`/`Unknown`; ask: trust wiki, trust code, or refresh docs first? |
 | Common vs spec | Spec describes flow A but shared/common code does B → `Mismatch`, Blocking unless user accepts. |
-| Stop gate | Any Blocking=`Yes` → ask (max 3 questions), wait; do not continue design body. |
-| Source of truth | Record in Clarification checkpoint: doc / code / refresh-docs-first. |
+| Stop gate | Any Blocking=`Yes` → classify Ask method; prefer `diagram`/`table`/`html` when the user must see the diff (flow/fields/UI); ask (max 3), wait; do not continue design body. Bare A/B/C only if the diff is already obvious. See `.agents/thinking/single-source-of-truth.md`. |
+| Source of truth | Record in Clarification checkpoint: doc / code / refresh-docs-first. Fold into canonical store (or explicit follow-up) — chat alone is not SSOT. |
+| Layers | Do not silent-pick “code wins.” Classify descriptive vs normative vs change-in-flight before asking. |
 
 ## When to Use
 
@@ -150,10 +151,11 @@ Do NOT use this skill when:
 // WRONG — design from 画面設計書 alone, never opened the repo
 Components: PrintService owns PDF (as in design doc §3).
 
-// CORRECT — Doc reality first
+// CORRECT — Doc reality first + visualize Blocking conflict
 | Claim | Doc | Code | Verdict | Blocking |
 | Print via ExcelCreator | 帳票設計書 RBD… | src/.../CommonPrint uses different pipeline | Mismatch | Yes |
-Ask: follow doc, follow common code, or investigate first?
+Ask method=diagram: two-path Mermaid (docs vs code), highlight diverge node;
+options: follow doc / follow code / refresh docs / investigate.
 ```
 
 ```markdown
@@ -178,9 +180,9 @@ Flows: Load config → parse input → emit result events.
 
 | Situation | Handling |
 |---|---|
-| DISCUSSION conflicts with repo patterns | Prefer existing patterns. Doc reality `Mismatch`; ask which wins. |
-| Spec vs common library behavior | Blocking until user chooses doc update vs design-to-code-as-is. |
-| Wiki Last-synced missing/stale | Verdict `Stale`/`Unknown`; ask refresh docs vs trust code. |
+| DISCUSSION conflicts with repo patterns | Prefer existing patterns. Doc reality `Mismatch`; visualize + ask which wins. |
+| Spec vs common library behavior | Blocking until user chooses doc update vs design-to-code-as-is (diagram preferred). |
+| Wiki Last-synced missing/stale | Verdict `Stale`/`Unknown`; ask refresh docs vs trust code (`confirm`/`choice` OK if no behavior claim). |
 | Blocking unknown | Stop short of fake design. Handoff to research or investigate. |
 | Single-module change | Lite Mode — short Doc reality table; skip unused optional sections. |
 | Multi-artifact pack (hub + children) | One BASIC_DESIGN with surfaces list; detail-design may split per surface later. |

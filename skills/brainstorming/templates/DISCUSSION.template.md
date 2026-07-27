@@ -81,7 +81,10 @@ _(TODO)_
 ## Constraints
 
 <!-- Make-implicit-explicit Input: time / stack / tools / policy / deadline.
-     If user stated a timebox, write it here — forces Non-goals cuts. -->
+     If user stated a timebox, write it here — forces Non-goals cuts.
+     SSOT (optional Full/multi-doc): add Canonical sources rows — kind → store
+     (API/OpenAPI, schema/migrations, AC/ticket, progress=TASKS+status).
+     See .agents/thinking/single-source-of-truth.md — never create SSOT.md. -->
 
 | Constraint | Source |
 |------------|--------|

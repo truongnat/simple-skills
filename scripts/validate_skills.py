@@ -489,6 +489,8 @@ def main() -> int:
         errors.append("docs/thinking/input-process-output.md missing")
     if not (ROOT / "docs" / "thinking" / "make-implicit-explicit.md").is_file():
         errors.append("docs/thinking/make-implicit-explicit.md missing")
+    if not (ROOT / "docs" / "thinking" / "single-source-of-truth.md").is_file():
+        errors.append("docs/thinking/single-source-of-truth.md missing")
     if not (ROOT / "docs" / "thinking" / "small-batch.md").is_file():
         errors.append("docs/thinking/small-batch.md missing")
     if not (ROOT / "docs" / "thinking" / "README.md").is_file():

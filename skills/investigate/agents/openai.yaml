@@ -1,9 +1,9 @@
 display_name: "Investigate"
 short_description: "Evidence-based investigation with Doc reality check when specs/docs are involved — before fix or design."
-default_prompt: "Use $investigate. Prefer INVESTIGATE.template.md. When docs/specs are cited, fill Doc reality check and stop-and-ask on Blocking mismatches before claiming root cause."
+default_prompt: "Use $investigate. Prefer INVESTIGATE.template.md. When docs/specs are cited, fill Doc reality check; on Blocking prefer visual Ask method before claiming root cause."
 required_input: "Problem, expected/actual, logs/repro, codebase context; docs/specs when cited or implied."
 required_output: "INVESTIGATE.md with evidence, status, Doc reality check (or N/A+reason), recommendation, handoff."
-note_important: "Read-only by default. Do NOT treat 設計書/wiki as root cause without code/runtime evidence. Do NOT close Confirmed on doc alone when Doc reality Blocking=Yes."
+note_important: "Read-only by default. Do NOT treat 設計書/wiki as root cause without code/runtime evidence. Do NOT close Confirmed on doc alone when Doc reality Blocking=Yes. Prefer diagram/table/html so the user sees the conflict (SSOT)."
 artifacts:
   INVESTIGATE.md:
     required: true

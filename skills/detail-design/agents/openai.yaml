@@ -1,9 +1,9 @@
 display_name: "Detail Design"
 short_description: "Implementable design from BASIC_DESIGN after Doc reality check — contracts, data model, sequences — before planning."
-default_prompt: "Use $detail-design. Seed DETAIL_DESIGN.template.md. Re-run Doc reality check; stop-and-ask on Blocking or unconfirmed high-impact assumptions before contracts."
+default_prompt: "Use $detail-design. Seed DETAIL_DESIGN.template.md. Re-run Doc reality check; on Blocking prefer visual Ask method (diagram/table/html) before contracts."
 required_input: "BASIC_DESIGN.md; DISCUSSION/BA when available; repo inspection of existing contracts; wiki LLD/API when docs enabled."
 required_output: "DETAIL_DESIGN.md with Doc reality check, contracts/models/sequences as applicable, assumptions with Confirmed?, handoff to planning."
-note_important: "Do NOT invent fields as facts. Do NOT fill contracts while Doc reality Blocking=Yes. Do NOT hand off with High-impact Confirmed?=No unless user accepts. Do NOT create PLAN.md."
+note_important: "Do NOT invent fields as facts. Do NOT fill contracts while Doc reality Blocking=Yes — Confirm-first with visual when user must see the diff (SSOT). Do NOT hand off with High-impact Confirmed?=No unless user accepts. Do NOT create PLAN.md."
 artifacts:
   DETAIL_DESIGN.md:
     required: true

@@ -83,7 +83,7 @@ decision bullets) then a **Developer overview** panel **inside that same
 artifact**. Do **not** create a separate `OVERVIEW.md` landing page — it goes
 stale. Progress truth is `TASKS.md` + `session.sh status`. Do **not** name
 sections after methods (`Outcome-first`, `IPO`, `Make-implicit-explicit`,
-`Small-batch`, `80/20`, `5W1H`). Chart when useful; skip filler.
+`SSOT`, `Small-batch`, `80/20`, `5W1H`). Chart when useful; skip filler.
 
 **Thinking methods (session-wide — not report titles):**
 
@@ -98,6 +98,10 @@ sections after methods (`Outcome-first`, `IPO`, `Make-implicit-explicit`,
 - **Make implicit explicit:** write and classify material Assumptions, business
   rules, owners, timeboxes, edges, DoD; dual-interpretation → Confirm-first.
   Full rules: `.agents/thinking/make-implicit-explicit.md`.
+- **Single Source of Truth:** one kind of truth → one official update place;
+  cite don’t fork; progress = `TASKS.md` + `session.sh status`. Docs↔code
+  Blocking → classify layer, prefer visual Ask methods, fold into canonical.
+  Full rules: `.agents/thinking/single-source-of-truth.md`.
 - **Small-batch:** slice work into completable units with independent Verify
   and short feedback latency (Approach phases, TASK size rules, per-card
   Verify in execution). Full rules: `.agents/thinking/small-batch.md`.
@@ -449,7 +453,8 @@ Order for a new project: `scaffold` → `init` → lifecycle (`brainstorming`/
 3. `basic-design` → `BASIC_DESIGN.md` (**skip on Quick** unless architecture is the task)
    - Template: `.agents/skills/basic-design/templates/BASIC_DESIGN.template.md`.
    - **Doc reality check** (docs/wiki ↔ codebase) **before** architecture/components/flows.
-   - Blocking mismatches → **STOP immediately**; classify Ask method; ask in
+   - Blocking mismatches → **STOP immediately**; classify Ask method; prefer
+     `diagram`/`table`/`html` so the user **sees** docs vs code (SSOT); ask in
      chat (max 3); do not design as if docs were automatically true.
 4. `detail-design` → `DETAIL_DESIGN.md`
    - Template: `.agents/skills/detail-design/templates/DETAIL_DESIGN.template.md`.
@@ -590,11 +595,13 @@ traceability, test data, or verification evidence.
 
 These are **ways of working**, not section names or report titles. Do not brand
 artifacts with method labels (`Outcome-first`, `IPO`, `Make-implicit-explicit`,
-`Small-batch`, `80/20`, `5W1H`). Do not create `OUTCOME.md` / `IPO.md` /
-`SMALL_BATCH.md` / `IMPLICIT.md`. Fold method results into existing fields only.
+`SSOT`, `Small-batch`, `80/20`, `5W1H`). Do not create `OUTCOME.md` / `IPO.md` /
+`SMALL_BATCH.md` / `IMPLICIT.md` / `SSOT.md`. Fold method results into existing
+fields only.
 
 **Framing order:** Outcome-first → Input→Process→Output → Make-implicit-explicit
-→ Small-batch → (5W1H if unclear) → vital few when summarizing/memory.
+→ Single Source of Truth → Small-batch → (5W1H if unclear) → vital few when
+summarizing/memory.
 
 1. **Outcome-first (mandatory):** Start from the observable end state, not the
    task list. Every `Goal`, `Desired outcome`, DoD item, and task `AC` must
@@ -642,7 +649,20 @@ artifacts with method labels (`Outcome-first`, `IPO`, `Make-implicit-explicit`,
    `.agents/thinking/make-implicit-explicit.md`
    (source `docs/thinking/make-implicit-explicit.md`).
 
-4. **Small-batch (mandatory when sizing and executing):** Prefer
+4. **Single Source of Truth (mandatory when citing/updating facts):** Each kind
+   of information has one official update place; session artifacts cite, they
+   do not fork. Progress = `TASKS.md` + `session.sh status` only. Docs↔code
+   conflict: classify descriptive vs normative vs change-in-flight — never
+   silent “code wins.” Doc reality Blocking → Confirm-first with preferred
+   visual Ask methods (`diagram` / `table` / `html`) so the user sees the
+   diff; fold into Clarification and the chosen canonical store. Optional
+   Canonical sources table in Constraints — never `SSOT.md`.
+
+   **Normative detail:**
+   `.agents/thinking/single-source-of-truth.md`
+   (source `docs/thinking/single-source-of-truth.md`).
+
+5. **Small-batch (mandatory when sizing and executing):** Prefer
    `complete → check → continue` over mega-batches. Every phase/card needs one
    goal, one Output, independent Verify, and short feedback latency. Obey
    planning `step-03` §B/§C as hard card-size law. In execution, run **this
@@ -653,12 +673,12 @@ artifacts with method labels (`Outcome-first`, `IPO`, `Make-implicit-explicit`,
    anti-patterns, worked examples):
    `.agents/thinking/small-batch.md` (source `docs/thinking/small-batch.md`).
 
-5. **Vital few (Pareto):** Hold the whole session in mind and surface only what
+6. **Vital few (Pareto):** Hold the whole session in mind and surface only what
    changes the decision or outcome. Executive summaries and memory entries
    should reflect that prioritization — without a heading called `80/20` or
    branded titles like “Executive summary” plus a method suffix.
 
-6. **5W1H:** When the problem is hard, ambiguous, or the feature is unclear /
+7. **5W1H:** When the problem is hard, ambiguous, or the feature is unclear /
    wrong / underspecified, silently check What / Why / Who / When / Where / How
    against the **session context** (goal, constraints, evidence, unknowns). Put
    the useful answers into the real sections (facts, risks, Spec quality,

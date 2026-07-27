@@ -101,9 +101,10 @@ BAD:  T-002 AC needs UI from T-005 which is still todo — not independently ver
 1. Outcome-first              → lock session/card Output
 2. Input → Process → Output   → bind Input + Process to that Output
 3. Make implicit explicit     → classify & surface material implicits in Input
-4. Small-batch                → slice Process into completable, verifiable batches
-5. 5W1H (if unclear)          → diagnose; fold into real sections
-6. Vital few                  → prioritize in summaries / memory
+4. Single Source of Truth     → cite canonical stores; no forks
+5. Small-batch                → slice Process into completable, verifiable batches
+6. 5W1H (if unclear)          → diagnose; fold into real sections
+7. Vital few                  → prioritize in summaries / memory
 ```
 
 | Method | Question | Small-batch role |
@@ -111,6 +112,7 @@ BAD:  T-002 AC needs UI from T-005 which is still todo — not independently ver
 | Outcome-first | What does done look like? | Each batch Output is a **slice** of session Output |
 | IPO | Input ready? Process coherent? | Process is a **sequence of batches**, not one blob |
 | Make-explicit | What was only understood? | Clarify Input before cutting seams |
+| SSOT | Where is official truth updated? | Trace/Source cite stores — don’t fork requirements onto every card |
 | Small-batch | Is this unit completable + checkable now? | Sizing + feedback rhythm |
 | Vital few | What still matters? | Do not keep mega-batches “because they’re important” — split them |
 | 5W1H | Why is sizing unclear? | Use when split boundaries are ambiguous |

@@ -38,6 +38,8 @@ _(taxonomy value)_
 
 > If the investigation touches design docs, wiki, 画面/帳票設計書, README, or
 > comments-as-spec: compare to code. Do not treat prose as root cause alone.
+> Blocking=`Yes` → prefer visual Ask method (`diagram`/`table`/`html`) so the
+> user sees the conflict (SSOT); fold Accepted source of truth below.
 
 | # | Claim from docs or “expected” | Doc evidence | Code / runtime evidence | Verdict | Blocking | Ask user? |
 |---|---|---|---|---|---|---|
@@ -45,13 +47,12 @@ _(taxonomy value)_
 
 ### Clarification checkpoint
 
-<!-- Confirm-first: STOP on Blocking. Classify Ask method
-(confirm|choice|fact|table|diagram|html), ask in chat, then close.
-Do not ship INVESTIGATE as an open-questions quiz. -->
+<!-- Confirm-first: STOP on Blocking. Prefer diagram/table/html when user must
+see docs vs code. Ask in chat, then close. Do not ship INVESTIGATE as a quiz. -->
 
-| Ask method | Questions asked | User answers |
-|---|---|---|
-| confirm / choice / fact / table / diagram / html |  |  |
+| Ask method | Questions asked | User answers | Accepted source of truth |
+|---|---|---|---|
+| confirm / choice / fact / table / diagram / html |  |  | doc / code / refresh docs first / investigate |
 
 ## Evidence
 

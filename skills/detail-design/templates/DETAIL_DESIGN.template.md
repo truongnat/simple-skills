@@ -23,8 +23,9 @@
 ## Doc reality check (mandatory — before contracts)
 
 > Re-check BASIC claims + any wiki LLD/API vs **code**. Label known vs proposed.
-> Blocking=`Yes` → **STOP immediately**. Classify Ask method, ask in chat,
-> then fill contracts — do not finish DETAIL_DESIGN as an open-questions quiz.
+> Blocking=`Yes` → **STOP immediately**. Prefer Ask method `diagram`/`table`/`html`
+> when the user must see the diff (SSOT); ask in chat; fold Clarification +
+> canonical follow-up; then fill contracts — no quiz-as-document.
 
 | # | Claim / contract surface | Doc evidence | Code evidence (known) or Proposed | Verdict | Blocking | Ask user? |
 |---|---|---|---|---|---|---|
@@ -36,7 +37,7 @@
 
 | Ask method | Questions asked | User answers | Accepted source of truth |
 |---|---|---|---|
-| confirm / choice / fact / table / diagram / html |  |  |  |
+| confirm / choice / fact / table / diagram / html |  |  | doc / code / refresh docs first |
 
 ## Goal
 

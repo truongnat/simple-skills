@@ -1,9 +1,9 @@
 display_name: "Basic Design"
 short_description: "Turn an approved DISCUSSION.md into system-level design after Doc reality check (docs↔code) — boundaries, components, flows, ownership."
-default_prompt: "Use $basic-design. Seed BASIC_DESIGN.template.md. Run Doc reality check and stop-and-ask on Blocking mismatches before architecture/components/flows."
+default_prompt: "Use $basic-design. Seed BASIC_DESIGN.template.md. Run Doc reality check; on Blocking prefer visual Ask method (diagram/table/html) before architecture/components/flows."
 required_input: "DISCUSSION.md with recommendation; BA if useful; repo inspection; wiki/HLD when docs enabled."
 required_output: "BASIC_DESIGN.md with Doc reality check, goal, architecture, components, flows, data ownership, handoff to detail-design."
-note_important: "Do NOT treat docs as truth without Doc reality check. Do NOT fill design body while Blocking=Yes unresolved. Do NOT invent paths. Do NOT implement code or write full contracts."
+note_important: "Do NOT treat docs as truth without Doc reality check. Do NOT fill design body while Blocking=Yes unresolved — Confirm-first; prefer diagram/table/html so the user sees the docs↔code diff (SSOT). Do NOT invent paths. Do NOT implement code or write full contracts."
 artifacts:
   BASIC_DESIGN.md:
     required: true

@@ -49,6 +49,7 @@ Full normative text lives under `thinking/` (progressive disclosure).
 | `docs/thinking/outcome-first.md` | `.agents/thinking/outcome-first.md` |
 | `docs/thinking/input-process-output.md` | `.agents/thinking/input-process-output.md` |
 | `docs/thinking/make-implicit-explicit.md` | `.agents/thinking/make-implicit-explicit.md` |
+| `docs/thinking/single-source-of-truth.md` | `.agents/thinking/single-source-of-truth.md` |
 | `docs/thinking/small-batch.md` | `.agents/thinking/small-batch.md` |
 | `docs/conventions/CODE_COMMENTS.md` | `.agents/CODE_COMMENTS.md` |
 | `docs/conventions/DESIGN_SYSTEM.md` | `.agents/DESIGN_SYSTEM.md` |

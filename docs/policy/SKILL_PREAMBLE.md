@@ -103,10 +103,11 @@ layout. Memory is optional for those unless the task needs prior decisions.
 These methods apply to the **whole session**. They are **not** report section
 names. Never brand headings or executive summaries with method labels
 (`Outcome-first`, `Input→Process→Output`, `Make-implicit-explicit`,
-`Small-batch`, `80/20`, `5W1H`). Never create `OUTCOME.md` / `IPO.md` /
-`SMALL_BATCH.md` / `IMPLICIT.md` / `OVERVIEW.md`. Fold results into real fields
-(`Goal`, `Desired outcome`, DoD, AC, Verify, Facts, Assumptions, Unknowns,
-Constraints, Approach, Work items, Step ledger).
+`Single Source of Truth`, `Small-batch`, `80/20`, `5W1H`). Never create
+`OUTCOME.md` / `IPO.md` / `SMALL_BATCH.md` / `IMPLICIT.md` / `SSOT.md` /
+`OVERVIEW.md`. Fold results into real fields (`Goal`, `Desired outcome`, DoD,
+AC, Verify, Facts, Assumptions, Unknowns, Constraints, Trace, Approach, Work
+items, Step ledger).
 
 **Apply in this order when framing:**
 
@@ -115,10 +116,12 @@ Constraints, Approach, Work items, Step ledger).
    **Process** to that Output (always, right after Outcome-first).
 3. **Make implicit explicit** — write and classify material Assumptions, rules,
    owners, timeboxes, edges, DoD; dual-interpretation → Confirm-first.
-4. **Small-batch** — slice Process into units that each complete + verify
+4. **Single Source of Truth** — cite canonical stores; do not fork the same
+   fact across chat/docs/code; progress = `TASKS.md` + `session.sh status`.
+5. **Small-batch** — slice Process into units that each complete + verify
    before the next (phases, cards, execution rhythm).
-5. **5W1H** — only when the outcome/problem is hard or unclear.
-6. **Vital few** — when summarizing or writing memory.
+6. **5W1H** — only when the outcome/problem is hard or unclear.
+7. **Vital few** — when summarizing or writing memory.
 
 ### Outcome-first (mandatory before Scope / Approach / TASKS / code)
 
@@ -198,6 +201,28 @@ How to ask remains Confirm-first in this preamble. Full taxonomy/anti-patterns:
 `.agents/thinking/make-implicit-explicit.md`
 (source `docs/thinking/make-implicit-explicit.md`).
 
+### Single Source of Truth (mandatory when citing or updating facts)
+
+One kind of truth → one official update place; everything else cites.
+
+**Cite, don’t fork:** Trace / `[Source:]` / ticket IDs beat restating AC or
+contracts in chat, PLAN, and cards as competing truth. Progress truth is only
+`TASKS.md` + `session.sh status` (no `OVERVIEW.md`).
+
+**Docs ↔ code conflict:** Do **not** silent-pick “code wins” or “docs wins.”
+Classify descriptive vs normative vs change-in-flight. Doc reality Blocking →
+Confirm-first. Prefer **visual** Ask methods (`diagram` / `table` / `html`) so
+the user sees docs-say vs code-does vs diff — bare A/B/C jargon often fails.
+Fold the answer into Clarification **and** the chosen canonical store (or an
+explicit follow-up to update it).
+
+Optional short “Canonical sources” table in Constraints / `PRJ_REFERENCE.md` —
+never a separate `SSOT.md`.
+
+Full normative detail:
+`.agents/thinking/single-source-of-truth.md`
+(source `docs/thinking/single-source-of-truth.md`).
+
 ### Small-batch (mandatory when sizing phases / cards / execution)
 
 Smooth = `small step → complete → check → continue` — not one mega-batch.
@@ -246,7 +271,9 @@ decoding jargon. If a teammate new to the task cannot act from it, rewrite.
    verdict. Example: `FBD13001 Search ignores BaseCd — see api/… line 40 —
    Mismatch` — not “cần align architecture với domain”. When designing or
    investigating from docs: **ask** on Blocking mismatches (docs vs code /
-   common vs 設計書 / stale wiki) before continuing.
+   common vs 設計書 / stale wiki) before continuing. If the user must choose
+   a winner, prefer Ask method `diagram` / `table` / `html` so they **see**
+   docs-say vs code-does (SSOT — `.agents/thinking/single-source-of-truth.md`).
 4. Delete unused sections. Finished artifacts must not contain `_(TODO)_` or
    leftover template scaffolding.
 5. Charts only when they change a decision; otherwise omit (no decorative
@@ -267,9 +294,10 @@ decoding jargon. If a teammate new to the task cannot act from it, rewrite.
 4. Dump bilingual labels (JP/EN/VN) unless the **domain artifact** requires
    them; never invent translation noise for ceremony.
 5. Answer method prompts (Outcome-first / IPO / Make-implicit-explicit /
-   Small-batch / 5W1H / vital-few) as trivia sections or method-branded
+   SSOT / Small-batch / 5W1H / vital-few) as trivia sections or method-branded
    headings; do not ship activity-only Goals/ACs, Process without Output,
-   mega-batches without Verify, or silent dual-interpretation picks.
+   mega-batches without Verify, silent dual-interpretation picks, or
+   docs↔code Blocking asks without a visual when the user must see the diff.
 6. Narrate your process (“I will now analyze…”, “As an AI…”).
 7. **Complete-with-questions:** fill Goal / Recommendation / Architecture / …
    while Critical or Blocking items are still unanswered, or dump a long Open
@@ -306,8 +334,9 @@ When clarity is missing for a **Blocking** decision:
    only. Blocking unanswered → Status=`blocked`, no fake downstream sections.
 
 **Wrong:** keep filling BASIC_DESIGN, then dump “Open questions” for the reader.  
-**Right:** Blocking Doc reality row → STOP → `choice` or `confirm` in chat →
-fold answer → then write Architecture.
+**Right:** Blocking Doc reality row → STOP → prefer `diagram`/`table`/`html`
+(or `choice`/`confirm` when the diff is already obvious) → fold answer +
+canonical follow-up → then write Architecture.
 
 Self-check before saving: *Would I paste this into a PR for a busy reviewer?*
 If no → cut half, name concrete things. If blocked on the user → STOP and ask

@@ -83,6 +83,7 @@
     "excel-doc-convert"
   ],
   "contract_table_fields": ["Inputs", "Outputs", "Safety"],
+  "contract_requires_artifacts_section": true,
   "third_party_metadata_allowed": [
     "expo-native-ui",
     "expo-data-fetching"

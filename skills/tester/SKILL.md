@@ -27,13 +27,14 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 | Field | Requirement |
 |-------|-------------|
 | Inputs | Requirements, TASKS.md (preferred for AC/verify per task), PLAN.md (strategy/DoD), acceptance criteria, user stories, business rules, current/expected behavior, test environment, existing tests, test data, screenshots or test-run recordings. |
-| Outputs | Test cases, traceability matrix, test data, manual verification steps, automated test suggestions, regression checklist, testing gaps. |
+| Outputs | `TESTCASES.md` (and optional `TESTCASES.csv`) in the **active session** under `.agent-work/sessions/<Task-…>/` (resolve with `session.sh current`): test cases, traceability matrix, test data, manual verification steps, automated test suggestions, regression checklist, testing gaps. |
 | Safety | Do NOT claim pass if not run or no evidence. Do NOT decide expected behavior when requirements are unclear. Do NOT use real/sensitive data as test data without permission. |
 
 ### Required artifacts
 
 #### `TESTCASES.md`
-- Required: yes
+- Required: yes; write only under the active session
+  (`.agent-work/sessions/<Task-…>/TESTCASES.md`).
 - **executive_summary** (required, array): Maximum five bullets with scope, highest-risk coverage, critical gaps, and next action.
 - **developer_overview** (required, object): Test scope status, P0 coverage, critical gaps, next action.
 - **charts** (optional, array): Mermaid coverage/priority chart when useful; otherwise N/A.
@@ -62,6 +63,8 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - [ ] Manual steps are precise enough to repeat.
 - [ ] When TASKS.md exists, map test cases to task IDs / AC where useful.
 - [ ] Video evidence cites sampled frames/timestamps and does not substitute for an executed, repeatable test result.
+- [ ] `TESTCASES.md` is under the active session; ran
+      `session.sh commit 'docs(tester): …'` after writing (or `WORK_COMMIT=clean`).
 
 ## WRONG vs CORRECT
 

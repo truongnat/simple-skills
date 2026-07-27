@@ -299,14 +299,23 @@ Brainstorming, business-analysis, and planning must fail closed:
 Every first-party workflow skill embeds a Contract in `SKILL.md` (mirrored in
 `agents/openai.yaml`):
 
+**Contract table** (required rows — machine-checked via
+`contract_table_fields` in `first-party-skills.json`):
+
 | Field | Description |
 |-------|-------------|
 | Inputs | What the skill expects as input |
 | Outputs | What the skill produces as output |
-| Required artifacts | Files that MUST be created or updated, with required fields |
 | Safety | Constraints the agent MUST NOT violate |
 
-The agent MUST obey the Contract strictly — it is not advisory. If the contract says "do not modify code", the agent MUST NOT modify code. If it says "create a file", the agent MUST create that file.
+Optional table rows (when used): `preferred_role` for multi-CLI routing.
+
+**Required artifacts** (mandatory subsection immediately after the table, not a
+table row — content is too large for one cell): heading
+`### Required artifacts` listing files that MUST be created/updated and their
+required fields. The agent MUST obey the Contract strictly — it is not
+advisory. If the contract says "do not modify code", the agent MUST NOT modify
+code. If it says "create a file", the agent MUST create that file.
 
 ## Workflow
 
@@ -342,13 +351,16 @@ Rules:
   The first skill of a task creates it with `session.sh new <slug>`; every later
   skill **reuses** the path that `session.sh current` returns. Never invent a
   second `<Task-N-…>` folder for the same task.
-- **Artifacts live ONLY in the active session under `.agent-work/`.** Write
-  DISCUSSION, PLAN, TASKS, EXECUTION, REVIEW, and every other runtime
-  artifact **inside** that session dir. **Never** write them under `.agents/`
-  (kit), an OS temp dir, a scratchpad, a `cache/` folder, or anywhere outside
-  `.agent-work/`. Redoing an artifact (e.g. re-writing `PLAN.md`
-  during review) overwrites it **in the same active session** — not a new
-  folder, not a side/cache copy.
+- **Lifecycle artifacts live ONLY in the active session under `.agent-work/`.**
+  Write DISCUSSION, PLAN, TASKS, EXECUTION, REVIEW, and every other **session**
+  artifact **inside** that session dir. **Never** write them under
+  `.agents/skills/`, an OS temp dir, a scratchpad, a `cache/` folder, or
+  anywhere outside `.agent-work/`. Redoing an artifact (e.g. re-writing
+  `PLAN.md` during review) overwrites it **in the same active session** — not
+  a new folder, not a side/cache copy.
+- **Wiki exception:** the `docs` skill writes the enterprise wiki under
+  `rules.docs.location` (default `.agents/wiki`). That is kit-adjacent by
+  design and is not a lifecycle session report.
 - **Host `.gitignore`:** ensure the product root ignores `.agent-work/` so Work
   uses its nested git instead of bloating the product history.
 - **Work commit protocol (mandatory when nested git exists).** After a

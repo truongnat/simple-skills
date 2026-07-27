@@ -18,9 +18,11 @@
 
 ## Work layout
 
-- Write lifecycle artifacts **only** under `.agent-work/sessions/<Task-…>/`.
+- Write **lifecycle** artifacts **only** under `.agent-work/sessions/<Task-…>/`.
 - Durable lessons only under `.agent-work/memory/` (vital few — not full dumps).
-- **Never** write task artifacts under `.agents/` (kit), temp, or cache.
+- **Never** write session reports under `.agents/skills/`, temp, or cache.
+- Wiki (`docs` skill) may use `rules.docs.location` (often `.agents/wiki`) —
+  that path is allowed; it is not a session report.
 - Do not force-add `.agent-work/` into the product git history.
 
 ## Confirm-first + Ask methods

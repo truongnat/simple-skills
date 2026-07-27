@@ -109,14 +109,14 @@ SKILL_HEADINGS: dict[str, tuple[str, ...]] = {
 }
 
 OUTPUT_HINTS: dict[str, str] = {
-    "planning": "Write/update `PLAN.md` + `TASKS.md` in the active session only.",
-    "execution": "Implement in-repo per TASK card; update `EXECUTION.md` + TASKS progress.",
-    "investigate": "Write/update `INVESTIGATE.md` in the active session only.",
-    "review": "Write/update `REVIEW.md` in the active session only.",
-    "brainstorming": "Write/update `DISCUSSION.md` in the active session only.",
-    "basic-design": "Write/update `BASIC_DESIGN.md` in the active session only.",
-    "detail-design": "Write/update `DETAIL_DESIGN.md` in the active session only.",
-    "research": "Write/update `RESEARCH.md` in the active session only.",
+    "planning": "Write/update `PLAN{ext}` + `TASKS{ext}` in the active session only.",
+    "execution": "Implement in-repo per TASK card; update `EXECUTION{ext}` + TASKS progress.",
+    "investigate": "Write/update `INVESTIGATE{ext}` in the active session only.",
+    "review": "Write/update `REVIEW{ext}` in the active session only.",
+    "brainstorming": "Write/update `DISCUSSION{ext}` in the active session only.",
+    "basic-design": "Write/update `BASIC_DESIGN{ext}` in the active session only.",
+    "detail-design": "Write/update `DETAIL_DESIGN{ext}` in the active session only.",
+    "research": "Write/update `RESEARCH{ext}` in the active session only.",
     "default": "Write only the session artifacts named in Mission / Output contract.",
 }
 
@@ -129,6 +129,14 @@ RULES_NEEDLES = (
     "## Output contract",
     "Ask method",
     ".agent-work/",
+)
+
+SETTINGS_KEYS = (
+    ("language", "en"),
+    ("rules.branch.mode", "checkout"),
+    ("rules.reports.output_format", "markdown"),
+    ("rules.code.comments.prose_language", "repo-default"),
+    ("rules.docs.location", ".agents/wiki"),
 )
 
 
@@ -158,6 +166,135 @@ def resolve_session(root: Path, explicit: str | None) -> Path:
     if not path.is_dir():
         raise SystemExit(f"Active session missing: {rel}")
     return path
+
+
+def settings_path(root: Path) -> Path | None:
+    for rel in (".agents/settings.yaml", "docs/settings.yaml"):
+        path = root / rel
+        if path.is_file():
+            return path
+    return None
+
+
+def _yaml_simple_get(text: str, dotted: str, default: str) -> str:
+    """Read a nested scalar from lean settings.yaml without a YAML dependency."""
+    parts = dotted.split(".")
+    lines = text.splitlines()
+    if len(parts) == 1:
+        key = parts[0]
+        for line in lines:
+            if line.startswith((" ", "\t")) or line.lstrip().startswith("#"):
+                continue
+            if ":" not in line:
+                continue
+            k, _, rest = line.partition(":")
+            if k.strip() == key:
+                val = rest.strip().strip("\"'")
+                return val if val else default
+        return default
+
+    # Walk nested mapping by indentation (expects parts like rules.branch.mode).
+    want = list(parts)
+    idx = 0
+    parent_indent = -1
+    for line in lines:
+        raw = line.rstrip()
+        if not raw.strip() or raw.lstrip().startswith("#"):
+            continue
+        indent = len(raw) - len(raw.lstrip(" "))
+        if indent < parent_indent and idx > 0:
+            # Left the current parent block without finding the leaf.
+            return default
+        if ":" not in raw:
+            continue
+        key, _, rest = raw.lstrip().partition(":")
+        key = key.strip()
+        rest = rest.strip().strip("\"'")
+        if idx < len(want) and key == want[idx]:
+            if idx == len(want) - 1:
+                return rest if rest else default
+            # Enter child block
+            parent_indent = indent
+            idx += 1
+            continue
+        if idx > 0 and indent <= parent_indent and key != want[idx]:
+            # Sibling at/above parent — stop if we already entered this level
+            if indent < parent_indent or (indent == parent_indent and idx > 0):
+                # Only reset when we've left the branch entirely
+                if indent < parent_indent:
+                    return default
+    return default
+
+
+def read_settings_knobs(root: Path) -> dict[str, str]:
+    path = settings_path(root)
+    text = path.read_text(encoding="utf-8") if path else ""
+    return {key: _yaml_simple_get(text, key, default) for key, default in SETTINGS_KEYS}
+
+
+def skill_md_path(root: Path, skill: str) -> Path | None:
+    for rel in (
+        f".agents/skills/{skill}/SKILL.md",
+        f"skills/{skill}/SKILL.md",
+    ):
+        path = root / rel
+        if path.is_file():
+            return path
+    return None
+
+
+def extract_skill_contract(root: Path, skill: str, limit: int = 80) -> str:
+    path = skill_md_path(root, skill)
+    if path is None:
+        return f"_(no SKILL.md for `{skill}` — stay on main or pass skill contract in Mission)_"
+    text = path.read_text(encoding="utf-8")
+    m = re.search(
+        r"^## Contract \(mandatory\)\s*\n(.*?)(?=^## |\Z)",
+        text,
+        flags=re.M | re.S,
+    )
+    if not m:
+        return f"_(SKILL.md for `{skill}` has no Contract section)_"
+    body = m.group(0).strip()
+    # Prefer relative path for worker instructions
+    try:
+        rel = path.relative_to(root)
+    except ValueError:
+        rel = path
+    lines = body.splitlines()
+    if len(lines) > limit:
+        body = "\n".join(lines[:limit]) + "\n\n…(truncated)"
+    steps = path.parent / "steps"
+    step_note = ""
+    if steps.is_dir():
+        step_files = sorted(p.name for p in steps.glob("step-*.md"))
+        if step_files:
+            step_note = (
+                f"\n\nObey step order under `{rel.parent}/steps/` "
+                f"({', '.join(step_files)}). Do not skip the Step ledger."
+            )
+    return f"Skill contract source: `{rel}`\n\n{body}{step_note}"
+
+
+def extract_dev_contexts(text: str, limit_cards: int = 8, limit_lines: int = 120) -> str:
+    """Pull ### T-… cards that include #### Dev context for execution workers."""
+    cards: list[str] = []
+    parts = re.split(r"(?=^###\s+T-)", text, flags=re.M)
+    for part in parts:
+        if not re.match(r"^###\s+T-", part):
+            continue
+        if "#### Dev context" not in part and "#### Dev Context" not in part:
+            continue
+        cards.append(part.strip())
+        if len(cards) >= limit_cards:
+            break
+    if not cards:
+        return ""
+    out = "\n\n".join(cards)
+    lines = out.splitlines()
+    if len(lines) > limit_lines:
+        out = "\n".join(lines[:limit_lines]) + "\n\n…(truncated)"
+    return out
 
 
 def rules_template_path(root: Path) -> Path:
@@ -261,6 +398,9 @@ def build_legacy_context(session: Path, skill: str) -> str:
         if name == "TASKS.md":
             inv = extract_sections(text, ("Work inventory", "Execution order"), 40)
             parts.append(inv or "_(see TASKS.md)_")
+            dev = extract_dev_contexts(text)
+            if dev:
+                parts.extend(["", "### Dev context (from TASK cards)", "", dev])
         else:
             block = extract_sections(text, headings, 60)
             parts.append(block or "_(see source file)_")
@@ -273,8 +413,13 @@ def build_legacy_context(session: Path, skill: str) -> str:
 def build_pack(root: Path, session: Path, skill: str, mission: str) -> str:
     rules = load_rules_bundle(root)
     headings = SKILL_HEADINGS.get(skill, SKILL_HEADINGS["default"])
-    hint = OUTPUT_HINTS.get(skill, OUTPUT_HINTS["default"])
+    knobs = read_settings_knobs(root)
+    fmt = knobs.get("rules.reports.output_format", "markdown").lower()
+    ext = ".html" if fmt == "html" else ".md"
+    hint_tmpl = OUTPUT_HINTS.get(skill, OUTPUT_HINTS["default"])
+    hint = hint_tmpl.format(ext=ext)
     rel_session = str(session.relative_to(root)) if session.is_relative_to(root) else str(session)
+    contract = extract_skill_contract(root, skill)
 
     parts: list[str] = [
         "# CONTEXT_PACK (sub-agent envelope)",
@@ -290,12 +435,27 @@ def build_pack(root: Path, session: Path, skill: str, mission: str) -> str:
         mission.strip()
         or f"Run skill `{skill}` for session `{rel_session}`. Return artifacts per Output contract.",
         "",
+        "## Settings (resolved)",
+        "",
+        f"- `language` (thread/report prose): `{knobs['language']}`",
+        f"- `rules.code.comments.prose_language`: `{knobs['rules.code.comments.prose_language']}`",
+        f"- `rules.branch.mode`: `{knobs['rules.branch.mode']}` "
+        "(checkout → create/use work branch before code edits; direct → stay on base)",
+        f"- `rules.reports.output_format`: `{knobs['rules.reports.output_format']}` "
+        f"(lifecycle reports use `{ext}`)",
+        f"- `rules.docs.location`: `{knobs['rules.docs.location']}` (wiki only; not session reports)",
+        "",
+        "## Skill contract",
+        "",
+        contract,
+        "",
         "## Constraints",
         "",
         "- Path scale: honor Quick/Lite/Full in Developer overview when present.",
-        "- cwd: repository root (product). Artifacts only under the active session.",
+        "- cwd: repository root (product). Lifecycle artifacts only under the active session.",
         "- Do not modify `.agents/skills` or kit policy files.",
         "- If Blocking: stop and Ask-back to main (see Ask-back protocol).",
+        "- Obey Settings (resolved) and Skill contract above; do not invent omitted policy.",
         "",
         "## Project digest",
         "",
@@ -321,12 +481,13 @@ def build_pack(root: Path, session: Path, skill: str, mission: str) -> str:
 
     tasks = session / "TASKS.md"
     if tasks.is_file():
+        tasks_text = tasks.read_text(encoding="utf-8")
         parts.extend(
             [
                 "## Task scope",
                 "",
                 extract_sections(
-                    tasks.read_text(encoding="utf-8"),
+                    tasks_text,
                     ("Work inventory", "Execution order"),
                     50,
                 )
@@ -334,6 +495,17 @@ def build_pack(root: Path, session: Path, skill: str, mission: str) -> str:
                 "",
             ]
         )
+        if skill in ("execution", "default", "review"):
+            dev = extract_dev_contexts(tasks_text)
+            parts.extend(
+                [
+                    "## Dev context (TASK cards)",
+                    "",
+                    dev
+                    or "_(no #### Dev context blocks found — return to planning; do not invent)_",
+                    "",
+                ]
+            )
 
     parts.extend(
         [
@@ -341,8 +513,13 @@ def build_pack(root: Path, session: Path, skill: str, mission: str) -> str:
             "",
             hint,
             f"- Session dir: `{rel_session}`",
-            "- Headings stay English; thread/report prose follows settings.language.",
-            "- Code comments/docstrings follow rules.code.comments.prose_language (not settings.language).",
+            f"- Report extension from settings: `{ext}` "
+            f"(rules.reports.output_format={knobs['rules.reports.output_format']})",
+            f"- Thread/report prose: `{knobs['language']}` "
+            "(headings / template keys stay English).",
+            f"- Code comments/docstrings: `{knobs['rules.code.comments.prose_language']}` "
+            "(not settings.language).",
+            f"- Branch before code edits: `rules.branch.mode={knobs['rules.branch.mode']}`.",
             "",
             "## Ask-back protocol",
             "",

@@ -120,9 +120,13 @@ the merge-base.
 
 ### Step 5 — Write the artifact and clean up
 
-1. Write `REVIEW_PR.md` to `.agent-work/sessions/<Task-N-short-description>/`
-   (the repo root `.agents/` is git-ignored — never write it inside a worktree).
-2. If a worktree was created, remove it:
+1. Write `REVIEW_PR.md` to the **active** session
+   (`.agent-work/sessions/<Task-N-short-description>/` from `session.sh current`;
+   the repo root `.agents/` is git-ignored — never write it inside a worktree).
+2. Work nested git: run
+   `bash .agents/tools/session/session.sh commit 'docs(review-pr): …'`
+   after writing the artifact (or confirm `WORK_COMMIT=clean`).
+3. If a worktree was created, remove it:
 
 ```bash
 cd <main-repo-root>
@@ -145,6 +149,8 @@ Confirm the current branch and working tree are unchanged.
 - [ ] Security/auth/permission is reviewed if changes touch those areas.
 - [ ] Code comment convention checked against `.agents/CODE_COMMENTS.md`: public symbols documented, non-obvious flow explained, markers owned, no stale/contradicting comments.
 - [ ] Testing gaps are documented even when no blocker findings exist.
+- [ ] Work nested git: ran `session.sh commit 'docs(review-pr): …'` after writing
+      `REVIEW_PR.md` (or `WORK_COMMIT=clean`).
 
 ## WRONG vs CORRECT
 

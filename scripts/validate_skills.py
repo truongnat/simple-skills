@@ -155,6 +155,11 @@ def main() -> int:
             missing_fields = contract_has_fields(text, contract_fields)
             for field in missing_fields:
                 errors.append(f"{name}: Contract table missing {field}")
+            if manifest.get("contract_requires_artifacts_section", True):
+                if "### Required artifacts" not in text:
+                    errors.append(
+                        f"{name}: Contract must include '### Required artifacts' subsection"
+                    )
             if name in preamble_required:
                 if PREAMBLE_MARKER not in text:
                     errors.append(f"{name}: must point at {PREAMBLE_MARKER}")
@@ -586,10 +591,27 @@ def main() -> int:
         "review",
         "quick-fix",
         "done",
+        "review-pr",
+        "tester",
+        "excel-doc-convert",
     ):
         skill_text = (SKILLS_ROOT / life / "SKILL.md").read_text(encoding="utf-8")
         if "session.sh commit" not in skill_text:
             errors.append(f"{life} SKILL.md missing session.sh commit checklist")
+    if "Wiki exception" not in (ROOT / "docs" / "SKILL_PREAMBLE.md").read_text(
+        encoding="utf-8"
+    ):
+        errors.append("SKILL_PREAMBLE.md missing Wiki exception for docs skill")
+    if "rules.docs.location" not in (SKILLS_ROOT / "docs" / "SKILL.md").read_text(
+        encoding="utf-8"
+    ):
+        errors.append("docs SKILL.md must clarify rules.docs.location wiki exception")
+    if "Contract table" not in (ROOT / "docs" / "AGENT_POLICY.md").read_text(
+        encoding="utf-8"
+    ):
+        errors.append(
+            "AGENT_POLICY.md must document Contract table vs Required artifacts subsection"
+        )
     if "session.sh archive" not in (SKILLS_ROOT / "done" / "SKILL.md").read_text(
         encoding="utf-8"
     ):

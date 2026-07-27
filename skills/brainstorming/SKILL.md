@@ -69,7 +69,7 @@ This skill is a **hard contract**. Obey it before any other action.
 | Outputs | Session `DISCUSSION.md` seeded from template, with issue/visual triage and clarification decisions; optional `VISUAL_DECISION.html`. |
 | Safety | Do NOT implement code. Do NOT skip steps. **Confirm-first:** on Blocking need STOP immediately, classify Ask method (`confirm`/`choice`/`fact`/`table`/`diagram`/`html`), ask that way — reuse Clarification/memory; do not finish DISCUSSION as a quiz. Do NOT treat specs/assumptions as automatically correct or feasible. Do NOT create PLAN/TASKS or detailed design before a clear recommendation. Do NOT hide blocking unknowns or omitted feature capabilities. HTML must include Tailwind + anime.js CDN tags for static viewing, stay accessible, avoid sensitive data, and be created only after user confirmation (unless explicitly requested). Choice logging still requires session-serve. If session Path is `Quick`, stop and use `quick-fix` instead (or upgrade Path to Lite/Full). |
 
-### Required artifact
+### Required artifacts
 
 #### `DISCUSSION.md` (from template)
 executive_summary, developer_overview, **keywords** (or none), charts (Mermaid when useful),

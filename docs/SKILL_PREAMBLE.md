@@ -60,8 +60,9 @@ Simple Skills splits **Kit** and **Work**:
 
 Rules:
 
-1. Write lifecycle artifacts **only** under
-   `.agent-work/sessions/<Task-N-…>/` — never under `.agents/`, temp, or cache.
+1. Write **lifecycle session artifacts** (DISCUSSION, PLAN, TASKS, REVIEW, …)
+   **only** under `.agent-work/sessions/<Task-N-…>/` — never under temp/cache,
+   and never under `.agents/skills` or other kit paths.
 2. Write durable lessons **only** under `.agent-work/memory/`.
 3. Resolve the active session with:
    ```bash
@@ -69,7 +70,10 @@ Rules:
    ```
    Create one with `session.sh new <slug>` (also ensures `.agent-work` + nested
    git). Progress: `session.sh status`.
-4. Do **not** put task artifacts into `.agents/skills` or other kit paths.
+4. **Wiki exception (`docs` skill only):** the enterprise wiki tree goes under
+   `rules.docs.location` (default `.agents/wiki`). That path may live under
+   `.agents/` by design. It is **not** a lifecycle session report and is **not**
+   forbidden by rule 1. Still never write wiki into `.agents/skills/`.
 5. Prefer the product root `.gitignore` to include `.agent-work/` so Work history
    stays in its nested git, not the product repo.
 6. **Work commit protocol:** when nested git exists, after writing or updating
@@ -79,7 +83,7 @@ Rules:
    ```
    Do not claim the skill finished while `session.sh doctor` reports
    `work_dirty=yes`. Full cadence + archive: `.agents/AGENT_WORK.md` → Work
-   commit protocol. This is **not** product `rules.docs` `with-commit`.
+   commit protocol. This is **not** product `rules.docs` `with-commit` (wiki).
 
 ## Memory (read first)
 
@@ -240,10 +244,13 @@ memory — they only know what is in the pack.
    that template in the **same change**.
 6. **Worker invoke scaffold:**
    ```bash
-   python .agents/tools/session/delegate_worker.py --skill <id> --cli <id> --dry-run
+   python .agents/tools/session/delegate_worker.py --skill <id> --cli auto --dry-run
    ```
-   After worker returns: `validate_artifacts.py` + `lint_artifacts.py` +
-   `session.sh commit`. Spawn is manual-approve in Phase 2 (no silent CLI).
+   `--cli auto` (default) applies `rules.agents.routing.<skill>` then
+   `rules.agents.fallback` (default `main`). Explicit `--cli` must be on the
+   routing list unless `--force-cli`. After worker returns:
+   `validate_artifacts.py` + `lint_artifacts.py` + `session.sh commit`.
+   Spawn is manual-approve in Phase 2 (no silent CLI).
 
 ## Scale (Quick / Lite / Full)
 

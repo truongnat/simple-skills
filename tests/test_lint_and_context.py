@@ -131,6 +131,24 @@ def test_build_context_writes_file(tmp_path: Path) -> None:
 def test_build_context_pack_includes_rules_and_check(tmp_path: Path) -> None:
     session = _session(tmp_path)
     (tmp_path / ".agents").mkdir()
+    plan_skill = tmp_path / ".agents" / "skills" / "planning"
+    plan_skill.mkdir(parents=True)
+    (plan_skill / "SKILL.md").write_text(
+        (REPO_ROOT / "skills" / "planning" / "SKILL.md").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    (tmp_path / ".agents" / "settings.yaml").write_text(
+        "language: vi\n"
+        "rules:\n"
+        "  branch:\n"
+        "    mode: checkout\n"
+        "  reports:\n"
+        "    output_format: html\n"
+        "  code:\n"
+        "    comments:\n"
+        "      prose_language: en\n",
+        encoding="utf-8",
+    )
     (session / "DISCUSSION.md").write_text(
         "## Executive summary\n\n- go\n\n## Goal\n\nShip.\n"
         "\n## Recommendation\n\nOption A.\n",
@@ -159,7 +177,105 @@ def test_build_context_pack_includes_rules_and_check(tmp_path: Path) -> None:
     assert ".agent-work/" in pack
     assert "rules.code.comments.prose_language" in pack
     assert "settings.language" in pack
+    assert "## Settings (resolved)" in pack
+    assert "`language` (thread/report prose): `vi`" in pack
+    assert "rules.branch.mode`: `checkout`" in pack
+    assert "rules.reports.output_format`: `html`" in pack
+    assert "## Skill contract" in pack
+    assert "Do NOT implement code" in pack
     assert "CONTEXT_PACK_CHECK_OK" in result.stdout
+
+
+def test_build_context_pack_includes_dev_context_for_execution(tmp_path: Path) -> None:
+    session = _session(tmp_path)
+    (tmp_path / ".agents").mkdir()
+    exec_skill = tmp_path / ".agents" / "skills" / "execution"
+    exec_skill.mkdir(parents=True)
+    (exec_skill / "SKILL.md").write_text(
+        (REPO_ROOT / "skills" / "execution" / "SKILL.md").read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+    (session / "TASKS.md").write_text(
+        """# Tasks
+## Work inventory
+| ID | Title |
+| T-001 | Guard |
+
+## Execution order
+T-001
+
+### T-001: Guard
+- Status: todo
+#### Dev context
+- **Reuse:** helper `[Source: src/a.ts]`
+- **Contracts / data:** No specific guidance found.
+- **Constraints:** No specific guidance found.
+- **Guardrails:** No specific guidance found.
+- **Gaps:** none
+""",
+        encoding="utf-8",
+    )
+    result = subprocess.run(
+        [
+            "python3",
+            str(BUILD),
+            "--root",
+            str(tmp_path),
+            "--skill",
+            "execution",
+            "--pack",
+            "--check",
+        ],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    pack = (session / "CONTEXT_PACK.md").read_text(encoding="utf-8")
+    assert "## Dev context (TASK cards)" in pack
+    assert "[Source: src/a.ts]" in pack
+
+
+def test_delegate_worker_applies_routing(tmp_path: Path) -> None:
+    session = _session(tmp_path)
+    (tmp_path / ".agents").mkdir()
+    (tmp_path / ".agents" / "settings.yaml").write_text(
+        "language: en\n"
+        "rules:\n"
+        "  agents:\n"
+        "    fallback: main\n"
+        "    routing:\n"
+        "      planning: [claude, main]\n",
+        encoding="utf-8",
+    )
+    (session / "PLAN.md").write_text(
+        "## Executive summary\n\n- plan\n\n## Goal\n\nDo it.\n",
+        encoding="utf-8",
+    )
+    delegate = REPO_ROOT / "tools" / "session" / "delegate_worker.py"
+    result = subprocess.run(
+        [
+            "python3",
+            str(delegate),
+            "--root",
+            str(tmp_path),
+            "--skill",
+            "planning",
+            "--cli",
+            "auto",
+            "--check-only",
+        ],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "DELEGATE_ROUTE" in result.stdout
+    assert "routing[planning]" in result.stdout
+    assert "cli=claude" in result.stdout
+    assert "DELEGATE_PACK_OK" in result.stdout
 
 
 def test_detect_agents_write_creates_section(tmp_path: Path) -> None:

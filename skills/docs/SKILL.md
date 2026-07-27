@@ -15,8 +15,19 @@ Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Work layout +
 Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
 steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
 understands on first pass — concrete paths/IDs, no filler, no method branding.
-Artifacts go under `.agent-work/` (sessions + memory), not `.agents/`.
 Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
+
+**Where this skill writes (exception to session-only Work layout):**
+
+| Output | Location |
+| --- | --- |
+| Lifecycle session notes (if any) | `.agent-work/sessions/<Task-…>/` only |
+| Project wiki / enterprise doc set | `rules.docs.location` (default `.agents/wiki`) — **allowed** under kit when settings say so |
+| Never | `.agents/skills/`, temp, cache, or inventing a second wiki tree |
+
+Do **not** treat the shared preamble line “not `.agents/`” as a ban on the
+configured wiki path — that rule targets lifecycle reports (DISCUSSION/PLAN/…),
+not `rules.docs.location`.
 
 ## Purpose
 

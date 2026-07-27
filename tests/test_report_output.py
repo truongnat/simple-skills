@@ -32,6 +32,38 @@ def test_comment_language_is_separate_from_thread_language() -> None:
     assert "**not**" in rules and "`settings.language`" in rules
 
 
+def test_contract_schema_documents_artifacts_subsection() -> None:
+    policy = (REPO_ROOT / "docs" / "AGENT_POLICY.md").read_text(encoding="utf-8")
+    manifest = (REPO_ROOT / "docs" / "first-party-skills.json").read_text(
+        encoding="utf-8"
+    )
+    assert "Contract table" in policy
+    assert "### Required artifacts" in policy
+    assert '"Inputs"' in manifest and '"Safety"' in manifest
+    assert "contract_requires_artifacts_section" in manifest
+
+
+def test_docs_skill_documents_wiki_exception() -> None:
+    docs = (REPO_ROOT / "skills" / "docs" / "SKILL.md").read_text(encoding="utf-8")
+    preamble = (REPO_ROOT / "docs" / "SKILL_PREAMBLE.md").read_text(encoding="utf-8")
+    assert "rules.docs.location" in docs
+    assert "Wiki exception" in preamble
+
+
+def test_validate_skills_script_passes() -> None:
+    import subprocess
+
+    result = subprocess.run(
+        ["python3", str(REPO_ROOT / "scripts" / "validate_skills.py")],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "SKILL_VALIDATION_OK" in result.stdout
+
+
 def test_agent_rules_define_html_artifact_compatibility() -> None:
     rules = (REPO_ROOT / "docs" / "AGENT_POLICY.md").read_text(encoding="utf-8")
     assert "## Artifact format resolution" in rules

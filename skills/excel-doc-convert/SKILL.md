@@ -10,6 +10,15 @@ description: >-
 
 # Excel Doc Convert
 
+## Shared preamble (do this first)
+
+Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Work layout +
+Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
+steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
+understands on first pass — concrete paths/IDs, no filler, no method branding.
+Artifacts go under `.agent-work/` (sessions + memory), not `.agents/skills/`.
+Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
+
 ## Purpose
 
 Turn **document-like Excel** (merged layouts, JP templates) into readable
@@ -23,13 +32,13 @@ This skill is a **hard contract**. Obey it before any other action.
 | Field | Requirement |
 |-------|-------------|
 | Inputs | Path to `.xlsx` (not `.xls`); optional sheet filter and row/col caps. |
-| Outputs | Per-sheet `.html` + `.md`, plus `convert-report.json` listing strategies and limitations. |
+| Outputs | Per-sheet `.html` + `.md`, plus `convert-report.json` listing strategies and limitations. Written under the active session (or a user-named path outside the kit). |
 | Safety | Do **not** claim layout-lossless Markdown. Do **not** invent cell values. Do **not** silently drop sheets when converting “all”. Mark shapes/charts/comments unsupported in the report. Prefer HTML for layout sheets. Domain IDs (FBD/RBD, control IDs) stay raw. |
 
 ### Required artifacts
 
 #### `convert-report.json`
-- Required: yes (written next to outputs)
+- Required: yes (written next to outputs under `.agent-work/sessions/<Task-…>/` unless the user names another non-kit path)
 - **format** (required, string): Must be `excel-doc-convert`.
 - **operation** (required, string): `classify` \| `convert`.
 - **source** (required, string): Input workbook path.
@@ -55,16 +64,18 @@ Creates `.agents/skills/excel-doc-convert/.venv` and installs only this skill's
 
 ## Workflow
 
-1. Read `.agents/SKILL_PREAMBLE.md` (Language, Work layout, Readable writing).
-2. Write outputs only under `.agent-work/sessions/<Task-…>/` (or a path the user
-   names) — never under `.agents/skills/` or the kit tree.
-3. `classify` first on unknown workbooks.
-4. `convert` with caps; raise `--max-rows` / `--max-cols` only when needed.
-5. Open HTML for layout QA; use Markdown for RAG / handoff.
-6. For sheet strategy `layout-asset`, treat HTML as primary; MD is a stub + link.
-7. Review `convert-report.json` limitations before claiming “done”.
-8. Optional: LLM pass to rewrite MD from HTML/text **without changing numbers/IDs** —
+1. Resolve the active session (`session.sh current`) unless the user named an
+   output path; never write under `.agents/skills/` or the kit tree.
+2. `classify` first on unknown workbooks.
+3. `convert` with caps; raise `--max-rows` / `--max-cols` only when needed.
+4. Open HTML for layout QA; use Markdown for RAG / handoff.
+5. For sheet strategy `layout-asset`, treat HTML as primary; MD is a stub + link.
+6. Review `convert-report.json` limitations before claiming “done”.
+7. Optional: LLM pass to rewrite MD from HTML/text **without changing numbers/IDs** —
    still keep the report and HTML as evidence.
+8. Work nested git: run
+   `session.sh commit 'docs(excel-doc-convert): …'` after writing session
+   outputs (or confirm `WORK_COMMIT=clean`).
 
 ## Commands
 

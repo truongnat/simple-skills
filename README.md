@@ -43,7 +43,9 @@ Step skills use a **Step ledger** and **Spec quality** gates (not on Quick).
 Lint: `python .agents/tools/session/lint_artifacts.py`  
 Handoff pack: `python .agents/tools/session/build_context.py`
 
-Session framing uses **Thinking methods** (Outcome-first → 5W1H if unclear → vital few). Ops in `.agents/SKILL_PREAMBLE.md`; Outcome-first detail in `.agents/thinking/outcome-first.md`.
+Session framing uses **Thinking methods**: Outcome-first → Input→Process→Output
+→ Small-batch → (5W1H if unclear) → vital few. Ops in `.agents/SKILL_PREAMBLE.md`;
+detail in `.agents/thinking/`.
 
 ## Settings (keep small)
 

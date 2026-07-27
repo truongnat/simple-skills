@@ -23,6 +23,8 @@ Breaking or behavior changes hosts should know after reinstall.
 | Work commit protocol | `session.sh commit` after lifecycle artifact writes; `session.sh archive` after successful `done`; see AGENT_WORK.md |
 | Confirm-first + Ask methods | STOP immediately on Blocking; classify `confirm`/`choice`/`fact`/`table`/`diagram`/`html` then ask; no quiz-as-document — SKILL_PREAMBLE |
 | Outcome-first Thinking method | Session-wide: lock WHO/WHAT/EVIDENCE in Goal/Desired outcome/DoD/AC before Approach/TASKS; normative `.agents/thinking/outcome-first.md`; no `OUTCOME.md` / no method-branded headings |
+| Input→Process→Output Thinking method | After Output draft: bind Input (facts/trace/dev context) + Process (Approach/Work items) to Output; normative `.agents/thinking/input-process-output.md`; no `IPO.md` |
+| Small-batch Thinking method | Completable units with independent Verify + short feedback latency; normative `.agents/thinking/small-batch.md`; card hard size remains planning step-03 §B/§C; no `SMALL_BATCH.md` |
 | Docs source taxonomy | Source tree under `docs/{guides,policy,thinking,conventions,config,examples}/`; install still flattens most files into `.agents/` (Thinking stays `.agents/thinking/`). See `docs/README.md`. |
 | Multi-CLI Phase 1 | `detect_agents.py`, `RULES_BUNDLE.template.md`, `build_context --pack --check`, `delegate_worker.py` (Rules gate; dry-run); settings `rules.agents.*` |
 

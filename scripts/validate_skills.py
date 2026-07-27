@@ -485,6 +485,10 @@ def main() -> int:
         errors.append("docs/README.md missing (docs taxonomy catalog)")
     if not (ROOT / "docs" / "thinking" / "outcome-first.md").is_file():
         errors.append("docs/thinking/outcome-first.md missing")
+    if not (ROOT / "docs" / "thinking" / "input-process-output.md").is_file():
+        errors.append("docs/thinking/input-process-output.md missing")
+    if not (ROOT / "docs" / "thinking" / "small-batch.md").is_file():
+        errors.append("docs/thinking/small-batch.md missing")
     if not (ROOT / "docs" / "thinking" / "README.md").is_file():
         errors.append("docs/thinking/README.md missing")
     if not (ROOT / "docs" / "examples" / "README.md").is_file():

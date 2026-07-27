@@ -25,6 +25,8 @@ _(one sentence)_
 
 ## Facts
 
+<!-- IPO Input: from user / repo — paths/IDs. Blocking gaps → upgrade Path. -->
+
 - _(from user / repo — paths/IDs)_
 
 ## Out of scope

@@ -104,7 +104,11 @@ _(TODO)_
 
 ## Approach
 
-<!-- Phased strategy only — not per-task AC/Verify/Files. -->
+<!-- IPO Process + Small-batch: phased strategy only — each phase advances a
+     checkable Output slice of Goal and should be completable/verifiable before
+     the next compounds error. Not “backend then frontend” alone.
+     Not per-task AC/Verify/Files. See .agents/thinking/input-process-output.md
+     and .agents/thinking/small-batch.md -->
 
 1. _(TODO — phase with concrete deliverable)_
 2. _(TODO — phase)_

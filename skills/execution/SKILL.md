@@ -100,6 +100,10 @@ create or modify:
 
 ## Progress protocol (mandatory)
 
+**Small-batch rhythm:** finish and Verify **one** card before starting a
+**dependent** next card. Do not implement a pile of cards and verify once at
+the end. See `.agents/thinking/small-batch.md`.
+
 On every task card in `execution_order`:
 
 0. **Load Dev context first:** read the card’s `#### Dev context`. Follow
@@ -107,7 +111,7 @@ On every task card in `execution_order`:
    If Dev context is missing → stop and return to planning (do not improvise).
 1. **Start card:** set card Status + Progress board Status → `in_progress`; set `current_task` in EXECUTION.md.
 2. **Finish a Work item:** immediately set that line to `- [x]` in TASKS.md; append a short execution_log row.
-3. **Finish card:** run card Verify; if pass → Status=`done`, Progress board Done=`[x]`; if blocked → Status=`blocked` and note reason (leave unfinished Work items as `[ ]`).
+3. **Finish card:** run **this card’s** Verify; if pass → Status=`done`, Progress board Done=`[x]`; if blocked → Status=`blocked` and note reason (leave unfinished Work items as `[ ]`). Record evidence in EXECUTION.md before opening a dependent next card.
 4. **Stop mid-run / user stop:** leave accurate Status (`in_progress` or `blocked`); do not mark Done; handoff lists remaining IDs.
 5. **Never** mark Status=`done` if Verify failed or was skipped without documenting risk + Status=`blocked`/`skipped`.
 6. **Refresh progress from truth only.** Do not type counts and do not maintain
@@ -134,6 +138,7 @@ Work items: - [x] 1. …  - [x] 2. …  - [x] 3. …
 - [ ] Skipped checks have a documented reason and risk.
 - [ ] Pre-existing failures are labeled "pre-existing" with evidence.
 - [ ] Work follows TASKS.md IDs and execution_order; PLAN.md DoD/rollback are respected.
+- [ ] Small-batch: each finished card has its own Verify evidence before dependent next.
 - [ ] TASKS.md Progress board, card Status, and Work item checkboxes match reality at handoff.
 - [ ] Deviations from PLAN/TASKS are documented with justification.
 - [ ] Rollback notes exist for all changed areas.

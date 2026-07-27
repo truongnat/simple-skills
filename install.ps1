@@ -102,6 +102,22 @@ function Invoke-Doctor {
         $ok = $false
     }
 
+    $thinkingIpo = Join-Path $Target.Path ".agents/thinking/input-process-output.md"
+    if (Test-Path $thinkingIpo -PathType Leaf) {
+        Write-Host "kit_thinking/input-process-output.md=yes"
+    } else {
+        Write-Host "kit_thinking/input-process-output.md=missing"
+        $ok = $false
+    }
+
+    $thinkingSmallBatch = Join-Path $Target.Path ".agents/thinking/small-batch.md"
+    if (Test-Path $thinkingSmallBatch -PathType Leaf) {
+        Write-Host "kit_thinking/small-batch.md=yes"
+    } else {
+        Write-Host "kit_thinking/small-batch.md=missing"
+        $ok = $false
+    }
+
     if (Test-Path (Join-Path $Target.Path "AGENTS.md") -PathType Leaf) {
         Write-Host "root_AGENTS.md=yes"
     } else {
@@ -298,6 +314,8 @@ function Invoke-Install {
     Copy-Item -Path (Join-Path $Source "docs/policy/AGENT_POLICY.md") -Destination ".agents/AGENT_POLICY.md" -Force
     New-Item -ItemType Directory -Force -Path ".agents/thinking" | Out-Null
     Copy-Item -Path (Join-Path $Source "docs/thinking/outcome-first.md") -Destination ".agents/thinking/outcome-first.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/thinking/input-process-output.md") -Destination ".agents/thinking/input-process-output.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/thinking/small-batch.md") -Destination ".agents/thinking/small-batch.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/thinking/README.md") -Destination ".agents/thinking/README.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/policy/AGENT_WORK.md") -Destination ".agents/AGENT_WORK.md" -Force
     Copy-Item -Path (Join-Path $Source "docs/guides/START_HERE.md") -Destination ".agents/START_HERE.md" -Force

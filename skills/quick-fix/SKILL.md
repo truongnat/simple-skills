@@ -37,6 +37,8 @@ Ship a **small, clear** change without Full lifecycle ceremony.
   activity-only), facts, out of scope, handoff (`sync` then `execution`)
 - If rewriting the ask into an outcome surfaces product/design ambiguity →
   **upgrade Path** (do not keep fuzzy Goal on Quick)
+- **Small-batch ceiling:** 1–3 cards; more independently verifiable Outputs →
+  upgrade Path (see `.agents/thinking/small-batch.md`)
 
 #### `TASKS.md`
 - 1–3 cards only; each with Work items, **AC** (observable slice of Goal),
@@ -56,7 +58,7 @@ Ship a **small, clear** change without Full lifecycle ceremony.
 
 - [ ] Path=Quick recorded; no BA/design files created.
 - [ ] Goal passes Outcome-first three-axis (not “fix X” / “add null check” alone).
-- [ ] ≤3 TASK cards; each AC is falsifiable via Verify; each has Dev context with Source or explicit none.
+- [ ] ≤3 TASK cards (Small-batch ceiling); each AC is falsifiable via Verify; each has Dev context with Source or explicit none.
 - [ ] First-pass readable; no leftover `_(TODO)_`.
 - [ ] Lint OK.
 

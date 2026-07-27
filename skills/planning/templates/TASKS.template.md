@@ -66,10 +66,10 @@ T-001 → T-002 → _(extend)_
 - Trace: _(doc § / AC / contract id — required)_
 - Depends: none
 - Work items:
-  - [ ] 1. _(concrete step: symbol / field / behavior)_
+  - [ ] 1. _(IPO Process step: symbol / field / behavior toward AC)_
   - [ ] 2. _(concrete step)_
 - Description: _(1–2 lines; details live in Work items + Dev context)_
-- AC: _(Outcome-first slice of PLAN Goal — observable WHO/WHAT; not “works” / “per spec” / “implemented”)_
+- AC: _(Outcome-first / IPO Output slice of PLAN Goal — observable WHO/WHAT; not “works” / “per spec” / “implemented”)_
 - Verify: _(command, request, or UI check that can falsify this AC only)_
 - Flow/comment notes: _(where rationale comments are required, or N/A + reason)_
 - Files/scope: _(concrete path or create `…/File.ext`)_ (confidence: known | inferred | unknown)
@@ -77,8 +77,8 @@ T-001 → T-002 → _(extend)_
 
 #### Dev context (mandatory — execution reads this first)
 
-<!-- Extract ONLY from DISCUSSION / BA / design / PLAN / repo. Never invent.
-Every bullet that states a tech fact must end with `[Source: path#§ or heading]`.
+<!-- IPO Input for this card. Extract ONLY from DISCUSSION / BA / design / PLAN / repo.
+Never invent. Every tech fact bullet must end with `[Source: path#§ or heading]`.
 If a category has no guidance in sources, write exactly: `No specific guidance found.` -->
 
 - **Reuse / do not reinvent:** _(existing symbols, helpers, patterns to extend — or `No specific guidance found.`)_

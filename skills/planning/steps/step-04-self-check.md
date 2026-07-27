@@ -50,24 +50,29 @@ If precondition fails → return to the earliest incomplete step. Do **not** set
 15. **Outcome-first:** PLAN Goal is not activity-only; DoD includes ≥1
     consumer/contract outcome (not only PR/lint); every card AC traces as a
     slice of that Goal (see `.agents/thinking/outcome-first.md`).
+16. **IPO:** Approach phases advance Goal slices; each card has Input
+    (Trace/Dev context) → Process (Work items) → Output (AC/Verify)
+    (see `.agents/thinking/input-process-output.md`).
+17. **Small-batch:** Cards pass §B/§C; Approach has no mega-phase; each card
+    Verify is independently falsifiable (see `.agents/thinking/small-batch.md`).
 
 ### Blockers → Ready (critical)
 
-16. Re-read `DISCUSSION.md` / `BUSINESS_ANALYSIS.md` Spec quality findings and
+18. Re-read `DISCUSSION.md` / `BUSINESS_ANALYSIS.md` Spec quality findings and
     Handoff blockers (if present). Copy any **still unresolved** items into PLAN
     Handoff blockers.
-17. **Ready for sync/execution? must be No** if any of:
-    - Checks 1–15 fail
+19. **Ready for sync/execution? must be No** if any of:
+    - Checks 1–17 fail
     - PLAN Handoff blockers list is non-empty (unresolved)
     - DISCUSSION/BA listed blockers that were never resolved/struck
-18. **Ready = Yes** only when checks 1–15 pass **and** Handoff blockers are `none` (or explicitly marked resolved with evidence).
-19. Mark Step ledger 04 `done` or `blocked` with checklist evidence.
+20. **Ready = Yes** only when checks 1–17 pass **and** Handoff blockers are `none` (or explicitly marked resolved with evidence).
+21. Mark Step ledger 04 `done` or `blocked` with checklist evidence.
 
 Never write Ready=Yes while the same document’s Blockers line still lists open items.
 
 ## Done when
 
-- [ ] PLAN Handoff Ready matches rules 16–18.
+- [ ] PLAN Handoff Ready matches rules 18–20.
 - [ ] Step ledger 04 updated.
 - [ ] Failures are listed in Blockers or fixed by returning to step-02/step-03.
 - [ ] User is told:

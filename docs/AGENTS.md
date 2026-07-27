@@ -32,6 +32,8 @@ body. Blocking unknowns → **Confirm-first** + **Ask method** in
 | `.agents/PRJ_REFERENCE.md` | Generated project facts |
 | `.agents/SKILL_PREAMBLE.md` | Shared skill rules |
 | `.agents/thinking/outcome-first.md` | Outcome-first Thinking method (normative) |
+| `.agents/thinking/input-process-output.md` | Input→Process→Output Thinking method (normative) |
+| `.agents/thinking/small-batch.md` | Small-batch Thinking method (normative) |
 | `.agents/skills/` | Invokable skills |
 | `.agents/tools/` | session, lint, build_context, detect_agents, delegate_worker, … |
 | `.agent-work/` | **Work** — sessions + memory (nested git; `session.sh commit` / `archive`) |

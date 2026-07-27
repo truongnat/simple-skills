@@ -63,15 +63,32 @@ def test_outcome_first_thinking_method_is_wired() -> None:
     detail = (REPO_ROOT / "docs" / "thinking" / "outcome-first.md").read_text(
         encoding="utf-8"
     )
+    ipo = (REPO_ROOT / "docs" / "thinking" / "input-process-output.md").read_text(
+        encoding="utf-8"
+    )
+    small_batch = (REPO_ROOT / "docs" / "thinking" / "small-batch.md").read_text(
+        encoding="utf-8"
+    )
     index = (REPO_ROOT / "docs" / "thinking" / "README.md").read_text(encoding="utf-8")
     catalog = (REPO_ROOT / "docs" / "README.md").read_text(encoding="utf-8")
     assert "Outcome-first" in preamble
     assert "three-axis" in preamble
     assert "thinking/outcome-first.md" in preamble
+    assert "Input → Process → Output" in preamble
+    assert "thinking/input-process-output.md" in preamble
+    assert "Small-batch" in preamble
+    assert "thinking/small-batch.md" in preamble
     assert "Outcome-first" in policy
+    assert "Input → Process → Output" in policy
+    assert "Small-batch" in policy
     assert "WHO" in detail and "WHAT" in detail and "EVIDENCE" in detail
     assert "OUTCOME.md" in detail and "forbidden" in detail.lower()
-    assert "outcome-first.md" in index
+    assert "Input" in ipo and "Process" in ipo and "Output" in ipo
+    assert "IPO.md" in ipo
+    assert "four-property" in small_batch or "Four-property" in small_batch
+    assert "SMALL_BATCH.md" in small_batch
+    assert "outcome-first.md" in index and "input-process-output.md" in index
+    assert "small-batch.md" in index
     assert "thinking/" in catalog
 
 

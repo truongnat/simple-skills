@@ -82,8 +82,8 @@ Delegation & Rules pass-down.
 decision bullets) then a **Developer overview** panel **inside that same
 artifact**. Do **not** create a separate `OVERVIEW.md` landing page — it goes
 stale. Progress truth is `TASKS.md` + `session.sh status`. Do **not** name
-sections after methods (`Outcome-first`, `80/20`, `5W1H`). Chart when useful;
-skip filler.
+sections after methods (`Outcome-first`, `IPO`, `Small-batch`, `80/20`,
+`5W1H`). Chart when useful; skip filler.
 
 **Thinking methods (session-wide — not report titles):**
 
@@ -91,6 +91,13 @@ skip filler.
   EVIDENCE in `Goal` / `Desired outcome` / DoD / AC. Reject activity-only
   Goals (“write API”, “refactor auth”). Full rules:
   `.agents/thinking/outcome-first.md`.
+- **Input → Process → Output:** after Output is drafted, name sufficient Input
+  (facts/trace/dev context) and a coherent Process (Approach/Work items) that
+  produces that Output. Full rules:
+  `.agents/thinking/input-process-output.md`.
+- **Small-batch:** slice work into completable units with independent Verify
+  and short feedback latency (Approach phases, TASK size rules, per-card
+  Verify in execution). Full rules: `.agents/thinking/small-batch.md`.
 - **Vital few (Pareto / “80/20”):** across the whole session, keep attention on
   the small set of facts, risks, and decisions that change the outcome. Use it
   when prioritizing, summarizing, and writing memory — never as a heading or
@@ -579,11 +586,12 @@ traceability, test data, or verification evidence.
 ## Thinking methods (session-wide)
 
 These are **ways of working**, not section names or report titles. Do not brand
-artifacts with method labels (`Outcome-first`, `80/20`, `5W1H`). Do not create
-`OUTCOME.md`. Fold method results into existing fields only.
+artifacts with method labels (`Outcome-first`, `IPO`, `Small-batch`, `80/20`,
+`5W1H`). Do not create `OUTCOME.md` / `IPO.md` / `SMALL_BATCH.md`. Fold method
+results into existing fields only.
 
-**Framing order:** Outcome-first → (5W1H if unclear) → vital few when
-summarizing/memory.
+**Framing order:** Outcome-first → Input→Process→Output → Small-batch →
+(5W1H if unclear) → vital few when summarizing/memory.
 
 1. **Outcome-first (mandatory):** Start from the observable end state, not the
    task list. Every `Goal`, `Desired outcome`, DoD item, and task `AC` must
@@ -607,12 +615,35 @@ summarizing/memory.
    `.agents/thinking/outcome-first.md` (source `docs/thinking/outcome-first.md`).
    Kit authors: keep this as a Thinking method, not a separate skill.
 
-2. **Vital few (Pareto):** Hold the whole session in mind and surface only what
+2. **Input → Process → Output (mandatory after Output draft):** Name what must
+   be known to start (**Input**), how it will be transformed (**Process**), and
+   the observable result (**Output** — already locked by Outcome-first). Card
+   shape: Trace/Dev context → Work items → AC/Verify. Approach phases must each
+   advance a checkable Output slice. Blocking Input gaps → Confirm-first; do
+   not invent contracts. Reject Process theatre (steps that do not advance
+   Output) and wishful Output (Goal with empty Facts/Approach).
+
+   **Normative detail:**
+   `.agents/thinking/input-process-output.md`
+   (source `docs/thinking/input-process-output.md`).
+
+3. **Small-batch (mandatory when sizing and executing):** Prefer
+   `complete → check → continue` over mega-batches. Every phase/card needs one
+   goal, one Output, independent Verify, and short feedback latency. Obey
+   planning `step-03` §B/§C as hard card-size law. In execution, run **this
+   card’s Verify** before starting a dependent next card; never mark `done`
+   without Verify (or documented skip + risk). Quick ceiling remains 1–3 cards.
+
+   **Normative detail** (four-property test, batch levels A–E, heuristics,
+   anti-patterns, worked examples):
+   `.agents/thinking/small-batch.md` (source `docs/thinking/small-batch.md`).
+
+4. **Vital few (Pareto):** Hold the whole session in mind and surface only what
    changes the decision or outcome. Executive summaries and memory entries
    should reflect that prioritization — without a heading called `80/20` or
    branded titles like “Executive summary” plus a method suffix.
 
-3. **5W1H:** When the problem is hard, ambiguous, or the feature is unclear /
+5. **5W1H:** When the problem is hard, ambiguous, or the feature is unclear /
    wrong / underspecified, silently check What / Why / Who / When / Where / How
    against the **session context** (goal, constraints, evidence, unknowns). Put
    the useful answers into the real sections (facts, risks, Spec quality,

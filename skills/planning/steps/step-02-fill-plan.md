@@ -25,6 +25,13 @@ If precondition fails → return to step-01 / ask user.
   present). Reject activity-only Goals. DoD must include ≥1 falsifiable
   consumer/contract outcome — process hygiene (PR/lint) alone is insufficient.
   See `.agents/thinking/outcome-first.md`.
+- **IPO (mandatory):** Approach = Process toward Goal; each phase names a
+  checkable Output slice. Do not fill Approach while Blocking Input gaps
+  remain. See `.agents/thinking/input-process-output.md`.
+- **Small-batch (mandatory):** Prefer more smaller phases/cards over one
+  mega-phase. Each phase must be completable and verifiable before the next
+  compounds error. Card explosion happens in step-03 (§B/§C). See
+  `.agents/thinking/small-batch.md`.
 - Task index in this step may be a **draft** short list of phases; **step-03 will replace it** with the fine-grained ID list from Work inventory. Do not treat a 8–12 epic index as final quality.
 - Do **not** put “write test cases / 6 dimensions matrix” as the first index item before feature work.
 - Do **not** start step-03 until PLAN sections below are filled (no leftover `_(TODO)_` on required fields unless marked blocked).
@@ -50,7 +57,7 @@ questions at a time.
 3. Goal (one sentence — Outcome-first: WHO + WHAT + EVIDENCE; not activity-only)
 4. Scope / Non-goals — Scope: enumerate separable units (endpoints, services, screens, validations) that **serve the Goal**; Non-goals protect against expansion
 5. Assumptions (risk + confirmed)
-6. Approach (phases only — each phase should advance an observable slice of the Goal)
+6. Approach (phases only — each phase should advance an observable slice of the Goal; IPO Process)
 7. Affected areas (paths + confidence) — inspect repo when possible
 8. Test strategy (optional — after-code)
 9. Verification strategy (falsifiable checks for the Goal)
@@ -76,6 +83,8 @@ questions at a time.
 
 - [ ] Required PLAN sections filled (or explicitly blocked with open questions).
 - [ ] Goal passes Outcome-first three-axis; DoD has ≥1 falsifiable consumer/contract outcome.
+- [ ] Approach phases each name a checkable Output slice (IPO Process ↔ Goal).
+- [ ] Approach is small-batch shaped (no single “implement everything” phase).
 - [ ] Spec quality review filled; blocking Fail/Unknown/gaps asked or deferred with evidence.
 - [ ] No full task cards inside PLAN.md.
 - [ ] Scope lists separable deliverables an inventory can explode in step-03.

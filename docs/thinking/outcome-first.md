@@ -194,19 +194,25 @@ If Goal and Desired outcome disagree, **stop and reconcile** (usually Goal is wr
 Apply in this order when framing:
 
 ```text
-1. Outcome-first     → lock WHO / WHAT / EVIDENCE (Goal + Desired outcome)
-2. 5W1H (if unclear) → diagnose gaps in that outcome; fold into real sections
-3. Vital few         → when summarizing / memory, keep only what changes the outcome
+1. Outcome-first              → lock WHO / WHAT / EVIDENCE (Output)
+2. Input → Process → Output   → bind Input + Process to that Output
+3. Small-batch                → slice into completable, verifiable units
+4. 5W1H (if unclear)          → diagnose gaps; fold into real sections
+5. Vital few                  → when summarizing / memory, keep what changes Output
 ```
 
 | Method | Job | Anti-pattern |
 | --- | --- | --- |
-| Outcome-first | Define success | Jumping to TASKS |
+| Outcome-first | Define success (Output) | Jumping to TASKS |
+| IPO | Bind Input + Process to Output | Process theatre / inventing Input |
+| Small-batch | Size + feedback rhythm | Mega-batch / fake-small / deferred verify |
 | 5W1H | Clarify a hard/unclear outcome | Stamping a 5W1H table |
 | Vital few | Prioritize inside a locked outcome | Branding “80/20” on summaries |
 
-Outcome-first does **not** replace Spec quality, Confirm-first, or Dev context.
-It feeds them: unclear outcome ⇒ Blocking unknown ⇒ Confirm-first ask.
+Outcome-first does **not** replace Spec quality, Confirm-first, Dev context,
+IPO, or Small-batch. It feeds them: unclear outcome ⇒ Blocking unknown ⇒
+Confirm-first ask. IPO: `.agents/thinking/input-process-output.md`.
+Small-batch: `.agents/thinking/small-batch.md`.
 
 ---
 

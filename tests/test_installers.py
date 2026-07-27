@@ -19,6 +19,8 @@ INSTALLER_DOCS = (
     "policy/SKILL_PREAMBLE.md",
     "policy/AGENT_POLICY.md",
     "thinking/outcome-first.md",
+    "thinking/input-process-output.md",
+    "thinking/small-batch.md",
     "thinking/README.md",
     "policy/AGENT_WORK.md",
     "guides/START_HERE.md",
@@ -59,6 +61,8 @@ def make_source(tmp_path: Path) -> Path:
     (policy / "AGENT_POLICY.md").write_text("policy\n", encoding="utf-8")
     (policy / "AGENT_WORK.md").write_text("work layout\n", encoding="utf-8")
     (thinking / "outcome-first.md").write_text("outcome-first\n", encoding="utf-8")
+    (thinking / "input-process-output.md").write_text("ipo\n", encoding="utf-8")
+    (thinking / "small-batch.md").write_text("small-batch\n", encoding="utf-8")
     (thinking / "README.md").write_text("thinking index\n", encoding="utf-8")
     (guides / "START_HERE.md").write_text("start\n", encoding="utf-8")
     (guides / "WHAT_NEXT.md").write_text("what next\n", encoding="utf-8")
@@ -191,6 +195,12 @@ def test_agents_created_at_project_root(tmp_path: Path) -> None:
     assert (
         root / ".agents" / "thinking" / "outcome-first.md"
     ).read_text(encoding="utf-8") == "outcome-first\n"
+    assert (
+        root / ".agents" / "thinking" / "input-process-output.md"
+    ).read_text(encoding="utf-8") == "ipo\n"
+    assert (
+        root / ".agents" / "thinking" / "small-batch.md"
+    ).read_text(encoding="utf-8") == "small-batch\n"
     assert (root / ".agents" / "thinking" / "README.md").is_file()
     assert (root / ".agents" / "START_HERE.md").read_text(encoding="utf-8") == "start\n"
     assert (root / ".agents" / "WHAT_NEXT.md").read_text(encoding="utf-8") == "what next\n"

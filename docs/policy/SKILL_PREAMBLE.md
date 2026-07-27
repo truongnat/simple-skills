@@ -102,14 +102,20 @@ layout. Memory is optional for those unless the task needs prior decisions.
 
 These methods apply to the **whole session**. They are **not** report section
 names. Never brand headings or executive summaries with method labels
-(`Outcome-first`, `80/20`, `5W1H`). Never create `OUTCOME.md` / `OVERVIEW.md`.
-Fold results into real fields (`Goal`, `Desired outcome`, DoD, AC, Verify).
+(`Outcome-first`, `Input→Process→Output`, `Small-batch`, `80/20`, `5W1H`).
+Never create `OUTCOME.md` / `IPO.md` / `SMALL_BATCH.md` / `OVERVIEW.md`. Fold
+results into real fields (`Goal`, `Desired outcome`, DoD, AC, Verify, Facts,
+Approach, Work items, Step ledger).
 
 **Apply in this order when framing:**
 
-1. **Outcome-first** — lock success before tasks (always).
-2. **5W1H** — only when the outcome/problem is hard or unclear.
-3. **Vital few** — when summarizing or writing memory.
+1. **Outcome-first** — lock **Output** (WHO / WHAT / EVIDENCE) before tasks.
+2. **Input → Process → Output** — bind sufficient **Input** and a coherent
+   **Process** to that Output (always, right after Outcome-first).
+3. **Small-batch** — slice Process into units that each complete + verify
+   before the next (phases, cards, execution rhythm).
+4. **5W1H** — only when the outcome/problem is hard or unclear.
+5. **Vital few** — when summarizing or writing memory.
 
 ### Outcome-first (mandatory before Scope / Approach / TASKS / code)
 
@@ -148,6 +154,45 @@ not a backlog of “write DTO / write service / write UI”.
 
 Full normative detail, anti-patterns, and worked examples:
 `.agents/thinking/outcome-first.md` (source `docs/thinking/outcome-first.md`).
+
+### Input → Process → Output (mandatory after Output is drafted)
+
+Every unit (session, phase, card) needs all three:
+
+| Part | Question | Lands in |
+| --- | --- | --- |
+| **Input** | What must be known/available to start? | Facts, Constraints, Trace, Dev context |
+| **Process** | How do we transform Input into Output? | Approach phases, Work items |
+| **Output** | What observable result + evidence? | Goal, DoD, AC, Verify (Outcome-first) |
+
+**Fail closed:** Blocking Input gap → Confirm-first (do not invent contracts).
+Process without Output = theatre. Output without Input = wishful. Card shape:
+`Trace/Dev context → Work items → AC/Verify`.
+
+Full normative detail:
+`.agents/thinking/input-process-output.md`
+(source `docs/thinking/input-process-output.md`).
+
+### Small-batch (mandatory when sizing phases / cards / execution)
+
+Smooth = `small step → complete → check → continue` — not one mega-batch.
+
+**Four-property test** — every phase/card must have:
+
+1. One goal  
+2. One observable Output (Outcome-first)  
+3. Independently falsifiable Verify  
+4. Short feedback latency (verify this batch before compounding the next)
+
+**Land in existing fields:** PLAN Approach phases; TASK cards (obey planning
+`step-03` §B Task size + §C — hard law for Full/Lite); Quick ceiling 1–3
+cards; execution **per-card Verify** before dependent next.
+
+**Fail closed:** Mega-batch (layer epithets, multi-endpoint cards), fake-small
+(no AC), or deferred “test at the end” across many cards.
+
+Full normative detail (levels, heuristics, anti-patterns, worked examples):
+`.agents/thinking/small-batch.md` (source `docs/thinking/small-batch.md`).
 
 ### Vital few
 
@@ -196,8 +241,9 @@ decoding jargon. If a teammate new to the task cannot act from it, rewrite.
 3. Restate section titles as content (“This section covers feasibility…”).
 4. Dump bilingual labels (JP/EN/VN) unless the **domain artifact** requires
    them; never invent translation noise for ceremony.
-5. Answer method prompts (Outcome-first / 5W1H / vital-few) as trivia sections
-   or method-branded headings; do not ship activity-only Goals/ACs.
+5. Answer method prompts (Outcome-first / IPO / Small-batch / 5W1H / vital-few)
+   as trivia sections or method-branded headings; do not ship activity-only
+   Goals/ACs, Process without Output, or mega-batches without Verify.
 6. Narrate your process (“I will now analyze…”, “As an AI…”).
 7. **Complete-with-questions:** fill Goal / Recommendation / Architecture / …
    while Critical or Blocking items are still unanswered, or dump a long Open

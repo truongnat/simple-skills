@@ -47,6 +47,8 @@ Full normative text lives under `thinking/` (progressive disclosure).
 | `docs/policy/AGENT_POLICY.md` | `.agents/AGENT_POLICY.md` |
 | `docs/policy/AGENT_WORK.md` | `.agents/AGENT_WORK.md` |
 | `docs/thinking/outcome-first.md` | `.agents/thinking/outcome-first.md` |
+| `docs/thinking/input-process-output.md` | `.agents/thinking/input-process-output.md` |
+| `docs/thinking/small-batch.md` | `.agents/thinking/small-batch.md` |
 | `docs/conventions/CODE_COMMENTS.md` | `.agents/CODE_COMMENTS.md` |
 | `docs/conventions/DESIGN_SYSTEM.md` | `.agents/DESIGN_SYSTEM.md` |
 | `docs/conventions/THIRD_PARTY_SKILLS.md` | `.agents/THIRD_PARTY_SKILLS.md` |

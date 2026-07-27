@@ -81,7 +81,9 @@ A card **FAILS** size check if any of these is true:
 | FE child screens (all 6) | One card per screen **or** shared shell + per-screen config cards |
 | FE form + F-keys + validation | Form fields → F-keys → validation (+ messages) as separate cards |
 
-Prefer **more smaller cards**. Large features often need **15–40+** cards — that is expected.
+Prefer **more smaller cards** (Small-batch). Large features often need
+**15–40+** cards — that is expected. Hard size rules below are Small-batch law
+for coding cards; mindset detail: `.agents/thinking/small-batch.md`.
 
 ---
 
@@ -98,8 +100,10 @@ Every kept `### T-00x` card **FAILS** unless **all** hold:
 1. **Title:** names a concrete unit (endpoint name, type name, control IDs, screen id) — not only a layer.
 2. **Trace:** cites design/doc **section or AC id** (e.g. `DETAIL_DESIGN §API Print`, `spec §10 JOIN`, `BR-03`) — not bare `spec` / `DISCUSSION`.
 3. **Status:** `todo` at planning time (execution later moves it to `in_progress` / `done` / `blocked` / `skipped`).
-4. **Work items:** **≥2** checkbox steps (`- [ ] 1. …`, `- [ ] 2. …`) with concrete symbols/fields/behaviors. No single sentence “Implement X per spec.” Leave boxes unchecked during planning.
-5. **AC:** Outcome-first observable slice of PLAN Goal (compile, status code,
+4. **Work items:** **≥2** checkbox steps (`- [ ] 1. …`, `- [ ] 2. …`) with concrete
+   symbols/fields/behaviors that advance this card’s AC (IPO Process → Output).
+   No single sentence “Implement X per spec.” Leave boxes unchecked during planning.
+5. **AC:** Outcome-first / IPO Output slice of PLAN Goal (compile, status code,
    field present, file downloaded, message id, consumer behavior) — **not**
    “works correctly” / “per spec” / “implemented” / title restated as activity.
    Must be falsifiable by this card’s Verify.

@@ -26,6 +26,10 @@ If precondition fails → return to step-01. Do **not** continue.
     “write DTO / service / UI”.
   - If WHO or EVIDENCE is missing and would change direction → Confirm-first
     **STOP** (do not fill Spec quality around a fuzzy Goal).
+- **IPO (mandatory):** After Goal/Desired outcome, treat Facts/Constraints as
+  **Input** and Unknowns as Input gaps. Do not invent Process (Scope/Options
+  later, Approach in planning) while Blocking Input remains open. See
+  `.agents/thinking/input-process-output.md`.
 - Inspect repo/user input for facts; mark guesses as assumptions.
 - Do **not** implement code.
 - Do **not** write PLAN/TASKS or basic/detail design.

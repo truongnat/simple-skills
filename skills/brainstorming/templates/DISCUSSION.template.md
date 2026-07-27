@@ -73,11 +73,14 @@ _(TODO)_
 
 ## Confirmed facts
 
-<!-- From user, repo, or research — not guesses. Paths/IDs when possible. -->
+<!-- IPO Input: what is already known (user/repo/research) — not guesses.
+     Blocking gaps belong in Unknowns, not here. -->
 
 - _(TODO)_
 
 ## Constraints
+
+<!-- IPO Input: time / stack / tools / policy that bound Process. -->
 
 | Constraint | Source |
 |------------|--------|

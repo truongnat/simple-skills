@@ -99,8 +99,12 @@ Every kept `### T-00x` card **FAILS** unless **all** hold:
 2. **Trace:** cites design/doc **section or AC id** (e.g. `DETAIL_DESIGN §API Print`, `spec §10 JOIN`, `BR-03`) — not bare `spec` / `DISCUSSION`.
 3. **Status:** `todo` at planning time (execution later moves it to `in_progress` / `done` / `blocked` / `skipped`).
 4. **Work items:** **≥2** checkbox steps (`- [ ] 1. …`, `- [ ] 2. …`) with concrete symbols/fields/behaviors. No single sentence “Implement X per spec.” Leave boxes unchecked during planning.
-5. **AC:** observable outcome (compile, status code, field present, file downloaded, message id) — not “works correctly” / “per spec”.
-6. **Verify:** command, request example, or UI check tied to this card only.
+5. **AC:** Outcome-first observable slice of PLAN Goal (compile, status code,
+   field present, file downloaded, message id, consumer behavior) — **not**
+   “works correctly” / “per spec” / “implemented” / title restated as activity.
+   Must be falsifiable by this card’s Verify.
+6. **Verify:** command, request example, or UI check tied to this card only;
+   must be able to prove the AC false.
 7. **Files/scope:** concrete path(s) or “create `…/NamedFile.ext`”; confidence `known|inferred|unknown`. Not `backend` / `frontend` alone.
 8. **No placeholders:** no `_(TODO)_`, `_(short title)_`, `_(…)_` left on kept cards.
 9. **Progress board:** one row per card with matching ID/title, `Status: todo`, Done=`[ ]`.

@@ -31,6 +31,7 @@ body. Blocking unknowns → **Confirm-first** + **Ask method** in
 | `.agents/settings.yaml` | Lean knobs |
 | `.agents/PRJ_REFERENCE.md` | Generated project facts |
 | `.agents/SKILL_PREAMBLE.md` | Shared skill rules |
+| `.agents/thinking/outcome-first.md` | Outcome-first Thinking method (normative) |
 | `.agents/skills/` | Invokable skills |
 | `.agents/tools/` | session, lint, build_context, detect_agents, delegate_worker, … |
 | `.agent-work/` | **Work** — sessions + memory (nested git; `session.sh commit` / `archive`) |
@@ -41,9 +42,10 @@ body. Blocking unknowns → **Confirm-first** + **Ask method** in
 
 - `SKILL.md` is authoritative. First-party skills have **Contract** + `agents/openai.yaml`.
 - Tiny clear fix → **`quick-fix`** (Path=Quick). Unclear → Lite/Full lifecycle.
-- Inventory: `docs/first-party-skills.json`. Profiles: `core` default.
+- Inventory: `docs/config/first-party-skills.json`. Profiles: `core` default.
 - Validate: `validate_artifacts.py` + `lint_artifacts.py`. Handoff pack: `build_context.py`.
-- Kit vs Work: [AGENT_WORK.md](./AGENT_WORK.md).
+- Kit vs Work: [AGENT_WORK.md](./policy/AGENT_WORK.md).
+- Docs taxonomy (source): [README.md](./README.md).
 
 ## Skill compliance
 

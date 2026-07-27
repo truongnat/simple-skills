@@ -145,6 +145,13 @@ cmd_doctor() {
     fi
   done
 
+  if [ -f "${TARGET}/.agents/thinking/outcome-first.md" ]; then
+    printf 'kit_thinking/outcome-first.md=yes\n'
+  else
+    printf 'kit_thinking/outcome-first.md=missing\n'
+    ok=1
+  fi
+
   if [ -f "${TARGET}/AGENTS.md" ]; then
     printf 'root_AGENTS.md=yes\n'
   else
@@ -331,16 +338,22 @@ cmd_install() {
     rm -rf "${TARGET}/.agents/skills/office-mcp"
   fi
 
-  cp -f "${SOURCE}/docs/DESIGN_SYSTEM.md" "${TARGET}/.agents/DESIGN_SYSTEM.md"
-  cp -f "${SOURCE}/docs/CODE_COMMENTS.md" "${TARGET}/.agents/CODE_COMMENTS.md"
-  cp -f "${SOURCE}/docs/THIRD_PARTY_SKILLS.md" "${TARGET}/.agents/THIRD_PARTY_SKILLS.md"
-  cp -f "${SOURCE}/docs/SKILL_PREAMBLE.md" "${TARGET}/.agents/SKILL_PREAMBLE.md"
-  cp -f "${SOURCE}/docs/AGENT_POLICY.md" "${TARGET}/.agents/AGENT_POLICY.md"
-  cp -f "${SOURCE}/docs/AGENT_WORK.md" "${TARGET}/.agents/AGENT_WORK.md"
-  cp -f "${SOURCE}/docs/START_HERE.md" "${TARGET}/.agents/START_HERE.md"
-  cp -f "${SOURCE}/docs/WHAT_NEXT.md" "${TARGET}/.agents/WHAT_NEXT.md"
-  cp -f "${SOURCE}/docs/MIGRATION.md" "${TARGET}/.agents/MIGRATION.md"
-  cp -f "${SOURCE}/docs/BA_SKILLS.md" "${TARGET}/.agents/BA_SKILLS.md"
+  # Pre-taxonomy flat thinking doc (replaced by .agents/thinking/).
+  rm -f "${TARGET}/.agents/THINKING_OUTCOME_FIRST.md"
+
+  cp -f "${SOURCE}/docs/conventions/DESIGN_SYSTEM.md" "${TARGET}/.agents/DESIGN_SYSTEM.md"
+  cp -f "${SOURCE}/docs/conventions/CODE_COMMENTS.md" "${TARGET}/.agents/CODE_COMMENTS.md"
+  cp -f "${SOURCE}/docs/conventions/THIRD_PARTY_SKILLS.md" "${TARGET}/.agents/THIRD_PARTY_SKILLS.md"
+  cp -f "${SOURCE}/docs/policy/SKILL_PREAMBLE.md" "${TARGET}/.agents/SKILL_PREAMBLE.md"
+  cp -f "${SOURCE}/docs/policy/AGENT_POLICY.md" "${TARGET}/.agents/AGENT_POLICY.md"
+  mkdir -p "${TARGET}/.agents/thinking"
+  cp -f "${SOURCE}/docs/thinking/outcome-first.md" "${TARGET}/.agents/thinking/outcome-first.md"
+  cp -f "${SOURCE}/docs/thinking/README.md" "${TARGET}/.agents/thinking/README.md"
+  cp -f "${SOURCE}/docs/policy/AGENT_WORK.md" "${TARGET}/.agents/AGENT_WORK.md"
+  cp -f "${SOURCE}/docs/guides/START_HERE.md" "${TARGET}/.agents/START_HERE.md"
+  cp -f "${SOURCE}/docs/guides/WHAT_NEXT.md" "${TARGET}/.agents/WHAT_NEXT.md"
+  cp -f "${SOURCE}/docs/guides/MIGRATION.md" "${TARGET}/.agents/MIGRATION.md"
+  cp -f "${SOURCE}/docs/guides/BA_SKILLS.md" "${TARGET}/.agents/BA_SKILLS.md"
   if [ -d "${SOURCE}/docs/examples" ]; then
     rm -rf "${TARGET}/.agents/examples"
     cp -R "${SOURCE}/docs/examples" "${TARGET}/.agents/examples"
@@ -357,7 +370,7 @@ cmd_install() {
       printf '\n# Simple Skills — Work layer (sessions + memory; nested git)\n%s\n' "$marker" >> "$gi"
       echo "Appended .agent-work/ to existing .gitignore."
     else
-      cp -f "${SOURCE}/docs/gitignore.agent-work.snippet" "$gi"
+      cp -f "${SOURCE}/docs/config/gitignore.agent-work.snippet" "$gi"
       echo "Created .gitignore with .agent-work/ ignore rule."
     fi
   }
@@ -379,13 +392,13 @@ cmd_install() {
   fi
 
   mkdir -p "${TARGET}/.agents/tools/session"
-  cp -f "${SOURCE}/docs/artifact-schemas.json" \
+  cp -f "${SOURCE}/docs/config/artifact-schemas.json" \
     "${TARGET}/.agents/tools/session/artifact-schemas.json"
 
   if [ -f "${TARGET}/.agents/settings.yaml" ]; then
     echo "Keeping existing .agents/settings.yaml."
   else
-    cp -f "${SOURCE}/docs/settings.yaml" "${TARGET}/.agents/settings.yaml"
+    cp -f "${SOURCE}/docs/config/settings.yaml" "${TARGET}/.agents/settings.yaml"
   fi
 
   install_agents_file=true

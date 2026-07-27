@@ -10,8 +10,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / "skills"
-MANIFEST_PATH = ROOT / "docs" / "first-party-skills.json"
-PROFILES_PATH = ROOT / "docs" / "install-profiles.json"
+MANIFEST_PATH = ROOT / "docs" / "config" / "first-party-skills.json"
+PROFILES_PATH = ROOT / "docs" / "config" / "install-profiles.json"
 REQUIRED_METADATA_KEYS = (
     "display_name:",
     "short_description:",
@@ -80,17 +80,17 @@ def main() -> int:
         if name not in first_party:
             errors.append(f"step_skills entry not in first_party: {name}")
 
-    third_party_notice = (ROOT / "docs" / "THIRD_PARTY_SKILLS.md").read_text(
+    third_party_notice = (ROOT / "docs" / "conventions" / "THIRD_PARTY_SKILLS.md").read_text(
         encoding="utf-8"
     )
     if "agents/openai.yaml" not in third_party_notice and "openai.yaml" not in third_party_notice:
         errors.append(
-            "docs/THIRD_PARTY_SKILLS.md must document third-party openai.yaml metadata exception"
+            "docs/conventions/THIRD_PARTY_SKILLS.md must document third-party openai.yaml metadata exception"
         )
 
-    preamble = ROOT / "docs" / "SKILL_PREAMBLE.md"
+    preamble = ROOT / "docs" / "policy" / "SKILL_PREAMBLE.md"
     if not preamble.is_file():
-        errors.append("docs/SKILL_PREAMBLE.md missing")
+        errors.append("docs/policy/SKILL_PREAMBLE.md missing")
     else:
         preamble_text = preamble.read_text(encoding="utf-8")
         if "## Language (do this first)" not in preamble_text:
@@ -103,8 +103,8 @@ def main() -> int:
             errors.append("SKILL_PREAMBLE.md must reference .agent-work/")
         if "session.sh" not in preamble_text:
             errors.append("SKILL_PREAMBLE.md must reference session.sh")
-    if not (ROOT / "docs" / "gitignore.agent-work.snippet").is_file():
-        errors.append("docs/gitignore.agent-work.snippet missing")
+    if not (ROOT / "docs" / "config" / "gitignore.agent-work.snippet").is_file():
+        errors.append("docs/config/gitignore.agent-work.snippet missing")
     gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
     if ".agent-work/" not in gitignore:
         errors.append("repo .gitignore must ignore .agent-work/")
@@ -408,10 +408,10 @@ def main() -> int:
             errors.append(
                 f"OVERVIEW.template.md is retired (stale landing page): {overview_template}"
             )
-    if '"OVERVIEW"' in (ROOT / "docs" / "artifact-schemas.json").read_text(
+    if '"OVERVIEW"' in (ROOT / "docs" / "config" / "artifact-schemas.json").read_text(
         encoding="utf-8"
     ):
-        errors.append("docs/artifact-schemas.json must not require OVERVIEW artifact")
+        errors.append("docs/config/artifact-schemas.json must not require OVERVIEW artifact")
     exec_skill = (ROOT / "skills" / "execution" / "SKILL.md").read_text(
         encoding="utf-8"
     )
@@ -443,7 +443,7 @@ def main() -> int:
         SKILLS_ROOT / "planning" / "steps" / "step-03-fill-tasks.md"
     ).read_text(encoding="utf-8"):
         errors.append("planning step-03 must require Dev context on cards")
-    policy_text = (ROOT / "docs" / "AGENT_POLICY.md").read_text(encoding="utf-8")
+    policy_text = (ROOT / "docs" / "policy" / "AGENT_POLICY.md").read_text(encoding="utf-8")
     if "Scale & Quick path" not in policy_text:
         errors.append("AGENT_POLICY.md missing Scale & Quick path")
     if "Implementation readiness" not in (
@@ -454,7 +454,7 @@ def main() -> int:
         if needle not in (SKILLS_ROOT / "sync" / "SKILL.md").read_text(encoding="utf-8"):
             errors.append(f"sync SKILL.md missing readiness verdict {needle}")
     sync_schema = json.loads(
-        (ROOT / "docs" / "artifact-schemas.json").read_text(encoding="utf-8")
+        (ROOT / "docs" / "config" / "artifact-schemas.json").read_text(encoding="utf-8")
     )
     sync_heads = sync_schema.get("artifacts", {}).get("SYNC", {}).get(
         "required_headings", []
@@ -471,16 +471,22 @@ def main() -> int:
     ).read_text(encoding="utf-8"):
         errors.append("execution must load Dev context before implementing a card")
     if "## Scale (Quick / Lite / Full)" not in (
-        ROOT / "docs" / "SKILL_PREAMBLE.md"
+        ROOT / "docs" / "policy" / "SKILL_PREAMBLE.md"
     ).read_text(encoding="utf-8"):
         errors.append("SKILL_PREAMBLE.md missing Scale (Quick / Lite / Full)")
 
-    if not (ROOT / "docs" / "START_HERE.md").is_file():
-        errors.append("docs/START_HERE.md missing")
-    if not (ROOT / "docs" / "WHAT_NEXT.md").is_file():
-        errors.append("docs/WHAT_NEXT.md missing")
-    if not (ROOT / "docs" / "MIGRATION.md").is_file():
-        errors.append("docs/MIGRATION.md missing")
+    if not (ROOT / "docs" / "guides" / "START_HERE.md").is_file():
+        errors.append("docs/guides/START_HERE.md missing")
+    if not (ROOT / "docs" / "guides" / "WHAT_NEXT.md").is_file():
+        errors.append("docs/guides/WHAT_NEXT.md missing")
+    if not (ROOT / "docs" / "guides" / "MIGRATION.md").is_file():
+        errors.append("docs/guides/MIGRATION.md missing")
+    if not (ROOT / "docs" / "README.md").is_file():
+        errors.append("docs/README.md missing (docs taxonomy catalog)")
+    if not (ROOT / "docs" / "thinking" / "outcome-first.md").is_file():
+        errors.append("docs/thinking/outcome-first.md missing")
+    if not (ROOT / "docs" / "thinking" / "README.md").is_file():
+        errors.append("docs/thinking/README.md missing")
     if not (ROOT / "docs" / "examples" / "README.md").is_file():
         errors.append("docs/examples/README.md missing")
     for tool in ("lint_artifacts.py", "build_context.py", "detect_agents.py", "delegate_worker.py"):
@@ -506,19 +512,19 @@ def main() -> int:
             if needle not in rb:
                 errors.append(f"RULES_BUNDLE.template.md missing '{needle}'")
     if "Delegation & Rules pass-down" not in (
-        ROOT / "docs" / "SKILL_PREAMBLE.md"
+        ROOT / "docs" / "policy" / "SKILL_PREAMBLE.md"
     ).read_text(encoding="utf-8"):
         errors.append("SKILL_PREAMBLE.md missing Delegation & Rules pass-down")
     if "Agent CLIs" not in (
         ROOT / "skills" / "init" / "templates" / "PRJ_REFERENCE.template.md"
     ).read_text(encoding="utf-8"):
         errors.append("PRJ_REFERENCE.template.md missing Agent CLIs section")
-    if "# agents:" not in (ROOT / "docs" / "settings.yaml").read_text(
+    if "# agents:" not in (ROOT / "docs" / "config" / "settings.yaml").read_text(
         encoding="utf-8"
-    ) and "rules.agents" not in (ROOT / "docs" / "settings.yaml").read_text(
+    ) and "rules.agents" not in (ROOT / "docs" / "config" / "settings.yaml").read_text(
         encoding="utf-8"
     ):
-        errors.append("docs/settings.yaml missing rules.agents skeleton comment")
+        errors.append("docs/config/settings.yaml missing rules.agents skeleton comment")
     if "preferred_role" not in (
         ROOT / "skills" / "planning" / "SKILL.md"
     ).read_text(encoding="utf-8"):
@@ -529,11 +535,11 @@ def main() -> int:
         errors.append("first-party-skills.json missing quick-fix")
     if "START_HERE.md" not in (ROOT / "docs" / "AGENTS.md").read_text(encoding="utf-8"):
         errors.append("docs/AGENTS.md must point at START_HERE.md")
-    if "Domain terms" not in (ROOT / "docs" / "SKILL_PREAMBLE.md").read_text(
+    if "Domain terms" not in (ROOT / "docs" / "policy" / "SKILL_PREAMBLE.md").read_text(
         encoding="utf-8"
     ):
         errors.append("SKILL_PREAMBLE.md missing Domain terms language rule")
-    preamble_lang = (ROOT / "docs" / "SKILL_PREAMBLE.md").read_text(encoding="utf-8")
+    preamble_lang = (ROOT / "docs" / "policy" / "SKILL_PREAMBLE.md").read_text(encoding="utf-8")
     if "What stays English" not in preamble_lang:
         errors.append("SKILL_PREAMBLE.md missing What stays English (headings) rule")
     if "One language per artifact" not in preamble_lang:
@@ -560,11 +566,11 @@ def main() -> int:
             errors.append(f"SKILL_PREAMBLE Ask methods missing `{method}`")
     if "STOP immediately" not in preamble_lang:
         errors.append("SKILL_PREAMBLE Confirm-first must require STOP immediately")
-    if "Who commits what" not in (ROOT / "docs" / "AGENT_WORK.md").read_text(
+    if "Who commits what" not in (ROOT / "docs" / "policy" / "AGENT_WORK.md").read_text(
         encoding="utf-8"
     ):
         errors.append("AGENT_WORK.md missing ownership / Who commits what")
-    work_doc_early = (ROOT / "docs" / "AGENT_WORK.md").read_text(encoding="utf-8")
+    work_doc_early = (ROOT / "docs" / "policy" / "AGENT_WORK.md").read_text(encoding="utf-8")
     if "Work commit protocol" not in work_doc_early:
         errors.append("AGENT_WORK.md missing Work commit protocol")
     if "session.sh archive" not in work_doc_early:
@@ -611,10 +617,10 @@ def main() -> int:
         skill_text = (SKILLS_ROOT / life / "SKILL.md").read_text(encoding="utf-8")
         if "session.sh commit" not in skill_text:
             errors.append(f"{life} SKILL.md missing session.sh commit checklist")
-    if not (ROOT / "docs" / "BA_SKILLS.md").is_file():
-        errors.append("docs/BA_SKILLS.md missing (BA alias map)")
+    if not (ROOT / "docs" / "guides" / "BA_SKILLS.md").is_file():
+        errors.append("docs/guides/BA_SKILLS.md missing (BA alias map)")
     else:
-        ba_doc = (ROOT / "docs" / "BA_SKILLS.md").read_text(encoding="utf-8")
+        ba_doc = (ROOT / "docs" / "guides" / "BA_SKILLS.md").read_text(encoding="utf-8")
         for needle in (
             "specify",
             "biz-model",
@@ -653,7 +659,7 @@ def main() -> int:
             errors.append(f"{ba_skill} missing {tmpl}")
     if "ba" not in json.loads(PROFILES_PATH.read_text(encoding="utf-8")).get("profiles", {}):
         errors.append("install-profiles.json missing 'ba' profile")
-    if "Wiki exception" not in (ROOT / "docs" / "SKILL_PREAMBLE.md").read_text(
+    if "Wiki exception" not in (ROOT / "docs" / "policy" / "SKILL_PREAMBLE.md").read_text(
         encoding="utf-8"
     ):
         errors.append("SKILL_PREAMBLE.md missing Wiki exception for docs skill")
@@ -661,7 +667,7 @@ def main() -> int:
         encoding="utf-8"
     ):
         errors.append("docs SKILL.md must clarify rules.docs.location wiki exception")
-    if "Contract table" not in (ROOT / "docs" / "AGENT_POLICY.md").read_text(
+    if "Contract table" not in (ROOT / "docs" / "policy" / "AGENT_POLICY.md").read_text(
         encoding="utf-8"
     ):
         errors.append(
@@ -695,7 +701,7 @@ def main() -> int:
         errors.append("src/simple_skills/cli.py missing")
 
     agents = (ROOT / "docs" / "AGENTS.md").read_text(encoding="utf-8")
-    policy_path = ROOT / "docs" / "AGENT_POLICY.md"
+    policy_path = ROOT / "docs" / "policy" / "AGENT_POLICY.md"
     policy = policy_path.read_text(encoding="utf-8") if policy_path.is_file() else ""
     combined = agents + "\n" + policy
 
@@ -711,13 +717,13 @@ def main() -> int:
         errors.append("docs/AGENTS.md missing AGENT_POLICY reference")
     if "AGENT_WORK.md" not in agents and "agent-work" not in agents:
         errors.append("docs/AGENTS.md missing AGENT_WORK / .agent-work reference")
-    if not (ROOT / "docs" / "AGENT_WORK.md").is_file():
-        errors.append("docs/AGENT_WORK.md missing")
+    if not (ROOT / "docs" / "policy" / "AGENT_WORK.md").is_file():
+        errors.append("docs/policy/AGENT_WORK.md missing")
     else:
-        work_doc = (ROOT / "docs" / "AGENT_WORK.md").read_text(encoding="utf-8")
+        work_doc = (ROOT / "docs" / "policy" / "AGENT_WORK.md").read_text(encoding="utf-8")
         for needle in (".agent-work/", "sessions/", "memory/", "Kit", "Work"):
             if needle not in work_doc:
-                errors.append(f"docs/AGENT_WORK.md missing {needle}")
+                errors.append(f"docs/policy/AGENT_WORK.md missing {needle}")
     if "first-party-skills.json" not in agents:
         errors.append("docs/AGENTS.md missing first-party-skills.json reference")
     if "validate_artifacts.py" not in agents:
@@ -728,7 +734,7 @@ def main() -> int:
             f"docs/AGENTS.md too long ({agents_lines} lines); keep entrypoint thin, detail in AGENT_POLICY.md"
         )
     if not policy_path.is_file():
-        errors.append("docs/AGENT_POLICY.md missing")
+        errors.append("docs/policy/AGENT_POLICY.md missing")
     else:
         for needle in (
             "## Security",
@@ -750,17 +756,17 @@ def main() -> int:
             "AGENT_WORK.md",
         ):
             if needle not in policy:
-                errors.append(f"docs/AGENT_POLICY.md missing {needle}")
-    schemas_path = ROOT / "docs" / "artifact-schemas.json"
+                errors.append(f"docs/policy/AGENT_POLICY.md missing {needle}")
+    schemas_path = ROOT / "docs" / "config" / "artifact-schemas.json"
     tools_schema = ROOT / "tools" / "session" / "artifact-schemas.json"
     if not schemas_path.is_file():
-        errors.append("docs/artifact-schemas.json missing")
+        errors.append("docs/config/artifact-schemas.json missing")
     elif not (ROOT / "tools" / "session" / "validate_artifacts.py").is_file():
         errors.append("tools/session/validate_artifacts.py missing")
     elif not tools_schema.is_file():
         errors.append("tools/session/artifact-schemas.json missing")
     elif schemas_path.read_text(encoding="utf-8") != tools_schema.read_text(encoding="utf-8"):
-        errors.append("docs/artifact-schemas.json and tools/session/artifact-schemas.json must match")
+        errors.append("docs/config/artifact-schemas.json and tools/session/artifact-schemas.json must match")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     for phrase in ("Spec quality", "Step ledger", "business-analysis", "--profile", "core"):
         if phrase not in readme:
@@ -769,7 +775,7 @@ def main() -> int:
         profiles_doc = json.loads(PROFILES_PATH.read_text(encoding="utf-8"))
         if profiles_doc.get("default") != "core":
             errors.append("install-profiles.json default must be 'core'")
-    settings = (ROOT / "docs" / "settings.yaml").read_text(encoding="utf-8")
+    settings = (ROOT / "docs" / "config" / "settings.yaml").read_text(encoding="utf-8")
     for needle in (
         "language:",
         "prose_language: repo-default",
@@ -779,7 +785,7 @@ def main() -> int:
         "AGENT_POLICY.md",
     ):
         if needle not in settings:
-            errors.append(f"docs/settings.yaml missing lean knob / pointer: {needle}")
+            errors.append(f"docs/config/settings.yaml missing lean knob / pointer: {needle}")
     # Bloated knobs must stay out of the default settings template.
     for bloat in (
         "stop_on:",
@@ -792,9 +798,9 @@ def main() -> int:
     ):
         if bloat in settings:
             errors.append(
-                f"docs/settings.yaml must stay lean; move '{bloat}' to AGENT_POLICY defaults"
+                f"docs/config/settings.yaml must stay lean; move '{bloat}' to AGENT_POLICY defaults"
             )
-    policy = (ROOT / "docs" / "AGENT_POLICY.md").read_text(encoding="utf-8")
+    policy = (ROOT / "docs" / "policy" / "AGENT_POLICY.md").read_text(encoding="utf-8")
     for setting in (
         "require_sequential_step_ledger: true",
         "require_spec_quality_before_downstream_work: true",
@@ -805,12 +811,12 @@ def main() -> int:
         "5W1H",
     ):
         if setting not in policy:
-            errors.append(f"docs/AGENT_POLICY.md missing built-in default: {setting}")
+            errors.append(f"docs/policy/AGENT_POLICY.md missing built-in default: {setting}")
     if re.search(r"(?m)^##\s+Executive summary \(80/20\)", policy):
         errors.append("AGENT_POLICY must not use branded Executive summary heading")
     if "starts with **Executive summary (80/20)**" in policy:
         errors.append("AGENT_POLICY must not require branded Executive summary title")
-    preamble = (ROOT / "docs" / "SKILL_PREAMBLE.md").read_text(encoding="utf-8")
+    preamble = (ROOT / "docs" / "policy" / "SKILL_PREAMBLE.md").read_text(encoding="utf-8")
     if "## Thinking methods (session-wide" not in preamble:
         errors.append("SKILL_PREAMBLE.md missing Thinking methods section")
     if "## Readable writing (mandatory" not in preamble:
@@ -845,35 +851,35 @@ def main() -> int:
         for bad in ("(80/20)", "## 5W1H", "## 5w1h", "Executive summary (80"):
             if bad in text:
                 errors.append(f"{path.relative_to(ROOT)}: remove method branding '{bad}'")
-    if not (ROOT / "docs" / "CODE_COMMENTS.md").is_file():
-        errors.append("docs/CODE_COMMENTS.md missing (code comment convention)")
+    if not (ROOT / "docs" / "conventions" / "CODE_COMMENTS.md").is_file():
+        errors.append("docs/conventions/CODE_COMMENTS.md missing (code comment convention)")
     else:
-        code_comments = (ROOT / "docs" / "CODE_COMMENTS.md").read_text(encoding="utf-8")
+        code_comments = (ROOT / "docs" / "conventions" / "CODE_COMMENTS.md").read_text(encoding="utf-8")
         if "prose_language" not in code_comments:
             errors.append(
-                "docs/CODE_COMMENTS.md must define rules.code.comments.prose_language"
+                "docs/conventions/CODE_COMMENTS.md must define rules.code.comments.prose_language"
             )
         if "settings.language" not in code_comments:
             errors.append(
-                "docs/CODE_COMMENTS.md must state comments do not follow settings.language"
+                "docs/conventions/CODE_COMMENTS.md must state comments do not follow settings.language"
             )
     if "CODE_COMMENTS.md" not in policy:
-        errors.append("docs/AGENT_POLICY.md must reference CODE_COMMENTS.md")
+        errors.append("docs/policy/AGENT_POLICY.md must reference CODE_COMMENTS.md")
     if "rules.code.comments.prose_language" not in policy:
         errors.append(
-            "docs/AGENT_POLICY.md must document rules.code.comments.prose_language"
+            "docs/policy/AGENT_POLICY.md must document rules.code.comments.prose_language"
         )
-    design_system = (ROOT / "docs" / "DESIGN_SYSTEM.md").read_text(encoding="utf-8")
+    design_system = (ROOT / "docs" / "conventions" / "DESIGN_SYSTEM.md").read_text(encoding="utf-8")
     if "cdn.tailwindcss.com" not in design_system and "ss-card" not in design_system:
         errors.append(
-            "docs/DESIGN_SYSTEM.md missing Tailwind CDN / ss-card enterprise theme"
+            "docs/conventions/DESIGN_SYSTEM.md missing Tailwind CDN / ss-card enterprise theme"
         )
     if "Dual load mode" not in design_system:
-        errors.append("docs/DESIGN_SYSTEM.md missing Dual load mode guidance")
+        errors.append("docs/conventions/DESIGN_SYSTEM.md missing Dual load mode guidance")
     if "Always include Tailwind CDN" not in design_system:
-        errors.append("docs/DESIGN_SYSTEM.md missing mandatory CDN agent rule")
+        errors.append("docs/conventions/DESIGN_SYSTEM.md missing mandatory CDN agent rule")
     if "astryx.atmeta.com" in design_system.lower():
-        errors.append("docs/DESIGN_SYSTEM.md must not depend on Astryx")
+        errors.append("docs/conventions/DESIGN_SYSTEM.md must not depend on Astryx")
     decision_dir = ROOT / "tools" / "decision-server"
     if not (decision_dir / "styles.css").is_file():
         errors.append("tools/decision-server/styles.css missing")
@@ -895,13 +901,13 @@ def main() -> int:
     if "SimpleSkillsAnimate" not in animate_js or "data-ss-animate" not in animate_js:
         errors.append("tools/decision-server/animate.js missing illustration helpers")
     if "animejs" not in design_system:
-        errors.append("docs/DESIGN_SYSTEM.md missing anime.js illustration guidance")
+        errors.append("docs/conventions/DESIGN_SYSTEM.md missing anime.js illustration guidance")
     if "ss-card" not in design_system or "token" not in design_system.lower():
-        errors.append("docs/DESIGN_SYSTEM.md missing compact ss-* / token guidance")
+        errors.append("docs/conventions/DESIGN_SYSTEM.md missing compact ss-* / token guidance")
     if "frontend-design" not in design_system and "Apps SDK" not in design_system:
-        errors.append("docs/DESIGN_SYSTEM.md missing Claude/OpenAI guideline attribution")
+        errors.append("docs/conventions/DESIGN_SYSTEM.md missing Claude/OpenAI guideline attribution")
     if "ss-prose" not in design_system and "semantic" not in design_system.lower():
-        errors.append("docs/DESIGN_SYSTEM.md missing semantic/reading-first guidance")
+        errors.append("docs/conventions/DESIGN_SYSTEM.md missing semantic/reading-first guidance")
 
     if errors:
         print("SKILL_VALIDATION_FAILED")

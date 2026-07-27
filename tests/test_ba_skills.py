@@ -24,7 +24,9 @@ BA_SKILLS = (
 
 def test_ba_profile_includes_consolidated_skills() -> None:
     profiles = json.loads(
-        (REPO_ROOT / "docs" / "install-profiles.json").read_text(encoding="utf-8")
+        (REPO_ROOT / "docs" / "config" / "install-profiles.json").read_text(
+            encoding="utf-8"
+        )
     )
     assert "ba" in profiles["profiles"]
     ba = profiles["profiles"]["ba"]
@@ -34,7 +36,9 @@ def test_ba_profile_includes_consolidated_skills() -> None:
 
 def test_ba_skills_registered_and_have_contract() -> None:
     manifest = json.loads(
-        (REPO_ROOT / "docs" / "first-party-skills.json").read_text(encoding="utf-8")
+        (REPO_ROOT / "docs" / "config" / "first-party-skills.json").read_text(
+            encoding="utf-8"
+        )
     )
     names = {e["name"] for e in manifest["skills"]}
     for skill in BA_SKILLS:
@@ -49,7 +53,7 @@ def test_ba_skills_registered_and_have_contract() -> None:
 
 
 def test_ba_skills_map_doc_lists_aliases() -> None:
-    doc = (REPO_ROOT / "docs" / "BA_SKILLS.md").read_text(encoding="utf-8")
+    doc = (REPO_ROOT / "docs" / "guides" / "BA_SKILLS.md").read_text(encoding="utf-8")
     for alias in (
         "/prd",
         "/sequence",

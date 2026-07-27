@@ -12,13 +12,19 @@ Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
 steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
 understands on first pass — concrete paths/IDs, no filler, no method branding.
 Artifacts go under `.agent-work/` (sessions + memory), not `.agents/`.
-Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
+Source copy: `docs/policy/SKILL_PREAMBLE.md` / `docs/policy/AGENT_WORK.md`.
 
 ## Purpose
 
 Evaluate changes after execution before marking done, creating a PR, or handing off.
 
-Compare the diff and `EXECUTION.md` against `PLAN.md` (DoD/scope) and `TASKS.md` when present (per-task AC and intended files).
+Compare the diff and `EXECUTION.md` against `PLAN.md` (DoD/scope) and
+`TASKS.md` when present (per-task AC and intended files).
+
+**Outcome-first:** Ready / Ready-with-risks requires evidence that maps to DoD
+and AC (commands, responses, screenshots, test names) — not “files look
+complete” or process milestones alone. See `.agents/thinking/outcome-first.md`
+§ Gates C.
 
 ## Contract (mandatory)
 

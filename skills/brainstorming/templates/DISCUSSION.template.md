@@ -50,13 +50,24 @@ Criteria: SKILL_PREAMBLE → Keywords. Or: _(none — plain language)_ -->
 
 ## Goal
 
-<!-- One sentence. Name the user-facing outcome. -->
+<!-- Outcome-first (Thinking method — not a heading brand).
+     One sentence. MUST pass three-axis: WHO + WHAT + EVIDENCE.
+     Name the user/system-facing end state — NOT an activity.
+     BAD:  "Write the search API" / "Refactor auth" / "Fix the bug"
+     GOOD: "Operator on FBD08001 can search by BaseCd and see columns C1–C5;
+            empty BaseCd shows M-01 (verified with sample §11)."
+     Full rules: .agents/thinking/outcome-first.md -->
 
 _(TODO)_
 
 ## Desired outcome
 
-<!-- What “done” looks like in observable terms. -->
+<!-- Expand Goal into observable behaviors (still Outcome-first).
+     Bullets = what “done” looks like to the consumer — NOT a task backlog.
+     BAD:  write DTO / write service / write UI
+     GOOD: search returns §8-shaped rows; over-max shows M-OVER; export file …
+     Each bullet should be falsifiable later via PLAN DoD / TASK Verify.
+     Include who benefits when not obvious from Goal. -->
 
 _(TODO)_
 

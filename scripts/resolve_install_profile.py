@@ -60,7 +60,7 @@ def main() -> int:
     )
     args = parser.parse_args()
     source = args.source.resolve()
-    profiles_path = source / "docs" / "install-profiles.json"
+    profiles_path = source / "docs" / "config" / "install-profiles.json"
     skills_root = source / "skills"
     if not profiles_path.is_file():
         print(f"Missing {profiles_path}", file=sys.stderr)

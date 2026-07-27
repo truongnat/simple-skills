@@ -17,9 +17,11 @@ If precondition fails → return to the earliest incomplete step.
 2. File was seeded from template (has Step ledger, Spec quality review, then
    Goal, Facts, Scope, Options, Recommendation, Handoff).
 3. Step ledger is sequential: no later step `done` while an earlier step is `todo`.
-4. Goal is one sentence — not a paragraph.
+4. Goal is one sentence — Outcome-first (WHO + WHAT + EVIDENCE), not activity-only
+   (“write/implement/refactor/fix X”, “works per spec”). Desired outcome is
+   observable behaviors, not a disguised backlog.
 5. Facts / assumptions / unknowns are separated (no assumption labeled as fact).
-6. Scope in and scope out both present.
+6. Scope in and scope out both present; Scope serves the Goal (not unrelated work).
 7. Options matrix has ≥1 real option with verify method.
 8. Recommendation has Choose + Reason + Confidence.
 9. Handoff names one of: business-analysis, basic-design, planning, research, execution.

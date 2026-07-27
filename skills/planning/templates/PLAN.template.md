@@ -78,15 +78,21 @@ while a blocking row is open. -->
 
 ## Goal
 
-<!-- One sentence. -->
+<!-- Outcome-first. One sentence. WHO + WHAT + EVIDENCE.
+     Inherit/align with DISCUSSION Desired outcome when present.
+     BAD: "Implement order API"  GOOD: "FE can POST /orders and show field errors
+     from problem+json; 201/400/401 covered by contract tests."
+     See .agents/thinking/outcome-first.md -->
 
 _(TODO)_
 
 ## Scope
 
-- _(TODO)_
+- _(TODO — separable deliverables that serve the Goal, not activities for their own sake)_
 
 ## Non-goals
+
+<!-- Explicitly protect the Goal from silent expansion. -->
 
 - _(TODO)_
 
@@ -118,12 +124,24 @@ _(TODO)_
 
 ## Verification strategy
 
+<!-- How the session Goal/DoD will be evidenced (commands, UI checks, logs).
+     Prefer falsifiable checks over “manual QA TBD”. -->
+
 - _(TODO — automated command)_
 - _(TODO — manual check)_
 
 ## Definition of done
 
-- [ ] _(TODO — observable)_
+<!-- Outcome-first checklist. Each box must be falsifiable and map to Goal.
+     At least one consumer/contract outcome — not only process hygiene.
+     BAD alone: [ ] PR opened  [ ] Lint clean
+     GOOD:      [ ] FE shows problem+json field errors on 400 (screenshot/log)
+                [ ] Contract tests 201/400/401 pass
+                [ ] OpenAPI matches handlers
+                [ ] (optional) PR/lint hygiene -->
+
+- [ ] _(TODO — observable consumer/contract outcome + evidence)_
+- [ ] _(TODO — verify command or UI check recorded)_
 - [ ] `TASKS.md` complete and matches Task index below
 
 ## Rollback strategy

@@ -47,7 +47,9 @@ def test_resolve_core_is_subset_of_all() -> None:
         text=True,
     ).stdout.splitlines()
     profiles = json.loads(
-        (REPO_ROOT / "docs" / "install-profiles.json").read_text(encoding="utf-8")
+        (REPO_ROOT / "docs" / "config" / "install-profiles.json").read_text(
+            encoding="utf-8"
+        )
     )
     assert set(core) == set(profiles["profiles"]["core"]["skills"])
     assert "xlsx" not in core
@@ -56,7 +58,9 @@ def test_resolve_core_is_subset_of_all() -> None:
 
 def test_first_party_manifest_covers_disk_first_party() -> None:
     manifest = json.loads(
-        (REPO_ROOT / "docs" / "first-party-skills.json").read_text(encoding="utf-8")
+        (REPO_ROOT / "docs" / "config" / "first-party-skills.json").read_text(
+            encoding="utf-8"
+        )
     )
     names = {entry["name"] for entry in manifest["skills"]}
     assert "planning" in names

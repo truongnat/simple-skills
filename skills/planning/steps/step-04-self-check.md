@@ -42,28 +42,32 @@ If precondition fails → return to the earliest incomplete step. Do **not** set
     - One card owns multiple endpoints **or** multiple child screens **or** Export+Print together
     - Trace has no section/AC id
     - Files/scope is only `backend` / `frontend` / `services`
-    - AC is only “works” / “correct” / “per spec”
+    - AC is only “works” / “correct” / “per spec” / “implemented” / activity restatement of the title
+    - Verify cannot falsify the AC (vague “manual QA” with no observation)
     - Missing `#### Dev context` or tech facts without `[Source: …]` / without `No specific guidance found.`
 13. Full Mode inventory: row count is credible vs Scope (e.g. “6 child screens” ⇒ ≥6 related inventory rows or shell+N — not one row).
 14. Confirmed assumptions in PLAN: any **High-impact** row still `Confirmed?: No` counts as a **blocker**.
+15. **Outcome-first:** PLAN Goal is not activity-only; DoD includes ≥1
+    consumer/contract outcome (not only PR/lint); every card AC traces as a
+    slice of that Goal (see `.agents/thinking/outcome-first.md`).
 
 ### Blockers → Ready (critical)
 
-15. Re-read `DISCUSSION.md` / `BUSINESS_ANALYSIS.md` Spec quality findings and
+16. Re-read `DISCUSSION.md` / `BUSINESS_ANALYSIS.md` Spec quality findings and
     Handoff blockers (if present). Copy any **still unresolved** items into PLAN
     Handoff blockers.
-16. **Ready for sync/execution? must be No** if any of:
-    - Checks 1–14 fail
+17. **Ready for sync/execution? must be No** if any of:
+    - Checks 1–15 fail
     - PLAN Handoff blockers list is non-empty (unresolved)
     - DISCUSSION/BA listed blockers that were never resolved/struck
-17. **Ready = Yes** only when checks 1–14 pass **and** Handoff blockers are `none` (or explicitly marked resolved with evidence).
-18. Mark Step ledger 04 `done` or `blocked` with checklist evidence.
+18. **Ready = Yes** only when checks 1–15 pass **and** Handoff blockers are `none` (or explicitly marked resolved with evidence).
+19. Mark Step ledger 04 `done` or `blocked` with checklist evidence.
 
 Never write Ready=Yes while the same document’s Blockers line still lists open items.
 
 ## Done when
 
-- [ ] PLAN Handoff Ready matches rules 15–17.
+- [ ] PLAN Handoff Ready matches rules 16–18.
 - [ ] Step ledger 04 updated.
 - [ ] Failures are listed in Blockers or fixed by returning to step-02/step-03.
 - [ ] User is told:

@@ -46,7 +46,7 @@ Remove later: `sk uninstall --yes` (keeps `.agent-work/`; add `--purge-work` to 
 | --- | --- | --- |
 | **Must** | Every task | This file + `.agents/settings.yaml` + skill `SKILL.md` Contract |
 | **Should** | First-party skill run | `.agents/SKILL_PREAMBLE.md` (Language, Work, Readable writing, Scale) |
-| **Reference** | Conflict / deep rule | `.agents/AGENT_POLICY.md`, `.agents/AGENT_WORK.md`, `.agents/MIGRATION.md` |
+| **Reference** | Conflict / deep rule | `.agents/AGENT_POLICY.md`, `.agents/AGENT_WORK.md`, `.agents/MIGRATION.md`, `.agents/thinking/` |
 
 Do **not** read all of `AGENT_POLICY.md` up front. Open a section only when blocked.
 

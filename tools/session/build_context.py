@@ -158,7 +158,9 @@ def find_root(start: Path) -> Path:
     for candidate in [cur, *cur.parents]:
         if (candidate / ".agents").is_dir() or (candidate / ".agent-work").is_dir():
             return candidate
-        if (candidate / "docs" / "artifact-schemas.json").is_file():
+        if (candidate / "docs" / "config" / "artifact-schemas.json").is_file():
+            return candidate
+        if (candidate / "docs" / "AGENTS.md").is_file():
             return candidate
     return start.resolve()
 
@@ -182,7 +184,7 @@ def resolve_session(root: Path, explicit: str | None) -> Path:
 
 
 def settings_path(root: Path) -> Path | None:
-    for rel in (".agents/settings.yaml", "docs/settings.yaml"):
+    for rel in (".agents/settings.yaml", "docs/config/settings.yaml"):
         path = root / rel
         if path.is_file():
             return path

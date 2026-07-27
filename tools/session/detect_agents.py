@@ -37,7 +37,9 @@ def find_root(start: Path) -> Path:
     for candidate in [cur, *cur.parents]:
         if (candidate / ".agents").is_dir() or (candidate / ".agent-work").is_dir():
             return candidate
-        if (candidate / "docs" / "artifact-schemas.json").is_file():
+        if (candidate / "docs" / "config" / "artifact-schemas.json").is_file():
+            return candidate
+        if (candidate / "docs" / "AGENTS.md").is_file():
             return candidate
     return start.resolve()
 

@@ -58,7 +58,7 @@ VI_CHAR = re.compile(
 def read_language(root: Path) -> str:
     settings = root / ".agents" / "settings.yaml"
     if not settings.is_file():
-        settings = root / "docs" / "settings.yaml"
+        settings = root / "docs" / "config" / "settings.yaml"
     if not settings.is_file():
         return "en"
     for line in settings.read_text(encoding="utf-8").splitlines():
@@ -79,7 +79,9 @@ def find_root(start: Path) -> Path:
     for candidate in [cur, *cur.parents]:
         if (candidate / ".agents").is_dir() or (candidate / ".agent-work").is_dir():
             return candidate
-        if (candidate / "docs" / "artifact-schemas.json").is_file():
+        if (candidate / "docs" / "config" / "artifact-schemas.json").is_file():
+            return candidate
+        if (candidate / "docs" / "AGENTS.md").is_file():
             return candidate
     return start.resolve()
 

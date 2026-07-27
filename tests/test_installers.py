@@ -9,21 +9,25 @@ import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
-# Docs the installers copy into the host project. Keep fixtures in sync so
-# install.sh / install.ps1 changes cannot silently break the installer suite.
+# Source docs the installers copy. Paths are relative to docs/.
+# Installed names are usually flattened into .agents/ (thinking/ stays nested).
 INSTALLER_DOCS = (
     "AGENTS.md",
-    "DESIGN_SYSTEM.md",
-    "CODE_COMMENTS.md",
-    "THIRD_PARTY_SKILLS.md",
-    "SKILL_PREAMBLE.md",
-    "AGENT_POLICY.md",
-    "AGENT_WORK.md",
-    "START_HERE.md",
-    "WHAT_NEXT.md",
-    "MIGRATION.md",
-    "BA_SKILLS.md",
-    "settings.yaml",
+    "conventions/DESIGN_SYSTEM.md",
+    "conventions/CODE_COMMENTS.md",
+    "conventions/THIRD_PARTY_SKILLS.md",
+    "policy/SKILL_PREAMBLE.md",
+    "policy/AGENT_POLICY.md",
+    "thinking/outcome-first.md",
+    "thinking/README.md",
+    "policy/AGENT_WORK.md",
+    "guides/START_HERE.md",
+    "guides/WHAT_NEXT.md",
+    "guides/MIGRATION.md",
+    "guides/BA_SKILLS.md",
+    "config/settings.yaml",
+    "config/artifact-schemas.json",
+    "config/gitignore.agent-work.snippet",
 )
 
 
@@ -36,31 +40,52 @@ def make_source(tmp_path: Path) -> Path:
         scripts / "resolve_install_profile.py",
     )
     docs = tmp_path / "docs"
-    docs.mkdir(exist_ok=True)
+    guides = docs / "guides"
+    policy = docs / "policy"
+    thinking = docs / "thinking"
+    conventions = docs / "conventions"
+    config = docs / "config"
+    for d in (guides, policy, thinking, conventions, config):
+        d.mkdir(parents=True, exist_ok=True)
+
     (docs / "AGENTS.md").write_text("installed rules\n", encoding="utf-8")
-    (docs / "DESIGN_SYSTEM.md").write_text("design\n", encoding="utf-8")
-    (docs / "CODE_COMMENTS.md").write_text("comments\n", encoding="utf-8")
-    (docs / "THIRD_PARTY_SKILLS.md").write_text(
+    (conventions / "DESIGN_SYSTEM.md").write_text("design\n", encoding="utf-8")
+    (conventions / "CODE_COMMENTS.md").write_text("comments\n", encoding="utf-8")
+    (conventions / "THIRD_PARTY_SKILLS.md").write_text(
         "licenses\n`expo-native-ui`\nopenai.yaml\n",
         encoding="utf-8",
     )
-    (docs / "SKILL_PREAMBLE.md").write_text("preamble\n", encoding="utf-8")
-    (docs / "AGENT_POLICY.md").write_text("policy\n", encoding="utf-8")
-    (docs / "AGENT_WORK.md").write_text("work layout\n", encoding="utf-8")
-    (docs / "START_HERE.md").write_text("start\n", encoding="utf-8")
-    (docs / "WHAT_NEXT.md").write_text("what next\n", encoding="utf-8")
-    (docs / "MIGRATION.md").write_text("migration\n", encoding="utf-8")
-    (docs / "BA_SKILLS.md").write_text("ba skills map\n", encoding="utf-8")
-    (docs / "gitignore.agent-work.snippet").write_text(
+    (policy / "SKILL_PREAMBLE.md").write_text("preamble\n", encoding="utf-8")
+    (policy / "AGENT_POLICY.md").write_text("policy\n", encoding="utf-8")
+    (policy / "AGENT_WORK.md").write_text("work layout\n", encoding="utf-8")
+    (thinking / "outcome-first.md").write_text("outcome-first\n", encoding="utf-8")
+    (thinking / "README.md").write_text("thinking index\n", encoding="utf-8")
+    (guides / "START_HERE.md").write_text("start\n", encoding="utf-8")
+    (guides / "WHAT_NEXT.md").write_text("what next\n", encoding="utf-8")
+    (guides / "MIGRATION.md").write_text("migration\n", encoding="utf-8")
+    (guides / "BA_SKILLS.md").write_text("ba skills map\n", encoding="utf-8")
+    (config / "gitignore.agent-work.snippet").write_text(
         "# snippet\n.agent-work/\n", encoding="utf-8"
     )
-    (docs / "artifact-schemas.json").write_text(
+    (config / "artifact-schemas.json").write_text(
         '{"version":1,"artifacts":{}}\n', encoding="utf-8"
     )
-    (docs / "settings.yaml").write_text("language: en\n", encoding="utf-8")
-    shutil.copy2(
-        REPO_ROOT / "docs" / "install-profiles.json",
-        docs / "install-profiles.json",
+    (config / "settings.yaml").write_text("language: en\n", encoding="utf-8")
+    (config / "install-profiles.json").write_text(
+        """
+{
+  "version": 1,
+  "default": "all",
+  "profiles": {
+    "core": {"skills": ["init", "planning", "execution"]},
+    "office": {"includes": ["core"], "skills": ["xlsx"]},
+    "frontend": {"includes": ["core"], "skills": ["web-component-design"]},
+    "all": {"all_skills": true}
+  }
+}
+""".strip()
+        + "\n",
+        encoding="utf-8",
     )
     tools = tmp_path / "tools"
     tools.mkdir()
@@ -100,23 +125,6 @@ def make_source(tmp_path: Path) -> Path:
         root = tmp_path / "skills" / skill
         root.mkdir(parents=True)
         (root / "SKILL.md").write_text(f"# {skill}\n", encoding="utf-8")
-    # Tiny profile doc for the fixture (not the full repo profiles).
-    (docs / "install-profiles.json").write_text(
-        """
-{
-  "version": 1,
-  "default": "all",
-  "profiles": {
-    "core": {"skills": ["init", "planning", "execution"]},
-    "office": {"includes": ["core"], "skills": ["xlsx"]},
-    "frontend": {"includes": ["core"], "skills": ["web-component-design"]},
-    "all": {"all_skills": true}
-  }
-}
-""".strip()
-        + "\n",
-        encoding="utf-8",
-    )
     return tmp_path
 
 
@@ -139,9 +147,11 @@ def test_installer_docs_fixture_matches_scripts() -> None:
     """Fail when install scripts copy a docs file the fixture does not provide."""
     for installer in ("install.sh", "install.ps1"):
         text = (REPO_ROOT / installer).read_text(encoding="utf-8")
-        for name in INSTALLER_DOCS:
-            assert name in text, f"{installer} must reference docs/{name}"
-            assert (REPO_ROOT / "docs" / name).is_file(), f"missing docs/{name}"
+        for rel in INSTALLER_DOCS:
+            assert rel in text or rel.replace("/", "\\") in text, (
+                f"{installer} must reference docs/{rel}"
+            )
+            assert (REPO_ROOT / "docs" / rel).is_file(), f"missing docs/{rel}"
 
 
 @pytest.mark.parametrize(
@@ -178,6 +188,10 @@ def test_agents_created_at_project_root(tmp_path: Path) -> None:
     assert (root / ".agents" / "SKILL_PREAMBLE.md").read_text(encoding="utf-8") == "preamble\n"
     assert (root / ".agents" / "AGENT_POLICY.md").read_text(encoding="utf-8") == "policy\n"
     assert (root / ".agents" / "AGENT_WORK.md").read_text(encoding="utf-8") == "work layout\n"
+    assert (
+        root / ".agents" / "thinking" / "outcome-first.md"
+    ).read_text(encoding="utf-8") == "outcome-first\n"
+    assert (root / ".agents" / "thinking" / "README.md").is_file()
     assert (root / ".agents" / "START_HERE.md").read_text(encoding="utf-8") == "start\n"
     assert (root / ".agents" / "WHAT_NEXT.md").read_text(encoding="utf-8") == "what next\n"
     assert (root / ".agents" / "MIGRATION.md").read_text(encoding="utf-8") == "migration\n"

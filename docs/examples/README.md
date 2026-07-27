@@ -19,7 +19,8 @@ Copy shapes only. Shows a readable Quick pack.
 | Status | `ready_for_sync` |
 
 ## Goal
-Null-guard `parseDate` so empty string returns null instead of throwing.
+Null-guard `parseDate` so empty string returns null instead of throwing;
+non-empty parsing unchanged (proven by unit tests).
 
 ## Facts
 - Crash in `src/utils/date.ts` when input is `""`
@@ -51,6 +52,9 @@ Null-guard `parseDate` so empty string returns null instead of throwing.
 ## Executive summary (80/20)
 - Align stakeholders to optimize the holistic date flow…
 
+## Goal
+Fix parseDate / add null check
+
 ### T-001: BE date
 - AC: works per spec
 - Files/scope: backend
@@ -58,4 +62,6 @@ Null-guard `parseDate` so empty string returns null instead of throwing.
 - Need to ensure consistency across the system
 ```
 
-Bad because: method branding, filler, vague card, no Source, wrong layer title.
+Bad because: method branding, **activity-only Goal** (fails Outcome-first),
+filler, vague card, no Source, wrong layer title. See
+`.agents/thinking/outcome-first.md`.

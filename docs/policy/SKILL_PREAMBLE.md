@@ -4,7 +4,7 @@ First-party skills point here instead of pasting Language/Memory/Work blocks.
 **Read this file fully** at the start of every first-party skill invocation —
 before Purpose, Contract, or steps.
 
-Installed path: `.agents/SKILL_PREAMBLE.md` (source: `docs/SKILL_PREAMBLE.md`).
+Installed path: `.agents/SKILL_PREAMBLE.md` (source: `docs/policy/SKILL_PREAMBLE.md`).
 Layout detail: `.agents/AGENT_WORK.md`.
 
 ## Language (do this first)
@@ -100,17 +100,67 @@ layout. Memory is optional for those unless the task needs prior decisions.
 
 ## Thinking methods (session-wide — not titles)
 
-**Vital few** and **5W1H** are methods for the whole session context. They are
-**not** report section names.
+These methods apply to the **whole session**. They are **not** report section
+names. Never brand headings or executive summaries with method labels
+(`Outcome-first`, `80/20`, `5W1H`). Never create `OUTCOME.md` / `OVERVIEW.md`.
+Fold results into real fields (`Goal`, `Desired outcome`, DoD, AC, Verify).
 
-- Use **vital few** to prioritize what actually changes the outcome (summaries,
-  memory). Do not title anything `80/20` or brand the executive summary
-  with a method suffix. Do not create a separate `OVERVIEW.md`.
-- Use **5W1H** only when the problem is hard/unclear — apply it to the session
-  goal and evidence, then fold answers into real sections. Do not stamp 5W1H
-  tables, do not answer trivia, do not brand a heading `5W1H`.
+**Apply in this order when framing:**
 
-Details: `.agents/AGENT_POLICY.md` → Thinking methods.
+1. **Outcome-first** — lock success before tasks (always).
+2. **5W1H** — only when the outcome/problem is hard or unclear.
+3. **Vital few** — when summarizing or writing memory.
+
+### Outcome-first (mandatory before Scope / Approach / TASKS / code)
+
+Do **not** start from “what tasks to do.” Start from the observable end state.
+
+**Three-axis test** — every Goal / Desired outcome / DoD item / AC must name:
+
+| Axis | Question | Fail if missing |
+| --- | --- | --- |
+| **WHO** | Who uses or depends on the result (persona, screen, caller, system)? | Consumer unclear |
+| **WHAT** | What observable change do they get (status, field, message, file, metric, behavior)? | Only an activity verb |
+| **EVIDENCE** | What check lets us stop (test, request, UI check, log, screenshot)? | “Probably works” |
+
+**Invalid (activity / weak):** “Write the API”, “Refactor auth”, “Fix search”,
+“Works per spec”, “PR opened” alone.
+
+**Valid shape:** “FE order form can `POST /orders`, show problem+json field
+errors, and contract tests cover 201/400/401.”
+
+**Strength (prefer higher):** activity (reject) → internal artifact → contract →
+consumer behavior → evidence-bound consumer behavior. Session **Goal** should
+be consumer/contract level, not “implement X”.
+
+**Where it lands (no new sections):**
+
+| Path | Must pass three-axis |
+| --- | --- |
+| Quick | `QUICK.md` Goal; each card AC + Verify |
+| Lite/Full | `DISCUSSION` Goal + Desired outcome → `PLAN` Goal/DoD/Verification → each TASK AC |
+| Review/Done | Evidence maps to DoD/AC — not “files touched” |
+
+**Fail closed:** If Goal is activity-only, or WHO/EVIDENCE is missing and would
+change design, **STOP** (Confirm-first). Rewrite or ask — do **not** invent
+Approach/TASKS to hide a fuzzy Goal. Desired outcome must describe behaviors,
+not a backlog of “write DTO / write service / write UI”.
+
+Full normative detail, anti-patterns, and worked examples:
+`.agents/thinking/outcome-first.md` (source `docs/thinking/outcome-first.md`).
+
+### Vital few
+
+Prioritize what actually changes the outcome (summaries, memory). Do not title
+anything `80/20` or brand the executive summary with a method suffix.
+
+### 5W1H
+
+Only when the problem is hard/unclear — apply silently to the session goal and
+evidence, then fold answers into real sections. Do not stamp 5W1H tables, do
+not answer trivia, do not brand a heading `5W1H`.
+
+Policy summary: `.agents/AGENT_POLICY.md` → Thinking methods.
 
 ## Readable writing (mandatory — every artifact)
 
@@ -146,7 +196,8 @@ decoding jargon. If a teammate new to the task cannot act from it, rewrite.
 3. Restate section titles as content (“This section covers feasibility…”).
 4. Dump bilingual labels (JP/EN/VN) unless the **domain artifact** requires
    them; never invent translation noise for ceremony.
-5. Answer method prompts (5W1H / vital-few) as trivia sections.
+5. Answer method prompts (Outcome-first / 5W1H / vital-few) as trivia sections
+   or method-branded headings; do not ship activity-only Goals/ACs.
 6. Narrate your process (“I will now analyze…”, “As an AI…”).
 7. **Complete-with-questions:** fill Goal / Recommendation / Architecture / …
    while Critical or Blocking items are still unanswered, or dump a long Open

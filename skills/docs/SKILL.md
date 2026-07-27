@@ -15,7 +15,7 @@ Read and follow `.agents/SKILL_PREAMBLE.md` now (Language + Work layout +
 Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
 steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
 understands on first pass — concrete paths/IDs, no filler, no method branding.
-Source copy: `docs/SKILL_PREAMBLE.md` / `docs/AGENT_WORK.md`.
+Source copy: `docs/policy/SKILL_PREAMBLE.md` / `docs/policy/AGENT_WORK.md`.
 
 **Where this skill writes (exception to session-only Work layout):**
 

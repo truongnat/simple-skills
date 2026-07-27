@@ -33,10 +33,15 @@ Ship a **small, clear** change without Full lifecycle ceremony.
 
 #### `QUICK.md`
 - Path: Quick
-- Goal (one sentence), facts, out of scope, handoff (`sync` then `execution`)
+- **Goal** (one sentence, Outcome-first: WHO + WHAT + EVIDENCE — not
+  activity-only), facts, out of scope, handoff (`sync` then `execution`)
+- If rewriting the ask into an outcome surfaces product/design ambiguity →
+  **upgrade Path** (do not keep fuzzy Goal on Quick)
 
 #### `TASKS.md`
-- 1–3 cards only; each with Work items, AC, Verify, Files/scope, **Dev context** + `[Source:]` or `No specific guidance found.`
+- 1–3 cards only; each with Work items, **AC** (observable slice of Goal),
+  **Verify** (can falsify AC), Files/scope, **Dev context** + `[Source:]` or
+  `No specific guidance found.`
 
 ## Workflow
 
@@ -50,7 +55,8 @@ Ship a **small, clear** change without Full lifecycle ceremony.
 ## Quality Standards
 
 - [ ] Path=Quick recorded; no BA/design files created.
-- [ ] ≤3 TASK cards; each has Dev context with Source or explicit none.
+- [ ] Goal passes Outcome-first three-axis (not “fix X” / “add null check” alone).
+- [ ] ≤3 TASK cards; each AC is falsifiable via Verify; each has Dev context with Source or explicit none.
 - [ ] First-pass readable; no leftover `_(TODO)_`.
 - [ ] Lint OK.
 

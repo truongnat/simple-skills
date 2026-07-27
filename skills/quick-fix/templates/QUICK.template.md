@@ -14,6 +14,13 @@
 
 ## Goal
 
+<!-- Outcome-first. One sentence. WHO + WHAT + EVIDENCE.
+     BAD: "Fix parseDate" / "Add null check"
+     GOOD: "parseDate(\"\") returns null (no throw); non-empty parsing unchanged;
+            proven by pnpm test -- date."
+     If rewrite needs product/design choice → upgrade Path (not Quick).
+     See .agents/thinking/outcome-first.md -->
+
 _(one sentence)_
 
 ## Facts
@@ -21,6 +28,8 @@ _(one sentence)_
 - _(from user / repo — paths/IDs)_
 
 ## Out of scope
+
+<!-- Protect the Goal; name what this Quick fix will not change. -->
 
 - _(what this Quick fix will not touch)_
 

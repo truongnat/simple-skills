@@ -20,6 +20,11 @@ If precondition fails → return to step-01 / ask user.
   `BASIC_DESIGN.md` → `BUSINESS_ANALYSIS.md` / `DISCUSSION.md`.
 - **Forbidden in PLAN.md:** `### T-00x` bodies with Description / AC / Verify / Files / Status / Work items.
 - Scope bullets must name **distinct deliverables** (agents will inventory-split these in step-03). Prefer “6 child screens (list ids)” over “FE UI”.
+- **Outcome-first (mandatory):** Before Approach / Task index, lock PLAN `Goal`
+  with WHO + WHAT + EVIDENCE (align with DISCUSSION Desired outcome when
+  present). Reject activity-only Goals. DoD must include ≥1 falsifiable
+  consumer/contract outcome — process hygiene (PR/lint) alone is insufficient.
+  See `.agents/thinking/outcome-first.md`.
 - Task index in this step may be a **draft** short list of phases; **step-03 will replace it** with the fine-grained ID list from Work inventory. Do not treat a 8–12 epic index as final quality.
 - Do **not** put “write test cases / 6 dimensions matrix” as the first index item before feature work.
 - Do **not** start step-03 until PLAN sections below are filled (no leftover `_(TODO)_` on required fields unless marked blocked).
@@ -42,14 +47,14 @@ questions at a time.
 
 1. Pre-planning decision gate + clarification answers + visual triage
 2. Spec quality review — Feasibility / Correctness / Capability recommendations
-3. Goal (one sentence)
-4. Scope / Non-goals — Scope: enumerate separable units (endpoints, services, screens, validations), not only layers
+3. Goal (one sentence — Outcome-first: WHO + WHAT + EVIDENCE; not activity-only)
+4. Scope / Non-goals — Scope: enumerate separable units (endpoints, services, screens, validations) that **serve the Goal**; Non-goals protect against expansion
 5. Assumptions (risk + confirmed)
-6. Approach (phases only)
+6. Approach (phases only — each phase should advance an observable slice of the Goal)
 7. Affected areas (paths + confidence) — inspect repo when possible
 8. Test strategy (optional — after-code)
-9. Verification strategy
-10. Definition of done
+9. Verification strategy (falsifiable checks for the Goal)
+10. Definition of done (≥1 consumer/contract outcome + evidence; not only PR/lint)
 11. Rollback strategy
 12. Risks
 13. Task index (**draft** ID + title OK; refined in step-03)
@@ -70,6 +75,7 @@ questions at a time.
 ## Done when
 
 - [ ] Required PLAN sections filled (or explicitly blocked with open questions).
+- [ ] Goal passes Outcome-first three-axis; DoD has ≥1 falsifiable consumer/contract outcome.
 - [ ] Spec quality review filled; blocking Fail/Unknown/gaps asked or deferred with evidence.
 - [ ] No full task cards inside PLAN.md.
 - [ ] Scope lists separable deliverables an inventory can explode in step-03.

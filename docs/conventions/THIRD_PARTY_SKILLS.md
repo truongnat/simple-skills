@@ -26,7 +26,7 @@ Skills with Snyk High Risk (for example `secrets-management`) were excluded.
 `expo-native-ui` and `expo-data-fetching` keep their upstream
 `agents/openai.yaml` files. That metadata is **optional host tooling only**.
 They remain third-party skills: no first-party `Contract (mandatory)`, not listed
-in `docs/first-party-skills.json`, and not validated as report/office skills.
+in `docs/config/first-party-skills.json`, and not validated as report/office skills.
 Do not treat the presence of `openai.yaml` as a first-party signal.
 
 Office document skills (`xlsx`, `docx`, `pptx`, `pdf`) are first-party Python

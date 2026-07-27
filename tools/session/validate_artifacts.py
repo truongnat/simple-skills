@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate session lifecycle artifacts against docs/artifact-schemas.json.
+"""Validate session lifecycle artifacts against docs/config/artifact-schemas.json.
 
 Usage (from repo root or any subdir):
   python tools/session/validate_artifacts.py
@@ -24,7 +24,9 @@ def find_agents_root(start: Path) -> Path:
     for candidate in [cur, *cur.parents]:
         if (candidate / ".agents").is_dir() or (candidate / ".agent-work").is_dir():
             return candidate
-        if (candidate / "docs" / "artifact-schemas.json").is_file():
+        if (candidate / "docs" / "config" / "artifact-schemas.json").is_file():
+            return candidate
+        if (candidate / "docs" / "AGENTS.md").is_file():
             return candidate
     return start.resolve()
 
@@ -32,7 +34,7 @@ def find_agents_root(start: Path) -> Path:
 def load_schema(root: Path) -> dict:
     candidates = [
         root / ".agents" / "tools" / "session" / "artifact-schemas.json",
-        root / "docs" / "artifact-schemas.json",
+        root / "docs" / "config" / "artifact-schemas.json",
         Path(__file__).resolve().parent / "artifact-schemas.json",
     ]
     for path in candidates:

@@ -94,6 +94,14 @@ function Invoke-Doctor {
         }
     }
 
+    $thinkingOutcome = Join-Path $Target.Path ".agents/thinking/outcome-first.md"
+    if (Test-Path $thinkingOutcome -PathType Leaf) {
+        Write-Host "kit_thinking/outcome-first.md=yes"
+    } else {
+        Write-Host "kit_thinking/outcome-first.md=missing"
+        $ok = $false
+    }
+
     if (Test-Path (Join-Path $Target.Path "AGENTS.md") -PathType Leaf) {
         Write-Host "root_AGENTS.md=yes"
     } else {
@@ -278,16 +286,24 @@ function Invoke-Install {
         Remove-Item -Path $obsoleteOfficeMcp -Recurse -Force
     }
 
-    Copy-Item -Path (Join-Path $Source "docs/DESIGN_SYSTEM.md") -Destination ".agents/DESIGN_SYSTEM.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/CODE_COMMENTS.md") -Destination ".agents/CODE_COMMENTS.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/THIRD_PARTY_SKILLS.md") -Destination ".agents/THIRD_PARTY_SKILLS.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/SKILL_PREAMBLE.md") -Destination ".agents/SKILL_PREAMBLE.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/AGENT_POLICY.md") -Destination ".agents/AGENT_POLICY.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/AGENT_WORK.md") -Destination ".agents/AGENT_WORK.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/START_HERE.md") -Destination ".agents/START_HERE.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/WHAT_NEXT.md") -Destination ".agents/WHAT_NEXT.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/MIGRATION.md") -Destination ".agents/MIGRATION.md" -Force
-    Copy-Item -Path (Join-Path $Source "docs/BA_SKILLS.md") -Destination ".agents/BA_SKILLS.md" -Force
+    $obsoleteThinking = Join-Path ".agents" "THINKING_OUTCOME_FIRST.md"
+    if (Test-Path $obsoleteThinking -PathType Leaf) {
+        Remove-Item -Path $obsoleteThinking -Force
+    }
+
+    Copy-Item -Path (Join-Path $Source "docs/conventions/DESIGN_SYSTEM.md") -Destination ".agents/DESIGN_SYSTEM.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/conventions/CODE_COMMENTS.md") -Destination ".agents/CODE_COMMENTS.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/conventions/THIRD_PARTY_SKILLS.md") -Destination ".agents/THIRD_PARTY_SKILLS.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/policy/SKILL_PREAMBLE.md") -Destination ".agents/SKILL_PREAMBLE.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/policy/AGENT_POLICY.md") -Destination ".agents/AGENT_POLICY.md" -Force
+    New-Item -ItemType Directory -Force -Path ".agents/thinking" | Out-Null
+    Copy-Item -Path (Join-Path $Source "docs/thinking/outcome-first.md") -Destination ".agents/thinking/outcome-first.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/thinking/README.md") -Destination ".agents/thinking/README.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/policy/AGENT_WORK.md") -Destination ".agents/AGENT_WORK.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/guides/START_HERE.md") -Destination ".agents/START_HERE.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/guides/WHAT_NEXT.md") -Destination ".agents/WHAT_NEXT.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/guides/MIGRATION.md") -Destination ".agents/MIGRATION.md" -Force
+    Copy-Item -Path (Join-Path $Source "docs/guides/BA_SKILLS.md") -Destination ".agents/BA_SKILLS.md" -Force
     $examplesSource = Join-Path $Source "docs/examples"
     if (Test-Path $examplesSource -PathType Container) {
         $examplesDest = Join-Path ".agents" "examples"
@@ -304,7 +320,7 @@ function Invoke-Install {
         Add-Content -Path $gitignorePath -Value "`n# Simple Skills — Work layer (sessions + memory; nested git)`n$marker"
         Write-Host "Appended .agent-work/ to existing .gitignore."
     } else {
-        Copy-Item -Path (Join-Path $Source "docs/gitignore.agent-work.snippet") `
+        Copy-Item -Path (Join-Path $Source "docs/config/gitignore.agent-work.snippet") `
             -Destination $gitignorePath -Force
         Write-Host "Created .gitignore with .agent-work/ ignore rule."
     }
@@ -323,14 +339,14 @@ function Invoke-Install {
     }
 
     New-Item -ItemType Directory -Force -Path ".agents/tools/session" | Out-Null
-    Copy-Item -Path (Join-Path $Source "docs/artifact-schemas.json") `
+    Copy-Item -Path (Join-Path $Source "docs/config/artifact-schemas.json") `
         -Destination ".agents/tools/session/artifact-schemas.json" -Force
 
     $settingsDest = Join-Path ".agents" "settings.yaml"
     if (Test-Path $settingsDest -PathType Leaf) {
         Write-Host "Keeping existing .agents/settings.yaml."
     } else {
-        Copy-Item -Path (Join-Path $Source "docs/settings.yaml") -Destination $settingsDest -Force
+        Copy-Item -Path (Join-Path $Source "docs/config/settings.yaml") -Destination $settingsDest -Force
     }
 
     $installAgentsFile = $true

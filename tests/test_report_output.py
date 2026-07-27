@@ -7,15 +7,23 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_default_report_output_format_is_markdown() -> None:
-    settings = (REPO_ROOT / "docs" / "settings.yaml").read_text(encoding="utf-8")
+    settings = (REPO_ROOT / "docs" / "config" / "settings.yaml").read_text(
+        encoding="utf-8"
+    )
     assert "output_format: markdown" in settings
     assert "prose_language: repo-default" in settings
 
 
 def test_comment_language_is_separate_from_thread_language() -> None:
-    policy = (REPO_ROOT / "docs" / "AGENT_POLICY.md").read_text(encoding="utf-8")
-    preamble = (REPO_ROOT / "docs" / "SKILL_PREAMBLE.md").read_text(encoding="utf-8")
-    comments = (REPO_ROOT / "docs" / "CODE_COMMENTS.md").read_text(encoding="utf-8")
+    policy = (REPO_ROOT / "docs" / "policy" / "AGENT_POLICY.md").read_text(
+        encoding="utf-8"
+    )
+    preamble = (REPO_ROOT / "docs" / "policy" / "SKILL_PREAMBLE.md").read_text(
+        encoding="utf-8"
+    )
+    comments = (REPO_ROOT / "docs" / "conventions" / "CODE_COMMENTS.md").read_text(
+        encoding="utf-8"
+    )
     rules = (REPO_ROOT / "tools" / "session" / "RULES_BUNDLE.template.md").read_text(
         encoding="utf-8"
     )
@@ -33,8 +41,10 @@ def test_comment_language_is_separate_from_thread_language() -> None:
 
 
 def test_contract_schema_documents_artifacts_subsection() -> None:
-    policy = (REPO_ROOT / "docs" / "AGENT_POLICY.md").read_text(encoding="utf-8")
-    manifest = (REPO_ROOT / "docs" / "first-party-skills.json").read_text(
+    policy = (REPO_ROOT / "docs" / "policy" / "AGENT_POLICY.md").read_text(
+        encoding="utf-8"
+    )
+    manifest = (REPO_ROOT / "docs" / "config" / "first-party-skills.json").read_text(
         encoding="utf-8"
     )
     assert "Contract table" in policy
@@ -43,11 +53,26 @@ def test_contract_schema_documents_artifacts_subsection() -> None:
     assert "contract_requires_artifacts_section" in manifest
 
 
-def test_docs_skill_documents_wiki_exception() -> None:
-    docs = (REPO_ROOT / "skills" / "docs" / "SKILL.md").read_text(encoding="utf-8")
-    preamble = (REPO_ROOT / "docs" / "SKILL_PREAMBLE.md").read_text(encoding="utf-8")
-    assert "rules.docs.location" in docs
-    assert "Wiki exception" in preamble
+def test_outcome_first_thinking_method_is_wired() -> None:
+    preamble = (REPO_ROOT / "docs" / "policy" / "SKILL_PREAMBLE.md").read_text(
+        encoding="utf-8"
+    )
+    policy = (REPO_ROOT / "docs" / "policy" / "AGENT_POLICY.md").read_text(
+        encoding="utf-8"
+    )
+    detail = (REPO_ROOT / "docs" / "thinking" / "outcome-first.md").read_text(
+        encoding="utf-8"
+    )
+    index = (REPO_ROOT / "docs" / "thinking" / "README.md").read_text(encoding="utf-8")
+    catalog = (REPO_ROOT / "docs" / "README.md").read_text(encoding="utf-8")
+    assert "Outcome-first" in preamble
+    assert "three-axis" in preamble
+    assert "thinking/outcome-first.md" in preamble
+    assert "Outcome-first" in policy
+    assert "WHO" in detail and "WHAT" in detail and "EVIDENCE" in detail
+    assert "OUTCOME.md" in detail and "forbidden" in detail.lower()
+    assert "outcome-first.md" in index
+    assert "thinking/" in catalog
 
 
 def test_validate_skills_script_passes() -> None:
@@ -65,7 +90,9 @@ def test_validate_skills_script_passes() -> None:
 
 
 def test_agent_rules_define_html_artifact_compatibility() -> None:
-    rules = (REPO_ROOT / "docs" / "AGENT_POLICY.md").read_text(encoding="utf-8")
+    rules = (REPO_ROOT / "docs" / "policy" / "AGENT_POLICY.md").read_text(
+        encoding="utf-8"
+    )
     assert "## Artifact format resolution" in rules
     assert "then fall back to the" in rules
     assert "alternate extension" in rules

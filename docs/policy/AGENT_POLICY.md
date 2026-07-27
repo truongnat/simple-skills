@@ -82,10 +82,15 @@ Delegation & Rules pass-down.
 decision bullets) then a **Developer overview** panel **inside that same
 artifact**. Do **not** create a separate `OVERVIEW.md` landing page — it goes
 stale. Progress truth is `TASKS.md` + `session.sh status`. Do **not** name
-sections after methods (`80/20`, `5W1H`). Chart when useful; skip filler.
+sections after methods (`Outcome-first`, `80/20`, `5W1H`). Chart when useful;
+skip filler.
 
 **Thinking methods (session-wide — not report titles):**
 
+- **Outcome-first:** before Scope / Approach / TASKS / code, lock WHO + WHAT +
+  EVIDENCE in `Goal` / `Desired outcome` / DoD / AC. Reject activity-only
+  Goals (“write API”, “refactor auth”). Full rules:
+  `.agents/thinking/outcome-first.md`.
 - **Vital few (Pareto / “80/20”):** across the whole session, keep attention on
   the small set of facts, risks, and decisions that change the outcome. Use it
   when prioritizing, summarizing, and writing memory — never as a heading or
@@ -144,14 +149,14 @@ available) — see `.agents/AGENT_WORK.md` → Work commit protocol.
 - Every invokable skill has one authoritative `SKILL.md`.
 - First-party skills must also have `agents/openai.yaml` mirroring inputs,
   outputs, safety, workflow, and artifact schema.
-- First-party inventory is declarative at `docs/first-party-skills.json`.
+- First-party inventory is declarative at `docs/config/first-party-skills.json`.
 - First-party workflow skills start by reading `.agents/SKILL_PREAMBLE.md`.
 - Vendored third-party skills retain their upstream structure and are listed in
   `.agents/THIRD_PARTY_SKILLS.md`; do not fabricate first-party contracts for
   them. Expo may ship `agents/openai.yaml` as optional host metadata only.
 - Shared helpers are not invokable skills and must be documented as such.
 - Install profiles (`core` default / `office` / `frontend` / `backend` / `all`)
-  live in `docs/install-profiles.json`.
+  live in `docs/config/install-profiles.json`.
 - Repository validation: `python scripts/validate_skills.py`.
 - Session artifact schema: `python .agents/tools/session/validate_artifacts.py`
   (required before review pass / done complete).
@@ -574,18 +579,47 @@ traceability, test data, or verification evidence.
 ## Thinking methods (session-wide)
 
 These are **ways of working**, not section names or report titles. Do not brand
-artifacts with method labels.
+artifacts with method labels (`Outcome-first`, `80/20`, `5W1H`). Do not create
+`OUTCOME.md`. Fold method results into existing fields only.
 
-1. **Vital few (Pareto):** Hold the whole session in mind and surface only what
+**Framing order:** Outcome-first → (5W1H if unclear) → vital few when
+summarizing/memory.
+
+1. **Outcome-first (mandatory):** Start from the observable end state, not the
+   task list. Every `Goal`, `Desired outcome`, DoD item, and task `AC` must
+   pass the **three-axis test** (WHO uses it, WHAT they observe, EVIDENCE that
+   allows stopping). Activity-only statements (“write API”, “refactor auth”,
+   “works per spec”) are invalid as Goal/AC. Process milestones (PR, lint) may
+   supplement DoD but never replace a consumer/contract outcome.
+
+   **Land in existing fields:** Quick → `QUICK.md` Goal + card AC/Verify;
+   Lite/Full → `DISCUSSION` Goal + Desired outcome → `PLAN` Goal / Non-goals /
+   DoD / Verification → each TASK AC with falsifiable Verify. Review/Done must
+   map evidence to DoD/AC, not “files changed.”
+
+   **Fail closed:** If the outcome is activity-only or WHO/EVIDENCE is missing
+   and would change design, STOP (Confirm-first) — do not invent Approach or
+   TASKS to hide a fuzzy Goal. Desired outcome describes behaviors, not a
+   disguised backlog (“write DTO / service / UI”).
+
+   **Normative detail** (definitions, strength ladder, translation table,
+   anti-patterns, worked examples, agent checklist):
+   `.agents/thinking/outcome-first.md` (source `docs/thinking/outcome-first.md`).
+   Kit authors: keep this as a Thinking method, not a separate skill.
+
+2. **Vital few (Pareto):** Hold the whole session in mind and surface only what
    changes the decision or outcome. Executive summaries and memory entries
    should reflect that prioritization — without a heading called `80/20` or
    branded titles like “Executive summary” plus a method suffix.
-2. **5W1H:** When the problem is hard, ambiguous, or the feature is unclear /
+
+3. **5W1H:** When the problem is hard, ambiguous, or the feature is unclear /
    wrong / underspecified, silently check What / Why / Who / When / Where / How
    against the **session context** (goal, constraints, evidence, unknowns). Put
    the useful answers into the real sections (facts, risks, Spec quality,
-   investigation). **Forbidden:** default 5W1H sections, empty/`N/A` tables,
-   answering trivia just to “use the method”, or titling anything `5W1H`.
+   investigation). Prefer using 5W1H to clarify a **locked or draft outcome**,
+   not as a substitute for naming WHO/WHAT/EVIDENCE. **Forbidden:** default
+   5W1H sections, empty/`N/A` tables, answering trivia just to “use the
+   method”, or titling anything `5W1H`.
 
 ## Artifact Quality
 

@@ -2,10 +2,10 @@
 
 Skills + rules for AI agents: think → design → plan → execute → review → done.
 
-- **Kit** `.agents/` — skills, tools, settings (installer)
+- **Kit** `.agents/` — skills, tools, settings, policy (installer)
 - **Work** `.agent-work/` — sessions + memory (nested git; `session.sh commit` / `archive`; auto-gitignored)
 
-Start with [docs/START_HERE.md](docs/START_HERE.md). Skill map: [docs/WHAT_NEXT.md](docs/WHAT_NEXT.md).
+Start with [docs/guides/START_HERE.md](docs/guides/START_HERE.md). Skill map: [docs/guides/WHAT_NEXT.md](docs/guides/WHAT_NEXT.md). Docs catalog: [docs/README.md](docs/README.md).
 
 ## Install
 
@@ -43,24 +43,29 @@ Step skills use a **Step ledger** and **Spec quality** gates (not on Quick).
 Lint: `python .agents/tools/session/lint_artifacts.py`  
 Handoff pack: `python .agents/tools/session/build_context.py`
 
+Session framing uses **Thinking methods** (Outcome-first → 5W1H if unclear → vital few). Ops in `.agents/SKILL_PREAMBLE.md`; Outcome-first detail in `.agents/thinking/outcome-first.md`.
+
 ## Settings (keep small)
 
 `language` · `rules.code.comments.prose_language` · `rules.branch.mode` ·
 `rules.reports.output_format` · `rules.docs.*`  
-Defaults in `AGENT_POLICY.md`.
+Defaults in [docs/policy/AGENT_POLICY.md](docs/policy/AGENT_POLICY.md).
 
-## Docs
+## Docs layout
 
-| File | Role |
-| --- | --- |
-| [START_HERE](docs/START_HERE.md) | 2-minute start |
-| [WHAT_NEXT](docs/WHAT_NEXT.md) | Situation → skill |
-| [AGENTS](docs/AGENTS.md) | Entrypoint |
-| [AGENT_POLICY](docs/AGENT_POLICY.md) | Full policy |
-| [AGENT_WORK](docs/AGENT_WORK.md) | Kit vs Work + git ownership |
-| [MIGRATION](docs/MIGRATION.md) | Host upgrade notes |
-| [BA_SKILLS](docs/BA_SKILLS.md) | 51 BA aliases → consolidated skills |
-| [examples](docs/examples/README.md) | Good/bad session shapes |
+Source tree is classified; install flattens most files into `.agents/` (Thinking stays nested).
+
+| Folder | Role | Installed |
+| --- | --- | --- |
+| [guides/](docs/guides/) | Start, routing, migration, BA aliases | `.agents/<file>` |
+| [policy/](docs/policy/) | Preamble, full policy, Kit vs Work | `.agents/<file>` |
+| [thinking/](docs/thinking/) | Thinking methods (Outcome-first, …) | `.agents/thinking/` |
+| [conventions/](docs/conventions/) | Code comments, design system, third-party | `.agents/<file>` |
+| [config/](docs/config/) | settings, schemas, install profiles | `.agents/settings.yaml`, tools schemas |
+| [examples/](docs/examples/) | Good/bad session shapes | `.agents/examples/` |
+| [AGENTS.md](docs/AGENTS.md) | Host entrypoint | project root `AGENTS.md` |
+
+Full map: [docs/README.md](docs/README.md).
 
 ## Dev checks
 

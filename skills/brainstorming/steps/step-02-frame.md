@@ -17,7 +17,15 @@ If precondition fails → return to step-01. Do **not** continue.
 
 - Edit **only** `DISCUSSION.md`.
 - Separate **facts** vs **assumptions** vs **unknowns** — never mix.
-- Goal = **one sentence**.
+- **Outcome-first (mandatory):** Goal and Desired outcome before anything that
+  looks like a backlog. Read `.agents/thinking/outcome-first.md` if unsure.
+  - Goal = **one sentence** that passes **WHO + WHAT + EVIDENCE**.
+  - Reject activity-only Goals: “write X”, “implement Y”, “refactor Z”,
+    “fix the bug”, “works per spec”.
+  - Desired outcome = observable behaviors for the consumer — **not**
+    “write DTO / service / UI”.
+  - If WHO or EVIDENCE is missing and would change direction → Confirm-first
+    **STOP** (do not fill Spec quality around a fuzzy Goal).
 - Inspect repo/user input for facts; mark guesses as assumptions.
 - Do **not** implement code.
 - Do **not** write PLAN/TASKS or basic/detail design.
@@ -74,7 +82,9 @@ Record each question and answer in `Clarification checkpoint`.
 
 ## Done when
 
-- [ ] Goal is one clear sentence.
+- [ ] Goal is one clear sentence that passes Outcome-first three-axis
+      (WHO + WHAT + EVIDENCE) — not activity-only.
+- [ ] Desired outcome lists observable consumer behaviors (not a task backlog).
 - [ ] At least one confirmed fact **or** explicit “no facts yet” with unknowns listed.
 - [ ] Assumptions and unknowns are not labeled as facts.
 - [ ] Every material issue has severity/clarity/blocking/visual classification.

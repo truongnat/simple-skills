@@ -22,6 +22,8 @@ Breaking or behavior changes hosts should know after reinstall.
 | Keywords glossary | brainstorming / investigate / research: `## Keywords` (Term/Meaning/Where seen); criteria in SKILL_PREAMBLE |
 | Work commit protocol | `session.sh commit` after lifecycle artifact writes; `session.sh archive` after successful `done`; see AGENT_WORK.md |
 | Confirm-first + Ask methods | STOP immediately on Blocking; classify `confirm`/`choice`/`fact`/`table`/`diagram`/`html` then ask; no quiz-as-document — SKILL_PREAMBLE |
+| Outcome-first Thinking method | Session-wide: lock WHO/WHAT/EVIDENCE in Goal/Desired outcome/DoD/AC before Approach/TASKS; normative `.agents/thinking/outcome-first.md`; no `OUTCOME.md` / no method-branded headings |
+| Docs source taxonomy | Source tree under `docs/{guides,policy,thinking,conventions,config,examples}/`; install still flattens most files into `.agents/` (Thinking stays `.agents/thinking/`). See `docs/README.md`. |
 | Multi-CLI Phase 1 | `detect_agents.py`, `RULES_BUNDLE.template.md`, `build_context --pack --check`, `delegate_worker.py` (Rules gate; dry-run); settings `rules.agents.*` |
 
 ## How to upgrade a host project

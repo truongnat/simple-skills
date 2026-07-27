@@ -69,8 +69,8 @@ T-001 → T-002 → _(extend)_
   - [ ] 1. _(concrete step: symbol / field / behavior)_
   - [ ] 2. _(concrete step)_
 - Description: _(1–2 lines; details live in Work items + Dev context)_
-- AC: _(observable outcome — not “works” / “per spec”)_
-- Verify: _(command, request, or UI check for this card only)_
+- AC: _(Outcome-first slice of PLAN Goal — observable WHO/WHAT; not “works” / “per spec” / “implemented”)_
+- Verify: _(command, request, or UI check that can falsify this AC only)_
 - Flow/comment notes: _(where rationale comments are required, or N/A + reason)_
 - Files/scope: _(concrete path or create `…/File.ext`)_ (confidence: known | inferred | unknown)
 - Out of scope for this card: _(what the next cards own)_

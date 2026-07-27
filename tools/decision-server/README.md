@@ -2,7 +2,7 @@
 
 Serve a visual decision HTML page, receive browser events, and append user
 choices to JSONL logs. Presentation uses **Tailwind CDN** plus one enterprise
-theme (`tailwind-theme.js` + `styles.css`). See `docs/DESIGN_SYSTEM.md`.
+theme (`tailwind-theme.js` + `styles.css`). See `docs/conventions/DESIGN_SYSTEM.md`.
 
 ```bash
 # From a project that already installed simple-skills:

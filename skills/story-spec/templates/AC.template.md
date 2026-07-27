@@ -31,7 +31,7 @@
 
 - **Given** _(precondition)_
 - **When** _(action)_
-- **Then** _(observable outcome)_
+- **Then** _(Outcome-first: observable result — not “works” / “implemented”; who sees what)_
 
 ### AC-002 — …
 

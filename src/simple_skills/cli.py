@@ -44,19 +44,27 @@ def _raw_url(filename: str) -> str:
 
 
 def find_local_installer() -> Path | None:
-    """Prefer a checkout that contains install.sh + docs/AGENTS.md."""
+    """Return a local install.sh only when explicitly pinned or cwd is the kit.
+
+    Do **not** walk parents of the installed package. An editable/old checkout
+    on PYTHONPATH would otherwise pin a stale install.sh while fetch_source()
+    still downloads a newer tarball (docs layout mismatch → cp failures).
+    """
     env = os.environ.get("SIMPLE_SKILLS_ROOT")
     if env:
         root = Path(env).expanduser().resolve()
         cand = root / INSTALL_SH
         if cand.is_file() and (root / "docs" / "AGENTS.md").is_file():
             return cand
+        raise SystemExit(
+            f"Error: SIMPLE_SKILLS_ROOT={root} missing {INSTALL_SH} or docs/AGENTS.md"
+        )
 
-    here = Path(__file__).resolve()
-    for parent in [here.parent, *here.parents]:
-        cand = parent / INSTALL_SH
-        if cand.is_file() and (parent / "docs" / "AGENTS.md").is_file():
-            return cand
+    # Dev convenience: running sk from inside a kit checkout.
+    cwd = Path.cwd().resolve()
+    cand = cwd / INSTALL_SH
+    if cand.is_file() and (cwd / "docs" / "AGENTS.md").is_file():
+        return cand
     return None
 
 

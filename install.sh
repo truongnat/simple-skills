@@ -365,7 +365,20 @@ cmd_install() {
   rm -f "${TARGET}/.agents/THINKING_OUTCOME_FIRST.md"
 
   for rel in "${KIT_FLAT_DOCS[@]}"; do
-    cp -f "${SOURCE}/docs/${rel}" "${TARGET}/.agents/$(basename "$rel")"
+    src="${SOURCE}/docs/${rel}"
+    if [ ! -f "$src" ]; then
+      # Pre-taxonomy flat layout fallback (docs/DESIGN_SYSTEM.md, …)
+      flat="${SOURCE}/docs/$(basename "$rel")"
+      if [ -f "$flat" ]; then
+        src="$flat"
+      else
+        echo "Error: missing kit doc '${rel}' under ${SOURCE}/docs/" >&2
+        echo "Also tried flat path: docs/$(basename "$rel")" >&2
+        echo "Update installer (sk / curl install.sh from main) or set SIMPLE_SKILLS_BRANCH." >&2
+        exit 1
+      fi
+    fi
+    cp -f "$src" "${TARGET}/.agents/$(basename "$rel")"
   done
 
   rm -rf "${TARGET}/.agents/thinking"

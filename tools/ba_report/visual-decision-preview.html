@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en" data-issue-id="ISS-001" data-session="preview">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visual Decision Preview — Authentication Method</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../decision-server/styles.css">
+  <style>
+    * { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body.ss-page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 240px 1fr 220px;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas:
+        "header header header"
+        "sidebar main toc"
+        "footer footer footer";
+    }
+
+    .ss-header {
+      grid-area: header;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--ss-paper, #fff);
+      border-bottom: 1px solid var(--ss-line, #e5e5e5);
+      margin-left: 240px;
+      margin-right: 220px;
+    }
+
+    .ss-nav.ss-ba-nav {
+      grid-area: sidebar;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--ss-paper, #fff);
+      border-right: 1px solid var(--ss-line, #e5e5e5);
+      padding: 1rem;
+      z-index: 100;
+    }
+
+    .ss-nav.ss-ba-nav .nav-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ss-mute, #667085);
+      margin-bottom: 0.75rem;
+      padding: 0 0.75rem;
+    }
+
+    .ss-nav.ss-ba-nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .ss-nav.ss-ba-nav li a {
+      display: block;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      color: var(--ss-ink, #0d0d0d);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 150ms ease;
+    }
+
+    .ss-nav.ss-ba-nav li a:hover {
+      background: var(--ss-wash, #f7f7f8);
+    }
+
+    .ss-nav.ss-ba-nav li a.is-active {
+      background: var(--ss-accent-soft, #e7f6f1);
+      color: var(--ss-accent, #10a37f);
+      font-weight: 600;
+    }
+
+    .ss-toc {
+      grid-area: toc;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 220px;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--ss-paper, #fff);
+      border-left: 1px solid var(--ss-line, #e5e5e5);
+      padding: 1rem;
+      z-index: 100;
+    }
+
+    .ss-toc .toc-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ss-mute, #667085);
+      margin-bottom: 0.75rem;
+      padding: 0 0.5rem;
+    }
+
+    .ss-toc ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .ss-toc li a {
+      display: block;
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      color: var(--ss-mute, #667085);
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 500;
+      line-height: 1.4;
+      transition: all 150ms ease;
+      border-left: 2px solid transparent;
+    }
+
+    .ss-toc li a:hover {
+      color: var(--ss-ink, #0d0d0d);
+      background: var(--ss-wash, #f7f7f8);
+    }
+
+    .ss-toc li a.is-active {
+      color: var(--ss-accent, #10a37f);
+      border-left-color: var(--ss-accent, #10a37f);
+      font-weight: 600;
+    }
+
+    .ss-main {
+      grid-area: main;
+      padding: 2rem;
+      min-width: 0;
+    }
+
+    .ss-card {
+      scroll-margin-top: 5rem;
+    }
+
+    .ss-footer {
+      grid-area: footer;
+      border-top: 1px solid var(--ss-line, #e5e5e5);
+    }
+
+    @media (max-width: 1024px) {
+      body.ss-page {
+        grid-template-columns: 240px 1fr;
+        grid-template-areas:
+          "header header"
+          "sidebar main"
+          "footer footer";
+      }
+      .ss-toc { display: none; }
+      .ss-header { margin-right: 0; }
+    }
+
+    @media (max-width: 768px) {
+      body.ss-page {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "header"
+          "sidebar"
+          "main"
+          "footer";
+      }
+      .ss-nav.ss-ba-nav {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--ss-line, #e5e5e5);
+      }
+      .ss-header { margin-left: 0; }
+      .ss-main { padding: 1rem; }
+    }
+  </style>
+</head>
+<body class="ss-page">
+  <div id="decision-banner" role="status" aria-live="polite">
+    <div class="ss-banner-inner">
+      <div class="ss-banner-mark" aria-hidden="true">?</div>
+      <div class="ss-banner-copy">
+        <strong>Awaiting Decision</strong>
+        <span>Issue ISS-001 · Choose authentication method</span>
+      </div>
+    </div>
+  </div>
+
+  <a class="ss-skip" href="#main">Skip to content</a>
+
+  <header class="ss-header">
+    <div class="ss-header-inner">
+      <p class="ss-eyebrow">Issue ISS-001 · Awaiting decision</p>
+      <h1>Which authentication method should we use?</h1>
+      <p class="ss-prose">
+        <strong>Why a visual is needed:</strong>
+        Compare JWT vs Session-based vs OAuth authentication trade-offs side-by-side.
+      </p>
+    </div>
+  </header>
+
+  <nav class="ss-nav ss-ba-nav" aria-label="Section navigation">
+    <div class="nav-title">Sections</div>
+    <ul>
+      <li><a href="#overview">Developer Overview</a></li>
+      <li><a href="#compare">Before / After</a></li>
+      <li><a href="#options">Options</a></li>
+      <li><a href="#comparison">Comparison Table</a></li>
+      <li><a href="#decision">Decision Requested</a></li>
+    </ul>
+  </nav>
+
+  <aside class="ss-toc" aria-label="Table of contents">
+    <div class="toc-title">On this page</div>
+    <ul>
+      <li><a href="#overview">Developer overview</a></li>
+      <li><a href="#compare">Before / after</a></li>
+      <li><a href="#options">Options or states</a></li>
+      <li><a href="#opt-a">Option A — JWT</a></li>
+      <li><a href="#opt-b">Option B — Session</a></li>
+      <li><a href="#opt-c">Option C — OAuth</a></li>
+      <li><a href="#comparison">Decision comparison</a></li>
+      <li><a href="#decision">Decision requested</a></li>
+    </ul>
+  </aside>
+
+  <main id="main" class="ss-main">
+    <section id="overview" class="ss-card" aria-labelledby="overview-heading">
+      <h2 id="overview-heading" class="ss-h2">Developer overview</h2>
+      <div class="ss-overview">
+        <div class="ss-panel"><strong>Status</strong>needs_info</div>
+        <div class="ss-panel"><strong>Blocking</strong>ISS-001</div>
+        <div class="ss-panel"><strong>Next action</strong>Choose one option</div>
+        <div class="ss-panel"><strong>Owner</strong>Backend Team</div>
+      </div>
+      <ul class="ss-prose">
+        <li>Need to decide authentication method before implementing API endpoints</li>
+        <li>JWT offers stateless scalability, Session offers simpler revocation</li>
+        <li>Decision affects database schema, middleware, and client implementation</li>
+      </ul>
+    </section>
+
+    <section id="compare" class="ss-card" aria-labelledby="compare-heading">
+      <h2 id="compare-heading" class="ss-h2">Before / after</h2>
+      <div data-ss-compare-root data-ss-mode="both">
+        <div class="ss-toolbar">
+          <button type="button" class="ss-btn" data-ss-show="before">Before</button>
+          <button type="button" class="ss-btn" data-ss-show="after">After</button>
+          <button type="button" class="ss-btn" data-ss-show="both">Both</button>
+        </div>
+        <div class="ss-compare">
+          <div data-ss-pane="before">
+            <strong>Before (No auth)</strong>
+            <p class="ss-prose">All API endpoints public, no user identity, no access control</p>
+          </div>
+          <div data-ss-pane="after">
+            <strong>After (With auth)</strong>
+            <p class="ss-prose">Protected endpoints, user sessions, role-based access control</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="options" class="ss-card" aria-labelledby="options-heading">
+      <h2 id="options-heading" class="ss-h2">Options or states</h2>
+      <div class="ss-options" role="group" aria-label="Decision options">
+        <article id="opt-a" class="ss-option recommended">
+          <span class="ss-tag">Recommended</span>
+          <h3>Option A — JWT (JSON Web Tokens)</h3>
+          <div class="ss-state">
+            Stateless authentication<br>
+            Token: {user_id, role, exp}<br>
+            Stored: Client-side (localStorage/cookie)
+          </div>
+          <p class="ss-prose"><strong>Benefits:</strong> Scalable, no server state, works well for microservices</p>
+          <p class="ss-prose"><strong>Limitations:</strong> Can't revoke tokens easily, larger payload size</p>
+          <p class="ss-prose"><strong>Risk:</strong> Token theft = account compromise until expiry</p>
+          <button type="button" class="ss-btn ss-btn-primary" data-choice="A" data-issue-id="ISS-001">Choose A</button>
+        </article>
+
+        <article id="opt-b" class="ss-option">
+          <h3>Option B — Session-based</h3>
+          <div class="ss-state">
+            Stateful authentication<br>
+            Session ID: uuid-v4<br>
+            Stored: Server-side (Redis/DB) + cookie
+          </div>
+          <p class="ss-prose"><strong>Benefits:</strong> Easy revocation, smaller cookies, better security control</p>
+          <p class="ss-prose"><strong>Limitations:</strong> Requires server state, harder to scale horizontally</p>
+          <p class="ss-prose"><strong>Risk:</strong> Session store becomes single point of failure</p>
+          <button type="button" class="ss-btn" data-choice="B" data-issue-id="ISS-001">Choose B</button>
+        </article>
+
+        <article id="opt-c" class="ss-option">
+          <h3>Option C — OAuth 2.0 + OpenID Connect</h3>
+          <div class="ss-state">
+            Delegated authentication<br>
+            Provider: Google/GitHub/Auth0<br>
+            Flow: Authorization Code + PKCE
+          </div>
+          <p class="ss-prose"><strong>Benefits:</strong> No password management, social login, enterprise-ready</p>
+          <p class="ss-prose"><strong>Limitations:</strong> External dependency, complex implementation, UX friction</p>
+          <p class="ss-prose"><strong>Risk:</strong> Provider downtime = login unavailable</p>
+          <button type="button" class="ss-btn" data-choice="C" data-issue-id="ISS-001">Choose C</button>
+        </article>
+      </div>
+
+      <div class="ss-field">
+        <label class="ss-label" for="decision-note">Optional note</label>
+        <textarea id="decision-note" class="ss-textarea" data-ss-note rows="2" placeholder="Why this option?"></textarea>
+        <p class="ss-hint">Saved with the choice when served via session-serve.</p>
+      </div>
+    </section>
+
+    <section id="comparison" class="ss-card" aria-labelledby="comparison-heading">
+      <h2 id="comparison-heading" class="ss-h2">Decision comparison</h2>
+      <div class="ss-table-wrap">
+        <table class="ss-table">
+          <thead>
+            <tr>
+              <th scope="col">Criterion</th>
+              <th scope="col">JWT</th>
+              <th scope="col">Session</th>
+              <th scope="col">OAuth</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Scalability</strong></td>
+              <td>Excellent</td>
+              <td>Good</td>
+              <td>Excellent</td>
+            </tr>
+            <tr>
+              <td><strong>Implementation complexity</strong></td>
+              <td>Low</td>
+              <td>Low</td>
+              <td>High</td>
+            </tr>
+            <tr>
+              <td><strong>Revocation capability</strong></td>
+              <td>Poor</td>
+              <td>Excellent</td>
+              <td>Excellent</td>
+            </tr>
+            <tr>
+              <td><strong>Security control</strong></td>
+              <td>Medium</td>
+              <td>High</td>
+              <td>High</td>
+            </tr>
+            <tr>
+              <td><strong>Development time</strong></td>
+              <td>1 day</td>
+              <td>1 day</td>
+              <td>3-5 days</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="decision" class="ss-card" aria-labelledby="decision-heading">
+      <h2 id="decision-heading" class="ss-h2">Decision requested</h2>
+      <p class="ss-prose">Confirm which authentication method to implement for the API. This decision affects:</p>
+      <ul class="ss-prose">
+        <li>Database schema (users table, sessions table)</li>
+        <li>Middleware implementation (auth validation)</li>
+        <li>Client-side storage strategy</li>
+        <li>Logout and session management</li>
+      </ul>
+      <p class="ss-prose">View statically via CDN, or serve with <code>python tools/session-serve/serve.py &lt;session&gt;</code> to record the choice.</p>
+    </section>
+  </main>
+
+  <footer class="ss-footer">
+    <div class="ss-footer-inner">
+      <p>Visual Decision Preview · 2026-08-04</p>
+    </div>
+  </footer>
+
+  <script src="../decision-server/tailwind-theme.js"></script>
+  <script src="ba-report.js" defer></script>
+</body>
+</html>

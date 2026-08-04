@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISCUSSION Template - New Structure</title>
+    <style>
+        :root {
+            --ss-paper: #ffffff;
+            --ss-wash: #f7f7f8;
+            --ss-ink: #0d0d0d;
+            --ss-mute: #667085;
+            --ss-line: #e5e5e5;
+            --ss-accent: #10a37f;
+            --ss-accent-soft: #e7f6f1;
+            --ss-danger: #c2410c;
+            --ss-danger-soft: #fef3f2;
+            --ss-warn: #b54708;
+            --ss-warn-soft: #fff4e5;
+            --ss-ok: #027a48;
+            --ss-ok-soft: #ecfdf3;
+            --ss-blue-soft: #eff6ff;
+            --ss-radius: 8px;
+            --ss-content: min(60rem, calc(100% - 2rem));
+            --ss-font: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+            --ss-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; color-scheme: light; }
+
+        body {
+            margin: 0;
+            background: var(--ss-wash);
+            color: var(--ss-ink);
+            font-family: var(--ss-font);
+            font-size: 15px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 240px 1fr 220px;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas:
+                "header header header"
+                "sidebar main toc"
+                "footer footer footer";
+        }
+
+        /* Header */
+        .ss-header {
+            grid-area: header;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: var(--ss-paper);
+            border-bottom: 1px solid var(--ss-line);
+            margin-left: 240px;
+            margin-right: 220px;
+            padding: 1rem;
+        }
+
+        .ss-eyebrow {
+            margin: 0;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--ss-mute);
+        }
+
+        .ss-header h1 {
+            margin: 0.35rem 0 0;
+            font-size: 1.35rem;
+            font-weight: 650;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+        }
+
+        .ss-header p {
+            margin: 0.4rem 0 0;
+            color: var(--ss-mute);
+            font-size: 14.5px;
+        }
+
+        /* Left sidebar */
+        .ss-sidebar {
+            grid-area: sidebar;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 240px;
+            height: 100vh;
+            overflow-y: auto;
+            background: var(--ss-paper);
+            border-right: 1px solid var(--ss-line);
+            padding: 1rem;
+            z-index: 100;
+        }
+
+        .sidebar-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ss-mute);
+            margin-bottom: 0.75rem;
+            padding: 0 0.75rem;
+        }
+
+        .ss-sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .ss-sidebar li a {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            color: var(--ss-ink);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 150ms ease;
+        }
+
+        .ss-sidebar li a:hover {
+            background: var(--ss-wash);
+        }
+
+        .ss-sidebar li a.is-active {
+            background: var(--ss-accent-soft);
+            color: var(--ss-accent);
+            font-weight: 600;
+        }
+
+        /* Right TOC */
+        .ss-toc {
+            grid-area: toc;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 220px;
+            height: 100vh;
+            overflow-y: auto;
+            background: var(--ss-paper);
+            border-left: 1px solid var(--ss-line);
+            padding: 1rem;
+            z-index: 100;
+        }
+
+        .toc-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ss-mute);
+            margin-bottom: 0.75rem;
+            padding: 0 0.5rem;
+        }
+
+        .ss-toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .ss-toc li a {
+            display: block;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            color: var(--ss-mute);
+            text-decoration: none;
+            font-size: 12.5px;
+            font-weight: 500;
+            line-height: 1.4;
+            transition: all 150ms ease;
+            border-left: 2px solid transparent;
+        }
+
+        .ss-toc li a:hover {
+            color: var(--ss-ink);
+            background: var(--ss-wash);
+        }
+
+        .ss-toc li a.is-active {
+            color: var(--ss-accent);
+            border-left-color: var(--ss-accent);
+            font-weight: 600;
+        }
+
+        /* Main content */
+        .ss-main {
+            grid-area: main;
+            padding: 2rem;
+            min-width: 0;
+        }
+
+        /* Footer */
+        .ss-footer {
+            grid-area: footer;
+            border-top: 1px solid var(--ss-line);
+            background: var(--ss-paper);
+            padding: 0.75rem 1rem;
+            font-size: 13px;
+            color: var(--ss-mute);
+        }
+
+        .ss-footer p { margin: 0; }
+
+        /* Sections — flat cards */
+        .ss-section {
+            background: var(--ss-paper);
+            border: 1px solid var(--ss-line);
+            border-radius: var(--ss-radius);
+            padding: 0.85rem 1rem;
+            margin-bottom: 0.75rem;
+            scroll-margin-top: 5rem;
+        }
+
+        .ss-section h2 {
+            margin: 0 0 0.45rem;
+            font-size: 1rem;
+            font-weight: 650;
+            letter-spacing: -0.015em;
+            color: var(--ss-ink);
+        }
+
+        .ss-section h3 {
+            margin: 0.7rem 0 0.3rem;
+            font-size: 0.92rem;
+            font-weight: 650;
+            color: var(--ss-ink);
+        }
+
+        .ss-section p {
+            margin: 0 0 0.4rem;
+            color: var(--ss-mute);
+            font-size: 14.5px;
+            line-height: 1.55;
+        }
+
+        .ss-section p strong {
+            color: var(--ss-ink);
+            font-weight: 650;
+        }
+
+        /* Tables */
+        .ss-table-wrap {
+            overflow-x: auto;
+            border: 1px solid var(--ss-line);
+            border-radius: var(--ss-radius);
+            background: var(--ss-paper);
+            margin: 0.5rem 0;
+        }
+
+        .ss-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+        }
+
+        .ss-table th {
+            text-align: left;
+            padding: 0.5rem 0.75rem;
+            background: var(--ss-wash);
+            color: var(--ss-mute);
+            font-size: 11px;
+            font-weight: 650;
+            letter-spacing: 0.035em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--ss-line);
+        }
+
+        .ss-table td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid var(--ss-line);
+            color: var(--ss-ink);
+            vertical-align: top;
+        }
+
+        .ss-table tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .ss-table tbody tr:hover {
+            background: color-mix(in srgb, var(--ss-blue-soft) 55%, var(--ss-paper));
+        }
+
+        /* Badges */
+        .ss-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.12rem 0.45rem;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            font-size: 10.5px;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .ss-badge.done {
+            color: var(--ss-ok);
+            background: var(--ss-ok-soft);
+            border-color: color-mix(in srgb, var(--ss-ok) 22%, transparent);
+        }
+
+        .ss-badge.todo {
+            color: var(--ss-warn);
+            background: var(--ss-warn-soft);
+            border-color: color-mix(in srgb, var(--ss-warn) 22%, transparent);
+        }
+
+        .ss-badge.blocked {
+            color: var(--ss-danger);
+            background: var(--ss-danger-soft);
+            border-color: color-mix(in srgb, var(--ss-danger) 22%, transparent);
+        }
+
+        /* Lists */
+        .ss-list {
+            margin: 0 0 0.4rem;
+            padding-left: 1.15rem;
+            list-style: disc;
+        }
+
+        .ss-list li {
+            margin: 0.12rem 0;
+            color: var(--ss-ink);
+            font-size: 14.5px;
+            line-height: 1.55;
+        }
+
+        .ss-list li strong {
+            color: var(--ss-ink);
+            font-weight: 650;
+        }
+
+        /* Inline code */
+        code {
+            font-family: var(--ss-mono);
+            font-size: 0.88em;
+            padding: 0.05em 0.35em;
+            border-radius: 4px;
+            background: var(--ss-wash);
+            border: 1px solid var(--ss-line);
+            color: var(--ss-ink);
+        }
+
+        /* Code block */
+        .ss-code {
+            background: var(--ss-wash);
+            border: 1px solid var(--ss-line);
+            border-radius: var(--ss-radius);
+            padding: 0.75rem;
+            font-family: var(--ss-mono);
+            font-size: 13px;
+            line-height: 1.5;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            color: var(--ss-ink);
+        }
+
+        .ss-code pre {
+            margin: 0;
+            background: transparent;
+            border: none;
+            padding: 0;
+        }
+
+        /* Meta items */
+        .ss-meta {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            margin: 0.4rem 0;
+        }
+
+        .ss-meta-item {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.1rem 0.45rem;
+            border-radius: 999px;
+            background: var(--ss-accent-soft);
+            color: #0f766e;
+            font-size: 11px;
+            font-weight: 650;
+        }
+
+        .ss-meta-item strong {
+            margin-right: 0.25rem;
+        }
+
+        /* Recommended option */
+        .ss-recommended {
+            border-left: 3px solid var(--ss-accent);
+            background: color-mix(in srgb, var(--ss-accent-soft) 55%, var(--ss-paper));
+            padding: 0.75rem 0.85rem;
+            border-radius: var(--ss-radius);
+            margin: 0.5rem 0;
+        }
+
+        .ss-recommended h4 {
+            margin: 0 0 0.35rem;
+            font-size: 0.92rem;
+            font-weight: 650;
+        }
+
+        .ss-recommended p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--ss-mute);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            body {
+                grid-template-columns: 240px 1fr;
+                grid-template-areas:
+                    "header header"
+                    "sidebar main"
+                    "footer footer";
+            }
+            .ss-toc { display: none; }
+            .ss-header { margin-right: 0; }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "header"
+                    "sidebar"
+                    "main"
+                    "footer";
+            }
+            .ss-sidebar {
+                position: static;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--ss-line);
+            }
+            .ss-header { margin-left: 0; }
+            .ss-main { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="ss-header">
+        <p class="ss-eyebrow">Brainstorming Artifact</p>
+        <h1>Discussion</h1>
+        <p>Turn initial request into clear direction</p>
+    </header>
+
+    <nav class="ss-sidebar" aria-label="Section navigation">
+        <div class="sidebar-title">Sections</div>
+        <ul>
+            <li><a href="#step-ledger">Step Ledger</a></li>
+            <li><a href="#executive-summary">Executive Summary</a></li>
+            <li><a href="#charts">Charts</a></li>
+            <li><a href="#goal-outcome">Goal & Outcome</a></li>
+            <li><a href="#context">Context</a></li>
+            <li><a href="#issues-decisions">Issues & Decisions</a></li>
+            <li><a href="#scope">Scope</a></li>
+            <li><a href="#options-recommendation">Options & Recommendation</a></li>
+            <li><a href="#risks">Risks</a></li>
+            <li><a href="#handoff">Handoff</a></li>
+        </ul>
+    </nav>
+
+    <aside class="ss-toc" aria-label="Table of contents">
+        <div class="toc-title">On this page</div>
+        <ul>
+            <li><a href="#step-ledger">Step Ledger</a></li>
+            <li><a href="#executive-summary">Executive Summary</a></li>
+            <li><a href="#charts">Charts</a></li>
+            <li><a href="#goal-outcome">Goal & Outcome</a></li>
+            <li><a href="#goal">Goal</a></li>
+            <li><a href="#outcome">Outcome</a></li>
+            <li><a href="#context">Context</a></li>
+            <li><a href="#facts">Facts</a></li>
+            <li><a href="#constraints">Constraints</a></li>
+            <li><a href="#assumptions">Assumptions</a></li>
+            <li><a href="#issues-decisions">Issues & Decisions</a></li>
+            <li><a href="#issue-triage">Issue Triage</a></li>
+            <li><a href="#spec-quality">Spec Quality</a></li>
+            <li><a href="#scope">Scope</a></li>
+            <li><a href="#options-comparison">Options Comparison</a></li>
+            <li><a href="#recommendation">Recommendation</a></li>
+            <li><a href="#risks">Risks</a></li>
+            <li><a href="#handoff">Handoff</a></li>
+        </ul>
+    </aside>
+
+    <main class="ss-main">
+        <!-- Section 1: Step Ledger -->
+        <div id="step-ledger" class="ss-section">
+            <h2>Step Ledger</h2>
+            <div class="ss-table-wrap">
+                <table class="ss-table">
+                    <thead>
+                        <tr>
+                            <th>Step</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Evidence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>02</td>
+                            <td>Frame + Spec quality</td>
+                            <td><span class="ss-badge done">done</span></td>
+                            <td>Feasibility: Pass, Correctness: Pass-with-gaps, Capability: 1 gap</td>
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                            <td>Scope + options</td>
+                            <td><span class="ss-badge done">done</span></td>
+                            <td>Scope defined, 3 options compared</td>
+                        </tr>
+                        <tr>
+                            <td>04</td>
+                            <td>Recommend + handoff</td>
+                            <td><span class="ss-badge done">done</span></td>
+                            <td>Chose Option A, handoff to business-analysis</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Section 2: Executive Summary -->
+        <div id="executive-summary" class="ss-section">
+            <h2>Executive Summary</h2>
+            <ul class="ss-list">
+                <li><strong>Path:</strong> Lite, <strong>Status:</strong> ready_to_recommend, <strong>Next:</strong> handoff to business-analysis</li>
+                <li>User needs to change password via 2 steps: enter email → receive OTP → enter OTP → set new password</li>
+                <li>OTP sent via email, expiry 5 minutes, max 3 failed attempts before 15-minute account lockout</li>
+                <li>System has existing OTP service (<code>auth/otp_service.py</code>) → only need to integrate into change password flow</li>
+                <li>Success criteria: User completes flow in &lt;2 minutes, 0 security breaches</li>
+            </ul>
+        </div>
+
+        <!-- Section 3: Charts -->
+        <div id="charts" class="ss-section">
+            <h2>Charts</h2>
+            <div class="ss-code"><pre>sequenceDiagram
+    participant U as User
+    participant S as System
+    participant E as Email Service
+
+    U-&gt;&gt;S: Request change password (email)
+    S-&gt;&gt;S: Validate email exists
+    S-&gt;&gt;S: Generate 6-digit OTP
+    S-&gt;&gt;E: Send OTP to email
+    E--&gt;&gt;U: Receive OTP email
+    U-&gt;&gt;S: Submit OTP + new password
+    S-&gt;&gt;S: Verify OTP (5-min expiry)
+    S-&gt;&gt;S: Update password
+    S--&gt;&gt;U: Success notification</pre></div>
+        </div>
+
+        <!-- Section 4: Goal & Outcome -->
+        <div id="goal-outcome" class="ss-section">
+            <h2>Goal & Outcome</h2>
+
+            <h3 id="goal">Goal</h3>
+            <p>User with email in system can reset password by receiving OTP via email and verifying within 5 minutes, with 0 security breaches in production.</p>
+
+            <h3 id="outcome">Outcome</h3>
+            <ul class="ss-list">
+                <li>User enters email → receives OTP in &lt;30 seconds</li>
+                <li>User enters correct OTP + new password → password updated, redirect to login</li>
+                <li>User enters wrong OTP 3 times → account locked 15 minutes, show message "Account locked. Try again in 15 minutes"</li>
+                <li>OTP expired (&gt;5 minutes) → show message "OTP expired. Request new OTP"</li>
+                <li>User requests OTP &gt;3 times/minute → rate limited, show message "Too many requests. Try again later"</li>
+            </ul>
+        </div>
+
+        <!-- Section 5: Context -->
+        <div id="context" class="ss-section">
+            <h2>Context</h2>
+
+            <h3 id="facts">Facts</h3>
+            <ul class="ss-list">
+                <li>System has existing OTP service: <code>auth/otp_service.py</code> (generate_otp, verify_otp, send_otp_email)</li>
+                <li>Email service configured: SMTP host=smtp.company.com, port=587</li>
+                <li>Database schema: <code>users</code> table has <code>email</code>, <code>password_hash</code>, <code>otp_code</code>, <code>otp_expiry</code>, <code>failed_attempts</code>, <code>locked_until</code></li>
+                <li>Existing password policy: min 8 chars, 1 uppercase, 1 lowercase, 1 digit, 1 special char</li>
+            </ul>
+
+            <h3 id="constraints">Constraints</h3>
+            <div class="ss-table-wrap">
+                <table class="ss-table">
+                    <thead>
+                        <tr>
+                            <th>Constraint</th>
+                            <th>Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Timebox: 2 days (Sprint 24, commit by Aug 10)</td>
+                            <td>user</td>
+                        </tr>
+                        <tr>
+                            <td>Stack: Python 3.11, FastAPI, PostgreSQL 15</td>
+                            <td>repo</td>
+                        </tr>
+                        <tr>
+                            <td>Security: OTP must comply with OWASP ASVS v4.0 §3.2</td>
+                            <td>user</td>
+                        </tr>
+                        <tr>
+                            <td>No SMS gateway available (email only)</td>
+                            <td>repo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 id="assumptions">Assumptions</h3>
+            <div class="ss-table-wrap">
+                <table class="ss-table">
+                    <thead>
+                        <tr>
+                            <th>Assumption</th>
+                            <th>Risk</th>
+                            <th>Confirmed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Email delivery &lt;30 seconds in production</td>
+                            <td>Medium</td>
+                            <td>Yes (tested with 100 emails, avg 12s)</td>
+                        </tr>
+                        <tr>
+                            <td>User has access to email account</td>
+                            <td>Low</td>
+                            <td>Yes (confirmed with PM)</td>
+                        </tr>
+                        <tr>
+                            <td>OTP expiry 5 minutes is acceptable</td>
+                            <td>Low</td>
+                            <td>Yes (matches industry standard)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Section 6: Issues & Decisions -->
+        <div id="issues-decisions" class="ss-section">
+            <h2>Issues & Decisions</h2>
+
+            <h3 id="issue-triage">Issue Triage</h3>
+            <div class="ss-table-wrap">
+                <table class="ss-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Issue / Question</th>
+                            <th>Severity</th>
+                            <th>Blocking?</th>
+                            <th>Status</th>
+                            <th>Resolution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ISS-001</td>
+                            <td>OTP expiry time: 5 minutes or 10 minutes?</td>
+                            <td>Medium</td>
+                            <td>No</td>
+                            <td><span class="ss-badge done">Answered</span></td>
+                            <td>User chose 5 minutes (industry standard)</td>
+                        </tr>
+                        <tr>
+                            <td>ISS-002</td>
+                            <td>Lockout duration: 15 minutes or 30 minutes?</td>
+                            <td>Low</td>
+                            <td>No</td>
+                            <td><span class="ss-badge done">Answered</span></td>
+                            <td>User chose 15 minutes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 id="spec-quality">Spec Quality</h3>
+            <ul class="ss-list">
+                <li><strong>Feasibility:</strong> Pass — existing OTP service in <code>auth/otp_service.py</code>, email service configured, DB schema ready</li>
+                <li><strong>Correctness:</strong> Pass-with-gaps — AC-007 rate limit was undefined, defaulted to 3 requests/minute (OWASP recommendation)</li>
+                <li><strong>Capability gaps:</strong> 1 gap (rate limit value) — resolved with default</li>
+            </ul>
+        </div>
+
+        <!-- Section 7: Scope -->
+        <div id="scope" class="ss-section">
+            <h2>Scope</h2>
+
+            <h3>In</h3>
+            <ul class="ss-list">
+                <li>Email OTP generation (6-digit numeric)</li>
+                <li>OTP delivery via email (subject: "Your password reset code")</li>
+                <li>OTP verification (5-min expiry, single-use)</li>
+                <li>Password update after verify success</li>
+                <li>Account lockout after 3 failed attempts (15-min lock)</li>
+                <li>Rate limit: 3 OTP requests/minute/email</li>
+            </ul>
+
+            <h3>Out</h3>
+            <ul class="ss-list">
+                <li>SMS OTP delivery (no SMS gateway)</li>
+                <li>TOTP app integration (Google Authenticator, Authy)</li>
+                <li>2FA for login (only applies to change password)</li>
+            </ul>
+
+            <h3>Non-goals</h3>
+            <ul class="ss-list">
+                <li>Real-time OTP delivery tracking (email sent/delivered/opened)</li>
+                <li>Password strength meter UI</li>
+                <li>Multi-language email templates (English only)</li>
+            </ul>
+        </div>
+
+        <!-- Section 8: Options & Recommendation -->
+        <div id="options-recommendation" class="ss-section">
+            <h2>Options & Recommendation</h2>
+
+            <h3 id="options-comparison">Options Comparison</h3>
+            <div class="ss-table-wrap">
+                <table class="ss-table">
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Pros</th>
+                            <th>Cons</th>
+                            <th>Effort</th>
+                            <th>Risk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>A — Email OTP only</strong></td>
+                            <td>Lowest effort, existing infrastructure, meets requirement</td>
+                            <td>User needs email access</td>
+                            <td>2 days</td>
+                            <td>Low</td>
+                        </tr>
+                        <tr>
+                            <td>B — Email + SMS OTP</td>
+                            <td>User has 2 channels, higher success rate</td>
+                            <td>Needs SMS gateway (not available), higher effort</td>
+                            <td>5 days</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>C — TOTP app</td>
+                            <td>Strongest security, no delivery delay</td>
+                            <td>User needs to install app, UX friction</td>
+                            <td>8 days</td>
+                            <td>High</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 id="recommendation">Recommendation</h3>
+            <div class="ss-recommended">
+                <h4>Option A — Email OTP only</h4>
+                <p>Lowest effort (2d), existing infrastructure, meets all requirements. SMS/TOTP can be added later if needed.</p>
+            </div>
+            <div class="ss-meta">
+                <span class="ss-meta-item"><strong>Confidence:</strong> High</span>
+            </div>
+            <p><strong>Not choosing:</strong> Option B (high effort, needs SMS gateway), Option C (UX friction, highest effort)</p>
+        </div>
+
+        <!-- Section 9: Risks -->
+        <div id="risks" class="ss-section">
+            <h2>Risks</h2>
+            <div class="ss-table-wrap">
+                <table class="ss-table">
+                    <thead>
+                        <tr>
+                            <th>Risk</th>
+                            <th>Impact</th>
+                            <th>Mitigation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Email delivery delay &gt;30 seconds</td>
+                            <td>User frustration, retry requests</td>
+                            <td>Monitor email queue, alert if avg &gt;30s</td>
+                        </tr>
+                        <tr>
+                            <td>User doesn't receive email (spam folder)</td>
+                            <td>Flow blocked, support tickets</td>
+                            <td>Add "Check spam folder" message, resend button</td>
+                        </tr>
+                        <tr>
+                            <td>OTP brute force attack</td>
+                            <td>Account compromise</td>
+                            <td>Rate limit 3 requests/minute, 6-digit OTP (1M combinations)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Section 10: Handoff -->
+        <div id="handoff" class="ss-section">
+            <h2>Handoff</h2>
+            <div class="ss-meta">
+                <span class="ss-meta-item"><strong>Next skill:</strong> business-analysis</span>
+                <span class="ss-meta-item"><strong>Why:</strong> Need detailed spec (API endpoints, screen design, AC details) for development</span>
+            </div>
+            <ul class="ss-list">
+                <li><strong>Verify so far:</strong> Feasibility confirmed (existing OTP service), requirements clarified (expiry, lockout, rate limit)</li>
+                <li><strong>Blockers:</strong> None</li>
+                <li><strong>How to continue:</strong> Read this DISCUSSION.md → run business-analysis skill → generate BUSINESS_ANALYSIS.md</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="ss-footer">
+        <p>Discussion Preview · Task-100-change-password-otp · 2026-08-04</p>
+    </footer>
+
+    <script>
+    (function() {
+        "use strict";
+
+        function getHeaderOffset() {
+            var header = document.querySelector(".ss-header");
+            if (header) return header.offsetHeight + 16;
+            return 80;
+        }
+
+        function scrollToTarget(target) {
+            var y = target.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
+            window.scrollTo({ top: y, behavior: "smooth" });
+        }
+
+        function initNav() {
+            var sidebarLinks = document.querySelectorAll(".ss-sidebar a[href^='#']");
+            var tocLinks = document.querySelectorAll(".ss-toc a[href^='#']");
+            var allLinks = [];
+            var sections = [];
+
+            sidebarLinks.forEach(function(link) {
+                var id = link.getAttribute("href").substring(1);
+                var el = document.getElementById(id);
+                if (el) {
+                    sections.push({ id: id, element: el, sidebarLink: link, tocLink: null });
+                    allLinks.push(link);
+                }
+            });
+
+            tocLinks.forEach(function(link) {
+                var id = link.getAttribute("href").substring(1);
+                var el = document.getElementById(id);
+                if (!el) { allLinks.push(link); return; }
+                var found = sections.find(function(s) { return s.id === id; });
+                if (found) {
+                    found.tocLink = link;
+                } else {
+                    sections.push({ id: id, element: el, sidebarLink: null, tocLink: link });
+                }
+                allLinks.push(link);
+            });
+
+            function setActive(id) {
+                sidebarLinks.forEach(function(l) { l.classList.remove("is-active"); });
+                tocLinks.forEach(function(l) { l.classList.remove("is-active"); });
+
+                var match = sections.find(function(s) { return s.id === id; });
+                if (match) {
+                    if (match.sidebarLink) match.sidebarLink.classList.add("is-active");
+                    if (match.tocLink) match.tocLink.classList.add("is-active");
+                }
+            }
+
+            allLinks.forEach(function(link) {
+                link.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    var id = link.getAttribute("href").substring(1);
+                    var target = document.getElementById(id);
+                    if (target) {
+                        setActive(id);
+                        scrollToTarget(target);
+                    }
+                });
+            });
+
+            var scrollTimeout;
+            window.addEventListener("scroll", function() {
+                if (scrollTimeout) clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(function() {
+                    var scrollPos = window.scrollY + getHeaderOffset();
+                    var active = sections[0];
+                    for (var i = 0; i < sections.length; i++) {
+                        if (scrollPos >= sections[i].element.offsetTop) {
+                            active = sections[i];
+                        }
+                    }
+                    if (active) setActive(active.id);
+                }, 80);
+            });
+
+            if (sections.length > 0) setActive(sections[0].id);
+        }
+
+        document.addEventListener("DOMContentLoaded", initNav);
+    })();
+    </script>
+</body>
+</html>

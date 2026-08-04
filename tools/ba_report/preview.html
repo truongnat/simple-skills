@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BA Report Preview</title>
+  <link rel="stylesheet" href="ba-report.css">
+  <style>
+    * { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body.ss-page.ss-wide {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 240px 1fr 220px;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas:
+        "header header header"
+        "sidebar main toc"
+        "footer footer footer";
+    }
+
+    .ss-header {
+      grid-area: header;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--ss-paper, #fff);
+      border-bottom: 1px solid var(--ss-line, #e5e5e5);
+      margin-left: 240px;
+      margin-right: 220px;
+    }
+
+    .ss-nav.ss-ba-nav {
+      grid-area: sidebar;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--ss-paper, #fff);
+      border-right: 1px solid var(--ss-line, #e5e5e5);
+      padding: 1rem;
+      z-index: 100;
+    }
+
+    .ss-nav.ss-ba-nav .nav-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ss-mute, #667085);
+      margin-bottom: 0.75rem;
+      padding: 0 0.75rem;
+    }
+
+    .ss-nav.ss-ba-nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .ss-nav.ss-ba-nav li a {
+      display: block;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      color: var(--ss-ink, #0d0d0d);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 150ms ease;
+    }
+
+    .ss-nav.ss-ba-nav li a:hover {
+      background: var(--ss-wash, #f7f7f8);
+    }
+
+    .ss-nav.ss-ba-nav li a.is-active {
+      background: var(--ss-accent-soft, #e7f6f1);
+      color: var(--ss-accent, #10a37f);
+      font-weight: 600;
+    }
+
+    .ss-toc {
+      grid-area: toc;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 220px;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--ss-paper, #fff);
+      border-left: 1px solid var(--ss-line, #e5e5e5);
+      padding: 1rem;
+      z-index: 100;
+    }
+
+    .ss-toc .toc-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ss-mute, #667085);
+      margin-bottom: 0.75rem;
+      padding: 0 0.5rem;
+    }
+
+    .ss-toc ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .ss-toc li a {
+      display: block;
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      color: var(--ss-mute, #667085);
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 500;
+      line-height: 1.4;
+      transition: all 150ms ease;
+      border-left: 2px solid transparent;
+    }
+
+    .ss-toc li a:hover {
+      color: var(--ss-ink, #0d0d0d);
+      background: var(--ss-wash, #f7f7f8);
+    }
+
+    .ss-toc li a.is-active {
+      color: var(--ss-accent, #10a37f);
+      border-left-color: var(--ss-accent, #10a37f);
+      font-weight: 600;
+    }
+
+    .ss-toc li.toc-h3 a {
+      padding-left: 1rem;
+      font-size: 12px;
+    }
+
+    .ss-main {
+      grid-area: main;
+      padding: 2rem;
+      min-width: 0;
+    }
+
+    .ss-footer {
+      grid-area: footer;
+      border-top: 1px solid var(--ss-line, #e5e5e5);
+    }
+
+    @media (max-width: 1024px) {
+      body.ss-page.ss-wide {
+        grid-template-columns: 240px 1fr;
+        grid-template-areas:
+          "header header"
+          "sidebar main"
+          "footer footer";
+      }
+      .ss-toc { display: none; }
+      .ss-header { margin-right: 0; }
+    }
+
+    @media (max-width: 768px) {
+      body.ss-page.ss-wide {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "header"
+          "sidebar"
+          "main"
+          "footer";
+      }
+      .ss-nav.ss-ba-nav {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--ss-line, #e5e5e5);
+      }
+      .ss-header { margin-left: 0; }
+      .ss-main { padding: 1rem; }
+    }
+  </style>
+</head>
+<body class="ss-page ss-wide">
+  <a class="ss-skip" href="#main">Skip to content</a>
+
+  <header class="ss-header">
+    <div class="ss-header-inner">
+      <p class="ss-eyebrow">Session: Task-1-demo</p>
+      <h1>Business Analysis Report</h1>
+      <p class="ss-prose">Generated from 3 artifacts</p>
+    </div>
+  </header>
+
+  <nav class="ss-nav ss-ba-nav" aria-label="Artifact navigation">
+    <div class="nav-title">Artifacts</div>
+    <ul>
+      <li><a href="#business-analysis">Business Analysis</a></li>
+      <li><a href="#user-flow">User Flow</a></li>
+      <li><a href="#prd">Product Requirements</a></li>
+    </ul>
+  </nav>
+
+  <aside class="ss-toc" aria-label="Table of contents">
+    <div class="toc-title">On this page</div>
+    <ul>
+      <li class="toc-h2"><a href="#artifact-graph">Artifact Relationships</a></li>
+      <li class="toc-h2"><a href="#business-analysis">Business Analysis</a></li>
+      <li class="toc-h3"><a href="#ba-step-ledger">Step Ledger</a></li>
+      <li class="toc-h3"><a href="#ba-spec-quality">Spec Quality Review</a></li>
+      <li class="toc-h3"><a href="#ba-problem">Problem Statement</a></li>
+      <li class="toc-h3"><a href="#ba-diagram">User Flow Diagram</a></li>
+      <li class="toc-h2"><a href="#user-flow">User Flow</a></li>
+      <li class="toc-h3"><a href="#uf-stakeholders">Stakeholders</a></li>
+      <li class="toc-h2"><a href="#prd">Product Requirements</a></li>
+      <li class="toc-h3"><a href="#prd-functional">Functional Requirements</a></li>
+    </ul>
+  </aside>
+
+  <main id="main" class="ss-main">
+    <div id="artifact-graph" class="ss-ba-graph ss-card">
+      <h2>Artifact Relationships</h2>
+      <p class="ss-prose ss-mute">How artifacts in this session connect to each other</p>
+      <div class="ss-mermaid">
+        <div class="mermaid">
+graph LR
+  business-analysis["Business Analysis"] --> user-flow["User Flow"]
+  business-analysis["Business Analysis"] --> prd["PRD"]
+  user-flow["User Flow"] --> prd["PRD"]
+        </div>
+      </div>
+    </div>
+
+    <section id="business-analysis" class="ss-ba-artifact">
+      <div class="ss-card">
+        <h2>Business Analysis</h2>
+        <p class="ss-prose ss-mute">Source: BUSINESS_ANALYSIS.md</p>
+        <div class="ss-ba-related-group">
+          <span class="ss-ba-related-label">Related:</span>
+          <a class="ss-ba-related" href="#user-flow">User Flow</a>
+          <a class="ss-ba-related" href="#prd">PRD</a>
+        </div>
+      </div>
+
+      <div id="ba-step-ledger" class="ss-section-content">
+        <h3>Step Ledger</h3>
+        <div class="ss-table-wrap">
+          <table class="ss-table">
+            <thead>
+              <tr>
+                <th scope="col">Step</th>
+                <th scope="col">Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>01</td>
+                <td>Init template</td>
+                <td data-status="done">Done</td>
+              </tr>
+              <tr>
+                <td>02</td>
+                <td>Frame + Spec quality</td>
+                <td data-status="done">Done</td>
+              </tr>
+              <tr>
+                <td>03</td>
+                <td>Stories / rules / AC</td>
+                <td data-status="blocked">Blocked</td>
+              </tr>
+              <tr>
+                <td>04</td>
+                <td>Self-check</td>
+                <td data-status="todo">Todo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="ba-spec-quality" class="ss-section-content">
+        <h3>Spec Quality Review</h3>
+        <div class="ss-table-wrap">
+          <table class="ss-table">
+            <thead>
+              <tr>
+                <th scope="col">Finding</th>
+                <th scope="col">Evidence</th>
+                <th scope="col">Verdict</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Print count editable on all tabs</td>
+                <td>Only 現品票 has it</td>
+                <td data-status="fail">Fail</td>
+              </tr>
+              <tr>
+                <td>Upload size limit defined</td>
+                <td>Spec says 10MB</td>
+                <td data-status="pass">Pass</td>
+              </tr>
+              <tr>
+                <td>API timeout handling</td>
+                <td>Not specified</td>
+                <td data-status="unknown">Unknown</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="ba-problem" class="ss-section-content">
+        <h3>Problem Statement</h3>
+        <p>Testers cannot efficiently review BA artifacts because they are written in markdown format that is not visual or accessible to non-technical stakeholders.</p>
+        <p>The current workflow requires testers to parse complex markdown tables and mermaid diagrams manually, leading to missed requirements and inconsistent test coverage.</p>
+      </div>
+
+      <div id="ba-diagram" class="ss-section-content">
+        <h3>User Flow Diagram</h3>
+        <div class="ss-mermaid">
+          <div class="mermaid">
+graph TD
+    A[BA writes markdown] --> B[Parser processes file]
+    B --> C[Renderer generates HTML]
+    C --> D[Tester reviews in browser]
+    D --> E{Feedback?}
+    E -->|Yes| A
+    E -->|No| F[Sign off]
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="user-flow" class="ss-ba-artifact">
+      <div class="ss-card">
+        <h2>User Flow</h2>
+        <p class="ss-prose ss-mute">Source: USER_FLOW.md</p>
+        <div class="ss-ba-related-group">
+          <span class="ss-ba-related-label">Related:</span>
+          <a class="ss-ba-related" href="#prd">PRD</a>
+        </div>
+      </div>
+
+      <div id="uf-stakeholders" class="ss-section-content">
+        <h3>Stakeholders</h3>
+        <div class="ss-table-wrap">
+          <table class="ss-table">
+            <thead>
+              <tr>
+                <th scope="col">Actor</th>
+                <th scope="col">Goal</th>
+                <th scope="col">Pain Point</th>
+                <th scope="col">Authority</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Business Analyst</td>
+                <td>Document requirements clearly</td>
+                <td>Testers don't read markdown</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td>Tester</td>
+                <td>Review specs efficiently</td>
+                <td>Markdown not visual</td>
+                <td>Medium</td>
+              </tr>
+              <tr>
+                <td>Product Manager</td>
+                <td>Ensure quality delivery</td>
+                <td>Can't review technical docs</td>
+                <td>High</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="prd" class="ss-ba-artifact">
+      <div class="ss-card">
+        <h2>Product Requirements</h2>
+        <p class="ss-prose ss-mute">Source: PRD.md</p>
+        <div class="ss-ba-related-group">
+          <span class="ss-ba-related-label">Related:</span>
+          <a class="ss-ba-related" href="#business-analysis">Business Analysis</a>
+        </div>
+      </div>
+
+      <div id="prd-functional" class="ss-section-content">
+        <h3>Functional Requirements</h3>
+        <p>Derived from <a href="#business-analysis">Business Analysis</a> and <a href="#user-flow">User Flow</a> artifacts.</p>
+        <div class="ss-table-wrap">
+          <table class="ss-table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Requirement</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>FR-001</td>
+                <td>System shall parse markdown files</td>
+                <td>High</td>
+                <td data-status="done">Done</td>
+              </tr>
+              <tr>
+                <td>FR-002</td>
+                <td>System shall render HTML with design system</td>
+                <td>High</td>
+                <td data-status="done">Done</td>
+              </tr>
+              <tr>
+                <td>FR-003</td>
+                <td>System shall support mermaid diagrams</td>
+                <td>Medium</td>
+                <td data-status="in-progress">In Progress</td>
+              </tr>
+              <tr>
+                <td>FR-004</td>
+                <td>System shall export to PDF</td>
+                <td>Low</td>
+                <td data-status="todo">Todo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ss-footer">
+    <div class="ss-footer-inner">
+      <p>BA Report · Preview Demo · 2026-08-04</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="ba-report.js" defer></script>
+</body>
+</html>

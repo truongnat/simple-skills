@@ -162,52 +162,153 @@ body {
   margin: 0;
 }
 
-/* —— Sticky artifact navigation (BA-specific) —— */
-.ss-nav {
+/* —— Three-zone layout: left sidebar + center content + right TOC —— */
+.ss-page.ss-wide {
+  display: grid;
+  grid-template-columns: 240px 1fr 220px;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header header"
+    "sidebar main toc"
+    "footer footer";
+}
+
+.ss-page.ss-wide .ss-header {
+  grid-area: header;
   position: sticky;
   top: 0;
-  z-index: 40;
-  width: var(--ss-content-wide);
-  margin: 0 auto;
-  padding: 0.45rem 1rem;
-  overflow-x: auto;
-  background: color-mix(in srgb, var(--ss-paper) 94%, transparent);
-  border: 1px solid var(--ss-line);
-  border-top: 0;
-  border-radius: 0 0 var(--ss-radius) var(--ss-radius);
-  backdrop-filter: blur(10px);
+  z-index: 200;
+  margin-left: 240px;
+  margin-right: 220px;
 }
 
-.ss-nav ul {
-  display: flex;
-  gap: 0.3rem;
-  width: max-content;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.ss-page.ss-wide .ss-main {
+  grid-area: main;
+  display: block;
+  padding: 2rem;
+  min-width: 0;
 }
 
-.ss-nav a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2rem;
-  padding: 0.3rem 0.65rem;
-  border-radius: 6px;
+.ss-page.ss-wide .ss-footer {
+  grid-area: footer;
+}
+
+/* —— Left sidebar (fixed, full viewport height) —— */
+.ss-nav.ss-ba-nav {
+  grid-area: sidebar;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--ss-paper);
+  border-right: 1px solid var(--ss-line);
+  padding: 1rem;
+  z-index: 100;
+}
+
+.ss-nav.ss-ba-nav .nav-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--ss-mute);
-  font-size: 12.5px;
-  font-weight: 600;
-  text-decoration: none;
+  margin-bottom: 0.75rem;
+  padding: 0 0.75rem;
 }
 
-.ss-nav a:hover,
-.ss-nav a:focus-visible {
-  background: var(--ss-wash);
+.ss-nav.ss-ba-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ss-nav.ss-ba-nav li a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
   color: var(--ss-ink);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 150ms ease;
 }
 
-.ss-nav a.is-active {
+.ss-nav.ss-ba-nav li a:hover {
+  background: var(--ss-wash);
+}
+
+.ss-nav.ss-ba-nav li a.is-active {
   background: var(--ss-accent-soft);
-  color: #0f766e;
+  color: var(--ss-accent);
+  font-weight: 600;
+}
+
+/* —— Right TOC (fixed, full viewport height) —— */
+.ss-toc {
+  grid-area: toc;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 220px;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--ss-paper);
+  border-left: 1px solid var(--ss-line);
+  padding: 1rem;
+  z-index: 100;
+}
+
+.ss-toc .toc-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ss-mute);
+  margin-bottom: 0.75rem;
+  padding: 0 0.5rem;
+}
+
+.ss-toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.ss-toc li a {
+  display: block;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  color: var(--ss-mute);
+  text-decoration: none;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  transition: all 150ms ease;
+  border-left: 2px solid transparent;
+}
+
+.ss-toc li a:hover {
+  color: var(--ss-ink);
+  background: var(--ss-wash);
+}
+
+.ss-toc li a.is-active {
+  color: var(--ss-accent);
+  border-left-color: var(--ss-accent);
+  font-weight: 600;
+}
+
+.ss-toc li.toc-h3 a {
+  padding-left: 1rem;
+  font-size: 12px;
 }
 
 /* —— Surfaces —— */
@@ -239,7 +340,7 @@ body {
 
 /* —— BA artifact sections —— */
 .ss-ba-artifact {
-  scroll-margin-top: 4rem;
+  scroll-margin-top: 5rem;
   margin-bottom: 1.5rem;
 }
 
@@ -253,6 +354,7 @@ body {
   border-radius: var(--ss-radius);
   padding: var(--ss-pad);
   margin-bottom: 0.75rem;
+  scroll-margin-top: 5rem;
 }
 
 .ss-section-content h2,
@@ -527,20 +629,104 @@ body {
   margin: 0.75rem 0;
 }
 
+/* —— Artifact relationship graph —— */
+.ss-ba-graph {
+  margin-bottom: 1rem;
+  scroll-margin-top: 5rem;
+}
+
+.ss-ba-graph h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+}
+
+.ss-ba-graph > .ss-prose {
+  margin-bottom: 0.5rem;
+}
+
+/* —— Related artifacts badges —— */
+.ss-ba-related-group {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.ss-ba-related-label {
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--ss-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ss-ba-related {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: var(--ss-accent-soft);
+  color: #0f766e;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 150ms ease, color 150ms ease;
+  border: 1px solid color-mix(in srgb, var(--ss-accent) 20%, transparent);
+}
+
+.ss-ba-related:hover {
+  background: var(--ss-accent);
+  color: #fff;
+  text-decoration: none;
+}
+
 /* —— Responsive —— */
-@media (max-width: 720px) {
+@media (max-width: 1024px) {
+  .ss-page.ss-wide {
+    grid-template-columns: 240px 1fr;
+    grid-template-areas:
+      "header header"
+      "sidebar main"
+      "footer footer";
+  }
+  .ss-page.ss-wide .ss-header {
+    margin-right: 0;
+  }
+  .ss-toc {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .ss-page.ss-wide {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main"
+      "footer";
+  }
+  .ss-page.ss-wide .ss-header {
+    margin-left: 0;
+  }
+  .ss-nav.ss-ba-nav {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--ss-line);
+  }
+  .ss-page.ss-wide .ss-main {
+    padding: 1rem;
+  }
   .ss-header h1 {
     font-size: 1.15rem;
   }
-
-  .ss-nav ul {
-    gap: 0.2rem;
-  }
-
   .ss-table {
     font-size: 12.5px;
   }
-
   .ss-table th,
   .ss-table td {
     padding: 0.4rem 0.55rem;

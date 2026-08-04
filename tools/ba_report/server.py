@@ -31,6 +31,7 @@ BA_REPORT_JS = "ba-report.js"
 MAX_BODY_BYTES = 64 * 1024
 
 BA_ARTIFACTS = [
+    "DISCUSSION.md",
     "BUSINESS_ANALYSIS.md",
     "USER_FLOW.md",
     "PRD.md",

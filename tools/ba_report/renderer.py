@@ -12,6 +12,34 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+ARTIFACT_RELATIONSHIPS: dict[str, list[str]] = {
+    "DISCUSSION.md": ["BUSINESS_ANALYSIS.md"],
+    "BUSINESS_ANALYSIS.md": ["USER_FLOW.md", "PRD.md", "BRD.md", "URD.md", "SPEC_SRS.md"],
+    "USER_FLOW.md": ["PRD.md", "SPEC_SRS.md"],
+    "PRD.md": ["SPEC_SRS.md", "MODEL.md"],
+    "BRD.md": ["PRD.md"],
+    "URD.md": ["USER_FLOW.md", "PRD.md"],
+    "SPEC_SRS.md": ["MODEL.md", "PRD_EPIC.md"],
+    "MODEL.md": ["SPEC_SRS.md"],
+    "DISCOVER.md": ["ROADMAP.md"],
+    "ROADMAP.md": ["PRD_EPIC.md"],
+    "PRD_EPIC.md": [],
+}
+
+RELATIONSHIP_LABELS: dict[str, str] = {
+    "DISCUSSION.md": "Discussion",
+    "BUSINESS_ANALYSIS.md": "Business Analysis",
+    "USER_FLOW.md": "User Flow",
+    "PRD.md": "PRD",
+    "BRD.md": "BRD",
+    "URD.md": "URD",
+    "SPEC_SRS.md": "SRS",
+    "MODEL.md": "Data Model",
+    "DISCOVER.md": "Discovery",
+    "ROADMAP.md": "Roadmap",
+    "PRD_EPIC.md": "Epics",
+}
+
 
 def render_report(
     artifacts: dict[str, dict[str, Any]],
@@ -29,6 +57,8 @@ def render_report(
         Complete HTML string
     """
     navigation = render_navigation(artifacts)
+    toc = render_toc(artifacts)
+    artifact_graph = render_artifact_graph(artifacts)
     artifact_sections = render_artifact_sections(artifacts)
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
@@ -52,12 +82,21 @@ def render_report(
   </header>
 
   <nav class="ss-nav ss-ba-nav" aria-label="Artifact navigation">
+    <div class="nav-title">Artifacts</div>
     <ul>
       {navigation}
     </ul>
   </nav>
 
+  <aside class="ss-toc" aria-label="Table of contents">
+    <div class="toc-title">On this page</div>
+    <ul>
+      {toc}
+    </ul>
+  </aside>
+
   <main id="main" class="ss-main">
+    {artifact_graph}
     {artifact_sections}
   </main>
 
@@ -84,22 +123,71 @@ def render_navigation(artifacts: dict[str, dict[str, Any]]) -> str:
     return "\n      ".join(links)
 
 
-def render_artifact_sections(artifacts: dict[str, dict[str, Any]]) -> str:
-    """Render all artifact sections."""
-    sections = []
+def render_toc(artifacts: dict[str, dict[str, Any]]) -> str:
+    """Render right-sidebar table of contents from artifact sections."""
+    entries = []
     for filename, data in artifacts.items():
         artifact_id = filename_to_id(filename)
         title = data.get("title", filename)
+        entries.append(f'<li class="toc-h2"><a href="#{artifact_id}">{html.escape(title)}</a></li>')
+        for section in data.get("sections", []):
+            section_id = section_to_id(section.get("heading", ""), artifact_id)
+            entries.append(f'<li class="toc-h3"><a href="#{section_id}">{html.escape(section["heading"])}</a></li>')
+    return "\n      ".join(entries)
+
+
+def render_artifact_graph(artifacts: dict[str, dict[str, Any]]) -> str:
+    """Render Mermaid diagram showing relationships between artifacts."""
+    if len(artifacts) < 2:
+        return ""
+
+    available = set(artifacts.keys())
+    edges = []
+    for filename in artifacts:
+        targets = ARTIFACT_RELATIONSHIPS.get(filename, [])
+        for target in targets:
+            if target in available:
+                src_label = RELATIONSHIP_LABELS.get(filename, Path(filename).stem)
+                tgt_label = RELATIONSHIP_LABELS.get(target, Path(target).stem)
+                src_id = filename_to_id(filename)
+                tgt_id = filename_to_id(target)
+                edges.append(f'  {src_id}["{src_label}"] --> {tgt_id}["{tgt_label}"]')
+
+    if not edges:
+        return ""
+
+    mermaid_code = "graph LR\n" + "\n".join(edges)
+
+    return f"""
+    <div class="ss-ba-graph ss-card">
+      <h2>Artifact Relationships</h2>
+      <p class="ss-prose ss-mute">How artifacts in this session connect to each other</p>
+      <div class="ss-mermaid">
+        <div class="mermaid">{html.escape(mermaid_code)}</div>
+      </div>
+    </div>
+"""
+
+
+def render_artifact_sections(artifacts: dict[str, dict[str, Any]]) -> str:
+    """Render all artifact sections."""
+    sections = []
+    available = set(artifacts.keys())
+    for filename, data in artifacts.items():
+        artifact_id = filename_to_id(filename)
+        title = data.get("title", filename)
+        related = render_related_artifacts(filename, available)
 
         section_html = f"""
     <section id="{artifact_id}" class="ss-ba-artifact">
       <div class="ss-card">
         <h2>{html.escape(title)}</h2>
         <p class="ss-prose ss-mute">Source: {html.escape(filename)}</p>
+        {related}
       </div>
 """
         for section in data.get("sections", []):
-            section_html += render_section(section)
+            section_html += render_section(section, artifact_id)
 
         section_html += "    </section>\n"
         sections.append(section_html)
@@ -107,17 +195,34 @@ def render_artifact_sections(artifacts: dict[str, dict[str, Any]]) -> str:
     return "\n".join(sections)
 
 
-def render_section(section: dict[str, Any]) -> str:
+def render_related_artifacts(filename: str, available: set[str]) -> str:
+    """Render related artifacts badges for a given artifact."""
+    related_filenames = ARTIFACT_RELATIONSHIPS.get(filename, [])
+    related_available = [f for f in related_filenames if f in available]
+
+    if not related_available:
+        return ""
+
+    badges = []
+    for rel_file in related_available:
+        rel_id = filename_to_id(rel_file)
+        rel_label = RELATIONSHIP_LABELS.get(rel_file, Path(rel_file).stem)
+        badges.append(f'<a class="ss-ba-related" href="#{rel_id}">{html.escape(rel_label)}</a>')
+
+    return f'\n        <div class="ss-ba-related-group"><span class="ss-ba-related-label">Related:</span>{"".join(badges)}</div>'
+
+
+def render_section(section: dict[str, Any], artifact_id: str = "") -> str:
     """Render a single section to HTML."""
     heading = section.get("heading", "")
     level = section.get("level", 2)
     section_type = section.get("type", "prose")
+    section_id = section_to_id(heading, artifact_id)
 
-    # Heading tag (h2, h3, h4)
     heading_tag = f"h{min(level + 1, 6)}"
 
     html_parts = [
-        f'      <div class="ss-section-content">',
+        f'      <div id="{section_id}" class="ss-section-content">',
         f"        <{heading_tag}>{html.escape(heading)}</{heading_tag}>",
     ]
 
@@ -300,14 +405,43 @@ def inline_format(text: str) -> str:
     # Inline code: `code`
     text = re.sub(r"`(.+?)`", r"<code>\1</code>", text)
 
-    # Links: [text](url)
-    text = re.sub(r"\[(.+?)\]\((.+?)\)", r'<a href="\2">\1</a>', text)
+    # Links: [text](url) — rewrite artifact filenames to anchors
+    def rewrite_link(m: re.Match) -> str:
+        link_text = m.group(1)
+        url = m.group(2)
+        # Check if URL points to a known BA artifact
+        url_clean = url.split("#")[0].split("?")[0]
+        artifact_id = _filename_to_anchor(url_clean)
+        if artifact_id:
+            fragment = url.split("#")[1] if "#" in url else ""
+            anchor = f"#{artifact_id}"
+            if fragment:
+                anchor = f"#{fragment}"
+            return f'<a href="{anchor}">{link_text}</a>'
+        return f'<a href="{url}">{link_text}</a>'
+
+    text = re.sub(r"\[(.+?)\]\((.+?)\)", rewrite_link, text)
 
     return text
 
 
+def _filename_to_anchor(url: str) -> str | None:
+    """If url matches a known BA artifact filename, return its anchor ID."""
+    for artifact_name in ARTIFACT_RELATIONSHIPS:
+        if url == artifact_name or url == f"./{artifact_name}" or url.endswith(f"/{artifact_name}"):
+            return filename_to_id(artifact_name)
+    return None
+
+
 def filename_to_id(filename: str) -> str:
     """Convert filename to HTML ID."""
-    # Remove .md extension and replace non-alphanumeric with -
     name = Path(filename).stem
     return re.sub(r"[^a-zA-Z0-9]", "-", name).lower()
+
+
+def section_to_id(heading: str, artifact_id: str = "") -> str:
+    """Convert section heading to HTML ID, prefixed by artifact."""
+    slug = re.sub(r"[^a-zA-Z0-9]+", "-", heading).strip("-").lower()
+    if artifact_id:
+        return f"{artifact_id}-{slug}"
+    return slug

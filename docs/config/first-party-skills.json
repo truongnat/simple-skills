@@ -48,6 +48,16 @@
       "step-02-fill-plan.md",
       "step-03-fill-tasks.md",
       "step-04-self-check.md"
+    ],
+    "tester": [
+      "step-01-init.md",
+      "step-02-review-requirements.md",
+      "step-03-create-test-plan.md",
+      "step-04-develop-test-cases.md",
+      "step-05-self-check.md",
+      "step-06-setup-environment.md",
+      "step-07-execute-and-log.md",
+      "step-08-test-summary.md"
     ]
   },
   "skills": [

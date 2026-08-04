@@ -1,13 +1,123 @@
 display_name: "Tester"
-short_description: "Support tester/QA in the agent lifecycle: analyze acceptance criteria, create test plans/cases, map requirements, define test data, and identify gaps."
-default_prompt: "Use $tester to act as a tester/QA in the agent workflow to ensure requirements, plans, or changes have clear verification methods."
-required_input: "Requirements, TASKS.md (preferred for AC/verify per task), PLAN.md (strategy/DoD), acceptance criteria, user stories, business rules, current/expected behavior, test environment, existing tests, test data, screenshots or test-run recordings."
-required_output: "Test cases, traceability matrix, test data, manual verification steps, automated test suggestions, regression checklist, testing gaps."
-note_important: "Do NOT claim pass if not run or no evidence. Do NOT decide expected behavior when requirements are unclear. Do NOT use real/sensitive data as test data without permission. For supplied test-run video, use video-keyframes and cite sampled frames without treating them as a repeatable executed test."
+short_description: >-
+  Step workflow: review requirements → test plan → test cases → self-check.
+  Full STLC coverage with REQ_REVIEW, TEST_PLAN, TESTCASES, DEFECT_LOG,
+  TEST_SUMMARY.
+default_prompt: "Use $tester to act as a tester/QA in the agent workflow. Follow the step sequence: review requirements, create test plan, develop test cases, self-check. Challenge requirement clarity before writing cases."
+required_input: "Requirements, TASKS.md, PLAN.md, acceptance criteria, user stories, business rules, BA artifacts (BUSINESS_ANALYSIS.md, PRD, USER_FLOW), test environment, existing tests, test data, screenshots or test-run recordings."
+required_output: "REQ_REVIEW.md, TEST_PLAN.md, TESTCASES.md (+ optional CSV), DEFECT_LOG.md, TEST_SUMMARY.md — all under the active session."
+workflow:
+  - step-01-init.md
+  - step-02-review-requirements.md
+  - step-03-create-test-plan.md
+  - step-04-develop-test-cases.md
+  - step-05-self-check.md
+  - step-06-setup-environment.md
+  - step-07-execute-and-log.md
+  - step-08-test-summary.md
+note_important: "Do NOT claim pass if not run or no evidence. Do NOT decide expected behavior when requirements are unclear. Do NOT use real/sensitive data as test data without permission. Do NOT proceed past requirement review with blocking questions unanswered. For supplied test-run video, use video-keyframes and cite sampled frames without treating them as a repeatable executed test."
 artifacts:
+  REQ_REVIEW.md:
+    required: true
+    schema:
+      step_ledger:
+        type: table
+        required: true
+        description: "Steps 01-05 status; no later step done while earlier is todo."
+      executive_summary:
+        type: array
+        required: true
+        description: "Maximum five bullets — requirement count, clarity score, top risks, blockers, next action."
+      developer_overview:
+        type: object
+        required: true
+        description: "Status, requirements reviewed count, blocking issues, next action."
+      requirement_inventory:
+        type: array
+        required: true
+        description: "ID, source artifact, title, type (FR/NFR/AC/US)."
+      clarity_assessment:
+        type: array
+        required: true
+        description: "Req ID, clarity (Clear/Ambiguous/Missing), testability (Yes/No/Partial), evidence, notes."
+      completeness_check:
+        type: array
+        required: true
+        description: "Area, expected coverage, actual coverage, gap, risk."
+      feasibility_assessment:
+        type: array
+        required: false
+        description: "Requirement, technical risk, dependency, verdict (Pass/Fail/Unknown)."
+      traceability_matrix:
+        type: array
+        required: true
+        description: "Req ID to User story to AC to Test case ID, coverage status."
+      qa_items:
+        type: array
+        required: true
+        description: "Question, target (BA/PM/Dev), blocking (Yes/No), answer."
+      risk_assessment:
+        type: array
+        required: false
+        description: "Risk, source, impact, mitigation."
+      handoff:
+        type: string
+        required: true
+        description: "Next step and readiness."
+  TEST_PLAN.md:
+    required: true
+    schema:
+      step_ledger:
+        type: table
+        required: true
+        description: "Steps 01-05 status."
+      executive_summary:
+        type: array
+        required: true
+        description: "Maximum five bullets — scope, strategy, risk, effort, next action."
+      developer_overview:
+        type: object
+        required: true
+        description: "Status, P0 coverage, critical gaps, next action."
+      test_scope:
+        type: object
+        required: true
+        description: "In scope, out of scope, assumptions."
+      test_strategy:
+        type: object
+        required: true
+        description: "Approach by level (unit/integration/E2E/manual), test types with rationale."
+      test_estimation:
+        type: object
+        required: true
+        description: "Technique, effort breakdown by phase with numbers."
+      environment_requirements:
+        type: array
+        required: true
+        description: "Category, requirement, status."
+      risk_assessment:
+        type: array
+        required: true
+        description: "Risk, impact, likelihood, mitigation, priority."
+      schedule:
+        type: array
+        required: false
+        description: "Phase, start, end, entry criteria, exit criteria."
+      deliverables:
+        type: array
+        required: true
+        description: "List of artifacts this cycle produces."
+      handoff:
+        type: string
+        required: true
+        description: "Next step and readiness."
   TESTCASES.md:
     required: true
     schema:
+      step_ledger:
+        type: table
+        required: true
+        description: "Steps 01-05 status."
       executive_summary:
         type: array
         required: true
@@ -36,6 +146,10 @@ artifacts:
         type: array
         required: true
         description: "ID, priority, type, title, preconditions, steps, test data, expected result, requirement mapping, verification method, status."
+      api_test_cases:
+        type: array
+        required: false
+        description: "ID, priority, type, endpoint, method, headers, payload, expected response, assertions."
       regression_checklist:
         type: array
         required: false
@@ -51,3 +165,85 @@ artifacts:
   TESTCASES.csv:
     required: false
     description: "CSV file for Excel/Google Sheets import when user requests."
+  DEFECT_LOG.md:
+    required: true
+    schema:
+      step_ledger:
+        type: table
+        required: true
+        description: "Steps 01-05 status."
+      executive_summary:
+        type: array
+        required: true
+        description: "Maximum five bullets — total defects, critical count, open count, trend, recommendation."
+      developer_overview:
+        type: object
+        required: true
+        description: "Status, total, open, closed, deferred."
+      defect_summary_by_severity:
+        type: array
+        required: true
+        description: "Severity, total, open, in progress, fixed, verified, deferred, duplicate."
+      defect_summary_by_area:
+        type: array
+        required: true
+        description: "Area/module, total, critical, high, medium, low."
+      defect_list:
+        type: array
+        required: true
+        description: "BUG-ID, title, severity, priority, area, status, description, steps to reproduce, expected vs actual, environment, evidence, assigned to."
+      patterns_and_root_causes:
+        type: array
+        required: false
+        description: "Pattern, frequency, affected areas, recommendation."
+      handoff:
+        type: string
+        required: true
+        description: "Next step and blockers."
+  TEST_SUMMARY.md:
+    required: true
+    schema:
+      step_ledger:
+        type: table
+        required: true
+        description: "Steps 01-05 status."
+      executive_summary:
+        type: array
+        required: true
+        description: "Maximum five bullets — cycle result, coverage, quality verdict, top risk, recommendation."
+      developer_overview:
+        type: object
+        required: true
+        description: "Status, quality verdict (Go/No-Go/Conditional), coverage %, pass rate, open critical bugs, recommendation."
+      test_metrics:
+        type: array
+        required: true
+        description: "Metric, planned, actual, variance — rows: total cases, passed, failed, blocked, not run, pass rate."
+      coverage_analysis:
+        type: array
+        required: true
+        description: "Area/feature, total cases, passed, failed, blocked, coverage %."
+      defect_analysis:
+        type: object
+        required: true
+        description: "Summary from DEFECT_LOG — by severity, by area, density, trend."
+      requirement_coverage:
+        type: array
+        required: true
+        description: "Req ID, test cases covering it, pass/fail status, gaps."
+      quality_assessment:
+        type: array
+        required: true
+        description: "Criteria, threshold, actual, verdict (Pass/Fail)."
+      go_no_go_recommendation:
+        type: object
+        required: true
+        description: "Recommendation (Go/No-Go/Conditional), rationale, conditions, residual risks."
+      lessons_learned:
+        type: array
+        required: false
+        description: "Area, observation, recommendation."
+      handoff:
+        type: string
+        required: true
+        description: "Next step and blockers."

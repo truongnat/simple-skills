@@ -93,8 +93,50 @@
     },
     "TESTCASES": {
       "required_headings": [
+        "Step ledger",
         "Executive summary",
         "Developer overview"
+      ]
+    },
+    "REQ_REVIEW": {
+      "required_headings": [
+        "Step ledger",
+        "Executive summary",
+        "Developer overview",
+        "Requirement inventory",
+        "Clarity assessment",
+        "Handoff"
+      ]
+    },
+    "TEST_PLAN": {
+      "required_headings": [
+        "Step ledger",
+        "Executive summary",
+        "Developer overview",
+        "Test scope",
+        "Test strategy",
+        "Risk assessment",
+        "Handoff"
+      ]
+    },
+    "DEFECT_LOG": {
+      "required_headings": [
+        "Step ledger",
+        "Executive summary",
+        "Developer overview",
+        "Defect list",
+        "Handoff"
+      ]
+    },
+    "TEST_SUMMARY": {
+      "required_headings": [
+        "Step ledger",
+        "Executive summary",
+        "Developer overview",
+        "Test metrics",
+        "Quality assessment",
+        "Go / No-Go recommendation",
+        "Handoff"
       ]
     },
     "BASIC_DESIGN": {

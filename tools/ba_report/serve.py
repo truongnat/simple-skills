@@ -20,6 +20,11 @@ BA_ARTIFACTS = [
     "DISCOVER.md",
     "ROADMAP.md",
     "PRD_EPIC.md",
+    "REQ_REVIEW.md",
+    "TEST_PLAN.md",
+    "TESTCASES.md",
+    "DEFECT_LOG.md",
+    "TEST_SUMMARY.md",
 ]
 
 

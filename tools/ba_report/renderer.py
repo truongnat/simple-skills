@@ -14,16 +14,21 @@ from typing import Any
 
 ARTIFACT_RELATIONSHIPS: dict[str, list[str]] = {
     "DISCUSSION.md": ["BUSINESS_ANALYSIS.md"],
-    "BUSINESS_ANALYSIS.md": ["USER_FLOW.md", "PRD.md", "BRD.md", "URD.md", "SPEC_SRS.md"],
-    "USER_FLOW.md": ["PRD.md", "SPEC_SRS.md"],
-    "PRD.md": ["SPEC_SRS.md", "MODEL.md"],
-    "BRD.md": ["PRD.md"],
-    "URD.md": ["USER_FLOW.md", "PRD.md"],
-    "SPEC_SRS.md": ["MODEL.md", "PRD_EPIC.md"],
+    "BUSINESS_ANALYSIS.md": ["USER_FLOW.md", "PRD.md", "BRD.md", "URD.md", "SPEC_SRS.md", "REQ_REVIEW.md", "TEST_PLAN.md"],
+    "USER_FLOW.md": ["PRD.md", "SPEC_SRS.md", "REQ_REVIEW.md"],
+    "PRD.md": ["SPEC_SRS.md", "MODEL.md", "REQ_REVIEW.md", "TEST_PLAN.md"],
+    "BRD.md": ["PRD.md", "REQ_REVIEW.md"],
+    "URD.md": ["USER_FLOW.md", "PRD.md", "REQ_REVIEW.md"],
+    "SPEC_SRS.md": ["MODEL.md", "PRD_EPIC.md", "REQ_REVIEW.md"],
     "MODEL.md": ["SPEC_SRS.md"],
     "DISCOVER.md": ["ROADMAP.md"],
     "ROADMAP.md": ["PRD_EPIC.md"],
     "PRD_EPIC.md": [],
+    "REQ_REVIEW.md": ["TEST_PLAN.md", "TESTCASES.md"],
+    "TEST_PLAN.md": ["TESTCASES.md"],
+    "TESTCASES.md": ["DEFECT_LOG.md", "TEST_SUMMARY.md"],
+    "DEFECT_LOG.md": ["TEST_SUMMARY.md"],
+    "TEST_SUMMARY.md": [],
 }
 
 RELATIONSHIP_LABELS: dict[str, str] = {
@@ -38,6 +43,11 @@ RELATIONSHIP_LABELS: dict[str, str] = {
     "DISCOVER.md": "Discovery",
     "ROADMAP.md": "Roadmap",
     "PRD_EPIC.md": "Epics",
+    "REQ_REVIEW.md": "Requirement Review",
+    "TEST_PLAN.md": "Test Plan",
+    "TESTCASES.md": "Test Cases",
+    "DEFECT_LOG.md": "Defect Log",
+    "TEST_SUMMARY.md": "Test Summary",
 }
 
 

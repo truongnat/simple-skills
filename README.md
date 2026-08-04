@@ -150,6 +150,8 @@ Then choose your path based on the task:
 | **Lite** | Small feature | brainstorming → planning → sync → execute → review |
 | **Full** | Unclear / multi-surface | Full lifecycle · business-analysis · design |
 
+Lite/Full paths use **Step ledger** (track each workflow step) and **Spec quality** (validate artifacts before moving on) to ensure nothing falls through the cracks.
+
 Check progress anytime:
 
 ```bash

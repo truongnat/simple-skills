@@ -3,7 +3,9 @@ name: init
 description: >-
   Initializes or refreshes project knowledge for all other skills. Use first
   when entering a project, when .agents/PRJ_REFERENCE.md is missing or stale,
-  or when the user asks to force-regenerate project context and rules.
+  or when the user asks to force-regenerate project context and rules. Stops
+  to ask the user configuration questions (language, branch mode, report
+  format, etc.) before scanning — never auto-fills settings silently.
 ---
 
 # Project Init
@@ -27,7 +29,7 @@ project-specific behavior without inventing conventions.
 
 | Field | Requirement |
 |---|---|
-| Inputs | Repository root, existing `.agents/settings.yaml` and `.agents/PRJ_REFERENCE.md` when present, source/config/docs/tests, git metadata, user-confirmed project rules. |
+| Inputs | Repository root, existing `.agents/settings.yaml` and `.agents/PRJ_REFERENCE.md` when present, source/config/docs/tests, git metadata, **user-confirmed settings from the configuration dialog**. |
 | Outputs | `.agents/PRJ_REFERENCE.md` and a merged `.agents/settings.yaml`. |
 | Safety | Read-only discovery. Never read or record secret values. Never execute **project** code, install dependencies, or mutate source files. Running the bundled read-only `scripts/scan_workspaces.sh` (filesystem sweep only) is allowed. Preserve existing user settings unless explicitly replaced. Mark uncertain facts; do not invent business or workflow rules. |
 
@@ -77,16 +79,70 @@ project-specific behavior without inventing conventions.
 | `refresh` | Existing reference may be stale | Update changed facts and preserve confirmed content. |
 | `force` | User explicitly requests regeneration | Re-scan all sources and rebuild the reference; merge settings without silently resetting user choices. |
 
+## Configuration dialog (mandatory — STOP and ask)
+
+After selecting the mode (step 2) and **before** scanning the repository (step 3),
+**STOP and open a dialog** to collect settings from the user. Do not guess or
+auto-fill these values silently — the user must confirm or choose.
+
+### How to ask
+
+1. **Read existing `.agents/settings.yaml`** (if any) to pre-fill defaults.
+2. **Present each question** using the `choice` Ask method (from
+   `SKILL_PREAMBLE.md` → Confirm-first). Show the current/default value first
+   so the user can just confirm to skip.
+3. **Wait for the user's answer** before proceeding. Do not continue the
+   workflow until all questions are answered.
+4. **Record answers** and use them when writing `settings.yaml` (step 8) and
+   `PRJ_REFERENCE.md` (step 7).
+
+### Questions to ask
+
+| # | Setting | Ask method | Default (if no existing value) |
+|---|---------|-----------|-------------------------------|
+| 1 | `language` — prose language for all artifacts | `choice`: `en` / `vi` | `en` |
+| 2 | `rules.branch.mode` — branching strategy | `choice`: `checkout` (safer) / `direct` | `checkout` |
+| 3 | `rules.branch.base` — base branch name | `fact` (text) | auto-detect from git |
+| 4 | `rules.reports.output_format` — report format | `choice`: `markdown` / `html` | `markdown` |
+| 5 | `rules.docs.enabled` — enable wiki/docs skill | `confirm` (Yes/No) | `true` |
+| 6 | `rules.code.comments.prose_language` — code comment language | `choice`: `repo-default` / `en` / `vi` | `repo-default` |
+
+### Dialog rules
+
+- **One round, up to 6 questions.** Present all questions in a single message
+  (numbered). The user answers all at once or one by one — either is fine.
+- **Show defaults clearly.** Format each question so the user can reply with
+  just a number/letter or type a custom value. Example:
+
+  ```
+  Configure project settings (press Enter / reply "default" to accept defaults):
+
+  1. Language (en | vi) [en]:
+  2. Branch mode (checkout | direct) [checkout]:
+  3. Base branch name [auto-detect]:
+  4. Report format (markdown | html) [markdown]:
+  5. Enable docs/wiki skill (yes | no) [yes]:
+  6. Code comment language (repo-default | en | vi) [repo-default]:
+  ```
+
+- **Existing values win.** If `settings.yaml` already has a value, show it as
+  the default. The user can keep it or change it.
+- **Skip in `refresh` mode when user says so.** If the user invokes `refresh`
+  and says "keep current settings", skip the dialog entirely.
+- **Never invent values.** If the user does not answer a question, use the
+  default — do not guess.
+
 ## Workflow (step by step)
 
 1. Read `.agents/settings.yaml` and existing project reference, if any.
 2. Select mode: `init`, `refresh`, or explicit `force`.
-3. Inventory repository facts using read-only inspection:
+3. **Configuration dialog (STOP → ask → wait → record).** See above.
+4. Inventory repository facts using read-only inspection:
    - git root, remotes (redact credentials), branches, default/base branch;
    - manifests, lockfiles, build/test/lint configs, CI, containers, migrations;
    - source layout, entry points, public interfaces, tests, documentation;
    - business rules and constraints evidenced by docs, tests, schemas, or code.
-4. **Deep workspace scan (mandatory — do not scan only the root, and do not
+5. **Deep workspace scan (mandatory — do not scan only the root, and do not
    enumerate from the workspace config).** The scan has two responsibilities,
    split so that no stack is ever missed:
 
@@ -123,7 +179,7 @@ project-specific behavior without inventing conventions.
      directory sweep that prunes `node_modules`, build/generated, and native
      platform dirs, and classify every project root yourself — never bound the
      sweep by the workspace config.
-5. **Agent CLI inventory (read-only):** detect installed worker CLIs (no secrets):
+6. **Agent CLI inventory (read-only):** detect installed worker CLIs (no secrets):
 
    ```bash
    python .agents/tools/session/detect_agents.py --write
@@ -132,22 +188,22 @@ project-specific behavior without inventing conventions.
    Upserts `## Agent CLIs` in `PRJ_REFERENCE.md`. Status values:
    `available` / `auth_unknown` / `missing`. Optional lean knobs:
    `rules.agents.routing` / `fallback` in settings (commented skeleton).
-6. Classify every important statement:
+7. Classify every important statement:
    - `confirmed`: direct source or user confirmation;
    - `inferred`: evidence exists but is indirect;
    - `unknown`: unresolved or conflicting.
-7. Seed from `templates/PRJ_REFERENCE.template.md`, fill all applicable
+8. Seed from `templates/PRJ_REFERENCE.template.md`, fill all applicable
    sections, and keep source references close to each fact.
-8. Merge confirmed project conventions into `.agents/settings.yaml`.
+9. Merge confirmed project conventions into `.agents/settings.yaml`.
    Preserve `language`, security hard rules, and custom user values.
-9. Validate:
-   - no secret values or sensitive file contents;
-   - executive summary appears first and is decision-oriented;
-   - commands are sourced, not guessed;
-   - every workspace member with its own manifest has its own stack recorded
-     (no multi-stack monorepo collapsed to a single root stack);
-   - unknowns and conflicts are visible.
-10. Report created/updated files and the highest-priority unknowns.
+10. Validate:
+    - no secret values or sensitive file contents;
+    - executive summary appears first and is decision-oriented;
+    - commands are sourced, not guessed;
+    - every workspace member with its own manifest has its own stack recorded
+      (no multi-stack monorepo collapsed to a single root stack);
+    - unknowns and conflicts are visible.
+11. Report created/updated files and the highest-priority unknowns.
 
 ## Discovery boundaries
 

@@ -7,6 +7,7 @@ Uses the .ss-* design system from decision-server. Stdlib only.
 from __future__ import annotations
 
 import html
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -32,7 +33,7 @@ def render_report(
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
     return f"""<!doctype html>
-<html lang="en" data-ss-theme="enterprise">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,7 +63,7 @@ def render_report(
 
   <footer class="ss-footer">
     <div class="ss-footer-inner">
-      <p>BA Report · Generated {generated_at} · Tailwind + Mermaid CDN</p>
+      <p>BA Report · Generated {generated_at} · Mermaid CDN</p>
     </div>
   </footer>
 
@@ -160,7 +161,7 @@ def render_table(table: dict[str, Any]) -> str:
                 header_lower = headers[i].lower()
                 if header_lower in ["status", "verdict", "blocking", "confidence"]:
                     status = cell.lower()
-                    if status in ["pass", "fail", "blocked", "yes", "no", "confirmed", "inferred", "unknown"]:
+                    if status in ["pass", "fail", "blocked", "yes", "no", "confirmed", "inferred", "unknown", "done", "todo"]:
                         attrs = f' data-status="{status}"'
             html_parts.append(f"      <td{attrs}>{html.escape(cell)}</td>")
         html_parts.append("    </tr>")
@@ -310,7 +311,3 @@ def filename_to_id(filename: str) -> str:
     # Remove .md extension and replace non-alphanumeric with -
     name = Path(filename).stem
     return re.sub(r"[^a-zA-Z0-9]", "-", name).lower()
-
-
-# Import re for inline_format
-import re

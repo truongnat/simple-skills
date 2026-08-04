@@ -121,28 +121,65 @@ class BAReportHandler(BaseHTTPRequestHandler):
         if not sessions:
             html = """<!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><title>BA Reports</title></head>
-<body>
-  <h1>BA Reports</h1>
-  <p>No sessions with BA artifacts found.</p>
-  <p>Create a session and run BA skills to generate artifacts.</p>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BA Reports</title>
+  <link rel="stylesheet" href="/ba-report.css">
+</head>
+<body class="ss-page">
+  <a class="ss-skip" href="#main">Skip to content</a>
+  <header class="ss-header">
+    <div class="ss-header-inner">
+      <p class="ss-eyebrow">Simple Skills</p>
+      <h1>BA Reports</h1>
+    </div>
+  </header>
+  <main id="main" class="ss-main">
+    <div class="ss-card">
+      <h2>No sessions found</h2>
+      <p class="ss-prose">No sessions with BA artifacts found. Create a session and run BA skills to generate artifacts.</p>
+    </div>
+  </main>
+  <footer class="ss-footer">
+    <div class="ss-footer-inner"><p>BA Report</p></div>
+  </footer>
 </body>
 </html>"""
             self._send_html(html)
             return
 
         links = "\n".join(
-            f'<li><a href="/{s.name}">{s.name}</a></li>' for s in sessions
+            f'      <li><a href="/{s.name}">{s.name}</a></li>' for s in sessions
         )
         html = f"""<!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><title>BA Reports</title></head>
-<body>
-  <h1>BA Reports</h1>
-  <p>Sessions with BA artifacts:</p>
-  <ul>
-    {links}
-  </ul>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BA Reports</title>
+  <link rel="stylesheet" href="/ba-report.css">
+</head>
+<body class="ss-page">
+  <a class="ss-skip" href="#main">Skip to content</a>
+  <header class="ss-header">
+    <div class="ss-header-inner">
+      <p class="ss-eyebrow">Simple Skills</p>
+      <h1>BA Reports</h1>
+      <p class="ss-prose">Sessions with BA artifacts:</p>
+    </div>
+  </header>
+  <main id="main" class="ss-main">
+    <div class="ss-card">
+      <h2>Sessions</h2>
+      <ul>
+{links}
+      </ul>
+    </div>
+  </main>
+  <footer class="ss-footer">
+    <div class="ss-footer-inner"><p>BA Report</p></div>
+  </footer>
 </body>
 </html>"""
         self._send_html(html)

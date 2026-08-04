@@ -60,16 +60,9 @@ If precondition fails → return to step-01. Do **not** continue.
 
 ## Fill these sections
 
-1. Goal
-2. Desired outcome
-3. Confirmed facts
-4. Constraints
-5. Assumptions (risk + confirmed)
-6. Unknowns (blocking flag)
-7. Issue triage
-8. Clarification checkpoint
-9. Spec quality review — Feasibility / Correctness / Capability recommendations
-10. Visual triage
+1. Goal & Outcome (goal sentence + outcome bullets)
+2. Context (facts + constraints + assumptions; omit unknowns if none)
+3. Issues & Decisions (issue triage + spec quality review)
 
 ## Spec quality rules
 

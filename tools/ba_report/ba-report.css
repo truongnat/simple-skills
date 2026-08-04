@@ -1,225 +1,258 @@
-/* BA Report Styles — Professional Design System */
+/*
+  BA Report theme — extends decision-server design system.
+
+  Same tokens as tools/decision-server/styles.css. BA-specific additions:
+  sticky artifact nav, mermaid containers, data-status table cells,
+  scroll-spy active state.
+
+  Tokens (shared with decision-server):
+    paper #ffffff | wash #f7f7f8 | ink #0d0d0d | mute #667085
+    line  #e5e5e5 | accent #10a37f | danger #c2410c | warn #b54708
+*/
 
 :root {
   --ss-paper: #ffffff;
-  --ss-wash: #f8f9fa;
-  --ss-ink: #1a1a1a;
-  --ss-mute: #6b7280;
-  --ss-line: #e5e7eb;
-  --ss-accent: #2563eb;
-  --ss-accent-soft: #dbeafe;
-  --ss-danger: #dc2626;
-  --ss-danger-soft: #fee2e2;
-  --ss-warn: #f59e0b;
-  --ss-warn-soft: #fef3c7;
-  --ss-ok: #10b981;
-  --ss-ok-soft: #d1fae5;
-  --ss-blue: #3b82f6;
+  --ss-wash: #f7f7f8;
+  --ss-ink: #0d0d0d;
+  --ss-mute: #667085;
+  --ss-line: #e5e5e5;
+  --ss-accent: #10a37f;
+  --ss-accent-soft: #e7f6f1;
+  --ss-danger: #c2410c;
+  --ss-danger-soft: #fef3f2;
+  --ss-warn: #b54708;
+  --ss-warn-soft: #fff4e5;
+  --ss-ok: #027a48;
+  --ss-ok-soft: #ecfdf3;
+  --ss-blue: #2563eb;
   --ss-blue-soft: #eff6ff;
-  --ss-violet: #8b5cf6;
-  --ss-violet-soft: #ede9fe;
-  --ss-cyan: #06b6d4;
-  --ss-cyan-soft: #cffafe;
-  --ss-radius: 12px;
-  --ss-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --ss-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --ss-violet: #7c3aed;
+  --ss-violet-soft: #f5f3ff;
+  --ss-cyan: #0891b2;
+  --ss-cyan-soft: #ecfeff;
+  --ss-radius: 8px;
   --ss-content: min(42rem, calc(100% - 2rem));
-  --ss-content-wide: min(80rem, calc(100% - 3rem));
+  --ss-content-wide: min(72rem, calc(100% - 2rem));
+  --ss-pad: 0.85rem 1rem;
+  --ss-font: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --ss-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --ss-ease: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Base layout */
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+html,
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--ss-ink);
-  background: var(--ss-wash);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
 }
 
+body {
+  background: var(--ss-wash);
+  color: var(--ss-ink);
+  font-family: var(--ss-font);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  color-scheme: light;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ss-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* —— Layout —— */
 .ss-page {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.ss-page.ss-wide .ss-main {
-  max-width: var(--ss-content-wide);
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
-  width: 100%;
 }
 
 .ss-skip {
   position: absolute;
   left: -9999px;
-  z-index: 999;
-  padding: 0.75rem 1.5rem;
-  background: var(--ss-accent);
-  color: white;
-  text-decoration: none;
+  top: 0;
+  z-index: 100;
+  padding: 0.5rem 0.75rem;
+  background: var(--ss-ink);
+  color: #fff;
+  border-radius: 6px;
   font-weight: 600;
-  border-radius: var(--ss-radius);
+  text-decoration: none;
 }
 
 .ss-skip:focus {
-  left: 1rem;
-  top: 1rem;
+  left: 0.75rem;
+  top: 0.75rem;
 }
 
-/* Header */
 .ss-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 3rem 1.5rem;
-  box-shadow: var(--ss-shadow-lg);
+  background: var(--ss-paper);
+  border-bottom: 1px solid var(--ss-line);
 }
 
-.ss-header-inner {
-  max-width: var(--ss-content-wide);
-  margin: 0 auto;
+.ss-header-inner,
+.ss-main,
+.ss-footer-inner {
+  width: var(--ss-content-wide);
+  margin-inline: auto;
+  padding: 1rem;
 }
 
-.ss-header h1 {
-  margin: 0.75rem 0;
-  font-size: 2.5rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+.ss-page.ss-wide .ss-header-inner,
+.ss-page.ss-wide .ss-main,
+.ss-page.ss-wide .ss-footer-inner {
+  width: var(--ss-content-wide);
 }
 
 .ss-eyebrow {
   margin: 0;
-  font-size: 0.875rem;
+  font-size: 12px;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  opacity: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--ss-mute);
+}
+
+.ss-header h1 {
+  margin: 0.35rem 0 0;
+  font-size: 1.35rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
 }
 
 .ss-header .ss-prose {
-  margin: 0.75rem 0 0;
-  opacity: 0.85;
-  font-size: 1rem;
+  margin-top: 0.4rem;
 }
 
-/* Main content */
 .ss-main {
-  flex: 1;
-  background: var(--ss-wash);
+  display: grid;
+  gap: 0.75rem;
+  padding-block: 0.85rem 1.5rem;
 }
 
-/* Card component */
-.ss-card {
-  background: var(--ss-paper);
-  border: 1px solid var(--ss-line);
-  border-radius: var(--ss-radius);
-  padding: 2rem;
-  margin: 1.5rem 0;
-  box-shadow: var(--ss-shadow);
-  transition: box-shadow 0.2s ease;
-}
-
-.ss-card:hover {
-  box-shadow: var(--ss-shadow-lg);
-}
-
-.ss-card h2 {
-  margin: 0 0 0.5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--ss-ink);
-  letter-spacing: -0.01em;
-}
-
-.ss-card .ss-prose {
-  margin: 0;
-  color: var(--ss-mute);
-  font-size: 0.9375rem;
-}
-
-/* Footer */
 .ss-footer {
+  border-top: 1px solid var(--ss-line);
   background: var(--ss-paper);
-  border-top: 2px solid var(--ss-line);
-  padding: 2rem 1.5rem;
-  margin-top: auto;
 }
 
 .ss-footer-inner {
-  max-width: var(--ss-content-wide);
-  margin: 0 auto;
-  text-align: center;
+  padding-block: 0.75rem;
+  font-size: 13px;
   color: var(--ss-mute);
-  font-size: 0.875rem;
 }
 
-.ss-footer p {
+.ss-footer-inner p {
   margin: 0;
 }
 
-/* Sticky artifact navigation */
-.ss-ba-nav {
+/* —— Sticky artifact navigation (BA-specific) —— */
+.ss-nav {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: var(--ss-paper);
-  border-bottom: 2px solid var(--ss-line);
-  padding: 1rem 0;
-  box-shadow: var(--ss-shadow);
+  width: var(--ss-content-wide);
+  margin: 0 auto;
+  padding: 0.45rem 1rem;
+  overflow-x: auto;
+  background: color-mix(in srgb, var(--ss-paper) 94%, transparent);
+  border: 1px solid var(--ss-line);
+  border-top: 0;
+  border-radius: 0 0 var(--ss-radius) var(--ss-radius);
+  backdrop-filter: blur(10px);
 }
 
-.ss-ba-nav ul {
-  list-style: none;
+.ss-nav ul {
+  display: flex;
+  gap: 0.3rem;
+  width: max-content;
   margin: 0;
   padding: 0;
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  max-width: var(--ss-content-wide);
-  margin: 0 auto;
-  padding: 0 1.5rem;
+  list-style: none;
 }
 
-.ss-ba-nav a {
-  color: var(--ss-ink);
-  text-decoration: none;
+.ss-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  color: var(--ss-mute);
+  font-size: 12.5px;
   font-weight: 600;
-  font-size: 0.9375rem;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  display: inline-block;
+  text-decoration: none;
 }
 
-.ss-ba-nav a:hover {
+.ss-nav a:hover,
+.ss-nav a:focus-visible {
+  background: var(--ss-wash);
+  color: var(--ss-ink);
+}
+
+.ss-nav a.is-active {
   background: var(--ss-accent-soft);
-  color: var(--ss-accent);
+  color: #0f766e;
 }
 
-/* Artifact section spacing */
+/* —— Surfaces —— */
+.ss-card,
+.ss-panel {
+  background: var(--ss-paper);
+  border: 1px solid var(--ss-line);
+  border-radius: var(--ss-radius);
+  padding: var(--ss-pad);
+}
+
+.ss-card > :first-child {
+  margin-top: 0;
+}
+
+.ss-card h2,
+.ss-card > h2 {
+  margin: 0 0 0.45rem;
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+}
+
+.ss-card h3 {
+  margin: 0.7rem 0 0.3rem;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+/* —— BA artifact sections —— */
 .ss-ba-artifact {
-  scroll-margin-top: 6rem;
-  margin-bottom: 3rem;
+  scroll-margin-top: 4rem;
+  margin-bottom: 1.5rem;
 }
 
 .ss-ba-artifact > .ss-card {
-  margin-bottom: 2rem;
+  margin-bottom: 0.75rem;
 }
 
 .ss-section-content {
   background: var(--ss-paper);
-  border-radius: var(--ss-radius);
-  padding: 2rem;
-  margin-bottom: 1.5rem;
-  box-shadow: var(--ss-shadow);
   border: 1px solid var(--ss-line);
+  border-radius: var(--ss-radius);
+  padding: var(--ss-pad);
+  margin-bottom: 0.75rem;
 }
 
 .ss-section-content h2,
@@ -228,65 +261,232 @@ body {
   margin-top: 0;
 }
 
-/* Status badges for spec quality, confidence, etc. */
+.ss-section-content h2 {
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.45rem;
+}
+
+.ss-section-content h3 {
+  font-size: 0.92rem;
+  font-weight: 650;
+  margin: 0.7rem 0 0.3rem;
+}
+
+/* —— Prose —— */
+.ss-prose {
+  margin: 0;
+  max-width: none;
+  color: var(--ss-mute);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+.ss-prose :where(p, ul, ol) {
+  margin: 0 0 0.4rem;
+}
+
+.ss-prose :where(ul, ol),
+.ss-section-content :where(ul, ol),
+.ss-ba-artifact :where(ul, ol) {
+  padding-left: 1.15rem;
+}
+
+.ss-prose :where(ul),
+.ss-section-content :where(ul),
+.ss-ba-artifact :where(ul) {
+  list-style: disc;
+}
+
+.ss-prose :where(ol),
+.ss-section-content :where(ol),
+.ss-ba-artifact :where(ol) {
+  list-style: decimal;
+}
+
+.ss-prose :where(li),
+.ss-section-content :where(li),
+.ss-ba-artifact :where(li) {
+  margin: 0.12rem 0;
+}
+
+.ss-prose :where(strong),
+.ss-section-content :where(strong),
+.ss-ba-artifact :where(strong) {
+  color: var(--ss-ink);
+  font-weight: 650;
+}
+
+.ss-mute {
+  color: var(--ss-mute);
+}
+
+/* —— Code —— */
+.ss-code,
+.ss-prose code,
+.ss-section-content code,
+.ss-ba-artifact code {
+  font-family: var(--ss-mono);
+  font-size: 0.88em;
+  padding: 0.05em 0.35em;
+  border-radius: 4px;
+  background: var(--ss-wash);
+  border: 1px solid var(--ss-line);
+  color: var(--ss-ink);
+}
+
+.ss-ba-artifact pre,
+.ss-section-content pre {
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  background: var(--ss-wash);
+  border: 1px solid var(--ss-line);
+  border-radius: var(--ss-radius);
+  overflow-x: auto;
+  font-family: var(--ss-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ss-ink);
+}
+
+.ss-ba-artifact pre code,
+.ss-section-content pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* —— Table —— */
+.ss-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--ss-line);
+  border-radius: var(--ss-radius);
+  background: var(--ss-paper);
+  margin: 0.5rem 0;
+}
+
+.ss-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.ss-table th,
+.ss-table td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--ss-line);
+}
+
+.ss-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--ss-wash);
+  color: var(--ss-mute);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.ss-table tbody tr {
+  transition: background 120ms ease;
+}
+
+.ss-table tbody tr:hover {
+  background: color-mix(in srgb, var(--ss-blue-soft) 55%, var(--ss-paper));
+}
+
+.ss-table tbody tr:last-child th,
+.ss-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* —— Data-status cells (BA-specific) —— */
 .ss-table td[data-status="pass"],
-.ss-table td[data-status="confirmed"] {
+.ss-table td[data-status="confirmed"],
+.ss-table td[data-status="done"] {
   color: var(--ss-ok);
-  font-weight: 700;
-  background: var(--ss-ok-soft);
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  display: inline-block;
+  font-weight: 650;
 }
 
 .ss-table td[data-status="fail"],
-.ss-table td[data-status="blocked"] {
+.ss-table td[data-status="blocked"],
+.ss-table td[data-status="bad"] {
   color: var(--ss-danger);
-  font-weight: 700;
-  background: var(--ss-danger-soft);
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  display: inline-block;
+  font-weight: 650;
 }
 
 .ss-table td[data-status="unknown"],
-.ss-table td[data-status="inferred"] {
-  color: var(--ss-warn);
-  font-weight: 600;
-  background: var(--ss-warn-soft);
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  display: inline-block;
-}
-
+.ss-table td[data-status="inferred"],
 .ss-table td[data-status="pending"] {
-  color: var(--ss-blue);
-  font-weight: 600;
-  background: var(--ss-blue-soft);
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  display: inline-block;
+  color: var(--ss-warn);
+  font-weight: 650;
 }
 
 .ss-table td[data-status="yes"] {
   color: var(--ss-ok);
-  font-weight: 600;
+  font-weight: 650;
 }
 
 .ss-table td[data-status="no"] {
   color: var(--ss-danger);
-  font-weight: 600;
+  font-weight: 650;
 }
 
-/* Mermaid diagram container */
+/* —— Badges —— */
+.ss-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.12rem 0.45rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.ss-badge.ok,
+.ss-badge.done {
+  color: var(--ss-ok);
+  background: var(--ss-ok-soft);
+  border-color: color-mix(in srgb, var(--ss-ok) 22%, transparent);
+}
+
+.ss-badge.warn,
+.ss-badge.todo {
+  color: var(--ss-warn);
+  background: var(--ss-warn-soft);
+  border-color: color-mix(in srgb, var(--ss-warn) 22%, transparent);
+}
+
+.ss-badge.bad,
+.ss-badge.blocked {
+  color: var(--ss-danger);
+  background: var(--ss-danger-soft);
+  border-color: color-mix(in srgb, var(--ss-danger) 22%, transparent);
+}
+
+.ss-badge.info {
+  color: #1d4ed8;
+  background: var(--ss-blue-soft);
+  border-color: #bfdbfe;
+}
+
+/* —— Mermaid diagram container (BA-specific) —— */
 .ss-mermaid {
-  padding: 2rem;
+  padding: 0.75rem;
   background: var(--ss-paper);
-  border: 2px solid var(--ss-line);
+  border: 1px solid var(--ss-line);
   border-radius: var(--ss-radius);
   overflow-x: auto;
-  margin: 1.5rem 0;
-  box-shadow: var(--ss-shadow);
+  margin: 0.5rem 0;
 }
 
 .ss-mermaid .mermaid {
@@ -294,214 +494,55 @@ body {
   justify-content: center;
 }
 
-/* Table enhancements */
-.ss-table-wrap {
-  margin: 1.5rem 0;
-  background: var(--ss-paper);
-  border-radius: var(--ss-radius);
-  overflow: hidden;
-  box-shadow: var(--ss-shadow);
-  border: 1px solid var(--ss-line);
+/* —— Tags —— */
+.ss-tag {
+  display: inline-flex;
+  width: fit-content;
+  margin: 0;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  background: var(--ss-accent-soft);
+  color: #0f766e;
+  font-size: 11px;
+  font-weight: 650;
 }
 
-.ss-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9375rem;
-}
-
-.ss-table thead {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-bottom: 2px solid var(--ss-line);
-}
-
-.ss-table th {
-  text-align: left;
-  padding: 1rem 1.25rem;
-  font-weight: 700;
-  color: var(--ss-ink);
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.ss-table td {
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--ss-line);
-  color: var(--ss-ink);
-  vertical-align: top;
-}
-
-.ss-table tbody tr {
-  transition: background 0.15s ease;
-}
-
-.ss-table tbody tr:hover {
-  background: var(--ss-wash);
-}
-
-.ss-table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-/* Prose Styling */
-.ss-ba-artifact p {
-  margin: 1rem 0;
-  line-height: 1.7;
-  color: var(--ss-ink);
-}
-
-.ss-ba-artifact ul,
-.ss-ba-artifact ol {
-  margin: 1rem 0;
-  padding-left: 2rem;
-}
-
-.ss-ba-artifact li {
-  margin: 0.75rem 0;
-  line-height: 1.7;
-}
-
-.ss-ba-artifact li::marker {
-  color: var(--ss-accent);
-}
-
-.ss-ba-artifact code {
-  background: var(--ss-wash);
-  padding: 0.25rem 0.5rem;
-  border-radius: 6px;
-  font-size: 0.875em;
-  font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Code", monospace;
-  color: var(--ss-danger);
-  border: 1px solid var(--ss-line);
-}
-
-.ss-ba-artifact pre {
-  background: #1e293b;
-  color: #e2e8f0;
-  padding: 1.5rem;
-  border-radius: var(--ss-radius);
-  overflow-x: auto;
-  margin: 1.5rem 0;
-  box-shadow: var(--ss-shadow);
-}
-
-.ss-ba-artifact pre code {
-  background: transparent;
-  color: inherit;
-  padding: 0;
-  border: none;
-}
-
-.ss-ba-artifact a {
+/* —— Links —— */
+.ss-ba-artifact a,
+.ss-section-content a {
   color: var(--ss-accent);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
 }
 
-.ss-ba-artifact a:hover {
-  border-bottom-color: var(--ss-accent);
+.ss-ba-artifact a:hover,
+.ss-section-content a:hover {
+  text-decoration: underline;
 }
 
-/* Heading hierarchy */
-.ss-ba-artifact h2 {
-  font-size: 1.875rem;
-  font-weight: 700;
-  margin: 2.5rem 0 1.25rem;
-  color: var(--ss-ink);
-  letter-spacing: -0.02em;
-  line-height: 1.3;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--ss-line);
-}
-
-.ss-ba-artifact h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 2rem 0 1rem;
-  color: var(--ss-ink);
-  letter-spacing: -0.01em;
-}
-
-.ss-ba-artifact h4 {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin: 1.5rem 0 0.75rem;
-  color: var(--ss-ink);
-}
-
-/* Horizontal rules */
-.ss-ba-artifact hr {
+/* —— Horizontal rule —— */
+.ss-ba-artifact hr,
+.ss-section-content hr {
   border: none;
-  border-top: 2px solid var(--ss-line);
-  margin: 2rem 0;
+  border-top: 1px solid var(--ss-line);
+  margin: 0.75rem 0;
 }
 
-/* Empty state */
-.ss-mute {
-  color: var(--ss-mute);
-  font-style: italic;
-}
-
-/* Strong text */
-.ss-ba-artifact strong {
-  font-weight: 700;
-  color: var(--ss-ink);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .ss-header {
-    padding: 2rem 1rem;
-  }
-
+/* —— Responsive —— */
+@media (max-width: 720px) {
   .ss-header h1 {
-    font-size: 1.875rem;
+    font-size: 1.15rem;
   }
 
-  .ss-ba-nav ul {
-    gap: 0.75rem;
-  }
-
-  .ss-ba-nav a {
-    font-size: 0.875rem;
-    padding: 0.5rem 0.75rem;
+  .ss-nav ul {
+    gap: 0.2rem;
   }
 
   .ss-table {
-    font-size: 0.8125rem;
+    font-size: 12.5px;
   }
 
   .ss-table th,
   .ss-table td {
-    padding: 0.75rem;
-  }
-
-  .ss-ba-artifact h2 {
-    font-size: 1.5rem;
-  }
-
-  .ss-ba-artifact h3 {
-    font-size: 1.25rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .ss-page.ss-wide .ss-main {
-    padding: 1rem;
-  }
-
-  .ss-card {
-    padding: 1.5rem;
-  }
-
-  .ss-ba-nav ul {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .ss-table-wrap {
-    overflow-x: auto;
+    padding: 0.4rem 0.55rem;
   }
 }

@@ -31,12 +31,11 @@ If precondition fails → return to the incomplete earlier step.
 
 ## Fill these sections
 
-1. Spec quality review — finalize Feasibility / Correctness / Capability gaps
-2. Recommendation (Choose / Reason / Not choosing / Confidence)
-3. Risks (impact + mitigation)
-4. Handoff (Next skill / Why / Blockers) — blockers must be non-empty if Unknowns still block implementation
-5. Executive summary (maximum five bullets) — fill last, keep it at the top.
-6. Step ledger 04
+1. Options & Recommendation (finalize recommendation: Choose / Reason / Not choosing / Confidence)
+2. Risks (impact + mitigation)
+3. Handoff (Next skill / Why / Blockers) — blockers must be non-empty if issues still block implementation
+4. Executive summary (maximum five bullets) — fill last, keep it at the top.
+5. Step ledger 04
 
 ## Done when
 
@@ -50,4 +49,5 @@ If precondition fails → return to the incomplete earlier step.
 
 ## Next
 
-Read and follow `./step-05-self-check.md`.
+Brainstorming ends here. Do **not** auto-run planning/design unless user asks.
+Tell user the next skill and path to `DISCUSSION.md`.

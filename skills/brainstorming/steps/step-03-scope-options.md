@@ -36,11 +36,9 @@ around open Spec quality blockers.
 
 ## Fill these sections
 
-1. Scope in
-2. Scope out
-3. Non-goals
-4. Options considered (matrix)
-5. Step ledger 03
+1. Scope (in + out + non-goals)
+2. Options & Recommendation (options matrix only — recommendation comes in step-04)
+3. Step ledger 03
 
 ## Done when
 

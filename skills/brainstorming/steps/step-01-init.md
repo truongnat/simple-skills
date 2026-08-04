@@ -33,12 +33,10 @@ If the template is missing, stop and report it. Do **not** invent a replacement.
    - Ask user: overwrite with fresh template, or keep and continue from step-02.
    - Default if user says redo brainstorming: overwrite DISCUSSION with template.
 5. List the session directory and confirm `DISCUSSION.md` exists.
-6. Set Step ledger row 01 to `done` with evidence = path to `DISCUSSION.md`.
 
 ## Done when
 
 - [ ] `DISCUSSION.md` exists in session (from template).
-- [ ] Step ledger 01 = `done`.
 - [ ] Confirmed via directory listing.
 - [ ] No `OVERVIEW.md` was created (status comes from `session.sh status` + TASKS later).
 

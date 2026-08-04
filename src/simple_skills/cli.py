@@ -98,6 +98,10 @@ def _powershell_argv(command: str, rest: list[str]) -> list[str]:
             out.extend(["-AgentsMode", rest[i + 1]])
             i += 2
             continue
+        if arg in ("--conflict-mode",) and i + 1 < len(rest):
+            out.extend(["-ConflictMode", rest[i + 1]])
+            i += 2
+            continue
         if arg in ("--profile",) and i + 1 < len(rest):
             out.extend(["-Profile", rest[i + 1]])
             i += 2
@@ -112,6 +116,10 @@ def _powershell_argv(command: str, rest: list[str]) -> list[str]:
             continue
         if arg == "--purge-work":
             out.append("-PurgeWork")
+            i += 1
+            continue
+        if arg == "--purge-unselected":
+            out.append("-PurgeUnselected")
             i += 1
             continue
         if arg in ("-h", "--help"):
@@ -131,20 +139,30 @@ def run_installer(command: str, rest: list[str]) -> int:
             cand = local.parent / INSTALL_PS1
             if cand.is_file():
                 ps1 = cand
-        if ps1 is None:
-            tmp = Path(tempfile.mkdtemp(prefix="simple-skills-"))
-            ps1 = tmp / INSTALL_PS1
+        if ps1 is not None:
+            argv = [
+                "powershell",
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                str(ps1),
+                *_powershell_argv(command, rest),
+            ]
+            return subprocess.call(argv)
+        with tempfile.TemporaryDirectory(prefix="simple-skills-") as tmp:
+            ps1 = Path(tmp) / INSTALL_PS1
             _download(_raw_url(INSTALL_PS1), ps1)
-        argv = [
-            "powershell",
-            "-NoProfile",
-            "-ExecutionPolicy",
-            "Bypass",
-            "-File",
-            str(ps1),
-            *_powershell_argv(command, rest),
-        ]
-        return subprocess.call(argv)
+            argv = [
+                "powershell",
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                str(ps1),
+                *_powershell_argv(command, rest),
+            ]
+            return subprocess.call(argv)
 
     if local is not None:
         return subprocess.call(["bash", str(local), *_bash_argv(command, rest)])
@@ -155,10 +173,10 @@ def run_installer(command: str, rest: list[str]) -> int:
             "Error: bash not found. Install Git Bash/WSL, or set SIMPLE_SKILLS_SHELL=powershell."
         )
 
-    tmp = Path(tempfile.mkdtemp(prefix="simple-skills-"))
-    script = tmp / INSTALL_SH
-    _download(_raw_url(INSTALL_SH), script)
-    return subprocess.call([bash, str(script), *_bash_argv(command, rest)])
+    with tempfile.TemporaryDirectory(prefix="simple-skills-") as tmp:
+        script = Path(tmp) / INSTALL_SH
+        _download(_raw_url(INSTALL_SH), script)
+        return subprocess.call([bash, str(script), *_bash_argv(command, rest)])
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -182,9 +200,20 @@ def build_parser() -> argparse.ArgumentParser:
         help="How to handle existing root AGENTS.md",
     )
     p_install.add_argument(
+        "--conflict-mode",
+        choices=("prompt", "replace", "skip", "rename"),
+        default=None,
+        help="How to handle existing skills (default: prompt)",
+    )
+    p_install.add_argument(
         "--profile",
         default=None,
         help="core (default) | office | frontend | backend | all",
+    )
+    p_install.add_argument(
+        "--purge-unselected",
+        action="store_true",
+        help="Remove skills not in the selected profile",
     )
 
     p_uninstall = sub.add_parser("uninstall", help="Remove the kit from this project")
@@ -209,8 +238,12 @@ def _rest_from_namespace(command: str, ns: argparse.Namespace) -> list[str]:
     if command == "install":
         if ns.agents_mode:
             rest.extend(["--agents-mode", ns.agents_mode])
+        if ns.conflict_mode:
+            rest.extend(["--conflict-mode", ns.conflict_mode])
         if ns.profile:
             rest.extend(["--profile", ns.profile])
+        if ns.purge_unselected:
+            rest.append("--purge-unselected")
     elif command == "uninstall":
         if ns.yes:
             rest.append("--yes")

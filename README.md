@@ -57,6 +57,12 @@
 
 ## Install
 
+**Windows (one command, no pip/pipx needed):**
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -Command "(iwr -useb https://raw.githubusercontent.com/truongnat/simple-skills/main/install.ps1).Content | iex"
+```
+
+**With pipx/uv (cross-platform):**
 ```bash
 pipx install simple-skills
 cd your-project && sk install

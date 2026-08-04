@@ -15,11 +15,13 @@ COMMAND="install"
 UNINSTALL_YES=false
 KEEP_SETTINGS=false
 PURGE_WORK=false
+PURGE_UNSELECTED=false
+CONFLICT_MODE="prompt"
 
 usage() {
   cat <<'EOF'
 Usage:
-  install.sh [install] [--agents-mode prompt|replace|skip] [--profile NAME[,NAME...]]
+  install.sh [install] [--agents-mode prompt|replace|skip] [--conflict-mode prompt|replace|skip|rename] [--profile NAME[,NAME...]]
   install.sh uninstall [--yes] [--keep-settings] [--purge-work]
   install.sh doctor
 
@@ -29,15 +31,17 @@ Commands:
   doctor      Check whether this project looks healthy
 
 Install options:
-  --agents-mode   How to handle existing root AGENTS.md (prompt|replace|skip)
-  --profile       core (default) | office | frontend | backend | all (comma-ok)
+  --agents-mode     How to handle existing root AGENTS.md (prompt|replace|skip)
+  --conflict-mode   How to handle existing skills (prompt|replace|skip|rename)
+  --profile         core (default) | office | frontend | backend | all (comma-ok)
+  --purge-unselected  Remove skills not in the selected profile
 
 Uninstall options:
   --yes             Do not prompt
   --keep-settings   Keep .agents/settings.yaml after uninstall
   --purge-work      Also delete .agent-work/ (sessions + memory) — destructive
 
-Env: SIMPLE_SKILLS_AGENTS_MODE, SIMPLE_SKILLS_PROFILE
+Env: SIMPLE_SKILLS_AGENTS_MODE, SIMPLE_SKILLS_PROFILE, SIMPLE_SKILLS_CONFLICT_MODE
 EOF
 }
 
@@ -83,6 +87,15 @@ while [ "$#" -gt 0 ]; do
       PURGE_WORK=true
       shift
       ;;
+    --conflict-mode)
+      [ "$#" -ge 2 ] || { echo "Error: --conflict-mode requires a value." >&2; exit 2; }
+      CONFLICT_MODE="$2"
+      shift 2
+      ;;
+    --purge-unselected)
+      PURGE_UNSELECTED=true
+      shift
+      ;;
     -h|--help)
       usage
       exit 0
@@ -103,12 +116,61 @@ case "$AGENTS_MODE" in
     ;;
 esac
 
+case "$CONFLICT_MODE" in
+  prompt|replace|skip|rename) ;;
+  *)
+    echo "Error: conflict mode must be prompt, replace, skip, or rename." >&2
+    exit 2
+    ;;
+esac
+
 cleanup() {
   if [ -n "$TMP" ] && [ -d "$TMP" ]; then
     rm -rf "$TMP"
   fi
 }
 trap cleanup EXIT
+
+get_unique_skill_name() {
+  local base_name="$1"
+  local skills_dir="$2"
+  local name="$base_name"
+  local counter=1
+  while [ -d "${skills_dir}/${name}" ]; do
+    name="${base_name}${counter}"
+    counter=$((counter + 1))
+  done
+  printf '%s' "$name"
+}
+
+resolve_conflict_action() {
+  local skill_name="$1"
+  local mode="$2"
+  
+  case "$mode" in
+    replace|skip|rename)
+      printf '%s' "$mode"
+      return
+      ;;
+  esac
+  
+  # prompt mode
+  echo ""
+  echo "Skill '${skill_name}' already exists." >&2
+  if [ -c /dev/tty ] && tty -s < /dev/tty 2>/dev/null; then
+    printf "[R]eplace / [S]kip / [C]opy to new name (skill-A1) / [A]bort? (R/S/C/A) " > /dev/tty
+    read -r answer < /dev/tty
+    case "$answer" in
+      [rR]|[rR]eplace|[yY]|[yY]es) printf 'replace' ;;
+      [sS]|[sS]kip|[nN]|[nN]o) printf 'skip' ;;
+      [cC]|[cC]opy|[rR]ename) printf 'rename' ;;
+      *) printf 'abort' ;;
+    esac
+  else
+    echo "Non-interactive mode: use --conflict-mode to specify behavior." >&2
+    printf 'abort'
+  fi
+}
 
 fetch_source() {
   echo "Downloading ${GITHUB}@${BRANCH} ..."
@@ -326,18 +388,62 @@ cmd_install() {
 
   echo "Installing ${skill_count} skills."
 
+  skills_dir="${TARGET}/.agents/skills"
+  abort_install=false
+
   while IFS= read -r skill; do
     [ -n "$skill" ] || continue
+    [ "$abort_install" = true ] && break
+    
     skill_path="${SOURCE}/skills/${skill}"
     [ -d "$skill_path" ] || { echo "Error: missing skill source ${skill}" >&2; exit 1; }
-    echo "Installing skill ${skill} ..."
-    skill_dest="${TARGET}/.agents/skills/${skill}"
+    
+    skill_dest="${skills_dir}/${skill}"
+    skill_exists=false
+    [ -d "$skill_dest" ] && skill_exists=true
+    
+    # Handle conflict if skill already exists
+    if [ "$skill_exists" = true ]; then
+      action="$(resolve_conflict_action "$skill" "$CONFLICT_MODE")"
+      
+      case "$action" in
+        skip)
+          echo "Skipping skill $skill (keeping existing)."
+          continue
+          ;;
+        rename)
+          new_name="$(get_unique_skill_name "$skill" "$skills_dir")"
+          skill_dest="${skills_dir}/${new_name}"
+          echo "Installing skill $skill as $new_name ..."
+          ;;
+        replace)
+          echo "Replacing skill $skill ..."
+          ;;
+        abort)
+          echo "Aborting install."
+          abort_install=true
+          continue
+          ;;
+      esac
+    else
+      echo "Installing skill ${skill} ..."
+    fi
+    
+    [ "$abort_install" = true ] && continue
+    
     mkdir -p "$skill_dest"
+    
+    # Only remove existing content if we're replacing the original skill
+    if [ "$skill_exists" = true ] && [ "$skill_dest" = "${skills_dir}/${skill}" ]; then
+      shopt -s dotglob nullglob
+      for item in "${skill_dest}"/*; do
+        [ "$(basename "$item")" = ".venv" ] && continue
+        rm -rf "$item"
+      done
+      shopt -u dotglob nullglob
+    fi
+    
     shopt -s dotglob nullglob
-    for item in "${skill_dest}"/*; do
-      [ "$(basename "$item")" = ".venv" ] && continue
-      rm -rf "$item"
-    done
     for item in "${skill_path}"/*; do
       [ "$(basename "$item")" = ".venv" ] && continue
       cp -R "$item" "${skill_dest}/"
@@ -345,15 +451,25 @@ cmd_install() {
     shopt -u dotglob nullglob
   done < "${SKILLS_FILE}"
 
-  shopt -s nullglob
-  for installed in "${TARGET}/.agents/skills"/*/; do
-    name="$(basename "$installed")"
-    if ! grep -Fxq -- "$name" "${SKILLS_FILE}"; then
-      echo "Removing skill not in profile: ${name} ..."
-      rm -rf "$installed"
-    fi
-  done
-  shopt -u nullglob
+  if [ "$abort_install" = true ]; then
+    rm -f "${SKILLS_FILE}"
+    echo "Installation aborted by user." >&2
+    exit 1
+  fi
+
+  if [ "$PURGE_UNSELECTED" = true ]; then
+    shopt -s nullglob
+    for installed in "${TARGET}/.agents/skills"/*/; do
+      name="$(basename "$installed")"
+      if ! grep -Fxq -- "$name" "${SKILLS_FILE}"; then
+        echo "Removing skill not in profile: ${name} ..."
+        rm -rf "$installed"
+      fi
+    done
+    shopt -u nullglob
+  else
+    echo "Keeping existing skills not in profile (use --purge-unselected to remove)."
+  fi
   rm -f "${SKILLS_FILE}"
 
   if [ -d "${TARGET}/.agents/skills/office-mcp" ]; then

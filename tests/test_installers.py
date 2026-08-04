@@ -166,9 +166,13 @@ def run_installer(
     root: Path,
     mode: str,
     profile: str = "all",
+    purge_unselected: bool = False,
 ) -> subprocess.CompletedProcess[str]:
+    argv = ["bash", "install.sh", "--agents-mode", mode, "--profile", profile]
+    if purge_unselected:
+        argv.append("--purge-unselected")
     return subprocess.run(
-        ["bash", "install.sh", "--agents-mode", mode, "--profile", profile],
+        argv,
         cwd=root,
         stdin=subprocess.DEVNULL,
         text=True,
@@ -357,7 +361,7 @@ def test_profile_core_installs_subset_and_prunes(tmp_path: Path) -> None:
     assert (root / ".agents" / "skills" / "xlsx").is_dir()
     assert (root / ".agents" / "skills" / "web-component-design").is_dir()
 
-    run_installer(root, "replace", profile="core")
+    run_installer(root, "replace", profile="core", purge_unselected=True)
 
     skills = {p.name for p in (root / ".agents" / "skills").iterdir() if p.is_dir()}
     assert skills == {"init", "planning", "execution"}

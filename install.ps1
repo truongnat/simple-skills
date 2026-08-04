@@ -5,14 +5,21 @@ param(
     [ValidateSet("prompt", "replace", "skip")]
     [string]$AgentsMode,
 
+    [ValidateSet("prompt", "replace", "skip", "rename")]
+    [string]$ConflictMode,
+
     [string]$Profile,
 
     [switch]$Yes,
     [switch]$KeepSettings,
-    [switch]$PurgeWork
+    [switch]$PurgeWork,
+    [switch]$PurgeUnselected
 )
 
 $ErrorActionPreference = "Stop"
+
+# GitHub requires TLS 1.2; older Windows PowerShell may default to TLS 1.0/1.1.
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 $Owner = if ($env:SIMPLE_SKILLS_OWNER) { $env:SIMPLE_SKILLS_OWNER } else { "truongnat" }
 $Repo = if ($env:SIMPLE_SKILLS_REPO) { $env:SIMPLE_SKILLS_REPO } else { "simple-skills" }
@@ -27,6 +34,16 @@ if (-not $AgentsMode) {
 }
 if ($AgentsMode -notin @("prompt", "replace", "skip")) {
     throw "AgentsMode must be prompt, replace, or skip."
+}
+if (-not $ConflictMode) {
+    $ConflictMode = if ($env:SIMPLE_SKILLS_CONFLICT_MODE) {
+        $env:SIMPLE_SKILLS_CONFLICT_MODE.ToLowerInvariant()
+    } else {
+        "prompt"
+    }
+}
+if ($ConflictMode -notin @("prompt", "replace", "skip", "rename")) {
+    throw "ConflictMode must be prompt, replace, skip, or rename."
 }
 if (-not $Profile) {
     $Profile = if ($env:SIMPLE_SKILLS_PROFILE) {
@@ -43,6 +60,35 @@ $Tmp = $null
 function Remove-Tmp {
     if ($Tmp -and (Test-Path $Tmp)) {
         Remove-Item -Path $Tmp -Recurse -Force
+    }
+}
+
+function Get-UniqueSkillName {
+    param([string]$BaseName, [string]$SkillsDir)
+    $name = $BaseName
+    $counter = 1
+    while (Test-Path (Join-Path $SkillsDir $name)) {
+        $name = "${BaseName}${counter}"
+        $counter++
+    }
+    return $name
+}
+
+function Resolve-ConflictAction {
+    param([string]$SkillName, [string]$Mode)
+    if ($Mode -eq "replace") { return "replace" }
+    if ($Mode -eq "skip") { return "skip" }
+    if ($Mode -eq "rename") { return "rename" }
+    
+    # prompt mode
+    Write-Host ""
+    Write-Host "Skill '$SkillName' already exists." -ForegroundColor Yellow
+    $answer = Read-Host "[R]eplace / [S]kip / [C]opy to new name (skill-A1) / [A]bort? (R/S/C/A)"
+    switch -Regex ($answer.ToLower()) {
+        "^(r|replace|y|yes)$" { return "replace" }
+        "^(s|skip|n|no)$" { return "skip" }
+        "^(c|copy|rename)$" { return "rename" }
+        default { return "abort" }
     }
 }
 
@@ -284,31 +330,80 @@ function Invoke-Install {
     }
     Write-Host "Installing $($selected.Count) skills."
 
+    $skillsDir = Join-Path ".agents/skills" ""
+    $abortInstall = $false
+
     foreach ($skillName in $selected) {
-        Write-Host "Installing skill $skillName ..."
+        if ($abortInstall) { break }
+        
         $skillPath = Join-Path $Source "skills/$skillName"
         if (-not (Test-Path $skillPath -PathType Container)) {
             throw "Missing skill source: $skillName"
         }
+        
         $dest = Join-Path ".agents/skills" $skillName
+        $skillExists = Test-Path $dest -PathType Container
+        
+        # Handle conflict if skill already exists
+        if ($skillExists) {
+            $action = Resolve-ConflictAction -SkillName $skillName -Mode $ConflictMode
+            
+            switch ($action) {
+                "skip" {
+                    Write-Host "Skipping skill $skillName (keeping existing)."
+                    continue
+                }
+                "rename" {
+                    $newName = Get-UniqueSkillName -BaseName $skillName -SkillsDir $skillsDir
+                    $dest = Join-Path ".agents/skills" $newName
+                    Write-Host "Installing skill $skillName as $newName ..."
+                }
+                "replace" {
+                    Write-Host "Replacing skill $skillName ..."
+                }
+                "abort" {
+                    Write-Host "Aborting install."
+                    $abortInstall = $true
+                    continue
+                }
+            }
+        } else {
+            Write-Host "Installing skill $skillName ..."
+        }
+        
+        if ($abortInstall) { continue }
+        
         New-Item -ItemType Directory -Force -Path $dest | Out-Null
-        Get-ChildItem -Path $dest -Force |
-            Where-Object { $_.Name -ne ".venv" } |
-            Remove-Item -Recurse -Force
+        
+        # Only remove existing content if we're replacing
+        if ($skillExists -and $dest -eq (Join-Path ".agents/skills" $skillName)) {
+            Get-ChildItem -Path $dest -Force |
+                Where-Object { $_.Name -ne ".venv" } |
+                Remove-Item -Recurse -Force
+        }
+        
         Get-ChildItem -Path $skillPath -Force |
             Where-Object { $_.Name -ne ".venv" } |
             Copy-Item -Destination $dest -Recurse -Force
     }
+    
+    if ($abortInstall) {
+        throw "Installation aborted by user."
+    }
 
-    $selectedSet = [System.Collections.Generic.HashSet[string]]::new(
-        [string[]]$selected,
-        [System.StringComparer]::OrdinalIgnoreCase
-    )
-    Get-ChildItem -Path ".agents/skills" -Directory | ForEach-Object {
-        if (-not $selectedSet.Contains($_.Name)) {
-            Write-Host "Removing skill not in profile: $($_.Name) ..."
-            Remove-Item -Path $_.FullName -Recurse -Force
+    if ($PurgeUnselected) {
+        $selectedSet = [System.Collections.Generic.HashSet[string]]::new(
+            [string[]]$selected,
+            [System.StringComparer]::OrdinalIgnoreCase
+        )
+        Get-ChildItem -Path ".agents/skills" -Directory | ForEach-Object {
+            if (-not $selectedSet.Contains($_.Name)) {
+                Write-Host "Removing skill not in profile: $($_.Name) ..."
+                Remove-Item -Path $_.FullName -Recurse -Force
+            }
         }
+    } else {
+        Write-Host "Keeping existing skills not in profile (use -PurgeUnselected to remove)."
     }
 
     $obsoleteOfficeMcp = Join-Path ".agents/skills" "office-mcp"

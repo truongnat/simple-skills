@@ -59,9 +59,11 @@ def test_sk_install_downloads_installer_outside_kit(
 ) -> None:
     calls: list[list[str]] = []
     downloaded: list[str] = []
+    file_existed_during_call: list[bool] = []
 
     def fake_call(argv: list[str]) -> int:
         calls.append(argv)
+        file_existed_during_call.append(Path(argv[1]).is_file())
         return 0
 
     def fake_download(url: str, dest: Path) -> None:
@@ -77,7 +79,7 @@ def test_sk_install_downloads_installer_outside_kit(
     assert downloaded
     assert downloaded[0].endswith("/install.sh")
     assert calls[0][1].endswith("install.sh")
-    assert Path(calls[0][1]).is_file()
+    assert file_existed_during_call == [True]
 
 def test_sk_bare_defaults_to_install(monkeypatch: pytest.MonkeyPatch) -> None:
     calls: list[list[str]] = []

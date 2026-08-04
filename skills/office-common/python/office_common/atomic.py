@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import os
+import sys
 import tempfile
+import time
 from collections.abc import Callable
 from pathlib import Path
 
@@ -32,8 +34,14 @@ def atomic_publish(
         writer(tmp_path)
         if validator is not None:
             validator(tmp_path)
-        os.replace(tmp_path, destination)
-        return destination
+        for attempt in range(3):
+            try:
+                os.replace(tmp_path, destination)
+                return destination
+            except PermissionError:
+                if attempt == 2 or sys.platform != "win32":
+                    raise
+                time.sleep(0.1 * (2 ** attempt))
     except Exception:
         if tmp_path.exists():
             tmp_path.unlink(missing_ok=True)

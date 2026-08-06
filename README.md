@@ -49,7 +49,6 @@
   <a href="#quick-start">Quick start</a> ·
   <a href="#profiles">Profiles</a> ·
   <a href="#mental-model">Model</a> ·
-  <a href="#paths">Paths</a> ·
   <a href="#thinking-methods">Thinking</a> ·
   <a href="docs/guides/START_HERE.md">Start here</a>
 </p>
@@ -169,8 +168,8 @@ Choose what fits your work:
 | **`core`** | 17 | Lifecycle skills + shared policy (default) |
 | **`office`** | 23 | Core + Office file handling (docx, xlsx, pdf, pptx) |
 | **`ba`** | 30 | Business analysis + specify + wireframe pack |
-| **`frontend`** | 28 | Frontend design + UI patterns + accessibility |
-| **`backend`** | 33 | Backend architecture + patterns + testing |
+| **`frontend`** | 29 | Frontend design + UI patterns + accessibility |
+| **`backend`** | 35 | Backend architecture + patterns + testing |
 | **`all`** | 66 | Everything |
 
 ### Install a specific profile
@@ -211,7 +210,7 @@ Core skills + `api-ba`, `ba-dashboard`, `ba-handoff`, `ba-integrate`, `ba-kg`,
 </details>
 
 <details>
-<summary><b>Frontend (28 skills)</b></summary>
+<summary><b>Frontend (29 skills)</b></summary>
 
 Core skills + `accessibility-compliance`, `design-system-patterns`, 
 `design-taste-frontend`, `expo-data-fetching`, `expo-native-ui`, 
@@ -222,7 +221,7 @@ Core skills + `accessibility-compliance`, `design-system-patterns`,
 </details>
 
 <details>
-<summary><b>Backend (33 skills)</b></summary>
+<summary><b>Backend (35 skills)</b></summary>
 
 Core skills + `api-design-principles`, `architecture-decision-records`, 
 `architecture-patterns`, `auth-implementation-patterns`, `database-migration`, 

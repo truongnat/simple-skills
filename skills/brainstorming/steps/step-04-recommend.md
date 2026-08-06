@@ -49,5 +49,4 @@ If precondition fails → return to the incomplete earlier step.
 
 ## Next
 
-Brainstorming ends here. Do **not** auto-run planning/design unless user asks.
-Tell user the next skill and path to `DISCUSSION.md`.
+Only if Step ledger 04 = `done` or `blocked`: Read and follow `./step-05-self-check.md`.

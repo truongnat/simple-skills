@@ -26,6 +26,7 @@ Turn an initial request into a clear direction via a **forced step sequence**:
    on unresolved critical/blocking/Spec-quality items
 3. Scope + options matrix (only after Spec quality gate passes)
 4. Finalize recommendation + handoff
+5. Self-check the decision gate and step ledger
 
 Do not invent PLAN/TASKS or implement code here.
 
@@ -49,6 +50,7 @@ Do not invent PLAN/TASKS or implement code here.
 | [steps/step-02-frame.md](./steps/step-02-frame.md) | Goal, facts, Spec quality review, triage |
 | [steps/step-03-scope-options.md](./steps/step-03-scope-options.md) | Scope + options matrix |
 | [steps/step-04-recommend.md](./steps/step-04-recommend.md) | Recommendation, risks, handoff |
+| [steps/step-05-self-check.md](./steps/step-05-self-check.md) | Self-check the decision gate before ending |
 
 ### Execution entry
 
@@ -68,8 +70,9 @@ This skill is a **hard contract**. Obey it before any other action.
 ### Required artifacts
 
 #### `DISCUSSION.md` (from template)
-Step ledger, executive_summary, charts, goal_and_outcome, context (facts + constraints + assumptions), 
-issues_and_decisions (includes spec quality), scope (in + out + non-goals), 
+Step ledger, executive_summary, developer_overview, charts, goal_and_outcome,
+context (facts + constraints + assumptions), issue_triage, clarification_checkpoint,
+spec_quality_review, visual_triage, scope (in + out + non-goals),
 options_and_recommendation, risks, handoff.
 
 
@@ -134,14 +137,15 @@ rows; Spec quality can be one concrete finding per table.
 
 - [ ] Goal is one sentence.
 - [ ] Facts / assumptions separated in Context section.
-- [ ] Issues classified by severity and blocking status in Issues & Decisions.
-- [ ] Spec quality review covers Feasibility, Correctness, and Capability (within Issues & Decisions).
+- [ ] Issues classified by severity and blocking status in Issue triage.
+- [ ] Spec quality review covers Feasibility, Correctness, and Capability (own section, before Scope in).
+- [ ] Focused questions and answers recorded in Clarification checkpoint.
 - [ ] No unresolved Critical/blocking issue or blocking Spec quality finding was bypassed; questions and answers are recorded.
-- [ ] HTML is used only when spatial/state comparison materially improves the decision.
-- [ ] Scope in and out separated (within Scope section).
+- [ ] HTML is used only when spatial/state comparison materially improves the decision (Visual triage).
+- [ ] Scope in and out separated (Scope in / Scope out sections).
 - [ ] Options matrix used; recommendation has reason + confidence (within Options & Recommendation).
 - [ ] Handoff names one next skill.
-- [ ] `DISCUSSION.md` on disk; step-04 completed.
+- [ ] `DISCUSSION.md` on disk; step-05 self-check completed.
 
 - [ ] First-pass readable: concrete names (paths/APIs/IDs); no abstract filler.
 - [ ] No leftover `_(TODO)_` or placeholder Mermaid in finished sections.

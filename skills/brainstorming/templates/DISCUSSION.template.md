@@ -1,6 +1,6 @@
 # Discussion
 
-> Seeded by brainstorming. Fill via steps 02–04.
+> Seeded by brainstorming. Fill via steps 02–05.
 > Write for a busy teammate: concrete names, short bullets, no filler.
 > Obey `.agents/SKILL_PREAMBLE.md` Readable writing.
 
@@ -11,12 +11,31 @@
 | 02 | Frame + Spec quality | `todo` / `done` / `blocked` | Feasibility/Correctness/Capability filled |
 | 03 | Scope + options | `todo` / `done` / `blocked` | Scope + options matrix |
 | 04 | Recommend + handoff | `todo` / `done` / `blocked` | Choose + next skill |
+| 05 | Self-check | `todo` / `done` / `blocked` | checklist passed |
 
 ## Executive summary
 
 <!-- ≤5 bullets. Concrete. Fill last, keep first. Include: path, status, next action. -->
 
 - _(TODO)_
+
+## Developer overview
+
+| Field | Value |
+|---|---|
+| Status | `needs_info` / `framing` / `ready_for_handoff` / `blocked` |
+| Path | `Quick` / `Lite` / `Full` |
+| Open blocking issues | `0` |
+| Next action | _(ask user / fill scope / handoff)_ |
+
+## Keywords
+
+<!-- Opaque IDs / JP terms / acronyms used below. Meaning in settings.language.
+Cap 3–12. See SKILL_PREAMBLE → Keywords. Or: _(none — plain language)_ -->
+
+| Term | Meaning | Where seen |
+|---|---|---|
+| _(TODO or none)_ |  |  |
 
 ## Charts
 
@@ -51,40 +70,73 @@ Outcome: observable behaviors when "done" (bullets). -->
 |------------|------|-----------|
 | _(TODO)_ | Low / Medium / High | Yes / No |
 
-## Issues & Decisions
+## Issue triage
 
-<!-- Issues, clarifications, spec quality findings. Blocking=Yes stops recommendation. -->
+<!-- Issues and questions surfaced while framing. Blocking=Yes stops recommendation. -->
 
-| ID | Issue / Question | Severity | Blocking? | Status | Resolution |
-|---|---|---|---|---|---|
-| ISS-001 | _(TODO)_ | Critical / High / Medium / Low | Yes / No | Open / Answered | _(answer or pending)_ |
+| ID | Issue / Question | Severity | Blocking? | Reversibility | Status | Resolution |
+|---|---|---|---|---|---|---|
+| ISS-001 | _(TODO)_ | Critical / High / Medium / Low | Yes / No | R / H / U | Open / Answered | _(answer or pending)_ |
 
-**Spec quality:**
-- Feasibility: Pass / Pass-with-gaps / Fail — _(evidence)_
-- Correctness: Pass / Pass-with-gaps / Fail — _(evidence)_
-- Capability gaps: _(list or none)_
+## Clarification checkpoint
 
-## Scope
+<!-- STOP gate: record the focused questions asked and the answers received
+before scope/options. Ask method per SKILL_PREAMBLE → Confirm-first. -->
 
-<!-- What's in, what's out, what's explicitly not a goal. -->
+| Issue | Focused question | Ask method | Answer |
+|---|---|---|---|
+| _(TODO or none)_ | _(TODO)_ | confirm / choice / fact / table / diagram / html | _(wait for user)_ |
 
-**In:**
+## Spec quality review
+
+<!-- Concrete finding + evidence + verdict. No abstract essays. -->
+
+### 1. Feasibility
+
+| Finding (concrete) | Evidence | Verdict |
+|---|---|---|
+| _(TODO)_ | _(repo / API / ops)_ | Pass / Pass-with-gaps / Fail / Unknown |
+
+### 2. Correctness
+
+| Finding (concrete) | Evidence | Verdict |
+|---|---|---|
+| _(TODO)_ | _(repo / API / DB / screen)_ | Pass / Pass-with-gaps / Fail / Unknown |
+
+### 3. Capability gaps
+
+| Gap ID | Missing capability | Ask or default | Blocking? | Status |
+|---|---|---|---|---|
+| CAP-001 | _(TODO)_ | _(ask / propose)_ | Yes / No | Open / Deferred / Resolved |
+
+## Visual triage
+
+<!-- Per issue: does a visual change the decision? See Visual triage rubric in SKILL.md. -->
+
+| Issue | Format | Rationale | Handoff / Status |
+|---|---|---|---|
+| _(TODO or none)_ | text / table / diagram / html-recommended / none | _(TODO)_ | _(n/a / VISUAL_DECISION.html pending)_ |
+
+## Scope in
+
 - _(TODO)_
 
-**Out:**
+## Scope out
+
 - _(TODO)_
 
-**Non-goals:**
+## Non-goals
+
 - _(TODO or none)_
 
 ## Options & Recommendation
 
 <!-- Compare options, then recommend one with reasoning. -->
 
-| Option | Pros | Cons | Effort | Risk |
-|--------|------|------|--------|------|
-| A — _(name)_ | | | | |
-| B — _(name)_ | | | | |
+| Option | Pros | Cons | Effort | Risk | Reversible? | How to verify |
+|--------|------|------|--------|------|--------------|----------------|
+| A — _(name)_ | | | | | | |
+| B — _(name)_ | | | | | | |
 
 **Recommendation:**
 - **Choose:** _(Option X)_

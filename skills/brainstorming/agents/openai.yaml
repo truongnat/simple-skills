@@ -11,6 +11,7 @@ workflow:
   - "STOP and ask at most three focused blocking questions when Critical/blocking/Spec-quality items remain; record answers before continuing."
   - "Choose text/table/diagram/HTML by decision value; HTML only for spatial/state comparison and with user confirmation."
   - "Fill scope/options, recommendation/handoff."
+  - "Self-check the decision gate and step ledger before ending the skill."
 artifacts:
   DISCUSSION.md:
     required: true
@@ -22,11 +23,15 @@ artifacts:
       step_ledger:
         type: table
         required: true
-        description: "Steps 02–04 status; no later step done while earlier is todo."
+        description: "Steps 02–05 status; no later step done while earlier is todo."
       executive_summary:
         type: array
         required: true
         description: "Maximum five bullets with direction, key facts, recommendation, risk, and next action."
+      developer_overview:
+        type: object
+        required: true
+        description: "Status, Path (Quick/Lite/Full), open blocking issues, next action."
       charts:
         type: array
         required: false
@@ -39,10 +44,22 @@ artifacts:
         type: object
         required: true
         description: "Facts + Constraints + Assumptions (omit Unknowns if none)."
-      issues_and_decisions:
+      issue_triage:
+        type: array
+        required: true
+        description: "Issue/question, severity, blocking status, reversibility, resolution."
+      clarification_checkpoint:
+        type: array
+        required: true
+        description: "Focused question, Ask method, user answer; recorded before scope/options."
+      spec_quality_review:
         type: object
         required: true
-        description: "Issue triage + Spec quality review (Feasibility/Correctness/Capability)."
+        description: "Feasibility, Correctness, and Capability recommendations that challenge the request/specs."
+      visual_triage:
+        type: array
+        required: true
+        description: "Issue, text/table/diagram/html-recommended/none, rationale, handoff/status."
       scope:
         type: object
         required: true

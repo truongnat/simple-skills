@@ -34,6 +34,13 @@ rules:
     format: markdown          # markdown | html | docx | xlsx
     sync_strategy: with-commit  # with-commit | main-only
 
+  # Work layer (sessions + memory; nested git). session.sh and every
+  # tools/session/*.py script re-read this at every run — no restart needed.
+  # Changing it does NOT move existing data: git mv the old dir yourself,
+  # or `session.sh doctor` will report it as orphaned.
+  agent_work:
+    location: .agent-work
+
   # Source-code comment / docstring prose language (NOT settings.language).
   #   repo-default — follow PRJ_REFERENCE / existing repo style; else English
   #   en | vi      — force comment prose to that language

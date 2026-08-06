@@ -19,6 +19,8 @@ import re
 import sys
 from pathlib import Path
 
+from _work_settings import settings_path, work_dir_name, yaml_get
+
 SOURCES = (
     "DISCUSSION.md",
     "QUICK.md",
@@ -150,6 +152,7 @@ SETTINGS_KEYS = (
     ("rules.reports.output_format", "markdown"),
     ("rules.code.comments.prose_language", "repo-default"),
     ("rules.docs.location", ".agents/wiki"),
+    ("rules.agent_work.location", ".agent-work"),
 )
 
 
@@ -173,7 +176,7 @@ def resolve_session(root: Path, explicit: str | None) -> Path:
         if not path.is_dir():
             raise SystemExit(f"Session dir not found: {path}")
         return path
-    pointer = root / ".agent-work" / "sessions" / ".current"
+    pointer = root / work_dir_name(root) / "sessions" / ".current"
     if not pointer.is_file():
         raise SystemExit("No active session. Pass --session or run session.sh new/set.")
     rel = pointer.read_text(encoding="utf-8").splitlines()[0].strip()
@@ -183,68 +186,10 @@ def resolve_session(root: Path, explicit: str | None) -> Path:
     return path
 
 
-def settings_path(root: Path) -> Path | None:
-    for rel in (".agents/settings.yaml", "docs/config/settings.yaml"):
-        path = root / rel
-        if path.is_file():
-            return path
-    return None
-
-
-def _yaml_simple_get(text: str, dotted: str, default: str) -> str:
-    """Read a nested scalar from lean settings.yaml without a YAML dependency."""
-    parts = dotted.split(".")
-    lines = text.splitlines()
-    if len(parts) == 1:
-        key = parts[0]
-        for line in lines:
-            if line.startswith((" ", "\t")) or line.lstrip().startswith("#"):
-                continue
-            if ":" not in line:
-                continue
-            k, _, rest = line.partition(":")
-            if k.strip() == key:
-                val = rest.strip().strip("\"'")
-                return val if val else default
-        return default
-
-    # Walk nested mapping by indentation (expects parts like rules.branch.mode).
-    want = list(parts)
-    idx = 0
-    parent_indent = -1
-    for line in lines:
-        raw = line.rstrip()
-        if not raw.strip() or raw.lstrip().startswith("#"):
-            continue
-        indent = len(raw) - len(raw.lstrip(" "))
-        if indent < parent_indent and idx > 0:
-            # Left the current parent block without finding the leaf.
-            return default
-        if ":" not in raw:
-            continue
-        key, _, rest = raw.lstrip().partition(":")
-        key = key.strip()
-        rest = rest.strip().strip("\"'")
-        if idx < len(want) and key == want[idx]:
-            if idx == len(want) - 1:
-                return rest if rest else default
-            # Enter child block
-            parent_indent = indent
-            idx += 1
-            continue
-        if idx > 0 and indent <= parent_indent and key != want[idx]:
-            # Sibling at/above parent — stop if we already entered this level
-            if indent < parent_indent or (indent == parent_indent and idx > 0):
-                # Only reset when we've left the branch entirely
-                if indent < parent_indent:
-                    return default
-    return default
-
-
 def read_settings_knobs(root: Path) -> dict[str, str]:
     path = settings_path(root)
     text = path.read_text(encoding="utf-8") if path else ""
-    return {key: _yaml_simple_get(text, key, default) for key, default in SETTINGS_KEYS}
+    return {key: yaml_get(text, key, default) for key, default in SETTINGS_KEYS}
 
 
 def skill_md_path(root: Path, skill: str) -> Path | None:

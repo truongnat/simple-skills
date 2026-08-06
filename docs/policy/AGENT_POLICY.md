@@ -25,6 +25,7 @@ settings.
 | `rules.docs.location` | path | `.agents/wiki` |
 | `rules.docs.format` | `markdown` \| `html` \| `docx` \| `xlsx` | `markdown` |
 | `rules.docs.sync_strategy` | `with-commit` \| `main-only` | `with-commit` |
+| `rules.agent_work.location` | path | `.agent-work` |
 | `rules.agents.fallback` | `main` \| CLI id | `main` |
 | `rules.agents.routing.<skill>` | ordered CLI ids | empty → main only |
 
@@ -52,6 +53,11 @@ Optional (add only when the repo has a convention; `init` may merge them):
   work on base). Unset → `checkout`.
 - **`rules.reports.output_format`:** same contract/basename; HTML uses the
   enterprise theme in `.agents/DESIGN_SYSTEM.md` (prefer short `.ss-*` classes).
+- **`rules.agent_work.location`:** Work layer dir name (sessions + memory;
+  nested git), relative to repo root. `session.sh` and every
+  `tools/session/*.py` script re-read it every run. Changing it does **not**
+  move existing data — `git mv` the old dir yourself, or `session.sh doctor`
+  reports `orphaned_default_work_dir=yes`. See `AGENT_WORK.md`.
 - If `.agents/PRJ_REFERENCE.md` is missing or stale, run `init` before other
   lifecycle skills (`force` only when explicitly requested).
 

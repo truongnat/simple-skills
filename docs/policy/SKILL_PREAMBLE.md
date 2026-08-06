@@ -58,24 +58,34 @@ Simple Skills splits **Kit** and **Work**:
 | Kit | `.agents/` | skills, tools, settings, policy (installer) |
 | Work | `.agent-work/` | `sessions/` + `memory/` together (nested git) |
 
+`.agent-work/` is the **default** name, not a fixed one — `rules.agent_work.location`
+in `.agents/settings.yaml` can repoint it. Never hardcode the path yourself;
+always resolve it through `session.sh` (rule 3), which re-reads the setting
+every run.
+
 Rules:
 
 1. Write **lifecycle session artifacts** (DISCUSSION, PLAN, TASKS, REVIEW, …)
-   **only** under `.agent-work/sessions/<Task-N-…>/` — never under temp/cache,
-   and never under `.agents/skills` or other kit paths.
-2. Write durable lessons **only** under `.agent-work/memory/`.
+   **only** under the Work dir's `sessions/<Task-N-…>/` (default
+   `.agent-work/sessions/<Task-N-…>/`) — never under temp/cache, and never
+   under `.agents/skills` or other kit paths.
+2. Write durable lessons **only** under the Work dir's `memory/` (default
+   `.agent-work/memory/`).
 3. Resolve the active session with:
    ```bash
    bash .agents/tools/session/session.sh current
    ```
-   Create one with `session.sh new <slug>` (also ensures `.agent-work` + nested
-   git). Progress: `session.sh status`.
+   Create one with `session.sh new <slug>` (also ensures the Work dir + nested
+   git). Progress: `session.sh status`. Print the resolved Work dir name with
+   `session.sh work-root`.
 4. **Wiki exception (`docs` skill only):** the enterprise wiki tree goes under
    `rules.docs.location` (default `.agents/wiki`). That path may live under
    `.agents/` by design. It is **not** a lifecycle session report and is **not**
    forbidden by rule 1. Still never write wiki into `.agents/skills/`.
-5. Prefer the product root `.gitignore` to include `.agent-work/` so Work history
-   stays in its nested git, not the product repo.
+5. Prefer the product root `.gitignore` to include the Work dir (default
+   `.agent-work/`) so Work history stays in its nested git, not the product
+   repo. `install.sh` maintains this entry automatically, including after
+   `rules.agent_work.location` changes.
 6. **Work commit protocol:** when nested git exists, after writing or updating
    any session/memory artifact in this skill, run:
    ```bash

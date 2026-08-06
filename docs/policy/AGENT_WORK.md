@@ -37,6 +37,30 @@ cites). There is no separate `OVERVIEW.md`. Before execution, `sync` records
     └── Task-N-<slug>.md  # durable lessons (vital few)
 ```
 
+### Custom location (`rules.agent_work.location`)
+
+`.agent-work` is the default name, not a fixed one. Set
+`rules.agent_work.location` in `.agents/settings.yaml` to move it:
+
+```yaml
+rules:
+  agent_work:
+    location: .my-work   # relative to repo root, no trailing slash
+```
+
+`session.sh` and every `tools/session/*.py` script re-read this at the start
+of each run (no restart, no cache) — both resolve it the same way, using a
+dependency-free reader (`tools/session/_work_settings.py` for Python; a
+matching `awk` walk in `session.sh`). Whichever path is configured becomes
+the pointer root (`<location>/sessions/.current`), the nested-git root, and
+the `.gitignore` entry the installer maintains going forward.
+
+**Changing the setting does not move existing data.** If `.agent-work/`
+already has sessions/memory and you repoint the setting, `git mv` the old
+directory to the new path yourself (preserves the nested git history). Until
+you do, `session.sh doctor` reports `orphaned_default_work_dir=yes` so the
+old data is not silently lost.
+
 ### Why a sibling folder (not inside `.agents`)?
 
 Skills/tools are kit and change on reinstall. Sessions/memory are work and need

@@ -68,5 +68,5 @@ Do **not** read all of `AGENT_POLICY.md` up front. Open a section only when bloc
 ## Settings you might edit
 
 `language` · `rules.code.comments.prose_language` · `rules.branch.mode` ·
-`rules.reports.output_format` · `rules.docs.*`  
+`rules.reports.output_format` · `rules.docs.*` · `rules.agent_work.location`  
 Defaults for everything else live in AGENT_POLICY.

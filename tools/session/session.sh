@@ -7,8 +7,11 @@
 # Kit vs Work:
 #   .agents/       installer kit (skills, tools, settings, policy)
 #   .agent-work/   feature work (sessions + memory), nested git (when git available)
+#                  Default name; override with rules.agent_work.location in
+#                  settings.yaml. Changing it does NOT move existing data —
+#                  git mv the old dir yourself (doctor warns if orphaned).
 #
-# The active session is recorded in .agent-work/sessions/.current (one line: the
+# The active session is recorded in <work>/sessions/.current (one line: the
 # repo-relative session dir). Read-only except `set`/`new`/`archive`, which touch
 # that pointer and the session dir.
 #
@@ -46,8 +49,44 @@ find_root() {
   pwd
 }
 
+# Resolve rules.agent_work.location from settings.yaml (default .agent-work).
+# No YAML dependency: targeted indentation walk, mirrors
+# tools/session/_work_settings.py so bash and python agree.
+settings_file() {
+  for f in "$ROOT/.agents/settings.yaml" "$ROOT/docs/config/settings.yaml"; do
+    if [ -f "$f" ]; then printf '%s\n' "$f"; return 0; fi
+  done
+  return 1
+}
+
+work_dir_rel() {
+  loc=".agent-work"
+  sf="$(settings_file 2>/dev/null || true)"
+  if [ -n "$sf" ]; then
+    val="$(awk '
+      /^rules:[[:space:]]*$/ { in_rules=1; next }
+      in_rules && /^[^[:space:]]/ { in_rules=0 }
+      in_rules && /^  agent_work:[[:space:]]*$/ { in_aw=1; next }
+      in_aw && /^  [^[:space:]]/ { in_aw=0 }
+      in_aw && /^    location:/ {
+        v = $0
+        sub(/^    location:[[:space:]]*/, "", v)
+        gsub(/[[:space:]]+$/, "", v)
+        print v
+        exit
+      }
+    ' "$sf" 2>/dev/null)"
+    # Strip surrounding quotes (single or double) and a trailing slash.
+    val="${val%\"}"; val="${val#\"}"
+    val="${val%\'}"; val="${val#\'}"
+    [ -n "$val" ] && loc="${val%/}"
+  fi
+  printf '%s\n' "$loc"
+}
+
 ROOT="$(find_root)"
-WORK_DIR="$ROOT/.agent-work"
+WORK_DIR_REL="$(work_dir_rel)"
+WORK_DIR="$ROOT/$WORK_DIR_REL"
 SESS_DIR="$WORK_DIR/sessions"
 ARCH_DIR="$SESS_DIR/_archive"
 MEM_DIR="$WORK_DIR/memory"
@@ -126,12 +165,12 @@ cmd_commit() {
 
 cmd_work_root() {
   ensure_work
-  printf '%s\n' ".agent-work"
+  printf '%s\n' "$WORK_DIR_REL"
 }
 
 cmd_current() {
   ensure_work
-  [ -f "$POINTER" ] || die "No active session. A lifecycle skill must run 'session.sh set/new' first (or create .agent-work/sessions/<Task-N-slug>/ and point .current at it)."
+  [ -f "$POINTER" ] || die "No active session. A lifecycle skill must run 'session.sh set/new' first (or create $WORK_DIR_REL/sessions/<Task-N-slug>/ and point .current at it)."
   rel="$(head -n1 "$POINTER" | tr -d '\r\n')"
   [ -n "$rel" ] || die "Active-session pointer is empty: $POINTER"
   # Migrate legacy pointers written under .agents/sessions/…
@@ -139,10 +178,10 @@ cmd_current() {
     .agents/sessions/*)
       base="$(basename "$rel")"
       if [ -d "$SESS_DIR/$base" ]; then
-        rel=".agent-work/sessions/$base"
+        rel="$WORK_DIR_REL/sessions/$base"
         printf '%s\n' "$rel" > "$POINTER"
       elif [ -d "$ROOT/$rel" ]; then
-        die "Legacy session path '$rel' found. Move it to .agent-work/sessions/$base then re-run."
+        die "Legacy session path '$rel' found. Move it to $WORK_DIR_REL/sessions/$base then re-run."
       fi
       ;;
   esac
@@ -156,11 +195,11 @@ cmd_set() {
   arg="$1"; base="$(basename "$arg")"
   # Allow active sessions/ or _archive/
   if [ -d "$SESS_DIR/$base" ]; then
-    target_rel=".agent-work/sessions/$base"
+    target_rel="$WORK_DIR_REL/sessions/$base"
   elif [ -d "$ARCH_DIR/$base" ]; then
-    target_rel=".agent-work/sessions/_archive/$base"
+    target_rel="$WORK_DIR_REL/sessions/_archive/$base"
   else
-    die "Session dir does not exist: .agent-work/sessions/$base (use 'session.sh new <slug>' to create it)."
+    die "Session dir does not exist: $WORK_DIR_REL/sessions/$base (use 'session.sh new <slug>' to create it)."
   fi
   printf '%s\n' "$target_rel" > "$POINTER"
   printf '%s\n' "$target_rel"
@@ -183,10 +222,10 @@ cmd_new() {
   n="$(next_task_n)"
   name="Task-${n}-${slug}"
   mkdir -p "$SESS_DIR/$name"
-  printf '%s\n' ".agent-work/sessions/$name" > "$POINTER"
+  printf '%s\n' "$WORK_DIR_REL/sessions/$name" > "$POINTER"
   # Milestone commit so the new session is in nested-git history immediately.
   cmd_commit "chore(session): create ${name}" >/dev/null || true
-  printf '%s\n' ".agent-work/sessions/$name"
+  printf '%s\n' "$WORK_DIR_REL/sessions/$name"
 }
 
 cmd_archive() {
@@ -196,11 +235,11 @@ cmd_archive() {
     arg="$1"
     base="$(basename "$arg")"
     if [ -d "$SESS_DIR/$base" ] && [ "$base" != "_archive" ]; then
-      rel=".agent-work/sessions/$base"
+      rel="$WORK_DIR_REL/sessions/$base"
     elif [ -d "$ARCH_DIR/$base" ]; then
-      die "Session already archived: .agent-work/sessions/_archive/$base"
+      die "Session already archived: $WORK_DIR_REL/sessions/_archive/$base"
     else
-      die "Session dir does not exist: .agent-work/sessions/$base"
+      die "Session dir does not exist: $WORK_DIR_REL/sessions/$base"
     fi
   else
     rel="$(cmd_current)"
@@ -213,7 +252,7 @@ cmd_archive() {
   [ -d "$src" ] || die "Session path missing: $rel"
   mkdir -p "$ARCH_DIR"
   dest="$ARCH_DIR/$base"
-  [ ! -e "$dest" ] || die "Archive target already exists: .agent-work/sessions/_archive/$base"
+  [ ! -e "$dest" ] || die "Archive target already exists: $WORK_DIR_REL/sessions/_archive/$base"
   mv "$src" "$dest"
   # Clear pointer if it pointed at the archived session.
   if [ -f "$POINTER" ]; then
@@ -223,7 +262,7 @@ cmd_archive() {
     fi
   fi
   cmd_commit "chore(archive): ${base}" >/dev/null || true
-  printf '%s\n' ".agent-work/sessions/_archive/$base"
+  printf '%s\n' "$WORK_DIR_REL/sessions/_archive/$base"
 }
 
 cmd_status() {
@@ -271,12 +310,12 @@ cmd_status() {
 }
 
 cmd_help() {
-  cat <<'EOF'
-Simple Skills — session helper
+  cat <<EOF
+Simple Skills — session helper (Work layer: $WORK_DIR_REL)
 
   session.sh help                      This text
   session.sh doctor                    Check Work layout + pointer + tools
-  session.sh work-root                 Ensure .agent-work (+ nested git)
+  session.sh work-root                 Ensure $WORK_DIR_REL (+ nested git)
   session.sh new <slug>                Create Task-N-<slug>, set current, commit
   session.sh set <dir|slug>            Point .current at an existing session
   session.sh current                   Print active session path
@@ -335,10 +374,13 @@ cmd_doctor() {
     printf 'current=(unset)\n'
   fi
   gi="$ROOT/.gitignore"
-  if [ -f "$gi" ] && grep -Fqx -- '.agent-work/' "$gi"; then
+  if [ -f "$gi" ] && grep -Fqx -- "$WORK_DIR_REL/" "$gi"; then
     printf 'gitignore_agent_work=yes\n'
   else
-    printf 'gitignore_agent_work=MISSING — product git may track Work\n'
+    printf 'gitignore_agent_work=MISSING (%s/) — product git may track Work\n' "$WORK_DIR_REL"
+  fi
+  if [ "$WORK_DIR_REL" != ".agent-work" ] && [ -d "$ROOT/.agent-work" ]; then
+    printf 'orphaned_default_work_dir=yes — .agent-work/ still exists on disk but rules.agent_work.location=%s; git mv the old data over if it has sessions/memory, then remove it.\n' "$WORK_DIR_REL"
   fi
   for f in START_HERE.md WHAT_NEXT.md SKILL_PREAMBLE.md AGENT_POLICY.md AGENT_WORK.md; do
     if [ -f "$ROOT/.agents/$f" ] || [ -f "$ROOT/docs/$f" ]; then

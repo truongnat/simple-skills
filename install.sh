@@ -16,7 +16,7 @@ UNINSTALL_YES=false
 KEEP_SETTINGS=false
 PURGE_WORK=false
 PURGE_UNSELECTED=false
-CONFLICT_MODE="prompt"
+CONFLICT_MODE="${SIMPLE_SKILLS_CONFLICT_MODE:-prompt}"
 
 usage() {
   cat <<'EOF'
@@ -228,6 +228,33 @@ doctor_file() {
   return 1
 }
 
+# Resolve rules.agent_work.location from a settings.yaml (default .agent-work).
+# Mirrors tools/session/_work_settings.py and session.sh's work_dir_rel() so
+# install.sh, session.sh, and every tools/session/*.py tool agree.
+work_dir_location() {
+  local sf="$1"
+  local loc=".agent-work"
+  [ -f "$sf" ] || { printf '%s\n' "$loc"; return; }
+  local val
+  val="$(awk '
+    /^rules:[[:space:]]*$/ { in_rules=1; next }
+    in_rules && /^[^[:space:]]/ { in_rules=0 }
+    in_rules && /^  agent_work:[[:space:]]*$/ { in_aw=1; next }
+    in_aw && /^  [^[:space:]]/ { in_aw=0 }
+    in_aw && /^    location:/ {
+      v = $0
+      sub(/^    location:[[:space:]]*/, "", v)
+      gsub(/[[:space:]]+$/, "", v)
+      print v
+      exit
+    }
+  ' "$sf" 2>/dev/null)"
+  val="${val%\"}"; val="${val#\"}"
+  val="${val%\'}"; val="${val#\'}"
+  [ -n "$val" ] && loc="${val%/}"
+  printf '%s\n' "$loc"
+}
+
 cmd_doctor() {
   local ok=0
   printf 'DOCTOR project=%s\n' "$TARGET"
@@ -249,22 +276,28 @@ cmd_doctor() {
 
   doctor_file "root_AGENTS.md" "${TARGET}/AGENTS.md" || ok=1
 
-  if [ -f "${TARGET}/.gitignore" ] && grep -Fqx -- '.agent-work/' "${TARGET}/.gitignore"; then
+  local work_loc
+  work_loc="$(work_dir_location "${TARGET}/.agents/settings.yaml")"
+
+  if [ -f "${TARGET}/.gitignore" ] && grep -Fqx -- "${work_loc}/" "${TARGET}/.gitignore"; then
     printf 'gitignore_agent_work=yes\n'
   else
-    printf 'gitignore_agent_work=MISSING\n'
+    printf 'gitignore_agent_work=MISSING (%s/)\n' "$work_loc"
     ok=1
   fi
 
-  if [ -d "${TARGET}/.agent-work" ]; then
+  if [ -d "${TARGET}/${work_loc}" ]; then
     printf 'work_dir=yes\n'
-    if [ -d "${TARGET}/.agent-work/.git" ]; then
+    if [ -d "${TARGET}/${work_loc}/.git" ]; then
       printf 'work_nested_git=yes\n'
     else
       printf 'work_nested_git=no\n'
     fi
   else
     printf 'work_dir=(none yet)\n'
+  fi
+  if [ "$work_loc" != ".agent-work" ] && [ -d "${TARGET}/.agent-work" ]; then
+    printf 'orphaned_default_work_dir=yes — .agent-work/ exists but rules.agent_work.location=%s\n' "$work_loc"
   fi
 
   sess="${TARGET}/.agents/tools/session/session.sh"
@@ -309,6 +342,10 @@ cmd_uninstall() {
     fi
   fi
 
+  # Resolve before .agents/ is removed below, so a customized location is
+  # still honored for the --purge-work step and the closing message.
+  work_loc="$(work_dir_location "${TARGET}/.agents/settings.yaml")"
+
   settings_backup=""
   if [ "$KEEP_SETTINGS" = true ] && [ -f "${TARGET}/.agents/settings.yaml" ]; then
     settings_backup="$(mktemp)"
@@ -336,15 +373,15 @@ cmd_uninstall() {
   fi
 
   if [ "$PURGE_WORK" = true ]; then
-    if [ -d "${TARGET}/.agent-work" ]; then
-      echo "Removing ${TARGET}/.agent-work (--purge-work) ..."
-      rm -rf "${TARGET}/.agent-work"
+    if [ -d "${TARGET}/${work_loc}" ]; then
+      echo "Removing ${TARGET}/${work_loc} (--purge-work) ..."
+      rm -rf "${TARGET}/${work_loc}"
     fi
   else
-    echo "Keeping .agent-work/ (sessions/memory). Use --purge-work to delete."
+    echo "Keeping ${work_loc}/ (sessions/memory). Use --purge-work to delete."
   fi
 
-  echo "Uninstall complete. (.gitignore .agent-work/ entry left in place if present.)"
+  echo "Uninstall complete. (.gitignore ${work_loc}/ entry left in place if present.)"
 }
 
 cmd_install() {
@@ -512,19 +549,31 @@ cmd_install() {
     cp -R "${SOURCE}/docs/examples" "${TARGET}/.agents/examples"
   fi
 
+  # Settings must land before we compute the gitignore marker below, so a
+  # kept (already-customized) settings.yaml controls the Work dir name.
+  if [ -f "${TARGET}/.agents/settings.yaml" ]; then
+    echo "Keeping existing .agents/settings.yaml."
+  else
+    cp -f "${SOURCE}/docs/config/settings.yaml" "${TARGET}/.agents/settings.yaml"
+  fi
+
   ensure_agent_work_gitignore() {
     local gi="${TARGET}/.gitignore"
-    local marker=".agent-work/"
+    local marker
+    marker="$(work_dir_location "${TARGET}/.agents/settings.yaml")/"
     if [ -f "$gi" ] && grep -Fqx -- "$marker" "$gi"; then
-      echo "Keeping existing .gitignore entry for .agent-work/."
+      echo "Keeping existing .gitignore entry for ${marker}."
       return
     fi
     if [ -f "$gi" ]; then
       printf '\n# Simple Skills — Work layer (sessions + memory; nested git)\n%s\n' "$marker" >> "$gi"
-      echo "Appended .agent-work/ to existing .gitignore."
-    else
+      echo "Appended ${marker} to existing .gitignore."
+    elif [ "$marker" = ".agent-work/" ]; then
       cp -f "${SOURCE}/docs/config/gitignore.agent-work.snippet" "$gi"
       echo "Created .gitignore with .agent-work/ ignore rule."
+    else
+      printf '# Simple Skills — Work layer (sessions + memory; nested git)\n%s\n' "$marker" > "$gi"
+      echo "Created .gitignore with ${marker} ignore rule."
     fi
   }
   ensure_agent_work_gitignore
@@ -547,12 +596,6 @@ cmd_install() {
   mkdir -p "${TARGET}/.agents/tools/session"
   cp -f "${SOURCE}/docs/config/artifact-schemas.json" \
     "${TARGET}/.agents/tools/session/artifact-schemas.json"
-
-  if [ -f "${TARGET}/.agents/settings.yaml" ]; then
-    echo "Keeping existing .agents/settings.yaml."
-  else
-    cp -f "${SOURCE}/docs/config/settings.yaml" "${TARGET}/.agents/settings.yaml"
-  fi
 
   install_agents_file=true
   if [ -f "${TARGET}/AGENTS.md" ]; then

@@ -18,6 +18,8 @@ import re
 import sys
 from pathlib import Path
 
+from _work_settings import work_dir_name
+
 
 def find_agents_root(start: Path) -> Path:
     cur = start.resolve()
@@ -51,10 +53,11 @@ def resolve_session(root: Path, explicit: str | None) -> Path:
         if not path.is_dir():
             raise SystemExit(f"Session dir not found: {path}")
         return path
-    pointer = root / ".agent-work" / "sessions" / ".current"
+    work_dir = work_dir_name(root)
+    pointer = root / work_dir / "sessions" / ".current"
     if not pointer.is_file():
         raise SystemExit(
-            "No active session (.agent-work/sessions/.current). "
+            f"No active session ({work_dir}/sessions/.current). "
             "Pass --session or run session.sh new/set first."
         )
     rel = pointer.read_text(encoding="utf-8").splitlines()[0].strip()

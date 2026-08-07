@@ -58,8 +58,8 @@ include = [
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = [
+  ".",
   "src",
-  "tools",
   "skills/office-common/python",
   "skills/xlsx/scripts",
   "skills/docx/scripts",

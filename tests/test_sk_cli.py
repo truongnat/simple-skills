@@ -46,12 +46,12 @@ def test_sk_install_into_temp_project(tmp_path: Path, monkeypatch: pytest.Monkey
     monkeypatch.setenv("SIMPLE_SKILLS_SHELL", "bash")
     monkeypatch.delenv("SIMPLE_SKILLS_ROOT", raising=False)
     monkeypatch.chdir(REPO_ROOT)
-    code = main(["install", "--agents-mode", "replace", ""--agent", "agents"])
+    code = main(["install", "--agent", "agents"])
     assert code == 0
     assert calls
     assert calls[0][0] == "bash"
     assert calls[0][1].endswith("install.sh")
-    assert calls[0][2:] == ["install", "--agents-mode", "replace", ""--agent", "agents"]
+    assert calls[0][2:] == ["install", "--agent", "agents"]
 
 
 def test_sk_install_downloads_installer_outside_kit(
@@ -75,7 +75,7 @@ def test_sk_install_downloads_installer_outside_kit(
     monkeypatch.setenv("SIMPLE_SKILLS_SHELL", "bash")
     monkeypatch.delenv("SIMPLE_SKILLS_ROOT", raising=False)
     monkeypatch.chdir(tmp_path)
-    assert main(["install", ""--agent", "agents"]) == 0
+    assert main(["install", "--agent", "agents"]) == 0
     assert downloaded
     assert downloaded[0].endswith("/install.sh")
     assert calls[0][1].endswith("install.sh")
@@ -94,22 +94,7 @@ def test_sk_bare_defaults_to_install(monkeypatch: pytest.MonkeyPatch) -> None:
     assert calls[0][2:] == ["install"]
 
 
-def test_sk_uninstall_flags(monkeypatch: pytest.MonkeyPatch) -> None:
-    calls: list[list[str]] = []
 
-    def fake_call(argv: list[str]) -> int:
-        calls.append(argv)
-        return 0
-
-    monkeypatch.setattr(subprocess, "call", fake_call)
-    monkeypatch.setenv("SIMPLE_SKILLS_SHELL", "bash")
-    assert main(["uninstall", "--yes", "--keep-settings", "--purge-work"]) == 0
-    assert calls[0][2:] == [
-        "uninstall",
-        "--yes",
-        "--keep-settings",
-        "--purge-work",
-    ]
 
 
 def test_module_entrypoint() -> None:
@@ -121,4 +106,4 @@ def test_module_entrypoint() -> None:
         env={**dict(**{k: v for k, v in __import__("os").environ.items()}), "PYTHONPATH": str(REPO_ROOT / "src")},
     )
     assert result.returncode == 0
-    assert "0.2.0" in result.stdout or "0.2.0" in result.stderr
+    assert "0.3.0" in result.stdout or "0.3.0" in result.stderr

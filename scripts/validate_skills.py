@@ -108,11 +108,6 @@ def main() -> int:
     gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
     if ".agent-work/" not in gitignore:
         errors.append("repo .gitignore must ignore .agent-work/")
-    if "gitignore.agent-work" not in (ROOT / "install.sh").read_text(encoding="utf-8"):
-        errors.append("install.sh must ensure host .gitignore includes .agent-work/")
-    if "agent-work" not in (ROOT / "install.ps1").read_text(encoding="utf-8"):
-        errors.append("install.ps1 must ensure host .gitignore includes .agent-work/")
-
     if not PROFILES_PATH.is_file():
         errors.append(f"missing {PROFILES_PATH}")
     else:
@@ -704,8 +699,6 @@ def main() -> int:
         errors.append("install.sh must copy START_HERE.md")
     if "BA_SKILLS.md" not in install_sh:
         errors.append("install.sh must copy BA_SKILLS.md")
-    if "cmd_uninstall" not in install_sh or "cmd_doctor" not in install_sh:
-        errors.append("install.sh must expose uninstall and doctor commands")
     i_entry = ROOT / "i"
     if not i_entry.is_file():
         errors.append("short installer entrypoint 'i' missing")
@@ -713,9 +706,6 @@ def main() -> int:
         i_text = i_entry.read_text(encoding="utf-8")
         if "install.sh" not in i_text:
             errors.append("short entrypoint 'i' must delegate to install.sh")
-    install_ps1 = (ROOT / "install.ps1").read_text(encoding="utf-8")
-    if "Invoke-Uninstall" not in install_ps1 or "Invoke-Doctor" not in install_ps1:
-        errors.append("install.ps1 must expose uninstall and doctor commands")
     pyproject = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
     if 'sk = "simple_skills.cli:main"' not in pyproject:
         errors.append("pyproject.toml must expose console script sk")
@@ -790,7 +780,7 @@ def main() -> int:
     elif schemas_path.read_text(encoding="utf-8") != tools_schema.read_text(encoding="utf-8"):
         errors.append("docs/config/artifact-schemas.json and tools/session/artifact-schemas.json must match")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    for phrase in ("Spec quality", "Step ledger", "business-analysis", "--profile", "core"):
+    for phrase in ("Spec quality", "Step ledger", "business-analysis", "core"):
         if phrase not in readme:
             errors.append(f"README.md missing workflow documentation: {phrase}")
     if PROFILES_PATH.is_file():

@@ -46,12 +46,12 @@ def test_sk_install_into_temp_project(tmp_path: Path, monkeypatch: pytest.Monkey
     monkeypatch.setenv("SIMPLE_SKILLS_SHELL", "bash")
     monkeypatch.delenv("SIMPLE_SKILLS_ROOT", raising=False)
     monkeypatch.chdir(REPO_ROOT)
-    code = main(["install", "--agents-mode", "replace", "--profile", "core"])
+    code = main(["install", "--agents-mode", "replace", ""--agent", "agents"])
     assert code == 0
     assert calls
     assert calls[0][0] == "bash"
     assert calls[0][1].endswith("install.sh")
-    assert calls[0][2:] == ["install", "--agents-mode", "replace", "--profile", "core"]
+    assert calls[0][2:] == ["install", "--agents-mode", "replace", ""--agent", "agents"]
 
 
 def test_sk_install_downloads_installer_outside_kit(
@@ -75,7 +75,7 @@ def test_sk_install_downloads_installer_outside_kit(
     monkeypatch.setenv("SIMPLE_SKILLS_SHELL", "bash")
     monkeypatch.delenv("SIMPLE_SKILLS_ROOT", raising=False)
     monkeypatch.chdir(tmp_path)
-    assert main(["install", "--profile", "core"]) == 0
+    assert main(["install", ""--agent", "agents"]) == 0
     assert downloaded
     assert downloaded[0].endswith("/install.sh")
     assert calls[0][1].endswith("install.sh")

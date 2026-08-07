@@ -1,6 +1,6 @@
 [project]
 name = "simple-skills"
-version = "0.2.0"
+version = "0.3.0"
 description = "Simple Skills — agent kit installer (sk) and office skill tooling"
 readme = "README.md"
 requires-python = ">=3.11"

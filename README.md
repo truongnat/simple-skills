@@ -71,64 +71,51 @@ Perfect for teams who want AI assistance that actually ships.
 
 ## Install
 
-### Windows (one command, no prerequisites)
+The easiest way to install and manage Simple Skills across **all operating systems** (macOS, Linux, Windows) is using `pipx` or `uv`.
 
-Open PowerShell in your project folder and run:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -Command "(iwr -useb https://raw.githubusercontent.com/truongnat/simple-skills/main/install.ps1).Content | iex"
-```
-
-This downloads and installs everything into `.agents/` in your current directory. No Python, pip, or pipx required.
-
-### macOS / Linux (with pipx or uv)
-
+### 1. Install the global CLI tool
 ```bash
-# Install the CLI tool
 pipx install simple-skills
 # or: uv tool install simple-skills
+```
 
-# Install skills into your project
+### 2. Install skills into your project
+Navigate to your project directory and run:
+```bash
 cd your-project
 sk install
+```
+*(Note: Use `sk install --agent claude` to install into `.claude` instead of the default `.agents` directory).*
 
-# Verify installation
+### Available Commands
+```bash
+# Install everything (replaces existing directory)
+sk install
+
+# Update your skills from upstream (keeps your custom skills safe)
+sk update
+
+# Check if your project has all required configuration and docs
 sk doctor
 ```
 
-### From git (bleeding edge)
-
 <details>
-<summary><b>Show commands</b></summary>
+<summary><b>Fallback: Install without Python/pipx</b></summary>
 
+If you don't have Python or pipx, you can download and run the installer script directly:
+
+**macOS / Linux:**
 ```bash
-# Via pipx from git
-pipx install git+https://github.com/truongnat/simple-skills.git
-
-# Or via curl (Unix/macOS)
-curl -fsSL https://raw.githubusercontent.com/truongnat/simple-skills/main/i | bash
+curl -fsSL https://raw.githubusercontent.com/truongnat/simple-skills/main/install.sh -o install.sh
+bash install.sh install
 ```
 
+**Windows:**
+```powershell
+iwr -useb https://raw.githubusercontent.com/truongnat/simple-skills/main/install.ps1 -OutFile install.ps1
+.\install.ps1 install
+```
 </details>
-
-### Smart install behavior
-
-When skills already exist, the installer asks what to do:
-
-```
-Skill 'planning' already exists.
-[R]eplace / [S]kip / [C]opy to new name (planning1) / [A]bort?
-```
-
-Or use non-interactive mode:
-
-```bash
-sk install --conflict-mode replace    # Always overwrite
-sk install --conflict-mode skip       # Always keep existing
-sk install --conflict-mode rename     # Always create new names
-```
-
-Unselected skills are kept by default. Use `--purge-unselected` to remove them.
 
 ---
 
@@ -159,79 +146,25 @@ bash .agents/tools/session/session.sh status
 
 ---
 
-## Profiles
+## CLI reference
 
-Choose what fits your work:
-
-| Profile | Skills | What you get |
-| :-- | :--: | :-- |
-| **`core`** | 17 | Lifecycle skills + shared policy (default) |
-| **`office`** | 23 | Core + Office file handling (docx, xlsx, pdf, pptx) |
-| **`ba`** | 30 | Business analysis + specify + wireframe pack |
-| **`frontend`** | 29 | Frontend design + UI patterns + accessibility |
-| **`backend`** | 35 | Backend architecture + patterns + testing |
-| **`all`** | 66 | Everything |
-
-### Install a specific profile
+The `sk` CLI is beautifully simple:
 
 ```bash
-sk install --profile ba
-sk install --profile frontend
-sk install --profile all
+# Install everything into the default .agents folder
+sk install
+
+# Install for a specific agent provider (e.g. into .claude)
+sk install --agent claude
+
+# Update your skills from upstream (keeps your custom skills safe)
+sk update --agent claude
+
+# Check if your project has all required configuration and docs
+sk doctor --agent claude
 ```
 
-### What's in each profile?
-
-<details>
-<summary><b>Core (17 skills)</b></summary>
-
-```
-basic-design, brainstorming, business-analysis, detail-design, docs, 
-done, execution, init, investigate, planning, quick-fix, research, 
-review, review-pr, scaffold, sync, tester
-```
-
-</details>
-
-<details>
-<summary><b>Office (23 skills)</b></summary>
-
-Core skills + `docx`, `excel-doc-convert`, `office-common`, `pdf`, `pptx`, `xlsx`
-
-</details>
-
-<details>
-<summary><b>BA (30 skills)</b></summary>
-
-Core skills + `api-ba`, `ba-dashboard`, `ba-handoff`, `ba-integrate`, `ba-kg`, 
-`ba-test`, `biz-model`, `gap-analysis`, `reverse-doc`, `specify`, `story-spec`, 
-`user-flow`, `ux-wireframe`
-
-</details>
-
-<details>
-<summary><b>Frontend (29 skills)</b></summary>
-
-Core skills + `accessibility-compliance`, `design-system-patterns`, 
-`design-taste-frontend`, `expo-data-fetching`, `expo-native-ui`, 
-`frontend-design`, `high-end-visual-design`, `industrial-brutalist-ui`, 
-`minimalist-ui`, `redesign-existing-projects`, `visual-design-foundations`, 
-`web-component-design`
-
-</details>
-
-<details>
-<summary><b>Backend (35 skills)</b></summary>
-
-Core skills + `api-design-principles`, `architecture-decision-records`, 
-`architecture-patterns`, `auth-implementation-patterns`, `database-migration`, 
-`debugging-strategies`, `deployment-pipeline-design`, `distributed-tracing`, 
-`e2e-testing-patterns`, `github-actions-templates`, `hybrid-cloud-networking`, 
-`javascript-testing-patterns`, `microservices-patterns`, `nodejs-backend-patterns`, 
-`postgresql-table-design`, `sast-configuration`, `sql-optimization-patterns`, 
-`stride-analysis-patterns`
-
-</details>
+That's it. No complicated flags needed.
 
 ---
 
@@ -293,34 +226,7 @@ Full details: [docs/thinking/README.md](docs/thinking/README.md)
 
 ---
 
-## CLI reference
 
-```bash
-# Install skills (default: core profile)
-sk install
-
-# Install specific profile
-sk install --profile office
-
-# Non-interactive install
-sk install --conflict-mode replace --agents-mode skip
-
-# Check installation health
-sk doctor
-
-# Uninstall
-sk uninstall --yes
-
-# Keep settings after uninstall
-sk uninstall --keep-settings
-
-# Remove unselected skills during install
-sk install --purge-unselected
-```
-
-Environment variables: `SIMPLE_SKILLS_PROFILE`, `SIMPLE_SKILLS_CONFLICT_MODE`, `SIMPLE_SKILLS_AGENTS_MODE`
-
----
 
 ## HTML · Docs · Develop
 

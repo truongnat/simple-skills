@@ -16,46 +16,14 @@ artifacts:
         type: object
         required: true
         description: "Final status, verification summary, residual risks, next action."
-      charts:
-        type: array
-        required: false
-        description: "Mermaid delivery/verification chart when useful; otherwise N/A."
-      status:
-        type: string
-        required: true
-        description: "Done / Done with risks / Needs fix / Blocked / Partial."
-      summary:
-        type: string
-        required: true
-        description: "Outcome-focused summary (not file list)."
-      scope_completed:
+      completed_scope:
         type: array
         required: true
-        description: "Scope item, status, evidence."
-      what_changed:
-        type: array
-        required: true
-        description: "Area, change summary, reason."
-      files_changed:
-        type: array
-        required: true
-        description: "File path, summary."
+        description: "Item, status, evidence. Include what changed and file summary."
       verification:
         type: array
         required: true
-        description: "Check, command/method, result, evidence."
-      review_result:
-        type: string
-        required: false
-        description: "Findings and resolution, or 'No findings.'"
-      skipped_failed_checks:
-        type: array
-        required: false
-        description: "Check, status, reason, risk."
-      risks_followups:
-        type: array
-        required: false
-        description: "Item, type (risk/follow-up/blocker), impact, owner/next action."
+        description: "Check, command, result, evidence. Include skipped/failed checks with reason."
       handoff:
         type: string
         required: true

@@ -50,6 +50,11 @@ Vital few and 5W1H are fully specified in policy/preamble today (short methods).
 When a method needs staff-engineer detail, add a file here and link it from
 preamble + this index — do **not** invent a separate skill.
 
+## Config versioning
+
+[SemVer 2.0.0](./semver.md) — how `artifact-schemas.json` and
+`first-party-skills.json` are versioned and validated.
+
 **Evidence over confidence** = claim works/done/Ready only with recorded proof
 (test, screenshot, log, API, metrics, link, confirmed checklist) — no
 `EVIDENCE.md`. **Optimize bottleneck** = relieve the constraint stage

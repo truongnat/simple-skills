@@ -192,6 +192,48 @@ Every kept `### T-00x` card **FAILS** unless **all** hold:
 - [ ] Automated test tasks (if any) come after implement tasks for those surfaces.
 - [ ] Step ledger 03 = `done`.
 
+## Thinking Checkpoint (fill before marking step done)
+
+> This checkpoint makes thinking-method application **visible** at the card level.
+> Spot-check at least 3 cards (or all if ≤5 cards).
+
+### Small-batch Check (per card)
+
+| Card ID | One goal? | One output? | Independent verify? | Pass §B size? |
+|---------|-----------|-------------|---------------------|---------------|
+| _T-001_ | ☐ | ☐ | ☐ | ☐ |
+| _T-002_ | ☐ | ☐ | ☐ | ☐ |
+| _T-003_ | ☐ | ☐ | ☐ | ☐ |
+
+> If any card fails → split or rewrite before continuing.
+
+### Outcome-first Check (per card AC)
+
+| Card ID | AC is observable? | AC falsifiable by Verify? | Not activity-only? |
+|---------|-------------------|---------------------------|-------------------|
+| _T-001_ | ☐ | ☐ | ☐ |
+| _T-002_ | ☐ | ☐ | ☐ |
+
+> AC = "works" / "correct" / "per spec" → FAIL. Must state observable outcome.
+
+### Evidence Check (per card Verify)
+
+| Card ID | Verify names concrete check? | Can run now? | Not vague? |
+|---------|------------------------------|--------------|------------|
+| _T-001_ | ☐ | ☐ | ☐ |
+| _T-002_ | ☐ | ☐ | ☐ |
+
+> Verify = "manual QA" / "test later" / "as needed" → FAIL. Must name command/test/curl/UI path.
+
+### Default Path First Check (execution order)
+
+| Position | Card ID | Layer | Correct order? |
+|----------|---------|-------|----------------|
+| 1 | _T-001_ | L1/L2/L3/L4 | ☐ |
+| 2 | _T-002_ | L1/L2/L3/L4 | ☐ |
+
+> L1 happy path cards before L2 validation, L3 errors, L4 rare edges.
+
 ## Next
 
 Read and follow `./step-04-self-check.md`.

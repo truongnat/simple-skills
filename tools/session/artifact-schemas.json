@@ -1,7 +1,17 @@
 {
-  "version": 1,
-  "description": "Required Markdown/HTML section headings for session lifecycle artifacts. validate_artifacts.py enforces these when a file is present.",
+  "version": "2.0.0",
+  "description": "Required Markdown/HTML section headings for session lifecycle artifacts. validate_artifacts.py enforces these when a file is present. Follows SemVer 2.0.0 (https://semver.org/).",
   "artifacts": {
+    "QUICK": {
+      "required_headings": [
+        "Goal",
+        "Out of scope"
+      ],
+      "content_rules": {
+        "goal_not_activity": true,
+        "max_task_cards": 3
+      }
+    },
     "DISCUSSION": {
       "required_headings": [
         "Step ledger",
@@ -11,7 +21,10 @@
         "Spec quality review",
         "Goal",
         "Recommendation"
-      ]
+      ],
+      "content_rules": {
+        "goal_not_activity": true
+      }
     },
     "BUSINESS_ANALYSIS": {
       "required_headings": [
@@ -34,7 +47,11 @@
         "Approach",
         "Definition of done",
         "Handoff"
-      ]
+      ],
+      "content_rules": {
+        "goal_not_activity": true,
+        "dod_has_outcome": true
+      }
     },
     "TASKS": {
       "required_headings": [
@@ -42,25 +59,36 @@
         "Progress board",
         "Execution order",
         "Tasks"
-      ]
+      ],
+      "content_rules": {
+        "ac_not_activity": true,
+        "verify_falsifiable": true
+      }
     },
     "EXECUTION": {
       "required_headings": [
         "Executive summary",
-        "Developer overview"
+        "Developer overview",
+        "Execution log",
+        "Handoff"
       ]
     },
     "REVIEW": {
       "required_headings": [
         "Executive summary",
         "Developer overview",
-        "Recommendation"
+        "Findings",
+        "Recommendation",
+        "Handoff"
       ]
     },
     "DONE": {
       "required_headings": [
         "Executive summary",
-        "Developer overview"
+        "Developer overview",
+        "Completed scope",
+        "Verification",
+        "Handoff"
       ]
     },
     "SYNC": {

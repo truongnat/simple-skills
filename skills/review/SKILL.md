@@ -41,18 +41,11 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 #### `REVIEW.md`
 - Required: yes
-- **executive_summary** (required, array): Maximum five bullets with recommendation, top findings/risks, verification status, and next action.
-- **developer_overview** (required, object): Recommendation, finding counts by severity, verification gaps, next action.
-- **charts** (optional, array): Mermaid finding-severity or coverage chart when useful; otherwise N/A.
-- **scope_reviewed** (required, string): What changes were reviewed.
-- **inputs** (required, array): What was read: PLAN.md, TASKS.md, EXECUTION.md, diff, test results.
-- **findings** (optional, array): Finding ID, severity, category, location, evidence, impact, recommendation, confidence.
-- **requirement_coverage** (required, array): Requirement/task, covered by change? evidence, notes.
-- **verification_reviewed** (required, array): Check, result, evidence, concern.
-- **testing_gaps** (optional, array): Gap, risk, suggested follow-up.
-- **residual_risks** (optional, array): Risk, impact, acceptance/mitigation.
-- **recommendation** (required, string): Ready / Ready with risks / Needs fix / Blocked / Needs more verification.
-- **handoff** (required, string): Next action/skill, owner, and blocking status.
+- **Executive summary** (required): ≤5 bullets — recommendation, top findings/risks, verification status, next action.
+- **Developer overview** (required): Recommendation, finding counts by severity, verification gaps, next action.
+- **Findings** (required): Table — ID | Severity | Location | Evidence | Impact | Recommendation. Include requirement coverage and verification results here. Add testing gaps and residual risks as rows when present. Omit section entirely if no findings (state "No findings" in Executive summary instead).
+- **Recommendation** (required): Ready / Ready with risks / Needs fix / Blocked / Needs more verification.
+- **Handoff** (required): Next action/skill, owner, blocking status.
 
 
 ### Reference

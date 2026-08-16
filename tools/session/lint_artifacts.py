@@ -5,6 +5,12 @@ Usage:
   python tools/session/lint_artifacts.py
   python tools/session/lint_artifacts.py --session .agent-work/sessions/Task-1-x
   python .agents/tools/session/lint_artifacts.py
+
+Includes thinking-method anti-pattern detection:
+  - Activity-only Goals (Outcome-first violation)
+  - Weak ACs that cannot be falsified
+  - Mega-batch cards (Small-batch violation)
+  - Missing Dev context or Source cites
 """
 
 from __future__ import annotations
@@ -25,8 +31,100 @@ FILLER = re.compile(
     r")\b",
     re.I,
 )
-TODO_LEFT = re.compile(r"_\(TODO|_(\.\.\.|short title|name)_\)|_\(TODO", re.I)
+TODO_LEFT = re.compile(r"_\(TODO|_(\.\.\.|| short title|name)_\)|_\(TODO", re.I)
 SOURCE = re.compile(r"\[Source:\s*[^\]]+\]|No specific guidance found", re.I)
+
+# ---------------------------------------------------------------------------
+# Thinking-method anti-pattern patterns
+# ---------------------------------------------------------------------------
+
+# Activity-only Goal patterns (Outcome-first violation).
+# Detects Goals that start with effort verbs, not observable outcomes.
+ACTIVITY_GOAL_START = re.compile(
+    r"^##\s+Goal\s*\n+"
+    r"(?:(?!^##\s)[^\n]*\n)*?"  # do not cross next ## heading
+    r"^\s*(?:[-*]\s+)?"
+    r"(write|implement|refactor|fix|add|create|build|develop|integrate|"
+    r"set up|configure|design|update|modify|change|move|remove|delete)\b",
+    re.I | re.M,
+)
+
+# Weak AC patterns — cannot be falsified (Outcome-first / Small-batch violation).
+# Matches formats like:
+#   - **AC:** works.
+#   **AC:** works
+#   - AC: works.
+#   AC: works
+WEAK_AC = re.compile(
+    r"(?:^\s*-\s*\*\*AC:\*\*\s*|"  # - **AC:** 
+    r"^\s*\*\*AC:\*\*\s*|"  # **AC:** 
+    r"^\s*-\s*AC[:\s]+|"  # - AC: or - AC 
+    r"^\s*AC[:\s]+)"  # AC: or AC 
+    r"(works|correct|done|implemented|finished|complete|per spec|"
+    r"as designed|as expected|properly|correctly|good|fine|ok)\.?\s*$",
+    re.I | re.M,
+)
+
+# Vague Verify patterns — do not name concrete check.
+VAGUE_VERIFY = re.compile(
+    r"(?:^\s*\*\*Verify[:\*]\*?\s*|^-\s*\*\*Verify[:\*]\*?\s*|"
+    r"^Verify[:\s]+)"
+    r"(manual (?:qa|testing)|will test later|tbd|as needed|"
+    r"test when done|verify later|check manually|somehow)\.?\s*$",
+    re.I | re.M,
+)
+
+# Mega-batch indicators — multiple endpoints/screens in one card.
+MEGA_BATCH = re.compile(
+    r"^###\s+T-\d+[^\n]*\b"
+    r"(all (?:endpoints|screens|apis|routes|controllers)|"
+    r"entire (?:module|service|feature|page)|"
+    r"complete (?:CRUD|implementation|feature)|"
+    r"full (?:page|module|implementation|stack)|"
+    r"\d+ (?:endpoints|screens|apis|routes))\b",
+    re.I | re.M,
+)
+
+# Layer-only card titles — no named unit (Small-batch violation).
+LAYER_TITLE = re.compile(
+    r"^###\s+T-\d+[:\s]+"
+    r"(BE|FE|API|UI|DB|backend|frontend|database|service|controller)"
+    r"(?:\s+(?:search|form|page|list|detail|create|update|delete))?\s*$",
+    re.I | re.M,
+)
+
+# Process-only DoD — only PR/lint/merge milestones, no consumer outcome.
+PROCESS_DOD = re.compile(
+    r"^##\s+Definition of done\s*\n+"
+    r"(?:[^\n]*\n)*?"
+    r"(?:^\s*-\s*\[\s*\]\s*(?:PR|lint|review|merge|commit|CI|pipeline|deploy)\b.*\n)+"
+    r"(?!.*(?:test|verify|check|assert|returns|shows|200|201|400|401|endpoint|field|message))",
+    re.I | re.M,
+)
+
+# ---------------------------------------------------------------------------
+# Readability patterns
+# ---------------------------------------------------------------------------
+
+# Empty section: heading followed only by HTML comments, blank lines, or _(TODO)_
+EMPTY_SECTION = re.compile(
+    r"^##\s+(.+?)\s*\n+"
+    r"(?:"
+    r"\s*<!--[^>]*-->\s*\n|"  # HTML comments
+    r"\s*\n|"  # blank lines
+    r"\s*_\(TODO\)_?\s*\n|"  # _(TODO)_
+    r"\s*_…_\s*\n|"  # _…_
+    r"\s*[-*]\s+_(TODO|…)_\s*\n"  # - _(TODO)_
+    r")+"
+    r"(?=^##\s|\Z)",
+    re.M,
+)
+
+# Excessive file length threshold
+MAX_FILE_LINES = 300
+
+# Filler ratio: lines that are only filler / total non-blank lines
+FILLER_RATIO_THRESHOLD = 0.15  # 15% filler = warning
 
 # Translated template headings (must stay English for shared form).
 VI_HEADING = re.compile(
@@ -125,6 +223,7 @@ def lint_file(
     warnings: list[str],
     *,
     language: str = "en",
+    check_thinking: bool = True,
 ) -> None:
     text = path.read_text(encoding="utf-8")
     rel = path.name
@@ -150,6 +249,59 @@ def lint_file(
                 f"{rel}: language=vi but little Vietnamese prose "
                 f"(vi_chars={vi_hits}) — avoid English-only body"
             )
+    
+    # -----------------------------------------------------------------------
+    # Thinking-method anti-pattern detection
+    # -----------------------------------------------------------------------
+    if check_thinking:
+        # Outcome-first: activity-only Goal
+        if path.name in ("DISCUSSION.md", "PLAN.md", "QUICK.md"):
+            if ACTIVITY_GOAL_START.search(text):
+                errors.append(
+                    f"{rel}: Goal appears activity-only (Outcome-first violation). "
+                    f"Goal must state WHO + WHAT + EVIDENCE, not start with "
+                    f"'write/implement/refactor/fix/add/create/build...'"
+                )
+        
+        # Outcome-first: weak ACs
+        if path.name == "TASKS.md":
+            for m in WEAK_AC.finditer(text):
+                errors.append(
+                    f"{rel}: weak AC '{m.group(1)}' cannot be falsified "
+                    f"(Outcome-first violation). AC must state observable outcome."
+                )
+            
+            # Evidence: vague Verify
+            for m in VAGUE_VERIFY.finditer(text):
+                errors.append(
+                    f"{rel}: vague Verify '{m.group(1)}' does not name concrete check "
+                    f"(Evidence-over-confidence violation). Verify must name "
+                    f"command/test/curl/UI path."
+                )
+            
+            # Small-batch: mega-batch cards
+            for m in MEGA_BATCH.finditer(text):
+                errors.append(
+                    f"{rel}: mega-batch indicator '{m.group(1)}' in card title "
+                    f"(Small-batch violation). Split into smaller cards."
+                )
+            
+            # Small-batch: layer-only titles
+            for m in LAYER_TITLE.finditer(text):
+                warnings.append(
+                    f"{rel}: layer-only card title '{m.group(0).strip()}' "
+                    f"(Small-batch warning). Prefer naming concrete unit "
+                    f"(endpoint, screen id, control IDs)."
+                )
+        
+        # Outcome-first: process-only DoD
+        if path.name == "PLAN.md":
+            if PROCESS_DOD.search(text):
+                errors.append(
+                    f"{rel}: Definition of done has only process milestones "
+                    f"(Outcome-first violation). DoD needs >=1 consumer/contract outcome."
+                )
+    
     if path.name == "TASKS.md":
         cards = list(re.finditer(r"^###\s+T-\d+", text, re.M))
         if cards and "#### Dev context" not in text:
@@ -171,10 +323,30 @@ def lint_file(
     if path.name in {"BUSINESS_ANALYSIS.md", "BASIC_DESIGN.md", "DETAIL_DESIGN.md"}:
         # checked at session level for Quick
         pass
-    # Soft: huge files
+    # -----------------------------------------------------------------------
+    # Readability checks
+    # -----------------------------------------------------------------------
     lines = text.count("\n") + 1
-    if lines > 400 and path.name.endswith(".md"):
-        warnings.append(f"{rel}: very long ({lines} lines) — consider cutting")
+    # Excessive file length
+    if lines > MAX_FILE_LINES and path.name.endswith(".md"):
+        warnings.append(f"{rel}: very long ({lines} lines, max {MAX_FILE_LINES}) — cut empty sections")
+    # Empty sections (heading + only comments/blanks/TODO)
+    for m in EMPTY_SECTION.finditer(text):
+        heading_name = m.group(1).strip()
+        warnings.append(
+            f"{rel}: empty section '## {heading_name}' — "
+            f"delete if not needed, or fill with real content"
+        )
+    # Filler ratio
+    non_blank = [ln for ln in text.splitlines() if ln.strip()]
+    if non_blank:
+        filler_hits = len(FILLER.findall(text))
+        ratio = filler_hits / len(non_blank)
+        if ratio > FILLER_RATIO_THRESHOLD:
+            warnings.append(
+                f"{rel}: high filler ratio ({filler_hits} phrases / "
+                f"{len(non_blank)} lines = {ratio:.0%}) — rewrite with concrete content"
+            )
 
 
 def main() -> int:
@@ -182,12 +354,18 @@ def main() -> int:
     parser.add_argument("--session", help="Session dir (default: .current)")
     parser.add_argument("--root", type=Path, default=None)
     parser.add_argument("--strict", action="store_true", help="Treat warnings as errors")
+    parser.add_argument(
+        "--no-thinking",
+        action="store_true",
+        help="Skip thinking-method anti-pattern detection",
+    )
     args = parser.parse_args()
     root = args.root.resolve() if args.root else find_root(Path.cwd())
     session = resolve_session(root, args.session)
     language = read_language(root)
     errors: list[str] = []
     warnings: list[str] = []
+    check_thinking = not args.no_thinking
 
     quick = path_is_quick(session)
     if quick:
@@ -204,7 +382,7 @@ def main() -> int:
     for path in sorted(session.glob("*.md")):
         if path.name.startswith("."):
             continue
-        lint_file(path, errors, warnings, language=language)
+        lint_file(path, errors, warnings, language=language, check_thinking=check_thinking)
 
     if not list(session.glob("*.md")):
         print(f"SESSION_LINT_EMPTY session={session}")

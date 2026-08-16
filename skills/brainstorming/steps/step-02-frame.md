@@ -94,7 +94,7 @@ Record each question and answer in `Clarification checkpoint`.
 - [ ] Goal is one clear sentence that passes Outcome-first three-axis
       (WHO + WHAT + EVIDENCE) — not activity-only.
 - [ ] Desired outcome lists observable consumer behaviors (not a task backlog).
-- [ ] At least one confirmed fact **or** explicit “no facts yet” with unknowns listed.
+- [ ] At least one confirmed fact **or** explicit "no facts yet" with unknowns listed.
 - [ ] Assumptions and unknowns are not labeled as facts.
 - [ ] Blocking Unknowns/Issues have Owner; dual-interpretation driving sentences
       are triaged or Confirm-first answered (Make-implicit-explicit).
@@ -104,11 +104,43 @@ Record each question and answer in `Clarification checkpoint`.
       Recommendation proceeds (Reversible decisions).
 - [ ] Every material issue has severity/clarity/blocking/visual classification.
 - [ ] Spec quality review has Feasibility + Correctness verdicts and ≥1 capability
-      gap row (or explicit “no material gaps”).
+      gap row (or explicit "no material gaps").
 - [ ] No unresolved Critical or blocking item remains before moving on.
 - [ ] Step ledger 02 = `done` or `blocked` (with questions asked).
 - [ ] No leftover `_(TODO)_` on Goal / Desired outcome / Spec quality verdicts
       (unless blocked — then note blocker).
+
+## Thinking Checkpoint (fill before marking step done)
+
+> This checkpoint makes thinking-method application **visible**. Fill each row.
+> If a row fails, STOP and fix before proceeding.
+
+### Outcome-first Check
+
+| Check | Value | Pass? |
+|-------|-------|-------|
+| **WHO** (consumer of the outcome) | _e.g., FE order form, API caller, operator on screen X_ | ☐ |
+| **WHAT** (observable change) | _e.g., shows field errors, returns 201 + id_ | ☐ |
+| **EVIDENCE** (how to verify) | _e.g., contract test, UI check, curl command_ | ☐ |
+| Goal is **outcome** (not activity) | _"FE can POST /orders and see errors" ✓ vs "Write order API" ✗_ | ☐ |
+
+### Make-implicit-explicit Check
+
+| Classification | Count | Blocking items have Owner? |
+|----------------|-------|---------------------------|
+| Facts (sourced) | _N_ | N/A |
+| Assumptions (unconfirmed) | _N_ | ☐ High-impact confirmed or Owner assigned |
+| Unknowns | _N_ | ☐ All Blocking unknowns have Owner |
+| Business rules | _N_ | ☐ All rules cited or queued as Assumption |
+
+### Feedback Loop Check
+
+| Blocking item | Modality chosen | Signal scheduled? |
+|---------------|-----------------|-------------------|
+| _item 1_ | Example / See / Run / Spike / Ask | ☐ |
+| _item 2_ | Example / See / Run / Spike / Ask | ☐ |
+
+> If any Blocking item has no modality → STOP, schedule signal before continuing.
 
 ## Next
 

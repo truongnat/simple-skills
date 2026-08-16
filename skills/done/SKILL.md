@@ -34,19 +34,11 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 #### `DONE.md`
 - Required: yes
-- **executive_summary** (required, array): Maximum five bullets with final status, delivered value, verification, residual risk, and next action.
-- **developer_overview** (required, object): Final status, verification summary, residual risks, next action.
-- **charts** (optional, array): Mermaid delivery/verification chart when useful; otherwise N/A.
-- **status** (required, string): Done / Done with risks / Needs fix / Blocked / Partial.
-- **summary** (required, string): Outcome-focused summary (not file list).
-- **scope_completed** (required, array): Scope item, status, evidence.
-- **what_changed** (required, array): Area, change summary, reason.
-- **files_changed** (required, array): File path, summary.
-- **verification** (required, array): Check, command/method, result, evidence.
-- **review_result** (optional, string): Findings and resolution, or 'No findings.'
-- **skipped_failed_checks** (optional, array): Check, status, reason, risk.
-- **risks_followups** (optional, array): Item, type (risk/follow-up/blocker), impact, owner/next action.
-- **handoff** (required, string): Next step, reviewer focus, QA focus, deployment notes.
+- **Executive summary** (required): ≤5 bullets — final status, delivered value, verification, residual risk, next action.
+- **Developer overview** (required): Final status, verification summary, residual risks, next action.
+- **Completed scope** (required): Table — Item | Status | Evidence. Include what changed and file summary here.
+- **Verification** (required): Table — Check | Command | Result | Evidence. Include skipped/failed checks with reason.
+- **Handoff** (required): Next step, reviewer focus, QA focus, deployment notes.
 
 
 #### Docs wiki sync (per `rules.docs`)

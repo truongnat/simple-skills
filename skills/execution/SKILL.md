@@ -44,22 +44,11 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 #### `EXECUTION.md`
 - Required: yes
-- **executive_summary** (required, array): Maximum five bullets with outcome, progress, verification, blocker/risk, and next action.
-- **developer_overview** (required, object): Status, current task, done/total, blockers, next action.
-- **charts** (optional, array): Mermaid progress/flow chart when useful; otherwise N/A.
-- **plan_source** (required, string): Reference to PLAN.md and TASKS.md (or clear scope source).
-- **current_task** (required, string): Task ID from TASKS.md currently being executed.
-- **scope** (required, string): Scope this execution covers.
-- **execution_log** (required, array): Step, Task ID, Action, Files, Result, Notes per step.
-- **tasks_progress** (required, array): Task ID, Status, Work items done/total, notes (mirror of TASKS.md at handoff).
-- **files_changed** (required, array): File path, change summary, reason, in-plan? (yes/deviation).
-- **commands_run** (required, array): Command, purpose, result (pass/fail/skipped), notes.
-- **verification_evidence** (required, array): Check name, command/method, result, evidence.
-- **deviations** (optional, array): Deviation, reason, risk, follow-up.
-- **issues_blockers** (optional, array): Issue, type, impact, next action.
-- **rollback_notes** (required, string): How to roll back this execution.
-- **final_status** (required, string): Completed / Partially completed / Blocked.
-- **handoff** (required, string): Ready for review? Suggested focus area. List remaining `todo`/`in_progress`/`blocked` IDs.
+- **Executive summary** (required): ≤5 bullets — outcome, progress, verification, blocker/risk, next action.
+- **Developer overview** (required): Status table — current task, done/total, blockers, next action.
+- **Execution log** (required): Step | Task ID | Action | Files | Result | Notes.
+- **Deviations & blockers** (optional): What diverged from plan, why, risk. Omit if none.
+- **Handoff** (required): Ready for review? Suggested focus area. Remaining task IDs.
 
 
 ### Reference

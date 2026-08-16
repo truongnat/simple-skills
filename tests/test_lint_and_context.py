@@ -19,8 +19,9 @@ def _session(tmp_path: Path) -> Path:
 
 def test_lint_ok_on_quick_tasks(tmp_path: Path) -> None:
     session = _session(tmp_path)
+    # Goal must be outcome-based (not activity-only) per Outcome-first thinking method
     (session / "QUICK.md").write_text(
-        "## Developer overview\n| Path | `Quick` |\n\n## Goal\nFix null.\n",
+        "## Developer overview\n| Path | `Quick` |\n\n## Goal\nparseDate(\"\") returns null instead of throwing.\n",
         encoding="utf-8",
     )
     (session / "TASKS.md").write_text(

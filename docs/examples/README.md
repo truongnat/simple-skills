@@ -31,18 +31,16 @@ non-empty parsing unchanged (proven by unit tests).
 
 ```markdown
 ### T-001: Guard empty string in parseDate
-- Trace: user report + `src/utils/date.ts`
+- Status: todo
 - Work items:
   - [ ] 1. Return null when `!value.trim()`
   - [ ] 2. Add unit case empty string
 - AC: `parseDate("") === null`; existing dates unchanged
 - Verify: `pnpm test -- date`
-- Files/scope: `src/utils/date.ts` (known)
+- Files/scope: `src/utils/date.ts`
 #### Dev context
 - **Reuse:** existing `parseDate` `[Source: src/utils/date.ts]`
-- **Contracts / data:** input string → Date|null `[Source: src/utils/date.ts]`
-- **Constraints:** No specific guidance found.
-- **Guardrails:** do not change timezone helpers
+- **Constraints:** do not change timezone helpers
 - **Gaps:** none
 ```
 

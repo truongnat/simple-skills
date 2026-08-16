@@ -105,12 +105,61 @@ questions at a time.
 - [ ] Required PLAN sections filled (or explicitly blocked with open questions).
 - [ ] Goal passes Outcome-first three-axis; DoD has ≥1 falsifiable consumer/contract outcome.
 - [ ] Approach phases each name a checkable Output slice (IPO Process ↔ Goal).
-- [ ] Approach is small-batch shaped (no single “implement everything” phase).
+- [ ] Approach is small-batch shaped (no single "implement everything" phase).
 - [ ] Spec quality review filled; blocking Fail/Unknown/gaps asked or deferred with evidence.
 - [ ] No full task cards inside PLAN.md.
 - [ ] Scope lists separable deliverables an inventory can explode in step-03.
 - [ ] Decision gate has no unresolved Critical/blocking/visual decision.
 - [ ] Step ledger 02 = `done` or `blocked`.
+
+## Thinking Checkpoint (fill before marking step done)
+
+> This checkpoint makes thinking-method application **visible**. Fill each row.
+> If a row fails, STOP and fix before proceeding.
+
+### Outcome-first Check
+
+| Check | Value | Pass? |
+|-------|-------|-------|
+| **WHO** (consumer of the outcome) | _e.g., FE order form, API caller_ | ☐ |
+| **WHAT** (observable change) | _e.g., returns 201 + id, shows errors_ | ☐ |
+| **EVIDENCE** (how to verify) | _e.g., contract test for 201/400/401_ | ☐ |
+| Goal is **outcome** (not activity) | _outcome ✓ vs "implement X" ✗_ | ☐ |
+| DoD has ≥1 **consumer/contract** outcome | _not only PR/lint/merge_ | ☐ |
+
+### IPO Check (Input → Process → Output)
+
+| Part | Sufficient? | Evidence |
+|------|-------------|----------|
+| **Input** (facts/constraints cited) | ☐ | Blocking gaps resolved or Owner assigned |
+| **Process** (Approach phases) | ☐ | Each phase has checkable deliverable |
+| **Output** (Goal/DoD) | ☐ | Passes Outcome-first three-axis |
+
+### Small-batch Check
+
+| Check | Value | Pass? |
+|-------|-------|-------|
+| Approach has **no mega-phase** | _"implement everything" ✗_ | ☐ |
+| Each phase **independently verifiable** | _can check phase 1 before phase 2_ | ☐ |
+| Scope lists **separable deliverables** | _count matches expected inventory_ | ☐ |
+
+### Default Path First Check
+
+| Layer | In Approach? | Order correct? |
+|-------|--------------|----------------|
+| L1 Happy path | ☐ | First |
+| L2 Validation | ☐ | After L1 |
+| L3 Error handling | ☐ | After L2 |
+| L4 Rare edges | ☐ | Last (or Non-goals) |
+
+### Reversible Decisions Check
+
+| Decision | Class (R/H/U) | Ceremony applied? |
+|----------|---------------|-------------------|
+| _decision 1_ | R / H / U | ☐ |
+| _decision 2_ | R / H / U | ☐ |
+
+> Type H decisions need options + Spike/ADR before Ready.
 
 ## Next
 

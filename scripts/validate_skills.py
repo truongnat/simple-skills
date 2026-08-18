@@ -51,8 +51,96 @@ def contract_has_fields(text: str, fields: list[str]) -> list[str]:
     return missing
 
 
+# --- aix-style frontmatter schema (vendored skills) -------------------------
+SKILL_KINDS = {"process", "domain", "reference"}
+PROVIDERS = {"claude", "cursor", "codex", "gemini"}
+SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
+ALIAS_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
+
+
+def _frontmatter_value(metadata: str, key: str) -> str | None:
+    """Extract a simple scalar/list YAML value for a frontmatter key (regex-only).
+
+    Handles inline scalars (`x-version: 0.1.0`), inline lists
+    (`x-compatible: [a, b]`), and block-style lists:
+
+        x-compatible:
+          - claude
+          - cursor
+    """
+    m = re.search(rf"^{key}:[ \t]*(.*)$", metadata, re.MULTILINE)
+    if not m:
+        return None
+    first = m.group(1).strip()
+    if first:
+        return first
+    # Block-style list: collect following indented "- item" lines.
+    items: list[str] = []
+    for line in metadata[m.end() :].splitlines():
+        if not line.strip():
+            continue
+        if re.match(r"^\s+-\s+", line):
+            items.append(line.strip()[2:].strip())
+        else:
+            break
+    return "[" + ", ".join(items) + "]" if items else None
+
+
+def _split_list(value: str) -> list[str]:
+    """Parse `[a, b, c]` or `a, b, c` or `[]` into a list of stripped tokens."""
+    value = value.strip()
+    if value.startswith("[") and value.endswith("]"):
+        value = value[1:-1]
+    return [v.strip() for v in value.split(",") if v.strip()]
+
+
+def validate_x_schema(
+    name: str, metadata: str, errors: list[str], aliases: dict[str, str]
+) -> None:
+    """Validate aix-style x-* frontmatter keys and alias uniqueness."""
+    kind = _frontmatter_value(metadata, "x-kind")
+    if kind is not None:
+        if kind not in SKILL_KINDS:
+            errors.append(f"{name}: x-kind must be one of {sorted(SKILL_KINDS)}, got {kind!r}")
+
+    version = _frontmatter_value(metadata, "x-version")
+    if version is not None and not SEMVER_RE.match(version):
+        errors.append(f"{name}: x-version must be semver (e.g. 1.2.3), got {version!r}")
+
+    tags = _frontmatter_value(metadata, "x-tags")
+    if tags is not None and not isinstance(tags, str):
+        errors.append(f"{name}: x-tags must be a list")
+    elif tags is not None:
+        for tag in _split_list(tags):
+            if not ALIAS_RE.match(tag):
+                errors.append(f"{name}: x-tags entry {tag!r} must be lowercase-hyphen")
+
+    compatible = _frontmatter_value(metadata, "x-compatible")
+    if compatible is not None:
+        for prov in _split_list(compatible):
+            if prov not in PROVIDERS:
+                errors.append(
+                    f"{name}: x-compatible {prov!r} not in {sorted(PROVIDERS)}"
+                )
+
+    alias_val = _frontmatter_value(metadata, "aliases")
+    if alias_val is not None:
+        for alias in _split_list(alias_val):
+            if not ALIAS_RE.match(alias):
+                errors.append(f"{name}: alias {alias!r} must be lowercase-hyphen")
+            if alias == name:
+                errors.append(f"{name}: alias must not equal the skill name")
+            if alias in aliases:
+                errors.append(
+                    f"{name}: alias {alias!r} already used by {aliases[alias]}"
+                )
+            else:
+                aliases[alias] = name
+
+
 def main() -> int:
     errors: list[str] = []
+    aliases: dict[str, str] = {}
     if not MANIFEST_PATH.is_file():
         print("SKILL_VALIDATION_FAILED")
         print(f"- missing {MANIFEST_PATH}")
@@ -142,6 +230,7 @@ def main() -> int:
                 errors.append(f"{name}: frontmatter name must match directory")
             if not re.search(r"^description:\s*\S+", metadata, re.MULTILINE):
                 errors.append(f"{name}: missing description")
+            validate_x_schema(name, metadata, errors, aliases)
 
         yaml_path = skill_dir / "agents" / "openai.yaml"
         if name in first_party:

@@ -31,7 +31,18 @@ def test_ba_profile_includes_consolidated_skills() -> None:
     assert "ba" in profiles["profiles"]
     ba = profiles["profiles"]["ba"]
     assert ba.get("includes") == ["core"]
-    assert set(ba["skills"]) == set(BA_SKILLS)
+    # The 13 consolidated ss BA skills must always be present.
+    assert set(BA_SKILLS) <= set(ba["skills"])
+    # aix analysis/BA skills were merged into the profile too.
+    for aix_skill in (
+        "accounting-pro",
+        "data-analysis-pro",
+        "financial-analysis-pro",
+        "product-management-pro",
+        "to-prd-pro",
+        "web-research-pro",
+    ):
+        assert aix_skill in ba["skills"]
 
 
 def test_ba_skills_registered_and_have_contract() -> None:

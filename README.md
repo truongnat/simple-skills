@@ -33,9 +33,10 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/CLI-sk-10a37f?style=for-the-badge&labelColor=0d0d0d" alt="CLI">
-  <img src="https://img.shields.io/badge/skills-66%20skills-e7f6f1?style=for-the-badge&labelColor=0d0d0d&color=0f766e" alt="Skills">
+  <img src="https://img.shields.io/badge/skills-222%20skills-e7f6f1?style=for-the-badge&labelColor=0d0d0d&color=0f766e" alt="Skills">
   <img src="https://img.shields.io/badge/profiles-5%20profiles-f7f7f8?style=for-the-badge&labelColor=0d0d0d&color=10a37f" alt="Profiles">
   <img src="https://img.shields.io/badge/thinking-12%20methods-e7f6f1?style=for-the-badge&labelColor=0d0d0d&color=0f766e" alt="Thinking">
+  <img src="https://img.shields.io/badge/vendored-aix%20156%20skills-10a37f?style=for-the-badge&labelColor=0d0d0d&color=0f766e" alt="Vendored">
 </p>
 
 <p align="center">
@@ -59,7 +60,7 @@
 
 **Simple Skills** is an agent kit that gives AI coding assistants structured workflows for real work. Instead of vague prompts, you get:
 
-- **66 skills** across 5 profiles (core, office, BA, frontend, backend)
+- **222 skills** across 5 profiles (core, office, BA, frontend, backend) — 66 first-party lifecycle/office skills + 156 vendored AI-engineering skills (from [aix](https://github.com/truongnat/aix), Zod-validated frontmatter with `x-*` schema + aliases)
 - **12 thinking methods** for better decision-making
 - **Session management** with automatic git integration
 - **Artifact validation** to ensure quality

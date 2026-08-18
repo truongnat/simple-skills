@@ -63,4 +63,5 @@ Full normative text lives under `thinking/` (progressive disclosure).
 | `docs/conventions/THIRD_PARTY_SKILLS.md` | `.agents/THIRD_PARTY_SKILLS.md` |
 | `docs/config/settings.yaml` | `.agents/settings.yaml` (merge on install) |
 | `docs/config/artifact-schemas.json` | `.agents/tools/session/artifact-schemas.json` |
+| `catalog.json` (repo root, built by `scripts/build_catalog.py`) | `.agents/catalog.json` (init reads it to fit skills to the project) |
 | `docs/examples/` | `.agents/examples/` |

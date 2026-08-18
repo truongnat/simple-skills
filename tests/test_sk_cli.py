@@ -98,6 +98,52 @@ def test_sk_bare_defaults_to_install(monkeypatch: pytest.MonkeyPatch) -> None:
 
 
 
+def test_sk_compile_runs_provider_compiler(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    calls: list[list[str]] = []
+
+    def fake_call(argv: list[str]) -> int:
+        calls.append(argv)
+        return 0
+
+    monkeypatch.setattr(subprocess, "call", fake_call)
+    skills = tmp_path / "skills"
+    skills.mkdir()
+    (skills / "demo-pro").mkdir()
+    (skills / "demo-pro" / "SKILL.md").write_text(
+        "---\nname: demo-pro\ndescription: Demo\n---\n\nBody\n", encoding="utf-8"
+    )
+    assert main(["compile", "--provider", "claude", "--agent", "agents",
+                 "--skills-root", str(skills), "--target", str(tmp_path)]) == 0
+    assert calls, "compiler should have been invoked"
+    assert "--provider" in calls[0]
+    assert "claude" in calls[0]
+
+
+def test_sk_install_with_provider_runs_compile_after(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    calls: list[list[str]] = []
+
+    def fake_call(argv: list[str]) -> int:
+        calls.append(argv)
+        return 0
+
+    monkeypatch.setattr(subprocess, "call", fake_call)
+    monkeypatch.setenv("SIMPLE_SKILLS_SHELL", "bash")
+    monkeypatch.delenv("SIMPLE_SKILLS_ROOT", raising=False)
+    monkeypatch.chdir(tmp_path)
+    # Simulate the installer having written .agents/skills/ so the compile step
+    # finds a skills root.
+    (tmp_path / ".agents" / "skills").mkdir(parents=True)
+    (tmp_path / ".agents" / "skills" / "demo-pro").mkdir()
+    (tmp_path / ".agents" / "skills" / "demo-pro" / "SKILL.md").write_text(
+        "---\nname: demo-pro\ndescription: Demo\n---\n\nBody\n", encoding="utf-8"
+    )
+    assert main(["install", "--agent", "agents", "--provider", "cursor"]) == 0
+    # First call: installer. Second call: provider compile.
+    assert len(calls) == 2
+    assert "compile.py" in calls[1][0] or "compile.py" in str(calls[1])
+    assert "--provider" in calls[1] and "cursor" in calls[1]
+
+
 def test_module_entrypoint() -> None:
     result = subprocess.run(
         [sys.executable, "-m", "simple_skills", "--version"],

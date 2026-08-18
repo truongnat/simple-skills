@@ -270,7 +270,7 @@ cmd_install() {
     fetch_source
   fi
 
-  echo -e "${CYAN}▶ Installing skills into ${GREEN}${AGENT_DIR}${NC} ..."
+  echo -e "${CYAN}▶ Installing minimal kit into ${GREEN}${AGENT_DIR}${NC} ..."
 
   if [ -d "${TARGET}/${AGENT_DIR}" ]; then
     echo -e "${YELLOW}  ↺ Cleaning old directory...${NC}"
@@ -278,22 +278,15 @@ cmd_install() {
   fi
   mkdir -p "${TARGET}/${AGENT_DIR}/skills"
 
-  for skill_path in "${SOURCE}"/skills/*/; do
-    [ -d "$skill_path" ] || continue
-    skill="$(basename "$skill_path")"
-    skill_dest="${TARGET}/${AGENT_DIR}/skills/${skill}"
-    
-    mkdir -p "$skill_dest"
-    shopt -s dotglob nullglob
-    for item in "${skill_path}"/*; do
-      [ "$(basename "$item")" = ".venv" ] && continue
-      cp -R "$item" "${skill_dest}/"
-    done
-    shopt -u dotglob nullglob
-  done
+  # Minimal install: ONLY the init skill ships. init scans the project, asks
+  # the provider + build-fit questions, then fetches the right skills from the
+  # GitHub catalog (catalog.json) on demand.
+  copy_skill_dir "${SOURCE}/skills/init" "${TARGET}/${AGENT_DIR}/skills/init"
+  copy_catalog
 
   copy_docs_and_tools
-  echo -e "${GREEN}✨ Installation complete.${NC}"
+  echo -e "${GREEN}✨ Minimal install complete.${NC}"
+  echo -e "${CYAN}  Next: run the ${GREEN}init${NC} skill to detect the project and build the skill set."
 }
 
 cmd_update() {
@@ -303,36 +296,39 @@ cmd_update() {
     fetch_source
   fi
 
-  echo -e "${CYAN}▶ Updating own skills in ${GREEN}${AGENT_DIR}${NC} ..."
+  echo -e "${CYAN}▶ Updating kit in ${GREEN}${AGENT_DIR}${NC} ..."
 
   mkdir -p "${TARGET}/${AGENT_DIR}/skills"
 
-  for skill_path in "${SOURCE}"/skills/*/; do
-    [ -d "$skill_path" ] || continue
-    skill="$(basename "$skill_path")"
-    skill_dest="${TARGET}/${AGENT_DIR}/skills/${skill}"
-    
-    # Update with force
-    if [ -d "$skill_dest" ]; then
-      shopt -s dotglob nullglob
-      for item in "${skill_dest}"/*; do
-        [ "$(basename "$item")" = ".venv" ] && continue
-        rm -rf "$item"
-      done
-      shopt -u dotglob nullglob
-    fi
-    
-    mkdir -p "$skill_dest"
-    shopt -s dotglob nullglob
-    for item in "${skill_path}"/*; do
-      [ "$(basename "$item")" = ".venv" ] && continue
-      cp -R "$item" "${skill_dest}/"
-    done
-    shopt -u dotglob nullglob
-  done
+  # Refresh the init skill + catalog + tools/docs. Leave user-added skills and
+  # build-fit results intact (init re-runs to refresh them).
+  if [ -d "${TARGET}/${AGENT_DIR}/skills/init" ]; then
+    rm -rf "${TARGET}/${AGENT_DIR}/skills/init"
+  fi
+  copy_skill_dir "${SOURCE}/skills/init" "${TARGET}/${AGENT_DIR}/skills/init"
+  copy_catalog
 
   copy_docs_and_tools
   echo -e "${GREEN}✨ Update complete.${NC}"
+}
+
+copy_skill_dir() {
+  local src="$1" dst="$2"
+  mkdir -p "$dst"
+  shopt -s dotglob nullglob
+  for item in "${src}"/*; do
+    [ "$(basename "$item")" = ".venv" ] && continue
+    cp -R "$item" "${dst}/"
+  done
+  shopt -u dotglob nullglob
+}
+
+copy_catalog() {
+  # catalog.json: machine-readable skill index (built by scripts/build_catalog.py).
+  # init fetches the skills it needs from the raw URLs inside it.
+  if [ -f "${SOURCE}/catalog.json" ]; then
+    cp -f "${SOURCE}/catalog.json" "${TARGET}/${AGENT_DIR}/catalog.json"
+  fi
 }
 
 case "$COMMAND" in

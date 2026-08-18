@@ -106,10 +106,12 @@ auto-fill these values silently — the user must confirm or choose.
 | 4 | `rules.reports.output_format` — report format | `choice`: `markdown` / `html` | `markdown` |
 | 5 | `rules.docs.enabled` — enable wiki/docs skill | `confirm` (Yes/No) | `true` |
 | 6 | `rules.code.comments.prose_language` — code comment language | `choice`: `repo-default` / `en` / `vi` | `repo-default` |
+| 7 | `rules.agents.providers` — which AI provider(s) you work on | `choice` multi: `claude` / `cursor` / `codex` / `gemini` (comma-separated; empty = none forced) | existing value, else `claude` |
+| 8 | `rules.agents.enforce_one` — use ONE shared skill set across providers | `confirm` (Yes/No) | `false` |
 
 ### Dialog rules
 
-- **One round, up to 6 questions.** Present all questions in a single message
+- **One round, up to 8 questions.** Present all questions in a single message
   (numbered). The user answers all at once or one by one — either is fine.
 - **Show defaults clearly.** Format each question so the user can reply with
   just a number/letter or type a custom value. Example:
@@ -123,7 +125,15 @@ auto-fill these values silently — the user must confirm or choose.
   4. Report format (markdown | html) [markdown]:
   5. Enable docs/wiki skill (yes | no) [yes]:
   6. Code comment language (repo-default | en | vi) [repo-default]:
+  7. Providers (claude, cursor, codex, gemini — comma-separated) [claude]:
+  8. Enforce one shared skill set across providers (yes | no) [no]:
   ```
+
+- **Provider answers drive compilation.** The `providers` list is written to
+  `rules.agents.providers` in settings.yaml. Later, `sk compile --provider X`
+  (or `init` build-fit below) emits skills in that provider's format.
+  `enforce_one: true` means all chosen providers share one compiled skill set;
+  `false` means each provider gets its own fit.
 
 - **Existing values win.** If `settings.yaml` already has a value, show it as
   the default. The user can keep it or change it.
@@ -203,7 +213,47 @@ auto-fill these values silently — the user must confirm or choose.
     - every workspace member with its own manifest has its own stack recorded
       (no multi-stack monorepo collapsed to a single root stack);
     - unknowns and conflicts are visible.
-11. Report created/updated files and the highest-priority unknowns.
+11. **Build skill set to fit the project (scaffold — mandatory STOP and ask).**
+    This is the last question. After scanning + dialog, ask the user:
+
+    > Build skills to fit this project?
+
+    Options (Ask method `choice`):
+    - **Fit** — use `catalog.json` (`.agents/catalog.json` or fetch from the
+      GitHub raw URL in its `meta.raw_base`) and the detected stacks from the
+      `workspaces`/`tech_stack` facts to install only the skills whose
+      detect-groups match (`catalog.fits`). This is the default for a project
+      with a recognizable stack.
+    - **All** — install the full catalog (every skill).
+    - **None / minimal** — keep only `init` (no extra skills installed).
+
+    How to fit (deterministic, not hand-picked):
+    1. Read `.agents/catalog.json`. If missing, fetch
+       `{meta.raw_base}/catalog.json` (e.g.
+       `https://raw.githubusercontent.com/truongnat/simple-skills/main/catalog.json`).
+    2. Map each detected `tech_stack` to a `fits` group key (nodejs, react,
+       python, fastapi, docker, kubernetes, database-postgres, …).
+    3. Union the `fits` groups' skill ids → the target skill set. Always keep
+       `init`.
+    4. Install each selected skill into `.agents/skills/<id>/` — fetch
+       `SKILL.md` (+ `references/`, `templates/`, `scripts/` when
+       `has_references` / `has_templates` / `has_scripts` are true) from the
+       catalog's `raw_skill` URL. Verify the fetched frontmatter `name` matches
+       the directory.
+    5. After installing, run the provider compile for the chosen providers
+       (settings `rules.agents.providers`):
+
+       ```bash
+       python .agents/tools/providers/compile.py --provider <each> \
+         --skills-root .agents/skills --target .agents
+       ```
+
+       With `enforce_one: true`, compile once into the shared set; with
+       `false`, compile per provider into its own layout.
+    6. If no network and no local catalog, report "catalog unavailable" and
+       leave the kit minimal — do not fabricate skills.
+12. Report created/updated files, the installed skill set (fit vs all vs
+    minimal), and the highest-priority unknowns.
 
 ## Discovery boundaries
 

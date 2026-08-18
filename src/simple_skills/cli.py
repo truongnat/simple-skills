@@ -1,8 +1,11 @@
 """sk — Simple Skills installer CLI.
 
 Usage:
-  sk install [--agent NAME]
-  sk update [--agent NAME]
+  sk install [--agent NAME] [--provider NAME]
+  sk update [--agent NAME] [--provider NAME]
+  sk compile --provider NAME [--skills-root DIR] [--target DIR]
+  sk status [--agent NAME]
+  sk validate [--agent NAME]
   sk doctor [--agent NAME]
   sk --help
 """
@@ -27,7 +30,8 @@ DEFAULT_BRANCH = "main"
 INSTALL_SH = "install.sh"
 INSTALL_PS1 = "install.ps1"
 
-COMMANDS = ("install", "update", "doctor")
+COMMANDS = ("install", "update", "compile", "status", "validate", "doctor")
+PROVIDERS = ("claude", "cursor", "codex", "gemini")
 
 def _repo_meta() -> tuple[str, str, str]:
     return (
@@ -53,6 +57,18 @@ def find_local_installer() -> Path | None:
     cand = cwd / INSTALL_SH
     if cand.is_file() and (cwd / "docs" / "AGENTS.md").is_file():
         return cand
+    return None
+
+def find_provider_compiler() -> Path | None:
+    """Locate tools/providers/compile.py: repo checkout, cwd, or installed kit."""
+    candidates = [
+        Path(__file__).resolve().parents[2] / "tools" / "providers" / "compile.py",
+        Path.cwd().resolve() / "tools" / "providers" / "compile.py",
+        Path.cwd().resolve() / ".agents" / "tools" / "providers" / "compile.py",
+    ]
+    for cand in candidates:
+        if cand.is_file():
+            return cand
     return None
 
 def _download(url: str, dest: Path) -> None:
@@ -124,18 +140,27 @@ def print_help():
 \033[90mVersion: {__version__}\033[0m
 
 \033[1m\033[93mUSAGE\033[0m
-  \033[92msk\033[0m \033[96minstall\033[0m [--agent NAME]
-  \033[92msk\033[0m \033[96mupdate\033[0m [--agent NAME]
+  \033[92msk\033[0m \033[96minstall\033[0m [--agent NAME] [--provider NAME]
+  \033[92msk\033[0m \033[96mupdate\033[0m [--agent NAME] [--provider NAME]
+  \033[92msk\033[0m \033[96mcompile\033[0m --provider NAME [--skills-root DIR] [--target DIR]
+  \033[92msk\033[0m \033[96mstatus\033[0m [--agent NAME]
+  \033[92msk\033[0m \033[96mvalidate\033[0m [--agent NAME]
   \033[92msk\033[0m \033[96mdoctor\033[0m [--agent NAME]
 
 \033[1m\033[93mCOMMANDS\033[0m
-  \033[96minstall\033[0m     Install all skills (replaces existing directory)
-  \033[96mupdate\033[0m      Update own skills without deleting custom ones
+  \033[96minstall\033[0m     Install minimal kit (init skill + tools + catalog)
+  \033[96mupdate\033[0m      Update kit without deleting custom/built skills
+  \033[96mcompile\033[0m     Compile skills for a provider (claude|cursor|codex|gemini)
+  \033[96mstatus\033[0m     Show step ledger + session + git status
+  \033[96mvalidate\033[0m     Validate all SKILL.md against the schema
   \033[96mdoctor\033[0m      Check whether this project looks healthy
 
 \033[1m\033[93mOPTIONS\033[0m
   \033[92m--agent\033[0m     Agent name to install/update into (e.g. \033[96mclaude\033[0m -> \033[90m.claude\033[0m)
               [default: \033[1magents\033[0m]
+  \033[92m--provider\033[0m  Provider to compile skills for: \033[96m{', '.join(PROVIDERS)}\033[0m or \033[96mall\033[0m
+  \033[92m--skills-root\033[0m  Skills directory to compile from (default: installed agent skills)
+  \033[92m--target\033[0m     Output directory for compiled files (default: agent dir)
   \033[92m-h, --help\033[0m  Show this help message and exit
   \033[92m-V, --version\033[0m Show version
 """
@@ -149,9 +174,23 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_install = sub.add_parser("install")
     p_install.add_argument("--agent", default="agents")
+    p_install.add_argument("--provider", choices=[*PROVIDERS, "all"], default=None)
 
     p_update = sub.add_parser("update")
     p_update.add_argument("--agent", default="agents")
+    p_update.add_argument("--provider", choices=[*PROVIDERS, "all"], default=None)
+
+    p_compile = sub.add_parser("compile")
+    p_compile.add_argument("--provider", choices=[*PROVIDERS, "all"], required=True)
+    p_compile.add_argument("--agent", default="agents")
+    p_compile.add_argument("--skills-root", default=None)
+    p_compile.add_argument("--target", default=None)
+
+    p_status = sub.add_parser("status")
+    p_status.add_argument("--agent", default="agents")
+
+    p_validate = sub.add_parser("validate")
+    p_validate.add_argument("--agent", default="agents")
 
     p_doctor = sub.add_parser("doctor")
     p_doctor.add_argument("--agent", default="agents")
@@ -161,7 +200,72 @@ def _rest_from_namespace(command: str, ns: argparse.Namespace) -> list[str]:
     rest: list[str] = []
     if getattr(ns, "agent", None):
         rest.extend(["--agent", ns.agent])
+    if getattr(ns, "provider", None) and command in ("install", "update"):
+        rest.extend(["--provider", ns.provider])
     return rest
+
+def run_compile(provider: str, agent: str, skills_root: str | None, target: str | None) -> int:
+    compiler = find_provider_compiler()
+    if compiler is None:
+        raise SystemExit("Error: tools/providers/compile.py not found (run from repo checkout or after install)")
+
+    agent_dir = f".{agent}" if not agent.startswith(".") else agent
+    if skills_root is None:
+        skills_root = str(Path(agent_dir) / "skills")
+    if target is None:
+        target = agent_dir
+
+    skills_path = Path(skills_root)
+    if not skills_path.is_dir():
+        raise SystemExit(f"Error: skills root not found: {skills_root}")
+
+    argv = [
+        sys.executable,
+        str(compiler),
+        "--provider", provider,
+        "--skills-root", str(skills_path),
+        "--target", target,
+    ]
+    return subprocess.call(argv)
+
+def _agent_dir(agent: str) -> Path:
+    return Path(agent if agent.startswith(".") else f".{agent}")
+
+def find_session_sh(agent: str) -> Path | None:
+    """Locate .agents/tools/session/session.sh in cwd (installed kit)."""
+    cand = _agent_dir(agent) / "tools" / "session" / "session.sh"
+    return cand if cand.is_file() else None
+
+def run_status(agent: str) -> int:
+    session_sh = find_session_sh(agent)
+    if session_sh is None:
+        print("Status: no installed kit found (run `sk install` first).")
+        return 0
+    return subprocess.call(["bash", str(session_sh), "status"])
+
+def find_validator() -> Path | None:
+    candidates = [
+        Path(__file__).resolve().parents[2] / "scripts" / "validate_skills.py",
+        Path.cwd().resolve() / "scripts" / "validate_skills.py",
+        Path.cwd().resolve() / ".agents" / "tools" / "session" / "validate_artifacts.py",
+    ]
+    for cand in candidates:
+        if cand.is_file():
+            return cand
+    return None
+
+def run_validate(agent: str) -> int:
+    validator = find_validator()
+    if validator is None:
+        print("Error: no validator found (run from repo checkout or after install).")
+        return 2
+    if validator.name == "validate_artifacts.py":
+        session_sh = find_session_sh(agent)
+        if session_sh is None:
+            print("Error: no installed kit found (run `sk install` first).")
+            return 2
+        return subprocess.call(["python", str(validator)], cwd=Path.cwd())
+    return subprocess.call([sys.executable, str(validator)])
 
 def main(argv: list[str] | None = None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
@@ -187,7 +291,22 @@ def main(argv: list[str] | None = None) -> int:
         ns = parser.parse_args(argv)
 
     command = ns.command or "install"
-    return run_installer(command, _rest_from_namespace(command, ns))
+
+    if command == "compile":
+        return run_compile(ns.provider, ns.agent, ns.skills_root, ns.target)
+    if command == "status":
+        return run_status(ns.agent)
+    if command == "validate":
+        return run_validate(ns.agent)
+
+    provider = getattr(ns, "provider", None)
+    result = run_installer(command, _rest_from_namespace(command, ns))
+    if result != 0:
+        return result
+    if provider:
+        print(f"\n⤓ Compiling skills for provider '{provider}' ...")
+        return run_compile(provider, ns.agent, None, None)
+    return result
 
 if __name__ == "__main__":
     raise SystemExit(main())

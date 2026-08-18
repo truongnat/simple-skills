@@ -90,11 +90,11 @@ sk install
 
 ### Available Commands
 ```bash
-# Install everything (replaces existing directory)
+# Install the minimal kit (init skill + tools + catalog)
 sk install
 
-# Update your skills from upstream (keeps your custom skills safe)
-sk update
+# Compile skills for a provider after init built them
+sk compile --provider claude
 
 # Check if your project has all required configuration and docs
 sk doctor
@@ -122,12 +122,24 @@ iwr -useb https://raw.githubusercontent.com/truongnat/simple-skills/main/install
 
 ## Quick start
 
-After installation, run the **`init`** skill once to set up your project:
+**Install is minimal by design** — it ships only the `init` skill plus tools and
+the skill catalog. `init` is the scaffold: it scans your project, asks
+configuration questions (including which AI provider(s) you work on), then
+**builds the skill set to fit the project** (Fit / All / Minimal).
 
 ```bash
 # In your AI assistant, say:
 "Use the init skill to set up this project"
 ```
+
+`init` will:
+1. Scan workspaces and detect your stack (deterministic filesystem sweep).
+2. Ask config questions: language, branch mode, reports, docs, **providers**
+   (`claude` / `cursor` / `codex` / `gemini`, multi-select), `enforce_one`.
+3. Ask **"Build skills to fit this project?"** — Fit (matches your stack from
+   `catalog.json`), All (everything), or Minimal (keep only `init`).
+4. Install the chosen skills from the GitHub catalog and compile them for your
+   provider(s).
 
 Then choose your path based on the task:
 
@@ -142,7 +154,7 @@ Lite/Full paths use **Step ledger** (track each workflow step) and **Spec qualit
 Check progress anytime:
 
 ```bash
-bash .agents/tools/session/session.sh status
+bash .agents/tools/session/session.sh status   # or: sk status
 ```
 
 ---
@@ -152,14 +164,23 @@ bash .agents/tools/session/session.sh status
 The `sk` CLI is beautifully simple:
 
 ```bash
-# Install everything into the default .agents folder
+# Install the minimal kit (init skill + tools + catalog) into .agents
 sk install
 
 # Install for a specific agent provider (e.g. into .claude)
 sk install --agent claude
 
-# Update your skills from upstream (keeps your custom skills safe)
+# Update the kit (init skill + catalog + tools; keeps custom/built skills)
 sk update --agent claude
+
+# Compile installed skills for a provider (after init built them)
+sk compile --provider claude
+
+# Step ledger + session + git status
+sk status
+
+# Validate every SKILL.md against the schema
+sk validate
 
 # Check if your project has all required configuration and docs
 sk doctor --agent claude

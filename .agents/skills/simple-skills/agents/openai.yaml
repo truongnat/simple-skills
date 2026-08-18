@@ -1,0 +1,6 @@
+interface:
+  display_name: "Simple Skills"
+  short_description: "Repo-specific patterns and workflows for simple-skills"
+  default_prompt: "Use the simple-skills repo skill to follow existing architecture, testing, and workflow conventions."
+policy:
+  allow_implicit_invocation: true

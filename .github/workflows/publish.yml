@@ -20,6 +20,9 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Verify release tag matches package version
+        run: python scripts/check_version.py --expect-tag "${{ github.ref_name }}"
+
       - name: Build
         run: |
           pip install -U build

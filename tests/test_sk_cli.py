@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pytest
 
+from simple_skills import __version__
 from simple_skills.cli import find_local_installer, main
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -106,4 +107,4 @@ def test_module_entrypoint() -> None:
         env={**dict(**{k: v for k, v in __import__("os").environ.items()}), "PYTHONPATH": str(REPO_ROOT / "src")},
     )
     assert result.returncode == 0
-    assert "0.3.0" in result.stdout or "0.3.0" in result.stderr
+    assert __version__ in result.stdout or __version__ in result.stderr

@@ -28,10 +28,7 @@ jobs:
         run: python scripts/validate_office_skills.py
 
       - name: Check catalog is up to date
-        run: |
-          python scripts/build_catalog.py --check
-          python scripts/build_catalog.py --out /tmp/catalog.check.json
-          diff -q catalog.json /tmp/catalog.check.json || { echo "catalog.json is stale — run scripts/build_catalog.py"; exit 1; }
+        run: python scripts/build_catalog.py --check
 
       - name: Resolve default install profile
         run: python scripts/resolve_install_profile.py --source . --check

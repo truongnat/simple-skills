@@ -153,6 +153,7 @@ cmd_commit() {
     printf '\n'
     return 0
   fi
+  redact_work_artifacts
   git -C "$WORK_DIR" add -A
   if work_git commit -q -m "$msg"; then
     sha="$(git -C "$WORK_DIR" rev-parse --short HEAD)"
@@ -161,6 +162,59 @@ cmd_commit() {
     printf 'WORK_COMMIT=failed\n' >&2
     return 1
   fi
+}
+
+redact_work_artifacts() {
+  # Redact secrets/PII from Work text artifacts before they hit the nested git.
+  # tools/policy/redact.py rewrites each file in place; runs before `git add -A`.
+  local redactor
+  redactor="$(policy_tool redact.py || true)"
+  if [ -z "$redactor" ]; then
+    return 0
+  fi
+  local n=0
+  while IFS= read -r -d '' f; do
+    case "$f" in
+      *.md|*.txt|*.json|*.yaml|*.yml|*.log|*.csv)
+        python3 "$redactor" --write "$f" 2>/dev/null && n=$((n+1)) ;;
+    esac
+  done < <(find "$WORK_DIR" -type f -print0 2>/dev/null || true)
+  [ "$n" -gt 0 ] && printf 'WORK_REDACTED=%s file(s)\n' "$n"
+}
+
+policy_tool() {
+  # Locate tools/policy/<name> in repo checkout or installed kit.
+  local name="$1"
+  for base in "$ROOT/tools/policy" "$ROOT/.agents/tools/policy"; do
+    if [ -f "$base/$name" ]; then
+      printf '%s/%s\n' "$base" "$name"
+      return 0
+    fi
+  done
+  return 1
+}
+
+cmd_policy() {
+  # Quick policy health: redactor present + denylist guard works.
+  local redactor denylist
+  redactor="$(policy_tool redact.py || true)"
+  denylist="$(policy_tool denylist.py || true)"
+  if [ -n "$redactor" ]; then
+    printf 'policy_redact=yes\n'
+  else
+    printf 'policy_redact=missing\n'
+  fi
+  if [ -n "$denylist" ]; then
+    printf 'policy_denylist=yes\n'
+    if python3 "$denylist" "ls -la" >/dev/null 2>&1; then
+      printf 'policy_denylist_guard=ok\n'
+    else
+      printf 'policy_denylist_guard=broken\n'
+    fi
+  else
+    printf 'policy_denylist=missing\n'
+  fi
+  printf 'POLICY_DONE\n'
 }
 
 cmd_work_root() {
@@ -410,5 +464,6 @@ case "$sub" in
   work-root) cmd_work_root "$@" ;;
   commit)    cmd_commit "$@" ;;
   archive)   cmd_archive "$@" ;;
-  *) die "Usage: session.sh {help|doctor|current|set <dir>|new <slug>|status [dir]|work-root|commit [msg]|archive [slug]}" ;;
+  policy)    cmd_policy "$@" ;;
+  *) die "Usage: session.sh {help|doctor|current|set <dir>|new <slug>|status [dir]|work-root|commit [msg]|archive [slug]|policy}" ;;
 esac

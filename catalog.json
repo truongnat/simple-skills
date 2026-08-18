@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-08-18T10:40:01.169649+00:00",
+    "generated_at": "2026-08-18T14:59:02.612361+00:00",
     "skill_count": 221,
     "raw_base": "https://raw.githubusercontent.com/truongnat/simple-skills/main"
   },
@@ -25,7 +25,7 @@
       ],
       "has_references": true,
       "has_templates": false,
-      "has_scripts": false,
+      "has_scripts": true,
       "raw_skill": "https://raw.githubusercontent.com/truongnat/simple-skills/main/skills/3d-motion-pro/SKILL.md"
     },
     {
@@ -47,7 +47,7 @@
       ],
       "has_references": true,
       "has_templates": false,
-      "has_scripts": false,
+      "has_scripts": true,
       "raw_skill": "https://raw.githubusercontent.com/truongnat/simple-skills/main/skills/a11y-design-pro/SKILL.md"
     },
     {
@@ -81,10 +81,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -199,7 +199,7 @@
       ],
       "has_references": true,
       "has_templates": false,
-      "has_scripts": false,
+      "has_scripts": true,
       "raw_skill": "https://raw.githubusercontent.com/truongnat/simple-skills/main/skills/ai-design-pro/SKILL.md"
     },
     {
@@ -321,10 +321,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -341,10 +341,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -405,10 +405,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -425,10 +425,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -445,10 +445,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -529,10 +529,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -549,10 +549,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -569,10 +569,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -589,10 +589,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -609,10 +609,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -629,10 +629,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -649,10 +649,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -691,10 +691,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -755,10 +755,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -1101,10 +1101,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -1141,10 +1141,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -1181,10 +1181,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -1223,10 +1223,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -1265,10 +1265,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -1285,10 +1285,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -1354,10 +1354,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -1440,10 +1440,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -1460,10 +1460,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -1480,10 +1480,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -1500,10 +1500,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -1586,10 +1586,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -1632,10 +1632,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -1652,10 +1652,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -1672,10 +1672,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -1824,10 +1824,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -1950,10 +1950,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -2054,10 +2054,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -2140,10 +2140,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -2160,10 +2160,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -2202,10 +2202,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -2244,10 +2244,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -2264,10 +2264,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -2350,10 +2350,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -2520,10 +2520,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -2562,10 +2562,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -2800,10 +2800,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -2864,10 +2864,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -2892,7 +2892,7 @@
       "aliases": [],
       "has_references": false,
       "has_templates": false,
-      "has_scripts": false,
+      "has_scripts": true,
       "raw_skill": "https://raw.githubusercontent.com/truongnat/simple-skills/main/skills/pdf-pro/SKILL.md"
     },
     {
@@ -2926,10 +2926,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -3010,10 +3010,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -3030,10 +3030,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -3136,10 +3136,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -3200,10 +3200,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -3306,10 +3306,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -3326,10 +3326,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -3346,10 +3346,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -3366,10 +3366,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -3430,10 +3430,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -3450,10 +3450,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -3742,10 +3742,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -3806,10 +3806,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -3826,10 +3826,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -3890,10 +3890,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -3920,7 +3920,7 @@
       ],
       "has_references": true,
       "has_templates": false,
-      "has_scripts": false,
+      "has_scripts": true,
       "raw_skill": "https://raw.githubusercontent.com/truongnat/simple-skills/main/skills/sustainable-design-pro/SKILL.md"
     },
     {
@@ -3932,10 +3932,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -4100,10 +4100,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -4338,10 +4338,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -4430,10 +4430,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": false,
@@ -4536,10 +4536,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -4600,10 +4600,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,
@@ -4684,10 +4684,10 @@
       "tags": [],
       "roles": [],
       "compatible": [
-        "codex",
-        "gemini",
         "claude",
-        "cursor"
+        "codex",
+        "cursor",
+        "gemini"
       ],
       "aliases": [],
       "has_references": true,

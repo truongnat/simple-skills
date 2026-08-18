@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -44,6 +46,67 @@ def test_catalog_fits_groups_exist_in_catalog() -> None:
     for group, skill_ids in catalog["fits"].items():
         for sid in skill_ids:
             assert sid in ids, f"fits[{group}] references missing skill {sid}"
+
+
+def _without_generated_at(catalog: dict) -> dict:
+    meta = {k: v for k, v in catalog["meta"].items() if k != "generated_at"}
+    return {"meta": meta, "skills": catalog["skills"], "fits": catalog["fits"]}
+
+
+def _build_catalog_to_dict(env: dict | None = None) -> dict:
+    fd, path = tempfile.mkstemp(suffix=".json")
+    os.close(fd)
+    out = Path(path)
+    try:
+        merged = {**os.environ, **(env or {})}
+        result = subprocess.run(
+            [sys.executable, str(REPO_ROOT / "scripts" / "build_catalog.py"), "--out", str(out)],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            env=merged,
+        )
+        assert result.returncode == 0, result.stderr
+        return json.loads(out.read_text(encoding="utf-8"))
+    finally:
+        out.unlink(missing_ok=True)
+
+
+def test_catalog_check_ignores_generated_at() -> None:
+    result = subprocess.run(
+        [sys.executable, str(REPO_ROOT / "scripts" / "build_catalog.py"), "--check"],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stderr + result.stdout
+    built = _build_catalog_to_dict()
+    committed = json.loads((REPO_ROOT / "catalog.json").read_text(encoding="utf-8"))
+    assert built["meta"]["generated_at"] != committed["meta"]["generated_at"]
+    assert _without_generated_at(built) == _without_generated_at(committed)
+
+
+def test_catalog_default_compatible_stable_across_hash_seeds() -> None:
+    a = _build_catalog_to_dict({"PYTHONHASHSEED": "0"})
+    b = _build_catalog_to_dict({"PYTHONHASHSEED": "1"})
+    assert _without_generated_at(a) == _without_generated_at(b)
+
+
+SCRIPTS_TITLECASE_SKILLS = (
+    "3d-motion-pro",
+    "a11y-design-pro",
+    "ai-design-pro",
+    "pdf-pro",
+    "sustainable-design-pro",
+)
+
+
+def test_catalog_has_scripts_for_titlecase_dirs() -> None:
+    catalog = json.loads((REPO_ROOT / "catalog.json").read_text(encoding="utf-8"))
+    by_id = {s["id"]: s for s in catalog["skills"]}
+    for sid in SCRIPTS_TITLECASE_SKILLS:
+        assert (REPO_ROOT / "skills" / sid / "Scripts").is_dir()
+        assert by_id[sid]["has_scripts"] is True, sid
 
 
 def _install_minimal(tmp_path: Path) -> Path:

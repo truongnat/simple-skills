@@ -15,9 +15,11 @@ x-kind, x-version, x-tags, x-roles, x-compatible, aliases), and writes
 Usage:
   python scripts/build_catalog.py [--owner truongnat] [--repo simple-skills]
                                   [--branch main] [--out catalog.json]
+  python scripts/build_catalog.py --check   # compare to committed catalog.json
+                                            # (ignores meta.generated_at)
 
 Exit 0 on success; 1 if a skill fails validation (name mismatch, missing
-description, bad semver, etc.).
+description, bad semver, etc.) or if --check finds catalog.json stale.
 """
 
 from __future__ import annotations
@@ -35,7 +37,8 @@ OUT_DEFAULT = ROOT / "catalog.json"
 
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
 SKILL_KINDS = {"process", "domain", "reference"}
-PROVIDERS = {"claude", "cursor", "codex", "gemini"}
+# Tuple (not set): list(PROVIDERS) must be stable across PYTHONHASHSEED / CI.
+PROVIDERS = ("claude", "codex", "cursor", "gemini")
 
 # detect-stack → skill ids. init merges every matching group.
 FITS: dict[str, list[str]] = {
@@ -168,6 +171,22 @@ def _list(fm: str, key: str) -> list[str]:
     return [v.strip().strip("'\"") for v in raw.split(",") if v.strip()]
 
 
+def _has_subdir(skill_dir: Path, name: str) -> bool:
+    """True if a child directory exists whose name matches `name` case-insensitively.
+
+    Vendor skills ship `Scripts/` (capital S). Linux CI is case-sensitive;
+    macOS volumes often are not — a lowercase-only check disagrees across OS.
+    """
+    want = name.casefold()
+    return any(p.is_dir() and p.name.casefold() == want for p in skill_dir.iterdir())
+
+
+def comparable_catalog(catalog: dict) -> dict:
+    """Catalog payload used for freshness checks (timestamp is not content)."""
+    meta = {k: v for k, v in catalog["meta"].items() if k != "generated_at"}
+    return {"meta": meta, "skills": catalog["skills"], "fits": catalog["fits"]}
+
+
 def build_catalog(owner: str, repo: str, branch: str) -> dict:
     errors: list[str] = []
     skills: list[dict] = []
@@ -215,9 +234,9 @@ def build_catalog(owner: str, repo: str, branch: str) -> dict:
                 "roles": _list(fm, "x-roles"),
                 "compatible": compatible,
                 "aliases": _list(fm, "aliases"),
-                "has_references": (skill_dir / "references").is_dir(),
-                "has_templates": (skill_dir / "templates").is_dir(),
-                "has_scripts": (skill_dir / "scripts").is_dir(),
+                "has_references": _has_subdir(skill_dir, "references"),
+                "has_templates": _has_subdir(skill_dir, "templates"),
+                "has_scripts": _has_subdir(skill_dir, "scripts"),
                 "raw_skill": f"{raw_base}/skills/{name}/SKILL.md",
             }
         )
@@ -245,7 +264,11 @@ def main() -> int:
     parser.add_argument("--repo", default="simple-skills")
     parser.add_argument("--branch", default="main")
     parser.add_argument("--out", type=Path, default=OUT_DEFAULT)
-    parser.add_argument("--check", action="store_true", help="Validate but do not write")
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="Validate and compare to committed catalog.json (ignore generated_at)",
+    )
     args = parser.parse_args()
 
     catalog = build_catalog(args.owner, args.repo, args.branch)
@@ -253,6 +276,13 @@ def main() -> int:
         return 1
 
     if args.check:
+        if not OUT_DEFAULT.is_file():
+            print("ERROR: catalog.json missing — run scripts/build_catalog.py", file=sys.stderr)
+            return 1
+        committed = json.loads(OUT_DEFAULT.read_text(encoding="utf-8"))
+        if comparable_catalog(committed) != comparable_catalog(catalog):
+            print("catalog.json is stale — run scripts/build_catalog.py", file=sys.stderr)
+            return 1
         print(f"catalog OK: {catalog['meta']['skill_count']} skills")
         return 0
 

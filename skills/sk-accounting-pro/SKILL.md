@@ -4,8 +4,8 @@ name: sk-accounting-pro
 description: Use this skill whenever the user wants to perform accounting tasks, bookkeeping, financial statement preparation, or work with accounting systems. This includes double-entry bookkeeping, financial statement preparation (balance sheet, income statement, cash flow statement), journal entries, account reconciliation, tax preparation basics, and working with accounting software. If the user mentions accounting, bookkeeping, financial statements, journal entries, or reconciliation, use this skill.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [accounting]
 
@@ -331,3 +331,17 @@ def calculate_income_tax(taxable_income, tax_brackets):
 ## Output
 
 Produce a reusable accounting pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## When not to use
+
+- When the request is outside `sk-accounting-pro`'s documented scope or another specialist is the primary owner.
+- When the requested result would require unsupported format guarantees, fabricated evidence, or an unverified external claim.
+
+## Required inputs
+
+- request/question, audience, source/context artifacts, constraints, desired output, and verification criteria.
+- State assumptions, evidence gaps, confidence, and limitations explicitly.
+
+## Cross-skill handoffs
+
+- sk-technical-writing-pro for clarity; sk-research for evidence; sk-docs for information architecture; relevant domain/format skill for implementation.

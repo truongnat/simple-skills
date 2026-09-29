@@ -6,6 +6,11 @@ description: >-
   convert-report. Use when the user asks to turn Excel design sk-docs, forms, or
   templates into Markdown/HTML, or mentions merge cells, 方眼紙, 帳票設計書,
   画面設計書, or Excel-as-document (not spreadsheet edit).
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Excel Doc Convert
@@ -106,3 +111,21 @@ On first use:
 ## Output
 
 Produce a document/media artifact with input and output paths, coverage/quality checks, unsupported-content limitations, validation evidence, and delivery notes.
+
+## Boundary
+
+**`sk-excel-doc-convert`** owns **conversion and extraction of Excel workbooks into documented, reviewable artifacts with structure preservation**. It does not own **general spreadsheet authoring, unsupported workbook features, or business analysis conclusions without evidence**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-excel-doc-convert`'s documented scope or another specialist is the primary owner.
+- When the requested result would require unsupported format guarantees, fabricated evidence, or an unverified external claim.
+
+## Required inputs
+
+- workbook path, sheet scope, target artifact, formulas/formatting requirements, unsupported-feature policy, and coverage criteria.
+- State assumptions, evidence gaps, confidence, and limitations explicitly.
+
+## Cross-skill handoffs
+
+- sk-xlsx for workbook fidelity; sk-office-common for office conventions; sk-data-analysis-pro for downstream numeric analysis; sk-docs for publication.

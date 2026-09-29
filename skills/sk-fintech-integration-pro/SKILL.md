@@ -4,8 +4,8 @@ name: sk-fintech-integration-pro
 description: Use this skill whenever the user wants to integrate with fintech services, payment processing, banking APIs, financial data providers, or work with financial technology systems. This includes payment gateway integration (Stripe, PayPal, Square), banking API integration (Plaid, Yodlee), financial data providers (Bloomberg, Alpha Vantage), cryptocurrency APIs, and financial platform integrations. If the user mentions payment processing, banking APIs, fintech integration, or financial APIs, use this skill.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [fintech-integration]
 
@@ -376,3 +376,17 @@ def call_api_with_retry(url, params):
 ## Output
 
 Produce a reusable fintech integration pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## When not to use
+
+- When the request is outside `sk-fintech-integration-pro`'s documented scope or another specialist is the primary owner.
+- When the requested result would require unsupported format guarantees, fabricated evidence, or an unverified external claim.
+
+## Required inputs
+
+- request/question, audience, source/context artifacts, constraints, desired output, and verification criteria.
+- State assumptions, evidence gaps, confidence, and limitations explicitly.
+
+## Cross-skill handoffs
+
+- sk-technical-writing-pro for clarity; sk-research for evidence; sk-docs for information architecture; relevant domain/format skill for implementation.

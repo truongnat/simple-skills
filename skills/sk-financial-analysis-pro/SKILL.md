@@ -4,8 +4,8 @@ name: sk-financial-analysis-pro
 description: Use this skill whenever the user wants to perform financial analysis, financial modeling, valuation, investment analysis, or work with financial data. This includes analyzing financial statements, calculating financial ratios, building financial models, performing company valuations, analyzing investment opportunities, creating financial reports, and working with time-series financial data. If the user mentions financial statements, financial metrics, investment analysis, company valuation, or financial modeling, use this skill.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [financial-analysis]
 
@@ -300,3 +300,17 @@ def plot_financial_ratios(ratios_df):
 ## Output
 
 Produce a reusable financial analysis pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## When not to use
+
+- When the request is outside `sk-financial-analysis-pro`'s documented scope or another specialist is the primary owner.
+- When the requested result would require unsupported format guarantees, fabricated evidence, or an unverified external claim.
+
+## Required inputs
+
+- request/question, audience, source/context artifacts, constraints, desired output, and verification criteria.
+- State assumptions, evidence gaps, confidence, and limitations explicitly.
+
+## Cross-skill handoffs
+
+- sk-technical-writing-pro for clarity; sk-research for evidence; sk-docs for information architecture; relevant domain/format skill for implementation.

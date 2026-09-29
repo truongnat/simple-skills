@@ -11,8 +11,8 @@ description: >+
   Triggers: "OCR", "PaddleOCR", "EasyOCR", "Handz OCR", "text recognition", "frame detection", "image rotation", "bounding box", "OCR API", "OCR timeout", "OCR accuracy", "OCR configuration", "OCR docker", "Tesseract", "text extraction", "document processi
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [ocr]
 
@@ -185,3 +185,7 @@ Details: [references/ocr-performance.md](references/ocr-performance.md)
 ## Output
 
 Produce a document/media artifact with input and output paths, coverage/quality checks, unsupported-content limitations, validation evidence, and delivery notes.
+
+## Cross-skill handoffs
+
+- sk-technical-writing-pro for clarity; sk-research for evidence; sk-docs for information architecture; relevant domain/format skill for implementation.

@@ -11,8 +11,8 @@ description: >+
   Triggers: "market research", "TAM", "SAM", "SOM", "competi
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [market-research]
 
@@ -191,3 +191,7 @@ Details: [references/reporting-and-evidence-quality.md](references/reporting-and
 ## Output
 
 Produce a reusable market research pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Cross-skill handoffs
+
+- sk-technical-writing-pro for clarity; sk-research for evidence; sk-docs for information architecture; relevant domain/format skill for implementation.

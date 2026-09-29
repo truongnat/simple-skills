@@ -4,6 +4,11 @@ description: >-
   Create, inspect, edit, and validate PDF files with strict supported-lossless
   coverage manifests (Python/pypdf/pdfplumber/reportlab). Use when the user
   mentions PDF, pages, extract text, merge/reorder pages, or PDF metadata.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # PDF
@@ -61,3 +66,21 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 ## Output
 
 Produce a document/media artifact with input and output paths, coverage/quality checks, unsupported-content limitations, validation evidence, and delivery notes.
+
+## Boundary
+
+**`sk-pdf`** owns **PDF reading, extraction, transformation, OCR, form handling, and integrity validation within supported limits**. It does not own **DOCX-to-PDF conversion ownership, complex layout authoring, or unsupported encrypted/signed content**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-pdf`'s documented scope or another specialist is the primary owner.
+- When the requested result would require unsupported format guarantees, fabricated evidence, or an unverified external claim.
+
+## Required inputs
+
+- PDF path, operation, text/table/image/OCR goal, password/access constraints, output format, and integrity requirements.
+- State assumptions, evidence gaps, confidence, and limitations explicitly.
+
+## Cross-skill handoffs
+
+- sk-pdf-pro for advanced PDF workflows; sk-docx/sk-xlsx for source formats; sk-ocr-pro for dense/scanned OCR; sk-docs for content interpretation.

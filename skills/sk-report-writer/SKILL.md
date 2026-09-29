@@ -3,10 +3,10 @@
 name: sk-report-writer
 description: >+
   "Skill: report-writer"
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 
@@ -117,3 +117,21 @@ Block if:
 - `references/pr-message-template.md`
 - `references/change-summary-template.md`
 - `prompt.md`
+
+## Boundary
+
+**`sk-report-writer`** owns **decision-ready report structure, evidence synthesis, executive communication, and residual-risk documentation**. It does not own **primary research collection, financial/accounting authority, or artifact-format implementation as the sole concern**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-report-writer`'s documented scope or another specialist is the primary owner.
+- When the requested result would require unsupported format guarantees, fabricated evidence, or an unverified external claim.
+
+## Required inputs
+
+- report audience, decision/question, source artifacts, required sections, evidence quality, confidence, and delivery format.
+- State assumptions, evidence gaps, confidence, and limitations explicitly.
+
+## Cross-skill handoffs
+
+- sk-research for evidence; sk-technical-writing-pro for editorial quality; sk-financial-analysis-pro or sk-accounting-pro for domain authority; sk-pdf/sk-docx for final format.

@@ -4,6 +4,11 @@ description: >-
   Create, inspect, edit, and validate Word .docx files with strict
   supported-lossless coverage manifests (Python/python-docx). Use when the user
   mentions Word, .docx, document paragraphs, or tables.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # DOCX
@@ -60,3 +65,21 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 ## Output
 
 Produce a document/media artifact with input and output paths, coverage/quality checks, unsupported-content limitations, validation evidence, and delivery notes.
+
+## Boundary
+
+**`sk-docx`** owns **supported-lossless Word DOCX inspection, creation, editing, and coverage validation**. It does not own **legacy .doc, unsupported OOXML/macros/OLE, or general document strategy**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-docx`'s documented scope or another specialist is the primary owner.
+- When the requested result would require unsupported format guarantees, fabricated evidence, or an unverified external claim.
+
+## Required inputs
+
+- DOCX path or create/edit specification, supported-content inventory, operation, output target, and coverage requirements.
+- State assumptions, evidence gaps, confidence, and limitations explicitly.
+
+## Cross-skill handoffs
+
+- sk-docs or sk-technical-writing-pro for content/structure; sk-office-common for shared office conventions; sk-pdf for conversion only after DOCX validation.

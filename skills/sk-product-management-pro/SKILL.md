@@ -4,8 +4,8 @@ name: sk-product-management-pro
 description: Expert Product Management covering discovery, roadmapping, PRD writing, user research, and Agile leadership.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [product-management]
 
@@ -102,3 +102,17 @@ Senior Product Manager.
 ## Output
 
 Produce a reusable product management pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## When not to use
+
+- When the request is outside `sk-product-management-pro`'s documented scope or another specialist is the primary owner.
+- When the requested result would require unsupported format guarantees, fabricated evidence, or an unverified external claim.
+
+## Required inputs
+
+- request/question, audience, source/context artifacts, constraints, desired output, and verification criteria.
+- State assumptions, evidence gaps, confidence, and limitations explicitly.
+
+## Cross-skill handoffs
+
+- sk-technical-writing-pro for clarity; sk-research for evidence; sk-docs for information architecture; relevant domain/format skill for implementation.

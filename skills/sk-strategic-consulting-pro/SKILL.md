@@ -9,8 +9,8 @@ description: >+
   Combine with **`sk-market-research-pro`** for market evidence, **`sk-web-research-pro`** for source validation, **`sk-data-analysis-pro`** for quantitative baselines, **`sk-business-analysis`** for requirements from chosen strategy, **`sk-planning`** for road
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [strategic-consulting]
 
@@ -195,3 +195,7 @@ Details: [references/reporting-and-executive-communication.md](references/report
 ## Output
 
 Produce a reusable strategic consulting pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Cross-skill handoffs
+
+- sk-technical-writing-pro for clarity; sk-research for evidence; sk-docs for information architecture; relevant domain/format skill for implementation.

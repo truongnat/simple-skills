@@ -5,6 +5,11 @@ description: >-
   LLD, ADRs, Reference, Operations, Guides) as a wiki. Two modes: full (author
   the whole set) and sk-sync (update only what a code change affects). Honors
   the project documentation settings. (Hard contract in this SKILL.md — MUST follow.)
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Docs (enterprise documentation wiki)
@@ -235,3 +240,21 @@ Each document must contain its standard sections (see its template); the core:
 - Does NOT implement or modify project code.
 - Does NOT invent requirements/decisions to fill a template — gaps stay visible.
 - `sk-sync` is only as good as `.docmap.md`; run `full` first if it is missing.
+
+## Boundary
+
+**`sk-docs`** owns **enterprise documentation information architecture, standards-based document sets, traceability, and docs synchronization**. It does not own **code implementation, product requirements ownership, or unsupported publishing claims**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-docs`'s documented scope or another specialist is the primary owner.
+- When the requested result would require unsupported format guarantees, fabricated evidence, or an unverified external claim.
+
+## Required inputs
+
+- documentation scope, stakeholders/concerns, source artifacts, standards, project documentation settings, freshness, and coverage expectations.
+- State assumptions, evidence gaps, confidence, and limitations explicitly.
+
+## Cross-skill handoffs
+
+- sk-technical-writing-pro for editorial quality; sk-specify/sk-business-analysis for requirements; sk-architecture-patterns for architecture views; format skills for DOCX/PDF/XLSX outputs.

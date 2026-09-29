@@ -4,8 +4,8 @@ name: sk-technical-writing-pro
 description: Expert Technical Writing covering docs-as-code, information architecture, style guides, API documentation, and user education.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [technical-writing]
 
@@ -97,3 +97,17 @@ Senior Technical Writer / Documentation Lead.
 ## Output
 
 Produce a document/media artifact with input and output paths, coverage/quality checks, unsupported-content limitations, validation evidence, and delivery notes.
+
+## When not to use
+
+- When the request is outside `sk-technical-writing-pro`'s documented scope or another specialist is the primary owner.
+- When the requested result would require unsupported format guarantees, fabricated evidence, or an unverified external claim.
+
+## Required inputs
+
+- request/question, audience, source/context artifacts, constraints, desired output, and verification criteria.
+- State assumptions, evidence gaps, confidence, and limitations explicitly.
+
+## Cross-skill handoffs
+
+- sk-technical-writing-pro for clarity; sk-research for evidence; sk-docs for information architecture; relevant domain/format skill for implementation.

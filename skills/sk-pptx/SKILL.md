@@ -4,6 +4,11 @@ description: >-
   Create, inspect, edit, and validate PowerPoint .sk-pptx files with strict
   supported-lossless coverage manifests (Python/python-pptx). Use when the user
   mentions PowerPoint, .sk-pptx, slides, or decks.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # PPTX
@@ -60,3 +65,21 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 ## Output
 
 Produce a document/media artifact with input and output paths, coverage/quality checks, unsupported-content limitations, validation evidence, and delivery notes.
+
+## Boundary
+
+**`sk-pptx`** owns **supported presentation artifact inspection, creation, editing, and validation with explicit content/layout limitations**. It does not own **presentation strategy, unsupported PowerPoint features, or broad visual design outside slide artifacts**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-pptx`'s documented scope or another specialist is the primary owner.
+- When the requested result would require unsupported format guarantees, fabricated evidence, or an unverified external claim.
+
+## Required inputs
+
+- PPTX path or slide brief, audience, slide limit, content outline, supported feature set, and verification target.
+- State assumptions, evidence gaps, confidence, and limitations explicitly.
+
+## Cross-skill handoffs
+
+- sk-slides/design skills for narrative and visual direction; sk-office-common for shared conventions; sk-pdf for export/inspection; sk-docs for source content.

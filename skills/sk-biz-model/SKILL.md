@@ -5,6 +5,11 @@ description: >-
   usecase-diagram, d2-erd, d2-activity, d2-architect, dbdiagram. Formats
   mermaid|plantuml|d2|dbml. Offline source for paste into D2/dbdiagram.io.
   (Hard contract — MUST follow.)
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Biz model (BA diagrams)
@@ -96,3 +101,21 @@ Optional sidecars in the task artifact directory: `diagrams/<slug>.d2` or `diagr
 ## Output
 
 Produce a reusable biz model artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Boundary
+
+**`sk-biz-model`** owns **business and system diagram modeling, traceability from requirements to visual artifacts, and honest format limitations**. It does not own **general product strategy, implementation of rendering infrastructure, or undocumented live-preview claims**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-biz-model`'s documented scope or another specialist is the primary owner.
+- When the requested result would require unsupported format guarantees, fabricated evidence, or an unverified external claim.
+
+## Required inputs
+
+- diagram mode, subject, actors/entities, source requirement IDs, format preference, and known renderer constraints.
+- State assumptions, evidence gaps, confidence, and limitations explicitly.
+
+## Cross-skill handoffs
+
+- sk-business-analysis/sk-specify for source requirements; sk-architecture-patterns for architecture decisions; sk-docs for publication; relevant diagram renderer only when available.

@@ -1,6 +1,11 @@
 ---
 name: sk-research
 description: "Research internal or external sources before making technical/product decisions. Source-backed findings, comparison matrix, recommendations with citations and caveats. (Hard contract in this SKILL.md — MUST follow.)"
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Research
@@ -127,3 +132,21 @@ Recommendation: Option A. Lower risk, better license, lighter bundle.
 ## Output
 
 Produce a reusable research artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Boundary
+
+**`sk-research`** owns **source-backed research planning, evidence evaluation, synthesis, comparison, recommendation, and caveat discipline**. It does not own **implementation, unsupported citation claims, or decisions without source/freshness evidence**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-research`'s documented scope or another specialist is the primary owner.
+- When the requested result would require unsupported format guarantees, fabricated evidence, or an unverified external claim.
+
+## Required inputs
+
+- research question, decision context, local/external source constraints, freshness requirement, quality bar, and output language.
+- State assumptions, evidence gaps, confidence, and limitations explicitly.
+
+## Cross-skill handoffs
+
+- sk-web-research-pro for source collection; sk-market-research-pro for market sizing; sk-business-analysis for requirements; sk-planning for execution.

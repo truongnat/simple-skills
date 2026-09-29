@@ -5,6 +5,11 @@ description: >-
   PDF, images, Excel design sheets, or notes. Alias /sk-reverse-doc. Uses office
   / sk-excel-doc-convert when needed; never invent missing requirements.
   (Hard contract.)
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [documentation, research, business]
+sk-roles: [writer, analyst, product-manager]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Reverse doc
@@ -75,3 +80,21 @@ Invoking it **is** executing every step below, in order, one at a time.
 ## Output
 
 Produce a document/media artifact with input and output paths, coverage/quality checks, unsupported-content limitations, validation evidence, and delivery notes.
+
+## Boundary
+
+**`sk-reverse-doc`** owns **traceable reconstruction of requirements/specification artifacts from heterogeneous documents and images**. It does not own **inventing requirements, lossless layout claims, or final implementation ownership**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-reverse-doc`'s documented scope or another specialist is the primary owner.
+- When the requested result would require unsupported format guarantees, fabricated evidence, or an unverified external claim.
+
+## Required inputs
+
+- source inventory, target artifact shape, extraction limits, glossary, conflict policy, and confidence requirements.
+- State assumptions, evidence gaps, confidence, and limitations explicitly.
+
+## Cross-skill handoffs
+
+- sk-docx/sk-pdf/sk-xlsx for extraction; sk-specify for SRS structure; sk-business-analysis for requirements interpretation; sk-ocr-pro for scanned inputs.

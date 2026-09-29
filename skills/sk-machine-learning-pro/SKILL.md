@@ -4,8 +4,8 @@ name: sk-machine-learning-pro
 description: Expert Machine Learning development covering Deep Learning, PyTorch/TensorFlow, Model Fine-tuning, NLP, and Computer Vision.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [machine-learning, deep-learning, pytorch, tensorflow]
+sk-roles: [ml-engineer, researcher]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [machine-learning]
 
@@ -26,6 +26,24 @@ Expert-level orchestration of advanced Machine Learning and Deep Learning models
 - Fine-tuning a pre-trained Large Language Model (LLM) on custom data.
 - Implementing an image classification or object detection pipeline.
 - Optimizing a deep learning model for inference speed (Quantization, Pruning).
+
+## When not to use
+
+- Statistical analysis or traditional ML — use `sk-data-science-pro`.
+- Data ingestion, feature pipelines, or warehouse design — use `sk-data-engineering-pro`.
+- Model registry, serving, monitoring, and rollback — use `sk-mlops-pro`.
+
+## Required inputs
+
+- Objective, labels, data split policy, compute budget, and reproducibility target.
+- Baseline model, evaluation metrics, fairness/leakage constraints, and latency target.
+- Export/runtime contract and ownership for the trained artifact.
+
+## Cross-skill handoffs
+
+- `sk-data-science-pro` owns statistical framing, baselines, and uncertainty analysis.
+- `sk-data-engineering-pro` owns training data pipelines and lineage.
+- `sk-mlops-pro` owns registry, serving, monitoring, and rollback operations.
 
 ## Workflow
 

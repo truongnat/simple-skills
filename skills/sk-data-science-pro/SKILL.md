@@ -4,8 +4,8 @@ name: sk-data-science-pro
 description: Expert Data Science development covering statistical analysis, Exploratory Data Analysis (EDA), machine learning (Scikit-Learn), and data visualization.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [data, statistics, modeling, visualization]
+sk-roles: [data-scientist, analyst]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [data-science]
 
@@ -26,6 +26,24 @@ Expert-level orchestration of analytical workflows and statistical modeling. Foc
 - Designing and analyzing A/B tests to validate product changes.
 - Building predictive models (Classification, Regression, Clustering) using traditional ML.
 - Creating comprehensive data visualizations to communicate findings to stakeholders.
+
+## When not to use
+
+- Production ETL/ELT, streaming, or warehouse architecture — use `sk-data-engineering-pro`.
+- Deep learning or LLM training — use `sk-machine-learning-pro`.
+- Model registry, serving, and drift operations — use `sk-mlops-pro`.
+
+## Required inputs
+
+- Decision or hypothesis, target population, dataset grain, and sampling plan.
+- Outcome/target definition, leakage risks, uncertainty tolerance, and baseline.
+- Evaluation metric, stakeholder decision threshold, and reproducibility constraints.
+
+## Cross-skill handoffs
+
+- `sk-data-engineering-pro` owns ingestion, lineage, freshness, and pipeline reliability.
+- `sk-machine-learning-pro` owns deep learning and fine-tuning implementation.
+- `sk-mlops-pro` owns deployment, monitoring, and model lifecycle operations.
 
 ## Workflow
 

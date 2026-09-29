@@ -4,8 +4,8 @@ name: sk-mlops-pro
 description: Professional-grade Machine Learning Operations (MLOps) covering model versioning, feature stores, CI/CD for ML, and monitoring.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [mlops, model-serving, monitoring, lineage]
+sk-roles: [mlops, platform]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [mlops]
 
@@ -26,6 +26,24 @@ Expert-level orchestration of machine learning systems. Focuses on bridging the 
 - Implementing model monitoring and drift detection.
 - Setting up a centralized feature store for a data team.
 - Architecting a scalable model serving infrastructure on Kubernetes.
+
+## When not to use
+
+- Model architecture, training loops, or fine-tuning research — use `sk-machine-learning-pro`.
+- Exploratory analysis and statistical modeling — use `sk-data-science-pro`.
+- General application deployment without model lifecycle concerns — use the relevant deployment skill.
+
+## Required inputs
+
+- Model/data lineage, artifact owner, release criteria, and serving interface.
+- SLOs for latency, availability, cost, quality, drift, and rollback time.
+- Deployment topology, approval gates, monitoring signals, and incident policy.
+
+## Cross-skill handoffs
+
+- `sk-machine-learning-pro` owns training and model architecture decisions.
+- `sk-data-engineering-pro` owns feature/data pipelines and freshness contracts.
+- `sk-agent-evaluation-pro` owns model/agent quality metrics and regression gates.
 
 ## Workflow
 

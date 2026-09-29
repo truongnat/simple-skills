@@ -4,8 +4,8 @@ name: sk-fullstack-rag-pro
 description: Building production-grade Retrieval-Augmented Generation (RAG) pipelines with Vector DBs and hybrid search.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [rag, retrieval, embeddings, search]
+sk-roles: [backend, ai-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [fullstack-rag]
 
@@ -22,6 +22,24 @@ This skill covers the end-to-end RAG architecture: document ingestion, chunking,
 - Indexing documents (PDFs, markdown) into a Vector DB.
 - Implementing semantic search or hybrid search (semantic + keyword).
 - Optimizing RAG context windows and retrieval quality.
+
+## When not to use
+
+- General LLM integration without retrieval — use `sk-ai-integration-pro`.
+- Prompt structure or prompt optimization — use `sk-prompt-engineering-pro`.
+- Evaluation datasets and regression gates — use `sk-agent-evaluation-pro`.
+
+## Required inputs
+
+- Corpus sources, ownership, access-control model, file formats, and freshness SLA.
+- Retrieval target, embedding model constraints, vector store, and latency budget.
+- Groundedness/citation requirement, evaluation queries, and failure behavior.
+
+## Cross-skill handoffs
+
+- `sk-ai-integration-pro` owns provider integration, tool orchestration, and runtime reliability.
+- `sk-content-analysis-pro` owns document parsing, provenance, and content-specific analysis.
+- `sk-agent-evaluation-pro` owns retrieval and answer-quality evaluation gates.
 
 ## Workflow
 1. **Ingestion Strategy**: Determine document parsers and chunking logic (e.g., recursive character text splitter).

@@ -4,8 +4,8 @@ name: sk-data-engineering-pro
 description: Expert Data Engineering development covering ETL/ELT pipelines, distributed processing (Spark, Flink), message queues (Kafka), and data warehouse architecture (Snowflake, BigQuery).
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [data, pipelines, etl, streaming]
+sk-roles: [data-engineer, architect]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [data-engineering]
 
@@ -26,6 +26,24 @@ Expert-level orchestration of scalable data pipelines and storage architecture. 
 - Designing a data warehouse or data lake architecture.
 - Implementing real-time event streaming architectures with Kafka.
 - Optimizing slow data transformation jobs (e.g., rewriting in PySpark or dbt).
+
+## When not to use
+
+- Statistical analysis or predictive modeling — use `sk-data-science-pro`.
+- Deep learning model training — use `sk-machine-learning-pro`.
+- Serving and monitoring models in production — use `sk-mlops-pro`.
+
+## Required inputs
+
+- Source systems, data contract, volume/velocity, freshness SLA, and retention.
+- Batch or streaming latency target, replay/backfill needs, and ownership.
+- Privacy classification, quality rules, lineage expectations, and recovery target.
+
+## Cross-skill handoffs
+
+- `sk-data-science-pro` consumes curated analytical data and defines statistical questions.
+- `sk-mlops-pro` owns model-oriented feature, registry, and serving operations.
+- `sk-content-analysis-pro` handles unstructured content extraction before ingestion.
 
 ## Workflow
 

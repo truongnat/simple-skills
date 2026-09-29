@@ -12,8 +12,8 @@ description: >+
 
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [a2a, agents, orchestration]
+sk-roles: [architect, backend]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [a2a-protocol]
 

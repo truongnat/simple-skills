@@ -12,8 +12,8 @@ description: >+
 
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [agents, evaluation, llm, quality]
+sk-roles: [qa, mlops]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [agent-evaluation]
 

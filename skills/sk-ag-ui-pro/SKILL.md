@@ -12,8 +12,8 @@ description: >+
 
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [agents, ui, human-in-the-loop]
+sk-roles: [frontend, product]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [ag-ui]
 

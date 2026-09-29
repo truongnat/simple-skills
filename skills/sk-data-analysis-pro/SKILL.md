@@ -11,8 +11,8 @@ description: >+
   Triggers: "analyze CSV", "pandas
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [data, analysis, visualization, statistics]
+sk-roles: [analyst, data-scientist]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [data-analysis]
 

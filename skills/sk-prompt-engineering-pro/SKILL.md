@@ -12,8 +12,8 @@ description: >+
 
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [prompts, structured-output, few-shot, optimization]
+sk-roles: [ai-engineer, product]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [prompt-engineering]
 

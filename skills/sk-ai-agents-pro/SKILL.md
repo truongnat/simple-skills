@@ -4,8 +4,8 @@ name: sk-ai-agents-pro
 description: Expert design and orchestration of autonomous AI agents, multi-agent systems, tool use, and persistent memory.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [agents, orchestration, tools, memory]
+sk-roles: [architect, backend]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [ai-agents]
 
@@ -26,6 +26,24 @@ Expert-level orchestration of autonomous AI agents. Focuses on goal-driven reaso
 - Designing a multi-agent system where agents collaborate or compete.
 - Implementing long-term memory and state management for an agent.
 - Integrating external tools (APIs, Databases, CLI) into an agent's reasoning loop.
+
+## When not to use
+
+- Training or fine-tuning foundation models — use `sk-machine-learning-pro`.
+- A2A protocol and inter-agent discovery semantics — use `sk-a2a-protocol-pro`.
+- Evaluation design or regression datasets — use `sk-agent-evaluation-pro`.
+
+## Required inputs
+
+- Agent goal, autonomy level, and allowed side effects.
+- Tool contracts, data sources, memory scope, and failure budget.
+- Single-agent versus multi-agent constraints and success criteria.
+
+## Cross-skill handoffs
+
+- `sk-ai-integration-pro` owns production LLM integration, routing, and reliability.
+- `sk-a2a-protocol-pro` owns agent-to-agent discovery and task lifecycle.
+- `sk-agent-evaluation-pro` owns evaluation datasets, metrics, and regression gates.
 
 ## Workflow
 

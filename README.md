@@ -1,6 +1,6 @@
 # Simple Skills
 
-> **222 reusable Agent Skills** for coding, architecture, product, design, security, data, and operations — installable with `npx skills`.
+> **222 reusable Agent Skills** for coding, architecture, product, design, security, data, and operations — distributed as portable skill packages.
 
 [Agent Skills](https://agentskills.io/) is an open format that lets coding agents use focused, reusable, and verifiable instruction sets. This repository follows one simple principle: **every skill should be independent, discoverable, easy to install, and explicit about its boundaries**.
 
@@ -14,27 +14,13 @@
 - **Self-contained** — references, scripts, templates, and assets stay with the skill that uses them.
 - **Tool-friendly** — the `sk-` prefix makes skills easy to search, route, and automate.
 
-## Quick Start
+## Getting Started
 
-### 1. Browse available skills
-
-```bash
-npx skills add truongnat/simple-skills --list
-```
-
-### 2. Install one skill
-
-```bash
-npx skills add truongnat/simple-skills --skill sk-planning
-```
-
-### 3. Install the entire collection
-
-```bash
-npx skills add truongnat/simple-skills --all
-```
-
-Depending on your agent setup, add `--agent` / `-a` to select a target agent and `--global` / `-g` to install at user scope.
+Browse the catalogue, choose the skill that matches the task, and load that
+skill through the agent or distribution workflow supported by your environment.
+Install one skill, a focused set, or the full collection according to the host
+agent's own package interface. This repository does not prescribe a shell or
+package-manager command.
 
 ## Explore by Use Case
 
@@ -59,7 +45,7 @@ simple-skills/
 │   ├── sk-<skill-name>/
 │   │   ├── SKILL.md              # Main contract and agent instructions
 │   │   ├── references/            # Deep-dive documentation, when needed
-│   │   ├── scripts/               # Supporting scripts, when needed
+│   │   ├── domain assets/         # Reusable domain resources, when needed
 │   │   ├── templates/             # Output templates, when needed
 │   │   └── assets/                # Local assets, when needed
 │   └── ...
@@ -108,25 +94,22 @@ Define the steps, required inputs, and verification criteria.
 
 ## Check Before Opening a Change
 
-Review the changed files and run the checks available in your environment:
-
-```bash
-git diff --check
-git status --short
-find skills -mindepth 1 -maxdepth 1 -type d -name 'sk-*' | wc -l
-```
+Review the changed files, internal links, metadata, bundled resources, and
+Markdown integrity using the validation capabilities available in your
+contributor environment. Record observed evidence and distinguish skipped
+checks from passing checks.
 
 ## Contributing
 
 1. Create or update a `skills/sk-<skill-name>/` directory.
 2. Keep the `SKILL.md` contract concise; move deep-dive material into `references/` when appropriate.
 3. Check all internal links and bundled resources.
-4. Run the validator before committing.
+4. Validate metadata and Markdown integrity before proposing the change.
 5. In your pull request, explain the new skill or the behavior that changed.
 
 ## Safety Note
 
-Read `SKILL.md` and review every script before installing or executing a skill from an external source. A skill may contain instructions that access files, run commands, or call tools — use only what is appropriate for your environment and trust level.
+Read `SKILL.md` and review every bundled resource before loading a skill from an external source. A skill may contain domain instructions or reusable assets; use only what is appropriate for your environment and trust level.
 
 ---
 

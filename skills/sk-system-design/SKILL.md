@@ -202,3 +202,12 @@ Cache hit vs DB query: ~100× | RAM vs disk: ~100×
 ## Output
 
 Produce a system-design artifact containing requirements, scale assumptions, architecture diagram/source, data flows, reliability risks, security concerns, and capacity/verification plan.
+
+## Required inputs
+
+- system context, quality attributes, constraints, current architecture, interfaces, and decision drivers.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

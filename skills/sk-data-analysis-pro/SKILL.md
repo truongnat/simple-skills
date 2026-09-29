@@ -198,3 +198,7 @@ Details: [references/versions.md](references/versions.md)
 ## Output
 
 Produce a reproducible analysis artifact with question, grain, data-quality checks, transformations, metrics/denominators, visualizations, privacy notes, evidence, and limitations.
+
+## Cross-skill handoffs
+
+- sk-ai-integration-pro or the relevant AI specialist for implementation; sk-testing-pro for evaluation; sk-security-pro for safety/privacy; sk-data-science-pro for data methodology.

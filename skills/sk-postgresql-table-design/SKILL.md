@@ -1,6 +1,11 @@
 ---
 name: sk-postgresql-table-design
 description: Use this skill when designing or reviewing a PostgreSQL-specific schema. Covers best-practices, data types, indexing, constraints, performance patterns, and advanced features
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [database, sql, data-access]
+sk-roles: [database-engineer, data-engineer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # PostgreSQL Table Design
@@ -204,3 +209,21 @@ CREATE INDEX profiles_attrs_gin ON profiles USING GIN (attrs);
 ## Output
 
 Produce a table-design artifact with entities, keys/constraints, normalization decision, indexes, RLS/ownership, migration path, and query/access verification.
+
+## Boundary
+
+**`sk-postgresql-table-design`** owns **PostgreSQL table/schema design, constraints, types, indexes, and storage-aware modeling**. It does not own **cross-database schema advice, application ORM wiring, or production rollout ownership as the primary concern**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-postgresql-table-design`'s database boundary or another specialist is the primary owner.
+- When the requested result requires an unsupported production claim or destructive action without evidence.
+
+## Required inputs
+
+- PostgreSQL major version, entities/access paths, integrity rules, workload shape, retention, tenancy, and performance constraints.
+- State assumptions about version, scale, access path, and verification evidence when unknown.
+
+## Cross-skill handoffs
+
+- sk-postgresql-pro for server semantics; sk-sql-data-access-pro for SQLite portability; sk-security-pro for RLS/least privilege; sk-testing-pro for schema verification.

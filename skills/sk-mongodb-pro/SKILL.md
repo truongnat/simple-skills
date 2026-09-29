@@ -4,8 +4,8 @@ name: sk-mongodb-pro
 description: Expert MongoDB development covering document modeling, the Aggregation Framework, indexing strategies, and Atlas administration.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [database, sql, data-access]
+sk-roles: [database-engineer, data-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [mongodb]
 
@@ -103,3 +103,14 @@ db.orders.aggregate([
 ## Output
 
 Produce a MongoDB data design artifact with document model, query/index plan, consistency/transaction needs, sharding or scaling assumptions, security, and verification.
+
+## Required inputs
+
+- Database engine/version, data model or query surface, workload shape, access pattern, safety constraints, and verification target.
+- State assumptions about scale, durability, consistency, permissions, and migration/rollback needs when unknown.
+
+## Cross-skill handoffs
+
+- `sk-postgresql-pro` or the relevant engine skill for vendor-specific semantics and operations.
+- `sk-sql-data-access-pro` for SQLite/local access; `sk-performance-tuning-pro` for cross-tier performance diagnosis.
+- `sk-deployment-pro` for rollout/migration sequencing, `sk-security-pro` for data protection, and `sk-testing-pro` for verification evidence.

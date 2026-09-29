@@ -105,3 +105,12 @@ Use the bundled API design, database optimization, and backend security referenc
 ## Output
 
 Produce a backend engineering artifact with API/data design, implementation boundaries, performance/security considerations, migration plan, tests, and operational verification.
+
+## Required inputs
+
+- system context, quality attributes, constraints, current architecture, interfaces, and decision drivers.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

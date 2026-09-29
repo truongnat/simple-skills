@@ -29,3 +29,16 @@ Produce a test strategy, representative tests, verification output, and any cove
 
 Read `references/javascript-testing-patterns-reference.md` for Jest/Vitest/Testing Library setup and detailed pattern examples.
 Do not load the reference wholesale when the compact workflow is sufficient.
+
+## Boundary
+
+**`sk-javascript-testing-patterns`** owns **named programming-language, framework, or engineering-domain guidance within its specialized scope**. It does not own **cross-domain architecture or product planning as the primary concern**; route those concerns to the appropriate specialist skill.
+
+## Required inputs
+
+- language/framework version, target behavior, existing code/context, constraints, and verification target.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-testing-pro for test strategy; sk-systematic-debugging-pro for diagnosis; sk-clean-code or architecture skills for cross-cutting design; neighboring stack skill for integration.

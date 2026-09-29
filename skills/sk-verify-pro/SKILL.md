@@ -112,3 +112,16 @@ This skill must produce:
 - [ ] Status was downgraded if proof was incomplete
 - [ ] Human checks are explicit when required
 - [ ] The final wording does not overclaim
+
+## Boundary
+
+**`sk-verify-pro`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+## Required inputs
+
+- request, objective, constraints, current artifact, stakeholders, acceptance criteria, and desired output.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.

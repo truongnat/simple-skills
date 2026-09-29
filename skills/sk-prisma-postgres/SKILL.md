@@ -4,8 +4,8 @@ name: sk-prisma-postgres
 description: Prisma Postgres setup and operations guidance across Console, create-db CLI, Management API, and Management API SDK. Use when creating Prisma Postgres databases, working in Prisma Console, provisioning with create-db/create-pg/create-postgres, or integrating programmatic provisioning with service tokens or OAuth.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [database, sql, data-access]
+sk-roles: [database-engineer, data-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 
@@ -188,3 +188,14 @@ Start with `references/create-db-cli.md` for fast setup, then switch to `referen
 ## Output
 
 Produce a Prisma/PostgreSQL artifact with schema/model mapping, migration strategy, query boundaries, transaction/connection behavior, RLS/security, tests, and rollout checks.
+
+## Required inputs
+
+- Database engine/version, data model or query surface, workload shape, access pattern, safety constraints, and verification target.
+- State assumptions about scale, durability, consistency, permissions, and migration/rollback needs when unknown.
+
+## Cross-skill handoffs
+
+- `sk-postgresql-pro` or the relevant engine skill for vendor-specific semantics and operations.
+- `sk-sql-data-access-pro` for SQLite/local access; `sk-performance-tuning-pro` for cross-tier performance diagnosis.
+- `sk-deployment-pro` for rollout/migration sequencing, `sk-security-pro` for data protection, and `sk-testing-pro` for verification evidence.

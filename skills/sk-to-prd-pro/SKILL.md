@@ -164,3 +164,12 @@ Do NOT include specific file paths or code snippets — they become outdated qui
 - [ ] GitHub issue created (or markdown printed) and confirmed by user (Goal-Driven Execution)
 - [ ] Implementation Decisions at interface level — no internal file paths
 - [ ] Further Notes captures open questions and scope boundaries
+
+## Required inputs
+
+- request, objective, constraints, current artifact, stakeholders, acceptance criteria, and desired output.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.

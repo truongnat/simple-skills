@@ -160,3 +160,7 @@ Details: [references/decision-framework-and-trade-offs.md](references/decision-f
 ## Output
 
 Produce a reusable implementation or design artifact with the selected direction/pattern, relevant files or code, responsive/platform behavior, accessibility considerations, verification evidence, risks, and next steps.
+
+## Cross-skill handoffs
+
+- sk-testing-pro for test strategy; sk-systematic-debugging-pro for diagnosis; sk-clean-code or architecture skills for cross-cutting design; neighboring stack skill for integration.

@@ -56,3 +56,12 @@ See `sk-javascript-testing-patterns` skill for comprehensive testing guidance.
 ## Output
 
 Produce a Node.js backend implementation or review artifact with runtime choices, module boundaries, API/error contract, security, tests, and operational checks.
+
+## Required inputs
+
+- system context, quality attributes, constraints, current architecture, interfaces, and decision drivers.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

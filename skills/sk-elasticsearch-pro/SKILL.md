@@ -4,8 +4,8 @@ name: sk-elasticsearch-pro
 description: Expert Elasticsearch development covering indexing strategies, DSL queries, Aggregations, and cluster performance tuning.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [database, sql, data-access]
+sk-roles: [database-engineer, data-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [elasticsearch]
 
@@ -106,3 +106,14 @@ Senior Elasticsearch Engineer.
 ## Output
 
 Produce an Elasticsearch design/review artifact with index/mapping, query and shard strategy, lifecycle, consistency, security, performance evidence, and recovery plan.
+
+## Required inputs
+
+- Database engine/version, data model or query surface, workload shape, access pattern, safety constraints, and verification target.
+- State assumptions about scale, durability, consistency, permissions, and migration/rollback needs when unknown.
+
+## Cross-skill handoffs
+
+- `sk-postgresql-pro` or the relevant engine skill for vendor-specific semantics and operations.
+- `sk-sql-data-access-pro` for SQLite/local access; `sk-performance-tuning-pro` for cross-tier performance diagnosis.
+- `sk-deployment-pro` for rollout/migration sequencing, `sk-security-pro` for data protection, and `sk-testing-pro` for verification evidence.

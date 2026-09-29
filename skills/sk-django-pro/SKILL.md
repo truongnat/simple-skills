@@ -105,3 +105,12 @@ class ItemViewSet(viewsets.ModelViewSet):
 ## Output
 
 Produce a Django implementation or review plan with project structure, models/views/API boundaries, security, migrations, tests, deployment assumptions, and risks.
+
+## Required inputs
+
+- language/framework version, target behavior, existing code/context, constraints, and verification target.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-testing-pro for test strategy; sk-systematic-debugging-pro for diagnosis; sk-clean-code or architecture skills for cross-cutting design; neighboring stack skill for integration.

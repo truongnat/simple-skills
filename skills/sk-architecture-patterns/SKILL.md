@@ -172,3 +172,12 @@ For detailed DDD bounded context mapping, full multi-service project trees, Anti
 ## Output
 
 Produce an architecture pattern selection artifact with context, constraints, selected pattern, trade-offs, boundaries, risks, and migration/verification plan.
+
+## Required inputs
+
+- system context, quality attributes, constraints, current architecture, interfaces, and decision drivers.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

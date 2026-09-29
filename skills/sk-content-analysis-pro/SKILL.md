@@ -231,3 +231,7 @@ Details: [references/versions.md](references/versions.md)
 ## Output
 
 Produce an evidence-linked content analysis artifact with source coverage, extracted findings, confidence/inference labels, provenance anchors, limitations, and follow-up questions.
+
+## Cross-skill handoffs
+
+- sk-ai-integration-pro or the relevant AI specialist for implementation; sk-testing-pro for evaluation; sk-security-pro for safety/privacy; sk-data-science-pro for data methodology.

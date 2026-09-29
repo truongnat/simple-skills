@@ -183,3 +183,7 @@ Details: [references/versions.md](references/versions.md)
 ## Output
 
 Produce a GraphQL schema/API artifact with type and resolver design, query cost/limits, authorization, error contract, caching, versioning, and verification cases.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

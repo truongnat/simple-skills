@@ -81,3 +81,16 @@ Invoking it **is** executing every step below, in order, one at a time.
 ## Output
 
 Produce a reusable implementation or design artifact with the selected direction/pattern, relevant files or code, responsive/platform behavior, accessibility considerations, verification evidence, risks, and next steps.
+
+## Boundary
+
+**`sk-ux-wireframe`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+## Required inputs
+
+- request, objective, constraints, current artifact, stakeholders, acceptance criteria, and desired output.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.

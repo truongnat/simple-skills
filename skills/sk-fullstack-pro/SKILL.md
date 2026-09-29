@@ -118,3 +118,12 @@ Senior Fullstack Developer (10+ years experience).
 ## Output
 
 Produce a full-stack implementation plan or review artifact naming frontend/backend boundaries, data flow, API contract, deployment assumptions, tests, and risks.
+
+## Required inputs
+
+- system context, quality attributes, constraints, current architecture, interfaces, and decision drivers.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

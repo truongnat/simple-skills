@@ -344,3 +344,7 @@ export const tokens = {
 ## Output
 
 Produce a reusable implementation or design artifact with the selected direction/pattern, relevant files or code, responsive/platform behavior, accessibility considerations, verification evidence, risks, and next steps.
+
+## Cross-skill handoffs
+
+- sk-design-taste-frontend or frontend stack skills for implementation; sk-a11y-design-pro for accessibility; sk-testing-pro for UI verification; sk-product-management-pro for product decisions.

@@ -298,3 +298,7 @@ Details: [references/versions.md](references/versions.md)
 ## Output
 
 Produce a reusable ai integration pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Cross-skill handoffs
+
+- sk-ai-integration-pro or the relevant AI specialist for implementation; sk-testing-pro for evaluation; sk-security-pro for safety/privacy; sk-data-science-pro for data methodology.

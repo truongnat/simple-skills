@@ -109,3 +109,12 @@ public class PlayerMovement : MonoBehaviour
 ## Output
 
 Produce a reusable implementation or design artifact with the selected direction/pattern, relevant files or code, responsive/platform behavior, accessibility considerations, verification evidence, risks, and next steps.
+
+## Required inputs
+
+- language/framework version, target behavior, existing code/context, constraints, and verification target.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-testing-pro for test strategy; sk-systematic-debugging-pro for diagnosis; sk-clean-code or architecture skills for cross-cutting design; neighboring stack skill for integration.

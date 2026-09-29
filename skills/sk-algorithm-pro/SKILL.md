@@ -239,3 +239,7 @@ Details: [references/versions.md](references/versions.md)
 ## Output
 
 Produce an algorithm artifact with problem model, constraints, selected strategy, correctness argument, complexity, edge cases, implementation notes, and verification/adversarial tests.
+
+## Cross-skill handoffs
+
+- sk-testing-pro for test strategy; sk-systematic-debugging-pro for diagnosis; sk-clean-code or architecture skills for cross-cutting design; neighboring stack skill for integration.

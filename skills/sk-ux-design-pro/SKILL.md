@@ -97,3 +97,12 @@ Senior UX Researcher & Designer.
 ## Output
 
 Produce a UX artifact with users/jobs, flow or information architecture, interaction states, accessibility considerations, validation evidence, and open questions.
+
+## Required inputs
+
+- user goal, platform/device, existing design system, accessibility needs, content/assets, and success criteria.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-design-taste-frontend or frontend stack skills for implementation; sk-a11y-design-pro for accessibility; sk-testing-pro for UI verification; sk-product-management-pro for product decisions.

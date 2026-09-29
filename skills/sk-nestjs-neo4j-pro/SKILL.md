@@ -179,3 +179,7 @@ Details: [references/decision-tree.md](references/decision-tree.md)
 ## Output
 
 Produce a NestJS/Neo4j implementation or review artifact with graph model, Cypher/query boundaries, module wiring, transaction/session discipline, tests, and operational risks.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

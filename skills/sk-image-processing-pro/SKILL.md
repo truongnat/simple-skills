@@ -185,3 +185,7 @@ Details: [references/versions.md](references/versions.md)
 ## Output
 
 Produce a document/media artifact with input and output paths, coverage/quality checks, unsupported-content limitations, validation evidence, and delivery notes.
+
+## Cross-skill handoffs
+
+- sk-design-taste-frontend or frontend stack skills for implementation; sk-a11y-design-pro for accessibility; sk-testing-pro for UI verification; sk-product-management-pro for product decisions.

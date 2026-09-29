@@ -112,3 +112,16 @@ Cache hit vs DB query: ~100× | RAM vs disk: ~100×
 ## Output
 
 Produce a decision-ready architecture artifact with context, alternatives, trade-offs, selected design, failure modes, SLO/observability plan, and rollout/rollback criteria.
+
+## Boundary
+
+**`sk-system-design-pro`** owns **architecture, API, backend design, and engineering decision guidance within its named technical scope**. It does not own **unrelated product requirements, frontend-only design, or operational deployment as the primary concern**; route those concerns to the appropriate specialist skill.
+
+## Required inputs
+
+- system context, quality attributes, constraints, current architecture, interfaces, and decision drivers.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

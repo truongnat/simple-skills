@@ -9,8 +9,8 @@ description: >+
   RLS-focused: row-level security, policies (USING / WITH CHECK), ENABLE ROW LEVEL SECURITY, FORCE ROW LEVEL SECURITY, BYPASSRLS, multi-tenant isol
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [database, sql, data-access]
+sk-roles: [database-engineer, data-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [postgresql]
 
@@ -194,3 +194,9 @@ Details: [references/versions.md](references/versions.md)
 ## Output
 
 Produce a PostgreSQL decision/review artifact with schema/query/policy design, version and workload assumptions, plan/lock/RLS evidence, migration and rollback risks, and verification.
+
+## Cross-skill handoffs
+
+- `sk-postgresql-pro` or the relevant engine skill for vendor-specific semantics and operations.
+- `sk-sql-data-access-pro` for SQLite/local access; `sk-performance-tuning-pro` for cross-tier performance diagnosis.
+- `sk-deployment-pro` for rollout/migration sequencing, `sk-security-pro` for data protection, and `sk-testing-pro` for verification evidence.

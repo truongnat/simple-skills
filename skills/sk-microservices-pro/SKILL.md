@@ -188,3 +188,7 @@ Details: [references/versions.md](references/versions.md)
 ## Output
 
 Produce a microservices architecture artifact with service boundaries, contracts, data ownership, consistency, failure handling, observability, security, and rollout plan.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

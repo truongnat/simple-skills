@@ -1,6 +1,11 @@
 ---
 name: sk-database-migration
 description: Execute database migrations across ORMs and platforms with zero-downtime strategies, data transformation, and rollback procedures. Use when migrating databases, changing schemas, performing data transformations, or implementing zero-downtime deployment strategies.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [database, sql, data-access]
+sk-roles: [database-engineer, data-engineer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Database Migration
@@ -334,3 +339,21 @@ More detailed templates and worked examples live in `references/details.md`. Rea
 ## Output
 
 Produce a migration plan/artifact with schema/data steps, compatibility window, lock and scale risks, verification queries, rollback or roll-forward plan, and deployment order.
+
+## Boundary
+
+**`sk-database-migration`** owns **schema and data migration planning, compatibility sequencing, rollback/forward-fix reasoning, and zero-downtime evolution**. It does not own **database-vendor administration or application release orchestration as the primary concern**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-database-migration`'s database boundary or another specialist is the primary owner.
+- When the requested result requires an unsupported production claim or destructive action without evidence.
+
+## Required inputs
+
+- database engine/version, migration tool, current and target schema, data volume, lock/downtime budget, compatibility window, and rollback constraints.
+- State assumptions about version, scale, access path, and verification evidence when unknown.
+
+## Cross-skill handoffs
+
+- sk-postgresql-pro or the relevant database skill for engine mechanics; sk-deployment-pro for rollout; sk-testing-pro for migration verification; sk-security-pro for data/credential risks.

@@ -4,8 +4,8 @@ name: sk-redis-pro
 description: Expert Redis development covering data structures, caching strategies, Pub/Sub, Lua scripting, and RediSearch/JSON modules.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [database, sql, data-access]
+sk-roles: [database-engineer, data-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [redis]
 
@@ -102,3 +102,14 @@ return 1
 ## Output
 
 Produce a Redis design artifact with data structures, key/TTL policy, consistency and eviction behavior, memory/capacity assumptions, security, and failure/recovery checks.
+
+## Required inputs
+
+- Database engine/version, data model or query surface, workload shape, access pattern, safety constraints, and verification target.
+- State assumptions about scale, durability, consistency, permissions, and migration/rollback needs when unknown.
+
+## Cross-skill handoffs
+
+- `sk-postgresql-pro` or the relevant engine skill for vendor-specific semantics and operations.
+- `sk-sql-data-access-pro` for SQLite/local access; `sk-performance-tuning-pro` for cross-tier performance diagnosis.
+- `sk-deployment-pro` for rollout/migration sequencing, `sk-security-pro` for data protection, and `sk-testing-pro` for verification evidence.

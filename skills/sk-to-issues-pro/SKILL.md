@@ -171,3 +171,12 @@ Closes #<parent-issue>
 - [ ] All issues created in dependency order; user confirmed the list (Goal-Driven Execution)
 - [ ] AFK issues have unambiguous acceptance criteria
 - [ ] HITL issues have explicit review trigger and owner
+
+## Required inputs
+
+- request, objective, constraints, current artifact, stakeholders, acceptance criteria, and desired output.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.

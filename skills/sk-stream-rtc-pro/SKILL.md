@@ -119,3 +119,7 @@ Response shape:
 ## Output
 
 Produce a realtime media architecture artifact with topology, signaling/media planes, ICE/TURN assumptions, QoS strategy, auth/consent, failure modes, and test matrix.
+
+## Cross-skill handoffs
+
+- sk-ai-integration-pro or the relevant AI specialist for implementation; sk-testing-pro for evaluation; sk-security-pro for safety/privacy; sk-data-science-pro for data methodology.

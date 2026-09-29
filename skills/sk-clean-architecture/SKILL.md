@@ -28,3 +28,16 @@ Produce an architecture decision or review artifact containing the current-state
 ## Detailed reference
 
 Read `references/clean-architecture-reference.md` for framework-specific examples and extended patterns.
+
+## Boundary
+
+**`sk-clean-architecture`** owns **architecture, API, backend design, and engineering decision guidance within its named technical scope**. It does not own **unrelated product requirements, frontend-only design, or operational deployment as the primary concern**; route those concerns to the appropriate specialist skill.
+
+## Required inputs
+
+- system context, quality attributes, constraints, current architecture, interfaces, and decision drivers.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

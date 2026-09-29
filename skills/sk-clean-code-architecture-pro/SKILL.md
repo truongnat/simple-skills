@@ -213,3 +213,7 @@ Details: [references/integration-map.md](references/integration-map.md)
 ## Output
 
 Produce an architecture review artifact with dependency rule, module boundaries, failure modes, quality gates, selected trade-offs, and actionable migration steps.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

@@ -122,3 +122,7 @@ Response shape:
 ## Output
 
 Produce a WebSocket architecture artifact with connection lifecycle, message contract, auth, ordering/backpressure, reconnect behavior, observability, and failure tests.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

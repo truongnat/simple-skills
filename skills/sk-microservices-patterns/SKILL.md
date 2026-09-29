@@ -100,3 +100,12 @@ Detailed pattern documentation lives in `references/details.md`. Read that file 
 ## Output
 
 Produce a service-boundary and interaction note with ownership, contracts, failure modes, consistency choices, observability, and migration risks.
+
+## Required inputs
+
+- system context, quality attributes, constraints, current architecture, interfaces, and decision drivers.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

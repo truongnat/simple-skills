@@ -434,3 +434,12 @@ After an ADR is drafted or its status changes, update the repository ADR index, 
 ## Output
 
 Produce an ADR containing context, decision, alternatives, consequences, status, evidence, and follow-up actions; keep the index linkable from the skill directory.
+
+## Required inputs
+
+- system context, quality attributes, constraints, current architecture, interfaces, and decision drivers.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

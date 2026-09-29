@@ -1,6 +1,11 @@
 ---
 name: sk-sql-optimization-patterns
 description: Master SQL query optimization, indexing strategies, and EXPLAIN analysis to dramatically improve database performance and eliminate slow queries. Use when debugging slow queries, designing database schemas, or optimizing application performance.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [database, sql, data-access]
+sk-roles: [database-engineer, data-engineer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # SQL Optimization Patterns
@@ -216,3 +221,21 @@ ORDER BY pg_relation_size(indexrelid) DESC;
 ## Output
 
 Produce a SQL optimization artifact with baseline query/plan, bottleneck evidence, index/query changes, regression risks, representative benchmarks, and rollback plan.
+
+## Boundary
+
+**`sk-sql-optimization-patterns`** owns **SQL query-plan analysis, index selection, join/query shaping, and evidence-based database performance optimization**. It does not own **application-wide performance diagnosis, schema migration ownership, or vendor administration as the primary concern**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-sql-optimization-patterns`'s database boundary or another specialist is the primary owner.
+- When the requested result requires an unsupported production claim or destructive action without evidence.
+
+## Required inputs
+
+- database engine/version, slow query and plan, table/row scale, workload shape, indexes, latency target, and correctness constraints.
+- State assumptions about version, scale, access path, and verification evidence when unknown.
+
+## Cross-skill handoffs
+
+- sk-postgresql-pro or the relevant engine skill for vendor semantics; sk-performance-tuning-pro for cross-tier diagnosis; sk-testing-pro for regression evidence; sk-caching-pro when caching is the proposed alternative.

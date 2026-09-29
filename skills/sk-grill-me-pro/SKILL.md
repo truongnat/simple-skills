@@ -146,3 +146,12 @@ Skip questions that fail this bar.
 - [ ] Full decision tree resolved; summary confirmed by user (Goal-Driven Execution)
 - [ ] Every question included a recommended answer
 - [ ] No fabricated codebase facts in questions or follow-ups
+
+## Required inputs
+
+- request, objective, constraints, current artifact, stakeholders, acceptance criteria, and desired output.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.

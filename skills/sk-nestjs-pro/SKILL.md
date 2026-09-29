@@ -196,3 +196,7 @@ Details: [references/versions.md](references/versions.md)
 ## Output
 
 Produce a NestJS backend artifact with module/API boundaries, DI and validation rules, database/RLS integration, security, tests, and deployment/observability checks.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

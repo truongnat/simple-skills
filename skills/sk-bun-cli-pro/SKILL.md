@@ -253,3 +253,7 @@ Details: [references/decision-tree.md](references/decision-tree.md)
 ## Output
 
 Produce a language/runtime implementation artifact with version/toolchain assumptions, API or module boundaries, tests, error handling, performance considerations, and verification evidence.
+
+## Cross-skill handoffs
+
+- sk-testing-pro for test strategy; sk-systematic-debugging-pro for diagnosis; sk-clean-code or architecture skills for cross-cutting design; neighboring stack skill for integration.

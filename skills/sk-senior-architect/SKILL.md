@@ -105,3 +105,12 @@ Use the bundled architecture pattern, system-design workflow, and technology dec
 ## Output
 
 Produce an architecture decision package with current-state map, target design, alternatives, diagrams or diagram source, dependency risks, and phased implementation plan.
+
+## Required inputs
+
+- system context, quality attributes, constraints, current architecture, interfaces, and decision drivers.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.

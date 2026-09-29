@@ -113,3 +113,12 @@ public class UserController {
 ## Output
 
 Produce a Spring Boot implementation or review plan with module boundaries, configuration, persistence, API/security behavior, tests, observability, and deployment checks.
+
+## Required inputs
+
+- language/framework version, target behavior, existing code/context, constraints, and verification target.
+- State assumptions explicitly when context, ownership, or evidence is incomplete.
+
+## Cross-skill handoffs
+
+- sk-testing-pro for test strategy; sk-systematic-debugging-pro for diagnosis; sk-clean-code or architecture skills for cross-cutting design; neighboring stack skill for integration.

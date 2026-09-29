@@ -4,6 +4,11 @@ description: >-
   Step workflow: seed DISCUSSION.md template then fill frame → scope/options →
   recommendation → self-check. Clarify direction before design/sk-planning.
   (Hard contract in this SKILL.md — MUST follow.)
+sk-kind: process
+sk-version: 0.1.0
+sk-tags: [discovery,ideation]
+sk-roles: [reasoner]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Brainstorming

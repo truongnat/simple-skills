@@ -1,6 +1,11 @@
 ---
 name: sk-review
 description: "Review changes after sk-execution: bugs, regression, missing tests, security/data risks, maintainability, and readiness before sk-done/PR. (Hard contract in this SKILL.md — MUST follow.)"
+sk-kind: process
+sk-version: 0.1.0
+sk-tags: [quality-gate,code-review]
+sk-roles: [critic]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Review
@@ -19,8 +24,7 @@ Compare the diff and `EXECUTION.md` against `PLAN.md` (DoD/scope) and
 `TASKS.md` when present (per-task AC and intended files).
 
 **Outcome-first:** Ready / Ready-with-risks requires evidence that maps to DoD
-and AC (commands, responses, screenshots, test names) — not “files look
-§ Gates C.
+and AC (commands, responses, screenshots, test names) — not “files look clean.”
 
 ## Step contract (mandatory — invoke = execute ALL steps)
 
@@ -66,7 +70,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - **testing_gaps** (optional, array): Gap, risk, suggested follow-up.
 - **residual_risks** (optional, array): Risk, impact, acceptance/mitigation.
 - **recommendation** (required, string): Ready / Ready with risks / Needs fix / Blocked / Needs more verification.
-- **handoff** (required, string): Next action/skill, owner, and blocking status.
+- **handoff** (required, string): Next action/skill, owner, and blocking status. A review-ready handoff normally routes to `sk-verify-pro` before `sk-done`.
 
 ### Reference
 

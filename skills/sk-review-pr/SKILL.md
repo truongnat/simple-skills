@@ -1,6 +1,11 @@
 ---
 name: sk-review-pr
 description: "Review pull requests, merge requests, or branch diffs as a responsible code reviewer. Quality gate before merge. (Hard contract in this SKILL.md — MUST follow.)"
+sk-kind: process
+sk-version: 0.1.0
+sk-tags: [quality-gate,pr-review]
+sk-roles: [critic]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Review PR
@@ -60,7 +65,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - **verification_reviewed** (required, array): Check, result (pass/fail/skipped/missing), evidence, concern.
 - **testing_gaps** (optional, array): Gap, risk, suggested follow-up.
 - **residual_risks** (optional, array): Risk, impact, acceptance/mitigation.
-- **merge_recommendation** (required, string): Approve / Approve with comments / Request changes / Needs more info / Needs more verification / Blocked.
+- **merge_recommendation** (required, string): Approve / Approve with comments / Request changes / Needs more info / Needs more verification / Blocked. A merge-ready handoff routes to `sk-verify-pro` when the claim still needs final evidence.
 
 ### Reference
 

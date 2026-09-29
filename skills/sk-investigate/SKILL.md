@@ -1,6 +1,11 @@
 ---
 name: sk-investigate
 description: "Investigate codebase, bugs, system behavior, or technical questions before implementing. Root-cause analysis, reproduction, impact mapping, and evidence-based recommendations. (Hard contract in this SKILL.md — MUST follow.)"
+sk-kind: process
+sk-version: 0.1.0
+sk-tags: [investigation,debugging]
+sk-roles: [researcher]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Investigate

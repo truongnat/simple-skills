@@ -1,6 +1,11 @@
 ---
 name: sk-sync
 description: "Read-only sk-sync of task artifacts, codebase context, git state, dirty changes, dependency/config drift, plan mismatch, and blockers before sk-execution. (Hard contract in this SKILL.md — MUST follow.)"
+sk-kind: process
+sk-version: 0.1.0
+sk-tags: [context,readiness]
+sk-roles: [researcher]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Sync

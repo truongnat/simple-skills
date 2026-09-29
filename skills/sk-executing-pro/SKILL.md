@@ -3,13 +3,12 @@
 name: sk-executing-pro
 description: >+
   "Production-grade plan execution: executing approved plans step by step with dependency-aware task sequencing, checkpoint verification, adaptive replanning, progress tracking, and completion verification — plus execution cycle (execute → checkpoint → adapt → close), failure modes (ignoring dependencies, skipping checkpoints, rigid adherence to outdated plans), and quality guardrails (checkpoint gates, dependency respect, completion verification)"
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-tags: [execution]
-sk-roles: [planner]
+sk-tags: [execution,checkpoints]
+sk-roles: [coder]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [executing]
-
 ---
 
 
@@ -21,25 +20,29 @@ aliases: [executing]
 
 Execute an approved plan step by step without drifting scope or skipping state updates — with dependency-aware task sequencing, checkpoint verification, and adaptive replanning when evidence changes the path.
 
-This is the **single execution skill** for the core flow. It replaces `executing-plans` and `executing-plans-pro`.
+This is the **canonical execution owner** for planned implementation work in Group 01. `sk-execution` is a compatibility facade for legacy TASKS/EXECUTION sessions; do not invoke both for the same task.
+
+## Canonical ownership
+
+Use this skill for all new or resumed planned implementation work. It owns dependency-aware execution, checkpoints, adaptive replanning, crash recovery, and completion evidence. The shared artifact contract is defined in `../../docs/GROUP01_SESSION_ARTIFACTS.md`.
 
 ## When To Use
 
-- after `planning-pro` has produced PLAN.md with tasks and dependencies
+- after `sk-planning` has produced PLAN.md with tasks and dependencies
 - when resuming planned implementation work
 - when executing tasks in sequence with dependency awareness
 - when adapting execution based on progress or blockers
 
 ## When Not To Use
 
-- before a plan exists — use `planning-pro` first
+- before a plan exists — use `sk-planning` first
 - when the goal is still unclear — use `sk-discussing-pro` first
 - when the work is a pure review with no implementation
 - when only reading or verifying existing code
 
 ## Inputs
 
-- PLAN.md (from `planning-pro`) with tasks, dependencies, acceptance criteria
+- PLAN.md (from `sk-planning`) with tasks, dependencies, acceptance criteria
 - current task list and execution state
 - checkpoint strategy: where to pause and verify
 - adaptation rules: when and how to replan
@@ -62,7 +65,7 @@ Pause at defined checkpoints. Verify acceptance criteria for completed work. If 
 Output: checkpoint result (pass/fail).
 
 ### 4. Adapt or Continue
-If assumptions or scope change materially, stop and re-plan using `planning-pro`. Otherwise, continue to the next task.
+If assumptions or scope change materially, stop and re-plan using `sk-planning`. Otherwise, continue to the next task.
 
 Output: adaptation decision.
 

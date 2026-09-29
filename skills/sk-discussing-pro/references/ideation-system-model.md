@@ -89,6 +89,6 @@ When convergence criteria reveal insufficient depth:
 ## Integration Points
 
 - **`business-analysis-pro`:** Requirements validation before ideation
-- **`planning-pro`:** Implementation planning after convergence
+- **`sk-planning`:** Implementation planning after convergence
 - **Domain `*-pro` skills:** Technical feasibility assessment in Phase 2
 - **`sk-strategic-consulting-pro`:** Portfolio-level option evaluation

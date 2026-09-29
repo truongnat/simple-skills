@@ -4,6 +4,11 @@ description: >-
   BA project dashboard: progress, coverage, and risks across task artifacts
   (/dashboard). Writes DASHBOARD.md with honest status — no fake green.
   (Hard contract.)
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [requirements,reporting]
+sk-roles: [reasoner]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # BA dashboard

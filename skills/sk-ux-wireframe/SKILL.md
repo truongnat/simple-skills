@@ -4,6 +4,11 @@ description: >-
   BA screen sketches: ASCII (/wireframe-ascii), HTML wireframe
   (/wireframe-html), HTML prototype (/prototype-html), or Figma brief
   (/figma) for design-system handoff — not live Figma drawing. (Hard contract.)
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [ux,design]
+sk-roles: [designer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # UX wireframe

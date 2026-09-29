@@ -5,6 +5,11 @@ description: >-
   tooling, repo, and agent configuration/ wiring — with decisions recorded, ready for the
   lifecycle. Use before sk-init when there is no code yet. (Hard contract in this
   SKILL.md — MUST follow.)
+sk-kind: process
+sk-version: 0.1.0
+sk-tags: [bootstrap,greenfield]
+sk-roles: [coder]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Scaffold (new project bootstrap)
@@ -91,7 +96,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
    never write real secrets.
 6. Branch per the project branch settings.mode`: `direct` → stay on the base branch;
    `checkout` → create the initial work branch before writing code files. Run
-   `git sk-init` if there is no repo.
+   `git init` if there is no repo, then hand off to `sk-init`.
    `sk-docs full`.
 8. Write the stack ADRs and `SCAFFOLD.md` (created files, decisions, assumptions
    marked, and the exact next commands — install/build/run — as text; run them

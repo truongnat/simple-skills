@@ -6,15 +6,14 @@ description: >+
 
   Triggers: "write a PRD", "create a spec", "turn this into a PRD", "open a GitHub issue for this", "document this feature", "to-prd", "make a product doc".
 
-  Combine with **`sk-to-issues-pro`** to break the resulting PRD into vertical-slice GitHub issues, and **`planning-pro`** for milestone sequencing.
+  Combine with **`sk-to-issues-pro`** to break the resulting PRD into vertical-slice GitHub issues, and **`sk-planning`** for milestone sequencing.
 
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [product,prd]
+sk-roles: [reasoner]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [to-prd]
-
 ---
 
 
@@ -27,7 +26,7 @@ Turn the current conversation context and codebase into a PRD submitted as a Git
 
 ## Boundary
 
-**`sk-to-prd-pro`** owns **PRD synthesis and GitHub issue creation**. **`sk-to-issues-pro`** owns breaking a PRD into individual implementation issues. **`planning-pro`** owns roadmaps and milestone sequencing.
+**`sk-to-prd-pro`** owns **PRD synthesis and GitHub issue creation**. **`sk-to-issues-pro`** owns breaking a PRD into individual implementation issues. **`sk-planning`** owns roadmaps and milestone sequencing.
 
 ## Related skills
 

@@ -11,8 +11,8 @@ description: >+
   Triggers: "clean code", "clean architecture", "hexagonal",
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [architecture, clean-code, boundaries]
+sk-roles: [architect, tech-lead]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [clean-code-architecture]
 
@@ -28,6 +28,9 @@ Skill text is **English**; answer in the user’s preferred language when rules 
 Use [Clean Architecture (Uncle Bob)](https://blog.cleancoder.com/uncle-bob/2012/11/22/Clean-Architecture.html), [Refactoring catalog (Fowler)](https://refactoring.com/catalog/), and domain-driven **bounded context** thinking for conceptual truth; this skill encodes **dependency graphs**, **boundary failure modes**, **incremental strangler migration**, and **trade-offs** — not diagram aesthetics alone. Confirm **current layout**, **domain complexity**, **team conventions**, and **release risk** before restructuring.
 
 ## Boundary
+
+
+**Canonical owner:** dependency direction, module boundaries, architecture trade-offs, and incremental structural migration for Group 02.
 
 **`sk-clean-code-architecture-pro`** owns **dependency direction**, **module semantics**, **use-case orchestration shape**, **structural refactor sequencing**, and **architecture-level trade-offs**. **`sk-nestjs-pro`** / **`sk-react-pro`** own **framework wiring**; **`sk-testing-pro`** owns **test mechanics**; **`sk-postgresql-pro`** / **`sk-sql-data-access-pro`** own **SQL and schema** — this skill defines **where** persistence must not leak inward.
 

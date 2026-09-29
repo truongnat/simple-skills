@@ -9,8 +9,8 @@ description: >+
   Triggers: "api design", "rest api", "endpoint", "contract", "versioning", "pagination", "error model", "idempotency", "backward compatibility", "schema evolution", "openapi", "swagger", "429", "400 vs 500", "webhook", "HATEOAS", "rate limit", "resource modeling", "nested resource", "bulk api", "ETag", "If-Match", "workflow api", "state transition", "cursor pagination", "async job", "202 accepted", "webhook signing", "projection", "sparse fi
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [api, contracts, versioning]
+sk-roles: [architect, backend-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [api-design]
 
@@ -26,6 +26,9 @@ Skill text is **English**; answer in the user’s preferred language when rules 
 Use official [HTTP Semantics RFC 9110](https://www.rfc-editor.org/rfc/rfc9110), [OpenAPI Specification](https://spec.openapis.org/oas/latest.html), and [JSON Schema](https://json-schema.org/specification) for standards truth; this skill encodes **contract-first design**, **resource and action modeling**, **evolution safety**, and **operationally practical API conventions**. Confirm **API style** (REST/RPC/event), **client ecosystem**, and **compatibility constraints** from the project.
 
 ## Boundary
+
+
+**Canonical owner:** API contract shape, evolution, mutation/query semantics, and compatibility governance for Group 02.
 
 **`sk-api-design-pro`** owns **contract shape**, **resource/action model**, **mutation and query semantics**, **versioning**, **pagination**, **error/idempotency/retry story**, **workflow-oriented endpoints**, **async and webhook patterns** at the design level, and **integration maps** to other skills. It does **not** replace **`sk-nestjs-pro`** / **`sk-nextjs-pro`** for framework wiring, **`sk-graphql-pro`** for GraphQL-only schema work, or **`sk-security-pro`** for full threat modeling — pair as needed.
 

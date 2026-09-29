@@ -198,7 +198,7 @@ from fastapi import HTTPException, Request
 from datetime import datetime, timedelta
 
 class RateLimiter:
-    def __sk-init__(self, calls: int, period: int):
+    def __init__(self, calls: int, period: int):
         self.calls = calls
         self.period = period
         self.cache = {}

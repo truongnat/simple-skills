@@ -163,7 +163,7 @@ class CatalogHttpClient(CatalogClientPort):
     Catalog's response schema into Ordering's ProductSnapshot.
     """
 
-    def __sk-init__(self, base_url: str, http_client: httpx.AsyncClient):
+    def __init__(self, base_url: str, http_client: httpx.AsyncClient):
         self._base_url = base_url
         self._http = http_client
 
@@ -187,7 +187,7 @@ class CatalogHttpClient(CatalogClientPort):
 
 # Test ACL with a stub — no HTTP required
 class StubCatalogClient(CatalogClientPort):
-    def __sk-init__(self, products: dict[str, ProductSnapshot]):
+    def __init__(self, products: dict[str, ProductSnapshot]):
         self._products = products
 
     async def get_product_snapshot(self, sku: str) -> ProductSnapshot:
@@ -277,16 +277,16 @@ Use these rules when deciding aggregate boundaries:
 ```python
 # Bad: Customer aggregate holds full Order objects
 class Customer:
-    def __sk-init__(self):
+    def __init__(self):
         self._orders: list[Order] = []   # loads all orders every time
 
 # Good: Customer holds Order IDs only; Order is its own aggregate
 class Customer:
-    def __sk-init__(self):
+    def __init__(self):
         self._order_ids: list[str] = []  # lightweight reference
 
 class Order:
-    def __sk-init__(self, id: str, customer_id: str):
+    def __init__(self, id: str, customer_id: str):
         self.id = id
         self.customer_id = customer_id   # reference back, not the full object
 ```
@@ -339,7 +339,7 @@ class PostgresOutboxPublisher:
 
 # use_cases/place_order.py — aggregate saves, events are extracted and stored
 class PlaceOrderUseCase:
-    def __sk-init__(self, order_repo: OrderRepository, event_publisher: PostgresOutboxPublisher):
+    def __init__(self, order_repo: OrderRepository, event_publisher: PostgresOutboxPublisher):
         self.orders = order_repo
         self.publisher = event_publisher
 

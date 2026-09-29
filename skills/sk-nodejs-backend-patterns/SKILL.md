@@ -1,11 +1,20 @@
 ---
 name: sk-nodejs-backend-patterns
 description: Build production-ready Node.js backend services with Express/Fastify, implementing middleware patterns, error handling, authentication, database integration, and API design best practices. Use when creating Node.js servers, REST APIs, GraphQL backends, or microservices architectures.
+sk-tags: [nodejs, backend, api]
+sk-roles: [backend-engineer]
+sk-kind: domain
+sk-version: 0.1.0
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Node.js Backend Patterns
 
 Comprehensive guidance for building scalable, maintainable, and production-ready Node.js backend applications with modern frameworks, architectural patterns, and best practices.
+
+## Boundary
+
+This is a general Node.js backend reference. Use **`sk-nestjs-pro`** for NestJS wiring, **`sk-api-design-pro`** for API contracts, and **`sk-microservices-pro`** for distributed service topology.
 
 ## When to Use This Skill
 

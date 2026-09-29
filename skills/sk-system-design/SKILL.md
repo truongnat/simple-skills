@@ -6,8 +6,8 @@ description: >+
 
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [system-design, hld, architecture]
+sk-roles: [architect, backend-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 
@@ -181,13 +181,13 @@ Next steps: [follow-up actions if any]
 ```
 L1 cache:        ~1 ns
 RAM:             ~100 ns
-SSD read:        ~100 µs    (••••× RAM)
+SSD read:        ~100 µs    (~1000× RAM)
 Network same DC: ~500 µs
 HDD seek:        ~10 ms     (100× SSD)
 Network cross DC:~100 ms
 ```
 
-Cache hit vs DB query: ~••••× | RAM vs disk: ~100×
+Cache hit vs DB query: ~100× | RAM vs disk: ~100×
 
 ---
 

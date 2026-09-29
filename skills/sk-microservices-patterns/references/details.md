@@ -86,7 +86,7 @@ app = FastAPI()
 class APIGateway:
     """Central entry point for all client requests."""
 
-    def __sk-init__(self):
+    def __init__(self):
         self.order_service_url = "http://order-service:8000"
         self.payment_service_url = "http://payment-service:8001"
         self.inventory_service_url = "http://inventory-service:8002"
@@ -152,7 +152,7 @@ from tenacity import retry, stop_after_attempt, wait_exponential
 class ServiceClient:
     """HTTP client with retries and timeout."""
 
-    def __sk-init__(self, base_url: str):
+    def __init__(self, base_url: str):
         self.base_url = base_url
         self.client = httpx.AsyncClient(
             timeout=httpx.Timeout(5.0, connect=2.0),
@@ -200,7 +200,7 @@ class DomainEvent:
 class EventBus:
     """Event publishing and subscription."""
 
-    def __sk-init__(self, bootstrap_servers: List[str]):
+    def __init__(self, bootstrap_servers: List[str]):
         self.bootstrap_servers = bootstrap_servers
         self.producer = None
 
@@ -275,7 +275,7 @@ from typing import List, Callable
 class SagaStep:
     """Single step in saga."""
 
-    def __sk-init__(
+    def __init__(
         self,
         name: str,
         action: Callable,
@@ -294,7 +294,7 @@ class SagaStatus(Enum):
 class OrderFulfillmentSaga:
     """Orchestrated saga for order fulfillment."""
 
-    def __sk-init__(self):
+    def __init__(self):
         self.steps: List[SagaStep] = [
             SagaStep(
                 "create_order",
@@ -407,7 +407,7 @@ class CircuitState(Enum):
 class CircuitBreaker:
     """Circuit breaker for service calls."""
 
-    def __sk-init__(
+    def __init__(
         self,
         failure_threshold: int = 5,
         recovery_timeout: int = 30,

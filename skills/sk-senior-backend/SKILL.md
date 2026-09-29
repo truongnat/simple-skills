@@ -4,8 +4,8 @@ name: sk-senior-backend
 description: Comprehensive backend development skill for building scalable backend systems using NodeJS, Express, Go, Python, Postgres, GraphQL, REST APIs. Includes API scaffolding, database optimization, security implementation, and performance tuning. Use when designing APIs, optimizing database queries, implementing business logic, handling authentication/authorization, or reviewing backend code.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [backend, api, operations]
+sk-roles: [backend-engineer, tech-lead]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 
@@ -111,13 +111,13 @@ This skill provides three core capabilities through automated scripts:
 
 ```bash
 # Script 1: Api Scaffolder
-python scripts/api_scaffolder.py [options]
+node scripts/api-scaffolder.js [options]
 
 # Script 2: Database Migration Tool
-python scripts/database_migration_tool.py [options]
+node scripts/database-migration-tool.js [options]
 
 # Script 3: Api Load Tester
-python scripts/api_load_tester.py [options]
+node scripts/api-load-tester.js [options]
 ```
 
 ## Core Capabilities
@@ -134,7 +134,7 @@ Automated tool for api scaffolder tasks.
 
 **Usage:**
 ```bash
-python scripts/api_scaffolder.py <project-path> [options]
+node scripts/api-scaffolder.js <project-path> [options]
 ```
 
 ### 2. Database Migration Tool
@@ -149,7 +149,7 @@ Comprehensive analysis and optimization tool.
 
 **Usage:**
 ```bash
-python scripts/database_migration_tool.py <target-path> [--verbose]
+node scripts/database-migration-tool.js <target-path> [--verbose]
 ```
 
 ### 3. Api Load Tester
@@ -164,7 +164,7 @@ Advanced tooling for specialized tasks.
 
 **Usage:**
 ```bash
-python scripts/api_load_tester.py [arguments] [options]
+node scripts/api-load-tester.js [arguments] [options]
 ```
 
 ## Reference Documentation
@@ -226,7 +226,7 @@ cp .env.example .env
 
 ```bash
 # Use the analyzer script
-python scripts/database_migration_tool.py .
+node scripts/database-migration-tool.js .
 
 # Review recommendations
 # Apply fixes
@@ -275,8 +275,8 @@ npm run test
 npm run lint
 
 # Analysis
-python scripts/database_migration_tool.py .
-python scripts/api_load_tester.py --analyze
+node scripts/database-migration-tool.js .
+node scripts/api-load-tester.js --analyze
 
 # Deployment
 docker build -t app:latest .

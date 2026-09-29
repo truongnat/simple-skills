@@ -21,6 +21,8 @@ sk-compatible:
 
 # System Design Overview — Reference Skill
 
+**Canonical owner:** decision-ready system design, alternatives, scale assumptions, SLOs, and rollout criteria for Group 02.
+
 ## Full Landscape
 
 ```
@@ -89,13 +91,13 @@ sk-compatible:
 ```
 L1 cache:        ~1 ns
 RAM:             ~100 ns
-SSD read:        ~100 µs    (••••× RAM)
+SSD read:        ~100 µs    (~1000× RAM)
 Network same DC: ~500 µs
 HDD seek:        ~10 ms     (100× SSD)
 Network cross DC:~100 ms
 ```
 
-Cache hit vs DB query: ~••••× | RAM vs disk: ~100×
+Cache hit vs DB query: ~100× | RAM vs disk: ~100×
 
 ---
 

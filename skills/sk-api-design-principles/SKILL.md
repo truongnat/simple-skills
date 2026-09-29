@@ -1,11 +1,20 @@
 ---
 name: sk-api-design-principles
 description: Master REST and GraphQL API design principles to build intuitive, scalable, and maintainable APIs that delight developers. Use when designing new APIs, reviewing API specifications, or establishing API design standards.
+sk-tags: [api, rest, graphql]
+sk-roles: [architect, backend-engineer]
+sk-kind: domain
+sk-version: 0.1.0
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # API Design Principles
 
 Master REST and GraphQL API design principles to build intuitive, scalable, and maintainable APIs that delight developers and stand the test of time.
+
+## Boundary
+
+This is the foundational REST/GraphQL principles reference. Use **`sk-api-design-pro`** as the canonical owner for production contract governance, compatibility, idempotency, and API evolution; use **`sk-graphql-pro`** for GraphQL-only execution and schema concerns.
 
 ## When to Use This Skill
 

@@ -1,11 +1,20 @@
 ---
 name: sk-architecture-decision-records
 description: Write and maintain Architecture Decision Records (ADRs) following best practices for technical decision documentation. Use when documenting significant technical decisions, reviewing past architectural choices, or establishing decision processes.
+sk-tags: [adr, architecture, governance]
+sk-roles: [architect, tech-lead]
+sk-kind: domain
+sk-version: 0.1.0
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Architecture Decision Records
 
 Comprehensive patterns for creating, maintaining, and managing Architecture Decision Records (ADRs) that capture the context and rationale behind significant technical decisions.
+
+## Boundary
+
+This skill owns the ADR record format and decision lifecycle. Use **`sk-system-design-pro`** or **`sk-clean-code-architecture-pro`** to analyze the architecture decision itself, then record the selected option here.
 
 ## When to Use This Skill
 
@@ -378,7 +387,7 @@ This directory contains Architecture Decision Records (ADRs) for [Project Name].
 brew install adr-tools
 
 # Initialize ADR directory
-adr sk-init docs/adr
+adr init docs/adr
 
 # Create new ADR
 adr new "Use PostgreSQL as Primary Database"

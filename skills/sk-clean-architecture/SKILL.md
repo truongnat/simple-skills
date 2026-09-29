@@ -4,8 +4,8 @@ name: sk-clean-architecture
 description: Provides implementation patterns for Clean Architecture, Domain-Driven Design (DDD), and Hexagonal Architecture (Ports & Adapters) in NestJS/TypeScript applications. Use when structuring complex backend systems, designing domain layers with entities/value objects/aggregates, implementing ports and adapters, creating use cases, or refactoring from anemic models to rich domain models with dependency inversion.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [architecture, clean-code, boundaries]
+sk-roles: [architect, backend-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 # Clean Architecture

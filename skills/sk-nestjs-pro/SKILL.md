@@ -11,8 +11,8 @@ description: >+
   Triggers: "NestJS", "Nest", "@nestjs", "module", "provider", "inject", "dynamic module", "Guard", "Pipe", "Interceptor", "ExceptionFilter", "ValidationPipe", "Swagger
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [nestjs, nodejs, backend]
+sk-roles: [backend-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [nestjs]
 
@@ -28,6 +28,9 @@ Skill text is **English**; answer in the user’s preferred language when rules 
 Use official [NestJS docs](https://docs.nestjs.com) for API truth; this skill encodes **module discipline**, **request pipeline clarity**, and **production-safe** defaults.
 
 ## Boundary
+
+
+**Canonical owner:** NestJS module/DI/request-pipeline implementation and framework integration for Group 02.
 
 **`sk-nestjs-pro`** owns **Nest application structure**, **DI**, **HTTP/microservice pipeline**, and **ORM wiring patterns** inside Nest. **`sk-postgresql-pro`** owns **SQL**, **RLS policies**, and pool semantics; **`sk-auth-pro`** owns **identity protocol** depth; **`sk-security-pro`** owns **threat modeling** beyond Nest defaults.
 

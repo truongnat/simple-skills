@@ -11,8 +11,8 @@ description: >+
   Triggers: "microservices", "service boundary", "bounded context", "distributed system", "CAP", "eventual consistency", "saga", "choreography
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [microservices, distributed-systems, resilience]
+sk-roles: [architect, tech-lead]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [microservices]
 
@@ -28,6 +28,9 @@ Skill text is **English**; answer in the user’s preferred language when rules 
 Use [Martin Fowler on microservices](https://martinfowler.com/microservices/), DDD references, and [CNCF](https://www.cncf.io/) for conceptual grounding; this skill encodes **boundary-first** design, **resilient** interaction, and **operable** distributed defaults.
 
 ## Boundary
+
+
+**Canonical owner:** distributed topology, service/data ownership, integration style, resilience, and operability for Group 02.
 
 **`sk-microservices-pro`** owns **service topology**, **integration style** (sync/async), **resilience patterns**, and **operational** implications. **`sk-deployment-pro`** owns **ship path** mechanics; **`sk-api-design-pro`** owns **contract** format details; **`sk-security-pro`** owns **threat model** depth; **`sk-network-infra-pro`** owns **VPC/LB/TLS** infrastructure.
 

@@ -1,11 +1,20 @@
 ---
 name: sk-microservices-patterns
 description: Design microservices architectures with service boundaries, event-driven communication, and resilience patterns. Use when building distributed systems, decomposing monoliths, or implementing microservices.
+sk-tags: [microservices, distributed-systems, resilience]
+sk-roles: [architect, backend-engineer]
+sk-kind: domain
+sk-version: 0.1.0
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Microservices Patterns
 
 Master microservices architecture patterns including service boundaries, inter-service communication, data management, and resilience patterns for building distributed systems.
+
+## Boundary
+
+This is a foundational microservices pattern reference. Use **`sk-microservices-pro`** as the canonical owner for topology, service ownership, resilience, consistency, and operational readiness; use **`sk-api-design-pro`** for contract details.
 
 ## When to Use This Skill
 

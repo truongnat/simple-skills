@@ -4,8 +4,8 @@ name: sk-senior-architect
 description: Comprehensive software architecture skill for designing scalable, maintainable systems using modern tech stacks. Includes architecture diagram generation, system design patterns, tech stack decision frameworks, and dependency analysis.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [architecture, system-design, decisions]
+sk-roles: [architect, tech-lead]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 
@@ -111,13 +111,13 @@ This skill provides three core capabilities through automated scripts:
 
 ```bash
 # Script 1: Architecture Diagram Generator
-python scripts/architecture_diagram_generator.py [options]
+node scripts/architecture-diagram-generator.js [options]
 
 # Script 2: Project Architect
-python scripts/project_architect.py [options]
+node scripts/project-architect.js [options]
 
 # Script 3: Dependency Analyzer
-python scripts/dependency_analyzer.py [options]
+node scripts/dependency-analyzer.js [options]
 ```
 
 ## Core Capabilities
@@ -134,7 +134,7 @@ Automated tool for architecture diagram generator tasks.
 
 **Usage:**
 ```bash
-python scripts/architecture_diagram_generator.py <project-path> [options]
+node scripts/architecture-diagram-generator.js <project-path> [options]
 ```
 
 ### 2. Project Architect
@@ -149,7 +149,7 @@ Comprehensive analysis and optimization tool.
 
 **Usage:**
 ```bash
-python scripts/project_architect.py <target-path> [--verbose]
+node scripts/project-architect.js <target-path> [--verbose]
 ```
 
 ### 3. Dependency Analyzer
@@ -164,7 +164,7 @@ Advanced tooling for specialized tasks.
 
 **Usage:**
 ```bash
-python scripts/dependency_analyzer.py [arguments] [options]
+node scripts/dependency-analyzer.js [arguments] [options]
 ```
 
 ## Reference Documentation
@@ -226,7 +226,7 @@ cp .env.example .env
 
 ```bash
 # Use the analyzer script
-python scripts/project_architect.py .
+node scripts/project-architect.js .
 
 # Review recommendations
 # Apply fixes
@@ -275,8 +275,8 @@ npm run test
 npm run lint
 
 # Analysis
-python scripts/project_architect.py .
-python scripts/dependency_analyzer.py --analyze
+node scripts/project-architect.js .
+node scripts/dependency-analyzer.js --analyze
 
 # Deployment
 docker build -t app:latest .

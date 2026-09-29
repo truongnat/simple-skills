@@ -1,6 +1,11 @@
 ---
 name: sk-architecture-patterns
 description: Implement proven backend architecture patterns including Clean Architecture, Hexagonal Architecture, and Domain-Driven Design. Use this skill when designing clean architecture for a new microservice, when refactoring a monolith to use bounded contexts, when implementing hexagonal or onion architecture patterns, or when debugging dependency cycles between application layers.
+sk-tags: [architecture, ddd, hexagonal]
+sk-roles: [architect, backend-engineer]
+sk-kind: domain
+sk-version: 0.1.0
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Architecture Patterns
@@ -9,6 +14,10 @@ Master proven backend architecture patterns including Clean Architecture, Hexago
 
 **Given:** a service boundary or module to architect.
 **Produces:** layered structure with clear dependency rules, interface definitions, and test boundaries.
+
+## Boundary
+
+This is a foundational pattern reference for Clean/Hexagonal/DDD concepts. Use **`sk-clean-code-architecture-pro`** as the canonical owner for production boundary design, dependency direction, migration sequencing, and architecture trade-offs.
 
 ## When to Use This Skill
 
@@ -84,7 +93,7 @@ from domain.interfaces.user_repository import IUserRepository
 from use_cases.create_user import CreateUserUseCase, CreateUserRequest
 
 class InMemoryUserRepository(IUserRepository):
-    def __sk-init__(self):
+    def __init__(self):
         self._store: Dict[str, User] = {}
 
     async def find_by_id(self, user_id: str) -> Optional[User]:
@@ -141,7 +150,7 @@ When the controller grows beyond HTTP parsing and response formatting, extract t
 
 ### Value objects raising errors too late
 
-Validate invariants in `__post_sk-init__` (Python) or the constructor so an invalid `Email` or `Money` cannot be constructed at all. This surfaces bad data at the boundary, not deep inside business logic.
+Validate invariants in `__post_init__` (Python) or the constructor so an invalid `Email` or `Money` cannot be constructed at all. This surfaces bad data at the boundary, not deep inside business logic.
 
 ### Context bleed across bounded contexts
 

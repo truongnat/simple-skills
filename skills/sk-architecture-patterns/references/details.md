@@ -101,7 +101,7 @@ class CreateUserResponse:
 class CreateUserUseCase:
     """Use case: orchestrates business logic, no HTTP or DB details."""
 
-    def __sk-init__(self, user_repository: IUserRepository):
+    def __init__(self, user_repository: IUserRepository):
         self.user_repository = user_repository
 
     async def execute(self, request: CreateUserRequest) -> CreateUserResponse:
@@ -128,7 +128,7 @@ import asyncpg
 class PostgresUserRepository(IUserRepository):
     """Adapter: PostgreSQL implementation of the user port."""
 
-    def __sk-init__(self, pool: asyncpg.Pool):
+    def __init__(self, pool: asyncpg.Pool):
         self.pool = pool
 
     async def find_by_id(self, user_id: str) -> Optional[User]:
@@ -194,7 +194,7 @@ async def create_user(
 ```python
 # Core domain service — no infrastructure dependencies
 class OrderService:
-    def __sk-init__(
+    def __init__(
         self,
         order_repository: OrderRepositoryPort,
         payment_gateway: PaymentGatewayPort,
@@ -238,7 +238,7 @@ class NotificationPort(ABC):
 
 # Production adapter: Stripe
 class StripePaymentAdapter(PaymentGatewayPort):
-    def __sk-init__(self, api_key: str):
+    def __init__(self, api_key: str):
         import stripe
         stripe.api_key = api_key
         self._stripe = stripe
@@ -269,7 +269,7 @@ from dataclasses import dataclass
 class Email:
     value: str
 
-    def __post_sk-init__(self):
+    def __post_init__(self):
         if "@" not in self.value or "." not in self.value.split("@")[-1]:
             raise ValueError(f"Invalid email: {self.value}")
 
@@ -278,7 +278,7 @@ class Money:
     amount: int   # cents
     currency: str
 
-    def __post_sk-init__(self):
+    def __post_init__(self):
         if self.amount < 0:
             raise ValueError("Money amount cannot be negative")
         if self.currency not in {"USD", "EUR", "GBP"}:
@@ -292,7 +292,7 @@ class Money:
 
 # Aggregate root: enforces all invariants for its cluster of entities
 class Order:
-    def __sk-init__(self, id: str, customer_id: str):
+    def __init__(self, id: str, customer_id: str):
         self.id = id
         self.customer_id = customer_id
         self.items: list[OrderItem] = []

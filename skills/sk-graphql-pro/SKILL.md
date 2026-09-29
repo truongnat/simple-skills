@@ -11,8 +11,8 @@ description: >+
   Triggers: "graphql", "schema", "resolver", "query", "mutation", "subscription", "n+1", "dataloader", "federation", "persisted quer
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [graphql, api, resolvers]
+sk-roles: [backend-engineer, architect]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [graphql]
 

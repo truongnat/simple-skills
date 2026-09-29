@@ -4,8 +4,8 @@ name: sk-security-review
 description: Run a comprehensive security review on code
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 
@@ -394,3 +394,14 @@ Review, fix, re-review until all issues resolved.
 - **Fix immediately** - Don't accumulate security debt
 - **Educate** - Learn from findings to prevent future issues
 - **Verify fixes** - Re-run security review after remediation
+
+## Required inputs
+
+- Scope, target system or behavior, constraints, available evidence, and required assurance level.
+- State assumptions explicitly when environment, threat model, test surface, or ownership is unknown.
+
+## Cross-skill handoffs
+
+- `sk-security-pro` for cross-cutting security and threat framing.
+- `sk-testing-pro` for verification, regression, and evidence quality.
+- Pair with the relevant stack or platform skill for implementation details; keep this skill focused on its documented boundary.

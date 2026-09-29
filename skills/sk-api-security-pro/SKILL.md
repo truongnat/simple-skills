@@ -4,8 +4,8 @@ name: sk-api-security-pro
 description: Expert-level API security based on OWASP API Top 10, including OAuth2, OIDC, Rate Limiting, and JWT hardening.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [api-security]
 
@@ -106,3 +106,14 @@ export async function PATCH(req: Request) {
 ## Output
 
 Produce a reusable api security pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Required inputs
+
+- Scope, target system or behavior, constraints, available evidence, and required assurance level.
+- State assumptions explicitly when environment, threat model, test surface, or ownership is unknown.
+
+## Cross-skill handoffs
+
+- `sk-security-pro` for cross-cutting security and threat framing.
+- `sk-testing-pro` for verification, regression, and evidence quality.
+- Pair with the relevant stack or platform skill for implementation details; keep this skill focused on its documented boundary.

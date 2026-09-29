@@ -11,8 +11,8 @@ description: >+
   Triggers: "TDD", "test-driven development", "test first", "RED-GREEN-REFACTOR", "write test b
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [test-driven-development]
 
@@ -124,3 +124,9 @@ Response shape:
 ## Output
 
 Produce a reusable test driven development pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Cross-skill handoffs
+
+- `sk-security-pro` for cross-cutting security and threat framing.
+- `sk-testing-pro` for verification, regression, and evidence quality.
+- Pair with the relevant stack or platform skill for implementation details; keep this skill focused on its documented boundary.

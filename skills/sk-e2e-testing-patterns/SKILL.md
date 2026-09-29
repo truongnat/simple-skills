@@ -1,9 +1,19 @@
 ---
 name: sk-e2e-testing-patterns
 description: Master end-to-end testing with Playwright and Cypress to build reliable test suites that catch bugs, improve confidence, and enable fast deployment. Use when implementing E2E tests, debugging flaky tests, or establishing testing standards.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # E2E Testing Patterns
+
+## Boundary
+
+**`sk-e2e-testing-patterns`** owns **end-to-end test strategy for critical user journeys, browser behavior, data setup, selectors, and flake control**. It does not own **unit/integration test design or CI platform configuration as the primary concern**; route those concerns to the appropriate specialist skill.
+
 
 Build reliable, fast, and maintainable end-to-end test suites that provide confidence to ship code quickly and catch regressions before users do.
 
@@ -126,3 +136,16 @@ test('checkout flow', async ({ page }) => {
 // 5. Inspect page state
 await page.pause();  // Pauses sk-execution, opens inspector
 ```
+
+## When not to use
+
+- When the request is outside `sk-e2e-testing-patterns`'s boundary or another specialist is the primary owner.
+- When the user needs an attestation, exploit authorization, or production claim that requires separate human approval or evidence.
+
+## Required inputs
+
+- critical journeys, supported browsers/devices, environment/data setup, authentication approach, and flake budget.
+
+## Cross-skill handoffs
+
+- sk-testing-pro for test-layer strategy; stack skills for runner wiring; sk-a11y-design-pro for accessibility journeys; sk-ci-cd-pro for pipeline execution.

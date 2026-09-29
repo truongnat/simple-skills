@@ -3,10 +3,10 @@
 name: sk-debugging-investigation
 description: "Skill: debugging-investigation"
 
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 
@@ -15,6 +15,11 @@ sk-compatible: [claude, cursor, codex, gemini]
 
 
 # debugging-investigation
+
+## Boundary
+
+**`sk-debugging-investigation`** owns **evidence-first root-cause investigation before repair**. It does not own **known implementation work with an already-proven fix or a pure performance/security architecture review**; route those concerns to the appropriate specialist skill.
+
 
 ## Purpose
 
@@ -118,3 +123,16 @@ This skill must produce:
 - [ ] The targeted test or check confirmed the hypothesis or ruled it out
 - [ ] The fix addresses the cause, not only the symptom
 - [ ] A durable hazard note was considered
+
+## When not to use
+
+- When the request is outside `sk-debugging-investigation`'s boundary or another specialist is the primary owner.
+- When the user needs an attestation, exploit authorization, or production claim that requires separate human approval or evidence.
+
+## Required inputs
+
+- failure symptom, expected behavior, reproduction surface, logs/diffs, and constraints.
+
+## Cross-skill handoffs
+
+- sk-systematic-debugging-pro for deeper methodology; sk-bug-discovery-pro for candidate discovery; sk-testing-pro for regression verification.

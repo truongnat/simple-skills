@@ -13,8 +13,8 @@ description: >+
   Triggers: "authentication", "authorization", "auth", "login", "session", "session management", "JWT", "OAuth", "OIDC",
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [auth]
 

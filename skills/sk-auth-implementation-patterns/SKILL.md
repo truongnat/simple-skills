@@ -1,9 +1,19 @@
 ---
 name: sk-auth-implementation-patterns
 description: Master authentication and authorization patterns including JWT, OAuth2, session management, and RBAC to build secure, scalable access control systems. Use when implementing auth systems, securing APIs, or debugging security issues.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Authentication & Authorization Implementation Patterns
+
+## Boundary
+
+**`sk-auth-implementation-patterns`** owns **framework-agnostic authentication and authorization implementation patterns, credential/session safety, and policy enforcement**. It does not own **auth architecture selection as the sole concern, vendor-console administration, or deep penetration testing**; route those concerns to the appropriate specialist skill.
+
 
 Build secure, scalable authentication and authorization systems using industry-standard patterns and modern best practices.
 
@@ -85,3 +95,16 @@ Detailed pattern documentation lives in `references/details.md`. Read that file 
 ## Output
 
 Produce a reusable auth implementation patterns artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## When not to use
+
+- When the request is outside `sk-auth-implementation-patterns`'s boundary or another specialist is the primary owner.
+- When the user needs an attestation, exploit authorization, or production claim that requires separate human approval or evidence.
+
+## Required inputs
+
+- actors, client types, trust boundaries, credential model, framework, and assurance requirements.
+
+## Cross-skill handoffs
+
+- sk-auth-pro for architecture; sk-api-security-pro and sk-security-pro for abuse controls; stack skills for framework wiring; sk-testing-pro for auth regression.

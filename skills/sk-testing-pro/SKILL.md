@@ -9,8 +9,8 @@ description: >+
   Use **with** the relevant framework skill when tests are product-specific: **`sk-react-pro`** / **`sk-nextjs-pro`** (RTL, SSR/hydration test setup), **`sk-nestjs-pro`** (TestingModule, e2e HTTP), **`sk-flutter-pro`** (widget_test, integration_test), **`sk-react-native-pro`** (Detox/Jest RN),
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [testing]
 
@@ -195,3 +195,9 @@ Details: [references/versions.md](references/versions.md)
 ## Output
 
 Produce a reusable testing pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Cross-skill handoffs
+
+- `sk-security-pro` for cross-cutting security and threat framing.
+- `sk-testing-pro` for verification, regression, and evidence quality.
+- Pair with the relevant stack or platform skill for implementation details; keep this skill focused on its documented boundary.

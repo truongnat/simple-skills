@@ -9,8 +9,8 @@ description: >+
   Combine with **`sk-postgresql-pro`** for queries and indexes, **`sk-caching-pro`** for CDN and cache layers, **`sk-testing-pro`** for regression budgets, **`sk-repo-tooling-pro`** for scripted benchmarks, **`sk-deployment-pro`** / **`sk-docker-pro`** for quotas and scaling, **`sk-network-infra-pro`** for edge latency, **`sk-algorithm-pro`** for co
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [performance-tuning]
 
@@ -185,3 +185,9 @@ Details: [references/versions.md](references/versions.md)
 ## Output
 
 Produce a performance artifact with baseline/load shape, bottleneck evidence, prioritized change, before/after metrics, regression safeguards, and residual risks.
+
+## Cross-skill handoffs
+
+- `sk-security-pro` for cross-cutting security and threat framing.
+- `sk-testing-pro` for verification, regression, and evidence quality.
+- Pair with the relevant stack or platform skill for implementation details; keep this skill focused on its documented boundary.

@@ -1,8 +1,18 @@
 ---
 name: sk-debugging-strategies
 description: Master systematic debugging techniques, profiling tools, and root cause analysis to efficiently track down bugs across any codebase or technology stack. Use when investigating bugs, performance issues, or unexpected behavior.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 # Debugging Strategies
+
+## Boundary
+
+**`sk-debugging-strategies`** owns **reproducible debugging strategy selection, evidence capture, and diagnosis output**. It does not own **domain-specific implementation details that belong to the relevant stack skill**; route those concerns to the appropriate specialist skill.
+
 
 ## Use this skill when
 
@@ -24,3 +34,16 @@ Produce a reproducible diagnosis, evidence log, root cause, verification result,
 
 Read `references/debugging-strategies-reference.md` when the compact process below needs tool-specific examples or issue-type patterns.
 Do not load the reference wholesale when the compact workflow is sufficient.
+
+## When not to use
+
+- When the request is outside `sk-debugging-strategies`'s boundary or another specialist is the primary owner.
+- When the user needs an attestation, exploit authorization, or production claim that requires separate human approval or evidence.
+
+## Required inputs
+
+- symptom, expected behavior, environment, reproduction status, and available evidence.
+
+## Cross-skill handoffs
+
+- sk-systematic-debugging-pro for root-cause discipline; sk-bug-discovery-pro for defect discovery; sk-performance-tuning-pro for performance-led investigations.

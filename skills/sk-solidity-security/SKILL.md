@@ -4,11 +4,16 @@ name: sk-solidity-security
 description: Master smart contract security best practices to prevent common vulnerabilities and implement secure Solidity patterns. Use when writing smart contracts, auditing existing contracts, or implementing security measures for blockchain applications.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 # Solidity Security
+
+## Boundary
+
+**`sk-solidity-security`** owns **Solidity and smart-contract security review patterns, threat modeling, and secure implementation guidance**. It does not own **general application security unrelated to smart contracts or blockchain protocol economics as the only concern**; route those concerns to the appropriate specialist skill.
+
 
 ## Use this skill when
 
@@ -28,3 +33,16 @@ Produce a decision-ready security artifact with scope, findings or design, evide
 ## Detailed reference
 
 Read `references/detailed-reference.md` for the full pattern library and extended checks.
+
+## When not to use
+
+- When the request is outside `sk-solidity-security`'s boundary or another specialist is the primary owner.
+- When the user needs an attestation, exploit authorization, or production claim that requires separate human approval or evidence.
+
+## Required inputs
+
+- contract code/version, chain/runtime, trust assumptions, privileged roles, upgradeability, and threat model.
+
+## Cross-skill handoffs
+
+- sk-security-pro for general security controls; sk-testing-pro for invariant/fuzz/regression strategy; blockchain skills for protocol context.

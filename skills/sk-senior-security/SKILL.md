@@ -4,11 +4,16 @@ name: sk-senior-security
 description: Security engineering toolkit for threat modeling, vulnerability analysis, secure architecture, and penetration testing. Includes STRIDE analysis, OWASP guidance, cryptography patterns, and security scanning tools.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 # Senior Security
+
+## Boundary
+
+**`sk-senior-security`** owns **senior security engineering decisions, threat modeling, secure architecture, and risk-based verification**. It does not own **vendor-specific configuration or a single narrow vulnerability pattern as the only concern**; route those concerns to the appropriate specialist skill.
+
 
 ## Use this skill when
 
@@ -28,3 +33,16 @@ Produce a decision-ready security artifact with scope, findings or design, evide
 ## Detailed reference
 
 Read `references/detailed-reference.md` for the full pattern library and extended checks.
+
+## When not to use
+
+- When the request is outside `sk-senior-security`'s boundary or another specialist is the primary owner.
+- When the user needs an attestation, exploit authorization, or production claim that requires separate human approval or evidence.
+
+## Required inputs
+
+- asset, threat model, authorization scope, assurance level, deployment context, and evidence available.
+
+## Cross-skill handoffs
+
+- sk-security-pro for canonical cross-cutting security; sk-api-security-pro or sk-auth-pro for specialist domains; sk-testing-pro for verification.

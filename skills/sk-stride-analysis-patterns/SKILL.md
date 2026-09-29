@@ -1,9 +1,19 @@
 ---
 name: sk-stride-analysis-patterns
 description: Apply STRIDE methodology to systematically identify threats. Use when analyzing system security, conducting threat modeling sessions, or creating security documentation.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # STRIDE Analysis Patterns
+
+## Boundary
+
+**`sk-stride-analysis-patterns`** owns **STRIDE threat categorization, DFD-oriented analysis, prioritization, and mitigation documentation**. It does not own **final compliance certification, exploit execution, or implementation of controls without a threat-model decision**; route those concerns to the appropriate specialist skill.
+
 
 Systematic threat identification using the STRIDE methodology.
 
@@ -68,3 +78,16 @@ Full template library lives in `references/details.md`. Read that file when you 
 ## Output
 
 Produce a reusable stride analysis patterns artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## When not to use
+
+- When the request is outside `sk-stride-analysis-patterns`'s boundary or another specialist is the primary owner.
+- When the user needs an attestation, exploit authorization, or production claim that requires separate human approval or evidence.
+
+## Required inputs
+
+- system boundary, actors, data flows, trust boundaries, assets, impact criteria, and stakeholders.
+
+## Cross-skill handoffs
+
+- sk-security-pro for control selection; sk-auth-pro for identity threats; sk-api-security-pro for API abuse paths; sk-testing-pro for security regression cases.

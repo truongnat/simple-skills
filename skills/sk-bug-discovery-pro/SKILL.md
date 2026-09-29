@@ -7,8 +7,8 @@ description: >+
   Use this skill when hunting bugs, tracing regressions, triaging production incidents with telemetry, asking what else could break, or needing structured candidate lists with confidence when GitNexus MCP is available after indexing. Combine with tests, runtime evidence, and sk-security-pro for vulns. Fixes delegat
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [bug-discovery]
 

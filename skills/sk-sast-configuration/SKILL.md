@@ -1,9 +1,19 @@
 ---
 name: sk-sast-configuration
 description: Configure Static Application Security Testing (SAST) tools for automated vulnerability detection in application code. Use when setting up security scanning, implementing DevSecOps practices, or automating code vulnerability detection.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # SAST Configuration
+
+## Boundary
+
+**`sk-sast-configuration`** owns **SAST policy and rule-design guidance, baseline triage, false-positive handling, and security quality gates**. It does not own **running repository-specific automation or owning a CI platform as the primary deliverable**; route those concerns to the appropriate specialist skill.
+
 
 Static Application Security Testing (SAST) tool setup, configuration, and custom rule creation for comprehensive security scanning across multiple programming languages.
 
@@ -167,3 +177,16 @@ rules:
 ## Output
 
 Produce a reusable sast configuration artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## When not to use
+
+- When the request is outside `sk-sast-configuration`'s boundary or another specialist is the primary owner.
+- When the user needs an attestation, exploit authorization, or production claim that requires separate human approval or evidence.
+
+## Required inputs
+
+- languages, compliance needs, baseline findings, acceptable false-positive policy, and reporting audience.
+
+## Cross-skill handoffs
+
+- sk-security-pro for threat/control intent; sk-ci-cd-pro for pipeline wiring; sk-testing-pro for quality feedback; stack skills for language-specific patterns.

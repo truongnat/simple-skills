@@ -1,9 +1,19 @@
 ---
 name: sk-distributed-tracing
 description: Implement distributed tracing with Jaeger and Tempo to track requests across microservices and identify performance bottlenecks. Use when debugging microservices, analyzing request flows, or implementing observability for distributed systems.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [security, testing, reliability]
+sk-roles: [security-engineer, qa-engineer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Distributed Tracing
+
+## Boundary
+
+**`sk-distributed-tracing`** owns **distributed trace propagation, correlation, sampling, span policy, and observability verification**. It does not own **general application logging design or vendor-specific deployment ownership**; route those concerns to the appropriate specialist skill.
+
 
 Implement distributed tracing with Jaeger and Tempo for request flow visibility across microservices.
 
@@ -80,3 +90,16 @@ def process_request():
 ## Output
 
 Produce a tracing artifact with propagation boundaries, span/attribute policy, sampling, correlation, storage/retention, dashboards/alerts, and verification scenarios.
+
+## When not to use
+
+- When the request is outside `sk-distributed-tracing`'s boundary or another specialist is the primary owner.
+- When the user needs an attestation, exploit authorization, or production claim that requires separate human approval or evidence.
+
+## Required inputs
+
+- service topology, propagation protocol, latency/failure symptoms, retention needs, and privacy constraints.
+
+## Cross-skill handoffs
+
+- sk-testing-pro for trace-aware verification; sk-performance-tuning-pro for latency analysis; sk-security-pro for sensitive-attribute and access-control review.

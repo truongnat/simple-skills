@@ -123,18 +123,18 @@ Apply **Karpathy principles** throughout: Think Before Coding, Simplicity First,
   --color-text: #1c1917;
   --color-primary: #dc2626;
   --color-accent: #f59e0b;
-  
+
   /* Typography */
   --font-display: 'Playfair Display', serif;
   --font-body: 'Source Sans 3', sans-serif;
-  
+
   /* Spacing scale */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
   --space-lg: 2.5rem;
   --space-xl: 4rem;
-  
+
   /* Motion */
   --transition-fast: 150ms ease;
   --transition-base: 300ms ease;
@@ -206,7 +206,7 @@ Apply **Karpathy principles** throughout: Think Before Coding, Simplicity First,
 
 **Agent workflow:**
 1. **Confirm:** Target audience (potential clients looking for distinctive work)
-2. **State assumptions:** 
+2. **State assumptions:**
    - Aesthetic: Bold, artistic, memorable
    - Must avoid: Corporate/generic look
    - Tech: Next.js + Tailwind

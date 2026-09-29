@@ -7,7 +7,7 @@ license: MIT
 
 # Expo Native UI Guidelines
 
-For routes, links, stacks, tabs, modals, sheets, and headers, use the `expo-router` skill.
+For routes, links, stacks, tabs, modals, sheets, and headers, use the  skill.
 
 ## References
 
@@ -29,15 +29,15 @@ references/
 
 **CRITICAL: Always try Expo Go first before creating custom builds.**
 
-Most Expo apps work in Expo Go without any custom native code. Before running `npx expo run:ios` or `npx expo run:android`:
+Most Expo apps work in Expo Go without any custom native code. Before running  or :
 
-1. **Start with Expo Go**: Run `npx expo start` and scan the QR code with Expo Go
+1. **Start with Expo Go**: Run  and scan the QR code with Expo Go
 2. **Check if features work**: Test your app thoroughly in Expo Go
 3. **Only create custom builds when required** - see below
 
 ### When Custom Builds Are Required
 
-You need `npx expo run:ios/android` or `eas build` ONLY when using:
+You need  or  ONLY when using:
 
 - **Local Expo modules** (custom native code in `modules/`)
 - **Apple targets** (widgets, app clips, extensions via `@bacons/apple-targets`)
@@ -46,10 +46,8 @@ You need `npx expo run:ios/android` or `eas build` ONLY when using:
 
 ### When Expo Go Works
 
-Expo Go supports a huge range of features out of the box:
 
-- All `expo-*` packages (camera, location, notifications, etc.)
-- Expo Router navigation
+- All  packages (camera, location, notifications, etc.)
 - Most UI libraries (reanimated, gesture handler, etc.)
 - Push notifications, deep links, and more
 
@@ -67,16 +65,16 @@ Expo Go supports a huge range of features out of the box:
 
 - Never use modules removed from React Native such as Picker, WebView, SafeAreaView, or AsyncStorage
 - Never use legacy expo-permissions
-- `expo-audio` not `expo-av`
-- `expo-video` not `expo-av`
-- `expo-image` with `source="sf:name"` for SF Symbols, not `expo-symbols` or `@expo/vector-icons`
+-  not
+-  not
+-  with `source="sf:name"` for SF Symbols, not  or `@expo/vector-icons`
 - `react-native-safe-area-context` not react-native SafeAreaView
 - `process.env.EXPO_OS` not `Platform.OS`
 - `React.use` not `React.useContext`
-- `expo-image` Image component instead of intrinsic element `img`
-- `expo-glass-effect` for liquid glass backdrops
-- `Color` from `expo-router` for native semantic colors, not raw `PlatformColor` (type-safe, auto-adapts to light/dark)
-- In SDK 56+, never import from `@react-navigation/*` directly — use `expo-router/react-navigation` instead (covers `@react-navigation/native`, `/core`, `/elements`, `/routers`)
+-  Image component instead of intrinsic element `img`
+-  for liquid glass backdrops
+- `Color` from  for native semantic colors, not raw `PlatformColor` (type-safe, auto-adapts to light/dark)
+- In SDK 56+, never import from `@react-navigation/*` directly — use  instead (covers `@react-navigation/native`, `/core`, `/elements`, `/routers`)
 
 ## Responsiveness
 
@@ -115,7 +113,7 @@ Follow Apple Human Interface Guidelines.
 
 ## Colors
 
-Use the `Color` API from `expo-router` for native semantic colors. It is a type-safe wrapper over `PlatformColor` that exposes iOS UIKit colors through `Color.ios.*` and Android Material 3 colors through `Color.android.material.*` (static) or `Color.android.dynamic.*` (adapts to the user's wallpaper on Android 12+). These resolve on-device and automatically adapt to light/dark mode and accessibility settings, so you no longer maintain separate light/dark hex tables or a `colors.web.ts` file.
+Use the `Color` API from  for native semantic colors. It is a type-safe wrapper over `PlatformColor` that exposes iOS UIKit colors through `Color.ios.*` and Android Material 3 colors through `Color.android.material.*` (static) or `Color.android.dynamic.*` (adapts to the user's wallpaper on Android 12+). These resolve on-device and automatically adapt to light/dark mode and accessibility settings, so you no longer maintain separate light/dark hex tables or a `colors.web.ts` file.
 
 `Color` is platform-specific, so wrap each value in `Platform.select` with a `default` hex fallback for web. Centralize the palette in `theme/colors.ts` and import `colors` everywhere:
 
@@ -163,7 +161,7 @@ import { colors } from "@/theme/colors";
 
 - iOS re-resolves these colors automatically when the system theme changes. On Android, call `useColorScheme()` inside any component that renders them so it re-renders when the theme flips (required when React Compiler memoizes the component).
 - Don't pass `Color` / `PlatformColor` values into Reanimated styles — use static colors there (see `references/animations.md`).
-- `Platform.select({...})!` returns `string | OpaqueColorValue`. Most React Native style props accept `ColorValue` (`string | OpaqueColorValue`) so this works fine. But some third-party props only accept `string` (e.g. `tintColor` on `expo-image`). Cast when needed: `colors.label as string`.
+- `Platform.select({...})!` returns `string | OpaqueColorValue`. Most React Native style props accept `ColorValue` (`string | OpaqueColorValue`) so this works fine. But some third-party props only accept `string` (e.g. `tintColor` on ). Cast when needed: `colors.label as string`.
 
 ## Text Styling
 

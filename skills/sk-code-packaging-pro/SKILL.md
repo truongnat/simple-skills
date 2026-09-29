@@ -80,7 +80,7 @@ Apply **Karpathy principles** throughout: Think Before Coding, Simplicity First,
 3. **Surgical Changes** — Only touch packaging config related to the request. Don't refactor unrelated build steps.
 4. **Goal-Driven Execution** — Define build reproducibility, image size, CI time targets upfront.
 5. **Reproducible builds** — Lock apps; test matrix for libs — **`decision-framework-and-tradeoffs.md`**.
-6. **Smallest runnable image** — Multi-stage, slim runtime, no compilers in final stage — **`python-packaging-and-containers.md`**.
+6. **Smallest runnable image** — Multi-stage, slim runtime, no compilers in final stage — ****.
 7. **CI clarity** — Lint → test → build → publish; fail fast — **`github-actions-and-ci.md`**.
 8. **Secrets** — OIDC over PAT; no secrets in image layers — **`failure-modes-detection-mitigation.md`**.
 9. **Dockerignore** — Same class of importance as `.gitignore` for context and leaks — **`anti-patterns.md`**.
@@ -112,7 +112,6 @@ Details: [references/supply-chain-and-provenance-hooks.md](references/supply-cha
 
 ### Multi-ecosystem packaging notes (summary)
 
-npm / other ecosystems — same artifact discipline — **`multi-ecosystem-packaging-notes.md`**.
 
 Details: [references/multi-ecosystem-packaging-notes.md](references/multi-ecosystem-packaging-notes.md)
 
@@ -124,7 +123,7 @@ Details: [references/quality-validation-and-guardrails.md](references/quality-va
 
 ### Python packaging and containers (summary)
 
-`pyproject`, Docker boundaries — **`python-packaging-and-containers.md`**.
+`pyproject`, Docker boundaries — ****.
 
 Details: [references/python-packaging-and-containers.md](references/python-packaging-and-containers.md)
 
@@ -166,7 +165,6 @@ Details: [references/integration-map.md](references/integration-map.md)
 
 ### Versions (summary)
 
-Python matrix, digests, Actions majors — **`versions.md`**.
 
 Details: [references/versions.md](references/versions.md)
 
@@ -202,13 +200,13 @@ Details: [references/versions.md](references/versions.md)
 
 ## Quick example
 
-**Input:** Multi-stage Dockerfile for FastAPI, non-root.  
+**Input:** Multi-stage Dockerfile for FastAPI, non-root.
 **Expected output:** Full **Suggested response format** — stages, `.dockerignore`, USER; **`sk-deployment-pro`** for orchestration; failure **secret-in-layer**.
 
-**Input:** Bake `DATABASE_URL` into image.  
+**Input:** Bake `DATABASE_URL` into image.
 **Expected output:** **Reject**; runtime env; **`sk-security-pro`**; promote **same digest** story.
 
-**Input:** PyPI OIDC from GHA.  
+**Input:** PyPI OIDC from GHA.
 **Expected output:** Trusted publishing skeleton; fork safety; **`sk-security-pro`** trust alignment.
 
 ## Checklist before calling the skill done

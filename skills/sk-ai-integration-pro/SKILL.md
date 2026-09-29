@@ -233,8 +233,8 @@ Details: [references/versions.md](references/versions.md)
 
 ### 1 — Simple (Think Before Coding + Simplicity First)
 
-**Input:** Build a streaming Claude chat endpoint with a weather tool.  
-**Expected output:** 
+**Input:** Build a streaming Claude chat endpoint with a weather tool.
+**Expected output:**
 - **Ask first:** Provider? Cost budget? Latency target? → get constraints
 - **Minimum first:** Basic chat endpoint without streaming → verify works
 - **Then escalate:** Add streaming + tool only if justified
@@ -242,8 +242,8 @@ Details: [references/versions.md](references/versions.md)
 
 ### 2 — Tricky (Surgical Changes)
 
-**Input:** JSON mode returns markdown fences around JSON in production.  
-**Expected output:** 
+**Input:** JSON mode returns markdown fences around JSON in production.
+**Expected output:**
 - Only touch JSON parsing code related to this issue
 - Don't refactor unrelated prompt handling or streaming logic
 - Defensive parsing, tests, metrics for parse failures — **`sk-testing-pro`**
@@ -251,8 +251,8 @@ Details: [references/versions.md](references/versions.md)
 
 ### 3 — Cross-skill (Goal-Driven Execution)
 
-**Input:** RAG over internal wiki — must not leak other teams' docs.  
-**Expected output:** 
+**Input:** RAG over internal wiki — must not leak other teams' docs.
+**Expected output:**
 - **Plan with verification:**
   1. Design ACL metadata → verify: [can filter at retrieval time]
   2. Implement retrieval filter → verify: [test with cross-team docs]

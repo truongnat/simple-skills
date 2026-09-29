@@ -29,7 +29,6 @@ Do not use this skill when:
 
 - there are no code or doc changes
 - verification is missing
-- git diff cannot be inspected
 - the user only asks for discussing or planning
 
 ## Inputs
@@ -37,15 +36,12 @@ Do not use this skill when:
 - Approved plan
 - Task list
 - Verification artifact
-- Git status
-- Git diff summary
 - Changed files
 
 ## Procedure
 
 1. Read the active session state.
 2. Read PLAN, TASKS, and VERIFY.
-3. Run `node scripts/generate-report-context.js --json --templates` (or `discover-report-templates.js --write`) to load git context and project PR templates.
 4. Prefer project templates from `.github/`, `.gitlab/`, or provider dirs; fall back to `.ai-harness/templates/` or harness `templates/`.
 5. Group changes by purpose.
 6. Produce `REPORT.md` using the discovered report template structure when available.

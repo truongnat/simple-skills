@@ -271,7 +271,6 @@ Network-status detection with NetInfo and offline-first React Query setup: see [
 
 **Using environment variables for API configuration**:
 
-Expo supports environment variables with the `EXPO_PUBLIC_` prefix. These are inlined at build time and available in your JavaScript code.
 
 ```tsx
 // .env

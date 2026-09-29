@@ -226,19 +226,6 @@ resource "aws_vpn_connection" "secondary" {
 
 ### Troubleshooting
 
-```bash
-# AWS VPN
-aws ec2 describe-vpn-connections
-aws ec2 get-vpn-connection-telemetry
-
-# Azure VPN
-az network vpn-connection show
-az network vpn-connection show-device-config-script
-
-# OCI IPSec VPN
-oci network ip-sec-connection list
-oci network cpe list
-```
 
 ## Cost Optimization
 
@@ -252,7 +239,7 @@ oci network cpe list
 ## Related Skills
 
 - `multi-cloud-architecture` - For architecture decisions
-- `terraform-module-library` - For IaC implementation
+-  - For IaC implementation
 
 ## Output
 

@@ -110,7 +110,7 @@ Next steps: [follow-up integration tasks]
 
 This guide covers essential fintech integration tasks including payment gateway integration, banking API integration, and financial data provider integration. For advanced integration patterns and real-world examples, see REFERENCE.md.
 
-## Quick Start
+## Orientation
 
 ```python
 import stripe
@@ -193,7 +193,7 @@ def create_link_token(client_id, secret, access_token):
     )
     api_client = plaid.ApiClient(configuration)
     client = plaid_api.PlaidApi(api_client)
-    
+
     request = plaid.LinkTokenCreateRequest({
         'client_id': client_id,
         'secret': secret,
@@ -203,7 +203,7 @@ def create_link_token(client_id, secret, access_token):
         'language': 'en',
         'country_codes': ['US']
     })
-    
+
     response = client.link_token_create(request)
     return response['link_token']
 ```
@@ -256,19 +256,19 @@ app = Flask(__name__)
 def stripe_webhook():
     payload = request.get_data()
     sig_header = request.headers.get('Stripe-Signature')
-    
+
     try:
         event = stripe.Webhook.construct_event(
             payload, sig_header, webhook_secret
         )
     except ValueError as e:
         return jsonify({'error': 'Invalid payload'}), 400
-    
+
     # Handle event
     if event['type'] == 'payment_intent.succeeded':
         payment_intent = event['data']['object']
         handle_payment_success(payment_intent)
-    
+
     return jsonify({'status': 'success'})
 ```
 

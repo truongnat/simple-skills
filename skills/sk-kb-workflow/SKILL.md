@@ -135,10 +135,6 @@ Details: [references/graph-relationships.md](references/graph-relationships.md)
 4. Residual risks: Check for existing "nestjs init" solutions first; ensure tags overlap with related entries
 
 **Commands:**
-```bash
-skill kb search "nestjs initialization"    # Check existing
-skill kb push ./nestjs-race-fix.md --tags "nestjs,race-condition,initialization,neo4j" --project "personal-ai"
-```
 
 ## Checklist before calling the skill done
 

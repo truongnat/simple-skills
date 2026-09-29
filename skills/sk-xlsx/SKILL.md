@@ -60,12 +60,8 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 4. Write via `create`/`edit` (atomic temp → validate → publish).
 5. Keep the coverage manifest with the deliverable.
 
-## Commands
 
-```bash
-```
 
-On Windows, replace `.venv/bin/python` with `.venv/Scripts/python.exe`.
 
 ### Create spec example
 

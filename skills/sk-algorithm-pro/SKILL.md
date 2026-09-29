@@ -200,17 +200,17 @@ Details: [references/versions.md](references/versions.md)
 
 ### 1 — Modeling + proof
 
-**Input:** Interval scheduling variant — unsure greedy works.  
+**Input:** Interval scheduling variant — unsure greedy works.
 **Expected output:** Formalize; exchange argument or counterexample; alternative algorithm if greedy fails — full **Suggested response format (STRICT)**.
 
 ### 2 — Complexity audit
 
-**Input:** O(n log n) on paper but TLE at n=2e5.  
+**Input:** O(n log n) on paper but TLE at n=2e5.
 **Expected output:** Hidden quadratic, DS misuse, or language constants; profiling plan — **`algorithm-debugging.md`**, **`sk-data-analysis-pro`**.
 
 ### 3 — Systems
 
-**Input:** Need one-pass memory-bounded frequency for infinite stream.  
+**Input:** Need one-pass memory-bounded frequency for infinite stream.
 **Expected output:** Streaming constraints; approximate vs exact trade-offs — **`algorithms-in-systems.md`**.
 
 ## Checklist before calling the skill done

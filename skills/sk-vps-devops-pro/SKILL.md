@@ -39,7 +39,7 @@ Use official [Caddy docs](https://caddyserver.com/docs), [UFW man pages](https:/
 - Creating deploy scripts (git-pull + rebuild + restart)
 - Hardening SSH access
 - Setting up systemd services or cron jobs
-- Trigger keywords: `VPS`, `server`, `Caddy`, `UFW`, `firewall`, `backup`, `provision`, `SSL`
+- Trigger keywords: `VPS`, `server`, `Caddy`, , `firewall`, `backup`, `provision`, `SSL`
 
 ## When not to use
 
@@ -64,9 +64,9 @@ Use official [Caddy docs](https://caddyserver.com/docs), [UFW man pages](https:/
 
 ## Workflow
 
-1. **Confirm** target OS, existing services, ports in use, DNS status. Verify: `uname -a`, `docker ps`, `ss -tlnp`, `dig domain`. State assumptions explicitly (**Think Before Coding**).
+1. **Confirm** target OS, existing services, ports in use, DNS status. Verify: `uname -a`, , , . State assumptions explicitly (**Think Before Coding**).
 2. **Apply** minimum changes to achieve the goal. Use idempotent patterns (check-before-install, IF NOT EXISTS). Only modify what is needed (**Simplicity First**, **Surgical Changes**).
-3. **Verify** with health checks: `systemctl status`, `curl`, `ufw status`. Define success criteria before starting (**Goal-Driven Execution**).
+3. **Verify** with health checks: , , . Define success criteria before starting (**Goal-Driven Execution**).
 
 ### Operating principles
 
@@ -102,7 +102,7 @@ Details: [references/anti-patterns.md](references/anti-patterns.md)
 ### Provisioning and hardening (summary)
 
 - Base packages: curl, git, openssl, ufw, fail2ban
-- SSH: key-only auth, disable password login, change default port (optional)
+- SSH hardening: key-only authentication, disabled password login, and explicit access policy (optional)
 - Auto-updates: unattended-upgrades for security patches
 - User management: dedicated service user, not root for applications
 
@@ -113,7 +113,7 @@ Details: [references/provisioning-hardening.md](references/provisioning-hardenin
 - Caddyfile imports `conf.d/*.caddy` for multi-site management
 - Each site: `domain.com { reverse_proxy localhost:PORT; encode gzip zstd }`
 - Auto-SSL via Let's Encrypt — zero config beyond DNS A record
-- Reload: `systemctl reload caddy`
+- Reload:
 
 Details: [references/caddy-reverse-proxy.md](references/caddy-reverse-proxy.md)
 
@@ -122,7 +122,7 @@ Details: [references/caddy-reverse-proxy.md](references/caddy-reverse-proxy.md)
 - Default deny incoming, allow outgoing
 - Allow: SSH (22), HTTP (80), HTTPS (443)
 - Never expose database ports (••••, ••••, ••••, ••••) to internet
-- Rate limiting on SSH: `ufw limit ssh`
+- Rate limiting on SSH:
 
 Details: [references/firewall-ufw.md](references/firewall-ufw.md)
 
@@ -136,15 +136,13 @@ Details: [references/backup-automation.md](references/backup-automation.md)
 
 ### Deploy strategies (summary)
 
-- Git-pull deploy: `git pull → docker compose build → docker compose up -d --no-deps service`
 - Health check after deploy: curl endpoint, check HTTP status
-- Rollback: `git checkout previous-commit → rebuild → restart`
+- Rollback:
 
 Details: [references/deploy-strategies.md](references/deploy-strategies.md)
 
 ### Monitoring and logging (summary)
 
-- Docker logs: `docker compose logs -f --tail 100 service`
 - Systemd journal: `journalctl -u caddy -f`
 - Health endpoints: curl with expected HTTP 200
 - Disk space: `df -h`, alert at 80%
@@ -179,16 +177,7 @@ Details: [references/monitoring-logging.md](references/monitoring-logging.md)
 1. Issue or goal: Route dev.example.com to localhost:•••• with auto-SSL
 2. Recommendation: Add Caddy conf.d site file, ensure DNS A record points to VPS, reload Caddy
 3. Code:
-   ```bash
-   cat > /etc/caddy/conf.d/api.caddy << 'EOF'
-   dev.example.com {
-       reverse_proxy localhost:••••
-       encode gzip zstd
-   }
-   EOF
-   systemctl reload caddy
-   ```
-4. Residual risks: DNS propagation delay (check with `dig`), port •••• must be listening, firewall must allow 80/443
+4. Residual risks: DNS propagation delay (check with ), port •••• must be listening, firewall must allow 80/443
 
 ## Checklist before calling the skill done
 

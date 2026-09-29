@@ -136,23 +136,23 @@ Every interactive element must have:
   /* Default */
   background: var(--color-primary);
   color: var(--color-on-primary);
-  
+
   /* Hover */
   &:hover {
     background: var(--color-primary-hover);
   }
-  
+
   /* Active */
   &:active {
     transform: scale(0.98);
   }
-  
+
   /* Focus */
   &:focus-visible {
     outline: 3px solid var(--color-focus);
     outline-offset: 2px;
   }
-  
+
   /* Disabled */
   &:disabled {
     opacity: 0.5;

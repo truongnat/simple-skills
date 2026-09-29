@@ -88,7 +88,7 @@ interface ButtonProps {
 - Support composition via `children`
 - Allow style overrides via `className` or `style`
 
-## Quick Start: React Component with Tailwind
+## Orientation
 
 ```tsx
 import { forwardRef, type ComponentPropsWithoutRef } from "react";

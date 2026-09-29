@@ -37,7 +37,7 @@ Use official [Docker Compose docs](https://docs.docker.com/compose/) for syntax 
 - Named volumes vs bind mounts for databases
 - Health checks and `depends_on` with `condition: service_healthy`
 - Dev/staging/prod compose profiles
-- Trigger keywords: `docker compose`, `compose.yml`, `depends_on`, `healthcheck`, `volumes`
+- Trigger keywords: , `compose.yml`, `depends_on`, `healthcheck`, `volumes`
 
 ## When not to use
 
@@ -51,21 +51,21 @@ Use official [Docker Compose docs](https://docs.docker.com/compose/) for syntax 
 - **Services** to orchestrate and their images or build contexts
 - **Environment** (dev, staging, production)
 - **Host port constraints** and conflicts
-- **Persistence** requirements (what survives `docker compose down`)
+- **Persistence** requirements (what survives )
 - **Network exposure** (which services are public vs internal only)
 
 ## Expected output
 
 1. **Issue or goal** — what stack or change is needed
 2. **Recommendation** — topology, volumes, health checks, profiles
-3. **Code** — `docker-compose.yml`, `.env.example`, startup commands
+3. **Code** — , `.env.example`, startup commands
 4. **Residual risks** — data loss, port exposure, startup race conditions
 
 ## Workflow
 
-1. **Confirm** services, env, ports, persistence. Verify: `docker compose config`, existing `.env`, host port usage (`ss -tlnp`).
+1. **Confirm** services, env, ports, persistence. Verify: , existing `.env`, host port usage ().
 2. **Apply** minimum compose that works; add health checks and `depends_on` for stateful deps; use named volumes for DBs (**Simplicity First**).
-3. **Verify** `docker compose up -d`, `docker compose ps`, service logs, health endpoints (**Goal-Driven Execution**).
+3. **Verify** , , service logs, health endpoints (**Goal-Driven Execution**).
 
 ### Operating principles
 
@@ -161,7 +161,7 @@ Details: [references/decision-tree.md](references/decision-tree.md)
 
 1. Issue or goal: Four-service stack with safe startup order
 2. Recommendation: Named volumes for data services; healthchecks; API depends on healthy DB/cache/search; API port `••••:••••` commented
-3. Code: `docker-compose.yml` with `depends_on` + `condition: service_healthy` on neo4j, meilisearch, redis
+3. Code:  with `depends_on` + `condition: service_healthy` on neo4j, meilisearch, redis
 4. Residual risks: Neo4j `start_period` too short causes API crash-loop; never `down -v` without backup
 
 ## Checklist before calling the skill done
@@ -175,7 +175,7 @@ Details: [references/decision-tree.md](references/decision-tree.md)
 - [ ] `depends_on` uses `service_healthy` where needed
 - [ ] No secrets in compose; `.env.example` provided
 - [ ] Port mappings commented; DB not exposed on host in prod
-- [ ] `docker compose config` and `up -d` tested
+- [ ]  and `up -d` tested
 
 ## Output
 

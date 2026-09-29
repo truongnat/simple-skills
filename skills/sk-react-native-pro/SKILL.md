@@ -58,7 +58,7 @@ Use official [React Native](https://reactnative.dev/) and [Expo](https://docs.ex
 ## Required inputs
 
 - **Expo vs bare** (or prebuild) when suggesting native or config-plugin changes.
-- **`package.json`** versions (`expo`, `react-native`, key animation/nav libs) when recommending version-sensitive APIs.
+- **`package.json`** versions (, `react-native`, key animation/nav libs) when recommending version-sensitive APIs.
 
 ## Expected output
 

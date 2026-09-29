@@ -20,7 +20,6 @@ Use this skill when:
 - Setting up Prisma Postgres from Prisma Console
 - Provisioning instant temporary databases with `create-db`
 - Managing Prisma Postgres resources via Management API
-- Using `@prisma/management-api-sdk` in TypeScript/JavaScript
 - Handling claim URLs, connection strings, regions, and auth flows
 - Integrating programmatic provisioning with service tokens or OAuth
 
@@ -44,7 +43,6 @@ DO NOT use this skill for:
 
 - **CLI Provisioning**: Use `create-db` for instant temporary databases (CRITICAL priority)
 - **Management API**: Use Management API for programmatic resource management (CRITICAL priority)
-- **SDK Integration**: Use `@prisma/management-api-sdk` for TypeScript/JavaScript (HIGH priority)
 - **Console**: Use Prisma Console for interactive management (HIGH priority)
 - **Authentication**: Use service tokens or OAuth for API access
 - **Connection Security**: Use TLS and secure connection strings
@@ -69,7 +67,6 @@ Next steps: [follow-up actions if any]
 - **Authentication**: Service tokens, OAuth flows
 - **Operations**: Create, delete, list, scale databases
 - **Connection**: Connection strings, claim URLs, TLS
-- **SDK**: `@prisma/management-api-sdk` for TypeScript/JavaScript
 
 ## Quick example
 
@@ -107,7 +104,6 @@ Reference this skill when:
 - Setting up Prisma Postgres from Prisma Console
 - Provisioning instant temporary databases with `create-db`
 - Managing Prisma Postgres resources via Management API
-- Using `@prisma/management-api-sdk` in TypeScript/JavaScript
 - Handling claim URLs, connection strings, regions, and auth flows
 
 ## Rule Categories by Priority
@@ -141,16 +137,9 @@ Use Prisma Console for manual setup and operations:
 
 Use `create-db` when you need a database immediately:
 
-```bash
-npx create-db@latest
-```
 
 Aliases:
 
-```bash
-npx create-pg@latest
-npx create-postgres@latest
-```
 
 For app integrations, you can also use the programmatic API (`create()` / `regions()`) from the `create-db` npm package.
 
@@ -178,9 +167,6 @@ Auth options:
 
 Install and use:
 
-```bash
-npm install @prisma/management-api-sdk
-```
 
 Use `createManagementApiClient` for existing tokens, or `createManagementApiSdk` for OAuth + token refresh.
 

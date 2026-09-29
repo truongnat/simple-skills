@@ -63,7 +63,7 @@ skill-name/
 
 1. **Confirm** skill type (system/working), target tools, domain scope. Verify: no existing skill already covers this topic. Check `skill list` and `skill kb search`.
 2. **Apply** six-layer architecture using the template at `templates/skill/SKILL.md`. Fill each layer with domain-specific content. Keep SKILL.md under 500 lines; long content goes to `references/`. Start minimal (**Simplicity First**) — add reference files only when content exceeds summary length.
-3. **Validate and publish** — `skill validate ./skills/name` or `skill validate-all ./skills --fix`; checklist in `templates/skill/CHECKLIST.md`; `skill publish` runs validate automatically. Hub batch: `make publish-skills` (see `skills/publish-manifest.json`). Verify: `skill info name` (**Goal-Driven Execution**).
+3. **Validate and publish** — `skill validate ./skills/name` or `skill validate-all ./skills --fix`; checklist in `templates/skill/CHECKLIST.md`; `skill publish` runs validate automatically. Hub batch:  (see `skills/publish-manifest.json`). Verify: `skill info name` (**Goal-Driven Execution**).
 
 Canonical rules: `SKILL_AUTHORING_RULES.md` at repo root.
 
@@ -147,12 +147,6 @@ Details: [references/cursor-rules-format.md](references/cursor-rules-format.md)
 4. Residual risks: Check overlap with existing `sk-nestjs-pro` skill; ensure clear boundary
 
 **Commands:**
-```bash
-skill new sk-nestjs-neo4j-pro
-# Fill AUTHORING-BRIEF.md, SKILL.md, references/
-skill validate ./skills/sk-nestjs-neo4j-pro
-skill publish ./skills/sk-nestjs-neo4j-pro --compatible "Claude Code,Cursor" --version 1.0.0 --tags "nestjs,neo4j,graph"
-```
 
 ## Checklist before calling the skill done
 

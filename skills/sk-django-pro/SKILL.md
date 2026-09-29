@@ -97,7 +97,7 @@ class ItemViewSet(viewsets.ModelViewSet):
 - [ ] **Think Before Coding**: Database schema and relationships (ORM) planned.
 - [ ] **Simplicity First**: Built-in Django features used over custom implementations.
 - [ ] **Surgical Changes**: Only updated necessary models, views, or serializers.
-- [ ] **Goal-Driven Execution**: Verified with `python manage.py test` and Admin UI.
+- [ ] **Goal-Driven Execution**: Verified with  and Admin UI.
 - [ ] Database migrations created and applied.
 - [ ] DRF serializers and views correctly implement the required logic.
 - [ ] Security checks (Permissions, CSRF, XSS) verified.

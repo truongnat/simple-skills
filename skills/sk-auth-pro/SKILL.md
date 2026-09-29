@@ -266,17 +266,17 @@ Skip sections only if clearly N/A; say why.
 
 ### 1 — Simple (common)
 
-**Input:** "Need full auth for web + mobile + API partners. Which methods should we use?"  
+**Input:** "Need full auth for web + mobile + API partners. Which methods should we use?"
 **Expected output:** Follow **Suggested response format (STRICT)** — include method matrix, lifecycle, stack handoffs, rollout/testing notes, residual risks.
 
 ### 2 — Tricky (edge case)
 
-**Input:** JWT access token includes `role: admin` claim; API trusts it for `/admin` routes.  
+**Input:** JWT access token includes `role: admin` claim; API trusts it for `/admin` routes.
 **Expected output:** Reject pattern; authz server-side from DB/policy; JWT as identity carrier only; cite [anti-patterns.md](references/anti-patterns.md).
 
 ### 3 — Cross-skill
 
-**Input:** Multi-tenant SaaS — ensure tenant A cannot read tenant B’s rows.  
+**Input:** Multi-tenant SaaS — ensure tenant A cannot read tenant B’s rows.
 **Expected output:** **`sk-auth-pro`** identity + policy; **`sk-postgresql-pro`** RLS and indexes; **`sk-nestjs-pro`** transaction + `SET LOCAL` if applicable.
 
 ## Checklist before calling the skill done

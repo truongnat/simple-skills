@@ -157,9 +157,6 @@ Present the complete file set and ask:
 
 ### 6. Write files and rebuild index
 Write `skills/<name>-pro/SKILL.md` (and any reference files). Then run:
-```bash
-npm run build-skill-index
-```
 to register the new skill in `knowledge-base/embeddings/skill_index.json`.
 
 ## Checklist before calling the skill done
@@ -167,7 +164,7 @@ to register the new skill in `knowledge-base/embeddings/skill_index.json`.
 - [ ] Checked existing skills for overlap before writing anything (Think Before Coding)
 - [ ] SKILL.md prose ≤ 120 lines; overflow moved to `references/` (Simplicity First)
 - [ ] Only wrote new skill's files; no adjacent skills edited (Surgical Changes)
-- [ ] `npm run validate-skills` passes; `npm run build-skill-index` clean (Goal-Driven Execution)
+- [ ]  passes;  clean (Goal-Driven Execution)
 - [ ] All 4 Karpathy principles present in `### Operating principles` and `## Checklist` (§0 gate)
 - [ ] Name ends in `-pro` and matches folder name exactly
 - [ ] Description ≤ •••• characters with explicit Triggers line

@@ -5,7 +5,6 @@ description: Review the quality, structure, portability, and validation evidence
 
 Skill text is **English**; answer in the user’s preferred language when rules or the conversation specify it.
 
-Use **`node dist/tools.js analyze-skills`**, **`validate-skills`**, and **`list-skills`** from **repo root** (see `scripts/README.md`); this skill encodes **how** to combine outputs into an **actionable** improvement narrative — not a substitute for reading **`SKILL_AUTHORING_RULES.md`**. Confirm **cwd** is repo root and **`npm install`** / **`npm run build`** have been run so **`dist/tools.js`** exists.
 
 ## Boundary
 

@@ -18,7 +18,7 @@ Expert-level orchestration of containerized workloads. Focuses on scalability, r
 
 ## Boundary
 
-**`sk-kubernetes-pro`** covers K8s core objects (Pods, Deployments, Services, Ingress, ConfigMaps), manifest management (Helm, Kustomize), security (RBAC, NetworkPolicies), and cluster operations. It does NOT cover infrastructure provisioning (use `sk-aws-pro` or `terraform-pro` for that).
+**`sk-kubernetes-pro`** covers K8s core objects (Pods, Deployments, Services, Ingress, ConfigMaps), manifest management (Helm, Kustomize), security (RBAC, NetworkPolicies), and cluster operations. It does NOT cover infrastructure provisioning (use `sk-aws-pro` or  for that).
 
 ## When to use
 
@@ -38,7 +38,7 @@ Expert-level orchestration of containerized workloads. Focuses on scalability, r
 
 ### Operating principles
 
-- **Declarative over Imperative**: Always use YAML/Helm; never use `kubectl run` or `edit` in production.
+- **Declarative over Imperative**: Always use YAML/Helm; never use  or `edit` in production.
 - **Immutable Infrastructure**: Containers and manifests should be immutable once deployed.
 - **Observability is Key**: If it's not monitored, it's not running.
 - **Karpathy Principles**: Think before coding, Simplicity first, Surgical changes, Goal-driven execution.

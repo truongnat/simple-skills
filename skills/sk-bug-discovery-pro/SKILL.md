@@ -247,13 +247,13 @@ Details: [references/versions.md](./references/versions.md)
 
 ## Quick example
 
-**Input:** Intermittent 500 on `/api/orders` after deploy — find related risk.  
+**Input:** Intermittent 500 on `/api/orders` after deploy — find related risk.
 **Expected output:** Taxonomy hint (**integration**/**failure mode**); **`api_impact`** / **`shape_check`** if indexed; **trace** correlation suggestion; **candidates** table with confidence; **no** “all bugs found.”
 
-**Input:** “Graph says no callers — bug impossible.”  
+**Input:** “Graph says no callers — bug impossible.”
 **Expected output:** **Dynamic import**, scripts, **unindexed** paths; **confidence** low; **`sk-testing-pro`** repro; do not close on graph alone.
 
-**Input:** Memory grows over 24h — leak suspected.  
+**Input:** Memory grows over 24h — leak suspected.
 **Expected output:** **Runtime** path (**heap**, allocation profile); graph only for **who allocates** after narrowing; hypothesis loop.
 
 ## Checklist before calling the skill done

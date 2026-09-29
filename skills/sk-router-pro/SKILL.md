@@ -89,7 +89,7 @@ When the user chat includes attached files or local file paths, do not optimize 
 
 1. If the user only mentions files vaguely, clarify the goal before processing: summarize, extract facts, optimize prompt context, or implement from the file.
 2. Plain text/code/Markdown/JSON/YAML: read directly with repo tools.
-3. PDF, DOCX, PPTX, XLSX, HTML, and similar document formats: MarkItDown is optional but recommended; prefer the bundled helper `node the optional project-local tool bundle tools.js analyze-doc <file...>` or `npx @truongnat/devkit analyze-doc <file...>`.
+3. PDF, DOCX, PPTX, XLSX, HTML, and similar document formats: MarkItDown is optional but recommended; prefer the bundled helper  or .
 4. If MarkItDown is missing, do not install automatically. Tell the user it is recommended for cleaner extraction and ask for permission before installing.
 5. Locked, unsupported, or very large files: state the limitation and request an accessible export only if the file content is required.
 
@@ -103,7 +103,7 @@ Router output must reflect **actual workspace / task stack**, not defaults from 
 
 1. **Infer stack first** (use whatever evidence exists; order is flexible):
    - **Explicit**: user or rules say Flutter, Next.js, Nest, RN, etc.
-   - **Workspace markers**: `pubspec.yaml` + `lib/**/*.dart` → **Flutter/Dart**; `package.json` + `next.config.*` → **Next.js**; `package.json` + `react` (no Next) → **React web**; `nest-cli.json` / `@nestjs` → **NestJS**; `Cargo.toml` + `src-tauri` → **Tauri**; `.kts` / `android/` + Kotlin → Android-native patterns (no `sk-flutter-pro`).
+   - **Workspace markers**: `pubspec.yaml` + `lib/**/*.dart` → **Flutter/Dart**; `package.json` + `next.config.*` → **Next.js**; `package.json` + `react` (no Next) → **React web**; `nest-cli.json` / `@nestjs` → **NestJS**;  + `src-tauri` → **Tauri**; `.kts` / `android/` + Kotlin → Android-native patterns (no `sk-flutter-pro`).
    - **Open / attached paths**: e.g. `lib/foo.dart` → Dart/Flutter; `app/**/*.tsx` with Next imports → Next.
 2. **Map UI / app-layer work to the matching skill**:
    - Flutter widgets, Riverpod, Dart async → **`sk-flutter-pro`** (not `sk-react-pro`).
@@ -120,7 +120,7 @@ Router output must reflect **actual workspace / task stack**, not defaults from 
 | `pubspec.yaml`, `.dart`, Flutter/Riverpod | **`sk-flutter-pro`** |
 | Next.js routes, `next/font`, middleware | **`sk-nextjs-pro`** |
 | `*.tsx` in CRA/Vite, no Next | **`sk-react-pro`** |
-| `expo`, `react-native` | **`sk-react-native-pro`** |
+| , `react-native` | **`sk-react-native-pro`** |
 
 ### Operating principles
 

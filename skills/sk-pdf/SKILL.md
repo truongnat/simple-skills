@@ -55,12 +55,8 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 ## Runtime
 
-## Commands
 
-```bash
-```
 
-On Windows, replace `.venv/bin/python` with `.venv/Scripts/python.exe`.
 
 ## Output
 

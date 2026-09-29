@@ -200,13 +200,13 @@ Details: [references/versions.md](references/versions.md)
 
 ## Quick example
 
-**Input:** Dashboard screenshot — “Is revenue growing?”  
+**Input:** Dashboard screenshot — “Is revenue growing?”
 **Expected output:** Chart read from **visible** axes; **confidence**; no invented numbers; **failure modes** if unreadable.
 
-**Input:** Password PDF — extract vendors.  
+**Input:** Password PDF — extract vendors.
 **Expected output:** Cannot without unlock; **no** guessed content; **`sk-security-pro`**-safe path.
 
-**Input:** Webinar → acceptance criteria.  
+**Input:** Webinar → acceptance criteria.
 **Expected output:** This skill: timestamped summary; **`sk-business-analysis`**: AC; **demo ≠ contract** risk in residual.
 
 ## Checklist before calling the skill done

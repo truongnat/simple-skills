@@ -29,7 +29,7 @@ Expert-level orchestration of modern Python applications. Focuses on performance
 
 ## Workflow
 
-1. **Environment Setup**: Initialize project with `uv` or `poetry`.
+1. **Environment Setup**: Initialize project with  or `poetry`.
 2. **Schema Definition**: Use `Pydantic` for data validation and `Type Hints`.
 3. **Core Logic**: Implement features using functional or OOP patterns.
 4. **Async Implementation**: Use `AsyncIO` for I/O bound tasks.

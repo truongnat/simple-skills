@@ -29,7 +29,7 @@ Expert-level orchestration of modern Vue.js applications. Focuses on the Vue 3 e
 
 ## Workflow
 
-1. **Project Setup**: Initialize with `npm create vue@latest`.
+1. **Project Setup**: Initialize with .
 2. **Component Design**: Build components using the `<script setup>` pattern.
 3. **State Management**: Define stores using Pinia for shared state.
 4. **Routing**: Configure Vue Router for SPA navigation.

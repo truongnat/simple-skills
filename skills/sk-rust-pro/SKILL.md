@@ -29,12 +29,12 @@ Expert-level orchestration of high-performance, memory-safe Rust applications. F
 
 ## Workflow
 
-1. **Project Setup**: Initialize with `cargo new`.
+1. **Project Setup**: Initialize with .
 2. **Domain Modeling**: Define structs and enums; utilize the type system for safety.
 3. **Logic Implementation**: Write code adhering to ownership and borrowing rules.
 4. **Async Strategy**: Implement async logic with `tokio` or `async-std`.
 5. **Testing**: Write unit and integration tests using `#[test]`.
-6. **Linting & Audit**: Run `cargo clippy` and `cargo audit` for security.
+6. **Linting & Audit**: Run  and  for security.
 
 ### Operating principles
 
@@ -100,10 +100,10 @@ async fn main() {
 - [ ] **Think Before Coding**: Ownership model and memory strategy planned.
 - [ ] **Simplicity First**: Leveraged standard library and idiomatic patterns.
 - [ ] **Surgical Changes**: Modified only necessary crates or modules.
-- [ ] **Goal-Driven Execution**: Verified with `cargo test` and `clippy`.
+- [ ] **Goal-Driven Execution**: Verified with  and `clippy`.
 - [ ] Error handling (`Result`/`Option`) is comprehensive.
 - [ ] Lifetimes and borrowing rules correctly applied (no memory leaks).
-- [ ] `cargo clippy` passes with zero warnings.
+- [ ]  passes with zero warnings.
 
 ## Output
 

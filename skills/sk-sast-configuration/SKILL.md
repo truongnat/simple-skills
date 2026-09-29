@@ -43,7 +43,7 @@ This skill provides comprehensive guidance for setting up and configuring SAST t
 - Security sk-research workflows
 - SARIF result processing
 
-## Quick Start
+## Orientation
 
 ### Initial Assessment
 
@@ -54,18 +54,6 @@ This skill provides comprehensive guidance for setting up and configuring SAST t
 
 ### Basic Setup
 
-```bash
-# Semgrep quick start
-pip install semgrep
-semgrep --config=auto --error
-
-# SonarQube with Docker
-docker run -d --name sonarqube -p 9000:9000 sonarqube:10.8-community
-
-# CodeQL CLI setup
-gh extension install github/gh-codeql
-codeql database create mydb --language=python
-```
 
 ## Integration Patterns
 
@@ -83,14 +71,6 @@ codeql database create mydb --language=python
 
 ### Pre-commit Hook
 
-```bash
-# .pre-commit-config.yaml
-- repo: https://github.com/returntocorp/semgrep
-  rev: v1.45.0
-  hooks:
-    - id: semgrep
-      args: ['--config=auto', '--error']
-```
 
 ## Best Practices
 
@@ -123,9 +103,6 @@ codeql database create mydb --language=python
 
 ### New Project Setup
 
-```bash
-./scripts/run-sast.sh --setup --language python --tools semgrep,sonarqube
-```
 
 ### Custom Rule Development
 
@@ -140,10 +117,6 @@ rules:
 
 ### Compliance Scanning
 
-```bash
-# PCI-DSS focused scan
-semgrep --config p/pci-dss --json -o pci-scan-results.json
-```
 
 ## Troubleshooting
 

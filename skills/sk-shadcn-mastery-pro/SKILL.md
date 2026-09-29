@@ -153,19 +153,9 @@ const buttonVariants = cva(
 }
 ```
 
-### Installation Commands
+### Installation guidance
 
-```bash
-# Add shadcn/ui to project
-npx shadcn@latest init
-
-# Add components
-npx shadcn@latest add button
-npx shadcn@latest add dialog card table
-
-# Add theme
-npx shadcn@latest add https://github.com/username/theme.json
-```
+Describe the required component dependencies and setup assumptions in prose; do not embed executable commands.
 
 ## Suggested response format
 
@@ -173,9 +163,7 @@ npx shadcn@latest add https://github.com/username/theme.json
 ## Component: [Name]
 
 ### Installation
-```bash
-npx shadcn@latest add [component]
-```
+Describe required dependencies and setup assumptions in prose.
 
 ### Code
 ```tsx

@@ -27,7 +27,7 @@ Use Git operations and GitHub repository patterns for API truth; align with **br
 
 ## Prerequisites and safety
 
-- Required only for a real upstream sync: a local Git source repository, a target repository URL, Git, and optionally the GitHub CLI (`gh`).
+- Required only for a real upstream sync: a local Git source repository, a target repository URL, Git, and optionally the GitHub CLI ().
 - Default behavior is a dry-run inventory and sync plan. Do not commit, push, or open a PR without the user explicitly asking for that exact external action.
 - If credentials, repository access, or the target URL are missing, stop with a blocked report; never guess or embed secrets.
 - Report local copy success, commit success, push success, and PR creation as separate states.
@@ -163,7 +163,6 @@ Uses `xcopy` command for directory copying:
 **Does not modify:**
 - Local source repository structure
 - Original custom content
-- Git configuration
 
 ## Security considerations
 

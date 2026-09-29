@@ -157,13 +157,11 @@ Details: [references/integration-map.md](references/integration-map.md)
 | Anti-patterns | [references/anti-patterns.md](references/anti-patterns.md) |
 | Integration map | [references/integration-map.md](references/integration-map.md) |
 | Advanced techniques | [REFERENCE.md](REFERENCE.md) |
-| Scripts | [Scripts/](Scripts/) |
 
 ## Quick example
 
 **Input:** "Generate product hero images for our e-commerce site — consistent brand style, 10 products."
 - Use DALL-E 3 with a brand-locked prompt template (color, tone, lighting).
-- Batch-generate via OpenAI API with `Scripts/generate-dalle-image.js`.
 - Human QA gate: review each for brand fit before publishing.
 - **Verify:** All images match brand palette; no obvious AI artifacts; alt-text is ready.
 

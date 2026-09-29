@@ -226,10 +226,10 @@ Details: [references/versions.md](references/versions.md)
 
 ## Quick example
 
-**Input:** 12-minute CI; `npm install` every run.  
+**Input:** 12-minute CI;  every run.
 **Expected output:** Full **Suggested response format** — cache keying, job split, trade-off of cold vs warm, failure **rate limit/cache miss**, residual **fork** irrelevance.
 
-**Input:** Fork PR needs preview deploy.  
+**Input:** Fork PR needs preview deploy.
 **Expected output:** **Context/Problem** fork trust; **Decision** no prod secrets on fork; **Implementation** trusted workflow pattern or **`workflow_run`** sketch; **Failure modes** secret exfiltration; **`sk-security-pro`**.
 
 ## Checklist before calling the skill done

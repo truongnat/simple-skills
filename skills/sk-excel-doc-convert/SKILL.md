@@ -68,8 +68,6 @@ This skill is a **hard contract**. Obey it before any other action.
 
 On first use:
 
-```bash
-```
 
 `requirements.txt`.
 
@@ -85,17 +83,8 @@ On first use:
 8. Work nested git: run
    outputs (or confirm the working tree is clean).
 
-## Commands
 
-```bash
 
-$PY $CLI classify path/to/doc.sk-xlsx
-$PY $CLI convert path/to/doc.sk-xlsx out_dir/
-$PY $CLI convert path/to/doc.sk-xlsx out_dir/ --sheets '表紙,機能概要,画面項目詳細'
-$PY $CLI convert path/to/doc.sk-xlsx out_dir/ --max-rows 200 --max-cols 50
-```
-
-Windows: use `.venv/Scripts/python.exe`.
 
 ## Strategies (built-in)
 

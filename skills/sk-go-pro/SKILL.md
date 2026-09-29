@@ -29,7 +29,7 @@ Expert-level orchestration of high-performance Go applications. Focuses on simpl
 
 ## Workflow
 
-1. **Project Init**: Initialize with `go mod init`.
+1. **Project Init**: Initialize with .
 2. **Domain Modeling**: Define types and interfaces.
 3. **Implementation**: Build logic using composition and interfaces.
 4. **Concurrency**: Orchestrate tasks with goroutines and `sync`/`context` packages.
@@ -114,10 +114,10 @@ func main() {
 - [ ] **Think Before Coding**: Concurrency model and interface boundaries planned.
 - [ ] **Simplicity First**: Idiomatic Go used; avoided unnecessary generics or complexity.
 - [ ] **Surgical Changes**: Modified only necessary packages.
-- [ ] **Goal-Driven Execution**: Verified with `go test` and `go vet`.
+- [ ] **Goal-Driven Execution**: Verified with  and .
 - [ ] Error handling is explicit and comprehensive.
 - [ ] Context package used for cancellation and timeouts.
-- [ ] Race conditions checked using `go test -race`.
+- [ ] Race conditions checked using .
 
 ## Output
 

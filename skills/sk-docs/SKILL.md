@@ -62,7 +62,7 @@ sections filled from real evidence. You MUST:
 - **Cite the source** (file/path/§) for each substantive claim. Where evidence
   is missing, write `Gap:` / `Unknown` and add it to the coverage matrix —
   **do not invent** behavior, requirements, or decisions.
-- Assign stable IDs (`FR-001`, `NFR-001`, `ADR-001`, `BR-001`) and keep a
+- Assign stable IDs (`FR-001`, `NFR-001`, , `BR-001`) and keep a
   **traceability** thread: requirement → design → code/test.
 - Populate the **Documentation coverage matrix** in `Home.md` (each document:
   status `complete` / `partial` / `gap` / `N/A` + owner + last-synced). A wiki
@@ -111,7 +111,7 @@ Home.md                         # landing: overview + document map + coverage ma
   onboarding.md · tutorials.md · how-to.md · explanation.md
 ```
 
-Templates in `templates/`: `SRS`, `ARCHITECTURE`, `HLD`, `LLD`, `ADR`,
+Templates in `templates/`: `SRS`, `ARCHITECTURE`, `HLD`, `LLD`, ,
 `API_REFERENCE`, `DATA_MODEL`, `RUNBOOK`, `GUIDE`, `WIKI_HOME`, `WIKI_PAGE`,
 `DOCMAP`, plus `DOCX_OUTLINE` / `XLSX_STRUCTURE` for those formats.
 
@@ -199,8 +199,6 @@ Each document must contain its standard sections (see its template); the core:
 1. Read the project documentation settings. If `enabled: false`, stop. Resolve `format`.
 2. Apply the **Branch gate**; stop if it forbids writing here.
 3. Decide the in-scope doc set (mark out-of-scope documentation `N/A` with reason).
-   ```bash
-   ```
 
 ### Mode `full`
 5. Author the markdown source **document by document**, each to its template and
@@ -209,10 +207,10 @@ Each document must contain its standard sections (see its template); the core:
    and the ADR index; thread traceability (req → design → code/test).
 7. **Render to `format`** if not markdown (html per DESIGN_SYSTEM.md; sk-docx via
    the `sk-docx` skill; sk-xlsx via the `sk-xlsx` skill).
-8. Write `.docmap.md` with the current commit (`git rev-parse --short HEAD`).
+8. Write `.docmap.md` with the current commit ().
 
 ### Mode `sk-sync`
-5. Change set: `git diff --name-only <Last-synced>..HEAD` (or the task's files).
+5. Change set:  (or the task's files).
 6. Map changed paths → affected documents/sections via `.docmap.md`; update
    **only** those, plus the coverage matrix and any new ADR the change implies.
    Re-run the scanner: add/remove workspace pages for added/removed projects.

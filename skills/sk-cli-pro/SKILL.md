@@ -40,7 +40,7 @@ Canonical ergonomics reference: **[clig.dev](https://clig.dev/)** (community gui
 | **`sk-testing-pro`** | Snapshot `--help`, subprocess golden tests, exit codes |
 | **`sk-javascript-pro`** | Node CLIs, ESM/CJS `bin`, shebang edge cases |
 | **`sk-typescript-pro`** | Typed CLI boundaries when applicable |
-| **`sk-docker-pro`** | CLI in containers (TTY, `docker exec`, PATH) |
+| **`sk-docker-pro`** | CLI in containers (TTY, , PATH) |
 | **`sk-repo-tooling-pro`** | Internal scripts vs published CLIs |
 
 ## When to use
@@ -57,7 +57,7 @@ Canonical ergonomics reference: **[clig.dev](https://clig.dev/)** (community gui
 
 ## Required inputs
 
-- **Invocation** mode (global bin, `npx`, `python -m`), **OS targets**, **interactive vs automation** ratio.
+- **Invocation** mode (global bin, , ), **OS targets**, **interactive vs automation** ratio.
 
 ## Expected output
 
@@ -125,7 +125,6 @@ Details: [references/tips-and-tricks.md](references/tips-and-tricks.md)
 
 ### Patterns by runtime (summary)
 
-Python / Node / Go / Rust / shell — **`patterns-by-runtime.md`**.
 
 Details: [references/patterns-by-runtime.md](references/patterns-by-runtime.md)
 
@@ -161,7 +160,7 @@ Details: [references/versions.md](references/versions.md)
 
 ## Suggested response format (STRICT — implement / review)
 
-1. **Context** — Runtime, OS targets, invocation (`bin`, `npx`, container), human vs automation mix.
+1. **Context** — Runtime, OS targets, invocation (`bin`, , container), human vs automation mix.
 2. **Problem** — Symptom (broken pipe, stuck CI, bad `--json`, wrong exit) and success criteria.
 3. **System design / architecture** — Stdout/stderr/exit contract; TTY detection; signal handling sketch — cite **`cli-runtime-system-model.md`** when non-trivial.
 4. **Decision reasoning** — Argv shape (flat vs subcommands); JSON policy; strict vs permissive parsing — **`decision-framework-and-tradeoffs.md`** / **`decision-tree.md`**.
@@ -189,13 +188,13 @@ Details: [references/versions.md](references/versions.md)
 
 ## Quick example
 
-**Input (simple):** Users pipe output to `head`; traceback on broken pipe.  
+**Input (simple):** Users pipe output to `head`; traceback on broken pipe.
 **Expected output:** Full **Suggested response format** — EPIPE/SIGPIPE handling; quiet stderr; exit convention documented.
 
-**Input (tricky):** Default path deletes files; users typo flags.  
+**Input (tricky):** Default path deletes files; users typo flags.
 **Expected output:** Non-default destructive path; `--dry-run`; non-TTY refuses without `--force`; **`sk-security-pro`** for narrative.
 
-**Input (cross-skill):** Ship Python CLI on PyPI with completions.  
+**Input (cross-skill):** Ship Python CLI on PyPI with completions.
 **Expected output:** **`sk-code-packaging-pro`** for entry points; **this skill** for `--help`, exit codes, completion generation; **`sk-testing-pro`** for subprocess tests.
 
 ## Checklist before calling the skill done

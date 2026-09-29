@@ -40,7 +40,7 @@ Confirm **Bun version** (≥1.0), **target OS** (Linux/macOS/Windows binary need
 - Creating HTTP-based API clients in CLI context
 - Building spinners, progress bars, and colored output
 - Compiling to a single-file binary for distribution
-- Trigger keywords: `CLI`, `commander`, `bun build`, `config`, `ora`, `chalk`, `spinner`
+- Trigger keywords: `CLI`, `commander`, , `config`, `ora`, `chalk`, `spinner`
 
 ## When not to use
 
@@ -70,7 +70,7 @@ Confirm **Bun version** (≥1.0), **target OS** (Linux/macOS/Windows binary need
 1. **Design**: Map user intent to commands. Document subcommand structure. Identify config needs.
 2. **Build**: Implement Commander structure, Conf setup, API client, spinners. Test locally.
 3. **Polish**: Add --help, --version, colors, interactive prompts. Error handling. UX feedback.
-4. **Compile**: `bun build --target bun` for dev, `bun build --target node` for cross-platform, then cross-compile to binary if needed.
+4. **Compile**:  for dev,  for cross-platform, then cross-compile to binary if needed.
 5. **Verify**: Test CLI on target OS, check binary size, verify --help, smoke test commands.
 
 ### Operating principles
@@ -88,7 +88,7 @@ Confirm **Bun version** (≥1.0), **target OS** (Linux/macOS/Windows binary need
 |----------|----------------|
 | Single command | Root command, no subcommands; use `--` to separate |
 | 2-5 operations | Subcommands: `cli push`, `cli pull`, `cli status` |
-| 5+ operations | Command groups: `cli git-push`, `cli github-sync`, with `--help` | 
+| 5+ operations | Command groups: `cli git-push`, `cli github-sync`, with `--help` |
 | User config needed | Conf library in `~/.config/myapp/` (XDG standard) |
 | API authentication | Store token in config file (not ENV), refresh on 401 |
 | Async operations | ora spinner + async/await, handle SIGINT for cleanup |
@@ -157,7 +157,6 @@ Details: [references/bun-build-targets.md](references/bun-build-targets.md)
 
 - Commander vs Yargs vs built-in parser: Commander for professional, readable commands
 - Conf vs dotfiles vs ENV: Conf for structured config, ENV for deploy-time secrets
-- Bun vs Node target: Bun for speed, Node for broad compatibility
 - When to add interactive mode: Useful for onboarding, distracting for power users
 
 Details: [references/decision-tree.md](references/decision-tree.md)
@@ -195,10 +194,10 @@ Details: [references/decision-tree.md](references/decision-tree.md)
    import { Command } from 'commander';
    import ora from 'ora';
    import chalk from 'chalk';
-   
+
    const program = new Command('skill');
    program.name('skill').description('Knowledge base CLI').version('1.0.0');
-   
+
    program
      .command('push <file>')
      .description('Push a solution to KB')
@@ -212,7 +211,7 @@ Details: [references/decision-tree.md](references/decision-tree.md)
          process.exit(1);
        }
      });
-   
+
    program
      .command('search <query>')
      .option('--tag <tag>', 'Filter by tag')
@@ -228,10 +227,10 @@ Details: [references/decision-tree.md](references/decision-tree.md)
          process.exit(1);
        }
      });
-   
+
    program.parse();
    ```
-4. **Build**: `bun build src/cli.ts --outfile skill --target node` produces a single executable
+4. **Build**:  produces a single executable
 5. **Residual risks**: API timeouts need retry logic, auth token refresh on 401
 
 ## Checklist before calling the skill done

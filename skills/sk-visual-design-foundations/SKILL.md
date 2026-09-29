@@ -95,7 +95,7 @@ Build cohesive, accessible visual systems using typography, color, spacing, and 
 }
 ```
 
-## Quick Start: Design Tokens in Tailwind
+## Orientation
 
 ```js
 // tailwind.config.js

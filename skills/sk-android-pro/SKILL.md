@@ -82,7 +82,7 @@ Senior Android Engineer.
 @Composable
 func UserScreen(viewModel: UserViewModel = viewModel()) {
     val username by viewModel.username.collectAsState()
-    
+
     Text(text = "Hello, $username")
 }
 

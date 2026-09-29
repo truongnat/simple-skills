@@ -86,10 +86,6 @@ RUN npm run build
 
 A service rollback without a migration rollback causes schema/code mismatch errors. Always make migrations backward-compatible (additive only) for at least one release cycle, and keep undo scripts versioned alongside the migration:
 
-```bash
-# migrations/V20240315__add_nullable_column.sql       (forward)
-# migrations/V20240315__add_nullable_column.undo.sql  (backward)
-```
 
 Never run destructive migrations (DROP COLUMN, ALTER NOT NULL) until the old code version is fully retired from all environments.
 

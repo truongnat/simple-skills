@@ -107,7 +107,7 @@ Next steps: [follow-up analysis or actions]
 
 This guide covers essential financial analysis techniques using Python libraries. For advanced modeling techniques and real-world examples, see REFERENCE.md.
 
-## Quick Start
+## Orientation
 
 ```python
 import pandas as pd
@@ -210,10 +210,10 @@ def calculate_dcf(free_cash_flows, discount_rate, terminal_growth_rate):
     for i, fcf in enumerate(free_cash_flows):
         pv = fcf / ((1 + discount_rate) ** (i + 1))
         pv_fcf.append(pv)
-    
+
     terminal_value = free_cash_flows[-1] * (1 + terminal_growth_rate) / (discount_rate - terminal_growth_rate)
     pv_terminal = terminal_value / ((1 + discount_rate) ** len(free_cash_flows))
-    
+
     enterprise_value = sum(pv_fcf) + pv_terminal
     return enterprise_value
 ```
@@ -227,11 +227,11 @@ def calculate_multiples(financials, market_cap):
     revenue = financials.loc['Total Revenue']
     ebitda = financials.loc['EBITDA']
     net_income = financials.loc['Net Income']
-    
+
     p_e_ratio = market_cap / net_income
     ev_revenue = market_cap / revenue
     ev_ebitda = market_cap / ebitda
-    
+
     return {
         'p_e_ratio': p_e_ratio,
         'ev_revenue': ev_revenue,

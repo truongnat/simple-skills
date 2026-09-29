@@ -84,7 +84,7 @@ Senior Product Manager.
 
 **Vision:** "Build a collaborative code-review tool that feels as fast as real-time chat."
 
-**Success Metrics:** 
+**Success Metrics:**
 - Average time to first comment.
 - User satisfaction (CSAT) score.
 - PR merge velocity.

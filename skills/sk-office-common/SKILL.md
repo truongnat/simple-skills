@@ -5,7 +5,7 @@ description: Shared Python helpers for office document skills. Use when working 
 
 # Office Common
 
-Use the bundled `python/office_common/` package as shared implementation support for the office skills in this repository.
+Use the bundled  package as shared implementation support for the office skills in this repository.
 
 ## Available helpers
 

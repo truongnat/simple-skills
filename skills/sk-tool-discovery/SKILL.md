@@ -39,7 +39,6 @@ Detect available local tools and route work by capability instead of tool-name m
 ## Procedure
 
 1. Read `.harness/TOOL_CONTEXT.md` if present.
-2. Otherwise run `node scripts/discover-tools.js --markdown`.
 3. Update or create `.harness/TOOL_CONTEXT.md`.
 4. Route by capability, not by guessed tool names.
 

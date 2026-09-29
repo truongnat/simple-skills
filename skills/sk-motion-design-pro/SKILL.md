@@ -168,8 +168,8 @@ const container = {
 
 const item = {
   hidden: { opacity: 0, y: 20 },
-  show: { 
-    opacity: 1, 
+  show: {
+    opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
@@ -200,11 +200,11 @@ gsap.registerPlugin(ScrollTrigger)
 
 export function Feature() {
   const ref = useRef(null)
-  
+
   useEffect(() => {
     const el = ref.current
-    
-    gsap.fromTo(el, 
+
+    gsap.fromTo(el,
       { opacity: 0, y: 50 },
       {
         opacity: 1,
@@ -218,12 +218,12 @@ export function Feature() {
         }
       }
     )
-    
+
     return () => {
       ScrollTrigger.getAll().forEach(t => t.kill())
     }
   }, [])
-  
+
   return <div ref={ref}>Content</div>
 }
 ```
@@ -249,7 +249,7 @@ const handleMouseMove = (e) => {
   const rect = btn.getBoundingClientRect()
   const x = e.clientX - rect.left - rect.width / 2
   const y = e.clientY - rect.top - rect.height / 2
-  
+
   btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`
 }
 ```

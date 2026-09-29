@@ -55,7 +55,6 @@ Build reliable, fast, and maintainable end-to-end test suites that provide confi
 
 - Test user behavior, not implementation
 - Keep tests independent
-- Make tests deterministic
 - Optimize for speed
 - Use data-testid, not CSS selectors
 
@@ -103,11 +102,9 @@ cy.get('[data-testid="email-input"]').type("user@example.com");
 
 ```typescript
 // Playwright debugging
-// 1. Run in headed mode
-npx playwright test --headed
+// 1. Use headed mode when interactive diagnosis is needed
 
-// 2. Run in debug mode
-npx playwright test --debug
+// 2. Use debug mode when tracing a failing interaction
 
 // 3. Use trace viewer
 await page.screenshot({ path: 'screenshot.png' });

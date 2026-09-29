@@ -52,7 +52,7 @@ Master design system architecture to create consistent, maintainable, and scalab
 - Token transformation and formatting
 - CI/CD integration for token updates
 
-## Quick Start
+## Orientation
 
 ```typescript
 // Design tokens with CSS custom properties

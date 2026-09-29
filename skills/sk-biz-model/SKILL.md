@@ -36,7 +36,7 @@ that trace to FR/US/AC IDs already in the task artifacts.
 | `d2-architect` | `/d2-architect` | d2 |
 | `dbdiagram` | `/dbdiagram` | dbml |
 
-`format`: `mermaid` | `plantuml` | `d2` | `dbml`.  
+`format`: `mermaid` | `plantuml` | `d2` | `dbml`.
 D2/DBML are **source for external renderers** (d2 CLI / dbdiagram.io). Do not claim
 in-repo live preview unless the tool is actually available.
 

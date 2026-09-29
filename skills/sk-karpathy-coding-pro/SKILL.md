@@ -128,7 +128,7 @@ Details: [references/applying-principles-in-practice.md](references/applying-pri
 
 ### 1 — Simple (Think + Simplicity)
 
-**Input:** "Add a login button"  
+**Input:** "Add a login button"
 **Expected output:**
 - **Ask:** Where? What action on click? Styling requirements?
 - **Minimum:** Basic button with click handler → verify works
@@ -136,7 +136,7 @@ Details: [references/applying-principles-in-practice.md](references/applying-pri
 
 ### 2 — Tricky (Surgical Changes)
 
-**Input:** "Fix the login bug"  
+**Input:** "Fix the login bug"
 **Expected output:**
 - Only touch login-related code
 - Don't refactor unrelated auth flows
@@ -145,7 +145,7 @@ Details: [references/applying-principles-in-practice.md](references/applying-pri
 
 ### 3 — Cross-skill (Goal-Driven)
 
-**Input:** "Implement auth system"  
+**Input:** "Implement auth system"
 **Expected output:**
 - **Plan:**
   1. Basic session auth → verify: [can log in/out]

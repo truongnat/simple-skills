@@ -108,7 +108,7 @@ Next steps: [follow-up accounting tasks]
 
 This guide covers essential accounting tasks including double-entry bookkeeping, financial statement preparation, and account reconciliation. For advanced accounting topics and software integration, see REFERENCE.md.
 
-## Quick Start
+## Orientation
 
 ```python
 import pandas as pd
@@ -144,10 +144,10 @@ def record_journal_entry(date, description, debits, credits):
     """
     total_debit = sum(d['amount'] for d in debits)
     total_credit = sum(c['amount'] for c in credits)
-    
+
     if abs(total_debit - total_credit) > 0.01:
         raise ValueError("Debits must equal credits")
-    
+
     entry = {
         'date': date,
         'description': description,
@@ -169,11 +169,11 @@ def prepare_balance_sheet(assets, liabilities, equity):
     total_assets = sum(assets.values())
     total_liabilities = sum(liabilities.values())
     total_equity = sum(equity.values())
-    
+
     # Verify accounting equation
     if abs(total_assets - (total_liabilities + total_equity)) > 0.01:
         raise ValueError("Assets must equal Liabilities + Equity")
-    
+
     balance_sheet = {
         'assets': assets,
         'total_assets': total_assets,
@@ -194,7 +194,7 @@ def prepare_income_statement(revenue, expenses):
     total_revenue = sum(revenue.values())
     total_expenses = sum(expenses.values())
     net_income = total_revenue - total_expenses
-    
+
     income_statement = {
         'revenue': revenue,
         'total_revenue': total_revenue,
@@ -214,9 +214,9 @@ def prepare_cash_flow_statement(operating, investing, financing):
     net_operating = sum(operating.values())
     net_investing = sum(investing.values())
     net_financing = sum(financing.values())
-    
+
     net_change = net_operating + net_investing + net_financing
-    
+
     cash_flow = {
         'operating_activities': operating,
         'net_operating': net_operating,
@@ -239,13 +239,13 @@ def reconcile_bank_statement(book_balance, bank_balance, outstanding_checks, dep
     """
     adjusted_book_balance = book_balance - outstanding_checks + deposits_in_transit - bank_fees + interest
     adjusted_bank_balance = bank_balance
-    
+
     if abs(adjusted_book_balance - adjusted_bank_balance) > 0.01:
         return {
             'reconciled': False,
             'difference': adjusted_book_balance - adjusted_bank_balance
         }
-    
+
     return {
         'reconciled': True,
         'adjusted_balance': adjusted_book_balance
@@ -259,14 +259,14 @@ def reconcile_account(subledger_balance, general_ledger_balance, adjustments):
     Reconcile account balance
     """
     adjusted_subledger = subledger_balance + sum(adjustments.values())
-    
+
     if abs(adjusted_subledger - general_ledger_balance) > 0.01:
         return {
             'reconciled': False,
             'difference': adjusted_subledger - general_ledger_balance,
             'adjustments_needed': adjustments
         }
-    
+
     return {
         'reconciled': True,
         'adjusted_balance': adjusted_subledger
@@ -300,7 +300,7 @@ def calculate_income_tax(taxable_income, tax_brackets):
     """
     total_tax = 0
     remaining_income = taxable_income
-    
+
     for bracket in sorted(tax_brackets.items()):
         min_income, rate = bracket
         if remaining_income <= 0:
@@ -308,7 +308,7 @@ def calculate_income_tax(taxable_income, tax_brackets):
         taxable_amount = min(remaining_income, bracket[1] - bracket[0])
         total_tax += taxable_amount * rate
         remaining_income -= taxable_amount
-    
+
     return total_tax
 ```
 

@@ -258,17 +258,17 @@ Details: [references/versions.md](references/versions.md)
 
 ### 1 — Simple
 
-**Input:** Product list API slow, DB spikes.  
+**Input:** Product list API slow, DB spikes.
 **Expected output:** Cache-aside, keys + TTL + jitter, **write path** invalidates on admin update, stampede guard, metrics, **fallback** if Redis down — full **Suggested response format (STRICT)**.
 
 ### 2 — Tricky
 
-**Input:** High hit ratio but stale prices minutes after update.  
+**Input:** High hit ratio but stale prices minutes after update.
 **Expected output:** **Invalidate path** audit; failed job; shorten TTL for price keys; never cache **error** bodies — **`edge-cases.md`**.
 
 ### 3 — Cross-skill
 
-**Input:** Next.js global HTML at CDN.  
+**Input:** Next.js global HTML at CDN.
 **Expected output:** **`sk-nextjs-pro`** semantics + **`sk-caching-pro`** headers/purge + **`sk-security-pro`** if personalized.
 
 ## Checklist before calling the skill done

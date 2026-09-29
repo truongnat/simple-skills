@@ -155,7 +155,6 @@ Details: [references/integration-map.md](references/integration-map.md)
 | Anti-patterns | [references/anti-patterns.md](references/anti-patterns.md) |
 | Integration map | [references/integration-map.md](references/integration-map.md) |
 | Advanced techniques | [REFERENCE.md](REFERENCE.md) |
-| Scripts | [Scripts/](Scripts/) |
 
 ## Quick example
 

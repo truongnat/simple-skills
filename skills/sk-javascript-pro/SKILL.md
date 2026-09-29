@@ -4,7 +4,6 @@ name: sk-javascript-pro
 description: >+
   "Production-grade JavaScript: architecture and maintainability, runtime semantics (event loop, microtasks, ESM/CJS graph), async flows, performance — plus execution/module model, failure modes (lost Promises, `this`, pollution, FP dates, dual-package), trade-offs (JS vs TypeScript, mutability), quality guardrails (engine-accurate features; no sloppy security claims)."
 
-  Use this skill when implementing or reviewing JavaScript/TypeScript application logic at the language/runtime level, debugging tricky behavior, or handling edge cases in browser/Node projects.
 
   Combine with **`sk-testing-pro`**, **`sk-security-pro`**, **`sk-typescript-pro`**, **`sk-code-packaging-pro`**, and stack skills (**`sk-react-pro`**, **`sk-nestjs-pro`**, **`sk-nextjs-pro`**) per integration map.
 

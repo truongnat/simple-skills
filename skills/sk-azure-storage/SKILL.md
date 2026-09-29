@@ -73,7 +73,7 @@ Next steps: [follow-up actions if any]
 ## Resources in this skill
 
 - **MCP Tools**: `azure__storage` (when Azure MCP is enabled)
-- **Azure CLI**: `az storage` commands for all storage services
+- **Azure CLI**:  commands for all storage services
 - **Azure Portal**: Storage account configuration and monitoring
 - **SDK References**: Python, TypeScript, Java, Rust SDK guides in references/sdk/
 - **Documentation**: Azure Storage documentation links in Service Details section
@@ -112,11 +112,11 @@ Next steps: [follow-up actions if any]
 
 | Service | Use When | MCP Tools | CLI |
 |---------|----------|-----------|-----|
-| Blob Storage | Objects, files, backups, static content | `azure__storage` | `az storage blob` |
-| File Shares | SMB file shares, lift-and-shift | - | `az storage file` |
-| Queue Storage | Async messaging, task queues | - | `az storage queue` |
-| Table Storage | NoSQL key-value (consider Cosmos DB) | - | `az storage table` |
-| Data Lake | Big data analytics, hierarchical namespace | - | `az storage fs` |
+| Blob Storage | Objects, files, backups, static content | `azure__storage` |  |
+| File Shares | SMB file shares, lift-and-shift | - |  |
+| Queue Storage | Async messaging, task queues | - |  |
+| Table Storage | NoSQL key-value (consider Cosmos DB) | - |  |
+| Data Lake | Big data analytics, hierarchical namespace | - |  |
 
 ## MCP Server (Preferred)
 
@@ -132,22 +132,6 @@ When Azure MCP is enabled:
 
 ## CLI Fallback
 
-```bash
-# List storage accounts
-az storage account list --output table
-
-# List containers
-az storage container list --account-name ACCOUNT --output table
-
-# List blobs
-az storage blob list --account-name ACCOUNT --container-name CONTAINER --output table
-
-# Download blob
-az storage blob download --account-name ACCOUNT --container-name CONTAINER --name BLOB --file LOCAL_PATH
-
-# Upload blob
-az storage blob upload --account-name ACCOUNT --container-name CONTAINER --name BLOB --file LOCAL_PATH
-```
 
 ## Storage Account Tiers
 

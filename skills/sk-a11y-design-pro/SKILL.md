@@ -95,7 +95,6 @@ Apply **Karpathy principles** throughout: Think Before Coding, Simplicity First,
 | Scenario | Default approach |
 |----------|-----------------|
 | First audit | Lighthouse in CI + axe DevTools browser extension |
-| WCAG AA compliance | Fix all axe critical + serious; validate contrast with Scripts/check-color-contrast.js |
 | Keyboard navigation | Skip links + visible :focus-visible + focus trap in modals |
 | Screen reader support | NVDA+Firefox (Windows), VoiceOver+Safari (macOS/iOS) |
 | Dynamic content | aria-live regions for status messages; aria-expanded for toggles |
@@ -155,7 +154,6 @@ Details: [references/integration-map.md](references/integration-map.md)
 | Anti-patterns | [references/anti-patterns.md](references/anti-patterns.md) |
 | Integration map | [references/integration-map.md](references/integration-map.md) |
 | Advanced techniques | [REFERENCE.md](REFERENCE.md) |
-| Scripts | [Scripts/](Scripts/) |
 
 ## Quick example
 
@@ -168,7 +166,6 @@ Details: [references/integration-map.md](references/integration-map.md)
 **Input (tricky):** "We have 247 axe violations. Where do we start?"
 - Filter to `impact: critical` and `impact: serious` — fix these first.
 - Group by rule ID (e.g., `color-contrast` often accounts for 50%+ of violations).
-- Use `Scripts/check-color-contrast.js` to batch-check all color pairs.
 - **Verify:** Each sprint, critical violations = 0; track serious violations on a dashboard.
 
 **Input (cross-skill):** "Build an accessible design system with color tokens and component library."

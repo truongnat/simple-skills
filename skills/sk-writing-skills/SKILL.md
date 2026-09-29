@@ -50,7 +50,7 @@ Create or revise skills so they remain clear, bounded, validated, and consistent
 3. Use `skills/SKILL_AUTHORING_RULES.md` to define metadata, contract, decision, execution, and quality.
 4. Keep the skill compact and preserve the repository heading structure.
 5. If a new required skill surface is added, update `bin/validate.js`.
-6. Run `node bin/validate.js` and `npm test`.
+6. Run  and .
 
 ## Operating Principles
 
@@ -116,8 +116,8 @@ This skill must produce:
 
 ## Verification Expectations
 
-- `node bin/validate.js` passes
-- `npm test` passes
+-  passes
+-  passes
 - required headings remain intact
 - the skill is compact and distinct from existing skills
 
@@ -128,8 +128,8 @@ This skill must produce:
 - [ ] Required headings are present
 - [ ] The skill is compact enough to be reused
 - [ ] `bin/validate.js` was updated if required
-- [ ] `node bin/validate.js` passed
-- [ ] `npm test` passed
+- [ ]  passed
+- [ ]  passed
 
 ## Safety Notes
 

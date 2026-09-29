@@ -1,11 +1,10 @@
-.agents/
-.agent-work/
+# Local workspace state
+.work/
+.freebuff/
+.DS_Store
+
+# Python/editor artifacts
 __pycache__/
 *.py[cod]
 .pytest_cache/
-*.egg-info/
 .venv/
-.tmp/
-
-# Keep repository documentation visible even when a user globally ignores docs/.
-!docs/

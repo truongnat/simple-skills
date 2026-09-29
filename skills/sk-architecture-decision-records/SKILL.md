@@ -380,27 +380,9 @@ This directory contains Architecture Decision Records (ADRs) for [Project Name].
 - **Rejected**: Considered but not adopted
 ```
 
-### Automation (adr-tools)
+### Keeping the index current
 
-```bash
-# Install adr-tools
-brew install adr-tools
-
-# Initialize ADR directory
-adr init docs/adr
-
-# Create new ADR
-adr new "Use PostgreSQL as Primary Database"
-
-# Supersede an ADR
-adr new -s 3 "Deprecate MongoDB in Favor of PostgreSQL"
-
-# Generate table of contents
-adr generate toc > docs/adr/README.md
-
-# Link related ADRs
-adr link 2 "Complements" 1 "Is complemented by"
-```
+After an ADR is drafted or its status changes, update the repository ADR index, link related decisions, and record the review outcome. Keep the lifecycle status and supersession relationships explicit.
 
 ## Review Process
 

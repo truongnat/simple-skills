@@ -5,14 +5,18 @@ description: >+
   "Skill: verification"
 sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [verification,compatibility]
+sk-roles: [critic]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 
 
 # verification
+
+## Compatibility role
+
+`sk-verify-pro` is the canonical verification owner for Group 01. Use this skill only for a lightweight summary when no full verification artifact is needed; otherwise route to `sk-verify-pro`. Do not invoke both for the same task.
 
 ## Purpose
 

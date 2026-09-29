@@ -5,17 +5,20 @@ description: "Skill: sk-verify-pro"
 
 sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [verification,evidence]
+sk-roles: [critic]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [verify]
-
 ---
 
 
 
 
 # sk-verify-pro
+
+## Canonical ownership
+
+This is the **canonical verification owner** for Group 01. `sk-verification` is a lite compatibility facade; do not invoke both for the same task. Use this skill whenever a completion, merge, release, or handoff claim needs a claim-to-evidence decision.
 
 ## Purpose
 
@@ -46,7 +49,7 @@ Prevent optimistic completion claims by forcing the final status to match the ac
 3. Downgrade the status if any part is unproven, blocked, or waiting on human confirmation.
 4. Make ship blockers explicit rather than implied.
 5. Leave a final status that no reader could mistake for stronger proof than actually exists.
-6. Save **`VERIFY.md`** to `artifacts/<task-id>/VERIFY.md` (see [session artifacts contract](./references/session-artifacts-contract.md)).
+6. Save **`VERIFY.md`** to `artifacts/<task-id>/VERIFY.md` (see [session artifacts contract](../../docs/GROUP01_SESSION_ARTIFACTS.md)).
 
 ## Operating Principles
 

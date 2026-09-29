@@ -3,6 +3,11 @@ name: sk-api-ba
 description: >-
   BA API work: api-doc, api-map, api-assess, api-design, api-checklist,
   api-test, api-readiness. Business-facing; never invent endpoints. (Hard contract.)
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [api,requirements]
+sk-roles: [researcher]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # API BA

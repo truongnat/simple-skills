@@ -4,6 +4,11 @@ description: >-
   Step workflow: seed PLAN/TASKS templates then fill (strategy then micro-tasks).
   MUST copy templates to session, fill PLAN slim then TASKS, self-check. Implement
   before tests. (Hard contract in this SKILL.md — MUST follow.)
+sk-kind: process
+sk-version: 0.1.0
+sk-tags: [planning,task-breakdown]
+sk-roles: [reasoner]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Planning
@@ -24,7 +29,7 @@ Produce **two task files on disk** via a **forced step sequence** (BMAD-style mi
 3. Fill **TASKS.md** (micro-tasks from design) — only after Spec quality gate passes
 4. Self-check before handoff
 
-Prefer `DETAIL_DESIGN.md` when present. Do not invent architecture or contracts.
+Prefer `DETAIL_DESIGN.md` when present. Do not invent architecture or contracts. Use the shared artifact contract in `../../docs/GROUP01_SESSION_ARTIFACTS.md`.
 
 ## Workflow architecture (mandatory)
 

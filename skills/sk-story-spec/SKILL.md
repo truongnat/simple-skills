@@ -4,6 +4,11 @@ description: >-
   BA story layer: Cockburn usecase, backlog user stories, or Given/When/Then AC
   (modes usecase|userstory|ac). Aliases /usecase /userstory /ac. Prefer
   sk-business-analysis for full Lite/Full Spec-quality gate. (Hard contract.)
+sk-kind: process
+sk-version: 0.1.0
+sk-tags: [requirements,stories]
+sk-roles: [reasoner]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Story spec (use case / story / AC)

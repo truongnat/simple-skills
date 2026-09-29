@@ -6,15 +6,14 @@ description: >+
 
   Triggers: "break this into issues", "create GitHub issues", "to-issues", "slice this into tickets", "make issues from the PRD", "vertical slices", "tracer bullets".
 
-  Combine with **`sk-to-prd-pro`** to produce the PRD first, and **`planning-pro`** for dependency ordering and milestone sequencing.
+  Combine with **`sk-to-prd-pro`** to produce the PRD first, and **`sk-planning`** for dependency ordering and milestone sequencing.
 
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [product,backlog]
+sk-roles: [reasoner]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [to-issues]
-
 ---
 
 
@@ -27,16 +26,16 @@ Convert a high-level plan, PRD, or GitHub issue into independently-implementable
 
 ## Boundary
 
-**`sk-to-issues-pro`** owns **issue decomposition and GitHub issue creation**. **`sk-to-prd-pro`** owns PRD synthesis. **`planning-pro`** owns milestone sequencing.
+**`sk-to-issues-pro`** owns **issue decomposition and GitHub issue creation**. **`sk-to-prd-pro`** owns PRD synthesis. **`sk-planning`** owns milestone sequencing.
 
 ## Related skills
 
 | Skill | When to combine |
 |-------|----------------|
 | **`sk-to-prd-pro`** | Produce the PRD before decomposing into issues |
-| **`planning-pro`** | Sequence issues across milestones |
+| **`sk-planning`** | Sequence issues across milestones |
 | **`sk-executing-pro`** | Execute individual issues once created |
-| **`planning-pro`** | Write detailed implementation plans per issue |
+| **`sk-planning`** | Write detailed implementation plans per issue |
 
 ## When to use
 

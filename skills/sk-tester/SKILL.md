@@ -6,6 +6,11 @@ description: >-
   TEST_SUMMARY. Challenge requirement clarity and testability before writing
   cases. Metrics-driven quality assessment with go/no-go recommendation.
   (Hard contract in this SKILL.md — MUST follow.)
+sk-kind: process
+sk-version: 0.1.0
+sk-tags: [qa,test-lifecycle]
+sk-roles: [critic]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Tester
@@ -29,7 +34,7 @@ Act as a sk-tester/QA in the agent workflow via a **forced step sequence** that 
 7. Execute test cases, log defects, identify patterns
 8. Compile test summary with metrics, go/no-go recommendation
 
-Prefer acceptance criteria and verify steps from `TASKS.md` when present; use `PLAN.md` for overall DoD / `test_strategy`. Prefer writing or running automated tests **after** the feature code those tests cover already exists (or against an agreed existing surface).
+Prefer acceptance criteria and verify steps from `TASKS.md` when present; use `PLAN.md` for overall DoD / `test_strategy`. Prefer writing or running automated tests **after** the feature code those tests cover already exists (or against an agreed existing surface). `sk-ba-test` is pre-implementation test design only; `sk-tester` owns QA/STLC execution and go/no-go; `sk-executing-pro` owns per-task implementation verification.
 
 ## Workflow architecture (mandatory)
 
@@ -148,6 +153,14 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - **go_no_go_recommendation** (required, object): Recommendation (Go/No-Go/Conditional), rationale, conditions, residual risks.
 - **lessons_learned** (optional, array): Area, observation, recommendation.
 - **handoff** (required, string): Next step and blockers.
+
+### Lifecycle boundary
+
+- `sk-ba-test`: lightweight checklist/cases before implementation; never claims runtime pass.
+- `sk-tester`: canonical QA/STLC owner, including environment setup, test execution, defect patterns, metrics, and go/no-go.
+- `sk-executing-pro`: verifies implementation task acceptance criteria; it does not replace the QA cycle.
+
+Use the trace chain `REQ/US/AC → TESTCASE → EXECUTION evidence → TEST_SUMMARY`.
 
 ### Reference
 

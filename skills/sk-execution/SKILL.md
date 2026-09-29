@@ -1,6 +1,11 @@
 ---
 name: sk-execution
 description: "Execute TASKS.md guided by PLAN.md: modify files, mark task/step progress in TASKS.md, run verification, record EXECUTION.md, handle failures, and handoff to sk-review. (Hard contract in this SKILL.md — MUST follow.)"
+sk-kind: process
+sk-version: 0.1.0
+sk-tags: [execution,compatibility]
+sk-roles: [coder]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Execution
@@ -10,6 +15,10 @@ description: "Execute TASKS.md guided by PLAN.md: modify files, mark task/step p
 Memory + Thinking methods + **Readable writing**) before Purpose, Contract, or
 steps. Do not skip it; do not reuse a cached `language`. Write so a teammate
 understands on first pass — concrete paths/IDs, no filler, no method branding.
+
+## Compatibility role
+
+`sk-executing-pro` is the canonical execution owner for Group 01. Use this skill only to continue a legacy session that already follows the TASKS/EXECUTION step contract. Do not invoke `sk-execution` and `sk-executing-pro` for the same task; migrate the session or route new work to `sk-executing-pro`.
 
 ## Purpose
 
@@ -207,7 +216,8 @@ Checks:
 
 ## Limitations
 
-- Does NOT do independent sk-review; use sk-review after sk-execution.
+- Does NOT own new execution flows; use `sk-executing-pro` for new or resumed planned work unless this is an explicitly legacy TASKS/EXECUTION session.
+- Does NOT do independent sk-review; use sk-review after execution.
 - Does NOT replace sk-planning for complex tasks.
 - Does NOT replace sk-investigate when root cause is unknown.
 

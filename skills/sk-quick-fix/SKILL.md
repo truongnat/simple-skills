@@ -2,8 +2,13 @@
 name: sk-quick-fix
 description: >-
   Tiny clear fix path (Path=Quick): create a short session note + 1–3 TASK cards
-  with Dev context, then hand off to sk-sync/sk-execution. No BA, design, or Spec
+  with Dev context, then hand off to sk-sync/sk-executing-pro. No BA, design, or Spec
   matrices. Use for one-line bugs and obvious small changes.
+sk-kind: process
+sk-version: 0.1.0
+sk-tags: [execution,small-change]
+sk-roles: [coder]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Quick Fix
@@ -45,12 +50,24 @@ Invoking it **is** executing every step below, in order, one at a time.
 | Outputs | Session with `QUICK.md` + `TASKS.md` (1–3 cards with Dev context) + `CONTEXT.md` via the project context; Path=`Quick` recorded |
 | Safety | **Forbidden on Quick:** `BUSINESS_ANALYSIS.md`, `BASIC_DESIGN.md`, `DETAIL_DESIGN.md`, Spec quality matrices, inventing product rules. Do NOT implement until sk-sync readiness allows. If unknowns block → upgrade Path. |
 
+### Upgrade triggers
+
+Upgrade to `sk-business-analysis`, a design skill, or `sk-planning` before implementation when any condition holds:
+
+- the change touches a public API, schema, migration, authentication, authorization, or data retention;
+- there are more than three independently verifiable outputs;
+- product, UX, stakeholder policy, or expected behavior is ambiguous;
+- no falsifiable AC and Verify pair can be written;
+- the change crosses a service boundary or adds a dependency.
+
+Record the trigger and target path in `QUICK.md`; do not keep a fuzzy Quick path after an upgrade trigger is found.
+
 ### Required artifacts
 
 #### `QUICK.md`
 - Path: Quick
 - **Goal** (one sentence, Outcome-first: WHO + WHAT + EVIDENCE — not
-  activity-only), facts, out of scope, handoff (`sk-sync` then `sk-execution`)
+  activity-only), facts, out of scope, handoff (`sk-sync` then `sk-executing-pro`)
 - If rewriting the ask into an outcome surfaces product/design ambiguity →
   **upgrade Path** (do not keep fuzzy Goal on Quick)
 - **Small-batch ceiling:** 1–3 cards; more independently verifiable Outputs →
@@ -64,7 +81,7 @@ Invoking it **is** executing every step below, in order, one at a time.
 
 Start at `steps/step-01-init.md` — the step files are authoritative for
 ordering (see Step contract above). Handoff after step-03:
-`sk-sync` → need `PASS` (or `CONCERNS` + user OK) → `sk-execution` → `sk-review` → `sk-done`.
+`sk-sync` → need `PASS` (or `CONCERNS` + user OK) → `sk-executing-pro` → `sk-review` → `sk-verify-pro` → `sk-done`.
 
 ## Quality Standards
 

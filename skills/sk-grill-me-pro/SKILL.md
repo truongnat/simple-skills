@@ -8,13 +8,12 @@ description: >+
 
   Combine with **`sk-to-prd-pro`** after the interview to capture decisions, and **`sk-discussing-pro`** to explore alternatives before narrowing.
 
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [discovery,critique]
+sk-roles: [critic]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [grill-me]
-
 ---
 
 

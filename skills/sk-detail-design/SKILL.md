@@ -1,6 +1,11 @@
 ---
 name: sk-detail-design
 description: "Produce implementable design from BASIC_DESIGN.md — contracts, data model, sequences, rules, operations, client mapping when needed — before sk-planning. Domain-agnostic; omit unused sections. (Hard contract in this SKILL.md — MUST follow.)"
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [design,architecture]
+sk-roles: [architect]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Detail Design

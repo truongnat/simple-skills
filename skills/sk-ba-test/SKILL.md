@@ -4,6 +4,11 @@ description: >-
   BA testing prep: overview checklist (/test-checklist) then executable cases
   (/test-cases). Complements sk-tester; optional playwright-hint mode. Writes
   TEST_CHECKLIST.md or expands into TESTCASES.md. (Hard contract.)
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [test-design,requirements]
+sk-roles: [critic]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # BA test

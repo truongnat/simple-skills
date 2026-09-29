@@ -4,6 +4,11 @@ description: >-
   BA handoff/ops: meeting minutes (/meet), userguide, export pack, HTML preview,
   update-overview. Offline-first artifacts in the task artifact directory; office skills for
   PDF/Word when needed. (Hard contract.)
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [handoff,documentation]
+sk-roles: [reasoner]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # BA handoff

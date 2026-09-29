@@ -4,6 +4,11 @@ description: >-
   BA tool sk-sync scaffolds: Jira Cloud (/jira) and Confluence (/confluence)
   bidirectional plans. Offline mapping first; live API only with explicit
   credentials and user confirmation. (Hard contract.)
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [requirements,integration]
+sk-roles: [reasoner]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # BA integrate (Jira / Confluence)

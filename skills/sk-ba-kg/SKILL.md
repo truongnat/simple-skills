@@ -4,6 +4,11 @@ description: >-
   BA knowledge graph: link IDs and artifacts across the task artifacts into a
   searchable graph (/kg). Writes KG.md with Mermaid graph + edge table.
   (Hard contract.)
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [knowledge-graph,requirements]
+sk-roles: [researcher]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # BA knowledge graph

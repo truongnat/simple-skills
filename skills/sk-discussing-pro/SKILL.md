@@ -3,13 +3,12 @@
 name: sk-discussing-pro
 description: "Production-grade goal discussion and solution exploration: clarifying vague requests into concrete engineering objectives with explicit scope, constraints, success criteria, scored option comparison, tradeoff analysis, and recommendation — plus structured ideation with Socratic questioning, divergence/convergence flow, and assumption surfacing"
 
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-tags: [discussion, ideation]
-sk-roles: [planner]
+sk-tags: [discovery,clarification]
+sk-roles: [reasoner]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [discussing]
-
 ---
 
 
@@ -27,7 +26,7 @@ This is the **single discuss skill** for the core flow. It replaces `discussing-
 ## When To Use
 
 - when requirements are ambiguous or the solution shape is fuzzy
-- before `planning-pro` on non-trivial feature or refactor work
+- before `sk-planning` on non-trivial feature or refactor work
 - when multiple realistic approaches need a concise tradeoff discussion
 - when the goal, constraints, or success criteria are not yet explicit
 

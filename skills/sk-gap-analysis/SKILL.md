@@ -3,6 +3,11 @@ name: sk-gap-analysis
 description: >-
   BA quality: gap analysis (/gap) or change-request impact (/cr). Writes GAP.md
   or CR.md with impact on related project documentation and Confirm-first blockers. (Hard contract.)
+sk-kind: process
+sk-version: 0.1.0
+sk-tags: [analysis,requirements]
+sk-roles: [researcher]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Gap analysis / Change request

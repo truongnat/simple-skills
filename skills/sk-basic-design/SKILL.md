@@ -1,6 +1,11 @@
 ---
 name: sk-basic-design
 description: "Turn an approved DISCUSSION.md direction into system-level design — boundaries, components, flows, interfaces, and data ownership — before detail design or sk-planning. Domain-agnostic; omit unused sections. (Hard contract in this SKILL.md — MUST follow.)"
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [design,architecture]
+sk-roles: [designer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Basic Design

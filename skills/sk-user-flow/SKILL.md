@@ -3,6 +3,11 @@ name: sk-user-flow
 description: >-
   BA sk-user-flow analysis: happy path, error path, and edge cases for a journey.
   Alias /sk-user-flow. Writes USER_FLOW.md with optional Mermaid. (Hard contract.)
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [user-flow,requirements]
+sk-roles: [reasoner]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # User flow

@@ -8,17 +8,17 @@ This map defines how sk-executing-pro integrates with other skills in this repos
 
 ### Upstream Skills (Use Before sk-executing-pro)
 
-**planning-pro**
+**sk-planning**
 - **When to call:** Before execution
 - **Purpose:** Create detailed execution plan
 - **Handoff:** Task list with dependencies, acceptance criteria, estimates
-- **Integration:** sk-executing-pro uses planning-pro output for execution
+- **Integration:** sk-executing-pro uses sk-planning output for execution
 
-**planning-pro**
+**sk-planning**
 - **When to call:** Before execution
 - **Purpose:** High-level coordination and milestone tracking
 - **Handoff:** Milestone structure and high-level dependencies
-- **Integration:** sk-executing-pro coordinates with planning-pro milestones
+- **Integration:** sk-executing-pro coordinates with sk-planning milestones
 
 ### Downstream Skills (Use After or During sk-executing-pro)
 
@@ -57,7 +57,7 @@ This map defines how sk-executing-pro integrates with other skills in this repos
 ### Scenario 1: Standard Feature Execution
 
 **Flow:**
-1. **planning-pro** creates detailed plan
+1. **sk-planning** creates detailed plan
 2. **sk-executing-pro** executes plan
 3. Domain ***-pro skills** execute technical tasks
 4. **sk-testing-pro** verifies work
@@ -65,7 +65,7 @@ This map defines how sk-executing-pro integrates with other skills in this repos
 6. **sk-feedback-pro** reviews execution
 
 **Key Integration Points:**
-- Plan to execution (planning-pro → sk-executing-pro)
+- Plan to execution (sk-planning → sk-executing-pro)
 - Task execution (sk-executing-pro → domain skills)
 - Verification (sk-executing-pro → sk-testing-pro)
 - Review (sk-executing-pro → sk-feedback-pro)
@@ -89,18 +89,18 @@ This map defines how sk-executing-pro integrates with other skills in this repos
 
 **Flow:**
 1. **sk-executing-pro** identifies need to replan
-2. **planning-pro** assists with replanning
-3. **planning-pro** updates detailed plan
+2. **sk-planning** assists with replanning
+3. **sk-planning** updates detailed plan
 4. **sk-executing-pro** continues with new plan
 
 **Key Integration Points:**
 - Replan trigger (sk-executing-pro)
-- Replan assistance (sk-executing-pro → planning-pro)
-- Plan update (sk-executing-pro → planning-pro)
+- Replan assistance (sk-executing-pro → sk-planning)
+- Plan update (sk-executing-pro → sk-planning)
 
 ## Handoff Protocols
 
-### From planning-pro
+### From sk-planning
 
 **When:** Plan ready for execution
 **Input:** Detailed task list with dependencies, criteria, estimates
@@ -169,12 +169,12 @@ This map defines how sk-executing-pro integrates with other skills in this repos
 
 ## Conflict Resolution
 
-### Conflicts with planning-pro
+### Conflicts with sk-planning
 
 **Scenario:** Execution reveals plan issues
 **Resolution:**
 - Pause execution
-- Communicate plan issues to planning-pro
+- Communicate plan issues to sk-planning
 - Adjust plan
 - Resume execution
 
@@ -196,7 +196,7 @@ This map defines how sk-executing-pro integrates with other skills in this repos
 - Verify fix
 - Resume execution
 
-### Conflicts with planning-pro
+### Conflicts with sk-planning
 
 **Scenario:** Milestone conflicts with detailed execution
 **Resolution:**
@@ -209,7 +209,7 @@ This map defines how sk-executing-pro integrates with other skills in this repos
 
 ### Before sk-executing-pro
 
-- [ ] Plan received from planning-pro
+- [ ] Plan received from sk-planning
 - [ ] Dependencies understood
 - [ ] Resources available
 - [ ] Checkpoints defined

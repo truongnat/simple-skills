@@ -1,6 +1,11 @@
 ---
 name: sk-done
-description: "Close a task after sk-execution/sk-review with DONE.md, PR_MESSAGE.md, PR_DESCRIPTION.md, and optional RELEASE_NOTE.md. (Hard contract in this SKILL.md — MUST follow.)"
+description: "Close a task after canonical execution, review, and verification with DONE.md, PR_MESSAGE.md, PR_DESCRIPTION.md, and optional RELEASE_NOTE.md. Use for final status and handoff. (Hard contract in this SKILL.md — MUST follow.)"
+sk-kind: process
+sk-version: 0.1.0
+sk-tags: [closure,release]
+sk-roles: [main]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Done
@@ -15,7 +20,7 @@ understands on first pass — concrete paths/IDs, no filler, no method branding.
 
 Close a task with clear, honest, reviewable artifacts.
 
-Prefer inputs from `EXECUTION.md`, `REVIEW.md`, `PLAN.md` (DoD/rollback), and `TASKS.md` when present (task completion vs intended cards).
+Prefer inputs from `EXECUTION.md`, `REVIEW.md`, `VERIFY.md`, `PLAN.md` (DoD/rollback), and `TASKS.md` when present (task completion vs intended cards). Final status must consume the canonical `sk-verify-pro` result.
 
 ## Step contract (mandatory — invoke = execute ALL steps)
 
@@ -88,8 +93,8 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 #### `PR_DESCRIPTION.md`
 - Required: no
 - Summary, Changes, Verification, Review Notes, Risks/Follow-ups.
-- Must answer Design for handoff: what / why / how verified / next (reviewer
-- Verification must be evidence over confidence (named check + result — not
+- Must answer Design for handoff: what / why / how verified / next (reviewer focus).
+- Verification must be evidence over confidence (named check + result — not a vague claim).
 
 #### `RELEASE_NOTE.md`
 - Required: no

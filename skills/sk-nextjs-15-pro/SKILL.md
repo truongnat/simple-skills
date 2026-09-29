@@ -4,8 +4,8 @@ name: sk-nextjs-15-pro
 description: Expert-level implementation of Next.js 15 features including Server Actions, Partial Prerendering (PPR), React 19 hooks, and Turbopack.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [nextjs-15]
 

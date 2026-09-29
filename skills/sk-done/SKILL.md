@@ -1,7 +1,7 @@
 ---
 name: sk-done
 description: "Close a task after canonical execution, review, and verification with DONE.md, PR_MESSAGE.md, PR_DESCRIPTION.md, and optional RELEASE_NOTE.md. Use for final status and handoff. (Hard contract in this SKILL.md — MUST follow.)"
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [closure,release]
 sk-roles: [main]

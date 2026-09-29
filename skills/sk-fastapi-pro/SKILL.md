@@ -4,8 +4,8 @@ name: sk-fastapi-pro
 description: Expert FastAPI development covering async API design, Pydantic validation, Dependency Injection, and high-performance patterns.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [fastapi]
 

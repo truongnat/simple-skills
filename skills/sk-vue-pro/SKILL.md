@@ -4,8 +4,8 @@ name: sk-vue-pro
 description: Expert Vue 3 development covering the Composition API, Pinia, Vue Router, and modern Vite-based workflows.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [vue]
 

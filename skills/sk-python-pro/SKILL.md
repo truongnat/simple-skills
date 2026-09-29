@@ -4,8 +4,8 @@ name: sk-python-pro
 description: Expert Python development covering modern Python 3.12+, type hinting, async, dependency management (Poetry/UV), and testing.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [python]
 

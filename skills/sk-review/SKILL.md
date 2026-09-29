@@ -1,7 +1,7 @@
 ---
 name: sk-review
 description: "Review changes after sk-execution: bugs, regression, missing tests, security/data risks, maintainability, and readiness before sk-done/PR. (Hard contract in this SKILL.md — MUST follow.)"
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [quality-gate,code-review]
 sk-roles: [critic]

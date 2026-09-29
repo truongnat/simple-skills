@@ -4,7 +4,7 @@ description: >-
   Tiny clear fix path (Path=Quick): create a short session note + 1–3 TASK cards
   with Dev context, then hand off to sk-sync/sk-executing-pro. No BA, design, or Spec
   matrices. Use for one-line bugs and obvious small changes.
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [execution,small-change]
 sk-roles: [coder]

@@ -4,8 +4,8 @@ name: sk-ux-design-pro
 description: Comprehensive User Experience (UX) design including research, information architecture, wireframing, and accessibility standards.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [frontend, ui, ux, visual-design]
+sk-roles: [designer, frontend]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [ux-design]
 

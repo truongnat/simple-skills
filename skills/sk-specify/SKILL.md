@@ -6,7 +6,7 @@ description: >-
   Confirm-first. Use when the user asks for PRD/BRD/URD/SRS/roadmap/discovery
   or aliases /prd /roadmap /discover /urd /brd /prd-epic /srs.
   (Hard contract in this SKILL.md — MUST follow.)
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [requirements,product-docs]
 sk-roles: [reasoner]

@@ -4,7 +4,7 @@ description: >-
   Step workflow: seed DISCUSSION.md template then fill frame → scope/options →
   recommendation → self-check. Clarify direction before design/sk-planning.
   (Hard contract in this SKILL.md — MUST follow.)
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [discovery,ideation]
 sk-roles: [reasoner]
@@ -23,7 +23,7 @@ understands on first pass — concrete paths/IDs, no filler, no method branding.
 
 Turn an initial request into a clear direction via a **forced step sequence**:
 
-1. Seed `DISCUSSION.md` from template  
+1. Seed `DISCUSSION.md` from template
 2. Frame goal / facts / assumptions; **Spec quality sk-review**; triage issues; **stop and ask**
    on unresolved critical/blocking/Spec-quality items
 3. Scope + options matrix (only after Spec quality gate passes)

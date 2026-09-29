@@ -1,7 +1,7 @@
 ---
 name: sk-execution
 description: "Execute TASKS.md guided by PLAN.md: modify files, mark task/step progress in TASKS.md, run verification, record EXECUTION.md, handle failures, and handoff to sk-review. (Hard contract in this SKILL.md — MUST follow.)"
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [execution,compatibility]
 sk-roles: [coder]

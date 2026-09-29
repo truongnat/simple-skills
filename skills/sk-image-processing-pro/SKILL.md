@@ -11,8 +11,8 @@ description: >+
   Triggers: "Pillow", "PIL", "resize image", "crop", "convert to PNG", "WebP", "thumbnail", "composite", "alpha", "EXIF", "rotate image", "batch images", "strip metadat
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [frontend, ui, ux, visual-design]
+sk-roles: [designer, frontend]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [image-processing]
 

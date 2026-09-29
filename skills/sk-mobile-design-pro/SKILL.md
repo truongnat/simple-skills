@@ -11,8 +11,8 @@ description: >+
   Triggers: "mobile design", "mobile UX", "iOS HIG", "Mater
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [frontend, ui, ux, visual-design]
+sk-roles: [designer, frontend]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [mobile-design]
 

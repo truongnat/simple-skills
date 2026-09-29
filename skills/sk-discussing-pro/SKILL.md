@@ -3,7 +3,7 @@
 name: sk-discussing-pro
 description: "Production-grade goal discussion and solution exploration: clarifying vague requests into concrete engineering objectives with explicit scope, constraints, success criteria, scored option comparison, tradeoff analysis, and recommendation — plus structured ideation with Socratic questioning, divergence/convergence flow, and assumption surfacing"
 
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [discovery,clarification]
 sk-roles: [reasoner]

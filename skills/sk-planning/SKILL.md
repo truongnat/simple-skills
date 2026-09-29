@@ -4,7 +4,7 @@ description: >-
   Step workflow: seed PLAN/TASKS templates then fill (strategy then micro-tasks).
   MUST copy templates to session, fill PLAN slim then TASKS, self-check. Implement
   before tests. (Hard contract in this SKILL.md — MUST follow.)
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [planning,task-breakdown]
 sk-roles: [reasoner]

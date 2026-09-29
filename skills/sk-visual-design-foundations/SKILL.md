@@ -1,9 +1,36 @@
 ---
 name: sk-visual-design-foundations
 description: Apply typography, color theory, spacing systems, and iconography principles to create cohesive visual designs. Use when establishing design tokens, building style guides, or improving visual hierarchy and consistency.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [frontend, ui, ux, visual-design]
+sk-roles: [designer, frontend]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Visual Design Foundations
+
+## Boundary
+
+This skill owns **typography, color, spacing, iconography and visual hierarchy foundations**. It does not own **full interaction architecture or backend implementation**; hand off those concerns to the relevant domain skill.
+
+## When not to use
+
+- When the request is outside the boundary above or requires a different primary owner.
+- When a shared design-system, accessibility, or framework contract already governs the decision and should lead.
+
+## Required inputs
+
+- Target users, product goal, platform/device constraints, and existing assets.
+- Current implementation or visual references, quality criteria, and known accessibility requirements.
+- Desired output type, scope of change, and verification evidence expected.
+
+## Cross-skill handoffs
+
+- `sk-design-system-pro` / `sk-design-system-patterns` for tokens, themes, and reusable component governance.
+- `sk-accessibility-compliance` for WCAG, keyboard, screen-reader, and assistive-technology requirements.
+- `sk-frontend-patterns` / `sk-web-component-design` for implementation and component API decisions.
+- `sk-frontend-design-pro` / `sk-ux-design-pro` for product-level visual direction and interaction design.
 
 Build cohesive, accessible visual systems using typography, color, spacing, and iconography fundamentals.
 

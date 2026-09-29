@@ -48,11 +48,11 @@ Convert a high-level plan, PRD, or GitHub issue into independently-implementable
 
 Apply **Karpathy principles** throughout.
 
-1. **Confirm** source (PRD issue URL, conversation context, or codebase) → verify: [source readable; `gh` available or fallback ready].
+1. **Confirm** source (PRD issue URL, conversation context, or codebase) → verify: [source is readable and the requested scope is known].
 2. **Think Before Coding** — read the PRD or codebase before drafting slices; ask only for genuinely ambiguous scope.
 3. **Simplicity First** — minimum slices that cover the PRD; no speculative future issues.
 4. **Surgical Changes** — each issue touches only what it must; no cross-slice side-effects.
-5. **Goal-Driven Execution** — done when all issues are created (or printed) and the user confirms the list.
+5. **Goal-Driven Execution** — done when all issue artifacts are drafted and the user confirms the list.
 6. **Respond** using Suggested response format.
 
 ### Operating principles
@@ -70,7 +70,7 @@ Use this structure for issue decomposition:
 2. **Slice list** — issue titles with the user-visible behavior each slice delivers.
 3. **Classification** — AFK vs HITL for each issue and why.
 4. **Dependencies** — ordering, blockers, and what can run in parallel.
-5. **Creation result** — GitHub issue URLs or rendered markdown fallback.
+5. **Creation result** — draft issue artifacts with titles, bodies, dependencies, and classification.
 6. **Residual risks** — ambiguity, missing acceptance criteria, or sequencing concerns.
 
 ## Resources in this skill
@@ -87,7 +87,7 @@ Response shape:
 - Read the PRD and current codebase context first.
 - Produce a short list of end-to-end slices such as cart persistence, payment submission, and receipt flow.
 - Mark which slices are AFK vs HITL and list dependencies.
-- Create issues in dependency order or print them if `gh` is unavailable.
+- Draft issue artifacts in dependency order and present them for confirmation.
 
 ## Core concept: vertical slices vs horizontal slices
 
@@ -121,8 +121,8 @@ Before creating issues, present the slice list and ask:
 - Any missing slices?
 - Dependency order correct?
 
-### 5. Create GitHub issues in dependency order
-Use the template below for each issue. Create with `gh issue create`.
+### 5. Prepare issue artifacts in dependency order
+Use the template below for each issue artifact; do not submit or publish it.
 
 ---
 
@@ -159,9 +159,9 @@ Closes #<parent-issue>
 
 ## Output
 
-- GitHub issues created via `gh issue create` in dependency order.
+- Issue artifacts drafted in dependency order with explicit dependencies.
 - Print a summary table: issue number, title, type (HITL/AFK), blocked-by.
-- If `gh` is not available, print all issues as rendered markdown.
+- Present the drafted issues as rendered markdown for user review.
 
 ## Checklist before calling the skill done
 

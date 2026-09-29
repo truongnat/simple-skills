@@ -9,8 +9,8 @@ description: >+
   Combine with **`sk-react-pro`** for shared React patterns, **`sk-testing-pro`** for Detox/Maestro, **`sk-security-pro`** for tokens and deep links, **`sk-deployment-pro`** for store release, **`
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [react-native]
 

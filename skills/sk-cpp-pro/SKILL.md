@@ -4,8 +4,8 @@ name: sk-cpp-pro
 description: Expert C++ development covering modern C++20/23 standards, RAII, Smart Pointers, Template Metaprogramming, and performance optimization.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [cpp]
 

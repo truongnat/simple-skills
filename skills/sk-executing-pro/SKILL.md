@@ -3,7 +3,7 @@
 name: sk-executing-pro
 description: >+
   "Production-grade plan execution: executing approved plans step by step with dependency-aware task sequencing, checkpoint verification, adaptive replanning, progress tracking, and completion verification — plus execution cycle (execute → checkpoint → adapt → close), failure modes (ignoring dependencies, skipping checkpoints, rigid adherence to outdated plans), and quality guardrails (checkpoint gates, dependency respect, completion verification)"
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [execution,checkpoints]
 sk-roles: [coder]
@@ -96,7 +96,7 @@ The agent must produce an execution summary containing:
 Save progress after every major step (task start, task complete, checkpoint verify) to enable crash recovery:
 
 1. Save state to `artifacts/<task-id>/state.json` (JSON-serialized `EngineState`)
-2. Append step events to `artifacts/<task-id>/checkpoint.log` (JSON lines with `ts`, `event`, `node`, `durationMs`)
+2. Append step events to `artifacts/<task-id>/checkpoint.log` (JSON lines with `ts`, `event`, `stage`, `durationMs`)
 3. On restart, load `state.json` and resume from the last completed step
 4. If `state.json` is missing, start fresh from PLAN.md
 

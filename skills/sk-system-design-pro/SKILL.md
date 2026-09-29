@@ -3,16 +3,16 @@ name: sk-system-design-pro
 description: >
   Comprehensive reference for system design across UI design systems, frontend,
   mobile, backend HLD, low-level design, SRE, SaaS, and migration. Use this
-  skill for architecture decisions, scaling, database selection, RAG, agents, 
-  observability, and cost optimization. Trigger on: "how should I design X", 
+  skill for architecture decisions, scaling, database selection, RAG, agents,
+  observability, and cost optimization. Trigger on: "how should I design X",
   "which is better X or Y", "best practice for Z", "edge case in X",  "how to
   handle X at scale", "is X deprecated". Always follow the user's preferred
   language for communication while referencing English knowledge.
-sk-kind: reference
+sk-kind: domain
 sk-version: 0.1.0
-sk-roles: []
-sk-tags: []
-sk-compatible:
+sk-roles: [architect, backend]
+sk-tags: [architecture, api, backend]
+sk-compatible: [claude, cursor, codex, gemini]
   - claude
   - cursor
   - codex

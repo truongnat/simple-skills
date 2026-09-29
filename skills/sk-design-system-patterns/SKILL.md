@@ -1,9 +1,36 @@
 ---
 name: sk-design-system-patterns
 description: Build scalable design systems with design tokens, theming infrastructure, and component architecture patterns. Use when creating design tokens, implementing theme switching, building component libraries, or establishing design system foundations.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [frontend, ui, ux, visual-design]
+sk-roles: [designer, frontend]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Design System Patterns
+
+## Boundary
+
+This skill owns **design tokens, theming, component architecture and token governance**. It does not own **one-off visual styling without a reusable system**; hand off those concerns to the relevant domain skill.
+
+## When not to use
+
+- When the request is outside the boundary above or requires a different primary owner.
+- When a shared design-system, accessibility, or framework contract already governs the decision and should lead.
+
+## Required inputs
+
+- Target users, product goal, platform/device constraints, and existing assets.
+- Current implementation or visual references, quality criteria, and known accessibility requirements.
+- Desired output type, scope of change, and verification evidence expected.
+
+## Cross-skill handoffs
+
+- `sk-design-system-pro` / `sk-design-system-patterns` for tokens, themes, and reusable component governance.
+- `sk-accessibility-compliance` for WCAG, keyboard, screen-reader, and assistive-technology requirements.
+- `sk-frontend-patterns` / `sk-web-component-design` for implementation and component API decisions.
+- `sk-frontend-design-pro` / `sk-ux-design-pro` for product-level visual direction and interaction design.
 
 Master design system architecture to create consistent, maintainable, and scalable UI foundations across web and mobile applications.
 

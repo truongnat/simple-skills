@@ -4,8 +4,8 @@ name: sk-rust-pro
 description: Expert Rust development covering ownership, borrowing, async (Tokio), zero-cost abstractions, and systems programming.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [rust]
 

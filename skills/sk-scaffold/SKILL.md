@@ -5,7 +5,7 @@ description: >-
   tooling, repo, and agent configuration/ wiring — with decisions recorded, ready for the
   lifecycle. Use before sk-init when there is no code yet. (Hard contract in this
   SKILL.md — MUST follow.)
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [bootstrap,greenfield]
 sk-roles: [coder]

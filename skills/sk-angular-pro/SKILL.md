@@ -4,8 +4,8 @@ name: sk-angular-pro
 description: Expert Angular development covering Angular 18+, Standalone Components, Signals, RxJS, and enterprise-grade architecture.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [angular]
 

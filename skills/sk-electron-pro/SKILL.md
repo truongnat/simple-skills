@@ -9,8 +9,8 @@ description: >+
   Use **with** **`sk-react-pro`** for renderer UI, **`sk-security-pro`** for threat modeling, **`sk-testing-pro`** for Playwright Electron, **`sk-deployment-pro`** / **`sk-ci-cd-pro`** for signed artifacts and pipelines, **`sk-design-system-pro`** for dense desktop UX. This skill owns **Electron proces
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [electron]
 

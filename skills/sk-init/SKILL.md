@@ -1,7 +1,7 @@
 ---
 name: sk-init
 description: Initialize or refresh project context for an agent. Use at the start of a new project or when the project structure, conventions, or goals have changed.
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [context,repository]
 sk-roles: [researcher]

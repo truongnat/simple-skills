@@ -4,8 +4,8 @@ name: sk-android-pro
 description: Expert Android development covering Kotlin, Jetpack Compose, Coroutines, Flow, and modern architecture patterns (MVVM, MVI).
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [android]
 

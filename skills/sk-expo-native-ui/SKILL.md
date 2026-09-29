@@ -3,6 +3,11 @@ name: sk-expo-native-ui
 description: Framework (OSS). Build beautiful, native-feeling Expo screens. Covers Apple HIG styling, semantic colors, native controls, SF Symbols, media, animations, visual effects, gradients, storage, and responsive layout. For routing and navigation, use the expo-router skill.
 version: 1.1.1
 license: MIT
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Expo Native UI Guidelines

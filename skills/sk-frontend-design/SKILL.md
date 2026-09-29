@@ -2,9 +2,36 @@
 name: sk-frontend-design
 description: Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making choices that don't read as templated defaults.
 license: Complete terms in LICENSE.txt
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [frontend, ui, ux, visual-design]
+sk-roles: [designer, frontend]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Frontend Design
+
+## Boundary
+
+This skill owns **distinctive visual direction, typography, composition and content-aware UI design**. It does not own **backend architecture or framework-specific implementation patterns**; hand off those concerns to the relevant domain skill.
+
+## When not to use
+
+- When the request is outside the boundary above or requires a different primary owner.
+- When a shared design-system, accessibility, or framework contract already governs the decision and should lead.
+
+## Required inputs
+
+- Target users, product goal, platform/device constraints, and existing assets.
+- Current implementation or visual references, quality criteria, and known accessibility requirements.
+- Desired output type, scope of change, and verification evidence expected.
+
+## Cross-skill handoffs
+
+- `sk-design-system-pro` / `sk-design-system-patterns` for tokens, themes, and reusable component governance.
+- `sk-accessibility-compliance` for WCAG, keyboard, screen-reader, and assistive-technology requirements.
+- `sk-frontend-patterns` / `sk-web-component-design` for implementation and component API decisions.
+- `sk-frontend-design-pro` / `sk-ux-design-pro` for product-level visual direction and interaction design.
 
 Approach this as the design lead at a small studio known for giving every client a visual identity that could not be mistaken for anyone else's. This client has already rejected proposals that felt templated, and is paying for a distinctive point of view: make deliberate, opinionated choices about palette, typography, and layout that are specific to this brief, and take one real aesthetic risk you can justify.
 

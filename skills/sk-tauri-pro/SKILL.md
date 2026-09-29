@@ -9,8 +9,8 @@ description: >+
   Combine with **`sk-react-pro`** (or Vue/Svelte) for webview UI, **`sk-typescript-pro`** for typed invoke contracts, **`sk-security-pro`** for capabilities/CSP/shell hardening, **`sk-testing-pro`** for CI and E2E, **`sk-deployment-pro`** for signing and
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [tauri]
 

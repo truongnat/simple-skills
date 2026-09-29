@@ -6,7 +6,7 @@ description: >-
   TEST_SUMMARY. Challenge requirement clarity and testability before writing
   cases. Metrics-driven quality assessment with go/no-go recommendation.
   (Hard contract in this SKILL.md — MUST follow.)
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [qa,test-lifecycle]
 sk-roles: [critic]

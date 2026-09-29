@@ -3,7 +3,7 @@
 name: sk-verify-pro
 description: "Skill: sk-verify-pro"
 
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [verification,evidence]
 sk-roles: [critic]
@@ -49,7 +49,7 @@ Prevent optimistic completion claims by forcing the final status to match the ac
 3. Downgrade the status if any part is unproven, blocked, or waiting on human confirmation.
 4. Make ship blockers explicit rather than implied.
 5. Leave a final status that no reader could mistake for stronger proof than actually exists.
-6. Save **`VERIFY.md`** to `artifacts/<task-id>/VERIFY.md` (see [session artifacts contract](../../docs/GROUP01_SESSION_ARTIFACTS.md)).
+6. Save **`VERIFY.md`** to the task artifact location and follow the shared Group 01 session-artifact contract.
 
 ## Operating Principles
 

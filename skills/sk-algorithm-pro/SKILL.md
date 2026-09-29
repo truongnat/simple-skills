@@ -11,8 +11,8 @@ description: >+
   Triggers: "algorithm", "data structure", "dynamic programming", "graph", "greedy", "complexity", "Big-O", "optimize", "proof", "LeetCode", "competitive programming", "two pointers", "binary search on answer", "Dijkstra", "bitmask", "TLE", "WA", "MLE", "overflow", "streaming", "batch", "pattern", "prefix sum", "segme
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [algorithm]
 

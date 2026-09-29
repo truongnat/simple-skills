@@ -9,8 +9,8 @@ description: >+
   Combine with **`sk-react-pro`**, **`sk-deployment-pro`**, **`sk-security-pro`**, **`sk-auth-pro`**, **`sk-caching-pro`**, **`
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [nextjs]
 

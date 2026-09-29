@@ -5,7 +5,7 @@ description: >-
   stories/rules/AC → self-check. Clarify requirements before design/sk-planning.
   Challenge feasibility, correctness, and missing feature capabilities.
   (Hard contract in this SKILL.md — MUST follow.)
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [requirements,acceptance-criteria]
 sk-roles: [reasoner]

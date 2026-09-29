@@ -1,9 +1,36 @@
 ---
 name: sk-web-component-design
 description: Master React, Vue, and Svelte component patterns including CSS-in-JS, composition strategies, and reusable component architecture. Use when building UI component libraries, designing component APIs, or implementing frontend design systems.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [frontend, ui, ux, visual-design]
+sk-roles: [designer, frontend]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Web Component Design
+
+## Boundary
+
+This skill owns **reusable component APIs, composition and styling architecture across frontend frameworks**. It does not own **brand art direction or backend architecture**; hand off those concerns to the relevant domain skill.
+
+## When not to use
+
+- When the request is outside the boundary above or requires a different primary owner.
+- When a shared design-system, accessibility, or framework contract already governs the decision and should lead.
+
+## Required inputs
+
+- Target users, product goal, platform/device constraints, and existing assets.
+- Current implementation or visual references, quality criteria, and known accessibility requirements.
+- Desired output type, scope of change, and verification evidence expected.
+
+## Cross-skill handoffs
+
+- `sk-design-system-pro` / `sk-design-system-patterns` for tokens, themes, and reusable component governance.
+- `sk-accessibility-compliance` for WCAG, keyboard, screen-reader, and assistive-technology requirements.
+- `sk-frontend-patterns` / `sk-web-component-design` for implementation and component API decisions.
+- `sk-frontend-design-pro` / `sk-ux-design-pro` for product-level visual direction and interaction design.
 
 Build reusable, maintainable UI components using modern frameworks with clean composition patterns and styling approaches.
 

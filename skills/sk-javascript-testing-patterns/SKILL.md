@@ -1,5 +1,11 @@
 ---
 name: sk-javascript-testing-patterns
+description: Apply JavaScript testing patterns for unit, integration, async, mocking, and regression tests. Use when designing or reviewing tests for JavaScript applications.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 # JavaScript Testing Patterns
 

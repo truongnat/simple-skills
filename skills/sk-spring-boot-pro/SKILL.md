@@ -4,8 +4,8 @@ name: sk-spring-boot-pro
 description: Expert Spring Boot development covering REST APIs, Spring Data JPA, Dependency Injection, Security, and Microservices architecture.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [spring-boot]
 

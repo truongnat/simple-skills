@@ -3,7 +3,7 @@
 name: sk-verification
 description: >+
   "Skill: verification"
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [verification,compatibility]
 sk-roles: [critic]

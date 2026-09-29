@@ -4,8 +4,8 @@ name: sk-go-pro
 description: Expert Go (Golang) development covering concurrency, interface-driven design, testing, and cloud-native application patterns.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [go]
 

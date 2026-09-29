@@ -1,7 +1,7 @@
 ---
 name: sk-review-pr
 description: "Review pull requests, merge requests, or branch diffs as a responsible code reviewer. Quality gate before merge. (Hard contract in this SKILL.md — MUST follow.)"
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [quality-gate,pr-review]
 sk-roles: [critic]

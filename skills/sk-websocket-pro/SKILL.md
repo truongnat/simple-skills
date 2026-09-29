@@ -11,8 +11,8 @@ description: >+
   Combine with **`sk-security-pro`** (authZ, abuse), **`sk-performance-tuning-pro`** (throughput/latency), **`sk-deployment-pro`** / **`sk-network-infra-pro`** (ingress timeouts, TLS), **`sk-api-design-pro`** (idempotency, dedup), **`sk-stream-rtc-pro`** (signaling vs
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [architecture, api, backend]
+sk-roles: [architect, backend]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [websocket]
 

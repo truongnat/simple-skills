@@ -186,10 +186,10 @@ Details: [references/integration-map.md](references/integration-map.md)
 
 ## Quick example
 
-**Input:** “Refactor service to clean architecture without breaking behavior.”  
+**Input:** “Refactor service to clean architecture without breaking behavior.”
 **Expected output:** Full **Suggested response format**: target layers, strangler steps, characterization test hook, failure modes (duplicate logic).
 
-**Input:** New `shared/kernel` for everything.  
+**Input:** New `shared/kernel` for everything.
 **Expected output:** **Decision reasoning** against hidden coupling; bounded context alternative; **`edge-cases.md`** theme.
 
 ## Checklist before calling the skill done

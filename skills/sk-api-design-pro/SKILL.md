@@ -225,13 +225,13 @@ Details: [references/versions.md](references/versions.md)
 
 ## Quick example
 
-**Input:** "Design v2 order API with backward compatibility and consistent error model."  
+**Input:** "Design v2 order API with backward compatibility and consistent error model."
 **Expected output:** Full **Suggested response format (STRICT)**: resource model, contract, evolution, idempotency for payments, spec examples, risks.
 
-**Input:** "Clients retry POST /payments on timeout — we see duplicate charges."  
+**Input:** "Clients retry POST /payments on timeout — we see duplicate charges."
 **Expected output:** **Idempotency-Key** pattern or natural keys; document 409 vs 200 semantics; webhook reconciliation — pair **`sk-security-pro`** for abuse.
 
-**Input:** "Should cancel be PATCH status or POST /cancel?"  
+**Input:** "Should cancel be PATCH status or POST /cancel?"
 **Expected output:** **Workflow** guidance: explicit **cancel** action, guards, **409** on illegal transition; avoid silent PATCH foot-guns.
 
 ## Checklist before calling the skill done

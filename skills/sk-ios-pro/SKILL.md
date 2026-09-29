@@ -4,8 +4,8 @@ name: sk-ios-pro
 description: Expert iOS development covering Swift, SwiftUI, Swift Concurrency, Combine, and native architecture patterns (MVVM, Composable Architecture).
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [ios]
 

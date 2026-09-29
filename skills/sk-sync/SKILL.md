@@ -1,7 +1,7 @@
 ---
 name: sk-sync
 description: "Read-only sk-sync of task artifacts, codebase context, git state, dirty changes, dependency/config drift, plan mismatch, and blockers before sk-execution. (Hard contract in this SKILL.md — MUST follow.)"
-sk-kind: process
+sk-kind: domain
 sk-version: 0.1.0
 sk-tags: [context,readiness]
 sk-roles: [researcher]
@@ -139,7 +139,7 @@ Checklist:
 - **PLAN.md Handoff Ready = Yes** and PLAN Handoff blockers are empty/`none`. If Ready=No or open blockers exist → **FAIL**.
 - If `SYNC.md` exists but is **older** than PLAN.md or TASKS.md (mtime or version/date) → treat prior SYNC as **stale**; rewrite SYNC.md this run.
 - Code workspace exists and is readable — prefer paths from PLAN/TASKS affected areas.
-- Git/SVN repo is initialized if needed.
+- Repository context and source-control state are documented when relevant.
 - No dirty changes outside scope.
 - No conflict markers or merge/rebase state.
 - Files referenced in TASKS.md still exist (or confidence unknown is documented).

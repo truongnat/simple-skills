@@ -13,8 +13,8 @@ description: >+
 
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [frontend, ui, ux, visual-design]
+sk-roles: [designer, frontend]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [shadcn-mastery]
 
@@ -81,7 +81,7 @@ Apply **Karpathy principles** throughout.
 **Primitives, not components:**
 - Unstyled, accessible Radix primitives
 - You own the styling (Tailwind)
-- Copy-paste, not npm install
+- Copy-paste ownership, not opaque dependency ownership
 - Composable architecture
 
 **Key Principles:**

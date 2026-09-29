@@ -3,6 +3,11 @@ name: sk-expo-data-fetching
 description: Framework (OSS). Use when implementing or debugging ANY network request, API call, or data fetching. Covers fetch API, React Query, SWR, error handling, caching, offline support, and Expo Router data loaders (`useLoaderData`).
 version: 1.0.0
 license: MIT
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Expo Networking

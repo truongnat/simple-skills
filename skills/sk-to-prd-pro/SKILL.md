@@ -48,11 +48,11 @@ Turn the current conversation context and codebase into a PRD submitted as a Git
 
 Apply **Karpathy principles** throughout.
 
-1. **Confirm** scope, repo access, and GitHub CLI availability → verify: [can read codebase; `gh` present or fallback ready].
+1. **Confirm** scope, repo context → verify: [relevant modules and source context are readable].
 2. **Think Before Coding** — state what is known and what is assumed; ask only if critical info is missing.
 3. **Simplicity First** — synthesise minimum PRD that addresses the problem; no speculative scope.
 4. **Surgical Changes** — only assert codebase facts you actually read; no invented file paths.
-5. **Goal-Driven Execution** — define done as: PRD issue created (or printed) and confirmed by user.
+5. **Goal-Driven Execution** — define done as: PRD artifact drafted and confirmed by user.
 6. **Respond** using Suggested response format.
 
 ### Operating principles
@@ -69,7 +69,7 @@ Use this structure for PRD synthesis:
 1. **Scope and context** — problem, repo context, and assumptions.
 2. **Module sketch** — major modules or interfaces affected.
 3. **PRD body** — problem statement, solution, user stories, implementation/testing decisions, out of scope, further notes.
-4. **Submission result** — GitHub issue URL or rendered markdown fallback.
+4. **Submission result** — draft PRD artifact for review.
 5. **Residual risks** — unresolved assumptions or scope boundaries that still need review.
 
 ## Resources in this skill
@@ -86,7 +86,7 @@ Response shape:
 - Read the relevant modules and restate the known scope.
 - Sketch the major modules and confirm there is enough context.
 - Produce the PRD body with user stories and implementation decisions.
-- Create the GitHub issue or print the markdown if `gh` is unavailable.
+- Draft the PRD artifact and present it for review; do not submit it.
 
 ## Process
 
@@ -100,8 +100,8 @@ Present the module list to the user and ask:
 - Does this match their expectations?
 - Which modules do they want tests written for?
 
-### 3. Write and submit the PRD
-Use the template below. Submit as a GitHub issue via `gh issue create`.
+### 3. Write the PRD artifact
+Use the template below; keep the artifact ready for explicit user submission.
 
 ---
 
@@ -152,9 +152,9 @@ Do NOT include specific file paths or code snippets — they become outdated qui
 
 ## Output
 
-- A GitHub issue created with `gh issue create --title "..." --body "..."`.
-- Confirm the issue URL with the user when done.
-- If `gh` is not available, print the rendered PRD in a markdown code block.
+- A complete PRD artifact with title, body, decisions, tests, scope, and open questions.
+- Confirm the rendered artifact with the user when done.
+- Present the rendered PRD in markdown for review.
 
 ## Checklist before calling the skill done
 

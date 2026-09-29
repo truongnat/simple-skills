@@ -4,8 +4,8 @@ name: sk-blockchain-pro
 description: Expert Blockchain development covering Ethereum (Solidity), DeFi, L2 solutions, Smart Contract security, and Web3 integration.
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [language, framework, application]
+sk-roles: [developer, engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [blockchain]
 

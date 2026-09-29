@@ -12,8 +12,8 @@ description: >+
 
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [cloud, infrastructure, deployment]
+sk-roles: [platform-engineer, devops-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [vps-devops]
 
@@ -130,7 +130,7 @@ Details: [references/firewall-ufw.md](references/firewall-ufw.md)
 
 - Cron job at 2AM: dump databases, tar+gz, rotate 7 days
 - Verify: test restore periodically
-- Offsite: rsync or S3 copy for disaster recovery
+- Offsite: replicated backup or object-storage copy for disaster recovery
 
 Details: [references/backup-automation.md](references/backup-automation.md)
 
@@ -193,3 +193,10 @@ Details: [references/monitoring-logging.md](references/monitoring-logging.md)
 ## Output
 
 Produce an infrastructure or operations artifact with topology/configuration, identity and secrets assumptions, rollout/rollback plan, observability, cost/capacity risks, and verification evidence.
+
+## Cross-skill handoffs
+
+- `sk-ci-cd-pro` for pipeline control-plane design and workflow wiring.
+- `sk-deployment-pro` for release promotion, rollout, rollback, and runtime health.
+- `sk-security-pro` and `sk-network-infra-pro` for security boundaries, IAM, network policy, and threat controls.
+- `sk-testing-pro` for test gates and verification evidence; use stack/provider skills for implementation specifics.

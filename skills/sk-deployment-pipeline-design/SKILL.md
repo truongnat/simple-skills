@@ -1,9 +1,18 @@
 ---
 name: sk-deployment-pipeline-design
 description: Design multi-stage CI/CD pipelines with approval gates, security checks, and deployment orchestration. Use this skill when designing zero-downtime deployment pipelines, implementing canary rollout strategies, setting up multi-environment promotion workflows, or debugging failed deployment gates in CI/CD.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [cloud, infrastructure, deployment]
+sk-roles: [platform-engineer, devops-engineer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Deployment Pipeline Design
+
+## Boundary
+
+**`sk-deployment-pipeline-design`** owns **CI/CD pipeline architecture, stage/gate design, promotion safety, progressive delivery, and rollback orchestration**. It does not own **runtime platform implementation or provider-specific resource ownership as the primary concern**; route those concerns to the appropriate specialist skill.
 
 Architecture patterns for multi-stage CI/CD pipelines with approval gates, deployment strategies, and environment promotion workflows.
 
@@ -104,3 +113,16 @@ For platform-specific pipeline configurations, multi-region promotion workflows,
 ## Output
 
 Produce an infrastructure or operations artifact with topology/configuration, identity and secrets assumptions, rollout/rollback plan, observability, cost/capacity risks, and verification evidence.
+
+## When not to use
+
+- When the request is outside `sk-deployment-pipeline-design`'s boundary or another specialist is the primary owner.
+- When the requested outcome requires an external approval, production action, or attestation not supported by the available evidence.
+
+## Required inputs
+
+- application/runtime, deployment target, environment topology, downtime/rollback tolerance, gate owners, monitoring signals, and compliance constraints.
+
+## Cross-skill handoffs
+
+- sk-ci-cd-pro for workflow wiring; sk-deployment-pro for runtime promotion; sk-testing-pro for quality gates; sk-security-pro for supply-chain and secret controls.

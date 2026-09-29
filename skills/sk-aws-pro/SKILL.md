@@ -4,8 +4,8 @@ name: sk-aws-pro
 description: Expert AWS architecture and management covering core services (EC2, S3, RDS, Lambda), IAM security, and Infrastructure as Code (Terraform/CDK).
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [cloud, infrastructure, deployment]
+sk-roles: [platform-engineer, devops-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [aws]
 
@@ -105,3 +105,15 @@ resource "aws_s3_bucket_public_access_block" "block" {
 ## Output
 
 Produce an infrastructure or operations artifact with topology/configuration, identity and secrets assumptions, rollout/rollback plan, observability, cost/capacity risks, and verification evidence.
+
+## Required inputs
+
+- Target platform/provider, environment topology, workload or service constraints, change scope, and verification evidence.
+- State assumptions about access, cost, availability, security, and rollback when they are unknown.
+
+## Cross-skill handoffs
+
+- `sk-ci-cd-pro` for pipeline control-plane design and workflow wiring.
+- `sk-deployment-pro` for release promotion, rollout, rollback, and runtime health.
+- `sk-security-pro` and `sk-network-infra-pro` for security boundaries, IAM, network policy, and threat controls.
+- `sk-testing-pro` for test gates and verification evidence; use stack/provider skills for implementation specifics.

@@ -8,8 +8,8 @@ description: >+
   Triggers: "Terraform", "Pulumi", "IaC", "infrastructure as code", "tf files", "tfstate", "terraform plan", "terraform apply", "terraform destroy", "modules", "workspaces", "remote state", "S3 backend", "DynamoDB lock", "drift", "OPA", "Sentinel", "Terratest", "CDK", "CloudFormation", "Bicep", "infra provisioning", "resource lifecycle", "state lock", "state
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [cloud, infrastructure, deployment]
+sk-roles: [platform-engineer, devops-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [infrastructure-as-code]
 
@@ -154,3 +154,15 @@ Details: [references/testing-iac.md](references/testing-iac.md)
 ## Output
 
 Produce an infrastructure or operations artifact with topology/configuration, identity and secrets assumptions, rollout/rollback plan, observability, cost/capacity risks, and verification evidence.
+
+## Required inputs
+
+- Target platform/provider, environment topology, workload or service constraints, change scope, and verification evidence.
+- State assumptions about access, cost, availability, security, and rollback when they are unknown.
+
+## Cross-skill handoffs
+
+- `sk-ci-cd-pro` for pipeline control-plane design and workflow wiring.
+- `sk-deployment-pro` for release promotion, rollout, rollback, and runtime health.
+- `sk-security-pro` and `sk-network-infra-pro` for security boundaries, IAM, network policy, and threat controls.
+- `sk-testing-pro` for test gates and verification evidence; use stack/provider skills for implementation specifics.

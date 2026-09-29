@@ -1,9 +1,18 @@
 ---
 name: sk-hybrid-cloud-networking
 description: Configure secure, high-performance connectivity between on-premises infrastructure and cloud platforms using VPN and dedicated connections. Use when building hybrid cloud architectures, connecting data centers to cloud, or implementing secure cross-premises networking.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [cloud, infrastructure, deployment]
+sk-roles: [platform-engineer, devops-engineer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # Hybrid Cloud Networking
+
+## Boundary
+
+**`sk-hybrid-cloud-networking`** owns **hybrid connectivity architecture across on-premises and cloud networks, routing, redundancy, and security boundaries**. It does not own **application-level networking, cloud resource provisioning, or security certification as the primary concern**; route those concerns to the appropriate specialist skill.
 
 Configure secure, high-performance connectivity between on-premises and cloud environments using VPN, Direct Connect, ExpressRoute, Interconnect, and FastConnect.
 
@@ -244,3 +253,16 @@ resource "aws_vpn_connection" "secondary" {
 ## Output
 
 Produce a network design artifact with topology, routing/DNS, connectivity and identity controls, failure modes, observability, cost assumptions, and rollout/rollback checks.
+
+## When not to use
+
+- When the request is outside `sk-hybrid-cloud-networking`'s boundary or another specialist is the primary owner.
+- When the requested outcome requires an external approval, production action, or attestation not supported by the available evidence.
+
+## Required inputs
+
+- sites/regions, providers, address ranges, bandwidth/latency targets, routing model, availability, compliance, and ownership boundaries.
+
+## Cross-skill handoffs
+
+- sk-network-infra-pro for network policy and traffic design; sk-infrastructure-as-code-pro for provisioning; sk-security-pro for threat and access controls; provider skills for service specifics.

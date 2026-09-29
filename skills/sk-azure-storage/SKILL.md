@@ -5,8 +5,8 @@ description: >+
   "Azure Storage Services including Blob Storage, File Shares, Queue Storage, Table Storage, and Data Lake. Provides object storage, SMB file shares, async messaging, NoSQL key-value, and big data analytics capabilities. Includes access tiers (hot, cool, archive) and lifecycle management. USE FOR: blob storage, file shares, queue storage, table storage, data lake, upload files, download blobs, storage accounts, access tiers, lifecycle management. DO NOT USE FOR: SQL databases, Cosmos DB (use azure-prepare), messaging with Event Hubs or Service Bus (use azure-messaging)."
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [cloud, infrastructure, deployment]
+sk-roles: [platform-engineer, devops-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 
@@ -185,3 +185,15 @@ For building applications that interact with Azure Storage programmatically, Azu
 ## Output
 
 Produce a storage design or implementation artifact with service choice, data/partition model, identity and access controls, retry/consistency behavior, cost/retention assumptions, and verification steps.
+
+## Required inputs
+
+- Target platform/provider, environment topology, workload or service constraints, change scope, and verification evidence.
+- State assumptions about access, cost, availability, security, and rollback when they are unknown.
+
+## Cross-skill handoffs
+
+- `sk-ci-cd-pro` for pipeline control-plane design and workflow wiring.
+- `sk-deployment-pro` for release promotion, rollout, rollback, and runtime health.
+- `sk-security-pro` and `sk-network-infra-pro` for security boundaries, IAM, network policy, and threat controls.
+- `sk-testing-pro` for test gates and verification evidence; use stack/provider skills for implementation specifics.

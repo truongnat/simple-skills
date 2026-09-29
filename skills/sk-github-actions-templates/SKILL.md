@@ -1,9 +1,18 @@
 ---
 name: sk-github-actions-templates
 description: Create production-ready GitHub Actions workflows for automated testing, building, and deploying applications. Use when setting up CI/CD with GitHub Actions, automating development workflows, or creating reusable workflow templates.
+sk-kind: domain
+sk-version: 0.1.0
+sk-tags: [cloud, infrastructure, deployment]
+sk-roles: [platform-engineer, devops-engineer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 # GitHub Actions Templates
+
+## Boundary
+
+**`sk-github-actions-templates`** owns **GitHub Actions workflow patterns, reusable jobs, secure permissions, and implementation templates**. It does not own **cross-platform CI/CD architecture, runtime rollout policy, or application test strategy as the primary concern**; route those concerns to the appropriate specialist skill.
 
 Production-ready GitHub Actions workflow patterns for testing, building, and deploying applications.
 
@@ -329,3 +338,16 @@ jobs:
 ## Output
 
 Produce a repository-tooling artifact with command sequence, scope and safety assumptions, changed/generated outputs, validation evidence, and rollback or recovery notes.
+
+## When not to use
+
+- When the request is outside `sk-github-actions-templates`'s boundary or another specialist is the primary owner.
+- When the requested outcome requires an external approval, production action, or attestation not supported by the available evidence.
+
+## Required inputs
+
+- repository events, runner model, language/runtime, environments, secrets/OIDC constraints, artifacts, and deployment target.
+
+## Cross-skill handoffs
+
+- sk-ci-cd-pro for pipeline architecture; sk-deployment-pro for release strategy; sk-testing-pro for test intent; sk-security-pro for permissions and supply-chain controls.

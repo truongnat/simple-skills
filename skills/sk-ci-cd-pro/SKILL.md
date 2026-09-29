@@ -11,8 +11,8 @@ description: >+
   Triggers: "GitHub Actions", "GitLab CI", "CircleCI", "Jenkins", "pipe
 sk-kind: domain
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [cloud, infrastructure, deployment]
+sk-roles: [platform-engineer, devops-engineer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [ci-cd]
 

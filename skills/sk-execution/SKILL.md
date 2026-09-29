@@ -185,7 +185,7 @@ Fixed the bug. Done.
 
 // CORRECT — verification attached
 Fix: Added null check before decrypting initial password.
-Verify: `pnpm test -- password` — passed (3 tests, 0 failed).
+Verify: the password scenario test suite passed with 3 tests and 0 failures.
 Manual: Called endpoint with affected user — returns 200 with empty password field.
 TASKS: T-012 Status=sk-done, Work items all [x], Progress board Done=[x].
 ```

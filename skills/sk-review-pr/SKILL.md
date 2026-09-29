@@ -69,90 +69,15 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 ### Reference
 
-## Workflow (detailed mechanics — order enforced by the step files)
+## Workflow
 
-Reviewing a PR must never disturb the current branch or its uncommitted work.
+Review a pull request without disturbing the current branch or uncommitted work.
 
-### Step 1 — Resolve base and head
-
-1. `git fetch origin` to get the latest refs.
-2. Base = the PR target branch (e.g. `origin/develop`), not the currently
-   checked-out branch. Ask the user if ambiguous.
-3. Head = the branch/PR under sk-review (e.g. `origin/A` or a PR number).
-4. If GitHub CLI is available, pull PR metadata:
-
-```bash
-gh pr view <number-or-url> --json title,body,baseRefName,headRefName,files,statusCheckRollup
-```
-
-### Step 2 — Choose sk-review mode
-
-| Situation | Mode |
-|---|---|
-| Only need to read the diff | `remote-diff` (default) |
-| Need to run tests / build / inspect full source of head | `worktree` |
-| Head PR is already the currently checked-out branch and tree is clean | `current-branch` |
-
-Default to `remote-diff`. Escalate to `worktree` only when runtime
-verification is required. Record the chosen mode in `REVIEW_PR.md`.
-
-### Step 3 — Get the diff
-
-`remote-diff` (no checkout, no worktree):
-
-```bash
-git diff --find-renames origin/develop...origin/A
-git diff --find-renames --stat origin/develop...origin/A
-```
-
-`worktree` (isolated, for tests/full source — current branch untouched):
-
-```bash
-repo_root=$(git rev-parse --show-toplevel)
-sk-review_root="$(dirname "$repo_root")/.$(basename "$repo_root")-worktrees"
-mkdir -p "$sk-review_root"
-git worktree add --detach "$sk-review_root/review-A" origin/A
-cd "$sk-review_root/review-A"
-git diff --find-renames origin/develop...HEAD
-```
-
-An existing project-local `.worktrees/` may be used only when
-`git check-ignore -q .worktrees` succeeds. Never edit `.gitignore` as part of a
-sk-review.
-
-`current-branch` (only if head is already checked out and tree is clean):
-
-```bash
-git status --porcelain   # must be empty
-git diff --find-renames origin/develop...HEAD
-```
-
-Use three-dot (`base...head`) so the diff is scoped to what head added since
-the merge-base.
-
-### Step 4 — Verification evidence
-
-- `remote-diff`: rely on CI/PR status checks; mark local runtime checks
-  `skipped` (never false-pass).
-- `worktree` / `current-branch`: run the project-appropriate test/build command
-  and record results. Distinguish pre-existing failures from PR-introduced ones.
-
-### Step 5 — Write the artifact and clean up
-
-1. Write `REVIEW_PR.md` to the **active** session
-   the repo root `agent configuration/` is git-ignored — never write it inside a worktree).
-2. Work nested git: run
-   after writing the artifact (or confirm `a clean working tree`).
-3. If a worktree was created, remove it:
-
-```bash
-cd <main-repo-root>
-git -C <review-worktree-path> status --porcelain
-git worktree remove <review-worktree-path>
-```
-
-If the worktree is dirty, do not use `--force`; report the cleanup blocker.
-Confirm the current branch and working tree are unchanged.
+1. **Resolve base and head** — identify the pull request target and proposed change set; ask when either ref is ambiguous.
+2. **Choose review mode** — use a read-only remote diff by default; use an isolated worktree only when full source or runtime evidence is genuinely required; use the current branch only when it is already the reviewed head and clean.
+3. **Inspect the change set** — compare the merge-base range, changed files, tests, documentation, and stated scope. Record the review mode and refs in `REVIEW_PR.md`.
+4. **Assess evidence** — distinguish CI/PR evidence from locally observed evidence; mark unavailable checks as skipped or missing rather than assuming success.
+5. **Write and clean up** — produce findings with severity, location, evidence, impact, and recommendation; leave the current branch, worktree, and uncommitted changes unchanged.
 
 ## Quality Standards
 

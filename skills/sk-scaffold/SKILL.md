@@ -91,16 +91,16 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
    license. Record each decision as an ADR (do not silently default).
 4. Choose the architecture skeleton (layout, layering, naming). Keep it minimal
    and idiomatic for the stack — no speculative structure.
-5. Create the skeleton: directories, manifests + scripts, tooling config, CI,
+5. Define the skeleton: directories, manifests, tooling configuration, CI,
    README/.gitignore/.editorconfig/.env.example, and a minimal runnable entry.
-   never write real secrets.
-6. Branch per the project branch settings.mode`: `direct` → stay on the base branch;
-   `checkout` → create the initial work branch before writing code files. Run
-   `git init` if there is no repo, then hand off to `sk-init`.
-   `sk-docs full`.
-8. Write the stack ADRs and `SCAFFOLD.md` (created files, decisions, assumptions
-   marked, and the exact next commands — install/build/run — as text; run them
-   only if the user approves).
+   Never write real secrets.
+6. Respect the project branch setting: stay on the base branch when direct work
+   is configured, or plan an initial work branch when checkout is configured.
+   Hand off repository initialization details to `sk-init` and documentation work
+   to `sk-docs`.
+8. Write the stack ADRs and `SCAFFOLD.md` with created files, decisions,
+   assumptions, and qualitative next steps. Do not embed executable command
+   sequences in this skill.
    then the lifecycle (`sk-brainstorming`/`sk-planning`) for the first feature.
 
 ## Quality Standards

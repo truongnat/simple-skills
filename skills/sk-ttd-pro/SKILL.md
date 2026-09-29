@@ -5,8 +5,8 @@ description: >+
   "Skill: sk-ttd-pro"
 sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [process, quality, engineering]
+sk-roles: [developer, reviewer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [ttd]
 
@@ -111,3 +111,21 @@ This skill must produce:
 - [ ] The minimal changes were implemented
 - [ ] Test to ensure completion (Phase B) passes after implementation
 - [ ] Regression protection exists for the changed behavior
+
+## Boundary
+
+**`sk-ttd-pro`** owns **test-driven development loop, red-green-refactor discipline, and evidence-based test design**. It does not own **general testing strategy without a behavior target or production implementation ownership**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-ttd-pro`'s named capability or another specialist is the primary owner.
+- When the requested result depends on unverified permissions, unsupported platform claims, or unsafe/destructive action.
+
+## Required inputs
+
+- behavior/specification, acceptance criteria, test boundary, existing implementation, risk, and verification target.
+- State assumptions, permissions, blockers, and verification evidence explicitly.
+
+## Cross-skill handoffs
+
+- sk-testing-pro for broader test strategy; sk-clean-code for refactoring; sk-verification for final evidence.

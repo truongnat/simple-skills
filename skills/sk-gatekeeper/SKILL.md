@@ -4,9 +4,9 @@ description: >+
   'Skill: gatekeeper-skill'
 sk-kind: process
 sk-version: 0.1.0
-sk-roles: []
-sk-tags: []
-sk-compatible:
+sk-roles: [developer, reviewer]
+sk-tags: [process, quality, engineering]
+sk-compatible: [claude, cursor, codex, gemini]
   - claude
   - cursor
   - codex
@@ -94,3 +94,21 @@ Block when verification is pending, blocked, stale, or lacks evidence.
 
 - `references/gate-contract.md`
 - `prompt.md`
+
+## Boundary
+
+**`sk-gatekeeper`** owns **evidence-based allow/block/defer decisions at a workflow quality gate**. It does not own **implementation, verification execution, or approval without current evidence**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-gatekeeper`'s named capability or another specialist is the primary owner.
+- When the requested result depends on unverified permissions, unsupported platform claims, or unsafe/destructive action.
+
+## Required inputs
+
+- current verification artifact, review findings, blockers, requested gate, and freshness of evidence.
+- State assumptions, permissions, blockers, and verification evidence explicitly.
+
+## Cross-skill handoffs
+
+- sk-verification/sk-verify-pro for evidence; sk-code-review-pro for findings; sk-using-harness for active command state; sk-executing-pro after approval.

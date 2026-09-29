@@ -8,10 +8,10 @@ description: >+
 
   Triggers: "kb", "knowledge base", "solution", "push", "search knowledge", "save this", "document this", "write solution", "skill kb"
 
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [knowledge, memory, traceability]
+sk-roles: [maintainer, researcher]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 
@@ -151,3 +151,7 @@ Details: [references/graph-relationships.md](references/graph-relationships.md)
 ## Output
 
 Produce a reusable kb workflow artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Cross-skill handoffs
+
+- sk-using-harness for session contract; sk-router-pro for routing; sk-repo-tooling-pro or sk-git-operations-pro for repository mechanics; the relevant domain skill for implementation.

@@ -8,10 +8,10 @@ description: >+
 
   Triggers: "create skill", "new skill", "SKILL.md", "publish skill", "cursor rule", "skill template", ".mdc", "skill authoring", "write a skill"
 
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [skills, authoring, quality]
+sk-roles: [skill-author, reviewer]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 
@@ -166,3 +166,7 @@ Details: [references/cursor-rules-format.md](references/cursor-rules-format.md)
 ## Output
 
 Produce a reusable skill authoring artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Cross-skill handoffs
+
+- sk-using-harness for session contract; sk-router-pro for routing; sk-repo-tooling-pro or sk-git-operations-pro for repository mechanics; the relevant domain skill for implementation.

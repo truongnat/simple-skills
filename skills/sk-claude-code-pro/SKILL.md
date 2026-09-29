@@ -4,11 +4,11 @@ description: >-
   Expert optimization for Claude-native tools (Claude Code CLI, Projects,
   Artifacts). Focuses on long-context management and model-specific
   capabilities.
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-roles: []
-sk-tags: []
-sk-compatible:
+sk-roles: [orchestrator, developer]
+sk-tags: [orchestration, routing, platform]
+sk-compatible: [claude, cursor, codex, gemini]
   - claude
   - cursor
   - codex
@@ -99,3 +99,17 @@ Claude Power-User / AI Integration Specialist.
 ## Output
 
 Produce a reusable claude code pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## When not to use
+
+- When the request is outside `sk-claude-code-pro`'s named capability or another specialist is the primary owner.
+- When the requested result depends on unverified permissions, unsupported platform claims, or unsafe/destructive action.
+
+## Required inputs
+
+- task goal, Claude Code context, repository constraints, available integrations, and safety boundary.
+- State assumptions, permissions, blockers, and verification evidence explicitly.
+
+## Cross-skill handoffs
+
+- sk-using-harness for session contract; sk-git-operations-pro for Git; relevant domain skill for implementation.

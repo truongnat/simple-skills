@@ -6,7 +6,7 @@ description: >+
   workflows, or templates to an upstream repository. Use when the user needs
   content inventory, scope selection, change traceability, risk analysis, or a
   review-ready sync plan. This skill does not execute repository operations.
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
 sk-tags: [sync, repository, traceability]
 sk-roles: [maintainer, reviewer]
@@ -95,3 +95,7 @@ Produce a reusable synchronization plan or report with selected content, change
 summary, review scope, verification evidence, limitations, and next steps. Do
 not claim that any repository operation was executed unless external evidence is
 provided by the caller.
+
+## Cross-skill handoffs
+
+- sk-using-harness for session contract; sk-router-pro for routing; sk-repo-tooling-pro or sk-git-operations-pro for repository mechanics; the relevant domain skill for implementation.

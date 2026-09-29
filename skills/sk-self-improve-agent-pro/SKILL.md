@@ -7,10 +7,10 @@ description: >+
   Use this skill when the user asks to make an agent improve itself, analyze repeated mistakes, design reflection loops, define learning checkpoints, reduce quality drift, or run structured PDCA-style uplift with before/after metrics.
 
   Combine with **`sk-feedback-pro`** for review signals, **`planning-pro`** for roadmaps, **`sk-testing-pro`** for regression and eval harnesses, **`sk-repo-tooling-pro`** / **`sk-skills-self-review-pro`** for bundle audits, **`g
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [process, quality, engineering]
+sk-roles: [developer, reviewer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [self-improve-agent]
 
@@ -124,3 +124,7 @@ Response shape:
 ## Output
 
 Produce a reusable self improve agent pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Cross-skill handoffs
+
+- sk-using-harness for session contract; sk-router-pro for routing; sk-repo-tooling-pro or sk-git-operations-pro for repository mechanics; the relevant domain skill for implementation.

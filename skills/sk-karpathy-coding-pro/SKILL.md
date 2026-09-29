@@ -10,10 +10,10 @@ description: >+
 
   Triggers: "Karpathy", "think before coding", "simplicity first", "surgical changes", "goal-driven", "fewer unnecessary changes", "cleaner diffs", "reduce overengineering", "stop guessing", "ask before assuming".
 
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [process, quality, engineering]
+sk-roles: [developer, reviewer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [karpathy-coding]
 
@@ -164,3 +164,7 @@ Details: [references/applying-principles-in-practice.md](references/applying-pri
 ## Output
 
 Produce a reusable karpathy coding pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Cross-skill handoffs
+
+- sk-using-harness for session contract; sk-router-pro for routing; sk-repo-tooling-pro or sk-git-operations-pro for repository mechanics; the relevant domain skill for implementation.

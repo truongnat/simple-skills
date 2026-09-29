@@ -5,8 +5,8 @@ description: >+
   "Skill: sk-git-worktree-pro"
 sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [git, repository, safety]
+sk-roles: [developer, maintainer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [git-worktree]
 
@@ -117,3 +117,21 @@ This skill must produce:
 - [ ] No tracked-file pollution was introduced
 - [ ] The execution context is documented if relevant
 - [ ] Work can proceed without hidden assumptions
+
+## Boundary
+
+**`sk-git-worktree-pro`** owns **safe worktree isolation strategy and worktree lifecycle guidance**. It does not own **general Git operations, repository content synchronization, or implementation inside a specific worktree**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-git-worktree-pro`'s named capability or another specialist is the primary owner.
+- When the requested result depends on unverified permissions, unsupported platform claims, or unsafe/destructive action.
+
+## Required inputs
+
+- repository state, branch/commit target, isolation need, path constraints, concurrent-work risk, and cleanup policy.
+- State assumptions, permissions, blockers, and verification evidence explicitly.
+
+## Cross-skill handoffs
+
+- sk-git-operations-pro for Git semantics; sk-using-harness for session state; sk-sync-custom-to-repo for upstream content sync.

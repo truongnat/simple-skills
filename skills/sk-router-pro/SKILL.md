@@ -9,10 +9,10 @@ description: >+
   This is a **system skill** - it does not perform domain-specific work but routes to and coordinates **working skills** (chosen using **stack context** — see Stack context resolution; e.g. sk-flutter-pro vs sk-react-pro), **workflows** (/ticket, /debug, /release, etc.), and **templates** (reports, issues, prompts, etc.).
 
   Triggers: "route", "analyze", "plan", "break down", "how s
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [orchestration, routing, platform]
+sk-roles: [orchestrator, developer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [router]
 
@@ -226,3 +226,7 @@ Details: [references/template-catalog.md](references/template-catalog.md)
 ## Output
 
 Produce a reusable router pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Cross-skill handoffs
+
+- sk-using-harness for session contract; sk-router-pro for routing; sk-repo-tooling-pro or sk-git-operations-pro for repository mechanics; the relevant domain skill for implementation.

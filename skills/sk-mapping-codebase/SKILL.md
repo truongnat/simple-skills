@@ -5,8 +5,8 @@ description: >+
   "Skill: mapping-codebase"
 sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [process, quality, engineering]
+sk-roles: [developer, reviewer]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 
@@ -107,3 +107,21 @@ This skill must produce:
 - [ ] Key boundaries or dependencies are noted
 - [ ] Facts and inferences are separated
 - [ ] Unknowns are explicit instead of hidden
+
+## Boundary
+
+**`sk-mapping-codebase`** owns **bounded repository exploration, impact mapping, ownership boundaries, and dependency discovery before planning**. It does not own **implementation, full architecture redesign, or unbounded repository documentation**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-mapping-codebase`'s named capability or another specialist is the primary owner.
+- When the requested result depends on unverified permissions, unsupported platform claims, or unsafe/destructive action.
+
+## Required inputs
+
+- goal/question, repository root, target area, current artifacts, relevant paths, and depth/stop criteria.
+- State assumptions, permissions, blockers, and verification evidence explicitly.
+
+## Cross-skill handoffs
+
+- sk-gitnexus-exploring or sk-clean-architecture for deeper structure; sk-planning for next steps; sk-code-review-pro for change review.

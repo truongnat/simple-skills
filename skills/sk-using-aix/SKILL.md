@@ -79,3 +79,21 @@ to invoke. Execute the spine yourself, using the host's native subagents.
 ## Output
 
 Produce a reusable using aix artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Boundary
+
+**`sk-using-aix`** owns **guidance for using the AIX/agent workflow entry point and its routing assumptions**. It does not own **domain implementation or claims about unavailable platform capabilities**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-using-aix`'s named capability or another specialist is the primary owner.
+- When the requested result depends on unverified permissions, unsupported platform claims, or unsafe/destructive action.
+
+## Required inputs
+
+- task goal, active platform/context, requested capability, permissions, and fallback path.
+- State assumptions, permissions, blockers, and verification evidence explicitly.
+
+## Cross-skill handoffs
+
+- sk-router-pro for routing; sk-using-harness for session rules; relevant domain skill for execution.

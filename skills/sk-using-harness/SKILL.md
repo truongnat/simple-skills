@@ -5,8 +5,8 @@ description: "Skill: using-harness"
 
 sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [orchestration, routing, platform]
+sk-roles: [orchestrator, developer]
 sk-compatible: [claude, cursor, codex, gemini]
 ---
 
@@ -109,3 +109,21 @@ This skill must produce:
 - [ ] A plan exists before implementation
 - [ ] Verification expectations are known
 - [ ] No sensitive data is being written to memory
+
+## Boundary
+
+**`sk-using-harness`** owns **application of the active harness/session operating contract, artifacts, plan, and verification gates**. It does not own **domain implementation or duplicating a stricter command-specific skill**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-using-harness`'s named capability or another specialist is the primary owner.
+- When the requested result depends on unverified permissions, unsupported platform claims, or unsafe/destructive action.
+
+## Required inputs
+
+- current goal, command/phase, AGENTS rules, active artifacts, plan state, and verification expectations.
+- State assumptions, permissions, blockers, and verification evidence explicitly.
+
+## Cross-skill handoffs
+
+- sk-planning/sk-execution for lifecycle; sk-gatekeeper for ship decisions; sk-remember-pro after durable outcomes.

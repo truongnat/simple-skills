@@ -1,6 +1,11 @@
 ---
 name: sk-skills-self-review-pro
 description: Review the quality, structure, portability, and validation evidence of bundled npx skills. Use when auditing or improving a skill pack.
+sk-kind: process
+sk-version: 0.1.0
+sk-tags: [skills, authoring, quality]
+sk-roles: [skill-author, reviewer]
+sk-compatible: [claude, cursor, codex, gemini]
 ---
 
 Skill text is **English**; answer in the user’s preferred language when rules or the conversation specify it.
@@ -164,3 +169,7 @@ Details: [references/tech-refresh-and-web-research.md](references/tech-refresh-a
 ## Output
 
 Produce a reusable skills self review pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Cross-skill handoffs
+
+- sk-using-harness for session contract; sk-router-pro for routing; sk-repo-tooling-pro or sk-git-operations-pro for repository mechanics; the relevant domain skill for implementation.

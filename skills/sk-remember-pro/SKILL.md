@@ -5,8 +5,8 @@ description: "Skill: sk-remember-pro"
 
 sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [knowledge, memory, traceability]
+sk-roles: [maintainer, researcher]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [remember]
 
@@ -110,3 +110,21 @@ This skill must produce:
 - [ ] The affected area is clear
 - [ ] The note helps future work
 - [ ] No secrets or private business data are stored
+
+## Boundary
+
+**`sk-remember-pro`** owns **sanitized durable memory of decisions, constraints, hazards, and lessons that improve future sessions**. It does not own **transient status, secrets/private data, or unverified narrative history**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-remember-pro`'s named capability or another specialist is the primary owner.
+- When the requested result depends on unverified permissions, unsupported platform claims, or unsafe/destructive action.
+
+## Required inputs
+
+- verified outcome, durable lesson/decision, affected areas, retention/sensitivity constraints, and references.
+- State assumptions, permissions, blockers, and verification evidence explicitly.
+
+## Cross-skill handoffs
+
+- sk-using-harness for session state; sk-kb-workflow for knowledge-base content; sk-self-improve-agent-pro for agent behavior changes.

@@ -5,10 +5,10 @@ description: >+
 
 
   Combine with **`sk-skills-self-review-pro`** for bundle audits, **`sk-ci-cd-pro`** for pi
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [tooling, cli, routing]
+sk-roles: [developer, maintainer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [repo-tooling]
 
@@ -180,3 +180,7 @@ Details: [references/versions.md](references/versions.md)
 ## Output
 
 Produce a repository-tooling artifact with verified commands, repository/cwd assumptions, affected lifecycle, generated outputs, validation evidence, and remaining caveats.
+
+## Cross-skill handoffs
+
+- sk-using-harness for session contract; sk-router-pro for routing; sk-repo-tooling-pro or sk-git-operations-pro for repository mechanics; the relevant domain skill for implementation.

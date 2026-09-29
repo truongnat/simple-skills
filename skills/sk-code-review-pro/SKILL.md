@@ -5,8 +5,8 @@ description: "Skill: sk-code-review-pro"
 
 sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [process, quality, engineering]
+sk-roles: [developer, reviewer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [code-review]
 
@@ -117,3 +117,21 @@ Block or escalate when:
 - [ ] Risks were identified or ruled out
 - [ ] Missing verification was called out if present
 - [ ] Findings are concrete enough to act on
+
+## Boundary
+
+**`sk-code-review-pro`** owns **evidence-based review of changes for correctness, regression, maintainability, scope, and verification risk**. It does not own **early goal clarification, implementation ownership, or style-only review without inspectable changes**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-code-review-pro`'s named capability or another specialist is the primary owner.
+- When the requested result depends on unverified permissions, unsupported platform claims, or unsafe/destructive action.
+
+## Required inputs
+
+- review target, approved scope, changed artifacts/diff, requirements, existing verification evidence, and severity policy.
+- State assumptions, permissions, blockers, and verification evidence explicitly.
+
+## Cross-skill handoffs
+
+- sk-review/sk-review-pr for lifecycle-specific review; sk-testing-pro for missing tests; sk-gatekeeper for allow/block decision; sk-git-operations-pro for review identity.

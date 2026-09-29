@@ -10,10 +10,10 @@ description: >+
 
   Triggers: "MCP server", "Model Context Protocol", "build MCP", "MCP tool", "MCP resource", "MCP prompt", "MCP transport", "MCP auth", "expose API to agents", "agent tooling", "MCP inspector", "MCP SDK", "server-sent events MCP", "stdio MCP".
 
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [process, quality, engineering]
+sk-roles: [developer, reviewer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [mcp-server]
 

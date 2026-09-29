@@ -9,10 +9,10 @@ description: >+
   Use **with** **`sk-testing-pro`**, **`sk-security-pro`**, **`sk-planning`**, **`sk-git-operations-pro`**, **`sk-business-analysis`**, domain `*-pro` skills for technical truth, and **`sk-skills-self-review-pro`** for meta review of templates in this repo.
 
   Triggers: "feedback", "review comments", "code feedback", "deep review", "improvement f
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [process, quality, engineering]
+sk-roles: [developer, reviewer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [feedback]
 
@@ -188,3 +188,7 @@ Details: [references/action-planning-and-closure.md](references/action-planning-
 ## Output
 
 Produce a reusable feedback pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Cross-skill handoffs
+
+- sk-using-harness for session contract; sk-router-pro for routing; sk-repo-tooling-pro or sk-git-operations-pro for repository mechanics; the relevant domain skill for implementation.

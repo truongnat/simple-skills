@@ -4,9 +4,9 @@ description: >+
   'Skill: tool-discovery-skill'
 sk-kind: process
 sk-version: 0.1.0
-sk-roles: []
-sk-tags: []
-sk-compatible:
+sk-roles: [developer, maintainer]
+sk-tags: [tooling, cli, routing]
+sk-compatible: [claude, cursor, codex, gemini]
   - claude
   - cursor
   - codex
@@ -91,3 +91,21 @@ Return blocked when a required capability has no safe fallback and the next step
 
 - `references/routing-table.md`
 - `prompt.md`
+
+## Boundary
+
+**`sk-tool-discovery`** owns **capability-based discovery and routing of available tools without assuming tool names**. It does not own **performing the task itself or treating optional tooling as a hard dependency**; route those concerns to the appropriate specialist skill.
+
+## When not to use
+
+- When the request is outside `sk-tool-discovery`'s named capability or another specialist is the primary owner.
+- When the requested result depends on unverified permissions, unsupported platform claims, or unsafe/destructive action.
+
+## Required inputs
+
+- required capability, active environment, current tool context, safe fallback, and routing goal.
+- State assumptions, permissions, blockers, and verification evidence explicitly.
+
+## Cross-skill handoffs
+
+- sk-using-harness for active context; sk-repo-tooling-pro for repository CLI; relevant domain skill for the actual work.

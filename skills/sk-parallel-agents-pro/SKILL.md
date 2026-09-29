@@ -9,10 +9,10 @@ description: >+
   Use **with** **`sk-executing-pro`** for execution coordination, **`planning-pro`** for dependency-aware task breakdown and workflow orchestration, and domain **`*-pro`** skills for agent task execution.
 
   Triggers: "parallel", "concurrent", "multiple agents", "pa
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [orchestration, routing, platform]
+sk-roles: [orchestrator, developer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [parallel-agents]
 
@@ -190,3 +190,7 @@ Details: [references/monitoring-and-adaptation.md](references/monitoring-and-ada
 ## Output
 
 Produce a reusable parallel agents pro artifact with the selected approach, relevant files or evidence, verification results, limitations or risks, and next steps.
+
+## Cross-skill handoffs
+
+- sk-using-harness for session contract; sk-router-pro for routing; sk-repo-tooling-pro or sk-git-operations-pro for repository mechanics; the relevant domain skill for implementation.

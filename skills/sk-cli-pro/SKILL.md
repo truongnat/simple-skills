@@ -9,10 +9,10 @@ description: >+
   Combine with sk-code-packaging-pro, sk-security-pro, sk-testing-pro, sk-javascript-pro, sk-docker-pro as needed.
 
   Triggers: "CLI", "command line", "argparse", "click", "typer", "clap", "cobra", "commander", "yargs", "subcommand", "exit code", "stderr", "POSIX", "completion", "bash completion", "zsh completion", "machine rea
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [tooling, cli, routing]
+sk-roles: [developer, maintainer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [cli]
 
@@ -219,3 +219,7 @@ Details: [references/versions.md](references/versions.md)
 ## Output
 
 Produce a repository-tooling artifact with command sequence, scope and safety assumptions, changed/generated outputs, validation evidence, and rollback or recovery notes.
+
+## Cross-skill handoffs
+
+- sk-repo-tooling-pro for repository CLI semantics; sk-using-harness for execution state; sk-security-pro for credential/supply-chain concerns.

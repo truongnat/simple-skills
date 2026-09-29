@@ -7,10 +7,10 @@ description: >+
   Use this skill when the user asks about **commit conventions**, **branch naming**, **feature vs trunk flow**, **resolving conflicts**, **review hygiene**, **git log** interpretation, **revert vs reset**, or **what not to commit**.
 
   Use **with** **`sk-testing-pro`** for CI gates; **`sk-security-pro`** for secrets and signing; **`sk-deployment-pro`** for tags/releases; **`sk-ci-cd-pro`** for workflow triggers; **`sk-feedback-pro`** for review policy; **`planning-pro`** for release trains. This skill owns **VCS** mechanics; **`sk-code-packaging-pro`** owns workflow **
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [git, repository, safety]
+sk-roles: [developer, maintainer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [git-operations]
 
@@ -191,3 +191,7 @@ Details: [references/versions.md](references/versions.md)
 ## Output
 
 Produce a repository-tooling artifact with command sequence, scope and safety assumptions, changed/generated outputs, validation evidence, and rollback or recovery notes.
+
+## Cross-skill handoffs
+
+- sk-using-harness for session contract; sk-router-pro for routing; sk-repo-tooling-pro or sk-git-operations-pro for repository mechanics; the relevant domain skill for implementation.

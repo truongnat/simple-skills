@@ -9,10 +9,10 @@ description: >+
   Use with sk-deployment-pro, sk-testing-pro, sk-security-pro, sk-ci-cd-pro, sk-docker-pro, sk-javascript-pro as needed.
 
   Triggers: "pyproject.toml", "Dockerfile", "multi-stage", "GitHub A
-sk-kind: domain
+sk-kind: process
 sk-version: 0.1.0
-sk-tags: []
-sk-roles: []
+sk-tags: [process, quality, engineering]
+sk-roles: [developer, reviewer]
 sk-compatible: [claude, cursor, codex, gemini]
 aliases: [code-packaging]
 
@@ -230,3 +230,7 @@ Details: [references/versions.md](references/versions.md)
 ## Output
 
 Produce a repository-tooling artifact with command sequence, scope and safety assumptions, changed/generated outputs, validation evidence, and rollback or recovery notes.
+
+## Cross-skill handoffs
+
+- sk-using-harness for session contract; sk-router-pro for routing; sk-repo-tooling-pro or sk-git-operations-pro for repository mechanics; the relevant domain skill for implementation.

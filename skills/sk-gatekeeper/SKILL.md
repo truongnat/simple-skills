@@ -79,6 +79,8 @@ Output:
 
 Return allow/block/defer with explicit reason and next command.
 
+Use `references/gate-decision-evidence.md` for the structured decision record; allow only with fresh verification, resolved review findings and no blockers.
+
 ## Blocking Conditions
 
 Block when verification is pending, blocked, stale, or lacks evidence.

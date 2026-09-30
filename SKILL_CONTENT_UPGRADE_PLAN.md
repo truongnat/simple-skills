@@ -20,7 +20,7 @@ Work in phases, ordered by user impact and risk. Keep each skill self-contained,
 | 6 | Frontend, UI/UX, and accessibility | Group 05 | Interaction states, responsive/accessibility checks, visual and semantic evidence | **Core interaction and accessibility packs implemented; mature-reference skills retained for catalog pass** |
 | 7 | Lifecycle and BA/product workflows | Group 01 | Worked artifacts, acceptance criteria, handoff evidence, decision records | **Core lifecycle evidence packs implemented; canonical ownership remains covered by catalog pass** |
 | 8 | Documents, research, and business | Group 09 | Golden-output checks, source/evidence registers, reproducibility and citation guidance | **Core output/evidence packs implemented; mature-format references retained for catalog pass** |
-| 9 | Git, tooling, platform, and meta-skills | Group 10 | Safe boundaries, review gates, reusable templates, tool capability matrices | Planned |
+| 9 | Git, tooling, platform, and meta-skills | Group 10 | Safe boundaries, review gates, reusable templates, tool capability matrices | **Core safety/capability packs implemented; mature references retained for catalog pass** |
 | 10 | Catalog-wide quality pass | All groups | Router precedence, duplicate-boundary notes, reference link audit, coverage linter | Planned |
 
 ## Phase 1 deliverables
@@ -81,3 +81,7 @@ Created and linked focused lifecycle/BA/product packs for `sk-business-analysis`
 ## Phase 8 deliverables
 
 Created and linked focused output/evidence packs for `sk-pdf-pro`, `sk-xlsx`, `sk-pptx`, `sk-docx`, `sk-research`, `sk-web-research-pro`, `sk-market-research-pro`, and `sk-docs`. Existing format-specific coverage manifests, research templates, and enterprise documentation standards remain authoritative where they already cover the same concerns.
+
+## Phase 9 deliverables
+
+Created and linked focused safety/capability packs for `sk-git-operations-pro`, `sk-git-worktree-pro`, `sk-repo-tooling-pro`, `sk-router-pro`, `sk-gatekeeper`, `sk-tool-discovery`, `sk-skill-authoring`, and `sk-skills-self-review-pro`. Existing Group 10 command references, routing tables and authoring rules remain authoritative where they already cover the same concerns.

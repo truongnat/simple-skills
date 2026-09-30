@@ -77,6 +77,8 @@ Canonical rules: `SKILL_AUTHORING_RULES.md` at repo root.
 6. **English in SKILL.md** — per authoring rules; references may include localized examples.
 7. **Triggers are critical** — the description's trigger keywords determine when the skill activates. Be explicit and generous.
 
+Use `references/authoring-review-gates.md` to verify ownership, routing, contract, depth, resources, validation and publish scope with explicit evidence.
+
 ## Default recommendations by scenario
 
 | Scenario | Approach |

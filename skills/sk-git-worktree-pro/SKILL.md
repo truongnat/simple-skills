@@ -54,6 +54,8 @@ Use optional git worktree isolation when it materially reduces execution risk wi
 5. Record the chosen execution context in state or task notes when it affects the workflow.
 6. Continue with normal execution and verification discipline.
 
+Use `references/isolation-lifecycle-matrix.md` to record the isolation decision, dirty-workspace handling, worktree identity, verification state, handoff and cleanup owner.
+
 ## Operating Principles
 
 - Isolation is a tool, not a mandatory ritual.

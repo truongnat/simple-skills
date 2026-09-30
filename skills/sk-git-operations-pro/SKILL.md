@@ -86,6 +86,8 @@ Apply **Karpathy principles** throughout: Think Before Coding, Simplicity First,
 7. **Inspection precedes intervention** — Use log, diff, and branch state to understand the graph before moving it.
 8. **Secrets are operational incidents** — Rewriting history alone is not enough when credentials leaked; rotation and follow-up are required.
 
+Use `references/safe-change-and-review-gates.md` to record scope, history risk, review evidence, recovery choice, publish target and post-action status before changing shared repository state.
+
 ## Default recommendations by scenario
 
 - **Shared branch mistake** — Prefer revert or follow documented merge-queue policy.

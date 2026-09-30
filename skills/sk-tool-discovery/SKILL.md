@@ -76,6 +76,8 @@ Output:
 
 Produce or refresh `.harness/TOOL_CONTEXT.md` with detected tools and routing guidance.
 
+Use `references/capability-routing-matrix.md` to route by capability, record safe fallbacks, and preserve the real tool context instead of guessing command names.
+
 ## Blocking Conditions
 
 Return blocked when a required capability has no safe fallback and the next step depends on it.

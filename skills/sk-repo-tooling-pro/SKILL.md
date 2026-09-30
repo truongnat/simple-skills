@@ -81,6 +81,8 @@ Apply **Karpathy principles** throughout: Think Before Coding, Simplicity First,
 7. **Do not invent flags** — All command examples must map to real CLI behavior documented in repo scripts.
 8. **Performance advice needs context** — Batch size, RAM, and cold-start economics matter before claiming one query mode is “better.”
 
+Use `references/capability-and-artifact-lifecycle.md` to choose the smallest valid command path, verify prerequisites, record artifact freshness, and document safe fallbacks.
+
 ## Default recommendations by scenario
 
 - **Skill content changed** — `validate-skills` then `build-skill-index`; skip `build-kb` unless docs changed.

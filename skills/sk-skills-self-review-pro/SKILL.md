@@ -67,6 +67,8 @@ Apply **Karpathy principles** throughout: Think Before Coding, Simplicity First,
 7. **Freshness matters selectively** — Local audit can rely on repo state; external technology claims need official-source refresh when central to the conclusion.
 8. **Meta review must stay meta** — This skill evaluates skill quality and bundle process, not domain correctness of React, Postgres, or other stack content by itself.
 
+Use `references/review-evidence-and-triage.md` to separate deterministic failures, structural gaps, heuristic concerns, staleness, duplicate boundaries and automation limits.
+
 ## Default recommendations by scenario
 
 - **PR review for skills** — Run deterministic gates first, then summarize only actionable content gaps.

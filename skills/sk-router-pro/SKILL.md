@@ -83,6 +83,8 @@ Apply **Karpathy principles** throughout: Think Before Coding, Simplicity First,
 6. **Define success criteria**; loop until verified (**Goal-Driven Execution**).
 7. **Respond** using **Suggested response format**; note main risks.
 
+Use `references/precedence-and-ambiguity-matrix.md` to record intent, current state, candidate owners, ambiguity, assumptions, high-impact gates and the next handoff.
+
 ### Attachment preprocessing (mandatory when files are part of the prompt)
 
 When the user chat includes attached files or local file paths, do not optimize or route from filenames alone. First extract the minimum needed file context:

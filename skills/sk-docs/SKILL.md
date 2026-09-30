@@ -77,6 +77,8 @@ sections filled from real evidence. You MUST:
 Scale rule: small projects may mark whole documents `N/A (reason)` — but that is
 an explicit, visible decision, not a silent omission.
 
+Use `references/documentation-coverage-and-traceability.md` to record claim sources, stable IDs, stakeholder viewpoints, coverage status, freshness, rendered-output review, and next-owner handoff.
+
 ## Modes
 
 | Mode | Use | Behavior |

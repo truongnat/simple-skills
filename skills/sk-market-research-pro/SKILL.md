@@ -84,6 +84,8 @@ Apply **Karpathy principles** throughout: Think Before Coding, Simplicity First,
 7. **Competitors are contextual** — Substitute, adjacent, and direct competitors should not be flattened into one category.
 8. **Market research is not prophecy** — Uncertainty and outdated or conflicting signals should remain visible.
 
+Use `references/assumptions-and-decision-evidence.md` to expose decision context, market boundaries, sizing denominators, source dates, sensitivity, confidence, and revisit triggers.
+
 ## Default recommendations by scenario
 
 - **Exploratory market scan** — Start with category definition, key segments, and a small competitor map.

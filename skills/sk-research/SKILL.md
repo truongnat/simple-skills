@@ -85,6 +85,8 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - [ ] When researching a feature/spec, Spec quality sk-review covers Feasibility, Correctness, and Capability gaps suggested by evidence.
 - [ ] Caveats and residual risks are documented.
 
+Use `references/source-evidence-and-reproducibility.md` to preserve source IDs, claim support, search method, conflicts, confidence, reproducibility notes, and handoff evidence.
+
 - [ ] Confirm-first: on Blocking need, STOP immediately; classify Ask method (`confirm`/`choice`/`fact`/`table`/`diagram`/`html`); ask that way; finished artifact is not a quiz — residual Open questions non-blocking only (the skill instructions).
 
 ## WRONG vs CORRECT

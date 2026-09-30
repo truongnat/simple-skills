@@ -55,6 +55,8 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - **coverage_ratio** (required, number): Must equal 1.0 before publish.
 - **items** (required, array): Coverage inventory entries with status preserved/transformed/unsupported/skipped.
 
+Use `references/golden-output-and-coverage.md` to check workbook structure, formulas, styles, data integrity, unsupported OOXML, reopen behavior, and the publish coverage gate.
+
 ### Reference
 
 ## Workflow (detailed mechanics — order enforced by the step files)

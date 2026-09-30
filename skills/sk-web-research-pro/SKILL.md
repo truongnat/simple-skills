@@ -84,6 +84,8 @@ Apply **Karpathy principles** throughout: Think Before Coding, Simplicity First,
 7. **Citations are evidence, not decoration** — Every critical claim should be attributable, especially when the answer could drift.
 8. **Local and web have different jobs** — In-repo KB answers project truth; the web answers external truth or freshness.
 
+Use `references/citation-freshness-and-provenance.md` to record source hierarchy, version/date context, local-vs-web provenance, claim type, confidence, and stale/conflicting evidence.
+
 ## Default recommendations by scenario
 
 - **API or framework question** — Start with official docs and versioned changelogs.

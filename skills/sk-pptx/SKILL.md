@@ -55,6 +55,8 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 - **coverage_ratio** (required, number): Must equal 1.0 before publish.
 - **items** (required, array): Coverage inventory entries.
 
+Use `references/golden-output-and-slide-evidence.md` to verify narrative order, rendered layout, content, theme, export behavior, unsupported features, and the publish coverage gate.
+
 ### Reference
 
 ## Runtime

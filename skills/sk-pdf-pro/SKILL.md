@@ -89,6 +89,8 @@ Next steps: [follow-up actions if any]
 
 ## Checklist before calling the skill done
 
+Use `references/golden-output-validation.md` to verify integrity, extracted content, rendered layout, metadata, forms/OCR, round-trip behavior, and disclosed limitations before delivery.
+
 - [ ] PDF file is accessible and readable
 - [ ] Required libraries are installed (pypdf, pdfplumber, etc.)
 - [ ] PDF operation is clearly identified

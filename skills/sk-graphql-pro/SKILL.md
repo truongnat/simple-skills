@@ -50,6 +50,8 @@ Use official [GraphQL Specification](https://spec.graphql.org/), [GraphQL over H
 - Backward-compatible evolution, deprecation.
 - Federation ownership and composition issues.
 
+Use `references/schema-evolution-and-query-safety.md` to check field/enum/nullability changes, persisted operations, N+1, query budgets, field authorization, federation composition, and mutation idempotency.
+
 ## When not to use
 
 - **Pure REST/OpenAPI** design — **`sk-api-design-pro`** unless comparing hybrid.

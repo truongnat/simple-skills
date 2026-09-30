@@ -55,6 +55,8 @@ Use [Martin Fowler on microservices](https://martinfowler.com/microservices/), D
 - Resilience, timeouts, duplication/reorder handling.
 - Observability and operational readiness.
 
+Use `references/distributed-failure-matrix.md` to verify deadlines, retry ownership, duplicate/out-of-order events, saga recovery, schema compatibility, overload behavior, and trace propagation.
+
 ## When not to use
 
 - **Single-process** profiling only — **`sk-performance-tuning-pro`** alone may suffice.

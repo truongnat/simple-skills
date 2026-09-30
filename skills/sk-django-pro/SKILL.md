@@ -114,3 +114,5 @@ Produce a Django implementation or review plan with project structure, models/vi
 ## Cross-skill handoffs
 
 - sk-testing-pro for test strategy; sk-systematic-debugging-pro for diagnosis; sk-clean-code or architecture skills for cross-cutting design; neighboring stack skill for integration.
+
+Use `references/django-verification-matrix.md` to verify model/migration behavior, DRF contracts, auth/CSRF, query counts, admin permissions, async side effects, and operations evidence.

@@ -215,3 +215,5 @@ Produce a reusable implementation or design artifact with the selected direction
 ## Cross-skill handoffs
 
 - sk-design-taste-frontend or frontend stack skills for implementation; sk-a11y-design-pro for accessibility; sk-testing-pro for UI verification; sk-product-management-pro for product decisions.
+
+Use `references/component-state-and-visual-gates.md` to define reusable component states, token/theme blast radius, content resilience, visual regression fixtures, and semantic gates.

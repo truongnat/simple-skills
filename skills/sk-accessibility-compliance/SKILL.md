@@ -80,3 +80,5 @@ Detailed pattern documentation lives in `references/details.md`. Read that file 
 ## Output
 
 Produce an accessibility audit or implementation artifact with WCAG target, findings by severity, affected paths/components, evidence, remediation, and verification steps.
+
+Use `references/audit-and-remediation-matrix.md` to triage severity, reproduce issues, run manual assistive-technology checks, assign remediation, and prove regression fixes.

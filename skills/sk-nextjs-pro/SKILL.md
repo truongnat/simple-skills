@@ -51,6 +51,8 @@ Use official [Next.js docs](https://nextjs.org/docs) for **version-specific** AP
 - **Middleware**, auth redirects, matchers, Edge vs Node runtime.
 - **Deployment-aware** config: env vars, `output`, image domains, runtime constraints.
 
+Use `references/version-runtime-compatibility.md` when changing router mode, server/client boundaries, runtime, cache invalidation, Server Actions, hosting, or Next major versions.
+
 ## When not to use
 
 - **Pure React** behavior with no Next.js APIs — **`sk-react-pro`**.

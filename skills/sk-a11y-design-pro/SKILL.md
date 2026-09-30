@@ -51,6 +51,8 @@ Use [WCAG 2.2](https://www.w3.org/WAI/WCAG22/quickref/), [ARIA Authoring Practic
 - Ensuring legal compliance: ADA (US), EN 301 549 (EU), EAA.
 - Trigger keywords: `accessibility`, `a11y`, `WCAG`, `ARIA`, `screen reader`, `keyboard nav`, `color contrast`, `focus trap`, `ADA`
 
+Use `references/semantic-accessibility-evidence.md` to record semantic, keyboard, screen-reader, contrast, zoom/reflow, form, widget, preference, and automation evidence.
+
 ## When not to use
 
 - **Visual design aesthetics** (color choices, typography) — use **`sk-design-system-pro`**.

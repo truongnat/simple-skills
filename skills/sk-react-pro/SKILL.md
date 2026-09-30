@@ -164,3 +164,5 @@ Produce a reusable implementation or design artifact with the selected direction
 ## Cross-skill handoffs
 
 - sk-testing-pro for test strategy; sk-systematic-debugging-pro for diagnosis; sk-clean-code or architecture skills for cross-cutting design; neighboring stack skill for integration.
+
+Use `references/interaction-and-rendering-matrix.md` to verify async states, forms, overlays, races, Strict Mode, hydration, large lists, responsive behavior, and accessibility.

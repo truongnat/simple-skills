@@ -24,7 +24,7 @@ sk-compatible: [claude, cursor, codex, gemini]
 
 ## Boundary
 
-**`sk-frontend-design-pro`** owns **anti-slop visual design patterns** — distinctive typography choices, intentional color systems, spatial composition, and motion choreography for web interfaces. **`sk-motion-design-pro`** owns deep animation logic with GSAP/Framer Motion timelines when motion is the primary concern. **`sk-ui-stack-pro`** owns design token enforcement and 8px grid/•••• rules. **`sk-shadcn-mastery-pro`** owns shadcn/ui component primitives and Radix-based composition.
+**`sk-frontend-design-pro`** owns **anti-slop visual design patterns** — distinctive typography choices, intentional color systems, spatial composition, and motion choreography for web interfaces. **`sk-motion-design-pro`** owns deep animation logic with GSAP/Framer Motion timelines when motion is the primary concern. **`sk-ui-stack-pro`** owns design token enforcement and 8px grid/token rules. **`sk-shadcn-mastery-pro`** owns shadcn/ui component primitives and Radix-based composition.
 
 ## When to use
 
@@ -291,3 +291,6 @@ Produce a reusable implementation or design artifact with the selected direction
 ## Cross-skill handoffs
 
 - sk-design-taste-frontend or frontend stack skills for implementation; sk-a11y-design-pro for accessibility; sk-testing-pro for UI verification; sk-product-management-pro for product decisions.
+
+Use `references/responsive-visual-evidence.md` to review mobile, tablet, desktop, long-content, theme, motion, localization, and loading/error states before declaring a visual direction complete.
+**`sk-frontend-design-pro`** owns **anti-slop visual design patterns** — distinctive typography choices, intentional color systems, spatial composition, and motion choreography for web interfaces. **`sk-motion-design-pro`** owns deep animation logic with GSAP/Framer Motion timelines when motion is the primary concern. **`sk-ui-stack-pro`** owns design token enforcement and 8px grid/token rules. **`sk-shadcn-mastery-pro`** owns shadcn/ui component primitives and Radix-based composition.

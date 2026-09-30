@@ -49,6 +49,8 @@ Use official [HTTP Semantics RFC 9110](https://www.rfc-editor.org/rfc/rfc9110), 
 - Standardizing pagination, filtering, sorting, error handling, and idempotency behavior.
 - Planning API versioning and deprecation strategy without disrupting clients.
 
+Use `references/contract-compatibility-matrix.md` to classify breaking changes, inventory consumers, define contract fixtures, and record deprecation, idempotency, and rollback evidence.
+
 ## When not to use
 
 - **Framework-specific** routing, middleware, DI — stack skills first, then align HTTP semantics here.

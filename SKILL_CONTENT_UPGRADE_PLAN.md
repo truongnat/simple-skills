@@ -16,8 +16,8 @@ Work in phases, ordered by user impact and risk. Keep each skill self-contained,
 | 2 | Security, testing, and reliability | Group 06: auth, API security, SAST, E2E, debugging, performance, testing | Threat cases, invariants, regression fixtures, severity/triage tables, incident evidence | **Core high-risk packs implemented; mature-reference skills retained for catalog pass** |
 | 3 | Data, AI, and agent systems | Group 04: RAG, agents, evaluation, data engineering, ML | Evaluation datasets, grounding/safety gates, drift/lineage, tool-failure cases | **Core evaluation and lineage packs implemented; mature-reference skills retained for catalog pass** |
 | 4 | Cloud, deployment, and databases | Groups 07–08 | Provider decision tables, rollout/rollback cases, schema/migration checks, backup/restore evidence | **Core operational packs implemented; mature-reference skills retained for catalog pass** |
-| 5 | Architecture, API, and frameworks | Groups 02–03 | Compatibility matrices, contract examples, failure modes, version migration notes | Planned |
-| 6 | Frontend, UI/UX, and accessibility | Group 05 | Interaction states, responsive/accessibility checks, visual and semantic evidence | Planned |
+| 5 | Architecture, API, and frameworks | Groups 02–03 | Compatibility matrices, contract examples, failure modes, version migration notes | **Core compatibility and framework packs implemented; mature-reference skills retained for catalog pass** |
+| 6 | Frontend, UI/UX, and accessibility | Group 05 | Interaction states, responsive/accessibility checks, visual and semantic evidence | **Core interaction and accessibility packs implemented; mature-reference skills retained for catalog pass** |
 | 7 | Lifecycle and BA/product workflows | Group 01 | Worked artifacts, acceptance criteria, handoff evidence, decision records | Planned |
 | 8 | Documents, research, and business | Group 09 | Golden-output checks, source/evidence registers, reproducibility and citation guidance | Planned |
 | 9 | Git, tooling, platform, and meta-skills | Group 10 | Safe boundaries, review gates, reusable templates, tool capability matrices | Planned |
@@ -65,3 +65,11 @@ Created and linked focused evaluation/lineage packs for `sk-ai-agents-pro`, `sk-
 ## Phase 4 deliverables
 
 Created and linked focused operational packs for `sk-deployment-pro`, `sk-database-migration`, `sk-postgresql-table-design`, `sk-redis-pro`, `sk-kubernetes-pro`, and `sk-aws-pro`. Existing CI/CD, Docker, networking, IaC, SQL, and PostgreSQL production references remain authoritative where they already cover the same concerns.
+
+## Phase 5 deliverables
+
+Created and linked focused compatibility/verification packs for `sk-api-design-pro`, `sk-microservices-pro`, `sk-graphql-pro`, `sk-spring-boot-pro`, `sk-django-pro`, and `sk-nextjs-pro`. Existing clean architecture, NestJS, React, TypeScript, and framework reference bundles remain authoritative where they already cover the same concerns.
+
+## Phase 6 deliverables
+
+Created and linked focused interaction/accessibility packs for `sk-frontend-design-pro`, `sk-mobile-design-pro`, `sk-a11y-design-pro`, `sk-design-system-pro`, `sk-react-pro`, and `sk-accessibility-compliance`. Existing React Native, Expo, motion, component, and visual-design references remain authoritative where they already cover the same concerns.

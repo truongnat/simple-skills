@@ -50,6 +50,8 @@ Use [Apple HIG](https://developer.apple.com/design/human-interface-guidelines/) 
 - Dynamic type, RTL, reduce motion, VoiceOver/TalkBack.
 - Tablets, foldables, landscape.
 
+Use `references/mobile-interaction-matrix.md` to verify touch targets, safe areas, navigation, keyboard, permissions, offline/error recovery, dynamic type, RTL, and device classes.
+
 ## When not to use
 
 - **Semantic image understanding** — **`sk-content-analysis-pro`**.

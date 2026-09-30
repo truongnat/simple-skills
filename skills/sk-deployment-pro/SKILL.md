@@ -51,6 +51,8 @@ Use your cloud or platform **official docs** for exact syntax; this skill encode
 - GitOps/drift, canary health gates, zero-downtime with DB.
 - Blast radius, ordering (API vs clients), operational deploy failures.
 
+Use `references/rollout-and-rollback-gates.md` to record preflight, canary, promotion, rollback/forward-fix, schema compatibility, and post-rollback evidence.
+
 ## When not to use
 
 - **Pure pandas analysis** — **`sk-data-analysis-pro`**.

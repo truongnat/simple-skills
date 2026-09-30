@@ -27,6 +27,8 @@ Expert-level orchestration of Amazon Web Services. Focuses on security, scalabil
 - Automating infrastructure deployment using Terraform or AWS CDK.
 - Optimizing AWS costs and performance for existing workloads.
 
+Use `references/architecture-readiness-matrix.md` to capture security, reliability, performance, cost, operations, sustainability, ownership, and recovery evidence.
+
 ## Workflow
 
 1. **Architecture Design**: Map requirements to AWS Well-Architected Framework.

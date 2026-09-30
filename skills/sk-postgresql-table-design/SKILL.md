@@ -18,6 +18,8 @@ sk-compatible: [claude, cursor, codex, gemini]
 - Create **indexes for access paths you actually query**: PK/unique (auto), **FK columns (manual!)**, frequent filters/sorts, and join keys.
 - Prefer **TIMESTAMPTZ** for event time; **NUMERIC** for money; **TEXT** for strings; **BIGINT** for integer values, **DOUBLE PRECISION** for floats (or `NUMERIC` for exact decimal arithmetic).
 
+Use `references/schema-review-matrix.md` for grain, constraints, access paths, concurrency, growth, privacy, and live-migration evidence.
+
 ## PostgreSQL “Gotchas”
 
 - **Identifiers**: unquoted → lowercased. Avoid quoted/mixed-case names. Convention: use `snake_case` for table/column names.

@@ -22,6 +22,8 @@ Master database schema and data migrations across ORMs (Sequelize, TypeORM, Pris
 - Database version upgrades
 - Data model refactoring
 
+Use `references/migration-safety-matrix.md` to validate expand/contract changes, online indexes, backfills, locks, compatibility, restore points, and post-migration invariants.
+
 ## ORM Migrations
 
 ### Sequelize Migrations

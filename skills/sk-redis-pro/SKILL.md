@@ -27,6 +27,8 @@ Expert-level orchestration of Redis as a database, cache, and message broker. Fo
 - Designing distributed locks and rate limiters.
 - Managing high-throughput event streams with Redis Streams.
 
+Use `references/durability-and-failure-matrix.md` to distinguish cache, coordination, stream, and primary-data durability; validate failover, persistence, eviction, locks, and recovery evidence.
+
 ## Workflow
 
 1. **Data Structure Selection**: Choose the most efficient Redis type for the use case.

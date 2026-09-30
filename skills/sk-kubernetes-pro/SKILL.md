@@ -27,6 +27,8 @@ Expert-level orchestration of containerized workloads. Focuses on scalability, r
 - Hardening K8s security through RBAC and Pod Security Standards.
 - Troubleshooting container connectivity or resource issues in a cluster.
 
+Use `references/deployment-reliability-gates.md` to verify scheduling, probes, rollout, traffic draining, security, state, observability, failure, and rollback behavior.
+
 ## Workflow
 
 1. **Architecture Planning**: Define resource requirements and scaling policies.

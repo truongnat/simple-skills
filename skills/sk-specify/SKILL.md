@@ -86,6 +86,8 @@ Shared required sections (all modes):
 
 Mode-specific required bodies: see the seeded template.
 
+Use `references/specification-mode-and-decision-records.md` to select exactly one mode, preserve stable trace IDs, and record options, rationale, consequences, owners, and superseded decisions.
+
 ### Reference
 
 Templates in `templates/` are authoritative for section shape.

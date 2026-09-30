@@ -86,6 +86,8 @@ handoff.
 #### `TASKS.md` (from template)
 Work inventory table, Progress board (Done checkbox + Status per ID), plan_ref, sk-execution_order, micro-task cards (Trace with §/AC, Status=`todo`, Work items ≥2 as `- [ ] N. …`, Description, AC observable, Verify, Flow/comment notes, Files/scope concrete, confidence, out-of-scope). Implement before automated tests. Planning seeds progress; sk-execution marks completion.
 
+Use `references/planning-to-execution-handoff.md` to gate scope, decisions, task-card readiness, DoD, rollback, dependencies, and the next-owner handoff.
+
 ### Reference
 
 ## Forbidden outputs (reject / rewrite)

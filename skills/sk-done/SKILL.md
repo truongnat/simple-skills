@@ -50,6 +50,8 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 ### Required artifacts
 
+Use `references/closure-and-decision-evidence.md` to consume canonical verification, record acceptance ownership, residual risk, follow-up, and an auditable closure decision.
+
 #### `DONE.md`
 - Required: yes
 - **step_ledger** (required): `## progress checklist` table — Step \| Name \| Status \| Evidence for steps 01–04; statuses `todo`/`complete`/`blocked`, updated at the end of every step, never a later `complete` while an earlier row is `todo`/`blocked` (progress checklist).

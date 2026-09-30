@@ -70,6 +70,8 @@ Prefer acceptance criteria and verify steps from `TASKS.md` when present; use `P
 
 **Start here:** Read and follow the detailed instructions in this skill immediately after this Contract.
 
+Use `references/acceptance-to-test-summary.md` to preserve `FR/NFR/BR/US → AC → TC → execution → defect → test summary` traceability and honest go/no-go evidence.
+
 ## Contract (mandatory)
 
 This skill is a **hard contract**. Obey it before any other action. Do NOT treat as optional. Do NOT skip required artifacts or steps.

@@ -65,6 +65,7 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
   - **Progress board:** same Status as the card; Done=`[x]` only when Status=`sk-done`.
   - **Progress chart:** keep the Mermaid pie/status chart aligned with the board.
 - Status values: `todo` | `in_progress` | `sk-done` | `blocked` | `skipped` (see TASKS Status legend).
+Use `references/progress-and-evidence-handoff.md` to keep status, evidence, blocked/skipped semantics, resume points, and next-owner handoff aligned with the task ledger.
 
 #### `EXECUTION.md`
 - Required: yes
@@ -237,3 +238,6 @@ Produce a reusable execution artifact with the selected approach, relevant files
 ## Cross-skill handoffs
 
 - sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+ - Status values: `todo` | `in_progress` | `sk-done` | `blocked` | `skipped` (see TASKS Status legend).
+
+Use `references/progress-and-evidence-handoff.md` to keep status, evidence, blocked/skipped semantics, resume points, and next-owner handoff aligned with the task ledger.

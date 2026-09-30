@@ -52,6 +52,8 @@ Invoking it **is** executing every step below, in order, one at a time.
 
 ### Upgrade triggers
 
+Use `references/upgrade-trigger-matrix.md` to record the trigger, target path, decision owner, and required evidence whenever Quick must upgrade to BA, design, architecture, security, or planning.
+
 Upgrade to `sk-business-analysis`, a design skill, or `sk-planning` before implementation when any condition holds:
 
 - the change touches a public API, schema, migration, authentication, authorization, or data retention;

@@ -64,6 +64,8 @@ This skill is a **hard contract**. Obey it before any other action. Do NOT treat
 
 ### Required artifacts
 
+Use `references/requirements-to-acceptance-evidence.md` to preserve traceable business rules, user stories, falsifiable acceptance criteria, blockers, decision owners, and readiness handoff.
+
 #### `BUSINESS_ANALYSIS.md`
 - Required: yes.
 - **step_ledger** (required, table): Steps 01–04 status; no later step complete while earlier is todo.

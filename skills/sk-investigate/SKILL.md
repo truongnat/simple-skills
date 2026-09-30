@@ -163,7 +163,12 @@ Produce a reusable investigate artifact with the selected approach, relevant fil
 
 ## Boundary
 
-**`sk-investigate`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-investigate`** owns evidence-backed investigation before a fix or plan: observations, hypotheses, reproduction steps, document/code reality checks, root-cause candidates, findings, and confidence.
+
+It does **not** own permanent remediation, broad refactoring, or release approval. Route a bounded change to `sk-quick-fix`, larger work to the domain/planning owner, and claim-to-evidence judgment to `sk-verify-pro`.
+
+**Primary artifact:** an investigation record with reproducible evidence, ruled-in/rule-out hypotheses, findings, limitations, and recommended next owner. **Handoff:** pass the evidence to the domain owner or `sk-quick-fix`; preserve unresolved uncertainty for planning or verification.
 
 ## Required inputs
 
@@ -172,4 +177,4 @@ Produce a reusable investigate artifact with the selected approach, relevant fil
 
 ## Cross-skill handoffs
 
-- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review for quality findings; sk-verify-pro for canonical claim-to-evidence decisions (sk-verification is a compatibility facade only).

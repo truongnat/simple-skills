@@ -128,4 +128,4 @@ This skill must produce:
 
 ## Cross-skill handoffs
 
-- sk-testing-pro for broader test strategy; sk-clean-code for refactoring; sk-verification for final evidence.
+- sk-testing-pro for broader test strategy; sk-clean-code for refactoring; sk-verify-pro for final claim-to-evidence decisions (sk-verification is a compatibility facade).

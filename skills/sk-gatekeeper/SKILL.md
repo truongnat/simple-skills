@@ -111,4 +111,4 @@ Block when verification is pending, blocked, stale, or lacks evidence.
 
 ## Cross-skill handoffs
 
-- sk-verification/sk-verify-pro for evidence; sk-code-review-pro for findings; sk-using-harness for active command state; sk-executing-pro after approval.
+- sk-verify-pro for canonical evidence decisions (sk-verification is a compatibility facade); sk-code-review-pro for findings; sk-using-harness for active command state; sk-executing-pro after approval.

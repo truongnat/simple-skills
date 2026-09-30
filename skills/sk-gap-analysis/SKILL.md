@@ -88,7 +88,12 @@ Produce a reusable gap analysis artifact with the selected approach, relevant fi
 
 ## Boundary
 
-**`sk-gap-analysis`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-gap-analysis`** owns the current-versus-target capability or evidence gap register: missing flows, rules, acceptance criteria, documentation, dependencies, impact, and remediation priority.
+
+It does **not** own applying fixes, inventing an unapproved target state, or accepting the final release. Route remediation sequencing to `sk-planning`, implementation to the domain owner, and evidence sufficiency to `sk-verify-pro`.
+
+**Primary artifact:** `GAP.md` or `CR.md` with observed state, target state, gap evidence, impact, priority, and proposed next owner. **Handoff:** pass prioritized gaps to `sk-planning` or the responsible domain owner.
 
 ## Required inputs
 
@@ -97,4 +102,4 @@ Produce a reusable gap analysis artifact with the selected approach, relevant fi
 
 ## Cross-skill handoffs
 
-- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review for quality findings; sk-verify-pro for canonical claim-to-evidence decisions (sk-verification is a compatibility facade only).

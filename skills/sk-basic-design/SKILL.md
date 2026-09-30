@@ -221,7 +221,12 @@ Produce a reusable basic design artifact with the selected approach, relevant fi
 
 ## Boundary
 
-**`sk-basic-design`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-basic-design`** owns system-level design direction after the problem is stable: major components, module/data ownership, system flows, architectural constraints, and the boundary decisions that shape implementation.
+
+It does **not** own unresolved product discovery, implementable field-level contracts, code, or release verification. Route ambiguity to `sk-discussing-pro`/`sk-business-analysis`, detailed contracts to `sk-detail-design`, and evidence decisions to `sk-verify-pro`.
+
+**Primary artifact:** `BASIC_DESIGN.md` with architecture shape, component responsibilities, ownership boundaries, key flows, and known constraints. **Handoff:** pass approved system shape to `sk-detail-design` or `sk-planning`.
 
 ## Required inputs
 
@@ -230,4 +235,4 @@ Produce a reusable basic design artifact with the selected approach, relevant fi
 
 ## Cross-skill handoffs
 
-- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review for quality findings; sk-verify-pro for canonical claim-to-evidence decisions (sk-verification is a compatibility facade only).

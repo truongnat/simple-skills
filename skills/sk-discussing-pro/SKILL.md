@@ -199,7 +199,12 @@ The code then renders this JSON into the same DISCUSSION.md markdown format as t
 
 ## Boundary
 
-**`sk-discussing-pro`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-discussing-pro`** owns clarification of a vague request into an implementation-ready direction: problem statement, goals, constraints, options, unresolved decisions, and a recommendation before planning or coding.
+
+It does **not** own final requirements, task breakdown, architecture contracts, implementation, or verification. Route business outcomes to `sk-business-analysis`, formal constraints to `sk-specify`, and approved scope to `sk-planning`.
+
+**Primary artifact:** a decision record with clarified goal, constraints, compared options, open questions, and explicit next owner. **Handoff:** pass stable direction to `sk-business-analysis`/`sk-specify` or `sk-planning`.
 
 ## Required inputs
 
@@ -208,4 +213,4 @@ The code then renders this JSON into the same DISCUSSION.md markdown format as t
 
 ## Cross-skill handoffs
 
-- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review for quality findings; sk-verify-pro for canonical claim-to-evidence decisions (sk-verification is a compatibility facade only).

@@ -85,7 +85,12 @@ Produce a reusable ba test artifact with the selected approach, relevant files o
 
 ## Boundary
 
-**`sk-ba-test`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-ba-test`** owns BA-level acceptance coverage before deep test execution: business-readable scenarios, expected outcomes, edge cases, and criterion-to-case mapping.
+
+It does **not** own test-framework implementation, test execution, or the release gate. Route runnable checks and logs to `sk-tester`; route the complete claim-to-evidence packet to `sk-verify-pro`.
+
+**Primary artifact:** `TEST_CHECKLIST.md` or `TESTCASES.md` containing acceptance scenarios, expected outcomes, evidence location, freshness, limitations, and next owner. **Handoff:** pass cases to `sk-tester` and the resulting evidence packet to `sk-verify-pro`.
 
 ## Required inputs
 
@@ -94,6 +99,6 @@ Produce a reusable ba test artifact with the selected approach, relevant files o
 
 ## Cross-skill handoffs
 
-- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review for quality findings; sk-verify-pro for canonical claim-to-evidence decisions (sk-verification is a compatibility facade only).
 
 Hand off the completed packet to `sk-verify-pro`; `sk-done` or a release owner may consume it only after a canonical `pass`.

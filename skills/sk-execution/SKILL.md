@@ -242,7 +242,7 @@ It does **not** own discovery, detailed planning, domain implementation guidance
 
 ## Cross-skill handoffs
 
-- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review for quality findings; sk-verify-pro for canonical claim-to-evidence decisions (sk-verification is a compatibility facade only).
  - Status values: `todo` | `in_progress` | `sk-done` | `blocked` | `skipped` (see TASKS Status legend).
 
 Use `references/progress-and-evidence-handoff.md` to keep status, evidence, blocked/skipped semantics, resume points, and next-owner handoff aligned with the task ledger.

@@ -226,7 +226,12 @@ Produce a reusable detail design artifact with the selected approach, relevant f
 
 ## Boundary
 
-**`sk-detail-design`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-detail-design`** owns implementable design contracts derived from an approved basic design: models, sequences, states, API/event/CLI rules, field-level constraints, validation, and error paths.
+
+It does **not** own product discovery, system-level architecture choices, implementation code, or final verification. Route scope ambiguity to `sk-business-analysis`/`sk-discussing-pro`, architecture shape to `sk-basic-design`, and delivery evidence to `sk-verify-pro`.
+
+**Primary artifact:** `DETAIL_DESIGN.md` with traceable contracts, rules, sequences, assumptions, and unresolved blockers. **Handoff:** pass the stable contract to `sk-planning` and the relevant stack implementation owner.
 
 ## Required inputs
 
@@ -235,4 +240,4 @@ Produce a reusable detail design artifact with the selected approach, relevant f
 
 ## Cross-skill handoffs
 
-- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review for quality findings; sk-verify-pro for canonical claim-to-evidence decisions (sk-verification is a compatibility facade only).

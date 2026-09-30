@@ -2,19 +2,19 @@
 
 ## Executive summary
 
-The current catalog-wide heuristic produces **81 boundary overlap leads** at Jaccard ≥ 0.72.
+The current catalog-wide heuristic produces **0 boundary overlap leads** at Jaccard ≥ 0.72.
 
 | Classification | Count | Interpretation | Recommended treatment |
 |---|---:|---|---|
-| Lifecycle/BA generic-boundary cluster | 78 | Shared lifecycle vocabulary still creates pairwise similarity; not proof of duplicate skills | Rewrite the remaining 13 Boundaries around their artifact and decision owner |
-| Expo/JavaScript adjacency | 3 | UI, data-fetching and testing concerns share state/testing vocabulary | Add explicit exclusions and handoffs; keep skills separate |
+| Lifecycle/BA generic-boundary cluster | 0 | Shared lifecycle vocabulary still creates pairwise similarity; not proof of duplicate skills | No remaining lifecycle/BA generic-boundary leads; keep the artifact-owner contracts and routing guardrail |
+| Expo/JavaScript adjacency | 0 | UI, data-fetching and testing concerns share state/testing vocabulary | No remaining Expo/JavaScript adjacency leads at this threshold |
 | Direct `sk-verify-pro` overlap | 0 | The P0 verification boundary rewrite removed direct heuristic collisions | Keep the handoff matrix below as the routing contract |
 
 The score is a **review signal**, not a duplicate verdict. The linter compares tokens inside `Boundary`; it does not inspect triggers, artifacts, workflow steps, or user intent.
 
-## 1. Complete list of 81 leads
+## 1. Complete list of 0 leads
 
-### 1.1 Lifecycle/BA generic-boundary cluster — 78 pairs
+### 1.1 Lifecycle/BA generic-boundary cluster — 0 pairs
 
 All pairs in this table are combinations among the following 13 skills:
 
@@ -22,96 +22,15 @@ All pairs in this table are combinations among the following 13 skills:
 
 | Similarity | Pair | Current interpretation | Next action |
 |---:|---|---|---|
-| 0.93 | `sk-ba-dashboard` ↔ `sk-ba-handoff` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-dashboard` ↔ `sk-ba-integrate` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-dashboard` ↔ `sk-ba-kg` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-dashboard` ↔ `sk-ba-test` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-dashboard` ↔ `sk-basic-design` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-dashboard` ↔ `sk-brainstorming` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-dashboard` ↔ `sk-detail-design` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-dashboard` ↔ `sk-discussing-pro` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-dashboard` ↔ `sk-gap-analysis` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-dashboard` ↔ `sk-init` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-dashboard` ↔ `sk-investigate` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-dashboard` ↔ `sk-quick-fix` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-handoff` ↔ `sk-ba-integrate` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-handoff` ↔ `sk-ba-kg` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-handoff` ↔ `sk-ba-test` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-handoff` ↔ `sk-basic-design` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-handoff` ↔ `sk-brainstorming` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-handoff` ↔ `sk-detail-design` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-handoff` ↔ `sk-discussing-pro` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-handoff` ↔ `sk-gap-analysis` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-handoff` ↔ `sk-init` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-handoff` ↔ `sk-investigate` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-handoff` ↔ `sk-quick-fix` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-integrate` ↔ `sk-ba-kg` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-integrate` ↔ `sk-ba-test` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-integrate` ↔ `sk-basic-design` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-integrate` ↔ `sk-brainstorming` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-integrate` ↔ `sk-detail-design` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-integrate` ↔ `sk-discussing-pro` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-integrate` ↔ `sk-gap-analysis` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-integrate` ↔ `sk-init` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-integrate` ↔ `sk-investigate` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-integrate` ↔ `sk-quick-fix` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-kg` ↔ `sk-ba-test` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-kg` ↔ `sk-basic-design` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-kg` ↔ `sk-brainstorming` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-kg` ↔ `sk-detail-design` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-kg` ↔ `sk-discussing-pro` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-kg` ↔ `sk-gap-analysis` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-kg` ↔ `sk-init` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-kg` ↔ `sk-investigate` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-kg` ↔ `sk-quick-fix` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-test` ↔ `sk-basic-design` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-test` ↔ `sk-brainstorming` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-test` ↔ `sk-detail-design` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-test` ↔ `sk-discussing-pro` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-test` ↔ `sk-gap-analysis` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-test` ↔ `sk-init` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-test` ↔ `sk-investigate` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-ba-test` ↔ `sk-quick-fix` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-basic-design` ↔ `sk-brainstorming` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-basic-design` ↔ `sk-detail-design` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-basic-design` ↔ `sk-discussing-pro` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-basic-design` ↔ `sk-gap-analysis` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-basic-design` ↔ `sk-init` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-basic-design` ↔ `sk-investigate` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-basic-design` ↔ `sk-quick-fix` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-brainstorming` ↔ `sk-detail-design` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-brainstorming` ↔ `sk-discussing-pro` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-brainstorming` ↔ `sk-gap-analysis` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-brainstorming` ↔ `sk-init` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-brainstorming` ↔ `sk-investigate` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-brainstorming` ↔ `sk-quick-fix` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-detail-design` ↔ `sk-discussing-pro` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-detail-design` ↔ `sk-gap-analysis` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-detail-design` ↔ `sk-init` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-detail-design` ↔ `sk-investigate` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-detail-design` ↔ `sk-quick-fix` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-discussing-pro` ↔ `sk-gap-analysis` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-discussing-pro` ↔ `sk-init` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-discussing-pro` ↔ `sk-investigate` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-discussing-pro` ↔ `sk-quick-fix` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-gap-analysis` ↔ `sk-init` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-gap-analysis` ↔ `sk-investigate` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-gap-analysis` ↔ `sk-quick-fix` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-init` ↔ `sk-investigate` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-init` ↔ `sk-quick-fix` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
-| 0.93 | `sk-investigate` ↔ `sk-quick-fix` | Generic lifecycle vocabulary; not enough evidence of duplicate ownership | Add artifact-specific Boundary and canonical handoff for both skills |
 
-### 1.2 Expo/JavaScript adjacency — 3 pairs
+### 1.2 Expo/JavaScript adjacency — 0 pairs
 
 | Similarity | Pair | Likely distinction | Next action |
 |---:|---|---|---|
-| 0.93 | `sk-expo-data-fetching` ↔ `sk-expo-native-ui` | Data state/network lifecycle versus native UI/platform behavior | Make data-fetching own request/cache/error/cancellation evidence; make native UI own platform rendering, safe areas, input and accessibility |
-| 0.93 | `sk-expo-data-fetching` ↔ `sk-javascript-testing-patterns` | Runtime data behavior versus JavaScript test patterns | Route test implementation to testing skill; keep data-fetching acceptance scenarios in the Expo skill |
-| 0.93 | `sk-expo-native-ui` ↔ `sk-javascript-testing-patterns` | Native UI behavior versus test tooling/assertion strategy | Keep UI as behavior owner and testing as evidence producer; add explicit handoff |
 
 ## 2. Recommended treatment of the 13-skill cluster
 
-The 78 pairs form a near-clique because the Boundary text still contains common lifecycle concepts. Do not merge these skills. Give each one a one-sentence primary artifact, a non-ownership clause, and a next-owner handoff:
+The 0 lifecycle/BA pairs are review signals, not duplicate verdicts. Do not merge these skills. Keep one-sentence primary artifacts, non-ownership clauses, and next-owner handoffs:
 
 | Skill | Recommended canonical artifact/decision | Must not own | Canonical next handoff |
 |---|---|---|---|
@@ -195,27 +114,22 @@ Every handoff into `sk-verify-pro` should contain:
 - Keep `sk-verification` as the compatibility facade and prevent invoking both for one task.
 - Update generic Cross-skill handoff lists that still mention `sk-verification` as a peer quality owner; they should distinguish facade versus canonical owner.
 
-### P1 — reduce the remaining 78 generic-boundary leads
+### P1 — no remaining generic-boundary leads
 
-- Rewrite the 13 skills in section 2 with the artifact/decision map above.
+- Keep the 13 rewritten Boundary contracts and guardrail.
 - Add one explicit adjacent-skill comparison to each Boundary.
 - Add `sk-tester → sk-verify-pro` and `sk-done ← sk-verify-pro` wording where the skill produces or consumes evidence.
-- Rerun the linter and treat remaining pairs as review leads only.
+- Rerun the linter on each catalog change; treat any new pair as a review lead only.
 
-### P2 — clarify the 3 Expo/JavaScript pairs
+### P2 — no remaining Expo/JavaScript adjacency leads
 
-- **Implemented:** `sk-expo-data-fetching` now owns data lifecycle, request/cache/error/cancellation evidence and routes UI/test/final verification outward.
-- **Implemented:** `sk-expo-native-ui` now owns native rendering, platform behavior, accessibility and UI state presentation and routes data/test/final verification outward.
-- **Implemented:** `sk-javascript-testing-patterns` now owns deterministic test strategy, fixture isolation and assertion patterns, not Expo product behavior or final release status.
-- **Implemented:** the three domain references now contain packet-aware `pass`/`block`/`defer` sample cases.
-
-### P2 verification-case update
-
-The shared `sk-verify-pro` reference now defines canonical packet fields and twelve domain/lifecycle examples. `sk-ba-test` also emits evidence location, criteria mapping, freshness, case result, limitation, next owner and final decision fields. The 13 lifecycle/BA skills should adopt the same artifact-specific case pattern during the next content pass; their technical mapping remains in section 2.
+- Keep the existing Expo data/UI/testing ownership contracts.
+- Monitor Expo routing through regression fixtures.
+- Do not reopen this adjacency without new evidence.
 
 ## Method limitations
 
-- The 81 pairs are generated from current `Boundary` token sets at threshold 0.72.
+- The 0 pairs are generated from current `Boundary` token sets at threshold 0.72.
 - Similarity cannot determine whether two skills produce the same artifact.
 - A pair may be intentionally adjacent and still require a handoff, not a merge.
 - Domain correctness, trigger ranking and user-intent routing require manual or fixture-based review.

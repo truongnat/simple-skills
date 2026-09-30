@@ -176,7 +176,12 @@ Produce a reusable brainstorming artifact with the selected approach, relevant f
 
 ## Boundary
 
-**`sk-brainstorming`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-brainstorming`** owns divergent option generation and selection framing: alternatives, assumptions, trade-offs, decision criteria, and a recommendation candidate before normative requirements or implementation planning.
+
+It does **not** own final requirements, final architecture, task breakdown, code, or verification. Route business decisions to `sk-business-analysis`, normative contracts to `sk-specify`, and clarified discussion to `sk-discussing-pro`.
+
+**Primary artifact:** `DISCUSSION.md` option matrix with facts, assumptions, criteria, rejected alternatives, and recommendation status. **Handoff:** pass the selected direction to `sk-discussing-pro` or the appropriate requirements/design owner.
 
 ## Required inputs
 
@@ -185,4 +190,4 @@ Produce a reusable brainstorming artifact with the selected approach, relevant f
 
 ## Cross-skill handoffs
 
-- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review for quality findings; sk-verify-pro for canonical claim-to-evidence decisions (sk-verification is a compatibility facade only).

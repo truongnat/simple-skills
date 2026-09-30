@@ -82,7 +82,12 @@ Produce a reusable ba integrate artifact with the selected approach, relevant fi
 
 ## Boundary
 
-**`sk-ba-integrate`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-ba-integrate`** owns the business integration map for Jira/Confluence and related project-system synchronization: actors, systems, exchanged information, ownership, lifecycle states, failure expectations, and synchronization intent.
+
+It does **not** own API contract design, connector implementation, or external write execution without the required approval. Route API behavior to `sk-api-ba`/`sk-api-design-pro`, repository state to `sk-sync`, and evidence decisions to `sk-verify-pro`.
+
+**Primary artifact:** an integration requirement map with ownership and failure expectations. **Handoff:** pass the business map to API/integration implementation owners and the refreshed state to `sk-sync`.
 
 ## Required inputs
 
@@ -91,4 +96,4 @@ Produce a reusable ba integrate artifact with the selected approach, relevant fi
 
 ## Cross-skill handoffs
 
-- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review for quality findings; sk-verify-pro for canonical claim-to-evidence decisions (sk-verification is a compatibility facade only).

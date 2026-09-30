@@ -76,7 +76,12 @@ Produce a reusable ba dashboard artifact with the selected approach, relevant fi
 
 ## Boundary
 
-**`sk-ba-dashboard`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-ba-dashboard`** owns the BA reporting view for the current task workspace: health metrics, dimensions, evidence freshness, delivery signals, and the decision questions those signals should answer.
+
+It does **not** own data-pipeline or BI implementation, visual frontend construction, or the final release decision. Route business outcome questions to `sk-business-analysis`, implementation to the analytics/frontend owner, and claim-to-evidence decisions to `sk-verify-pro`.
+
+**Primary artifact:** a dashboard/reporting requirements or health snapshot with metric definitions, sources, gaps, and decision questions. **Handoff:** pass validated reporting needs to the analytics/frontend owner; pass evidence gaps to `sk-planning` or `sk-verify-pro`.
 
 ## Required inputs
 
@@ -85,4 +90,4 @@ Produce a reusable ba dashboard artifact with the selected approach, relevant fi
 
 ## Cross-skill handoffs
 
-- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review for quality findings; sk-verify-pro for canonical claim-to-evidence decisions (sk-verification is a compatibility facade only).

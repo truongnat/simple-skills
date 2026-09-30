@@ -26,7 +26,12 @@ Return the files inspected, the verified project facts, the commands used to ver
 
 ## Boundary
 
-**`sk-init`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-init`** owns verified project/workspace context at task entry: inspected files, repository state, constraints, inputs, artifact location, assumptions, and blockers that affect the next safe action.
+
+It does **not** own product discovery, architecture design, diagnosis, implementation, or acceptance decisions. Route unclear direction to `sk-discussing-pro`, execution sequencing to `sk-planning`, and domain work to the direct specialist.
+
+**Primary artifact:** an initialization record listing verified facts, commands/evidence, missing information, and the proposed next owner. **Handoff:** pass the factual context to `sk-discussing-pro`, `sk-planning`, or the direct specialist without silently changing scope.
 
 ## Required inputs
 
@@ -35,4 +40,4 @@ Return the files inspected, the verified project facts, the commands used to ver
 
 ## Cross-skill handoffs
 
-- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review for quality findings; sk-verify-pro for canonical claim-to-evidence decisions (sk-verification is a compatibility facade only).

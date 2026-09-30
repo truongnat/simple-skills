@@ -77,7 +77,12 @@ Produce a reusable ba kg artifact with the selected approach, relevant files or 
 
 ## Boundary
 
-**`sk-ba-kg`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-ba-kg`** owns a lookup-oriented trace graph of business and delivery entities—Epic, US, AC, FR, BR, API, Screen, and Test—and their provenance-bearing relations such as implements, traces, tests, and maps.
+
+It does **not** own graph-database implementation, embeddings/vector search, or generic business decisions outside the trace model. Route storage/query implementation to the graph/data owner and acceptance evidence to `sk-verify-pro`.
+
+**Primary artifact:** a trace graph specification or generated graph with entity definitions, edges, provenance, and query outcomes. **Handoff:** pass the graph contract to the data implementation owner and trace gaps to the relevant requirement owner.
 
 ## Required inputs
 
@@ -86,4 +91,4 @@ Produce a reusable ba kg artifact with the selected approach, relevant files or 
 
 ## Cross-skill handoffs
 
-- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review for quality findings; sk-verify-pro for canonical claim-to-evidence decisions (sk-verification is a compatibility facade only).

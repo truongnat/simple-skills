@@ -104,7 +104,12 @@ Produce a reusable quick fix artifact with the selected approach, relevant files
 
 ## Boundary
 
-**`sk-quick-fix`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-quick-fix`** owns small, clearly bounded remediation: the selected change, changed files, focused checks, residual risk, and rollback note when a full lifecycle ceremony is unnecessary.
+
+It does **not** own discovery, broad refactoring, unrelated cleanup, or an unverified complete/releasable claim. Route test execution to `sk-tester` and the final claim-to-evidence decision to `sk-verify-pro`.
+
+**Primary artifact:** a quick-fix record with bounded scope, changed artifacts, checks, limitations, rollback, and next owner. **Handoff:** pass changed artifacts to `sk-tester`, then submit the evidence packet to `sk-verify-pro`.
 
 ## Required inputs
 
@@ -113,4 +118,4 @@ Produce a reusable quick fix artifact with the selected approach, relevant files
 
 ## Cross-skill handoffs
 
-- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review for quality findings; sk-verify-pro for canonical claim-to-evidence decisions (sk-verification is a compatibility facade only).

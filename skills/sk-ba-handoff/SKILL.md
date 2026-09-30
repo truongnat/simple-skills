@@ -84,7 +84,12 @@ Produce a reusable ba handoff artifact with the selected approach, relevant file
 
 ## Boundary
 
-**`sk-ba-handoff`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-ba-handoff`** owns the stakeholder-facing BA handoff: the selected decision, assumptions, open questions, acceptance context, evidence references, and the next accountable owner.
+
+It does **not** own implementation, invent new stakeholder decisions, or make the canonical verification decision. Route execution to `sk-planning`/`sk-executing-pro` and final claim-to-evidence judgment to `sk-verify-pro`.
+
+**Primary artifact:** a decision-preserving handoff packet that a downstream owner can act on without reconstructing context. **Handoff:** pass scope and assumptions to `sk-planning` or `sk-executing-pro`; pass acceptance evidence to `sk-verify-pro`.
 
 ## Required inputs
 
@@ -93,4 +98,4 @@ Produce a reusable ba handoff artifact with the selected approach, relevant file
 
 ## Cross-skill handoffs
 
-- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+- sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review for quality findings; sk-verify-pro for canonical claim-to-evidence decisions (sk-verification is a compatibility facade only).

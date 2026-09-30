@@ -27,6 +27,10 @@ Expert-level adversarial testing of Large Language Models (LLMs) and AI pipeline
 - Performing robustness testing on a machine learning model.
 - Setting up automated safety evaluation gates.
 
+## Verification reference
+
+Use `references/red-team-test-matrix.md` for reproducible prompt-injection, jailbreak, tool-misuse, exfiltration, over-refusal, and regression cases. Record model/version and expected safe behavior for every case.
+
 ## Workflow
 
 1. **Reconnaissance**: Identify the system's prompt structure, available tools, and safety guardrails.

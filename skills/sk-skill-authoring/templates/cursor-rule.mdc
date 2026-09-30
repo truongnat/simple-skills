@@ -1,0 +1,15 @@
+---
+description: Describe the single concern this Cursor rule enforces.
+globs: ["**/*"]
+alwaysApply: false
+---
+
+# Rule title
+
+State one focused, actionable rule.
+
+## Guidance
+
+- Explain the expected behavior.
+- Name the verification evidence when applicable.
+- Avoid duplicating unrelated project policy.

@@ -29,6 +29,8 @@ This skill covers the end-to-end RAG architecture: document ingestion, chunking,
 - Prompt structure or prompt optimization — use `sk-prompt-engineering-pro`.
 - Evaluation datasets and regression gates — use `sk-agent-evaluation-pro`.
 
+Use `references/groundedness-and-retrieval-matrix.md` for answerable/unanswerable, stale/conflicting, ACL, hybrid-search, noisy-context, ingestion, citation, latency, and token-cost cases.
+
 ## Required inputs
 
 - Corpus sources, ownership, access-control model, file formats, and freshness SLA.

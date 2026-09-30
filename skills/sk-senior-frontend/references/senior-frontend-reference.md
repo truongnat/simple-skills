@@ -283,7 +283,7 @@ The analyzer identifies these common heavy packages:
 
 ## React Patterns
 
-Reference: `references/react_patterns.md`
+Reference: `react_patterns.md`
 
 ### Compound Components
 
@@ -362,7 +362,7 @@ function DataFetcher({ url, render }) {
 
 ## Next.js Optimization
 
-Reference: `references/nextjs_optimization_guide.md`
+Reference: `nextjs_optimization_guide.md`
 
 ### Server vs Client Components
 
@@ -448,7 +448,7 @@ async function ProductPage({ params }) {
 
 ## Accessibility and Testing
 
-Reference: `references/frontend_best_practices.md`
+Reference: `frontend_best_practices.md`
 
 ### Accessibility Checklist
 
@@ -555,6 +555,8 @@ function List<T>({ items, renderItem }: ListProps<T>) {
 
 ## Resources
 
-- React Patterns: `references/react_patterns.md`
-- Next.js Optimization: `references/nextjs_optimization_guide.md`
-- Best Practices: `references/frontend_best_practices.md`
+- React Patterns: `react_patterns.md`
+- Next.js Optimization: `nextjs_optimization_guide.md`
+- Best Practices: `frontend_best_practices.md`
+Reference: `nextjs_optimization_guide.md`
+Reference: `frontend_best_practices.md`

@@ -27,6 +27,10 @@ Expert-level defensive and offensive security for web APIs. Focuses on preventin
 - Hardening JWT implementation (algorithms, rotations, claims).
 - Auditing an API for OWASP API Top 10 vulnerabilities (BOLA, BFLA, etc.).
 
+## Verification reference
+
+Use `references/api-security-verification.md` to test authentication, authorization, validation, replay, rate limits, CORS/CSRF, error redaction, logging, and transport controls with explicit evidence.
+
 ## Workflow
 
 1. **Threat Modeling**: Identify API endpoints and potential attack vectors (Insecure direct object references, mass assignment).

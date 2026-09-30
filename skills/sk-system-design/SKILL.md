@@ -141,26 +141,26 @@ Next steps: [follow-up actions if any]
 
 | Domain | File | Trigger |
 |--------|------|---------|
-| Deployment & Release | `references/deployment-release.md` | "safe deploy", "CI/CD", "canary release", "blue green", "rollback" |
-| SaaS & Multi-tenancy | `references/auth-multi-tenancy.md` | "SaaS design", "authz", "auth", "tenant", "multi-tenant" |
-| SRE & Incident | `references/sre-incident-response.md` | "system down", "observability", "alert", "post-mortem", "SLO/SLA" |
-| Edge Cases | `references/edge-case-analysis.md` | "edge case", "system failure", "race condition", "failure mode" |
-| Diagrams | `references/documentation-diagrams.md` | "draw X diagram", "Mermaid", "C4 model", "Sequence diagram" |
-| Migration | `references/migration-strategy.md` | "modernize system", "switch to microservices", "migrate database" |
-| ADR (Records) | `references/adr-guide.md` | "record decision", "ADR", "why choose X?", "architecture logging" |
-| Tech Selection | `references/tech-selection-strategy.md` | "which tool?", "compare X and Y", "modern stack for Z" |
-| Quick decisions | `references/decision-trees.md` | "use X or Y?", "what to choose?" |
-| Anti-patterns | `references/anti-patterns.md` | "should I use X?", "why is X failing?" |
-| Sizing & numbers | `references/sizing-guide.md` | latency, throughput, thresholds, cost |
-| AI Engineering | `references/ai-engineering.md` | RAG, LLM, agents, MCP, LLMOps, vector DB |
-| Backend / HLD | `references/backend-hld.md` | API, DB, cache, queue, scale |
-| Low-level Design | `references/lld.md` | patterns, CQRS, data model, algorithms |
-| Testing | `references/testing-fundamentals.md` | Unit, integration, E2E, contract, performance |
-| Data Pipelines | `references/data-pipelines.md` | ETL/ELT, CDC, Spark, dbt, Iceberg |
-| Compliance | `references/compliance.md` | GDPR, HIPAA, PCI-DSS, PII |
-| Edge & WASM | `references/edge-wasm.md` | Cloudflare Workers, WebAssembly, WASI |
-| FinOps | `references/finops.md` | Cloud cost, unit economics, reserved instances |
-| Cross-cutting | `references/cross-cutting.md` | Security, observability, CI/CD, SRE |
+| Deployment & Release | `deployment-release.md` | "safe deploy", "CI/CD", "canary release", "blue green", "rollback" |
+| SaaS & Multi-tenancy | `auth-multi-tenancy.md` | "SaaS design", "authz", "auth", "tenant", "multi-tenant" |
+| SRE & Incident | `sre-incident-response.md` | "system down", "observability", "alert", "post-mortem", "SLO/SLA" |
+| Edge Cases | `edge-case-analysis.md` | "edge case", "system failure", "race condition", "failure mode" |
+| Diagrams | `documentation-diagrams.md` | "draw X diagram", "Mermaid", "C4 model", "Sequence diagram" |
+| Migration | `migration-strategy.md` | "modernize system", "switch to microservices", "migrate database" |
+| ADR (Records) | `adr-guide.md` | "record decision", "ADR", "why choose X?", "architecture logging" |
+| Tech Selection | `tech-selection-strategy.md` | "which tool?", "compare X and Y", "modern stack for Z" |
+| Quick decisions | `decision-trees.md` | "use X or Y?", "what to choose?" |
+| Anti-patterns | `anti-patterns.md` | "should I use X?", "why is X failing?" |
+| Sizing & numbers | `sizing-guide.md` | latency, throughput, thresholds, cost |
+| AI Engineering | `ai-engineering.md` | RAG, LLM, agents, MCP, LLMOps, vector DB |
+| Backend / HLD | `backend-hld.md` | API, DB, cache, queue, scale |
+| Low-level Design | `lld.md` | patterns, CQRS, data model, algorithms |
+| Testing | `testing-fundamentals.md` | Unit, integration, E2E, contract, performance |
+| Data Pipelines | `data-pipelines.md` | ETL/ELT, CDC, Spark, dbt, Iceberg |
+| Compliance | `compliance.md` | GDPR, HIPAA, PCI-DSS, PII |
+| Edge & WASM | `edge-wasm.md` | Cloudflare Workers, WebAssembly, WASI |
+| FinOps | `finops.md` | Cloud cost, unit economics, reserved instances |
+| Cross-cutting | `cross-cutting.md` | Security, observability, CI/CD, SRE |
 
 **Read `decision-trees.md` FIRST** if the user is choosing between options.
 **Read `anti-patterns.md`** if the user asks about a specific approach.

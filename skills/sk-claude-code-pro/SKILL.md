@@ -9,10 +9,6 @@ sk-version: 0.1.0
 sk-roles: [orchestrator, developer]
 sk-tags: [orchestration, routing, platform]
 sk-compatible: [claude, cursor, codex, gemini]
-  - claude
-  - cursor
-  - codex
-  - gemini
 ---
 
 # Claude Code Pro

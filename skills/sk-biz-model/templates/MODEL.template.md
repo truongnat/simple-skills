@@ -42,7 +42,7 @@ _(process / object / system)_
 ## Diagram source
 
 ```mermaid
-%% TODO replace with real diagram (or use ```d2 / dbml fences)
+%% TODO replace with a real diagram. For D2 or DBML, change the outer fence language.
 flowchart LR
   A[Start] --> B[End]
 ```

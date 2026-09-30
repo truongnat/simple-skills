@@ -354,7 +354,7 @@ kubectl rollout undo deployment/my-app --to-revision=3
 kubectl rollout status deployment/my-app
 ```
 
-For advanced rollback strategies including database migration rollbacks and Argo Rollouts abort flows, see [`references/advanced-strategies.md`](advanced-strategies.md).
+For advanced rollback strategies including database migration rollbacks and Argo Rollouts abort flows, see [`advanced-strategies.md`](advanced-strategies.md).
 
 ## Monitoring and Metrics
 
@@ -397,3 +397,4 @@ For advanced rollback strategies including database migration rollbacks and Argo
 8. **Idempotent deploys** — Ensure re-running a deploy produces the same result
 9. **Rollback automation** — Trigger rollback automatically on health check or metric threshold failure
 10. **Annotate deployments** — Send deployment markers to monitoring tools (Datadog, Grafana) for correlation
+For advanced rollback strategies including database migration rollbacks and Argo Rollouts abort flows, see [`advanced-strategies.md`](advanced-strategies.md).

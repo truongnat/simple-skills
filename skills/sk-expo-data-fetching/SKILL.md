@@ -22,6 +22,7 @@ Consult these resources as needed:
 references/
   expo-router-loaders.md        Route-level data loading with Expo Router loaders (web, SDK 55+)
   offline-and-cancellation.md   NetInfo network status, offline-first React Query, AbortController
+  data-fetching-test-matrix.md  State, auth, cache, cancellation, offline, and environment test cases
 ```
 
 ## When to Use

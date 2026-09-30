@@ -1,16 +1,14 @@
 ---
 name: sk-gatekeeper
-description: >+
-  'Skill: gatekeeper-skill'
+description: >-
+  Evidence-based execution gatekeeping for deciding whether the next workflow
+  action is allowed, blocked, or requires more verification. Use before
+  high-impact commands, releases, or completion claims.
 sk-kind: process
 sk-version: 0.1.0
 sk-roles: [developer, reviewer]
 sk-tags: [process, quality, engineering]
 sk-compatible: [claude, cursor, codex, gemini]
-  - claude
-  - cursor
-  - codex
-  - gemini
 ---
 
 

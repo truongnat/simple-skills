@@ -109,7 +109,7 @@ Details: [references/frontmatter-guide.md](references/frontmatter-guide.md)
 
 ### References strategy (summary)
 
-Split to references/ when: content exceeds 20 lines on a topic, code examples are lengthy, decision trees have multiple branches. Name files by topic: `anti-patterns.md`, `decision-tree.md`, `edge-cases.md`. Link from SKILL.md with `Details: `references/file.md``.
+Split to references/ when: content exceeds 20 lines on a topic, code examples are lengthy, decision trees have multiple branches. Name files by topic: `anti-patterns.md`, `decision-tree.md`, `edge-cases.md`. Link from SKILL.md with a `Details:` line naming the sibling reference file.
 
 Details: [references/references-strategy.md](references/references-strategy.md)
 
@@ -170,3 +170,4 @@ Produce a reusable skill authoring artifact with the selected approach, relevant
 ## Cross-skill handoffs
 
 - sk-using-harness for session contract; sk-router-pro for routing; sk-repo-tooling-pro or sk-git-operations-pro for repository mechanics; the relevant domain skill for implementation.
+Split to references/ when: content exceeds 20 lines on a topic, code examples are lengthy, decision trees have multiple branches. Name files by topic: `anti-patterns.md`, `decision-tree.md`, `edge-cases.md`. Link from SKILL.md with a `Details:` line naming the sibling reference file.

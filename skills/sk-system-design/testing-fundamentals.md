@@ -2,7 +2,7 @@
 
 Phần 1/2 của testing skill. Cover: philosophy, unit, integration, E2E, contract,
 performance, visual regression, mobile, security, frontend component testing, anti-patterns.
-Phần 2 (automation process): `references/testing-automation.md`
+Phần 2 (automation process): `testing-automation.md`
 
 ---
 
@@ -202,12 +202,12 @@ Targets thực tế:
   API handlers:        > 80%
   Utility functions:   > 85%
   UI components:       > 70% (integration test covers nhiều hơn)
-  
-  KHÔNG cần 100%: Config files, migrations, third-party wrappers, 
+
+  KHÔNG cần 100%: Config files, migrations, third-party wrappers,
                   error handlers khó trigger, main entry files
 
 Gamification trap:
-  Developers viết tests chỉ để tăng số % 
+  Developers viết tests chỉ để tăng số %
   → Tests không meaningful, không assert bất kỳ điều gì quan trọng
   → "Tests that pass but prove nothing"
 
@@ -522,7 +522,7 @@ Contract testing giải quyết vấn đề:
 Traditional approach: Integration tests với real B
   Chậm, flaky, B phải always-on trong CI
 
-Contract testing: 
+Contract testing:
   A define "contract" (kỳ vọng về B's API)
   B verify contract trong CI của B
   Không cần A và B chạy cùng lúc
@@ -589,7 +589,7 @@ app.post('/pact/provider-states', async (req, res) => {
   switch (state) {
     case 'product p1 exists':
       await db.execute(`
-        INSERT INTO products (id, name, price, stock) 
+        INSERT INTO products (id, name, price, stock)
         VALUES ('p1', 'Test Product', 99000, 10)
         ON CONFLICT DO NOTHING
       `)
@@ -864,7 +864,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: npx tsc --noEmit
-  
+
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -1059,15 +1059,15 @@ Production data trong tests (acceptable exceptions):
 React Native:
   Unit: Jest + @testing-library/react-native
   Component: render() + userEvent (không Enzyme — deprecated)
-  
+
   import { render, screen, userEvent } from '@testing-library/react-native'
-  
+
   test('Counter increments on press', async () => {
     render(<Counter initialCount={0} />)
     const user = userEvent.setup()
-    
+
     await user.press(screen.getByRole('button', { name: 'Increment' }))
-    
+
     expect(screen.getByText('Count: 1')).toBeTruthy()
   })
 
@@ -1075,7 +1075,7 @@ Flutter:
   Unit: flutter test
   Widget: WidgetTester
   Integration: integration_test package
-  
+
   testWidgets('Counter increments', (tester) async {
     await tester.pumpWidget(const MyApp())
     expect(find.text('0'), findsOneWidget)
@@ -1091,7 +1091,7 @@ Flutter:
 Detox (React Native — Black-box, real device/simulator):
   Pros: Real user interaction, true E2E
   Cons: Slow (5-15 min per test), complex setup
-  
+
   describe('Login flow', () => {
     it('should login successfully', async () => {
       await element(by.id('email-input')).typeText('user@test.com')
@@ -1105,7 +1105,7 @@ Maestro (2024 recommended — YAML-based, simpler):
   - Không cần code: YAML flows
   - Nhanh setup hơn Detox
   - Cross-platform: iOS + Android + Web
-  
+
   # login.yaml
   appId: com.example.app
   ---
@@ -1187,10 +1187,10 @@ DAST (Dynamic Application Security Testing):
   OWASP ZAP: Free, mature, active scan
   Burp Suite: Industry standard (expensive)
   Nuclei: Template-based, fast
-  
+
   Integrate trong CI (non-blocking scan first):
   zap-baseline.py -t http://staging.example.com -r report.html
-  
+
   Kiểm tra:
   - Injection vulnerabilities
   - Broken authentication
@@ -1202,7 +1202,7 @@ Secrets scanning:
   TruffleHog: Scan git history cho secrets
   Gitleaks: Pre-commit hook
   GitHub Advanced Security: Built-in secret scanning
-  
+
   Pre-commit hook:
   # .pre-commit-config.yaml
   repos:

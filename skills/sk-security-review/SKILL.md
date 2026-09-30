@@ -41,6 +41,8 @@ DO NOT use this skill for:
 7. **Generate security report** with findings and remediation steps
 8. **Verify fixes** after remediation
 
+Use `references/review-evidence-and-severity.md` to capture reproducibility, impact, preconditions, remediation ownership, retest evidence, and severity rationale.
+
 ### Operating principles
 
 - **OWASP Top 10**: Prioritize vulnerabilities based on OWASP guidelines

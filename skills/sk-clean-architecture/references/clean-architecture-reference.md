@@ -599,5 +599,5 @@ export class OrdersModule {}
 
 ## References
 
-- `references/typescript-sk-clean-architecture.md` - TypeScript-specific patterns
-- `references/nestjs-implementation.md` - NestJS integration details
+- `typescript-clean-architecture.md` - TypeScript-specific patterns
+- `nestjs-implementation.md` - NestJS integration details

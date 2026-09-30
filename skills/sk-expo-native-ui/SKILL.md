@@ -28,6 +28,7 @@ references/
   storage.md             SQLite, AsyncStorage, SecureStore
   visual-effects.md      Blur (expo-blur) and liquid glass (expo-glass-effect)
   webgpu-three.md        3D graphics, games, GPU visualizations with WebGPU and Three.js
+  ui-verification-matrix.md  Platform, accessibility, responsive, and visual verification cases
 ```
 
 ## Running the App
@@ -186,6 +187,8 @@ Use CSS `boxShadow` style prop. NEVER use legacy React Native shadow or elevatio
 ## Output
 
 Produce an Expo native UI artifact with screen/component structure, platform differences, interaction/accessibility states, performance checks, and implementation handoff.
+
+For release or review work, read `references/ui-verification-matrix.md` and report device targets, accessibility settings, state fixtures, and known deviations.
 
 ## Boundary
 

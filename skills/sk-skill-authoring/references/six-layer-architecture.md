@@ -63,11 +63,11 @@ Every skill is built from six mandatory layers. Each layer serves a specific fun
 
 **Default recommendations:** Table format. Scenario → recommended approach.
 
-**Anti-patterns:** Brief description + why it fails. Link to `references/anti-patterns.md` for details.
+**Anti-patterns:** Brief description + why it fails. Link to the sibling `anti-patterns.md` reference for details.
 
 ## Layer 4: Knowledge
 
-**Location:** `### Topic (summary)` blocks in SKILL.md + `references/*.md` files
+**Location:** `### Topic (summary)` blocks in SKILL.md plus sibling reference files such as `topic-file.md`
 
 **Purpose:** Deep technical reference that the AI loads when depth is needed.
 
@@ -78,7 +78,7 @@ Every skill is built from six mandatory layers. Each layer serves a specific fun
 - Key point one
 - Key point two (keep to 3-5 bullets)
 
-Details: `references/topic-file.md`
+Details: `topic-file.md` (a sibling file in the references directory)
 ```
 
 **Reference file naming:**
@@ -122,3 +122,4 @@ Details: `references/topic-file.md`
 ```
 
 **Plus domain-specific items** (3-5 additional checks relevant to the skill's topic).
+**Location:** `### Topic (summary)` blocks in SKILL.md plus sibling reference files such as `topic-file.md`

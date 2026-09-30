@@ -144,10 +144,10 @@ Write the full SKILL.md following the template above. Show it to the user.
 
 ### 4. Identify overflow content
 If any section would exceed ~40 lines, propose splitting it into a `references/` file. Typical splits:
-- Failure modes → `references/failure-modes-detection-mitigation.md`
-- Decision trade-offs → `references/decision-framework-and-trade-offs.md`
-- Quality guardrails → `references/quality-validation-and-guardrails.md`
-- Conceptual model → `references/system-model.md`
+- Failure modes → a focused `failure-modes-detection-mitigation.md` reference
+- Decision trade-offs → a focused `decision-framework-and-trade-offs.md` reference
+- Quality guardrails → a focused `quality-validation-and-guardrails.md` reference
+- Conceptual model → a focused `system-model.md` reference
 
 ### 5. Review with user
 Present the complete file set and ask:

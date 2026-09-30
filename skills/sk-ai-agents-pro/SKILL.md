@@ -33,6 +33,8 @@ Expert-level orchestration of autonomous AI agents. Focuses on goal-driven reaso
 - A2A protocol and inter-agent discovery semantics — use `sk-a2a-protocol-pro`.
 - Evaluation design or regression datasets — use `sk-agent-evaluation-pro`.
 
+Before granting side effects, use `references/agent-reliability-matrix.md` to verify tool authorization, prompt-injection resistance, bounded retries, state recovery, memory scope, human handoff, and budget behavior.
+
 ## Required inputs
 
 - Agent goal, autonomy level, and allowed side effects.

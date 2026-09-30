@@ -50,6 +50,8 @@ Use official [MDN Performance APIs](https://developer.mozilla.org/en-US/docs/Web
 - Choosing whether to optimize code, queries, network, rendering, or capacity first.
 - Establishing baselines, budgets, and repeatable measurement scenarios.
 
+Use `references/reliability-gates.md` to require baseline, tail-latency, capacity, regression, cost, and recovery evidence before accepting an optimization.
+
 ## When not to use
 
 - **Pure capacity planning or cloud billing** without app measurement — **`sk-deployment-pro`** may lead.

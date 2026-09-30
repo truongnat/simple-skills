@@ -33,6 +33,8 @@ Expert-level orchestration of scalable data pipelines and storage architecture. 
 - Deep learning model training — use `sk-machine-learning-pro`.
 - Serving and monitoring models in production — use `sk-mlops-pro`.
 
+Use `references/pipeline-quality-and-lineage.md` to verify idempotency, late events, schema evolution, quality drift, partial failure, backfill, privacy, consumer lag, and source-to-published lineage.
+
 ## Required inputs
 
 - Source systems, data contract, volume/velocity, freshness SLA, and retention.

@@ -28,6 +28,8 @@ Build secure, scalable authentication and authorization systems using industry-s
 - Debugging auth issues
 - Implementing SSO or multi-tenancy
 
+For regression planning, use `references/auth-regression-matrix.md` and record clock assumptions, invalidation results, audit events, and redaction evidence.
+
 ## Core Concepts
 
 ### 1. Authentication vs Authorization

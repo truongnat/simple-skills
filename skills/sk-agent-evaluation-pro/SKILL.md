@@ -50,6 +50,8 @@ Use evaluation frameworks (Promptfoo, Braintrust, LangSmith, Arize Phoenix, Lang
 - Debugging why an agent fails on specific inputs via trace analysis.
 - Trigger keywords: `evaluate agent`, `LLM testing`, `prompt regression`, `red team`, `agent observability`, `eval pipeline`
 
+Use `references/regression-gates-and-datasets.md` to design golden-set composition, sample-level rubrics, groundedness/safety/tool gates, robustness variants, latency/cost budgets, and reviewed regression deltas.
+
 ## When not to use
 
 - **General software testing** (unit tests, integration tests for non-LLM code) — use **`sk-testing-pro`**.

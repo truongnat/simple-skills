@@ -34,6 +34,8 @@ Produce a decision-ready security artifact with scope, findings or design, evide
 
 Read `references/detailed-reference.md` for the full pattern library and extended checks.
 
+Read `references/security-verification-matrix.md` when the review needs attack scenarios, invariants, fuzz/regression evidence, or upgradeability checks.
+
 ## When not to use
 
 - When the request is outside `sk-solidity-security`'s boundary or another specialist is the primary owner.

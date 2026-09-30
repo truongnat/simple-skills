@@ -3,7 +3,7 @@
 Phần 2/2 của testing skill. Cover: TDD, BDD/Gherkin, mutation testing, property-based,
 accessibility automation, cross-browser, API fuzz, chaos engineering, test strategy,
 environment management, flaky tests, metrics, shift-left.
-Phần 1 (fundamentals): `references/testing-fundamentals.md`
+Phần 1 (fundamentals): `testing-fundamentals.md`
 
 ---
 
@@ -605,10 +605,10 @@ Simulator/Emulator (local, CI):
   → Không catch: Rendering quirks, GPU issues, camera, NFC, haptics
 
 Real devices (BrowserStack, AWS Device Farm):
-  → Cần khi: App có hardware features, performance-sensitive, 
+  → Cần khi: App có hardware features, performance-sensitive,
              accessibility (screen reader behaves differently)
   → Cost: ~$400-800/tháng (BrowserStack)
-  
+
 Strategy:
   CI:          Emulators (Chrome, Safari, Firefox)
   Pre-release: BrowserStack (top 5 real devices)
@@ -839,7 +839,7 @@ Low risk areas → less testing:
 ## 28. Test Environments
 
 | Environment | Purpose              | Data             | Reset policy    |
-|-------------|----------------------|------------------|-----------------| 
+|-------------|----------------------|------------------|-----------------|
 | local       | Developer testing    | Seeded + fixtures| Per developer   |
 | CI          | Automated tests      | Containers       | Per pipeline run|
 | staging     | Integration, E2E     | Anonymized subset| Weekly          |
@@ -933,7 +933,7 @@ Step 1: Detect
     npx vitest run --reporter=verbose --retry=0 2>&1 | grep -E "FAIL|PASS"
   Phương pháp B: Track CI results trong 30 ngày
     Test fail trong > 5% runs mà không có code changes = flaky
-  Phương pháp C: GitHub Actions re-run: 
+  Phương pháp C: GitHub Actions re-run:
     Test fail → re-run automatically → pass = flaky indicator
 
 Step 2: Triage

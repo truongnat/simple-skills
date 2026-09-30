@@ -38,7 +38,7 @@ In SKILL.md, every reference file MUST be linked twice:
 - Key point two
 - Key point three
 
-Details: `references/topic-name.md`
+Details: `topic-name.md` (a sibling file in the references directory)
 ```
 
 ### 2. In the Resources table:
@@ -47,7 +47,7 @@ Details: `references/topic-name.md`
 
 | Topic | File |
 |-------|------|
-| Topic name | `references/topic-name.md` |
+| Topic name | `topic-name.md` |
 ```
 
 ## File Structure
@@ -76,7 +76,7 @@ Each reference file should be self-contained:
 ## Cypher Patterns
 [200 lines of Cypher examples...]
 
-## Transaction Patterns  
+## Transaction Patterns
 [150 lines of transaction code...]
 ```
 
@@ -88,7 +88,7 @@ Each reference file should be self-contained:
 - Always parameterize: $variable, never string concatenation
 - ON CREATE SET before SET after MERGE
 
-Details: `references/cypher-patterns.md`
+Details: `cypher-patterns.md` (a sibling file in the references directory)
 ```
 
 The SKILL.md summary gives the AI enough context to know WHEN to load the reference. The reference file provides the full depth WHEN needed.

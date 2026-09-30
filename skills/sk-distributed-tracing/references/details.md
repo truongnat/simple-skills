@@ -71,7 +71,7 @@ services:
       - COLLECTOR_ZIPKIN_HOST_PORT=:9411
 ```
 
-**Reference:** See `references/jaeger-setup.md`
+Use the provider-specific Jaeger setup guidance in the deployment section of this reference.
 
 ## Application Instrumentation
 
@@ -220,7 +220,7 @@ func getUsers(ctx context.Context) ([]User, error) {
 }
 ```
 
-**Reference:** See `references/instrumentation.md`
+**Reference:** See the instrumentation section in this file for the canonical setup guidance.
 
 ## Context Propagation
 
@@ -373,3 +373,4 @@ Jaeger automatically generates service dependency graphs showing:
 - Request rates
 - Error rates
 - Average latencies
+**Reference:** See the instrumentation section in this file for the canonical setup guidance.

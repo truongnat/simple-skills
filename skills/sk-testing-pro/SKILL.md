@@ -52,6 +52,8 @@ Do **not** duplicate framework-specific testing advice that belongs in those ski
 - **Debugging** flaky tests, timeouts, async races, or environment drift.
 - Reviewing **coverage** and what it does *not* prove.
 
+Use `references/phase2-quality-gates.md` to evaluate behavior coverage, isolation, observability, mutation value, flake policy, contract/security cases, and release evidence.
+
 ## When not to use
 
 - **Primary topic is CI/CD platform YAML** without test strategy — start with **`sk-ci-cd-pro`**, pair this skill for test layout.

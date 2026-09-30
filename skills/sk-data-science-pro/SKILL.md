@@ -33,6 +33,8 @@ Expert-level orchestration of analytical workflows and statistical modeling. Foc
 - Deep learning or LLM training — use `sk-machine-learning-pro`.
 - Model registry, serving, and drift operations — use `sk-mlops-pro`.
 
+Use `references/analysis-and-experiment-validation.md` to check leakage, missingness, multiple comparisons, imbalance, A/B design, segments, outliers, uncertainty, and reproducibility.
+
 ## Required inputs
 
 - Decision or hypothesis, target population, dataset grain, and sampling plan.

@@ -35,6 +35,8 @@ Produce a reproducible diagnosis, evidence log, root cause, verification result,
 Read `references/debugging-strategies-reference.md` when the compact process below needs tool-specific examples or issue-type patterns.
 Do not load the reference wholesale when the compact workflow is sufficient.
 
+Use `references/incident-evidence-matrix.md` for production incidents or regressions that require detection, localization, mitigation, verification, and learning evidence.
+
 ## When not to use
 
 - When the request is outside `sk-debugging-strategies`'s boundary or another specialist is the primary owner.

@@ -115,7 +115,9 @@ with mlflow.start_run():
 - [ ] Experiment tracking integrated (MLflow/Weights & Biases).
 - [ ] Model versioning and registry transitions defined.
 - [ ] Monitoring and alerting for data/model drift included.
+- [ ] Reproducibility, data-contract, quality, serving-SLO, cost, and rollback gates have explicit evidence.
 
 ## Output
 
 Produce an MLOps artifact with data/model lineage, training/evaluation pipeline, registry, deployment strategy, monitoring, drift gates, reproducibility, and incident response.
+| Evaluation and release gates | [references/evaluation-and-release-gates.md](references/evaluation-and-release-gates.md) |

@@ -55,7 +55,7 @@ JWT KHÔNG phù hợp:
   - Long-lived sessions trong web app
   - Cần revoke ngay lập tức (banned user, password change)
   - Storing sensitive data trong payload (payload không encrypted trong JWS)
-  
+
 Hybrid approach (best for web):
   - Browser: httpOnly cookie với opaque session token
   - Mobile/API: JWT short-lived + refresh token
@@ -91,7 +91,7 @@ Flow:
   2. Access token expire → call /auth/refresh với refresh_token
   3. Server issue NEW access_token + NEW refresh_token
   4. Invalidate old refresh_token
-  
+
 Reuse detection (token theft detection):
   5. Legitimate user dùng old refresh_token sau khi đã được rotate
   → Server phát hiện "old token" được dùng → COMPROMISE DETECTED
@@ -134,7 +134,7 @@ Caching permissions:
     const dbPerms = await db.getUserPermissions(userId)
     await redis.setex(`permissions:${userId}`, 300, JSON.stringify(dbPerms))
   }
-  
+
   // Invalidate khi role thay đổi:
   await redis.del(`permissions:${userId}`)
 ```
@@ -192,7 +192,7 @@ Permissions-Policy: camera=(), microphone=(), geolocation=()
 SSRF (Server-Side Request Forgery):
   Attack: POST /api/fetch { url: "http://169.254.169.254/latest/meta-data/iam/..." }
   → Server fetch AWS metadata → attacker gets cloud credentials
-  
+
   Defense in depth:
   1. Validate URL scheme: ONLY https://
   2. Block private IPs: 10.x, 172.16.x-31.x, 192.168.x, 127.x, 169.254.x, ::1
@@ -202,13 +202,13 @@ SSRF (Server-Side Request Forgery):
 Mass assignment:
   // BAD: Bind toàn bộ request body
   User.create(req.body)  // attacker có thể set role: "admin"
-  
+
   // GOOD: Explicit allowlist
   User.create(pick(req.body, ['name', 'email', 'password']))
 
 Path traversal:
   GET /files?name=../../etc/passwd
-  
+
   Fix:
   const safeFileName = path.basename(req.query.name)  // strip directory traversal
   const filePath = path.join(UPLOAD_DIR, safeFileName)
@@ -313,7 +313,7 @@ Dynamic sampling:
    p95: 95% requests faster than này
    p99: 99% requests faster than này (SLA thường dùng)
    p99.9: 99.9% (ultra-strict SLA)
-   
+
    Tại sao không dùng average/mean:
    1000 requests: 999 × 10ms + 1 × 10000ms = mean 20ms
    Nhưng p99 = 10000ms → user experience thực tế cực kỳ tệ
@@ -330,7 +330,7 @@ Dynamic sampling:
    HTTP 4xx rate (client errors — theo dõi, không luôn alert)
    Unhandled exceptions per service
    Queue processing failures per queue
-   
+
    Error budget (SLO based):
    99.9% uptime = 43.8 phút downtime/tháng
    Nếu đã dùng 80% error budget → freeze deploys, focus on stability
@@ -384,7 +384,7 @@ def process_order(order_id: str):
     with tracer.start_as_current_span("process_order") as span:
         span.set_attribute("order.id", order_id)
         span.set_attribute("order.customer_id", customer_id)
-        
+
         try:
             result = do_processing()
             span.set_status(StatusCode.OK)
@@ -426,7 +426,7 @@ Tail-based sampling (quyết định sau khi complete):
   - Sample 100% traces với errors
   - Sample 100% traces với duration > 1s
   - Sample 1% remaining
-  
+
   Better insight nhưng cần buffer → memory cost
 ```
 
@@ -498,7 +498,7 @@ jobs:
 Problem: Blue và Green cùng connect đến cùng 1 DB
   Blue: đọc/viết column "name"
   Green: cần đổi "name" thành "full_name" (rename)
-  
+
   Nếu rename trong migration → Blue crash ngay khi deploy Green
 
 Giải pháp: Expand-Contract pattern
@@ -507,13 +507,13 @@ Giải pháp: Expand-Contract pattern
     Copy data: full_name = name
     Application viết cả 2 columns
     Application đọc full_name (có fallback về name)
-  
+
   Verify: Tất cả data migrated, Green stable
-  
+
   Migration 2 (deploy sau):
     DROP COLUMN name (contract phase)
     Application chỉ dùng full_name
-  
+
   Rule: Không bao giờ DROP column và deploy cùng lúc
 ```
 
@@ -556,24 +556,24 @@ spec:
 ```
 Stage 1: Deploy behind flag (flag = off)
   Code trong production, không ai thấy
-  
+
 Stage 2: Internal testing (flag = on cho QA team)
   Test với production data
 
 Stage 3: Gradual rollout
   on cho 1% → 5% → 20% → 50% → 100%
-  
+
 Stage 4: Default on, flag deprecated
   Remove flag reference trong code
 
 Stage 5: Cleanup (< 2 sprints sau Stage 4)
   Delete flag từ feature flag service
-  
+
 Anti-patterns:
   - Flags tồn tại > 3 tháng → "flag debt"
   - Nested flags (flag inside flag) → testing matrix explosion
   - Không cleanup → undefined behavior khi flag deleted
-  
+
 Tools: LaunchDarkly, Unleash (open source), Flagsmith, GrowthBook
 ```
 
@@ -649,7 +649,7 @@ spec:
 
 ## 4. Testing Strategy
 
-> Testing có file riêng với coverage đầy đủ: **`references/testing.md`**
+> Testing có file riêng với coverage đầy đủ: **`testing-fundamentals.md`** và **`testing-automation.md`**
 > File đó cover: unit, integration, E2E, contract, load, visual regression, mobile, security testing,
 > test doubles, factories, MSW, Playwright POM, k6 load tests, anti-patterns, CI pipeline design.
 

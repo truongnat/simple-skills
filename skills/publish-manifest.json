@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": 1,
+  "skills": [],
+  "defaults": {
+    "validate": true,
+    "publish": false
+  },
+  "notes": "Add skill directory names to skills after validation; publishing remains an explicit action."
+}

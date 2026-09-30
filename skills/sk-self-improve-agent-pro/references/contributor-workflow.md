@@ -14,8 +14,8 @@ You should initiate a **Contributor PR** when:
 ### 1. Identify the Target
 Determine which skill or reference file should host this new knowledge.
 - Is it a general principle? -> `SKILL.md`
-- Is it a specific edge case? -> `references/edge-cases.md`
-- Is it a new pattern? -> `references/tips-and-tricks.md`
+- Is a specific edge case? -> `edge-cases.md`
+- Is it a new pattern? -> `tips-and-tricks.md`
 
 ### 2. Prepare the Content
 Format the discovery using the repository's standard:

@@ -13,10 +13,6 @@ sk-version: 0.1.0
 sk-roles: [architect, backend]
 sk-tags: [architecture, api, backend]
 sk-compatible: [claude, cursor, codex, gemini]
-  - claude
-  - cursor
-  - codex
-  - gemini
 ---
 
 # System Design Overview — Reference Skill

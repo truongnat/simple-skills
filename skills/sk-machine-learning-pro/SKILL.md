@@ -33,6 +33,8 @@ Expert-level orchestration of advanced Machine Learning and Deep Learning models
 - Data ingestion, feature pipelines, or warehouse design — use `sk-data-engineering-pro`.
 - Model registry, serving, monitoring, and rollback — use `sk-mlops-pro`.
 
+Use `references/training-and-evaluation-gates.md` for tiny-batch overfit, split integrity, baselines, robustness, fairness, reproducibility, export/runtime compatibility, and MLOps handoff evidence.
+
 ## Required inputs
 
 - Objective, labels, data split policy, compute budget, and reproducibility target.

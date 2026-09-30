@@ -235,6 +235,7 @@ resource "aws_vpn_connection" "secondary" {
 
 ### Troubleshooting
 
+Validate tunnel state, BGP convergence, route symmetry, MTU, DNS, packet loss, and application reachability separately. Record the measured failure mode before changing route preference.
 
 ## Cost Optimization
 
@@ -248,7 +249,7 @@ resource "aws_vpn_connection" "secondary" {
 ## Related Skills
 
 - `multi-cloud-architecture` - For architecture decisions
--  - For IaC implementation
+- `sk-infrastructure-as-code-pro` - For IaC implementation
 
 ## Output
 
@@ -266,3 +267,5 @@ Produce a network design artifact with topology, routing/DNS, connectivity and i
 ## Cross-skill handoffs
 
 - sk-network-infra-pro for network policy and traffic design; sk-infrastructure-as-code-pro for provisioning; sk-security-pro for threat and access controls; provider skills for service specifics.
+
+**Validation reference:** See `references/validation-and-troubleshooting.md` for failover, BGP, MTU, DNS, observability, and rollback cases.

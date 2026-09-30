@@ -28,6 +28,8 @@ Build reliable, fast, and maintainable end-to-end test suites that provide confi
 - Testing responsive designs
 - Establishing E2E testing standards
 
+Use `references/e2e-reliability-matrix.md` for isolation, async race, selector, dependency, retry, parallelism, browser, and cleanup checks. Report pass-on-first-attempt rate separately from retry-assisted passes.
+
 ## Core Concepts
 
 ### 1. E2E Testing Fundamentals

@@ -1,16 +1,14 @@
 ---
 name: sk-tool-discovery
-description: >+
-  'Skill: tool-discovery-skill'
+description: >-
+  Capability-first discovery of available local tools, connectors, and runtime
+  affordances. Use before verification, review, or automation when tool choice
+  must be based on actual availability rather than remembered names.
 sk-kind: process
 sk-version: 0.1.0
 sk-roles: [developer, maintainer]
 sk-tags: [tooling, cli, routing]
 sk-compatible: [claude, cursor, codex, gemini]
-  - claude
-  - cursor
-  - codex
-  - gemini
 ---
 
 

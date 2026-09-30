@@ -217,6 +217,8 @@ jobs:
 9. **Add notification steps** for failures
 10. **Use self-hosted runners** for sensitive workloads
 
+Before adoption, review the workflow against the validation matrix and retain the rendered workflow, permission table, secret assumptions, and rollback evidence.
+
 ## Reusable Workflows
 
 ```yaml
@@ -351,3 +353,5 @@ Produce a repository-tooling artifact with command sequence, scope and safety as
 ## Cross-skill handoffs
 
 - sk-ci-cd-pro for pipeline architecture; sk-deployment-pro for release strategy; sk-testing-pro for test intent; sk-security-pro for permissions and supply-chain controls.
+
+**Validation reference:** See `references/workflow-validation-matrix.md` for syntax, permissions, fork PR, matrix, concurrency, approval, and rollback cases.

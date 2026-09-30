@@ -20,3 +20,13 @@ Use this reference before shipping a screen or reusable component. Verify behavi
 ## Evidence checklist
 
 Capture target SDK, device/simulator size, color scheme, font scale, accessibility settings, state fixture, and known deviations. Pair visual checks with semantic/accessibility checks; a screenshot alone cannot prove keyboard, focus, or screen-reader behavior.
+
+## Verification packet examples
+
+| Case | Claim and criteria | Evidence required | Status rule |
+|---|---|---|---|
+| Supported target set | Safe area, keyboard, dynamic type, semantics, touch targets, motion, states, and responsive layout work on supported targets | Device matrix, semantic assertions, state fixtures, and approved visual comparison | `pass` only when intentional deviations are documented and accepted |
+| Keyboard/focus failure | Form remains reachable and announces errors correctly | Device/accessibility run showing keyboard, focus order, and announcement result | `block` when a screenshot passes but semantic or keyboard criteria fail |
+| Visual approval pending | Automated semantics pass and final visual review is still required | Automated report plus named reviewer/question | `defer` until the named human decision is recorded |
+
+Package `Claim`, `Criteria`, `Evidence`, `Coverage map`, `Limitations`, `Decision`, and `Next owner` for `sk-verify-pro`.

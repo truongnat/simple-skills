@@ -75,6 +75,9 @@ Invoking it **is** executing every step below, in order, one at a time.
 - [ ] No real personal data.
 - [ ] Playwright mode labeled as hints.
 - [ ] Work commit complete.
+- [ ] Each case records evidence location, criteria mapping, freshness, limitation, result and next owner.
+- [ ] Handoff packet contains Claim, Criteria, Evidence, Coverage map, Limitations, Decision and Next owner.
+- [ ] Use `pass`, `block`, or `defer`; never treat a missing human/domain decision as `pass`.
 
 ## Output
 
@@ -92,3 +95,5 @@ Produce a reusable ba test artifact with the selected approach, relevant files o
 ## Cross-skill handoffs
 
 - sk-planning or sk-executing-pro for lifecycle orchestration; sk-specify or BA skills for requirements artifacts; sk-review and sk-verification for quality evidence.
+
+Hand off the completed packet to `sk-verify-pro`; `sk-done` or a release owner may consume it only after a canonical `pass`.

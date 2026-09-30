@@ -204,9 +204,14 @@ Every handoff into `sk-verify-pro` should contain:
 
 ### P2 — clarify the 3 Expo/JavaScript pairs
 
-- Make `sk-expo-data-fetching` own data lifecycle and request-state evidence.
-- Make `sk-expo-native-ui` own native rendering/platform behavior and UI state presentation.
-- Make `sk-javascript-testing-patterns` own test strategy/patterns, not product behavior ownership.
+- **Implemented:** `sk-expo-data-fetching` now owns data lifecycle, request/cache/error/cancellation evidence and routes UI/test/final verification outward.
+- **Implemented:** `sk-expo-native-ui` now owns native rendering, platform behavior, accessibility and UI state presentation and routes data/test/final verification outward.
+- **Implemented:** `sk-javascript-testing-patterns` now owns deterministic test strategy, fixture isolation and assertion patterns, not Expo product behavior or final release status.
+- **Implemented:** the three domain references now contain packet-aware `pass`/`block`/`defer` sample cases.
+
+### P2 verification-case update
+
+The shared `sk-verify-pro` reference now defines canonical packet fields and twelve domain/lifecycle examples. `sk-ba-test` also emits evidence location, criteria mapping, freshness, case result, limitation, next owner and final decision fields. The 13 lifecycle/BA skills should adopt the same artifact-specific case pattern during the next content pass; their technical mapping remains in section 2.
 
 ## Method limitations
 

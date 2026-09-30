@@ -20,3 +20,13 @@ Use this reference when the implementation includes fetch, React Query, SWR, loa
 ## Evidence
 
 Record query key, fixture, network response, cache state, rendered state, retry count, and cleanup behavior. For auth flows, test expired token, refresh failure, logout during refresh, and unauthorized response after refresh.
+
+## Verification packet examples
+
+| Case | Claim and criteria | Evidence required | Status rule |
+|---|---|---|---|
+| Valid response/cache | Data parses, uses the intended key, renders, and contains no client secret | Mocked response, query-key assertion, rendered-state assertion, bundle/env inspection | `pass` only when every criterion is mapped |
+| Invalid schema/cache safety | Invalid payload is rejected and never cached | Parse error plus cache inspection | `block` if invalid data enters cache |
+| Offline/device behavior | Offline cache, cancellation, refresh concurrency, and logout are safe | Unit fixtures plus fresh device/network evidence | `defer` when device/network evidence is unavailable |
+
+Pass the packet fields `Claim`, `Criteria`, `Evidence`, `Coverage map`, `Limitations`, `Decision`, and `Next owner` to `sk-verify-pro`.

@@ -32,7 +32,9 @@ Do not load the reference wholesale when the compact workflow is sufficient.
 
 ## Boundary
 
-**`sk-javascript-testing-patterns`** owns **named programming-language, framework, or engineering-domain guidance within its specialized scope**. It does not own **cross-domain architecture or product planning as the primary concern**; route those concerns to the appropriate specialist skill.
+**`sk-javascript-testing-patterns`** owns JavaScript/TypeScript test design patterns: deterministic fixtures, user-observable assertions, integration boundaries, async/timer handling, mock isolation, and test maintainability.
+
+It does **not** own Expo product behavior, native platform rendering, server-state policy, or final release verification. Route Expo data behavior to `sk-expo-data-fetching`, native UI behavior to `sk-expo-native-ui`, and final claim evaluation to `sk-verify-pro`.
 
 ## Required inputs
 
@@ -42,3 +44,5 @@ Do not load the reference wholesale when the compact workflow is sufficient.
 ## Cross-skill handoffs
 
 - sk-testing-pro for test strategy; sk-systematic-debugging-pro for diagnosis; sk-clean-code or architecture skills for cross-cutting design; neighboring stack skill for integration.
+
+For a release or handoff, package each result with `Claim`, `Criteria`, `Evidence`, `Coverage map`, `Limitations`, `Decision`, and `Next owner`; `sk-verify-pro` owns the final status semantics.

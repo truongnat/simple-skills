@@ -51,6 +51,8 @@ Prevent optimistic completion claims by forcing the final status to match the ac
 5. Leave a final status that no reader could mistake for stronger proof than actually exists.
 6. Save **`VERIFY.md`** to the task artifact location and follow the shared Group 01 session-artifact contract.
 
+Read `references/verification-packet-test-cases.md` for packet fields, `pass`/`block`/`defer` semantics, and domain handoff examples before classifying an upstream result.
+
 ## Operating Principles
 
 - Claims must not outrun evidence.

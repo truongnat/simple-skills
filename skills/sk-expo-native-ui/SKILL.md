@@ -192,7 +192,9 @@ For release or review work, read `references/ui-verification-matrix.md` and repo
 
 ## Boundary
 
-**`sk-expo-native-ui`** owns **named programming-language, framework, or engineering-domain guidance within its specialized scope**. It does not own **cross-domain architecture or product planning as the primary concern**; route those concerns to the appropriate specialist skill.
+**`sk-expo-native-ui`** owns Expo/React Native screen and component behavior: platform differences, layout/insets, interaction states, accessibility semantics, motion, input, and responsive rendering across supported targets.
+
+It does **not** own server-state fetching/cache policy, generic JavaScript test patterns, product requirements, or final release verification. Route data lifecycle to `sk-expo-data-fetching`, test strategy to `sk-javascript-testing-patterns`, and claim sufficiency to `sk-verify-pro`.
 
 ## Required inputs
 
@@ -202,3 +204,4 @@ For release or review work, read `references/ui-verification-matrix.md` and repo
 ## Cross-skill handoffs
 
 - sk-testing-pro for test strategy; sk-systematic-debugging-pro for diagnosis; sk-clean-code or architecture skills for cross-cutting design; neighboring stack skill for integration.
+Map those results to the verification packet fields and use `sk-verify-pro` for the final `pass`/`block`/`defer` decision; screenshots alone do not prove semantic or keyboard behavior.

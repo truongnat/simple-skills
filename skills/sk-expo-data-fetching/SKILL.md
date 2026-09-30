@@ -457,9 +457,13 @@ User: "How do I load data for a page in Expo Router?"
 
 Produce an Expo data-fetching artifact with query/cache strategy, loading/error/offline states, invalidation rules, security, tests, and rollout considerations.
 
+For release or handoff evidence, map the data-fetching matrix to `Claim`, `Criteria`, `Evidence`, `Coverage map`, `Limitations`, and `Decision` fields. Use `data-fetching-test-matrix.md` for domain cases and `sk-verify-pro` for the final `pass`/`block`/`defer` decision.
+
 ## Boundary
 
-**`sk-expo-data-fetching`** owns **named programming-language, framework, or engineering-domain guidance within its specialized scope**. It does not own **cross-domain architecture or product planning as the primary concern**; route those concerns to the appropriate specialist skill.
+**`sk-expo-data-fetching`** owns Expo/React Native request and server-state behavior: transport, query/cache keys, loading/error/offline/cancellation states, auth refresh, invalidation, and client-safe environment configuration.
+
+It does **not** own native screen layout/accessibility, generic JavaScript test patterns, backend API design, or final release verification. Route UI behavior to `sk-expo-native-ui`, test strategy to `sk-javascript-testing-patterns`, and claim sufficiency to `sk-verify-pro`.
 
 ## Required inputs
 

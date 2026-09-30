@@ -10,7 +10,7 @@
 
 ## Result
 
-**REVIEW** — local links: 0 broken / 1621 scanned; unbalanced fences: 0; references: 1003.
+**REVIEW** — local links: 0 broken / 1621 scanned; unbalanced fences: 0; references: 1004.
 
 ## Coverage signals
 
@@ -31,9 +31,6 @@
 | 0.93 | `sk-gap-analysis` ↔ `sk-quick-fix` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
 | 0.93 | `sk-gap-analysis` ↔ `sk-investigate` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
 | 0.93 | `sk-gap-analysis` ↔ `sk-init` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-expo-native-ui` ↔ `sk-javascript-testing-patterns` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-expo-data-fetching` ↔ `sk-javascript-testing-patterns` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-expo-data-fetching` ↔ `sk-expo-native-ui` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
 | 0.93 | `sk-discussing-pro` ↔ `sk-quick-fix` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
 | 0.93 | `sk-discussing-pro` ↔ `sk-investigate` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
 | 0.93 | `sk-discussing-pro` ↔ `sk-init` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
@@ -55,6 +52,9 @@
 | 0.93 | `sk-basic-design` ↔ `sk-gap-analysis` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
 | 0.93 | `sk-basic-design` ↔ `sk-discussing-pro` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
 | 0.93 | `sk-basic-design` ↔ `sk-detail-design` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-basic-design` ↔ `sk-brainstorming` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-ba-test` ↔ `sk-quick-fix` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-ba-test` ↔ `sk-investigate` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
 
 ## Deterministic failures
 

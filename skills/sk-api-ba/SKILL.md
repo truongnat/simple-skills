@@ -91,7 +91,12 @@ Produce a reusable api ba artifact with the selected approach, relevant files or
 
 ## Boundary
 
-**`sk-api-ba`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-api-ba`** owns business analysis for API products and integrations: consumer goals, resource/action vocabulary, workflow rules, error semantics, lifecycle states, permissions assumptions, and API acceptance scenarios.
+
+It does **not** own general business discovery, API technical design, implementation, security review, or test execution. Route cross-domain business discovery to `sk-business-analysis`, API contracts to `sk-api-design-pro`, security to `sk-api-security-pro`, and evidence to `sk-tester`/`sk-verify-pro`.
+
+**Primary artifact:** an API business requirements packet with actors, workflows, state transitions, error outcomes, and acceptance examples. **Handoff:** pass the business contract to `sk-api-design-pro` and the scenarios to the test owner.
 
 ## Required inputs
 

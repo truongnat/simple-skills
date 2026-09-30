@@ -85,7 +85,12 @@ Produce a reusable story spec artifact with the selected approach, relevant file
 
 ## Boundary
 
-**`sk-story-spec`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-story-spec`** owns user-story decomposition: actor, user goal, behavior slices, acceptance criteria, examples, and story-level edge cases. Use it when the requested artifact is a small, testable unit of product behavior rather than a whole-system specification.
+
+It does **not** own system architecture, detailed UI layout, end-to-end user navigation, implementation planning, test execution, or final verification. Route system behavior to `sk-specify`, navigation sequences to `sk-user-flow`, screen structure to `sk-ux-wireframe`, and test evidence to `sk-tester`/`sk-verify-pro`.
+
+**Primary artifact:** a story packet with acceptance criteria and examples ready for planning or implementation. **Handoff:** pass criteria to `sk-planning` and testable examples to `sk-tester`.
 
 ## Required inputs
 

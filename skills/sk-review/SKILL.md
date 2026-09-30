@@ -143,7 +143,12 @@ Produce a reusable review artifact with the selected approach, relevant files or
 
 ## Boundary
 
-**`sk-review`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-review`** owns general quality review of a completed or proposed artifact: identify correctness, maintainability, risk, missing evidence, and actionable findings against the applicable criteria.
+
+It does **not** own pull-request mechanics, test execution, requirements authoring, architecture design, or final release verification. Route PR/diff-specific review to `sk-review-pr`, test execution to `sk-tester`, and the final evidence decision to `sk-verify-pro`.
+
+**Primary artifact:** severity-ranked review findings with file/section references, rationale, and recommended disposition. **Handoff:** return findings to the artifact owner and pass resolved evidence to verification.
 
 ## Required inputs
 

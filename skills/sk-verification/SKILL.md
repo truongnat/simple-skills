@@ -120,7 +120,12 @@ Block or escalate when:
 
 ## Boundary
 
-**`sk-verification`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-verification`** is a compatibility entry point for requests to check completion, traceability, acceptance criteria, or delivery evidence. It identifies the verification target and routes execution to the canonical owner, **`sk-verify-pro`**, rather than owning a second verification workflow.
+
+It does **not** own test implementation, product requirements, architecture, deployment, or domain correctness. Route test design/execution to `sk-tester`, requirements to `sk-specify` or the relevant BA skill, and technical implementation checks to the domain skill.
+
+**Primary artifact:** a routing note that names the target artifact, required evidence, and the delegated `sk-verify-pro` check. **Handoff:** pass the unchanged context and evidence location to `sk-verify-pro`; preserve the compatibility alias when users explicitly request `sk-verification`.
 
 ## Required inputs
 

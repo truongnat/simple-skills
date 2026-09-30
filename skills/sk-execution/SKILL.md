@@ -228,7 +228,12 @@ Produce a reusable execution artifact with the selected approach, relevant files
 
 ## Boundary
 
-**`sk-execution`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-execution`** owns the standard execution workflow for carrying a prepared task through implementation, verification, and handoff when no specialized orchestration entry point is required.
+
+It does **not** own discovery, detailed planning, domain implementation guidance, test strategy, or release approval. Route complex multi-step coordination to `sk-executing-pro`, planning gaps to `sk-planning`, domain work to the specialist skill, and completion evidence to `sk-verify-pro`.
+
+**Primary artifact:** a concise execution record containing scope, actions, changed artifacts, checks, and handoff. **Handoff:** pass implementation output to the relevant tester and canonical verification owner.
 
 ## Required inputs
 

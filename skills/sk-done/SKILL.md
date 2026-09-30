@@ -168,7 +168,12 @@ Produce a reusable done artifact with the selected approach, relevant files or e
 
 ## Boundary
 
-**`sk-done`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-done`** owns completion and closeout: confirm required artifacts, verification status, unresolved risks, documentation, handoff recipients, and whether the task can be marked complete.
+
+It does **not** own implementation, planning, test creation, requirements discovery, or the verification test itself. Route missing checks to `sk-tester`/`sk-verify-pro`, scope changes to `sk-planning`, and deployment/release actions to the appropriate operational owner.
+
+**Primary artifact:** a completion record with acceptance status, evidence links, residual risks, and next owner or explicit closure. **Handoff:** close the task only after canonical verification evidence is present; otherwise return a blocked checklist to the responsible owner.
 
 ## Required inputs
 

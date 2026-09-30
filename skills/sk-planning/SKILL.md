@@ -145,7 +145,12 @@ Produce a reusable planning artifact with the selected approach, relevant files 
 
 ## Boundary
 
-**`sk-planning`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-planning`** owns execution planning: decomposing an approved scope into ordered work, dependencies, risks, milestones, acceptance checkpoints, and a smallest viable implementation sequence.
+
+It does **not** own requirements discovery, architecture decisions, implementation execution, test execution, or final completion approval. Route unclear scope to `sk-business-analysis`/`sk-specify`, architecture to the relevant architecture skill, implementation coordination to `sk-executing-pro`, and acceptance to `sk-verify-pro`.
+
+**Primary artifact:** an actionable plan with owners, dependencies, checkpoints, and stop conditions. **Handoff:** pass the plan to `sk-executing-pro` with the approved scope and verification criteria.
 
 ## Required inputs
 

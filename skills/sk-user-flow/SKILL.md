@@ -78,7 +78,12 @@ Produce a reusable user flow artifact with the selected approach, relevant files
 
 ## Boundary
 
-**`sk-user-flow`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-user-flow`** owns task and navigation sequences: entry conditions, user actions, branching, success paths, recovery paths, and exit states across screens or system steps.
+
+It does **not** own screen layout, visual styling, detailed requirements, implementation, test execution, or final verification. Route screen composition to `sk-ux-wireframe`, story behavior to `sk-story-spec`, formal constraints to `sk-specify`, and evidence to `sk-tester`/`sk-verify-pro`.
+
+**Primary artifact:** a flow map or step table with branches, failure recovery, and assumptions. **Handoff:** pass the flow to wireframing and story specification; pass measurable outcomes to test planning.
 
 ## Required inputs
 

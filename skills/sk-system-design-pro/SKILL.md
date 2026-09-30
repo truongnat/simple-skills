@@ -111,7 +111,12 @@ Produce a decision-ready architecture artifact with context, alternatives, trade
 
 ## Boundary
 
-**`sk-system-design-pro`** owns **architecture, API, backend design, and engineering decision guidance within its named technical scope**. It does not own **unrelated product requirements, frontend-only design, or operational deployment as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-system-design-pro`** owns system-level architecture decisions: service topology, data flow, queues, caches, scalability, availability, capacity, consistency, and reliability trade-offs across deployable components. Use it when the primary question is **how a whole system behaves under load, failure, or growth**.
+
+It does **not** own in-process module/layer boundaries, product requirements, UI flows, framework implementation, or release execution. Route code dependency direction to `sk-clean-architecture`, requirements to `sk-business-analysis` or `sk-specify`, implementation to the relevant stack skill, and rollout to `sk-deployment-pro`.
+
+**Primary artifact:** a system design decision record with topology, key flows, constraints, failure modes, and capacity assumptions. **Handoff:** pass component contracts to implementation skills and module-boundary decisions to `sk-clean-architecture`.
 
 ## Required inputs
 

@@ -120,7 +120,12 @@ Produce a reusable specify artifact with the selected approach, relevant files o
 
 ## Boundary
 
-**`sk-specify`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-specify`** owns formal product or system specifications: scope, actors, behaviors, constraints, invariants, edge cases, non-functional requirements, and explicit acceptance rules across a feature or system boundary.
+
+It does **not** own story slicing, visual layout, user navigation, implementation planning, test execution, or release verification. Route story-sized work to `sk-story-spec`, navigation to `sk-user-flow`, layout to `sk-ux-wireframe`, planning to `sk-planning`, and evidence decisions to `sk-verify-pro`.
+
+**Primary artifact:** a specification with normative requirements, assumptions, examples, exclusions, and acceptance criteria. **Handoff:** pass the stable contract to planning and the acceptance rules to implementation/test owners.
 
 ## Required inputs
 

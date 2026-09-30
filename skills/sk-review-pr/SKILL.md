@@ -141,7 +141,12 @@ Produce a reusable review pr artifact with the selected approach, relevant files
 
 ## Boundary
 
-**`sk-review-pr`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-review-pr`** owns pull-request and diff review: inspect changed files, commit scope, regressions, missing tests, reviewability, and merge readiness against repository policy.
+
+It does **not** own broad product discovery, implementation, test execution, architecture design, or the final release gate. Route generic artifact critique to `sk-review`, test execution to `sk-tester`, Git safety to `sk-git-operations-pro`, and final acceptance to `sk-verify-pro`.
+
+**Primary artifact:** a diff-anchored review with severity, file/line evidence, requested changes, and residual risk. **Handoff:** send actionable findings to the PR author and resolved evidence to verification or the merge owner.
 
 ## Required inputs
 

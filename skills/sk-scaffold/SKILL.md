@@ -127,7 +127,12 @@ Produce a reusable scaffold artifact with the selected approach, relevant files 
 
 ## Boundary
 
-**`sk-scaffold`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-scaffold`** owns initial project or module structure: create the smallest file layout, configuration skeleton, interfaces, and documented placeholders needed to begin implementation.
+
+It does **not** own product requirements, architecture trade-offs, feature implementation, test execution, or release verification. Route architecture to the relevant architecture skill, requirements to `sk-specify`, implementation to the stack skill, and structural checks to `sk-tester`/`sk-verify-pro`.
+
+**Primary artifact:** a minimal scaffold inventory with generated paths, configuration assumptions, and explicit TODOs. **Handoff:** pass the scaffold and assumptions to `sk-planning` or the implementation owner for feature work.
 
 ## Required inputs
 

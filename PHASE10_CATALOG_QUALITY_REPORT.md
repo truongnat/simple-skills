@@ -16,45 +16,45 @@
 
 | Signal | Count | Interpretation |
 |---|---:|---|
-| Scenario and evidence | 181 | Strong baseline for repeatable decisions |
+| Scenario and evidence | 183 | Strong baseline for repeatable decisions |
 | Scenario without evidence | 0 | Add expected result, proof or acceptance gate |
-| Evidence without scenario | 41 | Add one worked case or decision example |
+| Evidence without scenario | 39 | Add one worked case or decision example |
 | Neither signal | 0 | Review only when the domain is repeatable/high-risk |
 
 ## Boundary overlap review leads
 
 | Similarity | Candidate pair | Action |
 |---:|---|---|
-| 0.94 | `sk-clean-architecture` ↔ `sk-system-design-pro` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-verification` ↔ `sk-verify-pro` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-ux-wireframe` ↔ `sk-verify-pro` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-ux-wireframe` ↔ `sk-verification` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-user-flow` ↔ `sk-verify-pro` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-user-flow` ↔ `sk-verification` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-user-flow` ↔ `sk-ux-wireframe` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-tester` ↔ `sk-verify-pro` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-tester` ↔ `sk-verification` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-tester` ↔ `sk-ux-wireframe` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-tester` ↔ `sk-user-flow` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-sync` ↔ `sk-verify-pro` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-sync` ↔ `sk-verification` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-sync` ↔ `sk-ux-wireframe` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-sync` ↔ `sk-user-flow` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-sync` ↔ `sk-tester` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-story-spec` ↔ `sk-verify-pro` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-story-spec` ↔ `sk-verification` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-story-spec` ↔ `sk-ux-wireframe` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-story-spec` ↔ `sk-user-flow` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-story-spec` ↔ `sk-tester` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-story-spec` ↔ `sk-sync` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-specify` ↔ `sk-verify-pro` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-specify` ↔ `sk-verification` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-specify` ↔ `sk-ux-wireframe` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-specify` ↔ `sk-user-flow` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-specify` ↔ `sk-tester` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-specify` ↔ `sk-sync` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-specify` ↔ `sk-story-spec` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
-| 0.93 | `sk-scaffold` ↔ `sk-verify-pro` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-investigate` ↔ `sk-quick-fix` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-init` ↔ `sk-quick-fix` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-init` ↔ `sk-investigate` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-gap-analysis` ↔ `sk-quick-fix` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-gap-analysis` ↔ `sk-investigate` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-gap-analysis` ↔ `sk-init` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-expo-native-ui` ↔ `sk-javascript-testing-patterns` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-expo-data-fetching` ↔ `sk-javascript-testing-patterns` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-expo-data-fetching` ↔ `sk-expo-native-ui` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-discussing-pro` ↔ `sk-quick-fix` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-discussing-pro` ↔ `sk-investigate` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-discussing-pro` ↔ `sk-init` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-discussing-pro` ↔ `sk-gap-analysis` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-detail-design` ↔ `sk-quick-fix` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-detail-design` ↔ `sk-investigate` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-detail-design` ↔ `sk-init` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-detail-design` ↔ `sk-gap-analysis` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-detail-design` ↔ `sk-discussing-pro` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-brainstorming` ↔ `sk-quick-fix` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-brainstorming` ↔ `sk-investigate` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-brainstorming` ↔ `sk-init` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-brainstorming` ↔ `sk-gap-analysis` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-brainstorming` ↔ `sk-discussing-pro` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-brainstorming` ↔ `sk-detail-design` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-basic-design` ↔ `sk-quick-fix` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-basic-design` ↔ `sk-investigate` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-basic-design` ↔ `sk-init` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-basic-design` ↔ `sk-gap-analysis` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-basic-design` ↔ `sk-discussing-pro` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
+| 0.93 | `sk-basic-design` ↔ `sk-detail-design` | Confirm ownership and canonical handoff; do not merge by heuristic alone. |
 
 ## Deterministic failures
 
@@ -62,7 +62,6 @@ None.
 
 ## High-risk coverage review leads
 
-- **sk-api-ba** — high-risk topics `delivery, platform, security` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
 - **sk-architecture-decision-records** — high-risk topics `data, delivery, platform, security` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
 - **sk-ba-dashboard** — high-risk topics `delivery, platform` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
 - **sk-ba-handoff** — high-risk topics `data, delivery, security` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
@@ -95,13 +94,12 @@ None.
 - **sk-review** — high-risk topics `data, delivery, platform, security` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
 - **sk-review-pr** — high-risk topics `data, delivery, platform, security` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
 - **sk-senior-security** — high-risk topics `delivery, platform, security` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
-- **sk-story-spec** — high-risk topics `delivery` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
 - **sk-sync** — high-risk topics `data, delivery, platform, security` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
 - **sk-sync-custom-to-repo** — high-risk topics `delivery, security` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
 - **sk-system-design-pro** — high-risk topics `data, delivery, platform, security` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
 - **sk-user-flow** — high-risk topics `delivery, platform, security` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
 - **sk-using-aix** — high-risk topics `delivery, platform, security` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
-- **sk-ux-wireframe** — high-risk topics `data, delivery, security` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
+- **sk-ux-wireframe** — high-risk topics `data, delivery, platform, security` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
 - **sk-visual-design-foundations** — high-risk topics `data, delivery, platform, security` lack a complete scenario-plus-evidence pair; review whether the domain needs one.
 
 ## Acceptance

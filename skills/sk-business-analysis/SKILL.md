@@ -186,7 +186,12 @@ Produce a reusable business analysis artifact with the selected approach, releva
 
 ## Boundary
 
-**`sk-business-analysis`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-business-analysis`** owns business discovery and requirement analysis: stakeholder goals, business process, outcomes, constraints, rules, assumptions, and prioritization before technical specification.
+
+It does **not** own API-specific contracts, system architecture, UI layout, implementation planning, test execution, or final verification. Route API behavior to `sk-api-ba`, formal requirements to `sk-specify`, story slicing to `sk-story-spec`, and technical decisions to the relevant domain skill.
+
+**Primary artifact:** a business analysis record with goals, actors, current/future process, rules, assumptions, and measurable outcomes. **Handoff:** pass validated business intent to `sk-specify` and `sk-planning`; record unresolved decisions rather than hiding them.
 
 ## Required inputs
 

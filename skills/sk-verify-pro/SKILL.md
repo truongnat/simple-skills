@@ -115,7 +115,12 @@ This skill must produce:
 
 ## Boundary
 
-**`sk-verify-pro`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-verify-pro`** owns the canonical verification gate: evaluate implementation or delivery evidence against acceptance criteria, trace requirements to checks, classify pass/block/defer, and record residual uncertainty. Use it when a decision must be made about whether an artifact is sufficiently verified.
+
+It does **not** own test implementation, requirements discovery, architecture design, or domain-specific correctness. Route test-case creation and execution to `sk-tester`, requirements/specification to `sk-specify` or BA skills, and domain assertions to the relevant specialist skill. `sk-verification` is a compatibility entry point that delegates here.
+
+**Primary artifact:** a verification record with target, criteria, evidence links, findings, limitations, and an explicit pass/block/defer decision. **Handoff:** return blockers to the implementation owner; pass an accepted record to `sk-done` or the release/deployment owner.
 
 ## Required inputs
 

@@ -84,7 +84,12 @@ Produce a reusable implementation or design artifact with the selected direction
 
 ## Boundary
 
-**`sk-ux-wireframe`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-ux-wireframe`** owns low- and mid-fidelity screen structure: information hierarchy, component placement, interaction affordances, empty/loading/error states, and annotations that communicate intended layout without implementation code or visual polish.
+
+It does **not** own user-task sequencing, product requirements, visual branding, frontend implementation, accessibility certification, or release verification. Route task/navigation sequences to `sk-user-flow`, requirements to `sk-story-spec` or `sk-specify`, and implementation to the relevant frontend skill.
+
+**Primary artifact:** an annotated wireframe set with screen states and open interaction questions. **Handoff:** pass flow assumptions to `sk-user-flow`, acceptance criteria to `sk-story-spec`, and implementation constraints to the frontend/design-system owner.
 
 ## Required inputs
 

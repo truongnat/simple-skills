@@ -31,7 +31,12 @@ Read `references/clean-architecture-reference.md` for framework-specific example
 
 ## Boundary
 
-**`sk-clean-architecture`** owns **architecture, API, backend design, and engineering decision guidance within its named technical scope**. It does not own **unrelated product requirements, frontend-only design, or operational deployment as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-clean-architecture`** owns module and dependency design inside a codebase: layer boundaries, ports and adapters, dependency direction, bounded contexts, modular monolith seams, and architecture decisions whose primary question is **how code responsibilities depend on one another**.
+
+It does **not** own distributed-system topology, capacity/availability design, product requirements, UI layout, deployment rollout, or framework-specific implementation. Route system-level topology to `sk-system-design-pro`, requirements to `sk-business-analysis` or `sk-specify`, implementation to the relevant stack skill, and rollout to `sk-deployment-pro`.
+
+**Primary artifact:** an architecture decision or boundary map showing modules, dependencies, allowed direction, and rejected coupling. **Handoff:** pass the approved boundary and constraints to the framework/domain implementation skill; pass runtime concerns to `sk-system-design-pro` or `sk-deployment-pro`.
 
 ## Required inputs
 

@@ -263,7 +263,12 @@ Produce a reusable sync artifact with the selected approach, relevant files or e
 
 ## Boundary
 
-**`sk-sync`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-sync`** owns workspace and artifact synchronization: read current repository state, reconcile task notes with files and branches, detect drift, and refresh context before execution or handoff.
+
+It does **not** own requirements authoring, implementation, test execution, external research, or final review. Route planning to `sk-planning`, implementation to the domain owner, repository safety to `sk-git-operations-pro`, and verification to `sk-verify-pro`.
+
+**Primary artifact:** a synchronization report naming inspected state, detected drift, preserved user changes, and the next safe action. **Handoff:** pass refreshed context and provenance to the next workflow owner; do not silently rewrite unrelated artifacts.
 
 ## Required inputs
 

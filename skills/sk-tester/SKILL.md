@@ -353,7 +353,12 @@ Produce a reusable tester artifact with the selected approach, relevant files or
 
 ## Boundary
 
-**`sk-tester`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-tester`** owns test design and execution evidence: test levels, fixtures, assertions, environments, regression selection, exploratory checks, and reproducible test results.
+
+It does **not** own product requirements, implementation, architecture, or the final release decision. Route missing behavior definitions to `sk-story-spec` or `sk-specify`, implementation defects to the domain owner, and pass/fail sufficiency to the canonical `sk-verify-pro`.
+
+**Primary artifact:** a test matrix or execution report linking each check to an expected result and evidence location. **Handoff:** return failures to the implementation owner and submit complete evidence to `sk-verify-pro`.
 
 ## Required inputs
 

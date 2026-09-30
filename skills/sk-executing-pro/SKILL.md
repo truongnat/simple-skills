@@ -170,7 +170,12 @@ The graph handles execution via `coderNode` + `reviewerNode`. Each task from PLA
 
 ## Boundary
 
-**`sk-executing-pro`** owns **development lifecycle, requirements analysis, planning, specification, review, and delivery handoffs**. It does not own **product/domain-specialist implementation as the primary concern**; route those concerns to the appropriate specialist skill.
+
+**`sk-executing-pro`** owns coordinated implementation execution: selecting the next planned work item, maintaining task state, sequencing specialist skills, recording changes, and checking progress against the approved plan.
+
+It does **not** own requirements definition, architecture expertise, domain implementation details, test design, or final verification. Route those concerns to `sk-specify`, architecture/domain skills, `sk-tester`, and `sk-verify-pro` respectively.
+
+**Primary artifact:** an execution log with completed work, changed artifacts, blockers, decisions, and next owner. **Handoff:** pass changed artifacts and evidence to `sk-tester` and `sk-verify-pro`; send unresolved scope changes back to `sk-planning`.
 
 ## Required inputs
 

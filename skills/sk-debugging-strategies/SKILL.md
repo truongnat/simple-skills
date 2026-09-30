@@ -49,3 +49,6 @@ Use `references/incident-evidence-matrix.md` for production incidents or regress
 ## Cross-skill handoffs
 
 - sk-systematic-debugging-pro for root-cause discipline; sk-bug-discovery-pro for defect discovery; sk-performance-tuning-pro for performance-led investigations.
+## Worked scenarios and evidence
+
+Read [`references/worked-scenarios-and-evidence.md`](./references/worked-scenarios-and-evidence.md) for one positive and one negative/edge fixture with expected output-level evidence and canonical handoff.

@@ -111,3 +111,6 @@ Produce a reusable ai red teaming pro artifact with the selected approach, relev
 - `sk-security-pro` for cross-cutting security and threat framing.
 - `sk-testing-pro` for verification, regression, and evidence quality.
 - Pair with the relevant stack or platform skill for implementation details; keep this skill focused on its documented boundary.
+## Worked scenarios and evidence
+
+Read [`references/worked-scenarios-and-evidence.md`](./references/worked-scenarios-and-evidence.md) for one positive and one negative/edge fixture with expected output-level evidence and canonical handoff.

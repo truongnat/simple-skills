@@ -48,3 +48,6 @@ Read `references/security-verification-matrix.md` when the review needs attack s
 ## Cross-skill handoffs
 
 - sk-security-pro for general security controls; sk-testing-pro for invariant/fuzz/regression strategy; blockchain skills for protocol context.
+## Wave 2 validation
+
+Read [`references/solidity-attack-and-invariant-matrix.md`](./references/solidity-attack-and-invariant-matrix.md) when the task requires scenario-level evidence, failure/recovery coverage, or a final verification handoff. The domain skill prepares the claim and evidence packet; `sk-verify-pro` decides `pass`, `block`, or `defer`.

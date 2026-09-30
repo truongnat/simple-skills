@@ -135,3 +135,6 @@ print(f"Accuracy: {accuracy_score(y_test, preds):.2f}")
 ## Output
 
 Produce a data-science artifact with hypothesis, dataset/target, feature and leakage controls, method, evaluation, uncertainty, reproducibility, and decision limitations.
+## Worked scenarios and evidence
+
+Read [`references/worked-scenarios-and-evidence.md`](./references/worked-scenarios-and-evidence.md) for one positive and one negative/edge fixture with expected output-level evidence and canonical handoff.

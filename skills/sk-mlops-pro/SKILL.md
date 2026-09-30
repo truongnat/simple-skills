@@ -121,3 +121,6 @@ with mlflow.start_run():
 
 Produce an MLOps artifact with data/model lineage, training/evaluation pipeline, registry, deployment strategy, monitoring, drift gates, reproducibility, and incident response.
 | Evaluation and release gates | [references/evaluation-and-release-gates.md](references/evaluation-and-release-gates.md) |
+## Wave 2 validation
+
+Read [`references/mlops-evaluation-and-release-matrix.md`](./references/mlops-evaluation-and-release-matrix.md) when the task requires scenario-level evidence, failure/recovery coverage, or a final verification handoff. The domain skill prepares the claim and evidence packet; `sk-verify-pro` decides `pass`, `block`, or `defer`.

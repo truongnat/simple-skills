@@ -205,3 +205,6 @@ It does **not** own server-state fetching/cache policy, generic JavaScript test 
 
 - sk-testing-pro for test strategy; sk-systematic-debugging-pro for diagnosis; sk-clean-code or architecture skills for cross-cutting design; neighboring stack skill for integration.
 Map those results to the verification packet fields and use `sk-verify-pro` for the final `pass`/`block`/`defer` decision; screenshots alone do not prove semantic or keyboard behavior.
+## Wave 2 validation
+
+Read [`references/native-ui-validation-matrix.md`](./references/native-ui-validation-matrix.md) when the task requires scenario-level evidence, failure/recovery coverage, or a final verification handoff. The domain skill prepares the claim and evidence packet; `sk-verify-pro` decides `pass`, `block`, or `defer`.

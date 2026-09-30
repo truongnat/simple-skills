@@ -108,3 +108,6 @@ Produce a document/media artifact with input and output paths, coverage/quality 
 ## Cross-skill handoffs
 
 - sk-office-common for shared rules; sk-excel-doc-convert for conversion; sk-data-analysis-pro for numeric analysis; sk-docs for publication.
+## Worked scenarios and evidence
+
+Read [`references/worked-scenarios-and-evidence.md`](./references/worked-scenarios-and-evidence.md) for one positive and one negative/edge fixture with expected output-level evidence and canonical handoff.

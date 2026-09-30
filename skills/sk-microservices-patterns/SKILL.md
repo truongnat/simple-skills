@@ -109,3 +109,6 @@ Produce a service-boundary and interaction note with ownership, contracts, failu
 ## Cross-skill handoffs
 
 - sk-security-pro for threat controls; sk-testing-pro for verification; sk-deployment-pro for runtime rollout; relevant framework/domain skill for implementation detail.
+## Worked scenarios and evidence
+
+Read [`references/worked-scenarios-and-evidence.md`](./references/worked-scenarios-and-evidence.md) for one positive and one negative/edge fixture with expected output-level evidence and canonical handoff.

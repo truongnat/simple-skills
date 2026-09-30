@@ -390,3 +390,6 @@ Produce a reusable fintech integration pro artifact with the selected approach, 
 ## Cross-skill handoffs
 
 - sk-technical-writing-pro for clarity; sk-research for evidence; sk-docs for information architecture; relevant domain/format skill for implementation.
+## Wave 2 validation
+
+Read [`references/fintech-integration-validation.md`](./references/fintech-integration-validation.md) when the task requires scenario-level evidence, failure/recovery coverage, or a final verification handoff. The domain skill prepares the claim and evidence packet; `sk-verify-pro` decides `pass`, `block`, or `defer`.

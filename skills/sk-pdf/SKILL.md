@@ -84,3 +84,6 @@ Produce a document/media artifact with input and output paths, coverage/quality 
 ## Cross-skill handoffs
 
 - sk-pdf-pro for advanced PDF workflows; sk-docx/sk-xlsx for source formats; sk-ocr-pro for dense/scanned OCR; sk-docs for content interpretation.
+## Worked scenarios and evidence
+
+Read [`references/worked-scenarios-and-evidence.md`](./references/worked-scenarios-and-evidence.md) for one positive and one negative/edge fixture with expected output-level evidence and canonical handoff.

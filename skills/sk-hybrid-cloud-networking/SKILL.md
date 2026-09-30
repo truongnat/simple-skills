@@ -247,8 +247,7 @@ Validate tunnel state, BGP convergence, route symmetry, MTU, DNS, packet loss, a
 6. **Implement caching** to reduce traffic
 
 ## Related Skills
-
-- `multi-cloud-architecture` - For architecture decisions
+- `sk-system-design-pro` - For cross-cloud architecture decisions
 - `sk-infrastructure-as-code-pro` - For IaC implementation
 
 ## Output
@@ -266,6 +265,12 @@ Produce a network design artifact with topology, routing/DNS, connectivity and i
 
 ## Cross-skill handoffs
 
-- sk-network-infra-pro for network policy and traffic design; sk-infrastructure-as-code-pro for provisioning; sk-security-pro for threat and access controls; provider skills for service specifics.
+- `sk-network-infra-pro` for network policy and traffic design.
+- `sk-infrastructure-as-code-pro` for provisioning.
+- `sk-security-pro` for threat and access controls.
+- The relevant provider skill for provider-specific service behavior; name the provider and version in the evidence packet.
 
 **Validation reference:** See `references/validation-and-troubleshooting.md` for failover, BGP, MTU, DNS, observability, and rollback cases.
+## Wave 2 validation
+
+Read [`references/hybrid-network-troubleshooting-and-rollback.md`](./references/hybrid-network-troubleshooting-and-rollback.md) when the task requires scenario-level evidence, failure/recovery coverage, or a final verification handoff. The domain skill prepares the claim and evidence packet; `sk-verify-pro` decides `pass`, `block`, or `defer`.

@@ -119,3 +119,6 @@ Produce a reusable biz model artifact with the selected approach, relevant files
 ## Cross-skill handoffs
 
 - sk-business-analysis/sk-specify for source requirements; sk-architecture-patterns for architecture decisions; sk-docs for publication; relevant diagram renderer only when available.
+## Worked scenarios and evidence
+
+Read [`references/worked-scenarios-and-evidence.md`](./references/worked-scenarios-and-evidence.md) for one positive and one negative/edge fixture with expected output-level evidence and canonical handoff.

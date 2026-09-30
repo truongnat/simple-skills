@@ -43,3 +43,6 @@ Produce a document/media artifact with input and output paths, coverage/quality 
 ## Cross-skill handoffs
 
 - sk-docx/sk-xlsx/sk-pdf/sk-pptx for format-specific work; sk-technical-writing-pro for content quality; sk-docs for information architecture.
+## Worked scenarios and evidence
+
+Read [`references/worked-scenarios-and-evidence.md`](./references/worked-scenarios-and-evidence.md) for one positive and one negative/edge fixture with expected output-level evidence and canonical handoff.

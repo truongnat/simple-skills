@@ -129,3 +129,6 @@ SELECT * FROM daily_aggregated
 ## Output
 
 Produce a data-pipeline artifact with source/schema, lineage, transformations, orchestration, data-quality gates, backfill/recovery plan, observability, and ownership.
+## Worked scenarios and evidence
+
+Read [`references/worked-scenarios-and-evidence.md`](./references/worked-scenarios-and-evidence.md) for one positive and one negative/edge fixture with expected output-level evidence and canonical handoff.

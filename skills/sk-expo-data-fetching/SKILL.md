@@ -473,3 +473,6 @@ It does **not** own native screen layout/accessibility, generic JavaScript test 
 ## Cross-skill handoffs
 
 - sk-testing-pro for test strategy; sk-systematic-debugging-pro for diagnosis; sk-clean-code or architecture skills for cross-cutting design; neighboring stack skill for integration.
+## Wave 2 validation
+
+Read [`references/data-fetching-validation-matrix.md`](./references/data-fetching-validation-matrix.md) when the task requires scenario-level evidence, failure/recovery coverage, or a final verification handoff. The domain skill prepares the claim and evidence packet; `sk-verify-pro` decides `pass`, `block`, or `defer`.

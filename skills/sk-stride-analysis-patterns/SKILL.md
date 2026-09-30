@@ -91,3 +91,6 @@ Produce a reusable stride analysis patterns artifact with the selected approach,
 ## Cross-skill handoffs
 
 - sk-security-pro for control selection; sk-auth-pro for identity threats; sk-api-security-pro for API abuse paths; sk-testing-pro for security regression cases.
+## Worked scenarios and evidence
+
+Read [`references/worked-scenarios-and-evidence.md`](./references/worked-scenarios-and-evidence.md) for one positive and one negative/edge fixture with expected output-level evidence and canonical handoff.

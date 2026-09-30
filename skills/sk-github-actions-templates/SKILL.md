@@ -355,3 +355,6 @@ Produce a repository-tooling artifact with command sequence, scope and safety as
 - sk-ci-cd-pro for pipeline architecture; sk-deployment-pro for release strategy; sk-testing-pro for test intent; sk-security-pro for permissions and supply-chain controls.
 
 **Validation reference:** See `references/workflow-validation-matrix.md` for syntax, permissions, fork PR, matrix, concurrency, approval, and rollback cases.
+## Wave 2 validation
+
+Read [`references/workflow-validation-matrix.md`](./references/workflow-validation-matrix.md) when the task requires scenario-level evidence, failure/recovery coverage, or a final verification handoff. The domain skill prepares the claim and evidence packet; `sk-verify-pro` decides `pass`, `block`, or `defer`.

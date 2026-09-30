@@ -123,3 +123,6 @@ export async function findRelevantContent(userQuery: string) {
 ## Output
 
 Produce a RAG architecture artifact with ingestion/retrieval/generation flow, data sources, evaluation set, guardrails, latency/cost assumptions, and rollout checks.
+## Worked scenarios and evidence
+
+Read [`references/worked-scenarios-and-evidence.md`](./references/worked-scenarios-and-evidence.md) for one positive and one negative/edge fixture with expected output-level evidence and canonical handoff.

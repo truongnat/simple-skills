@@ -124,3 +124,6 @@ Produce a Spring Boot implementation or review plan with module boundaries, conf
 - sk-testing-pro for test strategy; sk-systematic-debugging-pro for diagnosis; sk-clean-code or architecture skills for cross-cutting design; neighboring stack skill for integration.
 
 Use `references/service-verification-matrix.md` to verify controller/error contracts, security, domain rules, repositories, transactions, configuration, integration paths, and Actuator readiness.
+## Worked scenarios and evidence
+
+Read [`references/worked-scenarios-and-evidence.md`](./references/worked-scenarios-and-evidence.md) for one positive and one negative/edge fixture with expected output-level evidence and canonical handoff.

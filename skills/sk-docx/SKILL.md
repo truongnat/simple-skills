@@ -85,3 +85,6 @@ Produce a document/media artifact with input and output paths, coverage/quality 
 ## Cross-skill handoffs
 
 - sk-docs or sk-technical-writing-pro for content/structure; sk-office-common for shared office conventions; sk-pdf for conversion only after DOCX validation.
+## Worked scenarios and evidence
+
+Read [`references/worked-scenarios-and-evidence.md`](./references/worked-scenarios-and-evidence.md) for one positive and one negative/edge fixture with expected output-level evidence and canonical handoff.

@@ -110,3 +110,6 @@ Produce a reusable engineering management pro artifact with the selected approac
 ## Cross-skill handoffs
 
 - sk-technical-writing-pro for clarity; sk-research for evidence; sk-docs for information architecture; relevant domain/format skill for implementation.
+## Worked scenarios and evidence
+
+Read [`references/worked-scenarios-and-evidence.md`](./references/worked-scenarios-and-evidence.md) for one positive and one negative/edge fixture with expected output-level evidence and canonical handoff.

@@ -49,11 +49,10 @@ simple-skills/
 │   │   ├── templates/             # Output templates, when needed
 │   │   └── assets/                # Local assets, when needed
 │   └── ...
-├── README.md
-└── .gitignore
+└── README.md
 ```
 
-Each skill should remain an independent unit. Avoid hidden dependencies between skill directories; when coordination is required, document it in the skill's boundary or workflow section.
+The release tree intentionally contains only the portable `skills/` catalog and this README. Git metadata remains outside the working-tree layout. Each skill should remain an independent unit. Avoid hidden dependencies between skill directories; when coordination is required, document it in the skill's boundary or workflow section.
 
 ## Skill Format
 

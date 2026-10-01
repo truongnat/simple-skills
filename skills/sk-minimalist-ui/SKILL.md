@@ -114,3 +114,7 @@ When tasked with writing frontend code (HTML, React, Tailwind, Vue) or designing
 ## Output
 
 Produce a UI direction artifact with hierarchy, layout, typography, color/tokens, responsive states, interaction behavior, and visual QA checklist.
+
+## Wave 3 evidence pack
+
+Read [`references/visual-qa-fixture.md`](./references/visual-qa-fixture.md) when the task requires the Wave 3 positive/negative fixture and evidence packet. The skill prepares bounded evidence; `sk-verify-pro` owns the final claim-to-evidence decision.

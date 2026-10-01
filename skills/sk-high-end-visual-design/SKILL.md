@@ -127,3 +127,7 @@ Evaluate your code against this matrix before delivering. This is the last filte
 ## Output
 
 Produce a reusable implementation or design artifact with the selected direction/pattern, relevant files or code, responsive/platform behavior, accessibility considerations, verification evidence, risks, and next steps.
+
+## Wave 3 evidence pack
+
+Read [`references/visual-qa-fixture.md`](./references/visual-qa-fixture.md) when the task requires the Wave 3 positive/negative fixture and evidence packet. The skill prepares bounded evidence; `sk-verify-pro` owns the final claim-to-evidence decision.

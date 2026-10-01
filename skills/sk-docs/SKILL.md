@@ -260,3 +260,7 @@ Each document must contain its standard sections (see its template); the core:
 ## Cross-skill handoffs
 
 - sk-technical-writing-pro for editorial quality; sk-specify/sk-business-analysis for requirements; sk-architecture-patterns for architecture views; format skills for DOCX/PDF/XLSX outputs.
+
+## Wave 3 evidence pack
+
+Read [`references/wave3-evidence-pack.md`](./references/wave3-evidence-pack.md) when the task requires the Wave 3 positive/negative fixture and evidence packet. The skill prepares bounded evidence; `sk-verify-pro` owns the final claim-to-evidence decision.

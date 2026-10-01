@@ -129,3 +129,7 @@ Produce a document/media artifact with input and output paths, coverage/quality 
 ## Cross-skill handoffs
 
 - sk-xlsx for workbook fidelity; sk-office-common for office conventions; sk-data-analysis-pro for downstream numeric analysis; sk-docs for publication.
+
+## Wave 3 evidence pack
+
+Read [`references/wave3-evidence-pack.md`](./references/wave3-evidence-pack.md) when the task requires the Wave 3 positive/negative fixture and evidence packet. The skill prepares bounded evidence; `sk-verify-pro` owns the final claim-to-evidence decision.

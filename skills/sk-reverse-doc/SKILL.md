@@ -98,3 +98,7 @@ Produce a document/media artifact with input and output paths, coverage/quality 
 ## Cross-skill handoffs
 
 - sk-docx/sk-pdf/sk-xlsx for extraction; sk-specify for SRS structure; sk-business-analysis for requirements interpretation; sk-ocr-pro for scanned inputs.
+
+## Wave 3 evidence pack
+
+Read [`references/wave3-evidence-pack.md`](./references/wave3-evidence-pack.md) when the task requires the Wave 3 positive/negative fixture and evidence packet. The skill prepares bounded evidence; `sk-verify-pro` owns the final claim-to-evidence decision.

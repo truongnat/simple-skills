@@ -152,3 +152,7 @@ Produce a reusable research artifact with the selected approach, relevant files 
 ## Cross-skill handoffs
 
 - sk-web-research-pro for source collection; sk-market-research-pro for market sizing; sk-business-analysis for requirements; sk-planning for execution.
+
+## Wave 3 evidence pack
+
+Read [`references/wave3-evidence-pack.md`](./references/wave3-evidence-pack.md) when the task requires the Wave 3 positive/negative fixture and evidence packet. The skill prepares bounded evidence; `sk-verify-pro` owns the final claim-to-evidence decision.
